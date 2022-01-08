@@ -14,15 +14,7 @@ public class PWCGDirectoryProductManager
     {
         String userDir = System.getProperty("user.dir");
         pwcgRootDir = userDir + "\\";
-
-        if (product == PWCGProduct.FC)
-        {
-            pwcgDataDir = pwcgRootDir + "FCData\\";
-        }
-        else
-        {
-            pwcgDataDir = pwcgRootDir + "BoSData\\";
-        }
+        pwcgDataDir = pwcgRootDir + "BoSData\\";
     }
 
     public String getPwcgRootDir()
@@ -50,6 +42,11 @@ public class PWCGDirectoryProductManager
         return getPwcgInputDir() + "Aircraft\\";
     }
 
+    public String getPwcgTankInfoDir()
+    {
+        return getPwcgInputDir() + "Tanks\\";
+    }
+
     public String getPwcgAirfieldHotSpotsDir()
     {
         return getPwcgInputDir() + "AirfieldHotSpots\\";
@@ -60,9 +57,9 @@ public class PWCGDirectoryProductManager
         return getPwcgInputDir() + "Configuration\\";
     }
 
-    public String getPwcgSquadronDir()
+    public String getPwcgCompanyDir()
     {
-        return getPwcgInputDir() + "Squadron\\";
+        return getPwcgInputDir() + "Company\\";
     }
 
     public String getPwcgSquadronMovingFrontDir()

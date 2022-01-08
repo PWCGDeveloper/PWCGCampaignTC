@@ -127,8 +127,8 @@ public class CampaignJournalGUI extends JPanel
         JLabel lSquadron = PWCGLabelFactory.makeTransparentLabel(squadronText, ColorMap.PAPER_FOREGROUND, font, SwingConstants.LEFT);
         headerLeftPanel.add(lSquadron);
 
-		JLabel lPilot = makePilotsInMissionLabel(font);
-		headerLeftPanel.add(lPilot);
+		JLabel lCrewMember = makeCrewMembersInMissionLabel(font);
+		headerLeftPanel.add(lCrewMember);
 
         String typeText = InternationalizationManager.getTranslation("Type");
         typeText += ": " + combatReport.getType();
@@ -166,34 +166,25 @@ public class CampaignJournalGUI extends JPanel
         localityText += ": " + combatReport.getLocality();
         JLabel lLocality = PWCGLabelFactory.makeTransparentLabel(localityText, ColorMap.PAPER_FOREGROUND, font, SwingConstants.LEFT);
         headerRightPanel.add(lLocality);
-
-        String heightText = InternationalizationManager.getTranslation("Height");
-        heightText += ": " + combatReport.getAltitude();
-        JLabel lHeight = PWCGLabelFactory.makeTransparentLabel(heightText, ColorMap.PAPER_FOREGROUND, font, SwingConstants.LEFT);
-        headerRightPanel.add(lHeight);
-
-		headerRightPanel.add(PWCGLabelFactory.makeDummyLabel());		
-		headerRightPanel.add(PWCGLabelFactory.makeDummyLabel());
-		headerPanel.add(headerRightPanel, BorderLayout.CENTER);
     }
 
-    private JLabel makePilotsInMissionLabel(Font font) throws PWCGException
+    private JLabel makeCrewMembersInMissionLabel(Font font) throws PWCGException
     {
-        String pilotNames = "";
-        for (String pilotName : combatReport.getFlightPilots())
+        String crewMemberNames = "";
+        for (String crewMemberName : combatReport.getFlightCrewMembers())
         {
-            if (!pilotNames.isEmpty())
+            if (!crewMemberNames.isEmpty())
             {
-                pilotNames += ", ";
+                crewMemberNames += ", ";
             }
-            pilotNames += pilotName;
+            crewMemberNames += crewMemberName;
         }
         
-        String pilotsInMissionText = InternationalizationManager.getTranslation("Pilots in mission");
-        pilotsInMissionText += ": " + pilotNames;
-        JLabel lPilot = PWCGLabelFactory.makeTransparentLabel(pilotsInMissionText, ColorMap.PAPER_FOREGROUND, font, SwingConstants.LEFT);
+        String crewMembersInMissionText = InternationalizationManager.getTranslation("CrewMembers in mission");
+        crewMembersInMissionText += ": " + crewMemberNames;
+        JLabel lCrewMember = PWCGLabelFactory.makeTransparentLabel(crewMembersInMissionText, ColorMap.PAPER_FOREGROUND, font, SwingConstants.LEFT);
 
-        return lPilot;
+        return lCrewMember;
     }
 
 	private Component makeMissionResults() throws PWCGException 
@@ -219,7 +210,6 @@ public class CampaignJournalGUI extends JPanel
 		
 		Font medFont = PWCGMonitorFonts.getDecorativeFont();
         String narrativeDescText = InternationalizationManager.getTranslation("Height");
-        narrativeDescText += ": " + combatReport.getAltitude();
         JLabel lNarrative = PWCGLabelFactory.makeTransparentLabel(narrativeDescText, ColorMap.PAPER_FOREGROUND, medFont, SwingConstants.LEFT);
         narrativePanel.add(lNarrative, BorderLayout.NORTH);
 		

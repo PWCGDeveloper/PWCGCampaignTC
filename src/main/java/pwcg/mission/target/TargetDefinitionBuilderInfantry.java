@@ -34,7 +34,7 @@ public class TargetDefinitionBuilderInfantry
     private List<TargetDefinition> createTargetDefinitionFromGroundUnit(GroundUnitCollection groundUnitCollection) throws PWCGException
     {
         List<TargetDefinition> targetDefinitionsForCollection = new ArrayList<>();
-        for (IGroundUnit enemyGroundUnit : groundUnitCollection.getInterestingGroundUnitsForSide(flightInformation.getSquadron().determineEnemySide()))
+        for (IGroundUnit enemyGroundUnit : groundUnitCollection.getInterestingGroundUnitsForSide(flightInformation.getCountry().getSide().getOppositeSide()))
         {
             String targetDescription = buildTargetDescription(enemyGroundUnit);
             TargetDefinition targetDefinition = new TargetDefinition(enemyGroundUnit.getTargetType(), enemyGroundUnit.getPosition().copy(), enemyGroundUnit.getCountry(), targetDescription);
@@ -66,7 +66,7 @@ public class TargetDefinitionBuilderInfantry
     private boolean isCloseToAirfield(Coordinate blockPosition) throws PWCGException
     {
         List<Airfield> closeAirfields = PWCGContext.getInstance().getCurrentMap().getAirfieldManager().getAirfieldFinder().getAirfieldsWithinRadiusBySide(
-                blockPosition, flightInformation.getCampaign().getDate(), 5000, flightInformation.getSquadron().determineEnemySide());
+                blockPosition, flightInformation.getCampaign().getDate(), 5000, flightInformation.getCountry().getSide().getOppositeSide());
         if (closeAirfields.isEmpty())
         {
             return false;

@@ -17,10 +17,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextPane;
 
 import pwcg.campaign.Campaign;
+import pwcg.campaign.company.Company;
 import pwcg.campaign.context.FrontMapIdentifier;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.group.AirfieldManager;
-import pwcg.campaign.squadron.Squadron;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.PWCGLogger;
 import pwcg.gui.CampaignGuiContextManager;
@@ -191,7 +191,7 @@ public class IntelMapGUI extends MapGUI implements ActionListener
 		Font font = PWCGMonitorFonts.getTypewriterFont();
 
 		String squadronText = "";
-		Squadron squadron =  PWCGContext.getInstance().getSquadronManager().getSquadron(squadId);
+		Company squadron =  PWCGContext.getInstance().getCompanyManager().getCompany(squadId);
 		if (squadron != null)
 		{
 			squadronText = squadron.determineSquadronDescription(mapDate);

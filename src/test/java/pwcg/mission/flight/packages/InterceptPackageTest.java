@@ -5,8 +5,8 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import pwcg.campaign.Campaign;
+import pwcg.campaign.company.Company;
 import pwcg.campaign.context.PWCGProduct;
-import pwcg.campaign.squadron.Squadron;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.CoordinateBox;
 import pwcg.core.utils.MathUtils;
@@ -41,7 +41,7 @@ public class InterceptPackageTest extends PwcgTestBase
         List<IFlight> opposingFlights = missionFlights.getNecessaryFlightsByType(NecessaryFlightType.OPPOSING_FLIGHT);
         assert(opposingFlights.size() == 1);
 
-        IFlight playerFlight = missionFlights.getPlayerFlights().get(0);
+        IFlight playerFlight = missionFlights.getUnits().get(0);
         verifyInterceptOpposingIsCloseToPlayer(playerFlight, opposingFlights.get(0));        
    }
 
@@ -49,7 +49,7 @@ public class InterceptPackageTest extends PwcgTestBase
     {
         MissionHumanParticipants participatingPlayers = TestMissionBuilderUtility.buildTestParticipatingHumans(campaign);
 
-        Squadron playerSquadron = participatingPlayers.getAllParticipatingPlayers().get(0).determineSquadron();
+        Company playerSquadron = participatingPlayers.getAllParticipatingPlayers().get(0).determineSquadron();
         MissionSquadronFlightTypes playerFlightTypes = MissionSquadronFlightTypes.buildPlayerFlightType(FlightTypes.INTERCEPT, playerSquadron);
 
         MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(campaign, participatingPlayers, null, playerFlightTypes);

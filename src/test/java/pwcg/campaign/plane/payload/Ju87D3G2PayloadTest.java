@@ -15,11 +15,12 @@ import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 
 import pwcg.campaign.Campaign;
+import pwcg.campaign.company.Company;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGProduct;
-import pwcg.campaign.plane.PlaneType;
-import pwcg.campaign.plane.PlaneTypeFactory;
-import pwcg.campaign.squadron.Squadron;
+import pwcg.campaign.plane.PlaneAttributeMapping;
+import pwcg.campaign.plane.TankType;
+import pwcg.campaign.plane.TankTypeFactory;
 import pwcg.core.config.ConfigManagerCampaign;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
@@ -28,8 +29,7 @@ import pwcg.mission.flight.FlightTypes;
 import pwcg.mission.flight.IFlight;
 import pwcg.mission.target.TargetCategory;
 import pwcg.mission.target.TargetDefinition;
-import pwcg.product.bos.plane.BosPlaneAttributeMapping;
-import pwcg.product.bos.plane.payload.BoSPayloadFactory;
+import pwcg.product.bos.plane.payload.PlanePayloadFactory;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
@@ -44,7 +44,7 @@ public class Ju87D3G2PayloadTest
     @Mock
     Campaign campaign;
     @Mock
-    Squadron squadron;
+    Company squadron;
     @Mock
     ConfigManagerCampaign configManagerCampaign;
 
@@ -91,25 +91,25 @@ public class Ju87D3G2PayloadTest
     @Test
     public void validateStukaPayloadBeforeCannons() throws PWCGException
     {
-        BoSPayloadFactory bosPayloadFactory = new BoSPayloadFactory();
-        PlaneTypeFactory planeTypeFactory = PWCGContext.getInstance().getPlaneTypeFactory();
+        PlanePayloadFactory bosPayloadFactory = new PlanePayloadFactory();
+        TankTypeFactory planeTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
 
-        PlaneType bosPlaneType = planeTypeFactory.createPlaneTypeByType(BosPlaneAttributeMapping.JU87_D3.getPlaneType());
+        TankType bosTankType = planeTypeFactory.createTankTypeByType(PlaneAttributeMapping.JU87_D3.getTankType());
 
-        System.out.println(bosPlaneType.getType());
+        System.out.println(bosTankType.getType());
 
-        IPlanePayload payload = bosPayloadFactory.createPlanePayload(bosPlaneType.getType(), DateUtils.getDateYYYYMMDD("19420801"));
+        IPlanePayload payload = bosPayloadFactory.createPayload(bosTankType.getType(), DateUtils.getDateYYYYMMDD("19420801"));
         Assertions.assertTrue (payload != null);
 
         Assertions.assertTrue (payload.getAvailablePayloadDesignations(flight).size() == 8);
 
-        List<PayloadElement> unexpectedElements = Arrays.asList(PayloadElement.BK37_AP_GUNPOD, PayloadElement.BK37_HE_GUNPOD);
-        for (PayloadElement unexpectedElement : unexpectedElements)
+        List<PlanePayloadElement> unexpectedElements = Arrays.asList(PlanePayloadElement.BK37_AP_GUNPOD, PlanePayloadElement.BK37_HE_GUNPOD);
+        for (PlanePayloadElement unexpectedElement : unexpectedElements)
         {
             Boolean found = false;
-            for (PayloadDesignation payloadDesignation : payload.getAvailablePayloadDesignations(flight))
+            for (PlanePayloadDesignation payloadDesignation : payload.getAvailablePayloadDesignations(flight))
             {
-                for (PayloadElement element : payloadDesignation.getPayloadElements())
+                for (PlanePayloadElement element : payloadDesignation.getPayloadElements())
                 {
                     if (unexpectedElement == element)
                     {
@@ -124,27 +124,27 @@ public class Ju87D3G2PayloadTest
     @Test
     public void validateStukaPayloadAfterCannons() throws PWCGException
     {
-        BoSPayloadFactory bosPayloadFactory = new BoSPayloadFactory();
-        PlaneTypeFactory planeTypeFactory = PWCGContext.getInstance().getPlaneTypeFactory();
+        PlanePayloadFactory bosPayloadFactory = new PlanePayloadFactory();
+        TankTypeFactory planeTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
 
-        PlaneType bosPlaneType = planeTypeFactory.createPlaneTypeByType(BosPlaneAttributeMapping.JU87_D3.getPlaneType());
+        TankType bosTankType = planeTypeFactory.createTankTypeByType(PlaneAttributeMapping.JU87_D3.getTankType());
 
-        System.out.println(bosPlaneType.getType());
+        System.out.println(bosTankType.getType());
 
         Date date = DateUtils.getDateYYYYMMDD("19430503");
 
-        IPlanePayload payload = bosPayloadFactory.createPlanePayload(bosPlaneType.getType(), date);
+        IPlanePayload payload = bosPayloadFactory.createPayload(bosTankType.getType(), date);
         Assertions.assertTrue (payload != null);
 
         Assertions.assertTrue (payload.getAvailablePayloadDesignations(flight).size() == 10);
         
-        List<PayloadElement> expectedElements = Arrays.asList(PayloadElement.BK37_AP_GUNPOD, PayloadElement.BK37_HE_GUNPOD);
-        for (PayloadElement expectedElement : expectedElements)
+        List<PlanePayloadElement> expectedElements = Arrays.asList(PlanePayloadElement.BK37_AP_GUNPOD, PlanePayloadElement.BK37_HE_GUNPOD);
+        for (PlanePayloadElement expectedElement : expectedElements)
         {
             Boolean found = false;
-            for (PayloadDesignation payloadDesignation : payload.getAvailablePayloadDesignations(flight))
+            for (PlanePayloadDesignation payloadDesignation : payload.getAvailablePayloadDesignations(flight))
             {
-                for (PayloadElement element : payloadDesignation.getPayloadElements())
+                for (PlanePayloadElement element : payloadDesignation.getPayloadElements())
                 {
                     if (expectedElement == element)
                     {
@@ -158,17 +158,17 @@ public class Ju87D3G2PayloadTest
 
     private IPlanePayload getPayloadGeneratorForDiveBomber() throws PWCGException
     {
-        PlaneType plane = PWCGContext.getInstance().getPlaneTypeFactory().createPlaneTypeByType(BosPlaneAttributeMapping.JU87_D3.getPlaneType());
-        IPayloadFactory payloadFactory = PWCGContext.getInstance().getPayloadFactory();
-        IPlanePayload payloadGenerator = payloadFactory.createPlanePayload(plane.getType(), campaign.getDate());
+        TankType plane = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByType(PlaneAttributeMapping.JU87_D3.getTankType());
+        IPlanePayloadFactory payloadFactory = PWCGContext.getInstance().getPlanePayloadFactory();
+        IPlanePayload payloadGenerator = payloadFactory.createPayload(plane.getType(), campaign.getDate());
         return payloadGenerator;
     }
 
     private IPlanePayload getPayloadGeneratorForAttack() throws PWCGException
     {
-        PlaneType plane = PWCGContext.getInstance().getPlaneTypeFactory().createPlaneTypeByType(BosPlaneAttributeMapping.JU87_D3.getPlaneType());
-        IPayloadFactory payloadFactory = PWCGContext.getInstance().getPayloadFactory();
-        IPlanePayload payloadGenerator = payloadFactory.createPlanePayload(plane.getType(), campaign.getDate());
+        TankType plane = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByType(PlaneAttributeMapping.JU87_D3.getTankType());
+        IPlanePayloadFactory payloadFactory = PWCGContext.getInstance().getPlanePayloadFactory();
+        IPlanePayload payloadGenerator = payloadFactory.createPayload(plane.getType(), campaign.getDate());
         return payloadGenerator;
     }
 

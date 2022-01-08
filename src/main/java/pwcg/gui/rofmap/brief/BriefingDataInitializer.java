@@ -1,17 +1,17 @@
 package pwcg.gui.rofmap.brief;
 
-import pwcg.campaign.personnel.SquadronMemberFilter;
-import pwcg.campaign.personnel.SquadronPersonnel;
-import pwcg.campaign.plane.Equipment;
-import pwcg.campaign.plane.EquippedPlane;
-import pwcg.campaign.squadmember.SquadronMember;
-import pwcg.campaign.squadmember.SquadronMembers;
-import pwcg.campaign.squadron.Squadron;
+import pwcg.campaign.company.Company;
+import pwcg.campaign.crewmember.CrewMember;
+import pwcg.campaign.crewmember.CrewMembers;
+import pwcg.campaign.personnel.CompanyPersonnel;
+import pwcg.campaign.personnel.CrewMemberFilter;
+import pwcg.campaign.tank.Equipment;
+import pwcg.campaign.tank.EquippedTank;
 import pwcg.core.exception.PWCGException;
-import pwcg.gui.rofmap.brief.model.BriefingPilotAssignmentData;
+import pwcg.gui.rofmap.brief.model.BriefingCrewMemberAssignmentData;
 import pwcg.mission.Mission;
-import pwcg.mission.flight.IFlight;
-import pwcg.mission.flight.plane.PlaneMcu;
+import pwcg.mission.playerunit.PlayerUnit;
+import pwcg.mission.playerunit.TankMcu;
 
 public class BriefingDataInitializer
 {
@@ -22,29 +22,29 @@ public class BriefingDataInitializer
         this.mission = mission;
 	}
 	
-	public BriefingPilotAssignmentData initializeFromMission(Squadron squadron) throws PWCGException
+	public BriefingCrewMemberAssignmentData initializeFromMission(Company company) throws PWCGException
 	{	    
-	    BriefingPilotAssignmentData briefingAssignmentData = new BriefingPilotAssignmentData();
-	    briefingAssignmentData.setSquadron(squadron);
+	    BriefingCrewMemberAssignmentData briefingAssignmentData = new BriefingCrewMemberAssignmentData();
+	    briefingAssignmentData.setSquadron(company);
         
-	    SquadronPersonnel playerPersonnel = mission.getCampaign().getPersonnelManager().getSquadronPersonnel(squadron.getSquadronId());
-        SquadronMembers squadronMembers = SquadronMemberFilter.filterActiveAIAndPlayerAndAcesNoWounded(
-        		playerPersonnel.getSquadronMembersWithAces().getSquadronMemberCollection(), (mission.getCampaign().getDate()));
-        for (SquadronMember squadronMember : squadronMembers.getSquadronMemberCollection().values())
+	    CompanyPersonnel playerPersonnel = mission.getCampaign().getPersonnelManager().getCompanyPersonnel(company.getCompanyId());
+        CrewMembers companyMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAcesNoWounded(
+        		playerPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), (mission.getCampaign().getDate()));
+        for (CrewMember crewMember : companyMembers.getCrewMemberCollection().values())
         {
-            briefingAssignmentData.addPilot(squadronMember);
+            briefingAssignmentData.addCrewMember(crewMember);
         }
         
-        Equipment squadronPlanes = mission.getCampaign().getEquipmentManager().getEquipmentForSquadron(squadron.getSquadronId());
-        for (EquippedPlane squadronPlane : squadronPlanes.getActiveEquippedPlanes().values())
+        Equipment companyPlanes = mission.getCampaign().getEquipmentManager().getEquipmentForCompany(company.getCompanyId());
+        for (EquippedTank companyPlane : companyPlanes.getActiveEquippedTanks().values())
         {
-            briefingAssignmentData.addPlane(squadronPlane);
+            briefingAssignmentData.addPlane(companyPlane);
         }
 	    
-        IFlight playerFlight = mission.getFlights().getPlayerFlightForSquadron(squadron.getSquadronId());
-	    for (PlaneMcu plane : playerFlight.getFlightPlanes().getPlanes())
+        PlayerUnit playerUnit = mission.getUnits().getPlayerUnitForCompany(company.getCompanyId());
+	    for (TankMcu tank : playerUnit.getUnitTanks().getTanks())
 	    {
-	        briefingAssignmentData.assignPilot(plane.getPilot().getSerialNumber(), plane.getSerialNumber());
+	        briefingAssignmentData.assignCrewMember(tank.getCrewMember().getSerialNumber(), tank.getSerialNumber());
 	    }
 	    
 	    return briefingAssignmentData;

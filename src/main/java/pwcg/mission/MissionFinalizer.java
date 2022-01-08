@@ -5,29 +5,24 @@ import java.util.List;
 
 import pwcg.campaign.Campaign;
 import pwcg.campaign.CampaignMode;
-import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.PWCGLogger;
 import pwcg.core.utils.PWCGLogger.LogLevel;
-import pwcg.mission.flight.IFlight;
-import pwcg.mission.flight.plane.PlaneMcu;
 import pwcg.mission.ground.builder.IndirectFireAssignmentHandler;
 import pwcg.mission.ground.unittypes.GroundUnitEngagableAAAEvaluator;
 import pwcg.mission.mcu.group.MissionObjectiveGroup;
 import pwcg.mission.mcu.group.StopAttackingNearAirfieldSequence;
 import pwcg.mission.options.MissionOptions;
+import pwcg.mission.playerunit.TankMcu;
 
 public class MissionFinalizer
 {
     private Mission mission;
     private Campaign campaign;
-    private MissionFlights flights;
+    private MissionPlayerUnits units;
     private boolean isFinalized = false;
     private MissionFrontLineIconBuilder frontLineIconBuilder;
     private MissionWaypointIconBuilder waypointIconBuilder = new MissionWaypointIconBuilder();
-    private MissionAirfieldIconBuilder airfieldIconBuilder = new MissionAirfieldIconBuilder();
-    private MissionSquadronIconBuilder squadronIconBuilder;
     private MissionAssaultIconBuilder assaultIconBuilder = new MissionAssaultIconBuilder();
     private List<StopAttackingNearAirfieldSequence> stopSequenceForMission = new ArrayList<>();
     private MissionObjectiveGroup missionObjectiveSuccess = new MissionObjectiveGroup();
@@ -37,7 +32,7 @@ public class MissionFinalizer
     {
         this.mission = mission;
         this.campaign = mission.getCampaign();
-        this.flights = mission.getFlights();
+        this.units = mission.getUnits();
     }
 
     public void finalizeMission() throws PWCGException
@@ -45,43 +40,25 @@ public class MissionFinalizer
         if (!isFinalized)
         {
             frontLineIconBuilder = new MissionFrontLineIconBuilder(campaign);
-            squadronIconBuilder = new MissionSquadronIconBuilder(campaign);
 
             setMissionScript(mission.getMissionOptions());
 
-            mission.getFlights().finalizeMissionFlights();
+            mission.getUnits().finalizeMissionUnits();
             mission.getGroundUnitBuilder().finalizeGroundUnits();
             
             frontLineIconBuilder.buildFrontLineIcons();
-            waypointIconBuilder.createWaypointIcons(flights.getPlayerFlights());
-            airfieldIconBuilder.createWaypointIcons(campaign, mission);
+            waypointIconBuilder.createWaypointIcons(units.getPlayerUnits());
             assaultIconBuilder.createAssaultIcons(mission.getBattleManager().getMissionAssaultDefinitions());
             mission.getMissionBlocks().adjustBlockDamageAndSmoke();
 
             setGroundUnitTriggers();
-            setFreeHuntTriggers();
             assignIndirectFireTargets();
             setEngagableAAA();
-
-            if (flights.getPlayerFlights().size() > 1)
-            {
-                squadronIconBuilder.createSquadronIcons(flights.getPlayerFlights());
-            }
 
             if (mission.getCampaign().getCampaignData().getCampaignMode() == CampaignMode.CAMPAIGN_MODE_SINGLE)
             {
                 finalizeForSinglePlayer();
             }
-            
-            stopAttackingNearAirfield();
-
-            if (PWCGContext.getProduct() == PWCGProduct.FC)
-            {
-                FCBugHandler.fcBugs(mission);
-            }
-
-            MissionAnalyzer analyzer = new MissionAnalyzer();
-            analyzer.analyze(mission);
         }
 
         getGroundUnitCount();
@@ -91,8 +68,8 @@ public class MissionFinalizer
 
     private void setMissionScript(MissionOptions missionOptions) throws PWCGException
     {
-        List<PlaneMcu> playerPlanes = flights.getReferencePlayerFlight().getFlightPlanes().getPlayerPlanes();
-        String playerScript = playerPlanes.get(0).getScript();
+        List<TankMcu> playerVehicles = units.getReferencePlayerUnit().getTanks();
+        String playerScript = playerVehicles.get(0).getScript();
         missionOptions.setPlayerConfig(playerScript);
     }
 
@@ -100,12 +77,6 @@ public class MissionFinalizer
     {
         MissionCheckZoneTriggerBuilder missionCheckZoneTriggerBuilder = new MissionCheckZoneTriggerBuilder(mission);
         missionCheckZoneTriggerBuilder.triggerGroundUnits();
-    }
-
-    private void setFreeHuntTriggers() throws PWCGException
-    {
-        MissionFreeHuntTriggerBuilder freeHuntTriggerBuidler = new MissionFreeHuntTriggerBuilder(mission);
-        freeHuntTriggerBuidler.buildFreeHuntTriggers();
     }
 
     private void assignIndirectFireTargets() throws PWCGException
@@ -125,16 +96,6 @@ public class MissionFinalizer
         {
             missionObjectiveSuccess.createSuccessMissionObjective(campaign, mission);
             missionObjectiveFailure.createFailureMissionObjective(campaign, mission);
-        }
-    }
-
-    private void stopAttackingNearAirfield() throws PWCGException
-    {
-        for (IFlight flight : flights.getAllAerialFlights())
-        {
-            StopAttackingNearAirfield stopAttackingNearAirfield = new StopAttackingNearAirfield(flight, mission.getFieldsForPatrol());
-            List<StopAttackingNearAirfieldSequence> stopSequenceForFlight = stopAttackingNearAirfield.stopAttackingAirfields();
-            stopSequenceForMission.addAll(stopSequenceForFlight);
         }
     }
 
@@ -164,16 +125,6 @@ public class MissionFinalizer
         this.frontLineIconBuilder = frontLineIconBuilder;
     }
 
-    public MissionAirfieldIconBuilder getAirfieldIconBuilder()
-    {
-        return airfieldIconBuilder;
-    }
-
-    public void setAirfieldIconBuilder(MissionAirfieldIconBuilder airfieldIconBuilder)
-    {
-        this.airfieldIconBuilder = airfieldIconBuilder;
-    }
-
     public MissionAssaultIconBuilder getAssaultIconBuilder()
     {
         return assaultIconBuilder;
@@ -192,11 +143,6 @@ public class MissionFinalizer
     public MissionWaypointIconBuilder getWaypointIconBuilder()
     {
         return waypointIconBuilder;
-    }
-
-    public MissionSquadronIconBuilder getSquadronIconBuilder()
-    {
-        return squadronIconBuilder;
     }
 
     public List<StopAttackingNearAirfieldSequence> getStopSequenceForMission()

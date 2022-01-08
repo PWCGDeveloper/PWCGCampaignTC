@@ -4,7 +4,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import pwcg.campaign.Campaign;
-import pwcg.campaign.squadron.SquadronSummaryStatistics;
+import pwcg.campaign.company.SquadronSummaryStatistics;
 import pwcg.core.exception.PWCGException;
 
 public class CampaignSquadronLogSummaryPageBuilder
@@ -30,7 +30,7 @@ public class CampaignSquadronLogSummaryPageBuilder
         summaryPageBuffer.append("Squadron Members Killed: " + squadronSummaryStatistics.getNumKilled() + "\n");
         summaryPageBuffer.append("Squadron Members Captured: " + squadronSummaryStatistics.getNumCaptured() + "\n");
         summaryPageBuffer.append("Squadron Members Lost To Wounds: " + squadronSummaryStatistics.getNumMaimed() + "\n");
-        summaryPageBuffer.append("Squadron Members Lost Total: " + squadronSummaryStatistics.getSquadronMembersLostTotal() + "\n");
+        summaryPageBuffer.append("Squadron Members Lost Total: " + squadronSummaryStatistics.getCrewMembersLostTotal() + "\n");
 
         summaryPageBuffer.append("Squadron Air To Air Victories: " + squadronSummaryStatistics.getNumAirToAirVictories() + "\n");
         summaryPageBuffer.append("Squadron Tank Kills: " + squadronSummaryStatistics.getNumTankKills() + "\n");

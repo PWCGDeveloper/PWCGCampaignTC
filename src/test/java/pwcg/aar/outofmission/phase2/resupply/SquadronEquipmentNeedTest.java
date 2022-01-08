@@ -15,14 +15,14 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import pwcg.aar.data.AARPersonnelLosses;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.CampaignEquipmentManager;
+import pwcg.campaign.company.Company;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGProduct;
-import pwcg.campaign.personnel.SquadronPersonnel;
+import pwcg.campaign.crewmember.SerialNumber;
+import pwcg.campaign.personnel.CompanyPersonnel;
 import pwcg.campaign.plane.Equipment;
 import pwcg.campaign.plane.EquippedPlane;
 import pwcg.campaign.resupply.equipment.SquadronEquipmentNeed;
-import pwcg.campaign.squadmember.SerialNumber;
-import pwcg.campaign.squadron.Squadron;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 
@@ -30,15 +30,15 @@ import pwcg.core.utils.DateUtils;
 public class SquadronEquipmentNeedTest
 {
     @Mock private Campaign campaign;
-    @Mock private Squadron squadron;
+    @Mock private Company squadron;
     @Mock private CampaignEquipmentManager campaignEquipmentManager;
     @Mock private Equipment equipment;
     @Mock private AARPersonnelLosses lossesInMissionData;
-    @Mock private SquadronPersonnel squadronPersonnel;
-    @Mock private EquippedPlane equippedPlane;
+    @Mock private CompanyPersonnel squadronPersonnel;
+    @Mock private EquippedTank equippedPlane;
 
-    private Map<Integer, EquippedPlane> activeEquippedPlaneCollection = new HashMap<>();
-    private Map<Integer, EquippedPlane> inactiveEquippedPlaneCollection = new HashMap<>();
+    private Map<Integer, EquippedTank> activeEquippedPlaneCollection = new HashMap<>();
+    private Map<Integer, EquippedTank> inactiveEquippedPlaneCollection = new HashMap<>();
     
     SerialNumber serialNumber = new SerialNumber();
     
@@ -51,10 +51,10 @@ public class SquadronEquipmentNeedTest
         PWCGContext.setProduct(PWCGProduct.BOS);
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420430"));
         Mockito.when(campaign.getEquipmentManager()).thenReturn(campaignEquipmentManager);
-        Mockito.when(campaignEquipmentManager.getEquipmentForSquadron(ArgumentMatchers.any())).thenReturn(equipment);
+        Mockito.when(campaignEquipmentManager.getEquipmentForCompany(ArgumentMatchers.any())).thenReturn(equipment);
 
-        Mockito.when(equipment.getActiveEquippedPlanes()).thenReturn(activeEquippedPlaneCollection);
-        Mockito.when(equipment.getRecentlyInactiveEquippedPlanes(ArgumentMatchers.any())).thenReturn(inactiveEquippedPlaneCollection);
+        Mockito.when(equipment.getActiveEquippedTanks()).thenReturn(activeEquippedPlaneCollection);
+        Mockito.when(equipment.getRecentlyInactiveEquippedTanks(ArgumentMatchers.any())).thenReturn(inactiveEquippedPlaneCollection);
      }
 
     @Test
@@ -64,7 +64,7 @@ public class SquadronEquipmentNeedTest
         squadronTransferNeed.determineResupplyNeeded();
         Assertions.assertTrue (squadronTransferNeed.needsResupply() == true);
         
-        for (int i = 0; i < Squadron.SQUADRON_EQUIPMENT_SIZE - 1; ++i)
+        for (int i = 0; i < Company.COMPANY_EQUIPMENT_SIZE - 1; ++i)
         {
             squadronTransferNeed.noteResupply();
             Assertions.assertTrue (squadronTransferNeed.needsResupply() == true);

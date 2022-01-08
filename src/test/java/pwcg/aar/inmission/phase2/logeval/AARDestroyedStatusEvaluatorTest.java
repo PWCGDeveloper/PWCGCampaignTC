@@ -41,7 +41,7 @@ public class AARDestroyedStatusEvaluatorTest
 
     public AARDestroyedStatusEvaluatorTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.FC);
+        PWCGContext.setProduct(PWCGProduct.BOS);
     }
 
     @BeforeEach
@@ -86,7 +86,7 @@ public class AARDestroyedStatusEvaluatorTest
         Assertions.assertTrue(vehiclesDestroyed.size() == 3);
         for (LogVictory victory : vehiclesDestroyed)
         {
-            Assertions.assertFalse(victory.didPilotDamagePlane(VICTIM_1));
+            Assertions.assertFalse(victory.didCrewMemberDamagePlane(VICTIM_1));
         }
     }
 
@@ -164,7 +164,7 @@ public class AARDestroyedStatusEvaluatorTest
         Assertions.assertTrue(vehiclesDestroyed.size() == 3);
         for (LogVictory victory : vehiclesDestroyed)
         {
-            Assertions.assertTrue(victory.didPilotDamagePlane(VICTOR));
+            Assertions.assertTrue(victory.didCrewMemberDamagePlane(VICTOR));
         }
     }
 }

@@ -25,20 +25,15 @@ import javax.swing.event.DocumentListener;
 
 import pwcg.campaign.ArmedService;
 import pwcg.campaign.CampaignMode;
-import pwcg.campaign.api.ICountry;
 import pwcg.campaign.api.IRankHelper;
-import pwcg.campaign.context.Country;
+import pwcg.campaign.company.Company;
+import pwcg.campaign.company.CompanyManager;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGMap;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.factory.ArmedServiceFactory;
-import pwcg.campaign.factory.CountryFactory;
 import pwcg.campaign.factory.RankFactory;
-import pwcg.campaign.plane.PwcgRole;
-import pwcg.campaign.plane.PwcgRoleCategory;
-import pwcg.campaign.squadmember.SquadronMember;
-import pwcg.campaign.squadron.Squadron;
-import pwcg.campaign.squadron.SquadronManager;
+import pwcg.campaign.tank.PwcgRole;
+import pwcg.campaign.tank.PwcgRoleCategory;
 import pwcg.coop.CoopUserManager;
 import pwcg.coop.model.CoopUser;
 import pwcg.core.config.InternationalizationManager;
@@ -67,24 +62,22 @@ public class CampaignGeneratorDataEntryGUI extends JPanel implements ActionListe
     private JTextField playerNameTextBox;
     private JTextField coopUserNameTextBox;
     
-    private JComboBox<String> cbRegion;
     private JComboBox<String> cbCoopUser;
 	private JComboBox<String> cbMap;
 	private JComboBox<String> cbDate;
 	private JComboBox<String> cbRole;
 	private JComboBox<String> cbRank;
-	private JComboBox<String> cbSquadron;
+	private JComboBox<String> cbCompany;
     
     private JLabel lPlayerName;
     private JLabel lCoopUser;
-    private JLabel lRegion;
     private JLabel lMap;
     private JLabel lDate;
     private JLabel lRole;
     private JLabel lRank;
-    private JLabel lSquad;
+    private JLabel lCompany;
 
-    private JTextArea squadronTextBox;
+    private JTextArea companyTextBox;
 
     private CampaignGeneratorScreen parent = null;
 
@@ -129,9 +122,6 @@ public class CampaignGeneratorDataEntryGUI extends JPanel implements ActionListe
             rowCount =  spacerFullRow(labelConstraints, dataConstraints, campaignGeneratePanel, rowCount);
 
             rowCount =  spacerFullRow(labelConstraints, dataConstraints, campaignGeneratePanel, rowCount);
-            rowCount = createRegionWidget(labelConstraints, dataConstraints, campaignGeneratePanel, rowCount);
-
-            rowCount =  spacerFullRow(labelConstraints, dataConstraints, campaignGeneratePanel, rowCount);
             rowCount = creatCoopUserWidget(labelConstraints, dataConstraints, campaignGeneratePanel, rowCount);
 
             rowCount =  spacerFullRow(labelConstraints, dataConstraints, campaignGeneratePanel, rowCount);
@@ -158,8 +148,8 @@ public class CampaignGeneratorDataEntryGUI extends JPanel implements ActionListe
 			
 			this.add(campaignGeneratePanel, BorderLayout.NORTH);
 	          
-            JPanel squadronPanel = createSquadronInfoPanel ();
-            this.add(squadronPanel, BorderLayout.SOUTH);
+            JPanel companyPanel = createSquadronInfoPanel ();
+            this.add(companyPanel, BorderLayout.SOUTH);
             
             evaluateUI();
 		}
@@ -175,19 +165,19 @@ public class CampaignGeneratorDataEntryGUI extends JPanel implements ActionListe
     {
         spacerColumn (campaignGeneratePanel, 0, rowCount);
         
-        lSquad = createCampaignGenMenuLabel("Squadron", labelConstraints, campaignGeneratePanel, rowCount);
-        campaignGeneratePanel.add(lSquad, labelConstraints);
+        lCompany = createCampaignGenMenuLabel("Squadron", labelConstraints, campaignGeneratePanel, rowCount);
+        campaignGeneratePanel.add(lCompany, labelConstraints);
 
-        cbSquadron = new JComboBox<String>();
-        cbSquadron.setOpaque(false);
-        cbSquadron.setBackground(jComboBoxBackgroundColor);
-        cbSquadron.setActionCommand("SquadronChanged");
-        cbSquadron.addActionListener(this);
-        cbSquadron.setFont(font);
+        cbCompany = new JComboBox<String>();
+        cbCompany.setOpaque(false);
+        cbCompany.setBackground(jComboBoxBackgroundColor);
+        cbCompany.setActionCommand("CompanyChanged");
+        cbCompany.addActionListener(this);
+        cbCompany.setFont(font);
 
         dataConstraints.gridx = 2;
         dataConstraints.gridy = rowCount;
-        campaignGeneratePanel.add(cbSquadron, dataConstraints);
+        campaignGeneratePanel.add(cbCompany, dataConstraints);
         
         spacerColumn (campaignGeneratePanel, 3, rowCount);
         ++rowCount;
@@ -199,7 +189,7 @@ public class CampaignGeneratorDataEntryGUI extends JPanel implements ActionListe
     {
         spacerColumn (campaignGeneratePanel, 0, rowCount);
         
-        lRank = createCampaignGenMenuLabel("Pilot Rank", labelConstraints, campaignGeneratePanel, rowCount);
+        lRank = createCampaignGenMenuLabel("CrewMember Rank", labelConstraints, campaignGeneratePanel, rowCount);
         campaignGeneratePanel.add(lRank, labelConstraints);
 
         cbRank = new JComboBox<String>();
@@ -325,12 +315,12 @@ public class CampaignGeneratorDataEntryGUI extends JPanel implements ActionListe
         Map<String, PwcgRoleCategory> rolesSorted = new TreeMap<>();
         
         Date date = parent.getCampaignGeneratorDO().getStartDate();
-        SquadronManager squadronManager = PWCGContext.getInstance().getSquadronManager();
-        List<Squadron> squadronsForService = squadronManager.getPlayerFlyableSquadronsByService(parent.getCampaignGeneratorDO().getService(), date);
+        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+        List<Company> companiesForService = companyManager.getPlayerCompaniesByService(parent.getCampaignGeneratorDO().getService(), date);
         
-        for (Squadron squadron : squadronsForService)
+        for (Company company : companiesForService)
         {            
-            PwcgRoleCategory primaryRoleCategory = squadron.determineSquadronPrimaryRoleCategory(date);
+            PwcgRoleCategory primaryRoleCategory = company.determineSquadronPrimaryRoleCategory(date);
 
             rolesSorted.put(primaryRoleCategory.getRoleCategoryDescription(), primaryRoleCategory);
         }
@@ -373,42 +363,6 @@ public class CampaignGeneratorDataEntryGUI extends JPanel implements ActionListe
         labelConstraints.gridy = rowCount;
         
         return menuLabel;
-    }
-
-    private int createRegionWidget(GridBagConstraints labelConstraints, GridBagConstraints dataConstraints,
-                    JPanel campaignGeneratePanel, int rowCount) throws PWCGException
-    {
-        ICountry country = CountryFactory.makeCountryByService(parent.getCampaignGeneratorDO().getService());
-        if (country.isCountry(Country.GERMANY) && PWCGContext.getProduct() != PWCGProduct.BOS)
-        {
-            spacerColumn (campaignGeneratePanel, 0, rowCount + 0);
-            
-            lRegion = createCampaignGenMenuLabel("Region", labelConstraints, campaignGeneratePanel, rowCount);
-            campaignGeneratePanel.add(lRegion, labelConstraints);
-
-            cbRegion = new JComboBox<String>();
-            cbRegion.addItem("None");
-            cbRegion.addItem(SquadronMember.PRUSSIA);
-            cbRegion.addItem(SquadronMember.BAVARIA);
-            cbRegion.addItem(SquadronMember.SAXONY);
-            cbRegion.addItem(SquadronMember.WURTTEMBURG);
-
-            cbRegion.setOpaque(false);
-            cbRegion.setBackground(jComboBoxBackgroundColor);
-            cbRegion.setSelectedIndex(0);
-            cbRegion.setActionCommand("RegionChanged");
-            cbRegion.addActionListener(this);
-            cbRegion.setFont(font);
-
-            dataConstraints.gridx = 2;
-            dataConstraints.gridy = rowCount;
-            campaignGeneratePanel.add(cbRegion, dataConstraints);
-
-            spacerColumn (campaignGeneratePanel, 3, rowCount + 0);
-            ++rowCount;
-        }
-        
-        return rowCount;
     }
 
     private int creatCoopUserWidget(GridBagConstraints labelConstraints, GridBagConstraints dataConstraints,
@@ -564,26 +518,26 @@ public class CampaignGeneratorDataEntryGUI extends JPanel implements ActionListe
         Color bgColor = ColorMap.PAPER_BACKGROUND;
         Color fgColor = ColorMap.CHALK_FOREGROUND;
         
-        JPanel squadronPanel = new JPanel(new GridLayout(0,3));
-        squadronPanel.setOpaque(false);
+        JPanel companyPanel = new JPanel(new GridLayout(0,3));
+        companyPanel.setOpaque(false);
 
-        squadronPanel.add(PWCGLabelFactory.makeDummyLabel());
+        companyPanel.add(PWCGLabelFactory.makeDummyLabel());
         
         // Squadron info
-        squadronTextBox = new JTextArea();
-        squadronTextBox.setBackground(bgColor);
-        squadronTextBox.setForeground(fgColor);
-        squadronTextBox.setFont(font);
-        squadronTextBox.setEditable(false);
-        squadronTextBox.setLineWrap(true);
-        squadronTextBox.setWrapStyleWord(true);
-        squadronTextBox.setText("");
-        squadronTextBox.setOpaque(false);
-        squadronPanel.add(squadronTextBox);
+        companyTextBox = new JTextArea();
+        companyTextBox.setBackground(bgColor);
+        companyTextBox.setForeground(fgColor);
+        companyTextBox.setFont(font);
+        companyTextBox.setEditable(false);
+        companyTextBox.setLineWrap(true);
+        companyTextBox.setWrapStyleWord(true);
+        companyTextBox.setText("");
+        companyTextBox.setOpaque(false);
+        companyPanel.add(companyTextBox);
 
-        squadronPanel.add(PWCGLabelFactory.makeDummyLabel());
+        companyPanel.add(PWCGLabelFactory.makeDummyLabel());
         
-        return squadronPanel;
+        return companyPanel;
     }
 
 	private void spacerColumn (JPanel panel, int column, int row)
@@ -608,12 +562,6 @@ public class CampaignGeneratorDataEntryGUI extends JPanel implements ActionListe
             lPlayerName.setForeground(labelColorSelected);
             playerNameTextBox.setEnabled(true);
         }
-
-        else if (parent.getCampaignGeneratorState().getCurrentStep() == CampaignGeneratorWorkflow.CHOOSE_REGION)
-	    {
-	        lRegion.setForeground(labelColorSelected);
-            cbRegion.setEnabled(true);
-	    }
 
         else if (parent.getCampaignGeneratorState().getCurrentStep() == CampaignGeneratorWorkflow.CHOOSE_COOP_USER)
         {
@@ -657,30 +605,24 @@ public class CampaignGeneratorDataEntryGUI extends JPanel implements ActionListe
 
         else if (parent.getCampaignGeneratorState().getCurrentStep() == CampaignGeneratorWorkflow.CHOOSE_SQUADRON)
 	    {
-	        lSquad.setForeground(labelColorSelected);
+	        lCompany.setForeground(labelColorSelected);
 	        
             int serviceId = parent.getCampaignGeneratorDO().getService().getServiceId();
             Date campaignDate = parent.getCampaignGeneratorDO().getStartDate();
             ArmedService dateCorrectedService = ArmedServiceFactory.createServiceManager().getArmedServiceById(serviceId, campaignDate);
             
-	        makeSquadronChoices(campaignDate, dateCorrectedService);
+	        makeCompanyChoices(campaignDate, dateCorrectedService);
 
-	        String squadronName = (String)cbSquadron.getSelectedItem();
-	        String squadronInfo = getSquadronInfo(campaignDate, squadronName);
-	        this.squadronTextBox.setText(squadronInfo);
+	        String companyName = (String)cbCompany.getSelectedItem();
+	        String companyInfo = getSquadronInfo(campaignDate, companyName);
+	        this.companyTextBox.setText(companyInfo);
 
-            cbSquadron.setEnabled(true);
+            cbCompany.setEnabled(true);
 	    }
 	}
 
     private void initializeWidgets()
     {	    
-        if (lRegion != null)
-        {
-            lRegion.setForeground(labelColorNotSelected);
-            cbRegion.setEnabled(false);
-        }
-        
         if (lCoopUser != null)
         {
             lCoopUser.setForeground(labelColorNotSelected);
@@ -693,25 +635,25 @@ public class CampaignGeneratorDataEntryGUI extends JPanel implements ActionListe
         cbMap.setEnabled(false);
         cbDate.setEnabled(false);
         cbRank.setEnabled(false);
-        cbSquadron.setEnabled(false);
+        cbCompany.setEnabled(false);
 
         lPlayerName.setForeground(labelColorNotSelected);
         lRole.setForeground(labelColorNotSelected);
         lMap.setForeground(labelColorNotSelected);
         lDate.setForeground(labelColorNotSelected);
         lRank.setForeground(labelColorNotSelected);
-        lSquad.setForeground(labelColorNotSelected);
+        lCompany.setForeground(labelColorNotSelected);
     }
 
-    private String getSquadronInfo(Date campaignDate, String squadronName) throws PWCGException 
+    private String getSquadronInfo(Date campaignDate, String companyName) throws PWCGException 
     {
-        if (squadronName == null)
+        if (companyName == null)
         {
             return "";
         }
 
-        Squadron squad = PWCGContext.getInstance().getSquadronManager().getSquadronByName(squadronName, campaignDate);
-        return squad.determineSquadronInfo(campaignDate);
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompanyByName(companyName, campaignDate);
+        return company.determineSquadronInfo(campaignDate);
     }
 
 	private void makeRankChoices(ArmedService dateCorrectedService) 
@@ -799,19 +741,19 @@ public class CampaignGeneratorDataEntryGUI extends JPanel implements ActionListe
         return startDates;
     }
 
-	private void makeSquadronChoices(Date campaignDate, ArmedService dateCorrectedService) throws PWCGException 
+	private void makeCompanyChoices(Date campaignDate, ArmedService dateCorrectedService) throws PWCGException 
 	{
 	    try
 	    {
-    		cbSquadron.removeAllItems();
-            CampaignGeneratorSquadronFilter squadronFilter = new CampaignGeneratorSquadronFilter();
+    		cbCompany.removeAllItems();
+            CampaignGeneratorCompanyFilter companyFilter = new CampaignGeneratorCompanyFilter();
 	        String selectedRole = (String)cbRole.getSelectedItem();
-            List<String> squadronNames = squadronFilter.makeSquadronChoices(
+            List<String> companyNames = companyFilter.makeSquadronChoices(
                     campaignDate, dateCorrectedService, parent.getCampaignGeneratorDO().getFrontMap(), selectedRole, parent.getCampaignGeneratorDO().isCommandRank());
             
-            for (String squadronName : squadronNames)
+            for (String companyName : companyNames)
             {
-				cbSquadron.addItem(squadronName);
+				cbCompany.addItem(companyName);
     		}
 	    }
 	    catch (Exception exp)
@@ -826,14 +768,9 @@ public class CampaignGeneratorDataEntryGUI extends JPanel implements ActionListe
 		try
 		{
             String playerName = (String)playerNameTextBox.getText();
-            parent.getCampaignGeneratorDO().setPlayerPilotName(playerName);
+            parent.getCampaignGeneratorDO().setPlayerCrewMemberName(playerName);
             
-            if (ae.getActionCommand().equalsIgnoreCase("RegionChanged"))
-            {
-                String region = (String)cbRegion.getSelectedItem();
-                parent.getCampaignGeneratorDO().setRegion(region);
-            }
-            else if (ae.getActionCommand().equalsIgnoreCase("CoopUserChanged"))
+            if (ae.getActionCommand().equalsIgnoreCase("CoopUserChanged"))
             {
                 String coopUserFromDropDown = (String)cbCoopUser.getSelectedItem();
                 coopUserNameTextBox.setText(coopUserFromDropDown);
@@ -868,14 +805,14 @@ public class CampaignGeneratorDataEntryGUI extends JPanel implements ActionListe
 		        String rank = (String)cbRank.getSelectedItem();
 		        parent.getCampaignGeneratorDO().setRank(rank);
 			}
-            else if (ae.getActionCommand().equalsIgnoreCase("SquadronChanged"))
+            else if (ae.getActionCommand().equalsIgnoreCase("CompanyChanged"))
             {
-                String squadronName = (String)cbSquadron.getSelectedItem();
-                if (squadronName != null)
+                String companyName = (String)cbCompany.getSelectedItem();
+                if (companyName != null)
                 {
-                    parent.getCampaignGeneratorDO().setSquadName(squadronName);
-                    String squadronInfo = getSquadronInfo(parent.getCampaignGeneratorDO().getStartDate(), squadronName);
-                    this.squadronTextBox.setText(squadronInfo);
+                    parent.getCampaignGeneratorDO().setSquadName(companyName);
+                    String companyInfo = getSquadronInfo(parent.getCampaignGeneratorDO().getStartDate(), companyName);
+                    this.companyTextBox.setText(companyInfo);
                 }
             }
             else if (ae.getActionCommand().equalsIgnoreCase("NextStep"))

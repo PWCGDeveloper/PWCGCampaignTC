@@ -10,9 +10,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 
+import pwcg.campaign.crewmember.SerialNumber;
 import pwcg.campaign.plane.payload.IPlanePayload;
-import pwcg.campaign.plane.payload.PayloadDesignation;
-import pwcg.campaign.squadmember.SerialNumber;
+import pwcg.campaign.plane.payload.PlanePayloadDesignation;
 import pwcg.core.exception.PWCGException;
 import pwcg.gui.rofmap.brief.BriefingPayloadHelper;
 
@@ -25,10 +25,10 @@ public class BriefingPayloadHelperTest extends BriefingDataInitializerTest
     @Mock private IPlanePayload payload2;
     @Mock private IPlanePayload payload3;
     @Mock private IPlanePayload payload4;
-    @Mock private PayloadDesignation payloadDesignation1;
-    @Mock private PayloadDesignation payloadDesignation2;
-    @Mock private PayloadDesignation payloadDesignation3;
-    @Mock private PayloadDesignation payloadDesignation4;
+    @Mock private PlanePayloadDesignation payloadDesignation1;
+    @Mock private PlanePayloadDesignation payloadDesignation2;
+    @Mock private PlanePayloadDesignation payloadDesignation3;
+    @Mock private PlanePayloadDesignation payloadDesignation4;
     
     @BeforeEach
     public void setupTest() throws PWCGException
@@ -59,8 +59,8 @@ public class BriefingPayloadHelperTest extends BriefingDataInitializerTest
         payloadHelper.initializePayloadsFromMission();
         
         assert(briefingAssignmentData.getCrews().size() == 2);
-        assert(briefingAssignmentData.findAssignedCrewPairingByPilot(SerialNumber.AI_STARTING_SERIAL_NUMBER+1).getPayloadId() == 2);
-        assert(briefingAssignmentData.findAssignedCrewPairingByPilot(SerialNumber.AI_STARTING_SERIAL_NUMBER+2).getPayloadId() == 2);        
+        assert(briefingAssignmentData.findAssignedCrewPairingByCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER+1).getPayloadId() == 2);
+        assert(briefingAssignmentData.findAssignedCrewPairingByCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER+2).getPayloadId() == 2);        
     }
 
     @Test
@@ -71,8 +71,8 @@ public class BriefingPayloadHelperTest extends BriefingDataInitializerTest
         payloadHelper.modifyPayload(SerialNumber.AI_STARTING_SERIAL_NUMBER+2, 1);
         
         assert(briefingAssignmentData.getCrews().size() == 2);
-        assert(briefingAssignmentData.findAssignedCrewPairingByPilot(SerialNumber.AI_STARTING_SERIAL_NUMBER+1).getPayloadId() == 2);
-        assert(briefingAssignmentData.findAssignedCrewPairingByPilot(SerialNumber.AI_STARTING_SERIAL_NUMBER+2).getPayloadId() == 1);
+        assert(briefingAssignmentData.findAssignedCrewPairingByCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER+1).getPayloadId() == 2);
+        assert(briefingAssignmentData.findAssignedCrewPairingByCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER+2).getPayloadId() == 1);
     }
 
     @Test
@@ -83,44 +83,44 @@ public class BriefingPayloadHelperTest extends BriefingDataInitializerTest
         payloadHelper.modifyPayload(SerialNumber.AI_STARTING_SERIAL_NUMBER+3, 1);
         
         assert(briefingAssignmentData.getCrews().size() == 2);
-        assert(briefingAssignmentData.findAssignedCrewPairingByPilot(SerialNumber.AI_STARTING_SERIAL_NUMBER+1).getPayloadId() == 2);
-        assert(briefingAssignmentData.findAssignedCrewPairingByPilot(SerialNumber.AI_STARTING_SERIAL_NUMBER+2).getPayloadId() == 2);
+        assert(briefingAssignmentData.findAssignedCrewPairingByCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER+1).getPayloadId() == 2);
+        assert(briefingAssignmentData.findAssignedCrewPairingByCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER+2).getPayloadId() == 2);
     }
 
     @Test
-    public void setPayloadForAddedSamePlaneTypeTest () throws PWCGException
+    public void setPayloadForAddedSameTankTypeTest () throws PWCGException
     {       
         Mockito.when(equippedPlane1.getType()).thenReturn("bf109f4");
         Mockito.when(equippedPlane2.getType()).thenReturn("bf109f4");
         Mockito.when(plane1.getType()).thenReturn("bf109f4");
         Mockito.when(plane2.getType()).thenReturn("bf109f4");
 
-        Mockito.when(pilot1.determineSortKey(ArgumentMatchers.any())).thenReturn("A");
-        Mockito.when(pilot2.determineSortKey(ArgumentMatchers.any())).thenReturn("B");
+        Mockito.when(crewMember1.determineSortKey(ArgumentMatchers.any())).thenReturn("A");
+        Mockito.when(crewMember2.determineSortKey(ArgumentMatchers.any())).thenReturn("B");
 
         BriefingPayloadHelper payloadHelper = new BriefingPayloadHelper(mission, briefingAssignmentData);
         payloadHelper.initializePayloadsFromMission();
-        assert(briefingAssignmentData.findAssignedCrewPairingByPilot(SerialNumber.AI_STARTING_SERIAL_NUMBER+2).getPayloadId() == 2);
+        assert(briefingAssignmentData.findAssignedCrewPairingByCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER+2).getPayloadId() == 2);
 
         payloadHelper.setPayloadForChangedPlane(SerialNumber.AI_STARTING_SERIAL_NUMBER+2);
         
         assert(briefingAssignmentData.getCrews().size() == 2);
-        assert(briefingAssignmentData.findAssignedCrewPairingByPilot(SerialNumber.AI_STARTING_SERIAL_NUMBER+1).getPayloadId() == 2);
-        assert(briefingAssignmentData.findAssignedCrewPairingByPilot(SerialNumber.AI_STARTING_SERIAL_NUMBER+2).getPayloadId() == 2);
+        assert(briefingAssignmentData.findAssignedCrewPairingByCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER+1).getPayloadId() == 2);
+        assert(briefingAssignmentData.findAssignedCrewPairingByCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER+2).getPayloadId() == 2);
     }
 
     @Test
-    public void setPayloadForAddedDifferentPlaneTypeTest () throws PWCGException
+    public void setPayloadForAddedDifferentTankTypeTest () throws PWCGException
     {       
         Mockito.when(equippedPlane1.getType()).thenReturn("bf109f4");
         Mockito.when(equippedPlane2.getType()).thenReturn("bf109f2");
         Mockito.when(plane1.getType()).thenReturn("bf109f4");
         Mockito.when(plane2.getType()).thenReturn("bf109f2");
 
-        Mockito.when(pilot1.determineSortKey(ArgumentMatchers.any())).thenReturn("A");
-        Mockito.when(pilot2.determineSortKey(ArgumentMatchers.any())).thenReturn("B");
-        Mockito.when(pilot3.determineSortKey(ArgumentMatchers.any())).thenReturn("C");
-        Mockito.when(pilot4.determineSortKey(ArgumentMatchers.any())).thenReturn("D");
+        Mockito.when(crewMember1.determineSortKey(ArgumentMatchers.any())).thenReturn("A");
+        Mockito.when(crewMember2.determineSortKey(ArgumentMatchers.any())).thenReturn("B");
+        Mockito.when(crewMember3.determineSortKey(ArgumentMatchers.any())).thenReturn("C");
+        Mockito.when(crewMember4.determineSortKey(ArgumentMatchers.any())).thenReturn("D");
 
         Mockito.when(payloadDesignation1.getPayloadId()).thenReturn(2);
         Mockito.when(payloadDesignation2.getPayloadId()).thenReturn(1);
@@ -129,12 +129,12 @@ public class BriefingPayloadHelperTest extends BriefingDataInitializerTest
 
         BriefingPayloadHelper payloadHelper = new BriefingPayloadHelper(mission, briefingAssignmentData);
         payloadHelper.initializePayloadsFromMission();
-        assert(briefingAssignmentData.findAssignedCrewPairingByPilot(SerialNumber.AI_STARTING_SERIAL_NUMBER+1).getPayloadId() == 2);
-        assert(briefingAssignmentData.findAssignedCrewPairingByPilot(SerialNumber.AI_STARTING_SERIAL_NUMBER+2).getPayloadId() == 1);
+        assert(briefingAssignmentData.findAssignedCrewPairingByCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER+1).getPayloadId() == 2);
+        assert(briefingAssignmentData.findAssignedCrewPairingByCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER+2).getPayloadId() == 1);
 
         payloadHelper.setPayloadForChangedPlane(SerialNumber.AI_STARTING_SERIAL_NUMBER+2);
         assert(briefingAssignmentData.getCrews().size() == 2);
-        assert(briefingAssignmentData.findAssignedCrewPairingByPilot(SerialNumber.AI_STARTING_SERIAL_NUMBER+1).getPayloadId() == 2);
-        assert(briefingAssignmentData.findAssignedCrewPairingByPilot(SerialNumber.AI_STARTING_SERIAL_NUMBER+2).getPayloadId() == 0);
+        assert(briefingAssignmentData.findAssignedCrewPairingByCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER+1).getPayloadId() == 2);
+        assert(briefingAssignmentData.findAssignedCrewPairingByCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER+2).getPayloadId() == 0);
     }
 }

@@ -12,7 +12,7 @@ import edu.cmu.relativelayout.RelativeConstraints;
 import edu.cmu.relativelayout.RelativeLayout;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.api.Side;
-import pwcg.campaign.squadmember.SquadronMember;
+import pwcg.campaign.crewmember.CrewMember;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.PWCGLogger;
 import pwcg.gui.CampaignGuiContextManager;
@@ -26,7 +26,7 @@ public class CampaignIntelligenceReportScreen extends ImageResizingPanel impleme
     private static final long serialVersionUID = 1L;
 
 	private Campaign campaign;
-	private CampaignIntelligenceSquadronDetailsPanel squadronDetailsRightPanel;
+	private CampaignIntelligenceCompanyDetailsPanel squadronDetailsRightPanel;
 	private Side side;
 	private JPanel contentPanel;
 	
@@ -41,7 +41,7 @@ public class CampaignIntelligenceReportScreen extends ImageResizingPanel impleme
         
         try 
         {
-            SquadronMember referencePlayer = campaign.findReferencePlayer();
+            CrewMember referencePlayer = campaign.findReferencePlayer();
             side = referencePlayer.determineCountry(campaign.getDate()).getSide();
         }
         catch (Exception  e)
@@ -102,14 +102,14 @@ public class CampaignIntelligenceReportScreen extends ImageResizingPanel impleme
 
     private JPanel makeCenterPanel() throws PWCGException  
     {
-        CampaignIntelligenceSquadronListPanel squadronSelectionCenterPanel = new CampaignIntelligenceSquadronListPanel(campaign, this,side);
+        CampaignIntelligenceCompanyListPanel squadronSelectionCenterPanel = new CampaignIntelligenceCompanyListPanel(campaign, this,side);
         squadronSelectionCenterPanel.makePanel();
         return squadronSelectionCenterPanel;
     }
 
     private JPanel makeRightPanel() throws PWCGException  
     {
-        squadronDetailsRightPanel = new CampaignIntelligenceSquadronDetailsPanel(campaign);
+        squadronDetailsRightPanel = new CampaignIntelligenceCompanyDetailsPanel(campaign);
         squadronDetailsRightPanel.makePanel();
         return squadronDetailsRightPanel;
     }
@@ -135,13 +135,13 @@ public class CampaignIntelligenceReportScreen extends ImageResizingPanel impleme
             }
             else if (action.contains("Friendly"))
             {
-                SquadronMember referencePlayer = campaign.findReferencePlayer();
+                CrewMember referencePlayer = campaign.findReferencePlayer();
                 side = referencePlayer.determineCountry(campaign.getDate()).getSide();
                 makeContent();
             }
             else if (action.contains("Enemy"))
             {
-                SquadronMember referencePlayer = campaign.findReferencePlayer();
+                CrewMember referencePlayer = campaign.findReferencePlayer();
                 side = referencePlayer.determineCountry(campaign.getDate()).getSide().getOppositeSide();
                 makeContent();
             }

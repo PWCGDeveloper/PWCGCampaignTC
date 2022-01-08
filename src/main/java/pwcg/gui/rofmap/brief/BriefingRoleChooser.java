@@ -15,11 +15,11 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import pwcg.campaign.Campaign;
+import pwcg.campaign.company.Company;
+import pwcg.campaign.company.SquadronRoleWeight;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.plane.PwcgRole;
-import pwcg.campaign.squadmember.SquadronMember;
-import pwcg.campaign.squadron.Squadron;
-import pwcg.campaign.squadron.SquadronRoleWeight;
+import pwcg.campaign.crewmember.CrewMember;
+import pwcg.campaign.tank.PwcgRole;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.PWCGLogger;
 import pwcg.gui.ScreenIdentifier;
@@ -109,9 +109,9 @@ public class BriefingRoleChooser extends ImageResizingPanel implements ActionLis
         roleSelectionGrid.setOpaque(false);
         roleSelectionGrid.setLayout(new GridLayout(0, 2));
 
-        for (SquadronMember participatingPlayer : participatingPlayers.getAllParticipatingPlayers())
+        for (CrewMember participatingPlayer : participatingPlayers.getAllParticipatingPlayers())
         {
-            int squadronId = participatingPlayer.getSquadronId();
+            int squadronId = participatingPlayer.getCompanyId();
             
             JLabel squadronNameLabel = makeSquadronNameLabel(squadronId);
             JComboBox<String> roleSelector = makeRoleSelectorForSquadron(squadronId);
@@ -128,7 +128,7 @@ public class BriefingRoleChooser extends ImageResizingPanel implements ActionLis
     private JLabel makeSquadronNameLabel(int squadronId) throws PWCGException
     {        
         Font font = PWCGMonitorFonts.getPrimaryFont();
-        Squadron squadron = PWCGContext.getInstance().getSquadronManager().getSquadron(squadronId);
+        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(squadronId);
         JLabel squadronNameLabel = PWCGLabelFactory.makeTransparentLabel(
                 squadron.determineDisplayName(campaign.getDate()), ColorMap.PAPER_FOREGROUND, font, SwingConstants.LEFT);
         return squadronNameLabel;
@@ -137,7 +137,7 @@ public class BriefingRoleChooser extends ImageResizingPanel implements ActionLis
     private JComboBox<String> makeRoleSelectorForSquadron(int squadronId) throws PWCGException
     {
         JComboBox<String> roleSelector = new JComboBox<String>();
-        Squadron squadron = PWCGContext.getInstance().getSquadronManager().getSquadron(squadronId);
+        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(squadronId);
 
         roleSelector.addItem(PwcgRole.ROLE_NONE.getRoleDescription());
 

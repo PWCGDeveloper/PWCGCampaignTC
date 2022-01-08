@@ -6,11 +6,11 @@ import java.util.List;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.api.IProductSpecificConfiguration;
 import pwcg.campaign.api.Side;
+import pwcg.campaign.company.Company;
 import pwcg.campaign.context.FrontLinesForMap;
 import pwcg.campaign.context.PWCGContext;
+import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.factory.ProductSpecificConfigurationFactory;
-import pwcg.campaign.squadmember.SquadronMember;
-import pwcg.campaign.squadron.Squadron;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.utils.MathUtils;
@@ -27,9 +27,9 @@ public class AveragePlayerLocationFinder
     public Coordinate findAveragePlayerLocation(MissionHumanParticipants participatingPlayers) throws PWCGException
     {
         List<Coordinate> playerLocations = new ArrayList<>();
-        for (SquadronMember player : participatingPlayers.getAllParticipatingPlayers())
+        for (CrewMember player : participatingPlayers.getAllParticipatingPlayers())
         {
-            Squadron squadron = player.determineSquadron();
+            Company squadron = player.determineSquadron();
             Coordinate squadronLocation = squadron.determineCurrentAirfieldAnyMap(campaign.getDate()).getPosition();
             playerLocations.add(squadronLocation);
         }

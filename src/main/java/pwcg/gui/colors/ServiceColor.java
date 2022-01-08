@@ -3,13 +3,13 @@ package pwcg.gui.colors;
 import java.awt.Color;
 import java.util.Date;
 
-import pwcg.campaign.plane.PwcgRoleCategory;
-import pwcg.campaign.squadron.Squadron;
+import pwcg.campaign.company.Company;
+import pwcg.campaign.tank.PwcgRoleCategory;
 import pwcg.core.exception.PWCGException;
 
 public abstract class ServiceColor implements IServiceColorMap
 {
-    public Color getColorForSquadron(Squadron squadron, Date date) throws PWCGException
+    public Color getColorForSquadron(Company squadron, Date date) throws PWCGException
     {
         PwcgRoleCategory primaryRole = squadron.determineSquadronPrimaryRoleCategory(date);
 

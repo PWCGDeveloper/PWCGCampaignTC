@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.Set;
 
 import pwcg.aar.prelim.claims.AARClaimPanelData;
+import pwcg.campaign.company.Company;
+import pwcg.campaign.company.CompanyManager;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.squadmember.SquadronMember;
-import pwcg.campaign.squadmember.SquadronMembers;
-import pwcg.campaign.squadron.Squadron;
-import pwcg.campaign.squadron.SquadronManager;
+import pwcg.campaign.crewmember.CrewMember;
+import pwcg.campaign.crewmember.CrewMembers;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.logfiles.LogFileSet;
 
@@ -19,7 +19,7 @@ public class AARPreliminaryData
     private LogFileSet missionLogFileSet = new LogFileSet();
     private AARClaimPanelData claimPanelData = new AARClaimPanelData();
     private PwcgMissionData pwcgMissionData = new PwcgMissionData();
-    private SquadronMembers campaignMembersInMission = new SquadronMembers();
+    private CrewMembers campaignMembersInMission = new CrewMembers();
 
     public LogFileSet getMissionLogFileSet()
 	{
@@ -51,32 +51,32 @@ public class AARPreliminaryData
         this.pwcgMissionData = pwcgMissionData;
     }
 
-    public SquadronMembers getCampaignMembersInMission()
+    public CrewMembers getCampaignMembersInMission()
     {
         return campaignMembersInMission;
     }
 
-    public void setCampaignMembersInMission(SquadronMembers campaignMembersInMission)
+    public void setCampaignMembersInMission(CrewMembers campaignMembersInMission)
     {
         this.campaignMembersInMission = campaignMembersInMission;
     }
     
-    public  List<Squadron>getPlayerSquadronsInMission() throws PWCGException
+    public  List<Company>getPlayerSquadronsInMission() throws PWCGException
     {
         Set<Integer> uniqueSquadronsInMission = new HashSet<>();
-        for (SquadronMember campaignMemberInMission : campaignMembersInMission.getSquadronMemberList())
+        for (CrewMember campaignMemberInMission : campaignMembersInMission.getCrewMemberList())
         {
             if (campaignMemberInMission.isPlayer())
             {
-                uniqueSquadronsInMission.add(campaignMemberInMission.getSquadronId());
+                uniqueSquadronsInMission.add(campaignMemberInMission.getCompanyId());
             }
         }
         
-        SquadronManager squadronManager = PWCGContext.getInstance().getSquadronManager();
-        List<Squadron> playerSquadronsInMission = new ArrayList<>();
+        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
+        List<Company> playerSquadronsInMission = new ArrayList<>();
         for (Integer squadronId : uniqueSquadronsInMission)
         {
-            Squadron squadron = squadronManager.getSquadron(squadronId);
+            Company squadron = squadronManager.getCompany(squadronId);
             playerSquadronsInMission.add(squadron);
         }
         return playerSquadronsInMission;

@@ -21,7 +21,6 @@ public class StalingradMap extends PWCGMap
     static
     { 
         missionSpacingMyDate = new TreeMap<>(); 
-        missionSpacingMyDate.put("19420101", 5); 
         missionSpacingMyDate.put("19420801", 3); 
         missionSpacingMyDate.put("19420823", 2); 
         missionSpacingMyDate.put("19420905", 1); 
@@ -52,10 +51,8 @@ public class StalingradMap extends PWCGMap
 
     private void buildArmedServicesActiveForMap()
     {
-        armedServicesActiveForMap.add(BoSServiceManager.VVS);
-        armedServicesActiveForMap.add(BoSServiceManager.NORMANDIE);
-        armedServicesActiveForMap.add(BoSServiceManager.LUFTWAFFE);
-        armedServicesActiveForMap.add(BoSServiceManager.REGIA_AERONAUTICA);
+        armedServicesActiveForMap.add(BoSServiceManager.SVV);
+        armedServicesActiveForMap.add(BoSServiceManager.WEHRMACHT);
     }
 
     @Override

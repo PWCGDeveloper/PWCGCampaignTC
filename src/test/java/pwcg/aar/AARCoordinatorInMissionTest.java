@@ -11,12 +11,12 @@ import org.junit.jupiter.api.TestInstance;
 import pwcg.aar.inmission.phase3.reconcile.victories.singleplayer.PlayerDeclarations;
 import pwcg.aar.prelim.AARPreliminaryData;
 import pwcg.campaign.Campaign;
+import pwcg.campaign.company.Company;
 import pwcg.campaign.context.FrontMapIdentifier;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGProduct;
+import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.plane.SquadronPlaneAssignment;
-import pwcg.campaign.squadmember.SquadronMember;
-import pwcg.campaign.squadron.Squadron;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.logfiles.LogEventData;
 import pwcg.testutils.CampaignCache;
@@ -30,7 +30,7 @@ public class AARCoordinatorInMissionTest
     private static ExpectedResults expectedResults;
     private static int playerMissionsFlown = 0;
 
-    private List<Squadron> squadronsInMission = new ArrayList<>();
+    private List<Company> squadronsInMission = new ArrayList<>();
     private Map<Integer, PlayerDeclarations> playerDeclarations;
 
     @BeforeAll
@@ -43,7 +43,7 @@ public class AARCoordinatorInMissionTest
         aarCoordinator = AARCoordinator.getInstance();
         aarCoordinator.reset(campaign);
         
-        playerMissionsFlown = campaign.getPersonnelManager().getFlyingPlayers().getSquadronMemberList().get(0).getMissionFlown();
+        playerMissionsFlown = campaign.getPersonnelManager().getPlayersInMission().getCrewMemberList().get(0).getBattlesFought();
     }
 
     @Test
@@ -80,7 +80,7 @@ public class AARCoordinatorInMissionTest
 
     private void makePlayerDeclarations() throws PWCGException
     {
-        SquadronMember player = campaign.getPersonnelManager().getFlyingPlayers().getSquadronMemberList().get(0);
+        CrewMember player = campaign.getPersonnelManager().getPlayersInMission().getCrewMemberList().get(0);
         PlayerDeclarationsBuilder  declarationsBuilder = new PlayerDeclarationsBuilder();
         playerDeclarations = declarationsBuilder.makePlayerDeclarations(player);
     }
@@ -93,10 +93,10 @@ public class AARCoordinatorInMissionTest
         aarCoordinator.getAarContext().setLogEventData(missionLogRawData);
     }
     
-    public static SquadronPlaneAssignment getPlaneForSquadron(int SquadronId) throws PWCGException
+    public static CompanyTankAssignment getPlaneForSquadron(int SquadronId) throws PWCGException
     {
-        Squadron squadron = PWCGContext.getInstance().getSquadronManager().getSquadron(SquadronId);
-        List<SquadronPlaneAssignment> squadronPlaneAssignments = squadron.getPlaneAssignments();
+        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(SquadronId);
+        List<CompanyTankAssignment> squadronPlaneAssignments = squadron.getPlaneAssignments();
         return squadronPlaneAssignments.get(0);
     }
 

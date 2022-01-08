@@ -2,21 +2,20 @@ package pwcg.campaign;
 
 import java.util.List;
 
+import pwcg.campaign.company.Company;
 import pwcg.campaign.context.PWCGContext;
+import pwcg.campaign.crewmember.CrewMember;
+import pwcg.campaign.crewmember.CrewMembers;
 import pwcg.campaign.io.json.CampaignEquipmentIOJson;
 import pwcg.campaign.io.json.CampaignPersonnelIOJson;
-import pwcg.campaign.personnel.SquadronMemberFemaleGenerator;
-import pwcg.campaign.personnel.SquadronMemberFilter;
-import pwcg.campaign.personnel.SquadronMemberReplacementFactory;
-import pwcg.campaign.personnel.SquadronPersonnel;
-import pwcg.campaign.plane.Equipment;
-import pwcg.campaign.plane.EquippedPlane;
-import pwcg.campaign.plane.PlaneArchType;
-import pwcg.campaign.plane.PlaneEquipmentFactory;
+import pwcg.campaign.personnel.CompanyPersonnel;
+import pwcg.campaign.personnel.CrewMemberFilter;
+import pwcg.campaign.personnel.CrewMemberReplacementFactory;
 import pwcg.campaign.resupply.depot.EquipmentReplacementUtils;
-import pwcg.campaign.squadmember.SquadronMember;
-import pwcg.campaign.squadmember.SquadronMembers;
-import pwcg.campaign.squadron.Squadron;
+import pwcg.campaign.tank.Equipment;
+import pwcg.campaign.tank.EquippedTank;
+import pwcg.campaign.tank.TankArchType;
+import pwcg.campaign.tank.TankEquipmentFactory;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.RandomNumberGenerator;
 
@@ -37,7 +36,7 @@ public class EmergencyResupplyHandler
 
     private void emergencyResupplyPersonnel() throws PWCGException
     {
-        for (SquadronPersonnel squadronPersonnel : campaign.getPersonnelManager().getCampaignPersonnel().values())
+        for (CompanyPersonnel squadronPersonnel : campaign.getPersonnelManager().getCampaignPersonnel().values())
         {
             if (!squadronPersonnel.isSquadronPersonnelViable())
             {
@@ -46,19 +45,19 @@ public class EmergencyResupplyHandler
         }
     }
 
-    private void makeSquadronPersonnelViable(SquadronPersonnel squadronPersonnel) throws PWCGException
+    private void makeSquadronPersonnelViable(CompanyPersonnel squadronPersonnel) throws PWCGException
     {
         int totalTransfers = calculatePersonnelToReplaceForSquadron(squadronPersonnel);
         replacePersonnelForSquadron(squadronPersonnel, totalTransfers);
-        CampaignPersonnelIOJson.writeSquadron(campaign, squadronPersonnel.getSquadron().getSquadronId());
+        CampaignPersonnelIOJson.writeSquadron(campaign, squadronPersonnel.getSquadron().getCompanyId());
     }
 
-    private int calculatePersonnelToReplaceForSquadron(SquadronPersonnel squadronPersonnel) throws PWCGException
+    private int calculatePersonnelToReplaceForSquadron(CompanyPersonnel squadronPersonnel) throws PWCGException
     {
-        SquadronMembers activeSquadronMembers = SquadronMemberFilter.filterActiveAIAndPlayerAndAces(squadronPersonnel.getSquadronMembersWithAces().getSquadronMemberCollection(), campaign.getDate());
-        int activeSquadronSize = activeSquadronMembers.getActiveCount(campaign.getDate());
-        int transfersNeededForFull = Squadron.SQUADRON_STAFF_SIZE -  activeSquadronSize;
-        int transfersNeededForViable = (Squadron.SQUADRON_STAFF_SIZE / 2) -  activeSquadronSize;
+        CrewMembers activeCrewMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(squadronPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
+        int activeSquadronSize = activeCrewMembers.getActiveCount(campaign.getDate());
+        int transfersNeededForFull = Company.COMPANY_STAFF_SIZE -  activeSquadronSize;
+        int transfersNeededForViable = (Company.COMPANY_STAFF_SIZE / 2) -  activeSquadronSize;
         
         int transfersNeededForViableWithCushion = transfersNeededForViable + 2;
         int extraTransfers = RandomNumberGenerator.getRandom(transfersNeededForFull - transfersNeededForViableWithCushion);
@@ -66,26 +65,25 @@ public class EmergencyResupplyHandler
         return totalTransfers;
     }
 
-    private void replacePersonnelForSquadron(SquadronPersonnel squadronPersonnel, int totalTransfers) throws PWCGException
+    private void replacePersonnelForSquadron(CompanyPersonnel squadronPersonnel, int totalTransfers) throws PWCGException
     {
-        SquadronMemberReplacementFactory replacementFactory = new SquadronMemberReplacementFactory(
+        CrewMemberReplacementFactory replacementFactory = new CrewMemberReplacementFactory(
                 campaign, squadronPersonnel.getSquadron().determineServiceForSquadron(campaign.getDate()));
         
         for (int i = 0; i < totalTransfers; ++i)
         {
-            SquadronMember replacement = replacementFactory.createAIReplacementPilot();
-            replacement.setSquadronId(squadronPersonnel.getSquadron().getSquadronId());
-            SquadronMember convertedReplacement = SquadronMemberFemaleGenerator.convertToFemale(campaign, squadronPersonnel.getSquadron().getSquadronId(), replacement);
-            squadronPersonnel.addSquadronMember(convertedReplacement);
+            CrewMember replacement = replacementFactory.createAIReplacementCrewMember();
+            replacement.setSquadronId(squadronPersonnel.getSquadron().getCompanyId());
+            squadronPersonnel.addCrewMember(replacement);
         }
     }
 
     private void emergencyResupplyEquipment() throws PWCGException
     {
-        for (int squadronId : campaign.getEquipmentManager().getEquipmentAllSquadrons().keySet())
+        for (int squadronId : campaign.getEquipmentManager().getEquipmentAllCompanies().keySet())
         {
-            Equipment squadronEquipment = campaign.getEquipmentManager().getEquipmentForSquadron(squadronId);
-            if (!squadronEquipment.isSquadronEquipmentViable())
+            Equipment squadronEquipment = campaign.getEquipmentManager().getEquipmentForCompany(squadronId);
+            if (!squadronEquipment.isCompanyEquipmentViable())
             {
                 makeSquadronEquipmentViable(squadronEquipment, squadronId);
             }
@@ -101,9 +99,9 @@ public class EmergencyResupplyHandler
 
     private int calculatePersonnelToReplaceForSquadron(Equipment squadronEquipment)
     {
-        int activeSquadronEquipment = squadronEquipment.getActiveEquippedPlanes().size();
-        int equipmentNeededForFull = Squadron.SQUADRON_EQUIPMENT_SIZE -  activeSquadronEquipment;
-        int equipmentNeededForViable = (Squadron.SQUADRON_EQUIPMENT_SIZE / 2) -  activeSquadronEquipment;
+        int activeSquadronEquipment = squadronEquipment.getActiveEquippedTanks().size();
+        int equipmentNeededForFull = Company.COMPANY_EQUIPMENT_SIZE -  activeSquadronEquipment;
+        int equipmentNeededForViable = (Company.COMPANY_EQUIPMENT_SIZE / 2) -  activeSquadronEquipment;
         
         int equipmentNeededForViableWithCushion = equipmentNeededForViable + 2;
         int extraEquipment = RandomNumberGenerator.getRandom(equipmentNeededForFull - equipmentNeededForViableWithCushion);
@@ -113,18 +111,18 @@ public class EmergencyResupplyHandler
 
     private void replaceEquipmentForSquadron(Equipment squadronEquipment, int squadronId, int totalNewPlanes) throws PWCGException
     {
-        String planeTypeName = determinePlaneTypeToAdd(squadronId);
-        EquippedPlane equippedPlane = PlaneEquipmentFactory.makePlaneForDepot(campaign, planeTypeName);
-        squadronEquipment.addEquippedPlaneToSquadron(campaign, squadronId, equippedPlane);
+        String planeTypeName = determineTankTypeToAdd(squadronId);
+        EquippedTank equippedPlane = TankEquipmentFactory.makePlaneForDepot(campaign, planeTypeName);
+        squadronEquipment.addEquippedTankToCompany(campaign, squadronId, equippedPlane);
     }
 
-    private String determinePlaneTypeToAdd(int squadronId) throws PWCGException
+    private String determineTankTypeToAdd(int squadronId) throws PWCGException
     {
-        Squadron squadron = PWCGContext.getInstance().getSquadronManager().getSquadron(squadronId);
+        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(squadronId);
         List<String> activeArchTypes = squadron.getActiveArchTypes(campaign.getDate());
         int archTypeIndex = RandomNumberGenerator.getRandom(activeArchTypes.size());
         
-        PlaneArchType planeArchType = PWCGContext.getInstance().getPlaneTypeFactory().getPlaneArchType(activeArchTypes.get(archTypeIndex));
+        TankArchType planeArchType = PWCGContext.getInstance().getTankTypeFactory().getTankArchType(activeArchTypes.get(archTypeIndex));
         String planeTypeName = EquipmentReplacementUtils.getTypeForReplacement(campaign.getDate(), planeArchType);
         return planeTypeName;
     }

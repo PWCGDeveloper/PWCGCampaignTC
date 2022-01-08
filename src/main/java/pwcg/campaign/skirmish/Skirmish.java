@@ -5,16 +5,14 @@ import java.util.Date;
 import java.util.List;
 
 import pwcg.campaign.api.Side;
+import pwcg.campaign.company.Company;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.plane.PwcgRole;
-import pwcg.campaign.squadron.Squadron;
+import pwcg.campaign.tank.PwcgRole;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.location.CoordinateBox;
-import pwcg.core.utils.PWCGLogger;
-import pwcg.core.utils.PWCGLogger.LogLevel;
-import pwcg.mission.flight.FlightInformation;
 import pwcg.mission.flight.FlightTypes;
+import pwcg.mission.playerunit.PlayerUnitInformation;
 import pwcg.mission.target.TargetType;
 
 public class Skirmish
@@ -91,48 +89,9 @@ public class Skirmish
         return skirmishBox.getCenter();
     }
 
-    public boolean needsMoreIconicFlightType(FlightInformation flightInformation, int currentCount) throws PWCGException
+    public boolean hasFlighTypeForRole(Company company, PwcgRole role) throws PWCGException
     {
-        for (SkirmishIconicFlights iconicFlightType : iconicFlightTypes)
-        {
-            if (iconicFlightType.getSide() == flightInformation.getSquadron().determineSide())
-            {
-                if (iconicFlightType.getFlightType().isLowAltEquivalentFlightType(flightInformation.getFlightType()))
-                {
-                    if (currentCount < iconicFlightType.getMaxForcedFlightTypes())
-                    {
-                        PWCGLogger.log(LogLevel.DEBUG,
-                                "Accept Skirmish: " + flightInformation.getSquadron().determineDisplayName(flightInformation.getCampaign().getDate())
-                                        + " flying " + flightInformation.getFlightType());
-                        return true;
-                    }
-                    else
-                    {
-                        PWCGLogger.log(LogLevel.DEBUG, "Reject Skirmish because has enough of flight type: "
-                                + flightInformation.getSquadron().determineDisplayName(flightInformation.getCampaign().getDate()));
-                    }
-                }
-                else
-                {
-                    PWCGLogger.log(LogLevel.DEBUG,
-                            "Reject Skirmish because wrong flight type: "
-                                    + flightInformation.getSquadron().determineDisplayName(flightInformation.getCampaign().getDate()) + " flying "
-                                    + flightInformation.getFlightType());
-                }
-            }
-            else
-            {
-                PWCGLogger.log(LogLevel.DEBUG, "Reject Skirmish because wrong side: "
-                        + flightInformation.getSquadron().determineDisplayName(flightInformation.getCampaign().getDate()));
-            }
-        }
-
-        return false;
-    }
-
-    public boolean hasFlighTypeForRole(Squadron squadron, PwcgRole role) throws PWCGException
-    {
-        List<SkirmishProfileElement> skirmishElementsForSide = getSkirmishProfileElementForSide(squadron);
+        List<SkirmishProfileElement> skirmishElementsForSide = getSkirmishProfileElementForSide(company);
         for (SkirmishProfileElement skirmishProfileElement : skirmishElementsForSide)
         {
             if (skirmishProfileElement.getRole() == role)
@@ -144,9 +103,9 @@ public class Skirmish
         return false;
     }
 
-    public FlightTypes getFlighTypeForRole(Squadron squadron, PwcgRole role) throws PWCGException
+    public FlightTypes getFlighTypeForRole(Company company, PwcgRole role) throws PWCGException
     {
-        List<SkirmishProfileElement> skirmishElementsForSide = getSkirmishProfileElementForSide(squadron);
+        List<SkirmishProfileElement> skirmishElementsForSide = getSkirmishProfileElementForSide(company);
         for (SkirmishProfileElement skirmishProfileElement : skirmishElementsForSide)
         {
             if (skirmishProfileElement.getRole() == role)
@@ -156,20 +115,6 @@ public class Skirmish
         }
 
         return FlightTypes.ANY;
-    }
-
-    public TargetType getTargetForFlightType(FlightInformation flightInformation) throws PWCGException
-    {
-        List<SkirmishProfileElement> skirmishElementsForSide = getSkirmishProfileElementForSide(flightInformation.getSquadron());
-        for (SkirmishProfileElement skirmishProfileElement : skirmishElementsForSide)
-        {
-            if (skirmishProfileElement.getPreferredFlightType() == flightInformation.getFlightType())
-            {
-                return skirmishProfileElement.getTargetType();
-            }
-        }
-
-        return TargetType.TARGET_NONE;
     }
 
     public PwcgRole forceRoleConversion(PwcgRole role, Side side)
@@ -188,15 +133,15 @@ public class Skirmish
         return role;
     }
 
-    private List<SkirmishProfileElement> getSkirmishProfileElementForSide(Squadron squadron) throws PWCGException
+    private List<SkirmishProfileElement> getSkirmishProfileElementForSide(Company company) throws PWCGException
     {
         List<SkirmishProfileElement> skirmishElementsForSide = new ArrayList<>();
-        SkirmishProfileAirAssociation squadronAssociation = getSkirmishAssociation(squadron);
+        SkirmishProfileAirAssociation companyAssociation = getSkirmishAssociation(company);
 
         SkirmishProfile skirmishProfile = PWCGContext.getInstance().getSkirmishProfileManager().getSkirmishProfile(profileType);
         for (SkirmishProfileElement skirmishProfileElement : skirmishProfile.getSkirmishProfileElements())
         {
-            if (skirmishProfileElement.getAssociation() == squadronAssociation)
+            if (skirmishProfileElement.getAssociation() == companyAssociation)
             {
                 skirmishElementsForSide.add(skirmishProfileElement);
             }
@@ -205,14 +150,14 @@ public class Skirmish
         return skirmishElementsForSide;
     }
 
-    private SkirmishProfileAirAssociation getSkirmishAssociation(Squadron squadron) throws PWCGException
+    private SkirmishProfileAirAssociation getSkirmishAssociation(Company company) throws PWCGException
     {
-        SkirmishProfileAirAssociation squadronAssociation = SkirmishProfileAirAssociation.DEFENDER;
-        if (squadron.determineSide() == attackerAir)
+        SkirmishProfileAirAssociation companyAssociation = SkirmishProfileAirAssociation.DEFENDER;
+        if (company.determineSide() == attackerAir)
         {
-            squadronAssociation = SkirmishProfileAirAssociation.ATTACKER;
+            companyAssociation = SkirmishProfileAirAssociation.ATTACKER;
         }
-        return squadronAssociation;
+        return companyAssociation;
     }
 
     public boolean hasTargetType(TargetType targetType) throws PWCGException

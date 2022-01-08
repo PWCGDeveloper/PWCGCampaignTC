@@ -1,9 +1,9 @@
 package pwcg.campaign.resupply;
 
 import pwcg.campaign.Campaign;
+import pwcg.campaign.company.Company;
 import pwcg.campaign.resupply.equipment.SquadronEquipmentNeed;
 import pwcg.campaign.resupply.personnel.SquadronPersonnelNeed;
-import pwcg.campaign.squadron.Squadron;
 
 public class SquadronNeedFactory
 {
@@ -20,7 +20,7 @@ public class SquadronNeedFactory
         this.squadronNeedType = squadronNeedType;
     }
     
-    public ISquadronNeed buildSquadronNeed(Campaign campaign, Squadron squadron)
+    public ISquadronNeed buildSquadronNeed(Campaign campaign, Company squadron)
     {
         if (squadronNeedType == SquadronNeedType.PERSONNEL)
         {

@@ -21,7 +21,7 @@ public interface IWaypointPackage
     
     List<McuWaypoint> getTargetWaypoints();
 
-    List<MissionPoint> getFlightMissionPoints() throws PWCGException;
+    List<MissionPoint> getMissionPoints() throws PWCGException;
     
     List<BaseFlightMcu> getAllFlightPoints();
     
@@ -46,6 +46,4 @@ public interface IWaypointPackage
     void clearMissionPointSet();
 
     void addObjectToAllMissionPoints(PlaneMcu planeMcu);
-
-    void setLandingToTriggerOnPlane(int planeIndex) throws PWCGException;
 }

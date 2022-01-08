@@ -3,11 +3,11 @@ package pwcg.dev.utils;
 import java.util.List;
 import java.util.TreeMap;
 
+import pwcg.campaign.company.Company;
 import pwcg.campaign.context.FrontMapIdentifier;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.group.airfield.Airfield;
-import pwcg.campaign.squadron.Squadron;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.core.utils.PWCGLogger;
@@ -38,13 +38,13 @@ public class SquadronMapFinder
         
         TreeMap<Integer, String> airfieldsOnMapSorted = new TreeMap<>();
         
-        List<Squadron> allSq =  PWCGContext.getInstance().getSquadronManager().getAllSquadrons();
-        for (Squadron squadron : allSq)
+        List<Company> allSq =  PWCGContext.getInstance().getCompanyManager().getAllCompanies();
+        for (Company squadron : allSq)
         {
             Airfield airfield = squadron.determineCurrentAirfieldCurrentMap(DateUtils.getDateYYYYMMDD("19430801"));
             if (airfield != null)
             {
-                airfieldsOnMapSorted.put(squadron.getSquadronId(), airfield.getName());
+                airfieldsOnMapSorted.put(squadron.getCompanyId(), airfield.getName());
             }
         }
 

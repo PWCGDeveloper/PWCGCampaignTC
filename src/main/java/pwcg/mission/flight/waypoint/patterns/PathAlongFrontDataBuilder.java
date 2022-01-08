@@ -29,14 +29,14 @@ public class PathAlongFrontDataBuilder
         pathAlongFrontData.setPathDistance(patrolDistance / 2);
         pathAlongFrontData.setTargetGeneralLocation(generalStartPosition);
         pathAlongFrontData.setReturnAlongRoute(determineHasReturnLeg());
-        pathAlongFrontData.setSide(flight.getSquadron().determineSide());
+        pathAlongFrontData.setSide(flight.getFlightInformation().getCountry().getSide());
         
         return pathAlongFrontData;
     }
 
     private boolean determineHasReturnLeg()
     {
-        if (flight.getFlightType() == FlightTypes.PATROL || flight.getFlightType() == FlightTypes.LOW_ALT_PATROL)
+        if (flight.getFlightType() == FlightTypes.LOW_ALT_PATROL)
         {
             return true;
         }
@@ -46,14 +46,6 @@ public class PathAlongFrontDataBuilder
 
     private int adjustPatrolDistanceForAircraftRange(int patrolDistance)
     {
-        double planeRange = flight.getFlightPlanes().getFlightLeader().getRange();
-        int maxPatrolRangeForPlane = Double.valueOf(planeRange * 0.67).intValue();
-        maxPatrolRangeForPlane *= 1000;
-        if (maxPatrolRangeForPlane  < patrolDistance)
-        {
-            patrolDistance = maxPatrolRangeForPlane;
-            patrolDistance = adjustPatrolDistanceForReturnLeg(patrolDistance);
-        }
         return patrolDistance;
     }
     

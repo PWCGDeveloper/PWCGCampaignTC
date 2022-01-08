@@ -7,12 +7,12 @@ import org.mockito.Mockito;
 
 import pwcg.campaign.Campaign;
 import pwcg.campaign.api.ICountry;
+import pwcg.campaign.company.Company;
 import pwcg.campaign.context.Country;
 import pwcg.campaign.context.FrontMapIdentifier;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.factory.CountryFactory;
-import pwcg.campaign.squadron.Squadron;
 import pwcg.core.config.ConfigItemKeys;
 import pwcg.core.config.ConfigManagerCampaign;
 import pwcg.core.config.ConfigSimple;
@@ -45,16 +45,16 @@ public class FranceAttackMockCampaign
     protected Date date;
     protected MissionGroundUnitResourceManager missionGroundUnitResourceManager = new MissionGroundUnitResourceManager();
     protected CoordinateBox missionBorders;
-    protected Squadron squadron;
+    protected Company squadron;
 
     public void mockCampaignSetup() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.FC);
-        PWCGContext.getInstance().changeContext(FrontMapIdentifier.ARRAS_MAP);
+        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.getInstance().changeContext(FrontMapIdentifier.STALINGRAD_MAP);
 
         date = DateUtils.getDateYYYYMMDD("19180501");
         
-        squadron = PWCGContext.getInstance().getSquadronManager().getSquadron(401010);
+        squadron = PWCGContext.getInstance().getCompanyManager().getCompany(401010);
 
         Mockito.when(campaign.getCampaignConfigManager()).thenReturn(configManager);
         Mockito.when(campaign.getDate()).thenReturn(date);

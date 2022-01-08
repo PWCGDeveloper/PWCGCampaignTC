@@ -1,11 +1,11 @@
 package pwcg.campaign.outofmission;
 
-import pwcg.campaign.plane.EquippedPlane;
-import pwcg.campaign.squadmember.SquadronMember;
+import pwcg.campaign.crewmember.CrewMember;
+import pwcg.campaign.tank.EquippedTank;
 import pwcg.core.exception.PWCGException;
 
 public interface IVictimGenerator
 {
-    SquadronMember generateVictimAiCrew() throws PWCGException;
-    EquippedPlane generateVictimPlane() throws PWCGException;
+    CrewMember generateVictimAiCrew() throws PWCGException;
+    EquippedTank generateVictimPlane() throws PWCGException;
 }

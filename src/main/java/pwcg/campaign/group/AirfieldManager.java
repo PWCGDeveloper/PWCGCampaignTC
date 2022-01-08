@@ -13,7 +13,6 @@ import pwcg.campaign.context.PWCGMap;
 import pwcg.campaign.factory.AirfieldConfigurationFactory;
 import pwcg.campaign.group.airfield.Airfield;
 import pwcg.campaign.group.airfield.AirfieldConfiguration;
-import pwcg.campaign.squadron.Squadron;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.exception.PWCGMissionGenerationException;
 import pwcg.core.location.Coordinate;
@@ -167,44 +166,4 @@ public class AirfieldManager
         }
         return closestAirfield;
     }
-
-    public List<Airfield> getNearbyOccupiedAirFieldsForSide(Side side, Date date, Coordinate referenceLocation, int radius) throws PWCGException
-    {
-        List<Airfield> airfieldsForSide = getAirFieldsForSide(date, side);
-        List<Airfield> occupiedAirfieldsForSide = filterOccupiedAirfields(airfieldsForSide, date);
-        
-        PositionFinder<Airfield> positionFinder = new PositionFinder<Airfield>();
-        List<Airfield> occupiedAirfieldsForSideInRadius = positionFinder.findWithinRadius(occupiedAirfieldsForSide, referenceLocation, radius);
-        return occupiedAirfieldsForSideInRadius;
-    }
-
-    private List<Airfield> filterOccupiedAirfields(List<Airfield> airfieldsToFilter, Date date) throws PWCGException
-    {
-        List<Airfield> airfieldsFiltered = new ArrayList<>();
-        
-        List<Squadron> activeSquadrons = PWCGContext.getInstance().getSquadronManager().getActiveSquadronsForCurrentMap(date);
-        for (Squadron squadron : activeSquadrons)
-        {
-            Airfield squadronAirfield = squadron.determineCurrentAirfieldCurrentMap(date);
-            if (isAirfieldInList(airfieldsToFilter, squadronAirfield))
-            {
-                airfieldsFiltered.add(squadronAirfield);
-            }
-        }
-        return airfieldsFiltered;
-    }
-    
-    private boolean isAirfieldInList(List<Airfield> airfields, Airfield airfieldToFind)
-    {
-        for (Airfield airfield : airfields)
-        {
-            if (airfield.getName().equals(airfieldToFind.getName()))
-            {
-                return true;
-            }
-        }
-        
-        return false;
-    }
-
 }

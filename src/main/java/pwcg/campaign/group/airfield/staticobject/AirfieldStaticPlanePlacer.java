@@ -8,12 +8,12 @@ import pwcg.campaign.Campaign;
 import pwcg.campaign.api.ICountry;
 import pwcg.campaign.api.IStaticPlane;
 import pwcg.campaign.api.IStaticPlaneSelector;
+import pwcg.campaign.company.Company;
+import pwcg.campaign.company.CompanyManager;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.factory.StaticPlaneSelectorFactory;
 import pwcg.campaign.group.airfield.Airfield;
-import pwcg.campaign.plane.PlaneType;
-import pwcg.campaign.squadron.Squadron;
-import pwcg.campaign.squadron.SquadronManager;
+import pwcg.campaign.tank.TankType;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.location.Orientation;
@@ -22,6 +22,7 @@ import pwcg.core.utils.RandomNumberGenerator;
 public class AirfieldStaticPlanePlacer
 {
 
+    // TODO TC Currently not used.  Add back in if static planes are useful
     public IStaticPlane getStaticPlane(Airfield airfield, ICountry airfieldCountry, Date date, Coordinate position) throws PWCGException  
     {
         Orientation objectOrientation = Orientation.createRandomOrientation();
@@ -41,8 +42,8 @@ public class AirfieldStaticPlanePlacer
     {
         IStaticPlane selectedStaticPlane = null;
         
-        SquadronManager squadronManager = PWCGContext.getInstance().getSquadronManager();
-        Squadron squadronForField = squadronManager.getAnyActiveSquadronForAirfield(airfield, date);
+        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
+        Company squadronForField = squadronManager.getAnyActiveCompanyForAirfield(airfield, date);
         if (squadronForField == null)
         {
             return null;
@@ -52,7 +53,7 @@ public class AirfieldStaticPlanePlacer
     
         // All planes for all squadrons at this airfield
         List<String> planeNames = new ArrayList<String>();
-        for (PlaneType plane : squadronForField.determineCurrentAircraftList(campaign.getDate()))
+        for (TankType plane : squadronForField.determineCurrentAircraftList(campaign.getDate()))
         {
             planeNames.add(plane.getType());
         }

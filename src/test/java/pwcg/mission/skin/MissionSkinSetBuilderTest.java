@@ -12,9 +12,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import pwcg.campaign.Campaign;
 import pwcg.campaign.api.ICountry;
+import pwcg.campaign.company.Company;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGProduct;
-import pwcg.campaign.squadron.Squadron;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.mission.flight.IFlight;
@@ -25,7 +25,7 @@ import pwcg.mission.flight.plane.PlaneMcu;
 public class MissionSkinSetBuilderTest
 {
     @Mock private Campaign campaign;
-    @Mock private Squadron squadron;
+    @Mock private Company squadron;
     @Mock private IFlight flight;
     @Mock private IFlightPlanes flightPlanes;
     @Mock private PlaneMcu plane1;
@@ -45,7 +45,7 @@ public class MissionSkinSetBuilderTest
         Mockito.when(flight.getFlightPlanes()).thenReturn(flightPlanes);
         Mockito.when(flightPlanes.getPlanes()).thenReturn(planes);
         
-        Mockito.when(flight.getSquadron()).thenReturn(squadron);
+        Mockito.when(flight.getCompany()).thenReturn(squadron);
         Mockito.when(squadron.determineSquadronCountry(Mockito.any())).thenReturn(country);
         
         planes.clear();
@@ -57,7 +57,7 @@ public class MissionSkinSetBuilderTest
     @Test
     public void buildMissionSkinSetForSummer() throws Exception
     {
-        Mockito.when(squadron.getSquadronId()).thenReturn(20111003);
+        Mockito.when(squadron.getCompanyId()).thenReturn(20111003);
         Mockito.when(country.getCountryName()).thenReturn("Germany");
 
         Mockito.when(plane1.getType()).thenReturn("bf109f4");
@@ -76,7 +76,7 @@ public class MissionSkinSetBuilderTest
     @Test
     public void buildMissionSkinSetForWinter() throws PWCGException
     {
-        Mockito.when(squadron.getSquadronId()).thenReturn(10111011);
+        Mockito.when(squadron.getCompanyId()).thenReturn(10111011);
         Mockito.when(country.getCountryName()).thenReturn("Russia");
 
         Mockito.when(plane1.getType()).thenReturn("lagg3s29");
@@ -93,9 +93,9 @@ public class MissionSkinSetBuilderTest
     }
     
     @Test
-    public void buildMissionSkinSetForDiffentPlaneTypesInFlight() throws PWCGException
+    public void buildMissionSkinSetForDiffentTankTypesInFlight() throws PWCGException
     {
-        Mockito.when(squadron.getSquadronId()).thenReturn(20111003);
+        Mockito.when(squadron.getCompanyId()).thenReturn(20111003);
         Mockito.when(country.getCountryName()).thenReturn("Germany");
 
         Mockito.when(plane1.getType()).thenReturn("bf109f4");

@@ -14,6 +14,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import pwcg.campaign.ArmedService;
 import pwcg.campaign.Campaign;
+import pwcg.campaign.company.Company;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.plane.Equipment;
@@ -22,7 +23,6 @@ import pwcg.campaign.plane.PlaneStatus;
 import pwcg.campaign.resupply.ResupplyNeedBuilder;
 import pwcg.campaign.resupply.equipment.EquipmentReplacementHandler;
 import pwcg.campaign.resupply.equipment.EquipmentResupplyData;
-import pwcg.campaign.squadron.Squadron;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.testutils.CampaignCache;
@@ -64,18 +64,18 @@ public class EquipmentReplacementHandlerTest
     private void deactivateCampaignEquipment() throws PWCGException
     {
         Date inactiveDate = DateUtils.removeTimeDays(campaign.getDate(), 10);
-        Squadron playerSquadron = campaign.determinePlayerSquadrons().get(0);
+        Company playerSquadron = campaign.determinePlayerCompanies().get(0);
         int numInactivated = 0;
-        for (Equipment equipment: campaign.getEquipmentManager().getEquipmentAllSquadrons().values())
+        for (Equipment equipment: campaign.getEquipmentManager().getEquipmentAllCompanies().values())
         {
-            for (EquippedPlane equippedPlane : equipment.getActiveEquippedPlanes().values())
+            for (EquippedTank equippedPlane : equipment.getActiveEquippedTanks().values())
             {
-                Squadron squadron = PWCGContext.getInstance().getSquadronManager().getSquadron(equippedPlane.getSquadronId());
+                Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(equippedPlane.getCompanyId());
                 if (squadron.getService() == armedService.getServiceId())
                 {
-                    if (playerSquadron.getSquadronId() != equippedPlane.getSquadronId())
+                    if (playerSquadron.getCompanyId() != equippedPlane.getCompanyId())
                     {
-                        equippedPlane.setPlaneStatus(PlaneStatus.STATUS_DESTROYED);
+                        equippedPlane.setPlaneStatus(TankStatus.STATUS_DESTROYED);
                         equippedPlane.setDateRemovedFromService(inactiveDate);
                         ++numInactivated;
                     }
@@ -92,7 +92,7 @@ public class EquipmentReplacementHandlerTest
     }
 
     @Test
-    public void testTransfersInForLostSquadronMembers() throws PWCGException
+    public void testTransfersInForLostCrewMembers() throws PWCGException
     {
         ResupplyNeedBuilder equipmentNeedBuilder = new ResupplyNeedBuilder(campaign, armedService);
         EquipmentReplacementHandler squadronTransferHandler = new EquipmentReplacementHandler(campaign, equipmentNeedBuilder);
@@ -108,14 +108,14 @@ public class EquipmentReplacementHandlerTest
         Date inactiveDate = DateUtils.removeTimeDays(campaign.getDate(), 10);
 
         int numInactivated = 0;
-        Squadron playerSquadron = campaign.determinePlayerSquadrons().get(0);
-        Equipment equipment = campaign.getEquipmentManager().getEquipmentForSquadron(playerSquadron.getSquadronId());
-        for (EquippedPlane equippedPlane : equipment.getActiveEquippedPlanes().values())
+        Company playerSquadron = campaign.determinePlayerCompanies().get(0);
+        Equipment equipment = campaign.getEquipmentManager().getEquipmentForCompany(playerSquadron.getCompanyId());
+        for (EquippedTank equippedPlane : equipment.getActiveEquippedTanks().values())
         {
-            Squadron squadron = PWCGContext.getInstance().getSquadronManager().getSquadron(playerSquadron.getSquadronId());
-            if (squadron.getSquadronId() == equippedPlane.getSquadronId())
+            Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(playerSquadron.getCompanyId());
+            if (squadron.getCompanyId() == equippedPlane.getCompanyId())
             {                
-                equippedPlane.setPlaneStatus(PlaneStatus.STATUS_DESTROYED);
+                equippedPlane.setPlaneStatus(TankStatus.STATUS_DESTROYED);
                 equippedPlane.setDateRemovedFromService(inactiveDate);
                 ++numInactivated;
             }

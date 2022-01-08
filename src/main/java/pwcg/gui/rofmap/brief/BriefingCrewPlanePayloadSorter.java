@@ -7,39 +7,39 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import pwcg.campaign.squadmember.SquadronMember;
+import pwcg.campaign.crewmember.CrewMember;
 import pwcg.core.exception.PWCGException;
 import pwcg.mission.Mission;
-import pwcg.mission.flight.crew.CrewPlanePayloadPairing;
+import pwcg.mission.playerunit.crew.CrewTankPayloadPairing;
 
 public class BriefingCrewPlanePayloadSorter
 {
     private Mission mission;
-    private Map <Integer, CrewPlanePayloadPairing> assignedCrewMap = new HashMap <>();
+    private Map <Integer, CrewTankPayloadPairing> assignedCrewMap = new HashMap <>();
     
-    public BriefingCrewPlanePayloadSorter(Mission mission, Map <Integer, CrewPlanePayloadPairing> assignedCrewMap)
+    public BriefingCrewPlanePayloadSorter(Mission mission, Map <Integer, CrewTankPayloadPairing> assignedCrewMap)
     {
         this.mission = mission;
         this.assignedCrewMap = assignedCrewMap;
     }
 
-    public List<CrewPlanePayloadPairing> getAssignedCrewsSorted() throws PWCGException 
+    public List<CrewTankPayloadPairing> getAssignedCrewsSorted() throws PWCGException 
     {       
-        List<CrewPlanePayloadPairing> assignedCrews = new ArrayList<CrewPlanePayloadPairing>(assignedCrewMap.values());
-        List<CrewPlanePayloadPairing> sortedAssignedCrews = sortCrews(assignedCrews);
+        List<CrewTankPayloadPairing> assignedCrews = new ArrayList<CrewTankPayloadPairing>(assignedCrewMap.values());
+        List<CrewTankPayloadPairing> sortedAssignedCrews = sortCrews(assignedCrews);
         
         return sortedAssignedCrews;
     }
 
-    private List<CrewPlanePayloadPairing> sortCrews (Collection<CrewPlanePayloadPairing> unsorted) throws PWCGException 
+    private List<CrewTankPayloadPairing> sortCrews (Collection<CrewTankPayloadPairing> unsorted) throws PWCGException 
     {
-        List<CrewPlanePayloadPairing> sorted = new ArrayList<CrewPlanePayloadPairing>();
-        Map<String, CrewPlanePayloadPairing> sortedTree = new TreeMap<String, CrewPlanePayloadPairing>();
+        List<CrewTankPayloadPairing> sorted = new ArrayList<CrewTankPayloadPairing>();
+        Map<String, CrewTankPayloadPairing> sortedTree = new TreeMap<String, CrewTankPayloadPairing>();
                 
-        for (CrewPlanePayloadPairing crewPlane : unsorted)
+        for (CrewTankPayloadPairing crewPlane : unsorted)
         {
-            SquadronMember pilotSquadMember = crewPlane.getPilot();
-            String crewKey = pilotSquadMember.determineSortKey(mission.getCampaign().getDate());
+            CrewMember crewMemberSquadMember = crewPlane.getCrewMember();
+            String crewKey = crewMemberSquadMember.determineSortKey(mission.getCampaign().getDate());
             sortedTree.put(crewKey, crewPlane);
         }
         

@@ -15,11 +15,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.api.ICountry;
 import pwcg.campaign.api.Side;
+import pwcg.campaign.company.Company;
 import pwcg.campaign.context.Country;
 import pwcg.campaign.context.FrontMapIdentifier;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGProduct;
-import pwcg.campaign.squadron.Squadron;
 import pwcg.core.config.ConfigItemKeys;
 import pwcg.core.config.ConfigManagerCampaign;
 import pwcg.core.config.ConfigSimple;
@@ -41,7 +41,7 @@ public class AssaultBuilderTest
 {
     @Mock private Campaign campaign;
     @Mock private Mission mission;
-    @Mock private Squadron squadron;
+    @Mock private Company squadron;
     @Mock private ConfigManagerCampaign configManager;
     @Mock private MissionFlights missionFlightBuilder;
     @Mock private IFlight playerFlight;
@@ -63,9 +63,9 @@ public class AssaultBuilderTest
         
         Mockito.when(mission.getCampaign()).thenReturn(campaign);
         Mockito.when(mission.getFlights()).thenReturn(missionFlightBuilder);
-        Mockito.when(missionFlightBuilder.getPlayerFlights()).thenReturn(playerFlights);
+        Mockito.when(missionFlightBuilder.getUnits()).thenReturn(playerFlights);
         Mockito.when(squadron.getCountry()).thenReturn(country);
-        Mockito.when(playerFlight.getSquadron()).thenReturn(squadron);
+        Mockito.when(playerFlight.getCompany()).thenReturn(squadron);
         Mockito.when(country.getSide()).thenReturn(Side.AXIS);
         Mockito.when(playerFlight.getFlightPlanes()).thenReturn(flightPlanes);
         Mockito.when(flightPlanes.getPlanes()).thenReturn(playerFlightPlanes);

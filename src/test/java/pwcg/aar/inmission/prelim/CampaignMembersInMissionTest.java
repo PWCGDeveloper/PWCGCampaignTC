@@ -16,11 +16,11 @@ import pwcg.aar.prelim.PwcgMissionData;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGProduct;
-import pwcg.campaign.squadmember.SerialNumber;
-import pwcg.campaign.squadmember.SquadronMember;
-import pwcg.campaign.squadmember.SquadronMembers;
+import pwcg.campaign.crewmember.CrewMember;
+import pwcg.campaign.crewmember.CrewMembers;
+import pwcg.campaign.crewmember.SerialNumber;
 import pwcg.core.exception.PWCGException;
-import pwcg.mission.data.PwcgGeneratedMissionPlaneData;
+import pwcg.mission.data.PwcgGeneratedMissionVehicleData;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.SquadronTestProfile;
 
@@ -32,7 +32,7 @@ public class CampaignMembersInMissionTest
     private PwcgMissionData pwcgMissionData;
     
     private Campaign campaign;
-    private Map<Integer, PwcgGeneratedMissionPlaneData> missionPlanes  = new HashMap<>();
+    private Map<Integer, PwcgGeneratedMissionVehicleData> missionPlanes  = new HashMap<>();
 
     @BeforeAll
     public void setupSuite() throws PWCGException
@@ -48,23 +48,23 @@ public class CampaignMembersInMissionTest
         missionPlanes.clear();
         for (int i = 0; i < 50; ++i)
         {
-            PwcgGeneratedMissionPlaneData planeData = new PwcgGeneratedMissionPlaneData();
-            planeData.setPilotSerialNumber(SerialNumber.AI_STARTING_SERIAL_NUMBER + (i * 2) + 1);
-            missionPlanes.put(planeData.getPilotSerialNumber(), planeData);
+            PwcgGeneratedMissionVehicleData planeData = new PwcgGeneratedMissionVehicleData();
+            planeData.setCrewMemberSerialNumber(SerialNumber.AI_STARTING_SERIAL_NUMBER + (i * 2) + 1);
+            missionPlanes.put(planeData.getCrewMemberSerialNumber(), planeData);
         }
         
         Mockito.when(pwcgMissionData.getMissionPlanes()).thenReturn(missionPlanes);
         
         CampaignMembersInMissionFinder campaignMembersInMissionHandler = new CampaignMembersInMissionFinder();
-        SquadronMembers squadronMembersInMission = campaignMembersInMissionHandler.determineCampaignMembersInMission(campaign, pwcgMissionData);
+        CrewMembers squadronMembersInMission = campaignMembersInMissionHandler.determineCampaignMembersInMission(campaign, pwcgMissionData);
 
         assert(squadronMembersInMission.getActiveCount(campaign.getDate()) == 50);
         
-        for (SquadronMember squadronMember : squadronMembersInMission.getSquadronMemberCollection().values())
+        for (CrewMember crewMember : squadronMembersInMission.getCrewMemberCollection().values())
         {
-            assert((squadronMember.getSerialNumber() % 2) == 1);
-            assert(squadronMember.getSerialNumber() > SerialNumber.AI_STARTING_SERIAL_NUMBER);
-            assert(squadronMember.getSerialNumber() < SerialNumber.AI_STARTING_SERIAL_NUMBER + 102);
+            assert((crewMember.getSerialNumber() % 2) == 1);
+            assert(crewMember.getSerialNumber() > SerialNumber.AI_STARTING_SERIAL_NUMBER);
+            assert(crewMember.getSerialNumber() < SerialNumber.AI_STARTING_SERIAL_NUMBER + 102);
         }
     }
 

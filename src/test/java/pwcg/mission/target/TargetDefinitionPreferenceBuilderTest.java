@@ -10,13 +10,13 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import pwcg.campaign.Campaign;
+import pwcg.campaign.company.Company;
+import pwcg.campaign.company.SquadronRolePeriod;
+import pwcg.campaign.company.SquadronRoleSet;
+import pwcg.campaign.company.SquadronRoleWeight;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.plane.PwcgRole;
-import pwcg.campaign.squadron.Squadron;
-import pwcg.campaign.squadron.SquadronRolePeriod;
-import pwcg.campaign.squadron.SquadronRoleSet;
-import pwcg.campaign.squadron.SquadronRoleWeight;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.mission.Mission;
@@ -42,7 +42,7 @@ public class TargetDefinitionPreferenceBuilderTest
     @Test
     public void tankBustTargetTypeTest() throws PWCGException
     {
-        Squadron squadron = PWCGContext.getInstance().getSquadronManager().getSquadron(SquadronTestProfile.JG_26_PROFILE_WEST.getSquadronId());
+        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(SquadronTestProfile.JG_26_PROFILE_WEST.getCompanyId());
         
         SquadronRoleWeight squadronRoleWeight = new SquadronRoleWeight();
         squadronRoleWeight.setRole(PwcgRole.ROLE_TANK_BUSTER);
@@ -58,7 +58,7 @@ public class TargetDefinitionPreferenceBuilderTest
         MissionGenerator missionGenerator = new MissionGenerator(campaign);
         Mission mission = missionGenerator.makeMission(TestMissionBuilderUtility.buildTestParticipatingHumans(campaign));
         
-        IFlight playerFlight = mission.getFlights().getPlayerFlights().get(0);
+        IFlight playerFlight = mission.getFlights().getUnits().get(0);
 
         TargetDefinitionPreferenceBuilder targetDefinitionPreferenceBuilder = new TargetDefinitionPreferenceBuilder(playerFlight.getFlightInformation());
         List<TargetType> shuffledTargetTypes = targetDefinitionPreferenceBuilder.getTargetPreferences();
@@ -68,7 +68,7 @@ public class TargetDefinitionPreferenceBuilderTest
     @Test
     public void trainBustTargetTypeTest() throws PWCGException
     {
-        Squadron squadron = PWCGContext.getInstance().getSquadronManager().getSquadron(SquadronTestProfile.JG_26_PROFILE_WEST.getSquadronId());
+        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(SquadronTestProfile.JG_26_PROFILE_WEST.getCompanyId());
         
         SquadronRoleWeight squadronRoleWeight = new SquadronRoleWeight();
         squadronRoleWeight.setRole(PwcgRole.ROLE_TRAIN_BUSTER);
@@ -84,7 +84,7 @@ public class TargetDefinitionPreferenceBuilderTest
         MissionGenerator missionGenerator = new MissionGenerator(campaign);
         Mission mission = missionGenerator.makeMission(TestMissionBuilderUtility.buildTestParticipatingHumans(campaign));
         
-        IFlight playerFlight = mission.getFlights().getPlayerFlights().get(0);
+        IFlight playerFlight = mission.getFlights().getUnits().get(0);
 
         TargetDefinitionPreferenceBuilder targetDefinitionPreferenceBuilder = new TargetDefinitionPreferenceBuilder(playerFlight.getFlightInformation());
         List<TargetType> shuffledTargetTypes = targetDefinitionPreferenceBuilder.getTargetPreferences();
@@ -94,7 +94,7 @@ public class TargetDefinitionPreferenceBuilderTest
     @Test
     public void shippingTargetTypeTest() throws PWCGException
     {
-        Squadron squadron = PWCGContext.getInstance().getSquadronManager().getSquadron(SquadronTestProfile.JG_26_PROFILE_WEST.getSquadronId());
+        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(SquadronTestProfile.JG_26_PROFILE_WEST.getCompanyId());
         
         SquadronRoleWeight squadronRoleWeight = new SquadronRoleWeight();
         squadronRoleWeight.setRole(PwcgRole.ROLE_ANTI_SHIPPING);
@@ -110,7 +110,7 @@ public class TargetDefinitionPreferenceBuilderTest
         MissionGenerator missionGenerator = new MissionGenerator(campaign);
         Mission mission = missionGenerator.makeMission(TestMissionBuilderUtility.buildTestParticipatingHumans(campaign));
         
-        IFlight playerFlight = mission.getFlights().getPlayerFlights().get(0);
+        IFlight playerFlight = mission.getFlights().getUnits().get(0);
 
         TargetDefinitionPreferenceBuilder targetDefinitionPreferenceBuilder = new TargetDefinitionPreferenceBuilder(playerFlight.getFlightInformation());
         List<TargetType> shuffledTargetTypes = targetDefinitionPreferenceBuilder.getTargetPreferences();

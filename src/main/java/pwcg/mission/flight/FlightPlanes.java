@@ -4,7 +4,6 @@ import java.io.BufferedWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-import pwcg.core.constants.AiSkillLevel;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.location.Orientation;
@@ -35,63 +34,23 @@ public class FlightPlanes implements IFlightPlanes
     @Override
     public List<PlaneMcu> getAiPlanes() throws PWCGException 
     {
-        List<PlaneMcu> aiPlanes = new ArrayList<>();
-        for (PlaneMcu plane : planes)
-        {
-            if (!plane.getPilot().isPlayer())
-            {
-                aiPlanes.add(plane);
-            }
-        }
-
-        return aiPlanes;
-    }
-
-    @Override
-    public List<PlaneMcu> getPlayerPlanes() throws PWCGException 
-    {
-        List<PlaneMcu> playerPlanes = new ArrayList<>();
-        for (PlaneMcu plane : planes)
-        {
-            if (plane.getPilot().isPlayer())
-            {
-                playerPlanes.add(plane);
-            }
-        }
-
-        return playerPlanes;
-    }
-
-    @Override
-    public PlaneMcu getPlaneForPilot(Integer pilotSerialNumber)
-    {
-        PlaneMcu pilotPlane = null;
-        for (PlaneMcu plane : planes)
-        {
-            if (plane.getPilot().getSerialNumber() == pilotSerialNumber)
-            {
-                pilotPlane = plane;
-                break;
-            }
-        }
-
-        return pilotPlane;
+        return planes;
     }
 
     @Override
     public PlaneMcu getPlaneByLinkTrId(Integer planeLinkTrId)
     {
-        PlaneMcu pilotPlane = null;
+        PlaneMcu crewMemberPlane = null;
         for (PlaneMcu plane : planes)
         {
             if (plane.getLinkTrId() == planeLinkTrId)
             {
-                pilotPlane = plane;
+                crewMemberPlane = plane;
                 break;
             }
         }
 
-        return pilotPlane;
+        return crewMemberPlane;
     }
 
     @Override
@@ -155,25 +114,6 @@ public class FlightPlanes implements IFlightPlanes
         plane.setStartInAir(startingPoint);
         plane.populateEntity(flight, getFlightLeader());
     }
-
-
-    @Override
-    public void preparePlaneForCoop(IFlight flight) throws PWCGException
-    {
-        for (PlaneMcu plane : planes)
-        {
-            if (plane.isActivePlayerPlane())
-            {
-                plane.setCoopStart(1);
-                plane.setAiLevel(AiSkillLevel.ACE);
-            }
-            else
-            {
-                plane.setCoopStart(0);
-            }
-        }
-    }
-    
 
     @Override
     public void write(BufferedWriter writer) throws PWCGException 

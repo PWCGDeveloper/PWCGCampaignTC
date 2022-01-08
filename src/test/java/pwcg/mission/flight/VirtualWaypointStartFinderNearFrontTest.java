@@ -12,10 +12,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import pwcg.campaign.Campaign;
 import pwcg.campaign.api.Side;
+import pwcg.campaign.company.Company;
 import pwcg.campaign.context.FrontMapIdentifier;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGProduct;
-import pwcg.campaign.squadron.Squadron;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.utils.DateUtils;
@@ -27,7 +27,7 @@ import pwcg.mission.flight.waypoint.virtual.VirtualWaypointStartFinder;
 public class VirtualWaypointStartFinderNearFrontTest
 {
     @Mock private IFlight flight;
-    @Mock private Squadron squadron;
+    @Mock private Company squadron;
     @Mock private Campaign campaign;
     @Mock private Mission mission;
     @Mock private VirtualWayPointCoordinate vwpCoordinate1;
@@ -41,7 +41,7 @@ public class VirtualWaypointStartFinderNearFrontTest
     public void setupTest() throws PWCGException
     {
         PWCGContext.setProduct(PWCGProduct.BOS);
-        Mockito.when(flight.getSquadron()).thenReturn(squadron);
+        Mockito.when(flight.getCompany()).thenReturn(squadron);
         Mockito.when(flight.getCampaign()).thenReturn(campaign);
         Mockito.when(squadron.determineSide()).thenReturn(Side.AXIS);
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420801"));

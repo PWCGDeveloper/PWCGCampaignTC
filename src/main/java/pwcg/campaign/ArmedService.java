@@ -5,10 +5,10 @@ import java.util.Date;
 import java.util.List;
 
 import pwcg.campaign.api.ICountry;
+import pwcg.campaign.company.Company;
 import pwcg.campaign.context.Country;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.factory.CountryFactory;
-import pwcg.campaign.squadron.Squadron;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.gui.colors.IServiceColorMap;
@@ -31,6 +31,7 @@ public class ArmedService
     private ICountry nameCountry = CountryFactory.makeCountryByCountry(Country.NEUTRAL);
     private int airVictoriesForgreatAce = 30;
     private int groundVictoriesForgreatAce = 100;
+    private ArmedServiceType armedServiceType = ArmedServiceType.ARMED_SERVICE_AIR;
 
     public ArmedService() throws PWCGException 
     {
@@ -150,14 +151,14 @@ public class ArmedService
 
     public int getDailyEquipmentReplacementRate(Date date) throws PWCGException
     {
-        List<Squadron> squadrons = PWCGContext.getInstance().getSquadronManager().getActiveSquadronsForService(date, this);
+        List<Company> squadrons = PWCGContext.getInstance().getCompanyManager().getActiveCompaniesForService(date, this);
         double dailyEquipmentReplacementRateForThisDate = dailyEquipmentReplacementRatePerSquadron * squadrons.size();
         return Double.valueOf(dailyEquipmentReplacementRateForThisDate).intValue();
     }
 
     public int getDailyPersonnelReplacementRate(Date date) throws PWCGException
     {
-        List<Squadron> squadrons = PWCGContext.getInstance().getSquadronManager().getActiveSquadronsForService(date, this);
+        List<Company> squadrons = PWCGContext.getInstance().getCompanyManager().getActiveCompaniesForService(date, this);
         double dailyEquipmentReplacementRateForThisDate = dailyPersonnelReplacementRatePerSquadron * squadrons.size();
         return Double.valueOf(dailyEquipmentReplacementRateForThisDate).intValue();
     }
@@ -206,5 +207,15 @@ public class ArmedService
     public void setGroundVictoriesForgreatAce(int groundVictoriesForgreatAce)
     {
         this.groundVictoriesForgreatAce = groundVictoriesForgreatAce;
+    }
+
+    public ArmedServiceType getArmedServiceType()
+    {
+        return armedServiceType;
+    }
+
+    public void setArmedServiceType(ArmedServiceType armedServiceType)
+    {
+        this.armedServiceType = armedServiceType;
     }
 }

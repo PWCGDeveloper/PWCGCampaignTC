@@ -6,13 +6,13 @@ import java.util.Map;
 import pwcg.campaign.context.FrontMapIdentifier;
 import pwcg.core.exception.PWCGException;
 import pwcg.mission.data.MissionHeader;
-import pwcg.mission.data.PwcgGeneratedMissionPlaneData;
+import pwcg.mission.data.PwcgGeneratedMissionVehicleData;
 
 public class PwcgMissionData 
 {
     private MissionHeader missionHeader = new MissionHeader();
     private String missionDescription = "";
-	private Map<Integer, PwcgGeneratedMissionPlaneData> missionPlanes  = new HashMap<>();
+	private Map<Integer, PwcgGeneratedMissionVehicleData> missionPlanes  = new HashMap<>();
 
     public PwcgMissionData ()
     {
@@ -28,19 +28,19 @@ public class PwcgMissionData
         this.missionHeader = missionHeader;
     }
 
-    public  Map<Integer, PwcgGeneratedMissionPlaneData> getMissionPlanes()
+    public  Map<Integer, PwcgGeneratedMissionVehicleData> getMissionPlanes()
     {
         return missionPlanes;
     }
 
-    public  PwcgGeneratedMissionPlaneData getMissionPlane(Integer pilotSerialNumber)
+    public  PwcgGeneratedMissionVehicleData getMissionPlane(Integer crewMemberSerialNumber)
     {
-        return missionPlanes.get(pilotSerialNumber);
+        return missionPlanes.get(crewMemberSerialNumber);
     }
 
-    public void addMissionPlanes(PwcgGeneratedMissionPlaneData  missionPlane) throws PWCGException
+    public void addMissionPlanes(PwcgGeneratedMissionVehicleData  missionPlane) throws PWCGException
     {
-        missionPlanes.put(missionPlane.getPilotSerialNumber(), missionPlane);
+        missionPlanes.put(missionPlane.getCrewMemberSerialNumber(), missionPlane);
     }
 
     public String getMissionDescription()
@@ -53,7 +53,7 @@ public class PwcgMissionData
         this.missionDescription = missionDescription;
     }
 
-    public void setMissionPlanes(Map<Integer, PwcgGeneratedMissionPlaneData> missionPlanes)
+    public void setMissionPlanes(Map<Integer, PwcgGeneratedMissionVehicleData> missionPlanes)
     {
         this.missionPlanes = missionPlanes;
     }

@@ -20,10 +20,10 @@ import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogVictory;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogWaypoint;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.plane.PlaneType;
-import pwcg.campaign.squadmember.Victory;
-import pwcg.campaign.squadmember.VictoryBuilder;
-import pwcg.campaign.squadmember.VictoryDescription;
+import pwcg.campaign.crewmember.Victory;
+import pwcg.campaign.crewmember.VictoryBuilder;
+import pwcg.campaign.crewmember.VictoryDescription;
+import pwcg.campaign.tank.TankType;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.PWCGLogger;
 import pwcg.gui.rofmap.MapPanelBase;
@@ -233,8 +233,8 @@ public class DebriefMapPanel  extends MapPanelBase
         LogVictory victoryEvent = (LogVictory)event;
         if (!parent.displayMaxInfo())
         {
-            PlaneType victimVehicle = PWCGContext.getInstance().getPlaneTypeFactory().createPlaneTypeByAnyName(victoryEvent.getVictim().getVehicleType());
-            PlaneType victorVehicle = PWCGContext.getInstance().getPlaneTypeFactory().createPlaneTypeByAnyName(victoryEvent.getVictor().getVehicleType());
+            TankType victimVehicle = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(victoryEvent.getVictim().getVehicleType());
+            TankType victorVehicle = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(victoryEvent.getVictor().getVehicleType());
             if (victimVehicle == null && victorVehicle == null)
             {
                 return;

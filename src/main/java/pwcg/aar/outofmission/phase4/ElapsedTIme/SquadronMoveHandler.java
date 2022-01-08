@@ -5,11 +5,11 @@ import java.util.List;
 
 import pwcg.aar.ui.events.model.SquadronMoveEvent;
 import pwcg.campaign.Campaign;
+import pwcg.campaign.company.Company;
 import pwcg.campaign.context.FrontMapIdentifier;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.group.AirfieldManager;
 import pwcg.campaign.group.airfield.Airfield;
-import pwcg.campaign.squadron.Squadron;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.MathUtils;
 
@@ -22,7 +22,7 @@ public class SquadronMoveHandler
         this.campaign = campaign;
     }
 
-    public SquadronMoveEvent squadronMoves(Date newDate, Squadron squadron) throws PWCGException 
+    public SquadronMoveEvent squadronMoves(Date newDate, Company squadron) throws PWCGException 
     {
         SquadronMoveEvent squadronMoveEvent = null;
         
@@ -35,7 +35,7 @@ public class SquadronMoveHandler
             String newAirfield = squadron.determineCurrentAirfieldAnyMap(newDate).getName();
             boolean needsFerry = needsFerryMission(airfieldNameNow, airfieldNameNext);
             boolean isNewsworthy = true;
-            squadronMoveEvent = new SquadronMoveEvent(lastAirfield, newAirfield, squadron.getSquadronId(), needsFerry, newDate, isNewsworthy);
+            squadronMoveEvent = new SquadronMoveEvent(lastAirfield, newAirfield, squadron.getCompanyId(), needsFerry, newDate, isNewsworthy);
         }
         
         return squadronMoveEvent;

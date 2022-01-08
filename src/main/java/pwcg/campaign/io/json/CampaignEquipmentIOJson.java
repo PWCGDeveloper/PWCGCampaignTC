@@ -6,10 +6,10 @@ import java.util.List;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGDirectoryUserManager;
-import pwcg.campaign.plane.Equipment;
-import pwcg.campaign.plane.EquippedPlane;
-import pwcg.campaign.plane.PlaneType;
 import pwcg.campaign.resupply.depot.EquipmentDepot;
+import pwcg.campaign.tank.Equipment;
+import pwcg.campaign.tank.EquippedTank;
+import pwcg.campaign.tank.TankType;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.FileUtils;
 
@@ -33,7 +33,7 @@ public class CampaignEquipmentIOJson
 
     private static void writeEquipmentForCampaign(Campaign campaign) throws PWCGException
     {
-        for (Integer squadronId : campaign.getEquipmentManager().getEquipmentAllSquadrons().keySet())
+        for (Integer squadronId : campaign.getEquipmentManager().getEquipmentAllCompanies().keySet())
         {
             writeEquipmentForSquadron(campaign, squadronId);
         }
@@ -41,7 +41,7 @@ public class CampaignEquipmentIOJson
 
     public static void writeEquipmentForSquadron(Campaign campaign, int squadronId) throws PWCGException
     {
-        Equipment squadronEquipment = campaign.getEquipmentManager().getEquipmentForSquadron(squadronId);
+        Equipment squadronEquipment = campaign.getEquipmentManager().getEquipmentForCompany(squadronId);
 
         PwcgJsonWriter<Equipment> jsonWriterEquipment = new PwcgJsonWriter<>();
         String campaignEquipmentReplacementDir = PWCGDirectoryUserManager.getInstance().getPwcgCampaignsDir() + campaign.getCampaignData().getName() + "\\Equipment\\";
@@ -74,11 +74,11 @@ public class CampaignEquipmentIOJson
             JsonObjectReader<Equipment> jsoReader = new JsonObjectReader<>(Equipment.class);
             Equipment squadronEquipment = jsoReader.readJsonFile(campaignEquipmentDir, jsonFile.getName());
             int squadronId = Integer.valueOf(FileUtils.stripFileExtension(jsonFile.getName()));
-            campaign.getEquipmentManager().addEquipmentForSquadron(squadronId, squadronEquipment);
+            campaign.getEquipmentManager().addEquipmentForCompany(squadronId, squadronEquipment);
             
-            for (EquippedPlane equippedPlane : squadronEquipment.getEquippedPlanes().values())
+            for (EquippedTank equippedPlane : squadronEquipment.getEquippedTanks().values())
             {
-                equippedPlane.updateFromPlaneType();
+                equippedPlane.updateFromTankType();
             }
         }
     }
@@ -94,15 +94,15 @@ public class CampaignEquipmentIOJson
             int serviceId = Integer.valueOf(FileUtils.stripFileExtension(jsonFile.getName()));
             campaign.getEquipmentManager().addEquipmentDepotForService(serviceId, replacementEquipment);
             
-            for (EquippedPlane equippedPlane : replacementEquipment.getAllPlanesInDepot())
+            for (EquippedTank equippedPlane : replacementEquipment.getAllPlanesInDepot())
             {
-                equippedPlane.updateFromPlaneType();
+                equippedPlane.updateFromTankType();
             }
 
-            for (EquippedPlane equippedPlane : replacementEquipment.getAllPlanesInDepot())
+            for (EquippedTank equippedPlane : replacementEquipment.getAllPlanesInDepot())
             {
                 // Propagate any updates to the aircraft definitions into plane instances
-                PlaneType basePlane = PWCGContext.getInstance().getPlaneTypeFactory().getPlaneById(equippedPlane.getType());
+                TankType basePlane = PWCGContext.getInstance().getTankTypeFactory().getPlaneById(equippedPlane.getType());
                 basePlane.copyTemplate(equippedPlane);
             }
         }

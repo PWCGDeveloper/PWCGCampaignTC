@@ -3,9 +3,9 @@ package pwcg.dev.utils;
 import java.util.Date;
 import java.util.List;
 
+import pwcg.campaign.company.Company;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.plane.PwcgRoleCategory;
-import pwcg.campaign.squadron.Squadron;
+import pwcg.campaign.tank.PwcgRoleCategory;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.core.utils.PWCGLogger;
@@ -32,15 +32,15 @@ public class FighterSquadronSkillAnalyzer
 	
 	private void findPlane(Date startDate) throws PWCGException  
 	{		
-		List<Squadron> allSq =  PWCGContext.getInstance().getSquadronManager().getAllSquadrons();
+		List<Company> allSq =  PWCGContext.getInstance().getCompanyManager().getAllCompanies();
 		int totalSkill = 0;
 		int totalFighterSquads = 0;
-		for (Squadron squad : allSq)
+		for (Company company : allSq)
 		{
-		    PwcgRoleCategory squadronPrimaryRole = squad.determineSquadronPrimaryRoleCategory(DateUtils.getEndOfWar());
+		    PwcgRoleCategory squadronPrimaryRole = company.determineSquadronPrimaryRoleCategory(DateUtils.getEndOfWar());
             if (squadronPrimaryRole == PwcgRoleCategory.FIGHTER)
 		    {
-		        int squadronQuality = squad.determineSquadronSkill(startDate);
+		        int squadronQuality = company.determineSquadronSkill(startDate);
 		        totalSkill += squadronQuality;
 		        ++totalFighterSquads;
 		    }

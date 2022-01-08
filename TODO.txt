@@ -1,1 +1,22 @@
-Remove end date from nigh mission odds
+TC:
+Campaign creation:
+Service Flag Pictures
+Tank pictures
+Tank profiles
+Tank crew pictures
+
+Mission:
+Tank payloads
+
+Player units
+Player mission types
+TargetDefinitionBuilderAAATruck - use asbasisforplayer target types
+
+Add human crewed vehicles
+Place player unit into mission
+Do not place other playable units into mission
+
+AAR:
+Add out of mission for tank units
+In mission victory handling
+In mission claims?

@@ -16,7 +16,7 @@ public class VehicleFactoryFCTest
 {
     public VehicleFactoryFCTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.FC);
+        PWCGContext.setProduct(PWCGProduct.BOS);
     }
 
     @Test
@@ -33,16 +33,6 @@ public class VehicleFactoryFCTest
         for (VehicleClass vehicleClass: VehicleClass.getAllVehicleClasses())
         {
             if (vehicleClass.isStatic())
-            {
-                continue;
-            }
-            
-            if (vehicleClass == VehicleClass.TankPlayer)
-            {
-                continue;
-            }
-            
-            if (vehicleClass == VehicleClass.TruckAAAPlayer)
             {
                 continue;
             }

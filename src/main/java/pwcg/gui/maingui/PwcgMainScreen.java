@@ -21,8 +21,8 @@ import pwcg.campaign.CampaignMode;
 import pwcg.campaign.api.ICountry;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGDirectorySimulatorManager;
+import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.factory.CountryFactory;
-import pwcg.campaign.squadmember.SquadronMember;
 import pwcg.campaign.utils.PlanesOwnedManager;
 import pwcg.core.config.ConfigItemKeys;
 import pwcg.core.config.ConfigManagerGlobal;
@@ -40,7 +40,6 @@ import pwcg.gui.dialogs.ErrorDialog;
 import pwcg.gui.dialogs.PWCGMonitorFonts;
 import pwcg.gui.maingui.campaigngenerate.CampaignGeneratorScreen;
 import pwcg.gui.maingui.config.PwcgGlobalConfigurationScreen;
-import pwcg.gui.maingui.config.PwcgIconicMissionGenerationScreen;
 import pwcg.gui.maingui.config.PwcgPlanesOwnedConfigurationScreen;
 import pwcg.gui.maingui.config.PwcgSkinConfigurationAnalysisScreen;
 import pwcg.gui.maingui.coop.PwcgCoopGlobalAdminScreen;
@@ -59,7 +58,7 @@ import pwcg.gui.utils.ToolTipManager;
 public class PwcgMainScreen extends ImageResizingPanel implements ActionListener
 {
 	private static final long serialVersionUID = 1L;
-    private static final String VERSION = "13.7.0";
+    private static final String VERSION = "13.8.0";
 
     private PwcgThreePanelUI pwcgThreePanel;
 	private List<JButton> campaignButtonList = new ArrayList<JButton>();
@@ -238,7 +237,6 @@ public class PwcgMainScreen extends ImageResizingPanel implements ActionListener
         makeMenuButton (InternationalizationManager.getTranslation("Skin Analysis"), "Skin Analysis", buttonPanel);
         makeMenuButton (InternationalizationManager.getTranslation("PWCG Information"), "PWCG Information", buttonPanel);
         makeMenuButton (InternationalizationManager.getTranslation("Administer Coop"), "Administer Coop", buttonPanel);
-        makeMenuButton (InternationalizationManager.getTranslation("Iconic Missions"), "Iconic Missions", buttonPanel);
         
         int showFrontLineEditor = ConfigManagerGlobal.getInstance().getIntConfigParam(ConfigItemKeys.ShowFrontLineEditorKey);
         if (showFrontLineEditor == 1)
@@ -312,7 +310,7 @@ public class PwcgMainScreen extends ImageResizingPanel implements ActionListener
     				else
     				{
     				    String nation = determineCampaignCountryForIcon(campaign).getNationality();
-    					icon = nation + "Pilot.jpg";
+    					icon = nation + "CrewMember.jpg";
     				}
     
     				PWCGJButton button = ImageButton.makeCampaignFlagButton(campaignName, icon);
@@ -332,14 +330,14 @@ public class PwcgMainScreen extends ImageResizingPanel implements ActionListener
 			
 		}
 		
-        PWCGJButton newButton = ImageButton.makeCampaignFlagButton(InternationalizationManager.getTranslation("New"), "NewPilot.jpg");
+        PWCGJButton newButton = ImageButton.makeCampaignFlagButton(InternationalizationManager.getTranslation("New"), "NewCrewMember.jpg");
         newButton.setActionCommand("New Campaign");
         newButton.addActionListener(this );
         ToolTipManager.setToolTip(newButton, "Create a new campaign");
         campaignListPanel.add(newButton);
         campaignButtonList.add(newButton);
 
-        PWCGJButton deleteCampaignButton = ImageButton.makeCampaignFlagButton(InternationalizationManager.getTranslation("Delete"), "DeletePilot.jpg");
+        PWCGJButton deleteCampaignButton = ImageButton.makeCampaignFlagButton(InternationalizationManager.getTranslation("Delete"), "DeleteCrewMember.jpg");
         deleteCampaignButton.setActionCommand("Delete Campaign");
         deleteCampaignButton.addActionListener(this );
         ToolTipManager.setToolTip(deleteCampaignButton, "Delete campaigns");
@@ -360,7 +358,7 @@ public class PwcgMainScreen extends ImageResizingPanel implements ActionListener
         }
         else
         {
-            SquadronMember referencePlayer = campaign.findReferencePlayer();
+            CrewMember referencePlayer = campaign.findReferencePlayer();
             return CountryFactory.makeCountryByCountry(referencePlayer.getCountry());
         }
      }
@@ -398,10 +396,6 @@ public class PwcgMainScreen extends ImageResizingPanel implements ActionListener
             else if (action.equals("Administer Coop"))
             {
                 showCoopAdmin();
-            }
-            else if (action.equals("Iconic Missions"))
-            {
-                showIconicMissions();
             }
             else if (action.equals("Configuration"))
             {
@@ -469,16 +463,6 @@ public class PwcgMainScreen extends ImageResizingPanel implements ActionListener
         coopAdmin.makePanels();
 
         CampaignGuiContextManager.getInstance().pushToContextStack(coopAdmin);
-    }
-
-    private void showIconicMissions() throws PWCGException
-    {
-        SoundManager.getInstance().playSound("Stapler.WAV");
-
-        PwcgIconicMissionGenerationScreen iconicMissionsScreen = new PwcgIconicMissionGenerationScreen();
-        iconicMissionsScreen.makePanels();
-
-        CampaignGuiContextManager.getInstance().pushToContextStack(iconicMissionsScreen);
     }
 
     private void showSkinAnalysis() throws PWCGException 

@@ -7,20 +7,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import pwcg.campaign.Campaign;
 import pwcg.campaign.api.ICountry;
-import pwcg.campaign.api.Side;
 import pwcg.campaign.io.json.AircraftIOJson;
+import pwcg.campaign.tank.PwcgRoleCategory;
 import pwcg.core.exception.PWCGException;
-import pwcg.core.utils.DateUtils;
-import pwcg.core.utils.PWCGLogger;
-import pwcg.core.utils.PWCGLogger.LogLevel;
 import pwcg.core.utils.RandomNumberGenerator;
 
 public class PlaneTypeFactory 
 {
     private Map<String, PlaneType> planeTypes = new TreeMap<>();
-    private Map<String, PlaneArchType> planeArchTypes = new TreeMap<>();
 
     public PlaneTypeFactory ()
     {
@@ -29,71 +24,6 @@ public class PlaneTypeFactory
     public void initialize()  throws PWCGException
     {
         planeTypes = AircraftIOJson.readJson();
-        createPlaneArchTypes();
-    }
-
-    private void createPlaneArchTypes()
-    {
-        for (PlaneType planeType : planeTypes.values())
-        {
-            if (!planeArchTypes.containsKey(planeType.getArchType()))
-            {
-                PlaneArchType planeArchType = new PlaneArchType(planeType.getArchType());
-                planeArchTypes.put(planeType.getArchType(), planeArchType);
-            }
-            
-            PlaneArchType planeArchType = planeArchTypes.get(planeType.getArchType());
-            planeArchType.addPlaneTypeToArchType(planeType);
-        }
-    }
-
-    public void dump() 
-    {
-        for (PlaneType planeType : planeTypes.values())
-        {
-            PWCGLogger.log(LogLevel.DEBUG, "" + planeType.getType() + "    " +  planeType.getDisplayName());
-        }
-    }    
-    
-    public PlaneArchType getPlaneArchType(String planeArchTypeName)
-    {
-        return planeArchTypes.get(planeArchTypeName);
-    }
-
-    public List<PlaneType> getAllFightersForCampaign(Campaign campaign) throws PWCGException 
-    {
-        List<PlaneType> aircraftTypes = new ArrayList<PlaneType>();
-
-        for (PlaneType planeType : planeTypes.values())
-        {
-            if (planeType != null)
-            {
-                if (planeType.isRoleCategory(PwcgRoleCategory.FIGHTER))
-                {
-                    if (planeType.isPlaneActive(campaign.getDate()))
-                    {
-                        aircraftTypes.add(planeType);
-                    }
-                }
-            }
-        }
-
-        return aircraftTypes;
-    }
-
-    public List<PlaneType> getAlliedPlanes() 
-    {
-        List<PlaneType>alliedPlanes = new ArrayList<PlaneType>();
-
-        for (PlaneType planeType : planeTypes.values())
-        {
-            if (planeType.getSide() == Side.ALLIED)
-            {
-                alliedPlanes.add(planeType);
-            }
-        }
-
-        return alliedPlanes;
     }
 
     public List<PlaneType> getAllPlanes()  throws PWCGException
@@ -109,21 +39,6 @@ public class PlaneTypeFactory
         return allPlanes;
     }
 
-    public List<PlaneType> getAxisPlanes() 
-    {
-        List<PlaneType>axisPlanes = new ArrayList<PlaneType>();
-
-        for (PlaneType planeType : planeTypes.values())
-        {
-            if (planeType.getSide() == Side.AXIS)
-            {
-                axisPlanes.add(planeType);
-            }
-        }
-
-        return axisPlanes;
-    }
-
     public PlaneType getPlaneById(String planeTypeName) throws PWCGException
     {
         PlaneType plane = null;
@@ -134,27 +49,6 @@ public class PlaneTypeFactory
         else
         {
             throw new PWCGException ("Invalid aircraft id: " + planeTypeName);
-        }
-
-        return plane;
-    }
-
-    public PlaneType createPlaneTypeByType (String planeTypeName) throws PWCGException
-    {
-        PlaneType plane = null;
-
-        for (PlaneType thisPlane : planeTypes.values())
-        {
-            if (thisPlane.getType().equalsIgnoreCase(planeTypeName))
-            {
-                plane = thisPlane;
-                break;
-            }
-        }
-
-        if (plane == null)
-        {
-            throw new PWCGException ("Invalid aircraft name: " + planeTypeName);
         }
 
         return plane;
@@ -177,134 +71,6 @@ public class PlaneTypeFactory
         return null;
     }
 
-    public List<PlaneType> getAvailablePlaneTypes(ICountry country, PwcgRoleCategory roleCategory, Date date) throws PWCGException
-    {
-        Map<Integer, PlaneType> availablePlaneTypes = new TreeMap<>();
-        for (PlaneType thisPlane : planeTypes.values())
-        {
-            if (thisPlane.isUsedBy(country))
-            {
-                if (thisPlane.isRoleCategory(roleCategory))
-                {
-                    if (DateUtils.isDateInRange(date, thisPlane.getIntroduction(), thisPlane.getWithdrawal()))
-                    {
-                        availablePlaneTypes.put(thisPlane.getGoodness(), thisPlane);
-                    }
-                }
-            }
-        }
-        
-        return new ArrayList<>(availablePlaneTypes.values());
-    }
-
-    public List<PlaneType> createPlaneTypesForArchType(String planeArchType) throws PWCGException
-    {
-        List<PlaneType> planeTypesForArchType = new ArrayList<>();
-        for (PlaneType thisPlane : planeTypes.values())
-        {
-            if (thisPlane.getArchType().equals(planeArchType))
-            {
-                planeTypesForArchType.add(thisPlane);
-            }
-        }
-        
-        if (planeTypesForArchType.isEmpty())
-        {
-            throw new PWCGException("No planes found for archtype " + planeArchType);
-        }
-        
-        return planeTypesForArchType;
-    }
-
-    public List<PlaneType> createActivePlaneTypesForArchType(String planeArchType, Date date) throws PWCGException
-    {
-        List<PlaneType> planeTypesForArchType = new ArrayList<>();
-        for (PlaneType thisPlane : planeTypes.values())
-        {
-            if (thisPlane.getArchType().equals(planeArchType))
-            {
-                if (DateUtils.isDateInRange(date, thisPlane.getIntroduction(), thisPlane.getWithdrawal()))
-                {
-                    planeTypesForArchType.add(thisPlane);
-                }
-            }
-        }
-
-        if (planeTypesForArchType.isEmpty())
-        {
-            planeTypesForArchType = createOlderPlaneTypesForArchType(planeArchType, date);
-        }
-        
-        if (planeTypesForArchType.isEmpty())
-        {
-            throw new PWCGException("No planes found for in range archtype " + planeArchType);
-        }
-        
-        return planeTypesForArchType;
-    }
-
-    public List<PlaneType> createOlderPlaneTypesForArchType(String planeArchType, Date date) throws PWCGException
-    {
-        List<PlaneType> planeTypesForArchType = new ArrayList<>();
-        for (PlaneType thisPlane : planeTypes.values())
-        {
-            if (thisPlane.getArchType().equals(planeArchType))
-            {
-                if (thisPlane.getIntroduction().before(date))
-                {
-                    planeTypesForArchType.add(thisPlane);
-                }
-            }
-        }
-        
-        if (planeTypesForArchType.isEmpty())
-        {
-            throw new PWCGException("No older planes found for archtype " + planeArchType);
-        }
-        
-        return planeTypesForArchType;
-    }
-    
-
-    public List<PlaneType> createPlanesByIntroduction(String planeArchType) throws PWCGException
-    {
-        TreeMap<Date, PlaneType> planeTypesTypeByIntroduction = new TreeMap<>();
-        for (PlaneType thisPlane : planeTypes.values())
-        {
-            if (thisPlane.getArchType().equals(planeArchType))
-            {
-                planeTypesTypeByIntroduction.put(thisPlane.getIntroduction(), thisPlane);
-            }
-        }
-
-        List<PlaneType> planeTypesForArchType = new ArrayList<>(planeTypesTypeByIntroduction.values());
-        return planeTypesForArchType;
-    }
-
-
-    public List<PlaneType> createActivePlaneTypesForDateAndSide(Side side, Date date) throws PWCGException
-    {
-        List<PlaneType> planeTypesForArchType = new ArrayList<>();
-        for (PlaneType thisPlane : planeTypes.values())
-        {
-            if (DateUtils.isDateInRange(date, thisPlane.getIntroduction(), thisPlane.getWithdrawal()))
-            {
-                if (thisPlane.getSide() == side)
-                {
-                    planeTypesForArchType.add(thisPlane);
-                }
-            }
-        }
-        
-        if (planeTypesForArchType.isEmpty())
-        {
-            throw new PWCGException("No planes found for date " + DateUtils.getDateStringDashDelimitedYYYYMMDD(date));
-        }
-        
-        return planeTypesForArchType;
-    }
-
-
     public PlaneType findActivePlaneTypeByCountryDateAndRole(ICountry country, Date date, PwcgRoleCategory roleCategory) throws PWCGException
     {
         List<PlaneType> possiblePlanes = new ArrayList<>();
@@ -318,30 +84,6 @@ public class PlaneTypeFactory
                     {
                         possiblePlanes.add(planeType);
                     }
-                }
-            }
-        }
-        
-        PlaneType selectedPlane = null;
-        if (possiblePlanes.size() > 0)
-        {
-            int index = RandomNumberGenerator.getRandom(possiblePlanes.size());
-            selectedPlane = possiblePlanes.get(index);
-        }
-
-        return selectedPlane;
-    }
-
-    public PlaneType findAnyPlaneTypeForCountryAndDate(ICountry country, Date date) throws PWCGException
-    {
-        List<PlaneType> possiblePlanes = new ArrayList<>();
-        for (PlaneType planeType : planeTypes.values())
-        {
-            if (planeType.isUsedBy(country))
-            {
-                if (!(planeType.getIntroduction().after(date)))
-                {
-                    possiblePlanes.add(planeType);
                 }
             }
         }
@@ -386,10 +128,5 @@ public class PlaneTypeFactory
         }
 
         return plane;
-    }
-
-    public Map<String, PlaneType> getPlaneTypes()
-    {
-        return planeTypes;
     }
 }

@@ -2,9 +2,9 @@ package pwcg.gui.rofmap.event;
 
 import pwcg.aar.ui.events.model.TransferEvent;
 import pwcg.campaign.Campaign;
+import pwcg.campaign.company.Company;
+import pwcg.campaign.company.CompanyManager;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.squadron.Squadron;
-import pwcg.campaign.squadron.SquadronManager;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 
@@ -32,26 +32,26 @@ public class CampaignReportTransferPanel extends AARDocumentIconPanel
 
     protected String getBodyText() throws PWCGException
     {
-        SquadronManager squadronManager = PWCGContext.getInstance().getSquadronManager();
-        Squadron fromSquadron = squadronManager.getSquadron(transferEvent.getTransferFrom());
-        Squadron toSquadron = squadronManager.getSquadron(transferEvent.getTransferTo());
+        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
+        Company fromSquadron = squadronManager.getCompany(transferEvent.getTransferFrom());
+        Company toSquadron = squadronManager.getCompany(transferEvent.getTransferTo());
 
-        String transferMessage = transferEvent.getPilotName() + " has been transferred" + "\n";
+        String transferMessage = transferEvent.getCrewMemberName() + " has been transferred" + "\n";
                         
         if (fromSquadron != null && toSquadron != null)
         {
-            transferMessage = transferEvent.getPilotName() + " has been transferred from\n" + 
+            transferMessage = transferEvent.getCrewMemberName() + " has been transferred from\n" + 
                             fromSquadron.determineDisplayName(campaign.getDate()) + 
                             " to " + toSquadron.determineDisplayName(campaign.getDate())+ "\n";
         }
         else if (toSquadron != null)
         {
-            transferMessage = transferEvent.getPilotName() + 
+            transferMessage = transferEvent.getCrewMemberName() + 
                             " has been transferred to " + toSquadron.determineDisplayName(campaign.getDate()) + "\n";
         }
         else if (fromSquadron != null)
         {
-            transferMessage = transferEvent.getPilotName() + 
+            transferMessage = transferEvent.getCrewMemberName() + 
                             " has been transferred from " + fromSquadron.determineDisplayName(campaign.getDate()) + "\n";
         }
         

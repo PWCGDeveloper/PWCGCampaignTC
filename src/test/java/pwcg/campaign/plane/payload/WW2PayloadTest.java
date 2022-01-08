@@ -10,11 +10,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import pwcg.campaign.Campaign;
 import pwcg.campaign.api.ICountry;
+import pwcg.campaign.company.Company;
 import pwcg.campaign.context.Country;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGProduct;
-import pwcg.campaign.plane.PlaneType;
-import pwcg.campaign.squadron.Squadron;
+import pwcg.campaign.plane.TankType;
 import pwcg.core.config.ConfigManagerCampaign;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
@@ -36,7 +36,7 @@ public class WW2PayloadTest
     @Mock
     Campaign campaign;
     @Mock
-    Squadron squadron;
+    Company squadron;
     @Mock
     ICountry country;
 
@@ -49,7 +49,7 @@ public class WW2PayloadTest
         PWCGContext.setProduct(PWCGProduct.BOS);
 
         Mockito.when(flight.getTargetDefinition()).thenReturn(targetDefinition);
-        Mockito.when(flight.getSquadron()).thenReturn(squadron);
+        Mockito.when(flight.getCompany()).thenReturn(squadron);
         Mockito.when(squadron.getCountry()).thenReturn(country);
         Mockito.when(country.getCountry()).thenReturn(Country.RUSSIA);
 
@@ -60,11 +60,11 @@ public class WW2PayloadTest
     @Test
     public void payloadTest() throws PWCGException
     {
-        IPayloadFactory payloadFactory = PWCGContext.getInstance().getPayloadFactory();
+        IPlanePayloadFactory payloadFactory = PWCGContext.getInstance().getPlanePayloadFactory();
 
-        for (PlaneType planeType : PWCGContext.getInstance().getPlaneTypeFactory().getAllPlanes())
+        for (TankType planeType : PWCGContext.getInstance().getTankTypeFactory().getAllPlanes())
         {
-            IPlanePayload payloadGenerator = payloadFactory.createPlanePayload(planeType.getType(), campaign.getDate());
+            IPlanePayload payloadGenerator = payloadFactory.createPayload(planeType.getType(), campaign.getDate());
             testPatrolPayload(payloadGenerator);
             testInterceptPayload(payloadGenerator);
             testBombPayloads(payloadGenerator);
@@ -112,7 +112,7 @@ public class WW2PayloadTest
     private void runPayload(IPlanePayload payloadGenerator) throws PWCGException
     {
         int payloadId = payloadGenerator.createWeaponsPayload(flight);
-        PayloadDesignation payloadDesignation = payloadGenerator.getSelectedPayloadDesignation();
+        PlanePayloadDesignation payloadDesignation = payloadGenerator.getSelectedPayloadDesignation();
         Assertions.assertTrue (payloadDesignation.getPayloadId() == payloadId);
     }
 }

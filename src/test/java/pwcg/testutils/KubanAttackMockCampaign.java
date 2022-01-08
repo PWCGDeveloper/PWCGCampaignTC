@@ -9,15 +9,15 @@ import pwcg.campaign.Campaign;
 import pwcg.campaign.CampaignEquipmentManager;
 import pwcg.campaign.CampaignPersonnelManager;
 import pwcg.campaign.api.ICountry;
+import pwcg.campaign.company.Company;
 import pwcg.campaign.context.Country;
 import pwcg.campaign.context.FrontMapIdentifier;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGProduct;
+import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.factory.CountryFactory;
-import pwcg.campaign.personnel.SquadronPersonnel;
+import pwcg.campaign.personnel.CompanyPersonnel;
 import pwcg.campaign.plane.Equipment;
-import pwcg.campaign.squadmember.SquadronMember;
-import pwcg.campaign.squadron.Squadron;
 import pwcg.core.config.ConfigItemKeys;
 import pwcg.core.config.ConfigManagerCampaign;
 import pwcg.core.config.ConfigSimple;
@@ -39,10 +39,10 @@ public class KubanAttackMockCampaign
     @Mock protected MissionFlights missionFlightBuilder;
     @Mock protected ConfigManagerCampaign configManager;
     @Mock protected CampaignPersonnelManager personnelManager;
-    @Mock protected SquadronPersonnel squadronPersonnel;
+    @Mock protected CompanyPersonnel squadronPersonnel;
     @Mock protected CampaignEquipmentManager equipmentManager;
     @Mock protected Equipment squadronEquipment;
-    @Mock protected SquadronMember player;
+    @Mock protected CrewMember player;
     @Mock protected FlightInformation flightInformation;
     @Mock protected MissionHumanParticipants humanParticipants;
 
@@ -52,7 +52,7 @@ public class KubanAttackMockCampaign
     
     protected Date date;
     protected MissionGroundUnitResourceManager missionGroundUnitResourceManager = new MissionGroundUnitResourceManager();
-    protected Squadron squadron;
+    protected Company squadron;
 
     public void mockCampaignSetup() throws PWCGException
     {
@@ -61,18 +61,18 @@ public class KubanAttackMockCampaign
 
         date = DateUtils.getDateYYYYMMDD("19430401");
         
-        squadron = PWCGContext.getInstance().getSquadronManager().getSquadron(20121002); // I./St.G.2
+        squadron = PWCGContext.getInstance().getCompanyManager().getCompany(20121002); // I./St.G.2
 
         Mockito.when(campaign.getCampaignConfigManager()).thenReturn(configManager);
         Mockito.when(campaign.getDate()).thenReturn(date);
 
         Mockito.when(campaign.getPersonnelManager()).thenReturn(personnelManager);
-        Mockito.when(personnelManager.getSquadronPersonnel(Mockito.any())).thenReturn(squadronPersonnel);
+        Mockito.when(personnelManager.getCompanyPersonnel(Mockito.any())).thenReturn(squadronPersonnel);
         Mockito.when(squadronPersonnel.isSquadronPersonnelViable()).thenReturn(true);
         
         Mockito.when(campaign.getEquipmentManager()).thenReturn(equipmentManager);
-        Mockito.when(equipmentManager.getEquipmentForSquadron(Mockito.any())).thenReturn(squadronEquipment);
-        Mockito.when(squadronEquipment.isSquadronEquipmentViable()).thenReturn(true);
+        Mockito.when(equipmentManager.getEquipmentForCompany(Mockito.any())).thenReturn(squadronEquipment);
+        Mockito.when(squadronEquipment.isCompanyEquipmentViable()).thenReturn(true);
 
         Mockito.when(configManager.getStringConfigParam(ConfigItemKeys.SimpleConfigGroundKey)).thenReturn(ConfigSimple.CONFIG_LEVEL_MED);
         Mockito.when(mission.getMissionGroundUnitManager()).thenReturn(missionGroundUnitResourceManager);
@@ -89,7 +89,7 @@ public class KubanAttackMockCampaign
     {
         Mockito.when(flightInformation.getCampaign()).thenReturn(campaign);
         Mockito.when(flightInformation.getMission()).thenReturn(mission);
-        Mockito.when(flightInformation.getSquadron()).thenReturn(squadron);
+        Mockito.when(flightInformation.getCompany()).thenReturn(squadron);
         Mockito.when(flightInformation.getFlightType()).thenReturn(FlightTypes.DIVE_BOMB);
     }
 

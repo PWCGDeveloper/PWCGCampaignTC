@@ -2,11 +2,11 @@ package pwcg.gui.rofmap.brief.builder;
 
 import java.util.Map;
 
-import pwcg.campaign.squadmember.SquadronMember;
+import pwcg.campaign.crewmember.CrewMember;
 import pwcg.core.exception.PWCGException;
 import pwcg.gui.rofmap.brief.BriefingMissionFlightSetBuilder;
 import pwcg.gui.rofmap.brief.model.BriefingData;
-import pwcg.gui.rofmap.brief.model.BriefingFlight;
+import pwcg.gui.rofmap.brief.model.BriefingUnit;
 import pwcg.mission.Mission;
 
 public class BriefingDataBuilder
@@ -20,12 +20,12 @@ public class BriefingDataBuilder
     
     public BriefingData buildBriefingData() throws PWCGException
     {
-        Map<Integer, BriefingFlight> briefingMissionFlights = buildBriefingMissions();
+        Map<Integer, BriefingUnit> briefingMissionFlights = buildBriefingMissions();
 
         BriefingData briefingData = new BriefingData(mission, briefingMissionFlights);
 
         int initialSquadronId = getInitialSelectedSquadron();
-        briefingData.changeSelectedFlight(initialSquadronId);
+        briefingData.changeSelectedUnit(initialSquadronId);
         
         String missionTIme = getTime();
         briefingData.setMissionTime(missionTIme);
@@ -38,15 +38,15 @@ public class BriefingDataBuilder
         return mission.getMissionOptions().getMissionTime().getMissionTime();
     }
 
-    private Map<Integer, BriefingFlight> buildBriefingMissions() throws PWCGException
+    private Map<Integer, BriefingUnit> buildBriefingMissions() throws PWCGException
     {
-        Map<Integer, BriefingFlight> briefingMissionFlights = BriefingMissionFlightSetBuilder.buildBriefingMissions(mission);
+        Map<Integer, BriefingUnit> briefingMissionFlights = BriefingMissionFlightSetBuilder.buildBriefingMissions(mission);
         return briefingMissionFlights;
     }
 
     private int getInitialSelectedSquadron() throws PWCGException
     {
-        SquadronMember referencePlayer = mission.getCampaign().findReferencePlayer();
-        return referencePlayer.getSquadronId();
+        CrewMember referencePlayer = mission.getCampaign().findReferencePlayer();
+        return referencePlayer.getCompanyId();
     }
 }

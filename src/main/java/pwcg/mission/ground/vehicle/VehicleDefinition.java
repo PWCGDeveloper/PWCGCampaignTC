@@ -22,6 +22,8 @@ public class VehicleDefinition implements IWeight
     private VehicleClass vehicleClass;
     private String associatedBlock;
     private int vehicleLength;
+    private boolean isPlayerDrivable = false;
+    private String archType = "";
 
     public String getScriptDir()
     {
@@ -88,6 +90,11 @@ public class VehicleDefinition implements IWeight
         return endDate;
     }
 
+    public String getArchType()
+    {
+        return archType;
+    }
+
     public boolean shouldUse(VehicleRequestDefinition requestDefinition) throws PWCGException
     {
         if (vehicleClass != requestDefinition.getVehicleClass())
@@ -117,4 +124,9 @@ public class VehicleDefinition implements IWeight
         }
         return false;
     }
+
+    public boolean isPlayerDrivable()
+    {
+        return isPlayerDrivable;
+    }    
 }

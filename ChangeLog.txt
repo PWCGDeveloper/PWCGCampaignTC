@@ -26,6 +26,7 @@ Added new WWI vehicles
 Incorporated Stonehouse's improvements for Typhoon skins and 193 Squadron roles
 Fixed equipment request screen
 Fix to handle issue where coop server could spew a bad log set
+>>>>>>> master
 
 13.5.0
 Changes to awarding player victories

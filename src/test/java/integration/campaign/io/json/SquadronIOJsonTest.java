@@ -9,11 +9,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import pwcg.campaign.SquadHistory;
 import pwcg.campaign.SquadHistoryEntry;
+import pwcg.campaign.company.Company;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.io.json.PwcgJsonWriter;
-import pwcg.campaign.io.json.SquadronIOJson;
-import pwcg.campaign.squadron.Squadron;
+import pwcg.campaign.io.json.CompanyIOJson;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 
@@ -23,11 +23,11 @@ public class SquadronIOJsonTest
     @Test
     public void readJsonRoFSquadronsTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.FC);
-        List<Squadron> squadrons = SquadronIOJson.readJson();
+        PWCGContext.setProduct(PWCGProduct.BOS);
+        List<Company> squadrons = CompanyIOJson.readJson();
         Assertions.assertTrue (squadrons.size() > 0);
 
-        for (Squadron squadron : squadrons)
+        for (Company squadron : squadrons)
         {
             Assertions.assertTrue (squadron.getSquadronRoles().getSquadronRolePeriods().size() > 0);
             Assertions.assertTrue (squadron.getService() > 0);
@@ -38,9 +38,9 @@ public class SquadronIOJsonTest
         }
     }
 
-    private void verifyLafayetteEsc(Squadron squadron) throws PWCGException
+    private void verifyLafayetteEsc(Company squadron) throws PWCGException
     {
-        if (squadron.getSquadronId() == 101124)
+        if (squadron.getCompanyId() == 101124)
         {
             SquadHistory squadronHistory = squadron.getSquadHistory();
             Assertions.assertTrue (squadronHistory != null);
@@ -52,9 +52,9 @@ public class SquadronIOJsonTest
         }
     }
 
-    private void verifyRFCToRAF(Squadron squadron) throws PWCGException
+    private void verifyRFCToRAF(Company squadron) throws PWCGException
     {
-        if (squadron.getSquadronId() == 102020)
+        if (squadron.getCompanyId() == 102020)
         {
             SquadHistory squadronHistory = squadron.getSquadHistory();
             Assertions.assertTrue (squadronHistory != null);
@@ -67,9 +67,9 @@ public class SquadronIOJsonTest
         }
     }
 
-    private void verifyRNASToRAF(Squadron squadron) throws PWCGException
+    private void verifyRNASToRAF(Company squadron) throws PWCGException
     {
-        if (squadron.getSquadronId() == 102209)
+        if (squadron.getCompanyId() == 102209)
         {
             SquadHistory squadronHistory = squadron.getSquadHistory();
             Assertions.assertTrue (squadronHistory != null);
@@ -86,11 +86,11 @@ public class SquadronIOJsonTest
     public void readJsonBoSSquadronsTest() throws PWCGException
     {
         PWCGContext.setProduct(PWCGProduct.BOS);
-        List<Squadron> squadrons = SquadronIOJson.readJson();
+        List<Company> squadrons = CompanyIOJson.readJson();
         Assertions.assertTrue (squadrons.size() > 0);
         
         boolean success = true;
-        for (Squadron squadron : squadrons)
+        for (Company squadron : squadrons)
         {
             Assertions.assertTrue (squadron.getSquadronRoles().getSquadronRolePeriods().size() > 0);
             Assertions.assertTrue (squadron.getService() > 0);
@@ -103,10 +103,10 @@ public class SquadronIOJsonTest
     public void writeJsonBoSSquadronsTest() throws PWCGException
     {
         PWCGContext.setProduct(PWCGProduct.BOS);
-        List<Squadron> squadrons = SquadronIOJson.readJson();
+        List<Company> squadrons = CompanyIOJson.readJson();
         
-        PwcgJsonWriter<Squadron> jsonWriter = new PwcgJsonWriter<>();
-        String squadronDir = PWCGContext.getInstance().getDirectoryManager().getPwcgSquadronDir();
+        PwcgJsonWriter<Company> jsonWriter = new PwcgJsonWriter<>();
+        String squadronDir = PWCGContext.getInstance().getDirectoryManager().getPwcgCompanyDir();
         jsonWriter.writeAsJson(squadrons.get(0), squadronDir, "TestSquadron");
     }
 }

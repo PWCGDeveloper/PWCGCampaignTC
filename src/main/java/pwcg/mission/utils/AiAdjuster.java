@@ -1,8 +1,5 @@
 package pwcg.mission.utils;
 
-import pwcg.campaign.Campaign;
-import pwcg.campaign.plane.PwcgRole;
-import pwcg.core.config.ConfigItemKeys;
 import pwcg.core.constants.AiSkillLevel;
 import pwcg.core.exception.PWCGException;
 import pwcg.mission.Mission;
@@ -11,12 +8,9 @@ import pwcg.mission.flight.plane.PlaneMcu;
 import pwcg.mission.mcu.group.virtual.VirtualWaypoint;
 
 public class AiAdjuster
-{
-    private Campaign campaign;
-    
-    public AiAdjuster(Campaign campaign)
+{    
+    public AiAdjuster()
     {
-        this.campaign = campaign;
     }
     
     public void adjustAI(Mission mission) throws PWCGException
@@ -56,16 +50,6 @@ public class AiAdjuster
     private void adjustAi(PlaneMcu plane) throws PWCGException
     {
         int aiSkillValue = plane.getAiLevel().getAiSkillLevel();
-        if (plane.isPrimaryRole(PwcgRole.ROLE_FIGHTER) || plane.isNovice() == false)
-        {
-            int fighterAISkillAdjustment = campaign.getCampaignConfigManager().getIntConfigParam(ConfigItemKeys.FighterAISkillAdjustmentKey);
-            aiSkillValue += fighterAISkillAdjustment;
-        }
-        else 
-        {
-            int bomberAISkillAdjustment = campaign.getCampaignConfigManager().getIntConfigParam(ConfigItemKeys.BomberAISkillAdjustmentKey);
-            aiSkillValue += bomberAISkillAdjustment;
-        }
         
         if (aiSkillValue < AiSkillLevel.NOVICE.getAiSkillLevel()) 
         {

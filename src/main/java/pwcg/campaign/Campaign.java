@@ -6,24 +6,23 @@ import java.util.Date;
 import java.util.List;
 
 import pwcg.aar.ui.events.model.SquadronMoveEvent;
+import pwcg.campaign.company.Company;
+import pwcg.campaign.company.CompanyManager;
 import pwcg.campaign.context.FrontMapIdentifier;
 import pwcg.campaign.context.MapFinderForCampaign;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGDirectoryUserManager;
 import pwcg.campaign.context.PWCGProduct;
+import pwcg.campaign.crewmember.CrewMember;
+import pwcg.campaign.crewmember.CrewMembers;
+import pwcg.campaign.crewmember.SerialNumber;
 import pwcg.campaign.factory.CampaignModeFactory;
 import pwcg.campaign.io.json.CampaignIOJson;
 import pwcg.campaign.mode.ICampaignActive;
 import pwcg.campaign.mode.ICampaignDescriptionBuilder;
-import pwcg.campaign.personnel.InitialSquadronBuilder;
-import pwcg.campaign.personnel.SquadronPersonnel;
-import pwcg.campaign.plane.IPlaneMarkingManager;
-import pwcg.campaign.plane.PwcgRoleCategory;
-import pwcg.campaign.squadmember.SerialNumber;
-import pwcg.campaign.squadmember.SquadronMember;
-import pwcg.campaign.squadmember.SquadronMembers;
-import pwcg.campaign.squadron.Squadron;
-import pwcg.campaign.squadron.SquadronManager;
+import pwcg.campaign.personnel.CompanyPersonnel;
+import pwcg.campaign.personnel.InitialCompanyBuilder;
+import pwcg.campaign.tank.PwcgRoleCategory;
 import pwcg.campaign.utils.TestDriver;
 import pwcg.core.config.ConfigManagerCampaign;
 import pwcg.core.exception.PWCGException;
@@ -38,7 +37,6 @@ public class Campaign
     private CampaignData campaignData = new CampaignData();
     private ConfigManagerCampaign campaignConfigManager = null;
     private CampaignLogs campaignLogs = null;
-    private IPlaneMarkingManager planeMarkingManager = PlaneMarkingManagerFactory.buildIPlaneMarkingManager();
 
     private Mission currentMission = null;
     private CampaignPersonnelManager personnelManager;
@@ -63,15 +61,11 @@ public class Campaign
             return false;
         }
 
-        CampaignFixer.fixCampaign(this);
-
-        InitialSquadronBuilder initialSquadronBuilder = new InitialSquadronBuilder();
-        initialSquadronBuilder.buildNewSquadrons(this);
+        InitialCompanyBuilder initialSquadronBuilder = new InitialCompanyBuilder();
+        initialSquadronBuilder.buildNewCompanies(this);
 
         verifyRepresentativePlayer();
         
-        planeMarkingManager.initialize(this);
-
         return true;
     }
 
@@ -79,10 +73,10 @@ public class Campaign
     {
         if (campaignData.getReferencePlayerSerialNumber() == 0)
         {
-            SquadronMembers activePlayers = personnelManager.getAllActivePlayers();
-            if (activePlayers.getSquadronMemberList().size() > 0)
+            CrewMembers activePlayers = personnelManager.getAllActivePlayers();
+            if (activePlayers.getCrewMemberList().size() > 0)
             {
-                SquadronMember referencePlayer = personnelManager.getAllActivePlayers().getSquadronMemberList().get(0);
+                CrewMember referencePlayer = personnelManager.getAllActivePlayers().getCrewMemberList().get(0);
                 campaignData.setReferencePlayerSerialNumber(referencePlayer.getSerialNumber());
             }
         }
@@ -130,7 +124,7 @@ public class Campaign
 
     public boolean isHumanSquadron(int squadronId)
     {
-        SquadronPersonnel squadronPersonnel = personnelManager.getSquadronPersonnel(squadronId);
+        CompanyPersonnel squadronPersonnel = personnelManager.getCompanyPersonnel(squadronId);
         return squadronPersonnel.isPlayerSquadron();
     }
 
@@ -200,9 +194,9 @@ public class Campaign
 
     public boolean isLongRange() throws PWCGException
     {
-        for (SquadronMember player : this.personnelManager.getAllActivePlayers().getSquadronMemberList())
+        for (CrewMember player : this.personnelManager.getAllActivePlayers().getCrewMemberList())
         {
-            Squadron squadron = PWCGContext.getInstance().getSquadronManager().getSquadron(player.getSquadronId());
+            Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(player.getCompanyId());
             PwcgRoleCategory squadronPrimaryRoleCategory = squadron.determineSquadronPrimaryRoleCategory(this.getDate());
             if (squadronPrimaryRoleCategory == PwcgRoleCategory.FIGHTER)
             {
@@ -221,7 +215,7 @@ public class Campaign
     public boolean isValidCampaignForProduct() throws PWCGException
     {
         Date campaignDate = campaignData.getDate();
-        if (PWCGContext.getProduct() == PWCGProduct.FC)
+        if (PWCGContext.getProduct() == PWCGProduct.BOS)
         {
             if (campaignDate.after(DateUtils.getDateYYYYMMDD("19300101")))
             {
@@ -247,22 +241,22 @@ public class Campaign
         return campaignActive.isCampaignActive();
     }
 
-    public boolean isCampaignCanFly() throws PWCGException
+    public boolean isCampaignCanOperate() throws PWCGException
     {
-        if (personnelManager.getFlyingPlayers().getSquadronMemberList().size() > 0)
+        if (personnelManager.getPlayersInMission().getCrewMemberList().size() > 0)
         {
             return true;
         }
         return false;
     }
 
-    public List<Squadron> determinePlayerSquadrons() throws PWCGException
+    public List<Company> determinePlayerCompanies() throws PWCGException
     {
-        List<Squadron> playerSquadrons = new ArrayList<>();
-        SquadronManager squadronManager = PWCGContext.getInstance().getSquadronManager();
-        for (SquadronMember player : personnelManager.getAllActivePlayers().getSquadronMemberList())
+        List<Company> playerSquadrons = new ArrayList<>();
+        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
+        for (CrewMember player : personnelManager.getAllActivePlayers().getCrewMemberList())
         {
-            Squadron playerSquadron = squadronManager.getSquadron(player.getSquadronId());
+            Company playerSquadron = squadronManager.getCompany(player.getCompanyId());
             playerSquadrons.add(playerSquadron);
         }
         return playerSquadrons;
@@ -293,15 +287,15 @@ public class Campaign
         return PWCGContext.getInstance().getCurrentMap().getMapClimate().getSeason(getDate());
     }
 
-    public SquadronMember findReferencePlayer() throws PWCGException
+    public CrewMember findReferencePlayer() throws PWCGException
     {
         return personnelManager.getAnyCampaignMember(campaignData.getReferencePlayerSerialNumber());
     }
 
-    public Squadron findReferenceSquadron() throws PWCGException
+    public Company findReferenceSquadron() throws PWCGException
     {
-        SquadronMember referencePlayer = findReferencePlayer();
-        Squadron referencePlayerSquadron = PWCGContext.getInstance().getSquadronManager().getSquadron(referencePlayer.getSquadronId());
+        CrewMember referencePlayer = findReferencePlayer();
+        Company referencePlayerSquadron = PWCGContext.getInstance().getCompanyManager().getCompany(referencePlayer.getCompanyId());
         return referencePlayerSquadron;
     }
 
@@ -396,18 +390,13 @@ public class Campaign
         return mapIdentifier;
     }
 
-    public SquadronMember getReferencePlayer() throws PWCGException
+    public CrewMember getReferencePlayer() throws PWCGException
     {
-        SquadronMember referencePlayer = personnelManager.getAnyCampaignMember(campaignData.getReferencePlayerSerialNumber());
+        CrewMember referencePlayer = personnelManager.getAnyCampaignMember(campaignData.getReferencePlayerSerialNumber());
         if (referencePlayer == null)
         {
             throw new PWCGException("reference player not found on request for serial number" + campaignData.getReferencePlayerSerialNumber());
         }
         return referencePlayer;
-    }
-    
-    public IPlaneMarkingManager getPlaneMarkingManager()
-    {
-        return planeMarkingManager;
     }
 }

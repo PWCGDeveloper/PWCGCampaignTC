@@ -11,12 +11,12 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import pwcg.campaign.ArmedService;
 import pwcg.campaign.Campaign;
+import pwcg.campaign.company.Company;
+import pwcg.campaign.company.CompanyManager;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.factory.ArmedServiceFactory;
 import pwcg.campaign.resupply.depot.EquipmentReplacementWeightUsage;
-import pwcg.campaign.squadron.Squadron;
-import pwcg.campaign.squadron.SquadronManager;
 import pwcg.core.exception.PWCGException;
 import pwcg.product.bos.country.BoSServiceManager;
 import pwcg.testutils.CampaignCache;
@@ -41,8 +41,8 @@ public class EquipmentReplacementWeightUsageTest
     public void testGermanReplacementArchTypes() throws PWCGException
     {
         ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(20101);
-        SquadronManager squadronManager = PWCGContext.getInstance().getSquadronManager();
-        List<Squadron> squadronsForService = squadronManager.getActiveSquadronsForService(earlyCampaign.getDate(), service);
+        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
+        List<Company> squadronsForService = squadronManager.getActiveCompaniesForService(earlyCampaign.getDate(), service);
         
         EquipmentReplacementWeightUsage equipmentReplacementWeightUsage = new EquipmentReplacementWeightUsage(earlyCampaign.getDate());
         Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftUsageByArchType(squadronsForService);
@@ -70,8 +70,8 @@ public class EquipmentReplacementWeightUsageTest
     public void testRussianReplacementArchTypes() throws PWCGException
     {
         ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(10101);
-        SquadronManager squadronManager = PWCGContext.getInstance().getSquadronManager();
-        List<Squadron> squadronsForService = squadronManager.getActiveSquadronsForService(earlyCampaign.getDate(), service);
+        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
+        List<Company> squadronsForService = squadronManager.getActiveCompaniesForService(earlyCampaign.getDate(), service);
         
         EquipmentReplacementWeightUsage equipmentReplacementWeightUsage = new EquipmentReplacementWeightUsage(earlyCampaign.getDate());
         Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftUsageByArchType(squadronsForService);
@@ -95,8 +95,8 @@ public class EquipmentReplacementWeightUsageTest
     public void testItalianReplacementArchTypes() throws PWCGException
     {
         ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(20202);
-        SquadronManager squadronManager = PWCGContext.getInstance().getSquadronManager();
-        List<Squadron> squadronsForService = squadronManager.getActiveSquadronsForService(earlyCampaign.getDate(), service);
+        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
+        List<Company> squadronsForService = squadronManager.getActiveCompaniesForService(earlyCampaign.getDate(), service);
         
         EquipmentReplacementWeightUsage equipmentReplacementWeightUsage = new EquipmentReplacementWeightUsage(earlyCampaign.getDate());
         Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftUsageByArchType(squadronsForService);
@@ -109,8 +109,8 @@ public class EquipmentReplacementWeightUsageTest
     public void testGermanLateReplacementArchTypes() throws PWCGException
     {
         ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(20101);
-        SquadronManager squadronManager = PWCGContext.getInstance().getSquadronManager();
-        List<Squadron> squadronsForService = squadronManager.getActiveSquadronsForService(lateCampaign.getDate(), service);
+        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
+        List<Company> squadronsForService = squadronManager.getActiveCompaniesForService(lateCampaign.getDate(), service);
         
         EquipmentReplacementWeightUsage equipmentReplacementWeightUsage = new EquipmentReplacementWeightUsage(lateCampaign.getDate());
         Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftUsageByArchType(squadronsForService);
@@ -138,8 +138,8 @@ public class EquipmentReplacementWeightUsageTest
     public void testAmericanReplacementArchTypes() throws PWCGException
     {
         ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(BoSServiceManager.USAAF);
-        SquadronManager squadronManager = PWCGContext.getInstance().getSquadronManager();
-        List<Squadron> squadronsForService = squadronManager.getActiveSquadronsForService(lateCampaign.getDate(), service);
+        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
+        List<Company> squadronsForService = squadronManager.getActiveCompaniesForService(lateCampaign.getDate(), service);
         
         EquipmentReplacementWeightUsage equipmentReplacementWeightUsage = new EquipmentReplacementWeightUsage(lateCampaign.getDate());
         Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftUsageByArchType(squadronsForService);
@@ -151,8 +151,8 @@ public class EquipmentReplacementWeightUsageTest
     public void testBritishReplacementArchTypes() throws PWCGException
     {
         ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(BoSServiceManager.RAF);
-        SquadronManager squadronManager = PWCGContext.getInstance().getSquadronManager();
-        List<Squadron> squadronsForService = squadronManager.getActiveSquadronsForService(lateCampaign.getDate(), service);
+        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
+        List<Company> squadronsForService = squadronManager.getActiveCompaniesForService(lateCampaign.getDate(), service);
         
         EquipmentReplacementWeightUsage equipmentReplacementWeightUsage = new EquipmentReplacementWeightUsage(lateCampaign.getDate());
         Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftUsageByArchType(squadronsForService);

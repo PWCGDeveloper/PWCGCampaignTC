@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.core.exception.PWCGException;
 
 public class DateUtils 
@@ -242,38 +241,17 @@ public class DateUtils
 
     public static Date getEndOfWar() throws PWCGException
     {
-        if (PWCGContext.getProduct() == PWCGProduct.FC)
-        {
-            return DateUtils.getDateYYYYMMDD("19181111");            
-        }
-        else
-        {              
-            return DateUtils.getDateYYYYMMDD("19450503");            
-        }
+        return DateUtils.getDateYYYYMMDD("19450503");            
     }
 
     public static Date getBeginningOfWar() throws PWCGException
     {
-        if (PWCGContext.getProduct() == PWCGProduct.FC)
-        {
-            return DateUtils.getDateYYYYMMDD("19140801");            
-        }
-        else
-        {              
-            return DateUtils.getDateYYYYMMDD("19390903");            
-        }
+        return DateUtils.getDateYYYYMMDD("19390903");            
     }
 
     public static Date getBeginningOfGame() throws PWCGException
     {
-        if (PWCGContext.getProduct() == PWCGProduct.FC)
-        {
-            return DateUtils.getDateYYYYMMDD("19170601");            
-        }
-        else
-        {              
-            return DateUtils.getDateYYYYMMDD("19411001");            
-        }
+        return DateUtils.getDateYYYYMMDD("19420801");            
     }
 
     public static Date getStartofWWIIItaly() throws PWCGException

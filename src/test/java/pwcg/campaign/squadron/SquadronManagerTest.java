@@ -10,11 +10,13 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import pwcg.campaign.Campaign;
 import pwcg.campaign.api.Side;
+import pwcg.campaign.company.Company;
+import pwcg.campaign.company.CompanyManager;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGProduct;
-import pwcg.campaign.personnel.SquadronPersonnel;
-import pwcg.campaign.squadmember.SquadronMember;
-import pwcg.campaign.squadmember.SquadronMemberStatus;
+import pwcg.campaign.crewmember.CrewMember;
+import pwcg.campaign.crewmember.CrewMemberStatus;
+import pwcg.campaign.personnel.CompanyPersonnel;
 import pwcg.core.exception.PWCGException;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.SquadronTestProfile;
@@ -35,22 +37,22 @@ public class SquadronManagerTest
     @Test
     public void getSquadronTest() throws PWCGException
     {
-        SquadronManager squadronManager = PWCGContext.getInstance().getSquadronManager();
-        Squadron squadron = squadronManager.getSquadron(20111052);
+        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
+        Company squadron = squadronManager.getCompany(20111052);
         assert(squadron.determineDisplayName(campaign.getDate()).equals("I./JG52"));
     }
 
     @Test
     public void getActiveSquadronsTest() throws PWCGException
     {
-        SquadronManager squadronManager = PWCGContext.getInstance().getSquadronManager();
-        List<Squadron> squadrons = squadronManager.getActiveSquadrons(campaign.getDate());
+        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
+        List<Company> squadrons = squadronManager.getActiveCompanies(campaign.getDate());
         
         boolean foundJG52 = false;
         boolean foundStg2 = false;
         boolean found132Reg = false;
         boolean foundHs129 = false;
-        for (Squadron squadron : squadrons)
+        for (Company squadron : squadrons)
         {
             String squadronName = squadron.determineDisplayName(campaign.getDate());
             if (squadronName.equals("I./JG52"))
@@ -79,14 +81,14 @@ public class SquadronManagerTest
     @Test
     public void getActiveSquadronsForSideTest() throws PWCGException
     {
-        SquadronManager squadronManager = PWCGContext.getInstance().getSquadronManager();
-        List<Squadron> squadrons = squadronManager.getActiveSquadronsForSide(campaign.getDate(), Side.AXIS);
+        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
+        List<Company> squadrons = squadronManager.getActiveCompaniesForSide(campaign.getDate(), Side.AXIS);
         
         boolean foundJG52 = false;
         boolean foundStg2 = false;
         boolean found132Reg = false;
         boolean foundHs129 = false;
-        for (Squadron squadron : squadrons)
+        for (Company squadron : squadrons)
         {
             String squadronName = squadron.determineDisplayName(campaign.getDate());
             if (squadronName.equals("I./JG52"))
@@ -116,25 +118,25 @@ public class SquadronManagerTest
     public void getViableSquadronsTest() throws PWCGException
     {
         int II_StG2_id = 20122002;
-        SquadronPersonnel personnel = campaign.getPersonnelManager().getSquadronPersonnel(II_StG2_id);
+        CompanyPersonnel personnel = campaign.getPersonnelManager().getCompanyPersonnel(II_StG2_id);
         int numSaved = 0;
-        for (SquadronMember squadronMember : personnel.getSquadronMembers().getSquadronMemberList())
+        for (CrewMember crewMember : personnel.getCrewMembers().getCrewMemberList())
         {
             if (numSaved > 4)
             {
-                squadronMember.setPilotActiveStatus(SquadronMemberStatus.STATUS_KIA, campaign.getDate(), null);
+                crewMember.setCrewMemberActiveStatus(CrewMemberStatus.STATUS_KIA, campaign.getDate(), null);
             }
             ++numSaved;
         }
         
-        SquadronManager squadronManager = PWCGContext.getInstance().getSquadronManager();
-        List<Squadron> squadrons = squadronManager.getViableSquadrons(campaign);
+        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
+        List<Company> squadrons = squadronManager.getViableCompanies(campaign);
         
         boolean foundJG52 = false;
         boolean foundStg2 = false;
         boolean found132Reg = false;
         boolean foundHs129 = false;
-        for (Squadron squadron : squadrons)
+        for (Company squadron : squadrons)
         {
             String squadronName = squadron.determineDisplayName(campaign.getDate());
             if (squadronName.equals("I./JG52"))

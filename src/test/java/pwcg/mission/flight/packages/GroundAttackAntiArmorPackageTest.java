@@ -8,13 +8,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
 import pwcg.campaign.Campaign;
+import pwcg.campaign.company.Company;
+import pwcg.campaign.company.SquadronRolePeriod;
+import pwcg.campaign.company.SquadronRoleSet;
+import pwcg.campaign.company.SquadronRoleWeight;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.plane.PwcgRole;
-import pwcg.campaign.squadron.Squadron;
-import pwcg.campaign.squadron.SquadronRolePeriod;
-import pwcg.campaign.squadron.SquadronRoleSet;
-import pwcg.campaign.squadron.SquadronRoleWeight;
 import pwcg.campaign.utils.TestDriver;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
@@ -44,7 +44,7 @@ public class GroundAttackAntiArmorPackageTest
     @Test
     public void groundAttackTankBustRoleTest() throws PWCGException
     {        
-        Squadron squadron = PWCGContext.getInstance().getSquadronManager().getSquadron(SquadronTestProfile.STG77_KUBAN_PROFILE.getSquadronId());
+        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(SquadronTestProfile.STG77_KUBAN_PROFILE.getCompanyId());
         
         SquadronRoleWeight squadronRoleWeight = new SquadronRoleWeight();
         squadronRoleWeight.setRole(PwcgRole.ROLE_TANK_BUSTER);
@@ -62,7 +62,7 @@ public class GroundAttackAntiArmorPackageTest
 
         MissionFlights missionFlights = mission.getFlights();
         
-        IFlight playerFlight = missionFlights.getPlayerFlights().get(0);
+        IFlight playerFlight = missionFlights.getUnits().get(0);
         assert(playerFlight.getTargetDefinition().getTargetType() == TargetType.TARGET_ARMOR);
         
         List<IFlight> escortFlights = missionFlights.getNecessaryFlightsByType(NecessaryFlightType.PLAYER_ESCORT);

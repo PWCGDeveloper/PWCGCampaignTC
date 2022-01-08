@@ -16,14 +16,14 @@ import pwcg.gui.colors.ColorMap;
 import pwcg.gui.dialogs.PWCGMonitorBorders;
 import pwcg.gui.dialogs.PWCGMonitorFonts;
 import pwcg.gui.rofmap.brief.model.BriefingData;
-import pwcg.gui.rofmap.brief.model.BriefingFlight;
+import pwcg.gui.rofmap.brief.model.BriefingUnit;
 import pwcg.gui.utils.ContextSpecificImages;
 import pwcg.gui.utils.ImageResizingPanel;
 import pwcg.gui.utils.ScrollBarWrapper;
 import pwcg.mission.IMissionDescription;
 import pwcg.mission.Mission;
 import pwcg.mission.MissionDescriptionFactory;
-import pwcg.mission.flight.crew.CrewPlanePayloadPairing;
+import pwcg.mission.playerunit.crew.CrewTankPayloadPairing;
 
 public class BriefingDescriptionChalkboard extends ImageResizingPanel
 {
@@ -93,15 +93,15 @@ public class BriefingDescriptionChalkboard extends ImageResizingPanel
         
         
 
-        IMissionDescription missionDescription = MissionDescriptionFactory.buildMissionDescription(campaign, mission, briefingContext.getSelectedFlight());
+        IMissionDescription missionDescription = MissionDescriptionFactory.buildMissionDescription(campaign, mission, briefingContext.getSelectedUnit());
         String missionDescriptionText = missionDescription.createDescription();
         
         StringBuffer missionDescriptionBuffer = new StringBuffer("");
         missionDescriptionBuffer.append(missionPrefix);
         missionDescriptionBuffer.append(missionDescriptionText);
 
-        String pilotList = makePilotList();
-        missionDescriptionBuffer.append(pilotList.toString());
+        String crewMemberList = makeCrewMemberList();
+        missionDescriptionBuffer.append(crewMemberList.toString());
         
         missionTextArea.setText(missionDescriptionBuffer.toString());
     }
@@ -109,23 +109,19 @@ public class BriefingDescriptionChalkboard extends ImageResizingPanel
     private String getMissionPrefix()
     {
         String missionPrefix = "Mission: \n";
-        if (mission.isNightMission())
-        {
-            missionPrefix = "Mission: Night Mission!\n";
-        }
         return missionPrefix;
     }
 
-    private String makePilotList() throws PWCGException 
+    private String makeCrewMemberList() throws PWCGException 
     {
-        BriefingFlight activeMissionHandler = briefingContext.getActiveBriefingFlight();
-        StringBuffer assignedPilotsBuffer = new StringBuffer ("Assigned Pilots:\n");
-        for (CrewPlanePayloadPairing crewPlane : activeMissionHandler.getCrews())
+        BriefingUnit activeMissionHandler = briefingContext.getActiveBriefingUnit();
+        StringBuffer assignedCrewMembersBuffer = new StringBuffer ("Assigned CrewMembers:\n");
+        for (CrewTankPayloadPairing crewPlane : activeMissionHandler.getCrews())
         {
-            assignedPilotsBuffer.append("    " + crewPlane.getPilot().getNameAndRank() + "\n");
+            assignedCrewMembersBuffer.append("    " + crewPlane.getCrewMember().getNameAndRank() + "\n");
         }
         
-        return assignedPilotsBuffer.toString();
+        return assignedCrewMembersBuffer.toString();
     }
 
 }

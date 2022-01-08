@@ -7,21 +7,21 @@ import java.util.List;
 import java.util.Set;
 
 import pwcg.campaign.Campaign;
+import pwcg.campaign.company.Company;
+import pwcg.campaign.company.CompanyManager;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.plane.Equipment;
-import pwcg.campaign.plane.EquippedPlane;
-import pwcg.campaign.plane.PlaneArchType;
-import pwcg.campaign.plane.PlaneEquipmentFactory;
-import pwcg.campaign.plane.PlaneType;
-import pwcg.campaign.squadron.Squadron;
-import pwcg.campaign.squadron.SquadronManager;
+import pwcg.campaign.tank.Equipment;
+import pwcg.campaign.tank.EquippedTank;
+import pwcg.campaign.tank.TankArchType;
+import pwcg.campaign.tank.TankEquipmentFactory;
+import pwcg.campaign.tank.TankType;
 import pwcg.core.exception.PWCGException;
 
 public class EquipmentArchTypeChangeHandler 
 {
     private Campaign campaign;
     private Date newDate;
-    private Set<Squadron> squadronsToEquip = new HashSet<>();
+    private Set<Company> squadronsToEquip = new HashSet<>();
 	
 	public EquipmentArchTypeChangeHandler(Campaign campaign, Date newDate)
 	{
@@ -37,14 +37,14 @@ public class EquipmentArchTypeChangeHandler
 
     private void removeOutdatedArchTypes() throws PWCGException
     {
-        SquadronManager squadronManager = PWCGContext.getInstance().getSquadronManager();
-        for (Squadron squadron : squadronManager.getActiveSquadrons(campaign.getDate()))
+        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
+        for (Company squadron : squadronManager.getActiveCompanies(campaign.getDate()))
         {
-            Equipment squadronEquipment = campaign.getEquipmentManager().getEquipmentForSquadron(squadron.getSquadronId());
+            Equipment squadronEquipment = campaign.getEquipmentManager().getEquipmentForCompany(squadron.getCompanyId());
             if (squadronEquipment != null)
             {
                 Set<Integer> planesToRemove = new HashSet<>();
-                for (EquippedPlane plane : squadronEquipment.getActiveEquippedPlanes().values())
+                for (EquippedTank plane : squadronEquipment.getActiveEquippedTanks().values())
                 {
                     boolean isActiveArchType = squadron.isPlaneInActiveSquadronArchTypes(newDate, plane);
                     if (!isActiveArchType)
@@ -56,7 +56,7 @@ public class EquipmentArchTypeChangeHandler
 
                 for (Integer planeSerialNumber : planesToRemove)
                 {
-                    squadronEquipment.deactivateEquippedPlaneFromSquadron(planeSerialNumber, campaign.getDate());
+                    squadronEquipment.deactivateEquippedTankFromCompany(planeSerialNumber, campaign.getDate());
                 }
             }            
         }
@@ -64,38 +64,38 @@ public class EquipmentArchTypeChangeHandler
 
     private void addNewArchTypes() throws PWCGException
     {
-        for (Squadron squadron : squadronsToEquip)
+        for (Company squadron : squadronsToEquip)
         {
-            Equipment squadronEquipment = campaign.getEquipmentManager().getEquipmentForSquadron(squadron.getSquadronId());
-            int numPlanesNeeded = Squadron.SQUADRON_EQUIPMENT_SIZE - squadronEquipment.getActiveEquippedPlanes().size();
+            Equipment squadronEquipment = campaign.getEquipmentManager().getEquipmentForCompany(squadron.getCompanyId());
+            int numPlanesNeeded = Company.COMPANY_EQUIPMENT_SIZE - squadronEquipment.getActiveEquippedTanks().size();
 
-            PlaneType bestPlaneType = getBestPlaneTypeForSquadron(squadron);
+            TankType bestTankType = getBestTankTypeForSquadron(squadron);
             for (int i = 0; i < numPlanesNeeded; ++i)
             {
-                EquippedPlane replacementPlane = PlaneEquipmentFactory.makePlaneForSquadron(campaign, bestPlaneType.getType(), squadron.getSquadronId());
-                squadronEquipment.addEquippedPlaneToSquadron(campaign, squadron.getSquadronId(), replacementPlane);
+                EquippedTank replacementPlane = TankEquipmentFactory.makeTankForSquadron(campaign, bestTankType.getType(), squadron.getCompanyId());
+                squadronEquipment.addEquippedTankToCompany(campaign, squadron.getCompanyId(), replacementPlane);
             }
         }
     }
     
-    private PlaneType getBestPlaneTypeForSquadron(Squadron squadron) throws PWCGException
+    private TankType getBestTankTypeForSquadron(Company squadron) throws PWCGException
     {
-        List<PlaneType> planeTypesForSquadron = new ArrayList<>();
-        for (PlaneArchType archType : squadron.determineCurrentAircraftArchTypes(newDate))
+        List<TankType> planeTypesForSquadron = new ArrayList<>();
+        for (TankArchType archType : squadron.determineCurrentAircraftArchTypes(newDate))
         {
-            List<PlaneType> planeTypesForArchType = archType.getActiveMemberPlaneTypes(newDate);
+            List<TankType> planeTypesForArchType = archType.getActiveMemberTankTypes(newDate);
             planeTypesForSquadron.addAll(planeTypesForArchType);
         }
         
-        PlaneType bestPlaneType = planeTypesForSquadron.get(0);
-        for (PlaneType planeType : planeTypesForSquadron)
+        TankType bestTankType = planeTypesForSquadron.get(0);
+        for (TankType planeType : planeTypesForSquadron)
         {
-            if (planeType.getGoodness() > bestPlaneType.getGoodness())
+            if (planeType.getGoodness() > bestTankType.getGoodness())
             {
-                bestPlaneType = planeType;
+                bestTankType = planeType;
             }
         }
         
-        return bestPlaneType;
+        return bestTankType;
     }
 }

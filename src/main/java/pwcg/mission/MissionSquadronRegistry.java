@@ -5,37 +5,37 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import pwcg.campaign.squadron.Squadron;
+import pwcg.campaign.company.Company;
 import pwcg.core.exception.PWCGException;
 
 public class MissionSquadronRegistry
 {
-    private Map<Integer, Squadron> squadronsInUse = new HashMap<>();
+    private Map<Integer, Company> squadronsInUse = new HashMap<>();
 
-    public boolean isSquadronAvailable(Squadron squadron)
+    public boolean isSquadronAvailable(Company squadron)
     {
-        if (squadronsInUse.containsKey(squadron.getSquadronId()))
+        if (squadronsInUse.containsKey(squadron.getCompanyId()))
         {
             return false;
         }
         return true;
     }
 
-    public void registerSquadronForUse(Squadron squadron) throws PWCGException
+    public void registerSquadronForUse(Company squadron) throws PWCGException
     {
-        if (squadronsInUse.containsKey(squadron.getSquadronId()))
+        if (squadronsInUse.containsKey(squadron.getCompanyId()))
         {
-            throw new PWCGException("Duplicate use of squadron " + squadron.getSquadronId());
+            throw new PWCGException("Duplicate use of squadron " + squadron.getCompanyId());
         }
-        squadronsInUse.put(squadron.getSquadronId(), squadron);
+        squadronsInUse.put(squadron.getCompanyId(), squadron);
     }
 
-    public List<Squadron> removeSquadronsInUse(List<Squadron> squadrons)
+    public List<Company> removeSquadronsInUse(List<Company> squadrons)
     {
-        List<Squadron> squadronsNotInUse = new ArrayList<>();
-        for (Squadron squadron : squadrons)
+        List<Company> squadronsNotInUse = new ArrayList<>();
+        for (Company squadron : squadrons)
         {
-            if (!squadronsInUse.containsKey(squadron.getSquadronId()))
+            if (!squadronsInUse.containsKey(squadron.getCompanyId()))
             {
                 squadronsNotInUse.add(squadron);
             }

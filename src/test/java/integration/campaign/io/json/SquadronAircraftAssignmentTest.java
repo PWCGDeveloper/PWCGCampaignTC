@@ -8,11 +8,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import pwcg.campaign.company.Company;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGProduct;
-import pwcg.campaign.io.json.SquadronIOJson;
+import pwcg.campaign.io.json.CompanyIOJson;
 import pwcg.campaign.plane.SquadronPlaneAssignment;
-import pwcg.campaign.squadron.Squadron;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 
@@ -23,11 +23,11 @@ public class SquadronAircraftAssignmentTest
     public void verifyValidBoSAirfieldMoveDatesTest() throws PWCGException
     {
         PWCGContext.setProduct(PWCGProduct.BOS);
-        List<Squadron> squadrons = SquadronIOJson.readJson();
+        List<Company> squadrons = CompanyIOJson.readJson();
         Assertions.assertTrue (squadrons.size() > 0);
         
         boolean success = true;
-        for (Squadron squadron : squadrons)
+        for (Company squadron : squadrons)
         {
             if (!verifySquadronAircraftTransitions(squadron))
             {
@@ -38,20 +38,20 @@ public class SquadronAircraftAssignmentTest
         assert(success);
     }
  
-    private boolean verifySquadronAircraftTransitions(Squadron squadron) throws PWCGException
+    private boolean verifySquadronAircraftTransitions(Company squadron) throws PWCGException
     {
         boolean success = true;
         Date lastEndDate = null;
-        List<SquadronPlaneAssignment> planeAssignments = squadron.getPlaneAssignments();
-        for (SquadronPlaneAssignment planeAssignment : planeAssignments)
+        List<CompanyTankAssignment> planeAssignments = squadron.getPlaneAssignments();
+        for (CompanyTankAssignment planeAssignment : planeAssignments)
         {
             if (lastEndDate == null)
             {
-                lastEndDate = planeAssignment.getSquadronWithdrawal();
+                lastEndDate = planeAssignment.getCompanyWithdrawal();
             }
             else
             {
-                Date thisEndDate = planeAssignment.getSquadronWithdrawal();
+                Date thisEndDate = planeAssignment.getCompanyWithdrawal();
                 thisEndDate = DateUtils.advanceTimeDays(thisEndDate, 1);
                 if (thisEndDate.before(lastEndDate))
                 {

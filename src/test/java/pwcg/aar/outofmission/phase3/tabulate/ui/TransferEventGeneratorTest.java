@@ -33,19 +33,19 @@ public class TransferEventGeneratorTest extends AARTestSetup
     public void testTransferInEvent() throws PWCGException 
     {
         List<TransferRecord> transferRecords = new ArrayList<>();
-        TransferRecord squadronMemberTransfer1 = new TransferRecord(pilot1, SquadronTestProfile.ESC_3_PROFILE.getSquadronId(), SquadronTestProfile.ESC_103_PROFILE.getSquadronId());
+        TransferRecord squadronMemberTransfer1 = new TransferRecord(crewMember1, SquadronTestProfile.ESC_3_PROFILE.getCompanyId(), SquadronTestProfile.ESC_103_PROFILE.getCompanyId());
         transferRecords.add(squadronMemberTransfer1);        
-        TransferRecord squadronMemberTransfer2 = new TransferRecord(pilot2, SquadronTestProfile.ESC_3_PROFILE.getSquadronId(), SquadronTestProfile.ESC_103_PROFILE.getSquadronId());
+        TransferRecord squadronMemberTransfer2 = new TransferRecord(crewMember2, SquadronTestProfile.ESC_3_PROFILE.getCompanyId(), SquadronTestProfile.ESC_103_PROFILE.getCompanyId());
         transferRecords.add(squadronMemberTransfer2);        
 
         TransferEventGenerator transferEventGenerator = new TransferEventGenerator(campaign);
-        List<TransferEvent> transferEvents = transferEventGenerator.createPilotTransferEvents(transferRecords);
+        List<TransferEvent> transferEvents = transferEventGenerator.createCrewMemberTransferEvents(transferRecords);
         TransferEvent transferEvent1 = (TransferEvent)transferEvents.get(0);
         TransferEvent transferEvent2 = (TransferEvent)transferEvents.get(1);
 
         Assertions.assertTrue (transferEvents.size() == 2);
-        Assertions.assertTrue (transferEvent1.getTransferTo() == SquadronTestProfile.ESC_103_PROFILE.getSquadronId());
-        Assertions.assertTrue (transferEvent2.getTransferTo() == SquadronTestProfile.ESC_103_PROFILE.getSquadronId());
+        Assertions.assertTrue (transferEvent1.getTransferTo() == SquadronTestProfile.ESC_103_PROFILE.getCompanyId());
+        Assertions.assertTrue (transferEvent2.getTransferTo() == SquadronTestProfile.ESC_103_PROFILE.getCompanyId());
     }
     
     
@@ -53,19 +53,19 @@ public class TransferEventGeneratorTest extends AARTestSetup
     public void testInSquadronAceUpdate() throws PWCGException 
     {
         List<TransferRecord> transferRecords = new ArrayList<>();
-        TransferRecord squadronMemberTransfer1 = new TransferRecord(pilot1, SquadronTestProfile.ESC_103_PROFILE.getSquadronId(), SquadronTestProfile.ESC_3_PROFILE.getSquadronId());
+        TransferRecord squadronMemberTransfer1 = new TransferRecord(crewMember1, SquadronTestProfile.ESC_103_PROFILE.getCompanyId(), SquadronTestProfile.ESC_3_PROFILE.getCompanyId());
         transferRecords.add(squadronMemberTransfer1);        
-        TransferRecord squadronMemberTransfer2 = new TransferRecord(pilot2, SquadronTestProfile.ESC_103_PROFILE.getSquadronId(), SquadronTestProfile.ESC_3_PROFILE.getSquadronId());
+        TransferRecord squadronMemberTransfer2 = new TransferRecord(crewMember2, SquadronTestProfile.ESC_103_PROFILE.getCompanyId(), SquadronTestProfile.ESC_3_PROFILE.getCompanyId());
         transferRecords.add(squadronMemberTransfer2);        
 
         TransferEventGenerator transferEventGenerator = new TransferEventGenerator(campaign);
-        List<TransferEvent> transferEvents = transferEventGenerator.createPilotTransferEvents(transferRecords);
+        List<TransferEvent> transferEvents = transferEventGenerator.createCrewMemberTransferEvents(transferRecords);
         TransferEvent transferEvent1 = (TransferEvent)transferEvents.get(0);
         TransferEvent transferEvent2 = (TransferEvent)transferEvents.get(1);
 
         Assertions.assertTrue (transferEvents.size() == 2);
-        Assertions.assertTrue (transferEvent1.getTransferTo() != SquadronTestProfile.ESC_103_PROFILE.getSquadronId());
-        Assertions.assertTrue (transferEvent2.getTransferTo() != SquadronTestProfile.ESC_103_PROFILE.getSquadronId());
+        Assertions.assertTrue (transferEvent1.getTransferTo() != SquadronTestProfile.ESC_103_PROFILE.getCompanyId());
+        Assertions.assertTrue (transferEvent2.getTransferTo() != SquadronTestProfile.ESC_103_PROFILE.getCompanyId());
     }
 
 }

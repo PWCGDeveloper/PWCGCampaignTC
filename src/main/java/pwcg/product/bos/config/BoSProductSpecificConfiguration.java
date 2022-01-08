@@ -3,7 +3,6 @@ package pwcg.product.bos.config;
 import pwcg.campaign.api.IProductSpecificConfiguration;
 import pwcg.core.utils.RandomNumberGenerator;
 import pwcg.mission.flight.FlightTypes;
-import pwcg.mission.flight.initialposition.TakeoffFormation;
 import pwcg.mission.ground.BattleSize;
 
 public class BoSProductSpecificConfiguration implements IProductSpecificConfiguration
@@ -79,12 +78,6 @@ public class BoSProductSpecificConfiguration implements IProductSpecificConfigur
     }
 
     @Override
-    public TakeoffFormation getTakeoffFormation()
-    {
-        return TakeoffFormation.STAGGERED;
-    }
-
-    @Override
     public int geNeutralZone()
     {
         return NEUTRAL_ZONE;
@@ -106,25 +99,13 @@ public class BoSProductSpecificConfiguration implements IProductSpecificConfigur
     public int getAdditionalInitialTargetRadius(FlightTypes flightType)
     {
         int initialDistance = 0;
-        if (flightType == FlightTypes.SPY_EXTRACT)
-        {
-            initialDistance = 10000;
-        }
-        else if (flightType == FlightTypes.PARATROOP_DROP)
+        if (flightType == FlightTypes.PARATROOP_DROP)
         {
             initialDistance = 5000;
         }
         else if (flightType == FlightTypes.CARGO_DROP)
         {
             initialDistance = 5000;
-        }
-        else if (flightType == FlightTypes.TRANSPORT)
-        {
-            initialDistance = 5000;
-        }
-        else if (flightType == FlightTypes.STRATEGIC_BOMB)
-        {
-            initialDistance = 30000;                    
         }
 
         return initialDistance;
@@ -134,29 +115,13 @@ public class BoSProductSpecificConfiguration implements IProductSpecificConfigur
     public int getAdditionalMaxTargetRadius(FlightTypes flightType)
     {
         int initialDistance = 20000;
-        if (flightType == FlightTypes.GROUND_HUNT)
+        if (flightType == FlightTypes.DIVE_BOMB)
         {
             initialDistance = 30000;
-        }
-        else if (flightType == FlightTypes.DIVE_BOMB)
-        {
-            initialDistance = 30000;
-        }
-        else if (flightType == FlightTypes.BOMB)
-        {
-            initialDistance = 30000;                    
         }
         else if (flightType == FlightTypes.PARATROOP_DROP)
         {
             initialDistance = 30000;
-        }
-        else if (flightType == FlightTypes.TRANSPORT)
-        {
-            initialDistance = 30000;
-        }
-        else if (flightType == FlightTypes.STRATEGIC_BOMB)
-        {
-            initialDistance = 100000;                    
         }
 
         return initialDistance;

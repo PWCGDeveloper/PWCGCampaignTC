@@ -1,23 +1,22 @@
 package pwcg.gui.rofmap.brief;
 
-import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.plane.payload.IPayloadFactory;
-import pwcg.campaign.plane.payload.IPlanePayload;
-import pwcg.campaign.plane.payload.PayloadElement;
+import pwcg.campaign.tank.payload.ITankPayload;
+import pwcg.campaign.tank.payload.TankPayloadElement;
+import pwcg.campaign.tank.payload.TankPayloadFactory;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.PWCGLogger;
-import pwcg.gui.rofmap.brief.model.BriefingPilotAssignmentData;
+import pwcg.gui.rofmap.brief.model.BriefingCrewMemberAssignmentData;
 import pwcg.mission.Mission;
-import pwcg.mission.flight.IFlight;
-import pwcg.mission.flight.crew.CrewPlanePayloadPairing;
-import pwcg.mission.flight.plane.PlaneMcu;
+import pwcg.mission.playerunit.PlayerUnit;
+import pwcg.mission.playerunit.TankMcu;
+import pwcg.mission.playerunit.crew.CrewTankPayloadPairing;
 
 public class BriefingPayloadHelper
 {
     private Mission mission;
-    private BriefingPilotAssignmentData briefingAssignmentData = new BriefingPilotAssignmentData();
+    private BriefingCrewMemberAssignmentData briefingAssignmentData = new BriefingCrewMemberAssignmentData();
     
-	public BriefingPayloadHelper(Mission mission, BriefingPilotAssignmentData briefingAssignmentData)
+	public BriefingPayloadHelper(Mission mission, BriefingCrewMemberAssignmentData briefingAssignmentData)
 	{
         this.mission = mission;
         this.briefingAssignmentData = briefingAssignmentData;
@@ -29,11 +28,11 @@ public class BriefingPayloadHelper
         assignModificationsToCrewPlanes();
     }
 
-    public void modifyPayload(Integer pilotSerialNumber, int payloadId) 
+    public void modifyPayload(Integer crewMemberSerialNumber, int payloadId) 
     {
         try
         {
-            CrewPlanePayloadPairing crewPlane = briefingAssignmentData.findAssignedCrewPairingByPilot(pilotSerialNumber);
+            CrewTankPayloadPairing crewPlane = briefingAssignmentData.findAssignedCrewPairingByCrewMember(crewMemberSerialNumber);
             if (crewPlane != null)
             {
                 crewPlane.setPayloadId(payloadId);
@@ -45,19 +44,19 @@ public class BriefingPayloadHelper
         }
     }
 
-    public void setPayloadForAddedPlane(Integer pilotSerialNumber) throws PWCGException
+    public void setPayloadForAddedPlane(Integer crewMemberSerialNumber) throws PWCGException
     {
-        CrewPlanePayloadPairing crewPlane = briefingAssignmentData.findAssignedCrewPairingByPilot(pilotSerialNumber);
+        CrewTankPayloadPairing crewPlane = briefingAssignmentData.findAssignedCrewPairingByCrewMember(crewMemberSerialNumber);
         executePayloadAssignmentSequence(crewPlane);
     }
 
-    public void setPayloadForChangedPlane(Integer pilotSerialNumber) throws PWCGException
+    public void setPayloadForChangedPlane(Integer crewMemberSerialNumber) throws PWCGException
     {
-        CrewPlanePayloadPairing crewPlane = briefingAssignmentData.findAssignedCrewPairingByPilot(pilotSerialNumber);
+        CrewTankPayloadPairing crewPlane = briefingAssignmentData.findAssignedCrewPairingByCrewMember(crewMemberSerialNumber);
         executePayloadAssignmentSequence(crewPlane);
     }
 
-    private void executePayloadAssignmentSequence(CrewPlanePayloadPairing crewPlane) throws PWCGException
+    private void executePayloadAssignmentSequence(CrewTankPayloadPairing crewPlane) throws PWCGException
     {
         if (setPayloadToSimilarPlane(crewPlane))
         {
@@ -71,26 +70,26 @@ public class BriefingPayloadHelper
 
     private void assignPayloadsToCrewPlanes() throws PWCGException
     {
-        IFlight playerFlight = mission.getFlights().getPlayerFlightForSquadron(briefingAssignmentData.getSquadron().getSquadronId());
-        for (PlaneMcu plane : playerFlight.getFlightPlanes().getPlanes())
+        PlayerUnit playerUnit = mission.getUnits().getPlayerUnitForCompany(briefingAssignmentData.getCompany().getCompanyId());
+        for (TankMcu tank : playerUnit.getTanks())
         {
-            CrewPlanePayloadPairing crewPlane = briefingAssignmentData.findAssignedCrewPairingByPlane(plane.getSerialNumber());
-            if (crewPlane != null)
+            CrewTankPayloadPairing crewTank = briefingAssignmentData.findAssignedCrewPairingByPlane(tank.getSerialNumber());
+            if (crewTank != null)
             {
-                crewPlane.setPayloadId(plane.getPlanePayload().getSelectedPayloadDesignation().getPayloadId());
+                crewTank.setPayloadId(tank.getTankPayload().getSelectedPayloadDesignation().getPayloadId());
             }
         }
     }
 
     private void assignModificationsToCrewPlanes() throws PWCGException
     {
-        IFlight playerFlight = mission.getFlights().getPlayerFlightForSquadron(briefingAssignmentData.getSquadron().getSquadronId());
-        for (PlaneMcu plane : playerFlight.getFlightPlanes().getPlanes())
+        PlayerUnit playerUnit = mission.getUnits().getPlayerUnitForCompany(briefingAssignmentData.getCompany().getCompanyId());
+        for (TankMcu tank : playerUnit.getTanks())
         {
-            CrewPlanePayloadPairing crewPlane = briefingAssignmentData.findAssignedCrewPairingByPlane(plane.getSerialNumber());
+            CrewTankPayloadPairing crewPlane = briefingAssignmentData.findAssignedCrewPairingByPlane(tank.getSerialNumber());
             if (crewPlane != null)
             {
-            	for (PayloadElement modification : plane.getPlanePayload().getSelectedModifications())
+            	for (TankPayloadElement modification : tank.getTankPayload().getSelectedModifications())
             	{
             		crewPlane.addModification(modification.getDescription());
             	}
@@ -98,14 +97,14 @@ public class BriefingPayloadHelper
         }
     }
 
-    private boolean setPayloadToSimilarPlane(CrewPlanePayloadPairing crewPlane) throws PWCGException
+    private boolean setPayloadToSimilarPlane(CrewTankPayloadPairing crewPlane) throws PWCGException
     {
         boolean setToSimilarPlane = false;
-        for (CrewPlanePayloadPairing sourceCrewPlane : briefingAssignmentData.getCrews())
+        for (CrewTankPayloadPairing sourceCrewPlane : briefingAssignmentData.getCrews())
         {
-            if (sourceCrewPlane.getPlane().getType().equals(crewPlane.getPlane().getType()))
+            if (sourceCrewPlane.getTank().getType().equals(crewPlane.getTank().getType()))
             {
-                if (sourceCrewPlane.getPilot().getSerialNumber() != crewPlane.getPilot().getSerialNumber())
+                if (sourceCrewPlane.getCrewMember().getSerialNumber() != crewPlane.getCrewMember().getSerialNumber())
                 {
                     mapPayloadFromPlane(crewPlane, sourceCrewPlane);
                     setToSimilarPlane = true;
@@ -116,7 +115,7 @@ public class BriefingPayloadHelper
         return setToSimilarPlane;
     }
 
-    private void mapPayloadFromPlane(CrewPlanePayloadPairing targetPlane, CrewPlanePayloadPairing sourcePlane)
+    private void mapPayloadFromPlane(CrewTankPayloadPairing targetPlane, CrewTankPayloadPairing sourcePlane)
     {
         targetPlane.setPayloadId(sourcePlane.getPayloadId());
         for (String modification : sourcePlane.getModifications())
@@ -125,12 +124,12 @@ public class BriefingPayloadHelper
         }
     }
     
-    private void setPayloadFromPayloadFactory(CrewPlanePayloadPairing crewPlane) throws PWCGException
+    private void setPayloadFromPayloadFactory(CrewTankPayloadPairing crewPlane) throws PWCGException
     {
-        IFlight playerFlight = mission.getFlights().getPlayerFlightForSquadron(briefingAssignmentData.getSquadron().getSquadronId());
-        IPayloadFactory payloadFactory = PWCGContext.getInstance().getPayloadFactory();
-        IPlanePayload payload = payloadFactory.createPlanePayload(crewPlane.getPlane().getType(), mission.getCampaign().getDate());
-        payload.createWeaponsPayload(playerFlight);
+        PlayerUnit playerUnit = mission.getUnits().getPlayerUnitForCompany(briefingAssignmentData.getCompany().getCompanyId());
+        TankPayloadFactory payloadFactory = new TankPayloadFactory();
+        ITankPayload payload = payloadFactory.createPayload(crewPlane.getTank().getType(), mission.getCampaign().getDate());
+        payload.createWeaponsPayload(playerUnit);
         crewPlane.setPayloadId(payload.getSelectedPayloadId());
     }
 }

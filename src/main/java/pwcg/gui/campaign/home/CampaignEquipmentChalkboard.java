@@ -13,10 +13,9 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import pwcg.campaign.Campaign;
-import pwcg.campaign.plane.EquippedPlane;
-import pwcg.campaign.plane.IPlaneMarkingManager;
-import pwcg.campaign.plane.PlaneSorter;
-import pwcg.campaign.squadmember.SquadronMember;
+import pwcg.campaign.crewmember.CrewMember;
+import pwcg.campaign.tank.EquippedTank;
+import pwcg.campaign.tank.TankSorter;
 import pwcg.core.config.InternationalizationManager;
 import pwcg.core.exception.PWCGException;
 import pwcg.gui.ScreenIdentifier;
@@ -48,17 +47,16 @@ public class CampaignEquipmentChalkboard extends ImageResizingPanel
         this.setImageFromName(imagePath);
         this.setBorder(PwcgBorderFactory.createCampaignHomeChalkboardBoxBorder());        
 
-        SquadronMember referencePlayer = campaign.findReferencePlayer();            
-        Map<Integer, EquippedPlane> planesForSquadron = campaign.getEquipmentManager().getEquipmentForSquadron(referencePlayer.getSquadronId()).getActiveEquippedPlanes();
+        CrewMember referencePlayer = campaign.findReferencePlayer();            
+        Map<Integer, EquippedTank> planesForSquadron = campaign.getEquipmentManager().getEquipmentForCompany(referencePlayer.getCompanyId()).getActiveEquippedTanks();
         
         JPanel equipmentPanel = createEquipmentListPanel(campaign, planesForSquadron);
         this.add(equipmentPanel, BorderLayout.CENTER);
     }
 
-    private JPanel createEquipmentListPanel(Campaign campaign, Map<Integer, EquippedPlane> planesForSquadron) throws PWCGException
+    private JPanel createEquipmentListPanel(Campaign campaign, Map<Integer, EquippedTank> planesForSquadron) throws PWCGException
     {
-        List<EquippedPlane> sortedAircraftOnInventory = PlaneSorter.sortEquippedPlanesByGoodness(new ArrayList<EquippedPlane>(planesForSquadron.values()));
-        IPlaneMarkingManager planeMarkingManager = campaign.getPlaneMarkingManager();
+        List<EquippedTank> sortedAircraftOnInventory = TankSorter.sortEquippedTanksByGoodness(new ArrayList<EquippedTank>(planesForSquadron.values()));
 
         Font font = PWCGMonitorFonts.getChalkboardFont();
 
@@ -103,7 +101,7 @@ public class CampaignEquipmentChalkboard extends ImageResizingPanel
         equipmentChalkboardPanel.add(PWCGLabelFactory.makeDummyLabel(), constraints);
         
         int i = 1;
-        for (EquippedPlane plane : sortedAircraftOnInventory)
+        for (EquippedTank plane : sortedAircraftOnInventory)
         {
             constraints.weightx = 0.15;
             constraints.gridx = 0;
@@ -121,12 +119,6 @@ public class CampaignEquipmentChalkboard extends ImageResizingPanel
             constraints.gridx = 2;
             constraints.gridy = i;
             equipmentChalkboardPanel.add(aircraftSerialNumberLabel, constraints);
- 
-            JLabel lIdCode = PWCGLabelFactory.makeTransparentLabel(planeMarkingManager.determineDisplayMarkings(campaign, plane), ColorMap.CHALK_FOREGROUND, font, SwingConstants.RIGHT);
-            constraints.weightx = 0.15;
-            constraints.gridx = 3;
-            constraints.gridy = i;
-            equipmentChalkboardPanel.add(lIdCode, constraints);
              
             constraints.gridx = 4;
             constraints.gridy = i;

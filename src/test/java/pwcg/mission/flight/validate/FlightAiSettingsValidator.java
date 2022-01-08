@@ -7,7 +7,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGProduct;
-import pwcg.campaign.squadmember.SquadronMember;
+import pwcg.campaign.crewmember.CrewMember;
 import pwcg.core.constants.AiSkillLevel;
 import pwcg.core.exception.PWCGException;
 import pwcg.mission.Mission;
@@ -29,7 +29,7 @@ public class FlightAiSettingsValidator
 {    
     public FlightAiSettingsValidator() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.FC);
+        PWCGContext.setProduct(PWCGProduct.BOS);
     }
 
     @Test
@@ -39,7 +39,7 @@ public class FlightAiSettingsValidator
 
         MissionGenerator missionGenerator = new MissionGenerator(campaign);
         Mission mission = missionGenerator.makeTestSingleMissionFromFlightType(TestMissionBuilderUtility.buildTestParticipatingHumans(campaign), FlightTypes.GROUND_ATTACK, MissionProfile.DAY_TACTICAL_MISSION);
-        GroundAttackFlight flight = (GroundAttackFlight) mission.getFlights().getPlayerFlights().get(0);
+        GroundAttackFlight flight = (GroundAttackFlight) mission.getFlights().getUnits().get(0);
         flight.finalizeFlight();
 
         validatePlaneAI(mission);
@@ -52,7 +52,7 @@ public class FlightAiSettingsValidator
         
         MissionGenerator missionGenerator = new MissionGenerator(campaign);
         Mission mission = missionGenerator.makeTestSingleMissionFromFlightType(TestMissionBuilderUtility.buildTestParticipatingHumans(campaign), FlightTypes.GROUND_ATTACK, MissionProfile.DAY_TACTICAL_MISSION);
-        GroundAttackFlight flight = (GroundAttackFlight) mission.getFlights().getPlayerFlights().get(0);
+        GroundAttackFlight flight = (GroundAttackFlight) mission.getFlights().getUnits().get(0);
         flight.finalizeFlight();
 
         validatePlaneAI(mission);
@@ -65,7 +65,7 @@ public class FlightAiSettingsValidator
         
         MissionGenerator missionGenerator = new MissionGenerator(campaign);
         Mission mission = missionGenerator.makeTestSingleMissionFromFlightType(TestMissionBuilderUtility.buildTestParticipatingHumans(campaign), FlightTypes.BOMB, MissionProfile.DAY_TACTICAL_MISSION);
-        BombingFlight flight = (BombingFlight) mission.getFlights().getPlayerFlights().get(0);
+        BombingFlight flight = (BombingFlight) mission.getFlights().getUnits().get(0);
 		flight.finalizeFlight();
 		
 		validatePlaneAI(mission);
@@ -78,7 +78,7 @@ public class FlightAiSettingsValidator
 
         MissionGenerator missionGenerator = new MissionGenerator(campaign);
         Mission mission = missionGenerator.makeTestSingleMissionFromFlightType(TestMissionBuilderUtility.buildTestParticipatingHumans(campaign), FlightTypes.PATROL, MissionProfile.DAY_TACTICAL_MISSION);
-        PatrolFlight flight = (PatrolFlight) mission.getFlights().getPlayerFlights().get(0);
+        PatrolFlight flight = (PatrolFlight) mission.getFlights().getUnits().get(0);
 		flight.finalizeFlight();
 		
         validatePlaneAI(mission);
@@ -91,7 +91,7 @@ public class FlightAiSettingsValidator
 
         MissionGenerator missionGenerator = new MissionGenerator(campaign);
         Mission mission = missionGenerator.makeTestSingleMissionFromFlightType(TestMissionBuilderUtility.buildTestParticipatingHumans(campaign), FlightTypes.INTERCEPT, MissionProfile.DAY_TACTICAL_MISSION);
-        InterceptFlight flight = (InterceptFlight) mission.getFlights().getPlayerFlights().get(0);
+        InterceptFlight flight = (InterceptFlight) mission.getFlights().getUnits().get(0);
 		flight.finalizeFlight();
 		
         validatePlaneAI(mission);
@@ -104,7 +104,7 @@ public class FlightAiSettingsValidator
         
         MissionGenerator missionGenerator = new MissionGenerator(campaign);
         Mission mission = missionGenerator.makeTestSingleMissionFromFlightType(TestMissionBuilderUtility.buildTestParticipatingHumans(campaign), FlightTypes.BALLOON_DEFENSE, MissionProfile.DAY_TACTICAL_MISSION);
-        IFlight flight = (IFlight) mission.getFlights().getPlayerFlights().get(0);
+        IFlight flight = (IFlight) mission.getFlights().getUnits().get(0);
         flight.finalizeFlight();
 
         validatePlaneAI(mission);
@@ -116,14 +116,14 @@ public class FlightAiSettingsValidator
         {
             for (PlaneMcu plane : flight.getFlightPlanes().getPlanes())
             {
-                SquadronMember squadronMember = mission.getCampaign().getPersonnelManager().getAnyCampaignMember(plane.getPilot().getSerialNumber());
-                if (plane.getPilot().isPlayer())
+                CrewMember crewMember = mission.getCampaign().getPersonnelManager().getAnyCampaignMember(plane.getCrewMember().getSerialNumber());
+                if (plane.getCrewMember().isPlayer())
                 {
                     assert(plane.getAiLevel() == AiSkillLevel.PLAYER);
                 }
                 else if (!plane.isNovice())
                 {
-                    assert(plane.getAiLevel() == squadronMember.getAiSkillLevel());
+                    assert(plane.getAiLevel() == crewMember.getAiSkillLevel());
                 }
                 else
                 {

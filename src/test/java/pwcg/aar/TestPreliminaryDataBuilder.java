@@ -9,27 +9,27 @@ import pwcg.aar.prelim.AARPreliminaryData;
 import pwcg.aar.prelim.PwcgMissionData;
 import pwcg.aar.prelim.claims.AARClaimPanelData;
 import pwcg.campaign.Campaign;
+import pwcg.campaign.company.Company;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.personnel.SquadronMemberFilter;
+import pwcg.campaign.crewmember.CrewMember;
+import pwcg.campaign.crewmember.CrewMembers;
+import pwcg.campaign.personnel.CrewMemberFilter;
 import pwcg.campaign.plane.Equipment;
 import pwcg.campaign.plane.EquippedPlane;
-import pwcg.campaign.squadmember.SquadronMember;
-import pwcg.campaign.squadmember.SquadronMembers;
-import pwcg.campaign.squadron.Squadron;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.logfiles.LogFileSet;
 import pwcg.core.utils.DateUtils;
 import pwcg.core.utils.RandomNumberGenerator;
 import pwcg.mission.data.MissionHeader;
-import pwcg.mission.data.PwcgGeneratedMissionPlaneData;
+import pwcg.mission.data.PwcgGeneratedMissionVehicleData;
 
 public class TestPreliminaryDataBuilder
 {
     private Campaign campaign;
     private AARPreliminaryData preliminaryData = new AARPreliminaryData();
-    private List<Squadron> squadronsInMission = new ArrayList<>();
+    private List<Company> squadronsInMission = new ArrayList<>();
 
-    public TestPreliminaryDataBuilder (Campaign campaign, List<Squadron> squadronsInMission)
+    public TestPreliminaryDataBuilder (Campaign campaign, List<Company> squadronsInMission)
     {
         this.campaign = campaign;
         this.squadronsInMission = squadronsInMission;
@@ -47,19 +47,19 @@ public class TestPreliminaryDataBuilder
 
     private void makeCampaignMembersInMission() throws PWCGException
     {
-        SquadronMembers squadronMembersInMission = new SquadronMembers();
+        CrewMembers squadronMembersInMission = new CrewMembers();
         
-        SquadronMember player = campaign.getPersonnelManager().getFlyingPlayers().getSquadronMemberList().get(0);
-        squadronMembersInMission.addToSquadronMemberCollection(player);
+        CrewMember player = campaign.getPersonnelManager().getPlayersInMission().getCrewMemberList().get(0);
+        squadronMembersInMission.addToCrewMemberCollection(player);
 
-        for (Squadron squadron : squadronsInMission)
+        for (Company squadron : squadronsInMission)
         {
-            SquadronMembers squadronMembers = SquadronMemberFilter.filterActiveAIAndPlayerAndAces(
-                            campaign.getPersonnelManager().getSquadronPersonnel(squadron.getSquadronId()).getSquadronMembersWithAces().getSquadronMemberCollection(),campaign.getDate());
-            List<SquadronMember> squadronMembersList = squadronMembers.getSquadronMemberList();
+            CrewMembers squadronMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(
+                            campaign.getPersonnelManager().getCompanyPersonnel(squadron.getCompanyId()).getCrewMembersWithAces().getCrewMemberCollection(),campaign.getDate());
+            List<CrewMember> squadronMembersList = squadronMembers.getCrewMemberList();
             for (int i = 0; i < 4; ++i)
             {
-                squadronMembersInMission.addToSquadronMemberCollection(squadronMembersList.get(i));
+                squadronMembersInMission.addToCrewMemberCollection(squadronMembersList.get(i));
             }
         }
                 
@@ -75,13 +75,13 @@ public class TestPreliminaryDataBuilder
 
     private void makeClaimData()
     {
-        List<String> enemyPlaneTypesInMission = new ArrayList<>();
-        enemyPlaneTypesInMission.add("pe2s35");
-        enemyPlaneTypesInMission.add("yak1s69");
-        enemyPlaneTypesInMission.add("il2m41");
+        List<String> enemyTankTypesInMission = new ArrayList<>();
+        enemyTankTypesInMission.add("pe2s35");
+        enemyTankTypesInMission.add("yak1s69");
+        enemyTankTypesInMission.add("il2m41");
         
         AARClaimPanelData claimPanelData = new AARClaimPanelData();
-        claimPanelData.setEnemyPlaneTypesInMission(enemyPlaneTypesInMission);
+        claimPanelData.setEnemyTankTypesInMission(enemyTankTypesInMission);
         
         preliminaryData.setClaimPanelData(claimPanelData);
     }
@@ -91,7 +91,7 @@ public class TestPreliminaryDataBuilder
         PwcgMissionData pwcgMissionData = new PwcgMissionData();
         
         MissionHeader missionHeader = makePwcgMissionDataHeader();
-        Map<Integer, PwcgGeneratedMissionPlaneData> missionPlanes = makePwcgMissionDataPlanes();
+        Map<Integer, PwcgGeneratedMissionVehicleData> missionPlanes = makePwcgMissionDataPlanes();
 
         pwcgMissionData.setMissionHeader(missionHeader);
         pwcgMissionData.setMissionDescription("A test mission");
@@ -105,10 +105,10 @@ public class TestPreliminaryDataBuilder
         MissionHeader missionHeader = new MissionHeader();
         missionHeader.setMissionFileName("Test Campaign Patrol 01-11-1941");
         
-        missionHeader.setAirfield("My Airfield");
+        missionHeader.setBase("My Airfield");
         missionHeader.setDate("10411101");
         missionHeader.setSquadron("I/JG51");
-        missionHeader.setAircraftType("Bf109 F-2");
+        missionHeader.setVehicleType("Bf109 F-2");
 
         
         missionHeader.setDuty("PATROL");
@@ -122,26 +122,26 @@ public class TestPreliminaryDataBuilder
     }
     
 
-    private Map<Integer, PwcgGeneratedMissionPlaneData> makePwcgMissionDataPlanes() throws PWCGException
+    private Map<Integer, PwcgGeneratedMissionVehicleData> makePwcgMissionDataPlanes() throws PWCGException
     {
-        Map<Integer, PwcgGeneratedMissionPlaneData> missionPlanes  = new HashMap<>();
+        Map<Integer, PwcgGeneratedMissionVehicleData> missionPlanes  = new HashMap<>();
         
-        SquadronMembers squadronMembersInMission = preliminaryData.getCampaignMembersInMission();
-        for (SquadronMember squadronMember : squadronMembersInMission.getSquadronMemberCollection().values())
+        CrewMembers squadronMembersInMission = preliminaryData.getCampaignMembersInMission();
+        for (CrewMember crewMember : squadronMembersInMission.getCrewMemberCollection().values())
         {
-            Equipment equipment = campaign.getEquipmentManager().getEquipmentForSquadron(squadronMember.getSquadronId());
-            List<EquippedPlane> planesForSquadron = new ArrayList<>(equipment.getActiveEquippedPlanes().values());
+            Equipment equipment = campaign.getEquipmentManager().getEquipmentForCompany(crewMember.getCompanyId());
+            List<EquippedTank> planesForSquadron = new ArrayList<>(equipment.getActiveEquippedTanks().values());
             int planeIndex = RandomNumberGenerator.getRandom(planesForSquadron.size());
-            EquippedPlane equippedPlane = planesForSquadron.get(planeIndex);
+            EquippedTank equippedPlane = planesForSquadron.get(planeIndex);
 
-            PwcgGeneratedMissionPlaneData missionPlaneData = new PwcgGeneratedMissionPlaneData();
-            missionPlaneData.setAircraftType(equippedPlane.getType());
-            missionPlaneData.setSquadronId(squadronMember.getSquadronId());
-            missionPlaneData.setPilotName(squadronMember.getName());
-            missionPlaneData.setPilotSerialNumber(squadronMember.getSerialNumber());
-            missionPlaneData.setPlaneSerialNumber(equippedPlane.getSerialNumber());
+            PwcgGeneratedMissionVehicleData missionPlaneData = new PwcgGeneratedMissionVehicleData();
+            missionPlaneData.setVehicleType(equippedPlane.getType());
+            missionPlaneData.setCompanyId(crewMember.getCompanyId());
+            missionPlaneData.setCrewMemberName(crewMember.getName());
+            missionPlaneData.setCrewMemberSerialNumber(crewMember.getSerialNumber());
+            missionPlaneData.setVehicleSerialNumber(equippedPlane.getSerialNumber());
             
-            missionPlanes.put(squadronMember.getSerialNumber(), missionPlaneData);
+            missionPlanes.put(crewMember.getSerialNumber(), missionPlaneData);
         }
         
         return missionPlanes;

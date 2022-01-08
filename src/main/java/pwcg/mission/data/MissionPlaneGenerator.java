@@ -3,70 +3,48 @@ package pwcg.mission.data;
 import java.util.ArrayList;
 import java.util.List;
 
-import pwcg.campaign.squadron.Squadron;
+import pwcg.campaign.company.Company;
 import pwcg.core.exception.PWCGException;
 import pwcg.mission.Mission;
-import pwcg.mission.flight.IFlight;
-import pwcg.mission.flight.plane.PlaneMcu;
-import pwcg.mission.mcu.group.virtual.VirtualWaypointEscort;
+import pwcg.mission.playerunit.PlayerUnit;
+import pwcg.mission.playerunit.TankMcu;
 
 public class MissionPlaneGenerator
 {
     private Mission mission;
-    private List<PwcgGeneratedMissionPlaneData> missionPlanes = new ArrayList<>();
+    private List<PwcgGeneratedMissionVehicleData> missionPlanes = new ArrayList<>();
     
     public MissionPlaneGenerator(Mission mission)
     {
         this.mission = mission;
     }
     
-    public List<PwcgGeneratedMissionPlaneData> generateMissionPlaneData() throws PWCGException
+    public List<PwcgGeneratedMissionVehicleData> generateMissionPlaneData() throws PWCGException
     {
-        for (IFlight flight : mission.getFlights().getAllAerialFlights())
+        for (PlayerUnit unit : mission.getUnits().getPlayerUnits())
         {
-            makePlaneEntriesForFlight(flight);
-            if (flight.getFlightInformation().isVirtual())
-            {
-                makePlaneEntriesForVirtualEscort(flight);
-            }
+            makePlaneEntriesForUnit(unit);
         }
         
         return missionPlanes;
     }
 
-    private void makePlaneEntriesForVirtualEscort(IFlight flight) throws PWCGException
+    private void makePlaneEntriesForUnit(PlayerUnit unit)
     {
-        VirtualWaypointEscort vwpEscort = flight.getVirtualWaypointPackage().getEscort();
-        if (vwpEscort != null)
+        for (TankMcu vehicle : unit.getTanks())
         {
-            makePlaneEntriesForPlanes(vwpEscort.getEscortSquadron(),  vwpEscort.getEscortPlanes());
+            makeMissionPlaneEntry(unit.getCompany(), vehicle);
         }
     }
 
-    private void makePlaneEntriesForFlight(IFlight flight)
+    private void makeMissionPlaneEntry(Company squadron, TankMcu vehicle)
     {
-        for (PlaneMcu plane : flight.getFlightPlanes().getPlanes())
-        {
-            makeMissionPlaneEntry(flight.getSquadron(), plane);
-        }
-    }
-
-    private void makePlaneEntriesForPlanes(Squadron squadron, List<PlaneMcu> planes)
-    {
-        for (PlaneMcu plane : planes)
-        {
-            makeMissionPlaneEntry(squadron, plane);
-        }
-    }
-
-    private void makeMissionPlaneEntry(Squadron squadron, PlaneMcu plane)
-    {
-        PwcgGeneratedMissionPlaneData missionPlaneData = new PwcgGeneratedMissionPlaneData();
-        missionPlaneData.setPilotName(plane.getPilot().getName());
-        missionPlaneData.setPilotSerialNumber(plane.getPilot().getSerialNumber());
-        missionPlaneData.setPlaneSerialNumber(plane.getSerialNumber());
-        missionPlaneData.setSquadronId(squadron.getSquadronId());
-        missionPlaneData.setAircraftType(plane.getType());
+        PwcgGeneratedMissionVehicleData missionPlaneData = new PwcgGeneratedMissionVehicleData();
+        missionPlaneData.setCrewMemberName(vehicle.getCrewMember().getNameAndRank());
+        missionPlaneData.setCrewMemberSerialNumber(vehicle.getCrewMember().getSerialNumber());
+        missionPlaneData.setVehicleSerialNumber(vehicle.getSerialNumber());
+        missionPlaneData.setCompanyId(squadron.getCompanyId());
+        missionPlaneData.setVehicleType(vehicle.getType());
         
         missionPlanes.add(missionPlaneData);
     }

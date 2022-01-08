@@ -25,8 +25,8 @@ import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.gui.image.ImageIconCache;
 import pwcg.gui.utils.ContextSpecificImages;
+import pwcg.product.bos.medals.BritishMedalManager;
 import pwcg.product.fc.country.FCServiceManager;
-import pwcg.product.fc.medals.BritishMedalManager;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
@@ -35,7 +35,7 @@ public class RoFBritishMedalManagerTest extends MedalManagerTestBase
     @BeforeEach
     public void setupTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.FC);
+        PWCGContext.setProduct(PWCGProduct.BOS);
         super.setupBase();
         Mockito.when(country.isCountry(Country.BRITAIN)).thenReturn(true);
         ICountry country = CountryFactory.makeCountryByCountry(Country.BRITAIN);
