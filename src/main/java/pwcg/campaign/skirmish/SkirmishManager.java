@@ -11,8 +11,6 @@ import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.core.utils.PWCGLogger;
 import pwcg.mission.MissionHumanParticipants;
-import pwcg.mission.flight.FlightInformation;
-import pwcg.mission.target.TargetType;
 
 public class SkirmishManager
 {

@@ -1,7 +1,6 @@
 package pwcg.mission;
 
 import pwcg.campaign.Campaign;
-import pwcg.mission.flight.IFlight;
 import pwcg.mission.playerunit.PlayerUnit;
 
 public class MissionDescriptionFactory 

@@ -14,8 +14,8 @@ import pwcg.core.config.InternationalizationManager;
 import pwcg.core.exception.PWCGException;
 import pwcg.gui.colors.ColorMap;
 import pwcg.gui.dialogs.PWCGMonitorFonts;
-import pwcg.gui.rofmap.brief.model.BriefingUnit;
 import pwcg.gui.rofmap.brief.model.BriefingMapPoint;
+import pwcg.gui.rofmap.brief.model.BriefingUnit;
 import pwcg.gui.utils.PWCGLabelFactory;
 import pwcg.gui.utils.ScrollBarWrapper;
 

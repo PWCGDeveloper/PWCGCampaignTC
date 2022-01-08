@@ -12,7 +12,6 @@ import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.location.CoordinateBox;
 import pwcg.mission.flight.FlightTypes;
-import pwcg.mission.playerunit.PlayerUnitInformation;
 import pwcg.mission.target.TargetType;
 
 public class Skirmish

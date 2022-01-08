@@ -8,7 +8,7 @@ apply plugin: 'application'
 apply plugin: 'eclipse'
 mainClassName = 'pwcg.gui.maingui.PwcgMain'
 
-applicationName = 'PWCG'
+applicationName = 'PWCGTC'
 
 repositories {
     mavenCentral()
@@ -31,7 +31,7 @@ dependencies {
 }
 
 jar {
-    archiveFileName = "PWCG.jar"
+    archiveFileName = "PWCGTC.jar"
     
  	manifest {
         attributes 'Main-Class': 'pwcg.gui.maingui.PwcgMain'
@@ -44,7 +44,7 @@ jar {
 
 task copyJar(type: Exec) {
     workingDir "$projectDir"
-    commandLine 'cmd', '/c', ' cp build/libs/PWCG.jar D:/PWCG/Deploy/PWCG.jar'
+    commandLine 'cmd', '/c', ' cp build/libs/PWCG.jar D:/PWCG/Deploy/PWCGTC.jar'
 }
 
 test {
@@ -60,34 +60,22 @@ test {
 
 
 task deploy(type:JavaExec) {
-	main = "pwcg.dev.deploy.DeployPwcg"
+	main = "pwcg.dev.deploy.DeployPwcgTC"
 	classpath = sourceSets.main.runtimeClasspath
 }
 
-task buildBoS(type: Exec) {
+task buildTC(type: Exec) {
     workingDir "$projectDir"
-    commandLine 'cmd', '/c', 'D:/Utils/launch4j/launch4jc.exe D:/PWCG/Launch4JConfigs/BosLaunchConfig.xml'
+    commandLine 'cmd', '/c', 'D:/Utils/launch4j/launch4jc.exe D:/PWCG/Launch4JConfigs/TCLaunchConfig.xml'
 }
 
-task zipBoS(type: Exec) {
+task zipTC(type: Exec) {
     workingDir "$projectDir"
-    commandLine 'cmd', '/c', ' D:/Utils/7Zip/7-zip/7z.exe a -tzip D:/PWCG/Deploy/PWCGBoS.zip D:/PWCG/Deploy/PWCGBoS'
-}
-
-task buildFC(type: Exec) {
-    workingDir "$projectDir"
-    commandLine 'cmd', '/c', 'D:/Utils/launch4j/launch4jc.exe D:/PWCG/Launch4JConfigs/FCLaunchConfig.xml'
-}
-
-task zipFC(type: Exec) {
-    workingDir "$projectDir"
-    commandLine 'cmd', '/c', ' D:/Utils/7Zip/7-zip/7z.exe a -tzip D:/PWCG/Deploy/PWCGFC.zip D:/PWCG/Deploy/PWCGFC'
+    commandLine 'cmd', '/c', ' D:/Utils/7Zip/7-zip/7z.exe a -tzip D:/PWCG/Deploy/PWCGTC.zip D:/PWCG/Deploy/PWCGTC'
 }
 
 tasks.named("build") { finalizedBy("copyJar") }
 tasks.named("copyJar") { finalizedBy("deploy") }
-tasks.named("deploy") { finalizedBy("buildBoS") }
-tasks.named("buildBoS") { finalizedBy("zipBoS") }
-tasks.named("zipBoS") { finalizedBy("buildFC") }
-tasks.named("buildFC") { finalizedBy("zipFC") }
+tasks.named("deploy") { finalizedBy("buildTC") }
+tasks.named("buildTC") { finalizedBy("zipTC") }
 

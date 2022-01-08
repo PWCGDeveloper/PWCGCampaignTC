@@ -1,12 +1,9 @@
 package pwcg.mission;
 
-import java.util.HashMap;
-
 import pwcg.campaign.Campaign;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.core.utils.MathUtils;
-import pwcg.mission.flight.IFlight;
 import pwcg.mission.options.MissionOptions;
 import pwcg.mission.options.MissionWeather;
 import pwcg.mission.options.WindLayer;

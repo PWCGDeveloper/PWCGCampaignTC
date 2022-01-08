@@ -1,7 +1,6 @@
 package pwcg.mission.ground.unittypes.infantry;
 
 import pwcg.core.exception.PWCGException;
-import pwcg.mission.flight.IFlight;
 import pwcg.mission.ground.GroundUnitInformation;
 import pwcg.mission.ground.org.IGroundUnit;
 import pwcg.mission.ground.unittypes.artillery.GroundAAArtilleryBattery;

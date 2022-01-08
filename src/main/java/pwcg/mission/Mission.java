@@ -43,7 +43,6 @@ public class Mission
 
     private MissionPlayerUnits missionPlayerUnits;
     private MissionFlights missionFlights;
-    private VehicleDefinition playerVehicleDefinition;
     private SkinsInUse skinsInUse = new SkinsInUse();
 
     private MissionBattleManager battleManager = new MissionBattleManager();
@@ -68,7 +67,6 @@ public class Mission
     {
         this.campaign = campaign;
         this.participatingPlayers = participatingPlayers;
-        this.playerVehicleDefinition = playerVehicleDefinition;
         this.missionBorders = missionBorders;
         this.weather = weather;
         this.skirmish = skirmish;
