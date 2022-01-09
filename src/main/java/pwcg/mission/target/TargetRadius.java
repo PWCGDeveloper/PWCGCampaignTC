@@ -1,8 +1,7 @@
 package pwcg.mission.target;
 
-import pwcg.campaign.api.IProductSpecificConfiguration;
-import pwcg.campaign.factory.ProductSpecificConfigurationFactory;
 import pwcg.mission.flight.FlightTypes;
+import pwcg.product.bos.config.TCProductSpecificConfiguration;
 
 public class TargetRadius
 {
@@ -11,7 +10,7 @@ public class TargetRadius
     
     public void calculateTargetRadius(FlightTypes flightType, double missionBoxRadius)
     {
-        IProductSpecificConfiguration productSpecific = ProductSpecificConfigurationFactory.createProductSpecificConfiguration();
+        TCProductSpecificConfiguration productSpecific =new TCProductSpecificConfiguration();
 
         double productRadiusInitialAdditional = productSpecific.getAdditionalInitialTargetRadius(flightType);
         initialTargetRadius = missionBoxRadius + productRadiusInitialAdditional;

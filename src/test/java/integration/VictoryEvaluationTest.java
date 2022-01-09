@@ -314,7 +314,7 @@ public class VictoryEvaluationTest
             List<PlaneMcu> enemyPlanesForFlight = flight.getFlightPlanes().getAiPlanes();
             if (enemyPlanesForFlight.size() >= 2)
             {
-                if (flight.getCompany().determineSquadronPrimaryRoleCategory(mission.getCampaign().getDate()) == PwcgRoleCategory.FIGHTER)
+                if (flight.getCompany().determineCompanyPrimaryRoleCategory(mission.getCampaign().getDate()) == PwcgRoleCategory.FIGHTER)
                 {
                      return enemyPlanesForFlight;                    
                 }

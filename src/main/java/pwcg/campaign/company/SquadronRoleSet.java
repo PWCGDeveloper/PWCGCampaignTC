@@ -30,7 +30,7 @@ public class SquadronRoleSet
         return selectedRole;
     }
     
-    public PwcgRoleCategory selectSquadronPrimaryRoleCategory(Date date) throws PWCGException 
+    public PwcgRoleCategory selectCompanyPrimaryRoleCategory(Date date) throws PWCGException 
     {
         SquadronRolePeriod squadronRoleForDate = selectRoleSetByDate(date);
         PwcgRoleCategory selectedRoleCategory = SquadronRoleWeightCalculator.calculateHeaviestSquadronRole(squadronRoleForDate);
@@ -82,7 +82,7 @@ public class SquadronRoleSet
         return rolesForPeriod;
     }
 
-    public boolean isSquadronThisRole (Date date, PwcgRole requestedRole) throws PWCGException 
+    public boolean isCompanyThisRole (Date date, PwcgRole requestedRole) throws PWCGException 
     {
         SquadronRolePeriod squadronRoleForDate = selectRoleSetByDate(date);
         for (SquadronRoleWeight squadronRoleWeight : squadronRoleForDate.getWeightedRoles())

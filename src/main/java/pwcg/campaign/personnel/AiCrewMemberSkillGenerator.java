@@ -12,7 +12,7 @@ public class AiCrewMemberSkillGenerator
 {
 	public AiSkillLevel calculateCrewMemberQualityByRankAndService(Campaign campaign, Company squadron, String rank) throws PWCGException
 	{
-        ArmedService service = squadron.determineServiceForSquadron(campaign.getDate());
+        ArmedService service = squadron.determineServiceForCompany(campaign.getDate());
 
         IRankHelper rankObj = RankFactory.createRankHelper();
         int rankPos = rankObj.getRankPosByService(rank, service);

@@ -2,13 +2,12 @@ package pwcg.mission.flight.waypoint;
 
 import java.util.List;
 
-import pwcg.campaign.api.IProductSpecificConfiguration;
-import pwcg.campaign.factory.ProductSpecificConfigurationFactory;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.utils.MathUtils;
 import pwcg.mission.flight.plane.PlaneMcu;
 import pwcg.mission.mcu.McuFormation;
+import pwcg.product.bos.config.TCProductSpecificConfiguration;
 
 public class FormationGenerator
 {
@@ -52,7 +51,7 @@ public class FormationGenerator
     
     private static void createEchelonFormation(Coordinate leadPlaneCoords, PlaneMcu plane, int relativePlacementAngle) throws PWCGException
     {
-        IProductSpecificConfiguration productSpecific = ProductSpecificConfigurationFactory.createProductSpecificConfiguration();
+        TCProductSpecificConfiguration productSpecific =new TCProductSpecificConfiguration();
         int horizontalSpacing = productSpecific.getFormationHorizontalSpacing();
         int verticalSpacing = productSpecific.getFormationVerticalSpacing();
         
@@ -76,7 +75,7 @@ public class FormationGenerator
         
         int movementMultiplier = plane.getNumberInFormation() / 2;
 
-        IProductSpecificConfiguration productSpecific = ProductSpecificConfigurationFactory.createProductSpecificConfiguration();
+        TCProductSpecificConfiguration productSpecific =new TCProductSpecificConfiguration();
         int horizontalSpacing = productSpecific.getFormationHorizontalSpacing();
         int verticalSpacing = productSpecific.getFormationVerticalSpacing();
 

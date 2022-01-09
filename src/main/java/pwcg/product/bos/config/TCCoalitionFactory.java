@@ -8,7 +8,7 @@ import pwcg.campaign.api.Side;
 import pwcg.mission.mcu.Coalition;
 import pwcg.mission.mcu.ICoalitionFactory;
 
-public class BoSCoalitionFactory implements ICoalitionFactory
+public class TCCoalitionFactory implements ICoalitionFactory
 {
     public Coalition getCoalitionBySide(Side side)
     {

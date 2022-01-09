@@ -133,7 +133,7 @@ public class CompanyViability
         List<Company> companiesForService = new ArrayList<>();
         for (Company company : companies)
         {
-            if (company.determineServiceForSquadron(date).getServiceId() == service.getServiceId())
+            if (company.determineServiceForCompany(date).getServiceId() == service.getServiceId())
             {
                 companiesForService.add(company);
             }
@@ -147,7 +147,7 @@ public class CompanyViability
         List<Company> companiesForCountry = new ArrayList<>();
         for (Company company : companies)
         {
-            ICountry squadCountry = company.determineSquadronCountry(date);
+            ICountry squadCountry = company.determineCompanyCountry(date);
             if (squadCountry.equals(country))
             {
                 companiesForCountry.add(company);

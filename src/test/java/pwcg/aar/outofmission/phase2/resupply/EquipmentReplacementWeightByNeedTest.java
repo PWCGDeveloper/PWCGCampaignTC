@@ -23,7 +23,7 @@ import pwcg.campaign.plane.PlaneStatus;
 import pwcg.campaign.resupply.depot.EquipmentReplacementWeightByNeed;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
-import pwcg.product.bos.country.BoSServiceManager;
+import pwcg.product.bos.country.TCServiceManager;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.SquadronTestProfile;
 
@@ -194,7 +194,7 @@ public class EquipmentReplacementWeightByNeedTest
     {
         removePlanesFromCampaign(lateCampaign);
 
-        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(BoSServiceManager.USAAF);
+        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(TCServiceManager.USAAF);
         CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
         List<Company> squadronsForService = squadronManager.getActiveCompaniesForService(lateCampaign.getDate(), service);
         
@@ -209,7 +209,7 @@ public class EquipmentReplacementWeightByNeedTest
     {
         removePlanesFromCampaign(lateCampaign);
 
-        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(BoSServiceManager.RAF);
+        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(TCServiceManager.RAF);
         CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
         List<Company> squadronsForService = squadronManager.getActiveCompaniesForService(lateCampaign.getDate(), service);
         

@@ -57,7 +57,7 @@ public class DuringCampaignAirVictimGenerator implements IVictimGenerator
             Company possibleVictimSquadron = crewMember.determineSquadron();
             if (possibleVictimSquadron != null)
             {
-                ArmedService victimService = possibleVictimSquadron.determineServiceForSquadron(campaign.getDate());
+                ArmedService victimService = possibleVictimSquadron.determineServiceForCompany(campaign.getDate());
                 int rankPos = rankObj.getRankPosByService(crewMember.getRank(), victimService);
                 if (rankPos == 0)
                 {

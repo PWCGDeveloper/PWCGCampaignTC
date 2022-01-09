@@ -64,7 +64,7 @@ public class OutOfMissionAirVictoryBuilder
         if (victim != null && victor != null)
         {
 	        victory = new Victory();
-	        createVictoryHeader(date, victory, victimSquadron.determineSquadronCountry(date).getSide());
+	        createVictoryHeader(date, victory, victimSquadron.determineCompanyCountry(date).getSide());
 	
 	        victory.setVictim(victim);
 	        victory.setVictor(victor);

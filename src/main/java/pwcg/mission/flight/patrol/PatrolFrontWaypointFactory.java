@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pwcg.campaign.Campaign;
-import pwcg.campaign.api.IProductSpecificConfiguration;
-import pwcg.campaign.factory.ProductSpecificConfigurationFactory;
 import pwcg.core.config.ConfigItemKeys;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
@@ -20,6 +18,7 @@ import pwcg.mission.flight.waypoint.patterns.PathAlongFront;
 import pwcg.mission.flight.waypoint.patterns.PathAlongFrontData;
 import pwcg.mission.flight.waypoint.patterns.PathAlongFrontDataBuilder;
 import pwcg.mission.mcu.McuWaypoint;
+import pwcg.product.bos.config.TCProductSpecificConfiguration;
 
 public class PatrolFrontWaypointFactory
 {
@@ -74,7 +73,7 @@ public class PatrolFrontWaypointFactory
 
     private int calculateDepthOfPenetration()
     {
-        IProductSpecificConfiguration productSpecific = ProductSpecificConfigurationFactory.createProductSpecificConfiguration();
+        TCProductSpecificConfiguration productSpecific =new TCProductSpecificConfiguration();
         int depthOfPenetrationMax = productSpecific.getMaxDepthOfPenetrationPatrol();
         int depthOfPenetration = RandomNumberGenerator.getRandom(depthOfPenetrationMax);
         depthOfPenetration -= 1000;

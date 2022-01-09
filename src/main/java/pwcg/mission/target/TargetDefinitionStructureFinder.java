@@ -6,9 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import pwcg.campaign.api.ICountry;
-import pwcg.campaign.api.IProductSpecificConfiguration;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.factory.ProductSpecificConfigurationFactory;
 import pwcg.campaign.group.Block;
 import pwcg.campaign.group.FixedPosition;
 import pwcg.campaign.group.GroupManager;
@@ -19,6 +17,7 @@ import pwcg.core.utils.MathUtils;
 import pwcg.mission.flight.FlightInformation;
 import pwcg.mission.ground.building.PwcgBuildingIdentifier;
 import pwcg.mission.ground.building.PwcgStructure;
+import pwcg.product.bos.config.TCProductSpecificConfiguration;
 
 public class TargetDefinitionStructureFinder
 {
@@ -84,7 +83,7 @@ public class TargetDefinitionStructureFinder
 
     private boolean isBlockNearMissionCenterAirfield(Block structure) throws PWCGException
     {
-        IProductSpecificConfiguration productSpecific = ProductSpecificConfigurationFactory.createProductSpecificConfiguration();
+        TCProductSpecificConfiguration productSpecific =new TCProductSpecificConfiguration();
         Coordinate missionCenter =  flightInformation.getMission().getMissionBorders().getCenter();
         int searchRadius = productSpecific.getMediumMissionRadius();
         List<Airfield> airfieldsCloseToMissionCenter = PWCGContext.getInstance().getCurrentMap().getAirfieldManager().getAirfieldFinder().getWithinRadius(missionCenter, searchRadius);
@@ -101,7 +100,7 @@ public class TargetDefinitionStructureFinder
 
     private boolean isBlockNearCityInMissionArea(Block structure) throws PWCGException
     {
-        IProductSpecificConfiguration productSpecific = ProductSpecificConfigurationFactory.createProductSpecificConfiguration();
+        TCProductSpecificConfiguration productSpecific =new TCProductSpecificConfiguration();
         Coordinate missionCenter =  flightInformation.getMission().getMissionBorders().getCenter();
         int searchRadius = productSpecific.getMediumMissionRadius();        
         double distanceFromMissionCenter = MathUtils.calcDist(structure.getPosition(), missionCenter);

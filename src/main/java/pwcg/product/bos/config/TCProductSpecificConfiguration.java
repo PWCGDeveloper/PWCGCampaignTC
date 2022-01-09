@@ -1,11 +1,10 @@
-package pwcg.product.bos.config;
+    package pwcg.product.bos.config;
 
-import pwcg.campaign.api.IProductSpecificConfiguration;
 import pwcg.core.utils.RandomNumberGenerator;
 import pwcg.mission.flight.FlightTypes;
 import pwcg.mission.ground.BattleSize;
 
-public class BoSProductSpecificConfiguration implements IProductSpecificConfiguration
+public class TCProductSpecificConfiguration
 {
     private static final int INNER_LOOP_DISTANCE = 15000;
     private static final int BALLOON_DEFENSE_LOOP_DISTANCE = 20000;
@@ -44,58 +43,57 @@ public class BoSProductSpecificConfiguration implements IProductSpecificConfigur
     private static final int MIN_DEPTH_OF_PENETRATION_OFFENSIVE = 10000;
     private static final int MAX_DEPTH_OF_PENETRATION_OFFENSIVE = 50000;
     private static final int MIN_DISTANCE_BETWEEN_PATROL_POINTS = 10000;
-    private static final int CLOSE_TO_BATTLE_DISTANCE = 140000;
     
 
-    @Override
+
     public boolean useWaypointGoal()
     {
         return false;
     }
 
-    @Override
+
     public boolean usePlaneDir()
     {
         return true;
     }
 
-    @Override
+
     public boolean useFlagDir()
     {
         return true;
     }
 
-    @Override
+
     public boolean useCallSign()
     {
         return true;
     }
 
-    @Override
+
     public boolean usePosition1()
     {
         return true;
     }
 
-    @Override
+
     public int geNeutralZone()
     {
         return NEUTRAL_ZONE;
     }
     
-    @Override
+
     public int getClimbDistance()
     {
         return CLIMB_DISTANCE;
     }
 
-    @Override
+
     public int getMinClimbWPAlt()
     {
         return MIN_CLIMB_WP_ALT;
     }
     
-    @Override
+
     public int getAdditionalInitialTargetRadius(FlightTypes flightType)
     {
         int initialDistance = 0;
@@ -111,7 +109,7 @@ public class BoSProductSpecificConfiguration implements IProductSpecificConfigur
         return initialDistance;
     }
     
-    @Override
+
     public int getAdditionalMaxTargetRadius(FlightTypes flightType)
     {
         int initialDistance = 20000;
@@ -127,13 +125,13 @@ public class BoSProductSpecificConfiguration implements IProductSpecificConfigur
         return initialDistance;
     }
 
-    @Override
+
     public int getInterceptInnerLoopDistance()
     {
         return INNER_LOOP_DISTANCE;
     }
 
-    @Override
+
     public int getNumAssaultSegments(BattleSize battleSize)
     {
         if (battleSize == BattleSize.BATTLE_SIZE_ASSAULT)
@@ -150,225 +148,219 @@ public class BoSProductSpecificConfiguration implements IProductSpecificConfigur
         }
     }
 
-    @Override
+
     public int getInterceptCrossDiameterDistance()
     {
         return CROSS_DIAMETER;
     }
 
-    @Override
+
     public int getInterceptCreepLegDistance()
     {
         return CREEPING_LINE_LENGTH;
     }
 
-    @Override
+
     public int getInterceptCreepCrossDistance()
     {
         return CREEPING_LINE_CROSS;
     }
 
-    @Override
+
     public int getCloseToFrontDistance()
     {
         return CLOSE_TO_FRONT_DISTANCE;
     }
 
-    @Override
+
     public int getMaxDistanceForVirtualFlightFromPlayerBox()
     {
         return MAX_DISTANCE_FROM_PLAYER_BOX;
     }
 
-    @Override
+
     public int getLargeMissionRadius()
     {
         return MISSION_RADIUS_LARGE;
     }
 
-    @Override
+
     public int getMediumMissionRadius()
     {
         return MISSION_RADIUS_MEDIUM;
     }
 
-    @Override
+
     public int getSmallMissionRadius()
     {
         return MISSION_RADIUS_SMALL;
     }
 
-    @Override
+
     public int getVerySmallMissionRadius()
     {
         return MISSION_RADIUS_VERY_SMALL;
     }
 
-    @Override
+
     public int getMaxDistanceForVirtualFlightAirStart()
     {
         return AIR_START_MAX_DISTANCE_FROM_INGRESS;
     }
 
-    @Override
+
     public int getInitialWaypointAltitude()
     {
         return INITIAL_WAYPOINT_ALTITUDE;
     }
 
-    @Override
+
     public int getGroundAttackIngressDistance()
     {
         return GROUND_ATTACK_INGRESS_DISTANCE;
     }
 
-    @Override
+
     public int getAircraftSpacingHorizontal()
     {
         return AIRCRAFT_SPACING_HORIZONTAL;
     }
 
-    @Override
+
     public int getAircraftSpacingVertical()
     {
         return AIRCRAFT_SPACING_VERTICAL;
     }
 
-    @Override
+
     public int getTakeoffSpacing()
     {
         return TAKEOFF_SPACING;
     }
 
-    @Override
+
     public int getAdditionalAltitudeForEscort()
     {
         return ADDITIONAL_ALTITUDE_FOR_ESCORT;
     }
 
-    @Override
+
     public int getIngressAtTargetMinDIstance()
     {
         return INGRESS_AT_TARGET_MIN_DISTANCE;
     }
 
-    @Override
+
     public int getIngressAtTargetMaxDIstance()
     {
         return INGRESS_AT_TARGET_MAX_DISTANCE;
     }
 
-    @Override
+
     public int getAttackAreaSelectTargetRadius()
     {
         return ATTACK_AREA_SELECT_TARGET_DISTANCE;
     }
 
-    @Override
+
     public int getRendezvousDistanceFromFront()
     {
         return getAttackAreaSelectTargetRadius() + ADDITIONAL_RENDEZVOUS_DISTANCE_FROM_FRONT;
     }
 
-    @Override
+
     public int getAttackAreaTriggerRadius()
     {
         return getAttackAreaSelectTargetRadius() + 2000;
     }
 
-    @Override
+
     public int getBombApproachDistance()
     {
         return getBombFinalApproachDistance() + 8000;
     }
 
-    @Override
+
     public int getBombFinalApproachDistance()
     {
         return getAttackAreaTriggerRadius() - 1000 ;
     }
 
-    @Override
+
     public int getAttackAreaBombDropRadius()
     {
         return ATTACK_AREA_BOMB_DROP_DISTANCE;
     }
 
-    @Override
+
     public int getDefaultIngressDistanceFromFront()
     {
         return INGRESS_DISTANCE_FROM_FRONT;
     }
     
-    @Override
+
     public int getFormationHorizontalSpacing()
     {
         return FORMATION_HORIZINTAL_SPACING;
     }
 
-    @Override
+
     public int getFormationVerticalSpacing()
     {
         return FORMATION_VERTICAL_SPACING;
     }
 
-    @Override
+
     public int getBalloonDefenseLoopDistance()
     {
         return BALLOON_DEFENSE_LOOP_DISTANCE;
     }
 
-    @Override
+
     public int getAirfieldGoAwayDistance()
     {
         return AIRFIELD_GO_AWAY_DISTANCE;
     }    
 
-    @Override
+
     public int getVwpSeparationDistance()
     {
         return VWP_SEPARATION_DISTANCE;
     }
 
-    @Override
+
     public int getVwpProximityToBoxDistance()
     {
         return VWP_PROXIMITY_TO_BOX_DISTANCE;
     }
 
-    @Override
+
     public int getVwpProximityToFrontDistance()
     {
         return VWP_PROXIMITY_TO_FRONT_DISTANCE;
     }
 
-    @Override
+
     public int getMaxDepthOfPenetrationPatrol()
     {
         return MAX_DEPTH_OF_PENETRATION_PATROL;
     }
 
-    @Override
+
     public int getMaxDepthOfPenetrationOffensive()
     {
         return MAX_DEPTH_OF_PENETRATION_OFFENSIVE;
     }
 
-    @Override
+
     public int getMinDepthOfPenetrationOffensive()
     {
         return MIN_DEPTH_OF_PENETRATION_OFFENSIVE;
     }
 
-    @Override
+
     public double getMinimumDistanceBetweenPatrolPoints()
     {
         return MIN_DISTANCE_BETWEEN_PATROL_POINTS;
-    }
-
-    @Override
-    public int getCloseToBattleDistance()
-    {
-        return CLOSE_TO_BATTLE_DISTANCE;
     }
 }

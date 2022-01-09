@@ -13,7 +13,6 @@ import pwcg.campaign.battle.BattleManager;
 import pwcg.campaign.battle.NoBattlePeriod;
 import pwcg.campaign.group.AirfieldManager;
 import pwcg.campaign.group.GroupManager;
-import pwcg.campaign.shipping.ShippingLaneManager;
 import pwcg.campaign.skirmish.SkirmishManager;
 import pwcg.campaign.target.preference.TargetPreferenceManager;
 import pwcg.core.exception.PWCGException;
@@ -39,7 +38,6 @@ public abstract class PWCGMap
     protected DrifterManager drifterManager = null;
     protected AirfieldManager airfieldManager = null;
     protected GroupManager groupManager = null; 
-    protected ShippingLaneManager shippingLaneManager = null;
     protected TargetPreferenceManager targetPreferenceManager = null;
     protected MapArea mapArea = null;
     protected MapArea usableMapArea = null;
@@ -83,9 +81,6 @@ public abstract class PWCGMap
         
         groupManager = new GroupManager();
         groupManager.configure(mapName, airfieldManager);
-        
-        shippingLaneManager = new ShippingLaneManager();
-        shippingLaneManager.configure(mapName);
 
         airfieldManager = new AirfieldManager();
         
@@ -189,11 +184,6 @@ public abstract class PWCGMap
     public DrifterManager getDrifterManager()
     {
         return drifterManager;
-    }
-    
-    public ShippingLaneManager getShippingLaneManager()
-    {
-        return shippingLaneManager;
     }
 
     public void setGroupManager(GroupManager groupManager)

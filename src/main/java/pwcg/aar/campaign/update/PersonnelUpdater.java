@@ -129,7 +129,7 @@ public class PersonnelUpdater
     private void removeFromReplacementPool(TransferRecord transferRecord) throws PWCGException
     {
         Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(transferRecord.getTransferTo());
-        ArmedService service = squadron.determineServiceForSquadron(campaign.getDate());
+        ArmedService service = squadron.determineServiceForCompany(campaign.getDate());
         PersonnelReplacementsService replacementService = campaign.getPersonnelManager().getPersonnelReplacementsService(service.getServiceId());
         replacementService.transferFromReservesToActive(transferRecord.getCrewMember().getSerialNumber());
     }

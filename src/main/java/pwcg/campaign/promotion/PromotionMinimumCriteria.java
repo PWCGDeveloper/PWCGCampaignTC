@@ -5,7 +5,7 @@ import java.util.Date;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.tank.PwcgRoleCategory;
 import pwcg.core.exception.PWCGException;
-import pwcg.product.bos.country.BoSServiceManager;
+import pwcg.product.bos.country.TCServiceManager;
 
 public class PromotionMinimumCriteria
 {
@@ -22,7 +22,7 @@ public class PromotionMinimumCriteria
     public void setMinimumPromotionStandards(CrewMember crewMember, Date date) throws PWCGException
     {
         int serviceId = crewMember.determineSquadron().getService();
-        PwcgRoleCategory roleCategory = crewMember.determineSquadron().determineSquadronPrimaryRoleCategory(date);
+        PwcgRoleCategory roleCategory = crewMember.determineSquadron().determineCompanyPrimaryRoleCategory(date);
 
         setMissionsFlownForPromotion(serviceId, roleCategory);
         setVictoriesForPromotion(serviceId, roleCategory);
@@ -30,12 +30,12 @@ public class PromotionMinimumCriteria
 
     private void setMissionsFlownForPromotion(int serviceId, PwcgRoleCategory roleCategory)
     {
-        if (serviceId == BoSServiceManager.WEHRMACHT)
+        if (serviceId == TCServiceManager.WEHRMACHT)
         {
             setMissionsForWehrmacht();
         }
 
-        if (serviceId == BoSServiceManager.US_ARMY || serviceId == BoSServiceManager.BRITISH_ARMY)
+        if (serviceId == TCServiceManager.US_ARMY || serviceId == TCServiceManager.BRITISH_ARMY)
         {
             setMissionsForUSArmy();
         }
@@ -43,7 +43,7 @@ public class PromotionMinimumCriteria
 
     private void setVictoriesForPromotion(int serviceId, PwcgRoleCategory roleCategory)
     {
-        if (serviceId == BoSServiceManager.WEHRMACHT)
+        if (serviceId == TCServiceManager.WEHRMACHT)
         {
             setVictoriesForWehrmacht();
         }

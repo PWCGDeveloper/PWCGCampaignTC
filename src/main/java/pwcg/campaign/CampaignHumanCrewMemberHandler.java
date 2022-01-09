@@ -32,7 +32,7 @@ public class CampaignHumanCrewMemberHandler
         CampaignGeneratorModel generatorModel = new CampaignGeneratorModel();
         generatorModel.setPlayerRank(humanCrewMemberRank);
         generatorModel.setPlayerName(humanCrewMemberName);
-        generatorModel.setService(squadron.determineServiceForSquadron(campaign.getDate()));
+        generatorModel.setService(squadron.determineServiceForCompany(campaign.getDate()));
 
         CrewMemberFactory squadronMemberFactory = new CrewMemberFactory(campaign, squadron, playerSquadronPersonnel);
         CrewMember newPlayer = squadronMemberFactory.createPlayer(generatorModel);

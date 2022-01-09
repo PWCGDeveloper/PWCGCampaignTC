@@ -134,7 +134,7 @@ public class InfoMapPanel extends MapPanelBase
                 List<Company> allSquadrons = squadronManager.getActiveCompaniesForCurrentMap(parent.getMapDate());
                 for (Company squadron : allSquadrons)
                 {
-                    PwcgRoleCategory squadronPrimaryRole = squadron.determineSquadronPrimaryRoleCategory(parent.getMapDate());
+                    PwcgRoleCategory squadronPrimaryRole = squadron.determineCompanyPrimaryRoleCategory(parent.getMapDate());
                     if (squadronPrimaryRole == PwcgRoleCategory.FIGHTER)
                     {
                         drawPointsBySquadron(g, squadron);
@@ -148,7 +148,7 @@ public class InfoMapPanel extends MapPanelBase
                 List<Company> allSquadrons = squadronManager.getActiveCompaniesForCurrentMap(parent.getMapDate());
                 for (Company squadron : allSquadrons)
                 {
-                    PwcgRoleCategory squadronRole = squadron.determineSquadronPrimaryRoleCategory(parent.getMapDate());
+                    PwcgRoleCategory squadronRole = squadron.determineCompanyPrimaryRoleCategory(parent.getMapDate());
                     if ((squadronRole == PwcgRoleCategory.BOMBER) || 
                         (squadronRole == PwcgRoleCategory.TRANSPORT))
                     {
@@ -163,7 +163,7 @@ public class InfoMapPanel extends MapPanelBase
                 List<Company> allSquadrons = squadronManager.getActiveCompaniesForCurrentMap(parent.getMapDate());
                 for (Company squadron : allSquadrons)
                 {
-                    PwcgRoleCategory squadronPrimaryRole = squadron.determineSquadronPrimaryRoleCategory(parent.getMapDate());
+                    PwcgRoleCategory squadronPrimaryRole = squadron.determineCompanyPrimaryRoleCategory(parent.getMapDate());
                     if (squadronPrimaryRole == PwcgRoleCategory.ATTACK)
                     {
                         drawPointsBySquadron(g, squadron);
@@ -177,7 +177,7 @@ public class InfoMapPanel extends MapPanelBase
                 List<Company> allSquadrons = squadronManager.getActiveCompaniesForCurrentMap(parent.getMapDate());
                 for (Company squadron : allSquadrons)
                 {
-                    PwcgRoleCategory squadronPrimaryRole = squadron.determineSquadronPrimaryRoleCategory(parent.getMapDate());
+                    PwcgRoleCategory squadronPrimaryRole = squadron.determineCompanyPrimaryRoleCategory(parent.getMapDate());
                     if (squadronPrimaryRole == PwcgRoleCategory.RECON)
                     {
                         drawPointsBySquadron(g, squadron);
@@ -193,7 +193,7 @@ public class InfoMapPanel extends MapPanelBase
 
     private void drawPointsBySquadron(Graphics g, Company squadron) throws PWCGException 
     {
-        IServiceColorMap serviceColorMap = squadron.determineServiceForSquadron(parent.getMapDate()).getServiceColorMap();
+        IServiceColorMap serviceColorMap = squadron.determineServiceForCompany(parent.getMapDate()).getServiceColorMap();
         
         Color color = serviceColorMap.getColorForSquadron(squadron, parent.getMapDate());
         
@@ -417,7 +417,7 @@ public class InfoMapPanel extends MapPanelBase
                 
         for (Company squadron : allSquadrons)
         {
-            PwcgRoleCategory squadronPrimaryRole = squadron.determineSquadronPrimaryRoleCategory(parent.getMapDate());
+            PwcgRoleCategory squadronPrimaryRole = squadron.determineCompanyPrimaryRoleCategory(parent.getMapDate());
 
             if ((whatToDisplay[DISPLAY_FIGHTER] == true && squadronPrimaryRole == PwcgRoleCategory.FIGHTER)    || 
                 (whatToDisplay[DISPLAY_BOMBER] == true && squadronPrimaryRole == PwcgRoleCategory.BOMBER)      || 

@@ -61,19 +61,19 @@ public class BoSCountry extends CountryBase implements Cloneable, ICountry
         ICountry country = new BoSCountry(Country.NEUTRAL);
 	    
 		// World War II
-		if (service.getServiceId() == BoSServiceManager.WEHRMACHT)
+		if (service.getServiceId() == TCServiceManager.WEHRMACHT)
 		{
             country = new BoSCountry(Country.GERMANY);
 		}
-        else if (service.getServiceId() == BoSServiceManager.SVV)
+        else if (service.getServiceId() == TCServiceManager.SSV)
         {
             country = new BoSCountry(Country.RUSSIA);
         }
-        else if (service.getServiceId() == BoSServiceManager.US_ARMY)
+        else if (service.getServiceId() == TCServiceManager.US_ARMY)
         {
             country = new BoSCountry(Country.USA);
         }       
-        else if (service.getServiceId() == BoSServiceManager.BRITISH_ARMY)
+        else if (service.getServiceId() == TCServiceManager.BRITISH_ARMY)
         {
             country = new BoSCountry(Country.BRITAIN);
         }       

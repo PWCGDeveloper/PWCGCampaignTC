@@ -37,7 +37,7 @@ public class FighterSquadronSkillAnalyzer
 		int totalFighterSquads = 0;
 		for (Company company : allSq)
 		{
-		    PwcgRoleCategory squadronPrimaryRole = company.determineSquadronPrimaryRoleCategory(DateUtils.getEndOfWar());
+		    PwcgRoleCategory squadronPrimaryRole = company.determineCompanyPrimaryRoleCategory(DateUtils.getEndOfWar());
             if (squadronPrimaryRole == PwcgRoleCategory.FIGHTER)
 		    {
 		        int squadronQuality = company.determineSquadronSkill(startDate);

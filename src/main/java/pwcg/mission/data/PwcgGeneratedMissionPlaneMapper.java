@@ -44,7 +44,7 @@ public class PwcgGeneratedMissionPlaneMapper
     private Side determinePlaneSide(Campaign campaign, PwcgGeneratedMissionVehicleData missionPlane) throws PWCGException
     {
         Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(missionPlane.getCompanyId());            
-        Side side = squadron.determineSquadronCountry(campaign.getDate()).getSide();
+        Side side = squadron.determineCompanyCountry(campaign.getDate()).getSide();
         return side;
     }
 

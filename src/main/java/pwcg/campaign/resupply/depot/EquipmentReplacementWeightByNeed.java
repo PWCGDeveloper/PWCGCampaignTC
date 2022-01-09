@@ -30,7 +30,7 @@ public class EquipmentReplacementWeightByNeed
             return new HashMap<>();
         }
         
-        ArmedService service = squadronsForService.get(0).determineServiceForSquadron(campaign.getDate());
+        ArmedService service = squadronsForService.get(0).determineServiceForCompany(campaign.getDate());
         ServiceResupplyNeed resupplyNeed = determineSquadronNeeds(service);        
         Map<String, Integer> aircraftNeedByArchType = determineAircraftNeedByArchType(resupplyNeed);
         return aircraftNeedByArchType;

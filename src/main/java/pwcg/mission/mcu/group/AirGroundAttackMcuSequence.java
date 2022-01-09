@@ -3,8 +3,6 @@ package pwcg.mission.mcu.group;
 import java.io.BufferedWriter;
 import java.util.List;
 
-import pwcg.campaign.api.IProductSpecificConfiguration;
-import pwcg.campaign.factory.ProductSpecificConfigurationFactory;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.location.Orientation;
@@ -23,6 +21,7 @@ import pwcg.mission.mcu.McuEvent;
 import pwcg.mission.mcu.McuForceComplete;
 import pwcg.mission.mcu.McuTimer;
 import pwcg.mission.target.TargetDefinition;
+import pwcg.product.bos.config.TCProductSpecificConfiguration;
 
 public class AirGroundAttackMcuSequence
 {    
@@ -75,7 +74,7 @@ public class AirGroundAttackMcuSequence
 
     private void buildAttackAreaTrigger()
     {
-        IProductSpecificConfiguration productSpecificConfiguration = ProductSpecificConfigurationFactory.createProductSpecificConfiguration();
+        TCProductSpecificConfiguration productSpecificConfiguration =new TCProductSpecificConfiguration();
         int attackMcuTriggerDistance = productSpecificConfiguration.getBombFinalApproachDistance();
         missionBeginUnitCheckZone = new MissionBeginSelfDeactivatingCheckZone("Air Ground Check Zone", targetDefinition.getPosition(), attackMcuTriggerDistance);
     }

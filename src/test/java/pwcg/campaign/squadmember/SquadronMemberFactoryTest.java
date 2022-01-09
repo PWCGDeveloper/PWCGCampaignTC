@@ -47,7 +47,7 @@ public class CrewMemberFactoryTest
     public void setupTest() throws PWCGException
     {
         PWCGContext.setProduct(PWCGProduct.TC);
-        campaignDate = DateUtils.getDateYYYYMMDD("19170801");
+        campaignDate = DateUtils.getDateYYYYMMDD("19420801");
         Mockito.when(campaign.getDate()).thenReturn(campaignDate);
         Mockito.when(campaign.getSerialNumber()).thenReturn(serialNumber);
         Mockito.when(campaign.getPersonnelManager()).thenReturn(campaignPersonnelManager);
@@ -62,7 +62,7 @@ public class CrewMemberFactoryTest
     @Test
     public void testCreatePlayer() throws PWCGException
     {                
-        ArmedService service = squadron.determineServiceForSquadron(campaignDate);
+        ArmedService service = squadron.determineServiceForCompany(campaignDate);
         String squadronName = squadron.determineDisplayName(campaignDate);
         
         IRankHelper rank = RankFactory.createRankHelper();

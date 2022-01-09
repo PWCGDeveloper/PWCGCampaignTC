@@ -12,7 +12,7 @@ import pwcg.campaign.context.PWCGMap;
 import pwcg.campaign.factory.CountryFactory;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
-import pwcg.product.bos.country.BoSServiceManager;
+import pwcg.product.bos.country.TCServiceManager;
 import pwcg.product.bos.map.IMapClimate;
 import pwcg.product.bos.map.IMapSeason;
 
@@ -57,8 +57,8 @@ public class KubanMap extends PWCGMap
 
     private void buildArmedServicesActiveForMap()
     {
-        armedServicesActiveForMap.add(BoSServiceManager.SVV);
-        armedServicesActiveForMap.add(BoSServiceManager.WEHRMACHT);
+        armedServicesActiveForMap.add(TCServiceManager.SSV);
+        armedServicesActiveForMap.add(TCServiceManager.WEHRMACHT);
     }
 
     @Override

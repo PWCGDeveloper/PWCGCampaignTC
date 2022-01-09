@@ -22,7 +22,7 @@ import pwcg.campaign.resupply.SquadronNeedFactory;
 import pwcg.campaign.resupply.SquadronNeedFactory.SquadronNeedType;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
-import pwcg.product.fc.country.FCServiceManager;
+import pwcg.product.fc.country.TCServiceManager;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.SquadronTestProfile;
 
@@ -46,7 +46,7 @@ public class ServiceTransferNeedTest
         deactivateSquadronPersonnel();
         
         SquadronNeedFactory squadronNeedFactory = new SquadronNeedFactory(SquadronNeedType.PERSONNEL);
-        ServiceResupplyNeed serviceTransferNeed = new ServiceResupplyNeed(campaign, FCServiceManager.DEUTSCHE_LUFTSTREITKRAFTE, squadronNeedFactory);
+        ServiceResupplyNeed serviceTransferNeed = new ServiceResupplyNeed(campaign, TCServiceManager.WEHRMACHT, squadronNeedFactory);
         serviceTransferNeed.determineResupplyNeed();
         
         Assertions.assertTrue (serviceTransferNeed.hasNeedySquadron() == true);

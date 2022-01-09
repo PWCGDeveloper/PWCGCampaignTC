@@ -16,7 +16,7 @@ import pwcg.core.config.ConfigManagerCampaign;
 import pwcg.core.constants.AiSkillLevel;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
-import pwcg.product.bos.country.BoSServiceManager;
+import pwcg.product.bos.country.TCServiceManager;
 
 @ExtendWith(MockitoExtension.class)
 public class OutOfMissionAAALossCalculatorTest
@@ -46,7 +46,7 @@ public class OutOfMissionAAALossCalculatorTest
         Mockito.when(crewMember.getCompanyId()).thenReturn(10121312);
         Mockito.when(crewMember.getAiSkillLevel()).thenReturn(AiSkillLevel.NOVICE);
         Mockito.when(crewMember.determineService(campaign.getDate())).thenReturn(service);
-        Mockito.when(service.getServiceId()).thenReturn(BoSServiceManager.VVS);
+        Mockito.when(service.getServiceId()).thenReturn(TCServiceManager.VVS);
         
         OutOfMissionAAAOddsCalculator aaaLossOddsCalculator = new OutOfMissionAAAOddsCalculator(campaign);
         int odds = aaaLossOddsCalculator.oddsShotDownByAAA(crewMember);
@@ -59,7 +59,7 @@ public class OutOfMissionAAALossCalculatorTest
         Mockito.when(crewMember.getCompanyId()).thenReturn(10121312);
         Mockito.when(crewMember.getAiSkillLevel()).thenReturn(AiSkillLevel.NOVICE);
         Mockito.when(crewMember.determineService(campaign.getDate())).thenReturn(service);
-        Mockito.when(service.getServiceId()).thenReturn(BoSServiceManager.LUFTWAFFE);
+        Mockito.when(service.getServiceId()).thenReturn(TCServiceManager.LUFTWAFFE);
         
         OutOfMissionAAAOddsCalculator aaaLossOddsCalculator = new OutOfMissionAAAOddsCalculator(campaign);
         int odds = aaaLossOddsCalculator.oddsShotDownByAAA(crewMember);
@@ -72,7 +72,7 @@ public class OutOfMissionAAALossCalculatorTest
         Mockito.when(crewMember.getCompanyId()).thenReturn(20121077);
         Mockito.when(crewMember.getAiSkillLevel()).thenReturn(AiSkillLevel.VETERAN);
         Mockito.when(crewMember.determineService(campaign.getDate())).thenReturn(service);
-        Mockito.when(service.getServiceId()).thenReturn(BoSServiceManager.LUFTWAFFE);
+        Mockito.when(service.getServiceId()).thenReturn(TCServiceManager.LUFTWAFFE);
         
         OutOfMissionAAAOddsCalculator aaaLossOddsCalculator = new OutOfMissionAAAOddsCalculator(campaign);
         int odds = aaaLossOddsCalculator.oddsShotDownByAAA(crewMember);

@@ -44,7 +44,7 @@ public class PersonnelFilterTest
     	for (int i = 0; i < 4; ++i)
     	{
     		CrewMember crewMember = testCrewMembers.get(SerialNumber.AI_STARTING_SERIAL_NUMBER + i);
-    		crewMember.setCrewMemberActiveStatus(CrewMemberStatus.STATUS_KIA, DateUtils.getDateYYYYMMDD("19170801"), null);
+    		crewMember.setCrewMemberActiveStatus(CrewMemberStatus.STATUS_KIA, DateUtils.getDateYYYYMMDD("19420801"), null);
     	}
 
     	Map<Integer, CrewMember> returnCrewMembers = new HashMap<Integer, CrewMember>();

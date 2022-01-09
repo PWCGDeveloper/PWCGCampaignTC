@@ -26,7 +26,7 @@ import pwcg.campaign.resupply.personnel.SquadronTransferData;
 import pwcg.campaign.resupply.personnel.TransferHandler;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
-import pwcg.product.fc.country.FCServiceManager;
+import pwcg.product.fc.country.TCServiceManager;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.SquadronTestProfile;
 
@@ -48,7 +48,7 @@ public class TransferHandlerTest
     public void setupTest() throws PWCGException
     {        
         campaign = CampaignCache.makeCampaign(SquadronTestProfile.JASTA_11_PROFILE);
-        Mockito.when(armedService.getServiceId()).thenReturn(FCServiceManager.DEUTSCHE_LUFTSTREITKRAFTE);
+        Mockito.when(armedService.getServiceId()).thenReturn(TCServiceManager.WEHRMACHT);
     }
 
     @Test

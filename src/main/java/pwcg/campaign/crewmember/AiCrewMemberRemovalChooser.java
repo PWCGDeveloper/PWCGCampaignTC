@@ -71,7 +71,7 @@ public class AiCrewMemberRemovalChooser
         CrewMembers activeCrewMembers = CrewMemberFilter.filterActiveAI(squadronMembers.getCrewMemberCollection(), campaign.getDate());
         
         Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(squadronId);
-        ArmedService service = squadron.determineServiceForSquadron(campaign.getDate());
+        ArmedService service = squadron.determineServiceForCompany(campaign.getDate());
 
         List<CrewMember> squadronMembersOfSimilarRank = new ArrayList<>();
         for (CrewMember crewMember : activeCrewMembers.getCrewMemberList())
@@ -105,7 +105,7 @@ public class AiCrewMemberRemovalChooser
         CrewMembers activeCrewMembers = CrewMemberFilter.filterActiveAI(squadronMembers.getCrewMemberCollection(), campaign.getDate());
         
         Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(squadronId);
-        ArmedService service = squadron.determineServiceForSquadron(campaign.getDate());
+        ArmedService service = squadron.determineServiceForCompany(campaign.getDate());
 
         List<CrewMember> squadronMembersOfAnyNonCommandRank = new ArrayList<>();
         for (CrewMember crewMember : activeCrewMembers.getCrewMemberList())

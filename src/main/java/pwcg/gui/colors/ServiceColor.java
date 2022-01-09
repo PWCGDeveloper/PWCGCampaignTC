@@ -11,7 +11,7 @@ public abstract class ServiceColor implements IServiceColorMap
 {
     public Color getColorForSquadron(Company squadron, Date date) throws PWCGException
     {
-        PwcgRoleCategory primaryRole = squadron.determineSquadronPrimaryRoleCategory(date);
+        PwcgRoleCategory primaryRole = squadron.determineCompanyPrimaryRoleCategory(date);
 
         return getColorForRole(primaryRole);
     }

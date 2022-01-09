@@ -24,7 +24,7 @@ import pwcg.core.utils.DateUtils;
 import pwcg.gui.image.ImageIconCache;
 import pwcg.gui.utils.ContextSpecificImages;
 import pwcg.product.bos.medals.GermanMedalManager;
-import pwcg.product.fc.country.FCServiceManager;
+import pwcg.product.fc.country.TCServiceManager;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
@@ -35,7 +35,7 @@ public class RoFGermanMedalManagerTest extends MedalManagerTestBase
     {
         PWCGContext.setProduct(PWCGProduct.TC);
         super.setupBase();
-        service = ArmedServiceFactory.createServiceManager().getArmedServiceById(FCServiceManager.DEUTSCHE_LUFTSTREITKRAFTE, DateUtils.getDateYYYYMMDD("19171001"));
+        service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.WEHRMACHT, DateUtils.getDateYYYYMMDD("19171001"));
 
         Mockito.when(country.isCountry(Country.GERMANY)).thenReturn(true);
         Mockito.when(player.getPlayerRegion()).thenReturn("");

@@ -54,7 +54,7 @@ public class AARPhase0Preliminary
             campaign.getCampaignData().getCampaignMode() == CampaignMode.CAMPAIGN_MODE_COOP)
         {
             CrewMember singlePlayer = campaign.findReferencePlayer();
-            Side side = singlePlayer.determineSquadron().determineSquadronCountry(campaign.getDate()).getSide();
+            Side side = singlePlayer.determineSquadron().determineCompanyCountry(campaign.getDate()).getSide();
             AARClaimPanelEventTabulator claimPanelEventTabulator = new AARClaimPanelEventTabulator(campaign, aarPreliminarytData, side);
             AARClaimPanelData claimPanelData = claimPanelEventTabulator.tabulateForAARClaimPanel();
             aarPreliminarytData.setClaimPanelData(claimPanelData);

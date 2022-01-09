@@ -140,7 +140,7 @@ public class CampaignCleaner
                         crewMember.setSerialNumber(campaign.getCampaignData().getSerialNumber().getNextCrewMemberSerialNumber());
                         
                         Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(crewMember.getCompanyId());
-                        String squaddieName = CrewMemberNames.getInstance().getName(squadron.determineServiceForSquadron(campaign.getDate()), new HashMap<>());
+                        String squaddieName = CrewMemberNames.getInstance().getName(squadron.determineServiceForCompany(campaign.getDate()), new HashMap<>());
                         crewMember.setName(squaddieName);
                     }
                     

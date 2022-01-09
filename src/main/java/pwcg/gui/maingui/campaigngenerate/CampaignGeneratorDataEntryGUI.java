@@ -320,7 +320,7 @@ public class CampaignGeneratorDataEntryGUI extends JPanel implements ActionListe
         
         for (Company company : companiesForService)
         {            
-            PwcgRoleCategory primaryRoleCategory = company.determineSquadronPrimaryRoleCategory(date);
+            PwcgRoleCategory primaryRoleCategory = company.determineCompanyPrimaryRoleCategory(date);
 
             rolesSorted.put(primaryRoleCategory.getRoleCategoryDescription(), primaryRoleCategory);
         }

@@ -9,10 +9,9 @@ import java.util.TreeMap;
 
 import pwcg.campaign.ArmedService;
 import pwcg.campaign.Campaign;
-import pwcg.campaign.SquadHistory;
-import pwcg.campaign.SquadHistoryEntry;
+import pwcg.campaign.CompanyHistory;
+import pwcg.campaign.CompanyHistoryEntry;
 import pwcg.campaign.api.ICountry;
-import pwcg.campaign.api.IProductSpecificConfiguration;
 import pwcg.campaign.api.IRankHelper;
 import pwcg.campaign.api.Side;
 import pwcg.campaign.context.Country;
@@ -26,7 +25,6 @@ import pwcg.campaign.crewmember.CrewMembers;
 import pwcg.campaign.crewmember.TankAce;
 import pwcg.campaign.factory.ArmedServiceFactory;
 import pwcg.campaign.factory.CountryFactory;
-import pwcg.campaign.factory.ProductSpecificConfigurationFactory;
 import pwcg.campaign.factory.RankFactory;
 import pwcg.campaign.group.airfield.Airfield;
 import pwcg.campaign.personnel.CompanyPersonnel;
@@ -43,6 +41,7 @@ import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.utils.DateUtils;
 import pwcg.core.utils.MathUtils;
+import pwcg.product.bos.config.TCProductSpecificConfiguration;
 
 public class Company 
 {
@@ -54,7 +53,7 @@ public class Company
     public static final Integer MIN_REEQUIPMENT_SIZE = 10;
     public static final Integer REPLACEMENTS_TANKS_PER_COMPANY = 3;
     private Country country = Country.NEUTRAL;
-	private int squadronId = 0;
+	private int companyId = 0;
     private String name = "";
     private String fileName = "";
 	private int skill = 50;
@@ -63,17 +62,17 @@ public class Company
 	private List<CompanyTankAssignment> tankAssignments = new ArrayList<>();
     private Map<Date, String> bases = new TreeMap<>();
 	private List<Skin> skins = new ArrayList<Skin>();
-	private SquadHistory squadHistory;
+	private CompanyHistory companyHistory;
 	private int serviceId;
-    private SquadronRoleSet squadronRoles = new SquadronRoleSet();
+    private SquadronRoleSet companyRoles = new SquadronRoleSet();
     private NightMissionSet nightMissionOdds = new NightMissionSet();
-	private List<SquadronConversionPeriod> conversionPeriods = new ArrayList<>();
+	private List<CompanyConversionPeriod> conversionPeriods = new ArrayList<>();
     private Map<Date, Callsign> callsigns = new TreeMap<>();
 	
-	public static boolean isPlayerCompany (Campaign campaign, int squadronId)
+	public static boolean isPlayerCompany (Campaign campaign, int companyId)
 	{
-	    CompanyPersonnel squadronPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(squadronId);
-        if (squadronPersonnel != null && squadronPersonnel.isPlayerCompany())
+	    CompanyPersonnel companyPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(companyId);
+        if (companyPersonnel != null && companyPersonnel.isPlayerCompany())
         {
             return true;
         }
@@ -262,7 +261,7 @@ public class Company
 		for (TankAce ace : aces)
 		{
 			IRankHelper rankObj = RankFactory.createRankHelper();			
-			int rankPos = rankObj.getRankPosByService(ace.getRank(), determineServiceForSquadron(date));
+			int rankPos = rankObj.getRankPosByService(ace.getRank(), determineServiceForCompany(date));
 			if (rankPos == 0)
 			{
 				commanded = true;
@@ -276,23 +275,23 @@ public class Company
 	public String determineDisplayName (Date date) throws PWCGException 
 	{
 		String displayName = name;
-        SquadHistoryEntry squadHistoryEntry = getSquadronHistoryEntryForDate(date);
-        if (squadHistoryEntry != null)
+        CompanyHistoryEntry companyHistoryEntry = getCompanyHistoryEntryForDate(date);
+        if (companyHistoryEntry != null)
 		{
-            displayName = squadHistoryEntry.getSquadName();
+            displayName = companyHistoryEntry.getSquadName();
 		}
 		
 		return displayName;
 	}
 	
-	private SquadHistoryEntry getSquadronHistoryEntryForDate(Date date) throws PWCGException
+	private CompanyHistoryEntry getCompanyHistoryEntryForDate(Date date) throws PWCGException
 	{
-        if (squadHistory != null)
+        if (companyHistory != null)
         {
-            SquadHistoryEntry squadHistoryEntry = squadHistory.getSquadHistoryEntry(date);
-            if (squadHistoryEntry != null)
+            CompanyHistoryEntry companyHistoryEntry = companyHistory.getSquadHistoryEntry(date);
+            if (companyHistoryEntry != null)
             {
-                return squadHistoryEntry;
+                return companyHistoryEntry;
             }
         }
         
@@ -301,44 +300,44 @@ public class Company
 
 	public String determineSquadronDescription(Date date) throws PWCGException 
 	{
-		String squadronDescription = "";
+		String companyDescription = "";
 		
-		squadronDescription += "\nSquadron: " + determineDisplayName(date) + "\n\n";
+		companyDescription += "\nSquadron: " + determineDisplayName(date) + "\n\n";
 		
         String status = determineSkillDescription();
         if (status != null && status.length() > 0)
         {
-            squadronDescription += "Status: " + status + "\n\n";
+            companyDescription += "Status: " + status + "\n\n";
         }
         
         Callsign callsign = determineCurrentCallsign(date);
         if (callsign != Callsign.NONE)
         {
-            squadronDescription += "Callsign: " + callsign + "\n\n";
+            companyDescription += "Callsign: " + callsign + "\n\n";
         }
 
-		squadronDescription += "Stationed at: ";
+		companyDescription += "Stationed at: ";
 		String fieldName = determineCurrentAirfieldName(date);
-		squadronDescription += fieldName + "\n\n";
+		companyDescription += fieldName + "\n\n";
 		
 		List<TankType> planes = determineCurrentAircraftList(date);
-		squadronDescription += "Operating the:\n";
+		companyDescription += "Operating the:\n";
 		for (TankType plane : planes)
 		{
-			squadronDescription += "    " + plane.getDisplayName() + "\n";
+			companyDescription += "    " + plane.getDisplayName() + "\n";
 		}
 
 		Campaign campaign =     PWCGContext.getInstance().getCampaign();
 		List<TankAce> aces =  PWCGContext.getInstance().getAceManager().
 		                getActiveAcesForSquadron(campaign.getPersonnelManager().getCampaignAces(), campaign.getDate(), getCompanyId());
 
-		squadronDescription += "\nAces on staff:\n";
+		companyDescription += "\nAces on staff:\n";
 		for (TankAce ace : aces)
 		{
-			squadronDescription += "    " + ace.getNameAndRank() + "\n";
+			companyDescription += "    " + ace.getNameAndRank() + "\n";
 		}
 
-		return squadronDescription;
+		return companyDescription;
 	}
 
 	public List<Date> determineDatesSquadronAtField(Airfield field)
@@ -358,23 +357,23 @@ public class Company
 
     public ICountry determineEnemyCountry(Date date) throws PWCGException
     {
-        List<Company> squads = null;
+        List<Company> companys = null;
         
-        ICountry squadronCountry = CountryFactory.makeCountryByCountry(country);
-        Side enemySide = squadronCountry.getSideNoNeutral().getOppositeSide();
+        ICountry companyCountry = CountryFactory.makeCountryByCountry(country);
+        Side enemySide = companyCountry.getSideNoNeutral().getOppositeSide();
         Airfield field = determineCurrentAirfieldCurrentMap(date);
-        squads =  PWCGContext.getInstance().getCompanyManager().getActiveCompaniesBySideAndProximity(enemySide, date, field.getPosition(), 30000);
+        companys =  PWCGContext.getInstance().getCompanyManager().getActiveCompaniesBySideAndProximity(enemySide, date, field.getPosition(), 30000);
 
-        // Use an enemy squadron as a reference country.
-        // If no enemy squadron use the enemy map reference nation
+        // Use an enemy company as a reference country.
+        // If no enemy company use the enemy map reference nation
         ICountry enemyCountry = CountryFactory.makeNeutralCountry();
-        if (squads.size() == 0)
+        if (companys.size() == 0)
         {
             enemyCountry = CountryFactory.makeMapReferenceCountry(enemySide);
         }
         else
         {
-            enemyCountry = squads.get(0).determineSquadronCountry(date);
+            enemyCountry = companys.get(0).determineCompanyCountry(date);
         }
         
         
@@ -383,27 +382,27 @@ public class Company
 
     public Side determineEnemySide() throws PWCGException
     {
-        ICountry squadronCountry = CountryFactory.makeCountryByCountry(country);
-        Side enemySide = squadronCountry.getSideNoNeutral().getOppositeSide();
+        ICountry companyCountry = CountryFactory.makeCountryByCountry(country);
+        Side enemySide = companyCountry.getSideNoNeutral().getOppositeSide();
         return enemySide;
     }
 
     public Side determineSide() throws PWCGException
     {
-        ICountry squadronCountry = CountryFactory.makeCountryByCountry(country);
-        return squadronCountry.getSideNoNeutral();
+        ICountry companyCountry = CountryFactory.makeCountryByCountry(country);
+        return companyCountry.getSideNoNeutral();
     }
 
-	public ArmedService determineServiceForSquadron(Date date) throws PWCGException 
+	public ArmedService determineServiceForCompany(Date date) throws PWCGException 
 	{
 	    ArmedService service = ArmedServiceFactory.createServiceManager().getArmedServiceById(serviceId, date);
 
 		if (date != null)
 		{
-	        SquadHistoryEntry squadHistoryEntry = getSquadronHistoryEntryForDate(date);
-	        if (squadHistoryEntry != null)
+	        CompanyHistoryEntry companyHistoryEntry = getCompanyHistoryEntryForDate(date);
+	        if (companyHistoryEntry != null)
 	        {
-                String serviceName = squadHistoryEntry.getArmedServiceName();
+                String serviceName = companyHistoryEntry.getArmedServiceName();
                 service = ArmedServiceFactory.createServiceManager().getArmedServiceByName(serviceName, date);
 	        }
 		}
@@ -425,7 +424,7 @@ public class Company
 
 	public boolean isInConversionPeriod(Date date) throws PWCGException
     {
-        for (SquadronConversionPeriod conversionPeriod: conversionPeriods)
+        for (CompanyConversionPeriod conversionPeriod: conversionPeriods)
         {
             if (conversionPeriod.isConversionPeriodActive(date))
             {
@@ -436,7 +435,7 @@ public class Company
         return false;
     }
 
-    public void setConversionPeriods(List<SquadronConversionPeriod> conversionPeriods)
+    public void setConversionPeriods(List<CompanyConversionPeriod> conversionPeriods)
     {
         this.conversionPeriods = conversionPeriods;
     }
@@ -481,28 +480,28 @@ public class Company
 
     public String determineSquadronInfo(Date campaignDate) throws PWCGException 
     {
-        StringBuffer squadronInfo = new StringBuffer("");
+        StringBuffer companyInfo = new StringBuffer("");
         
-        squadronInfo.append(determineDisplayName(campaignDate) + "\n");
+        companyInfo.append(determineDisplayName(campaignDate) + "\n");
         
         String status = determineSkillDescription();
         if (status != null && status.length() > 0)
         {
-            squadronInfo.append("Status: " + status + "\n");
+            companyInfo.append("Status: " + status + "\n");
         }
         
-        squadronInfo.append(DateUtils.getDateString(campaignDate) + "\n");
+        companyInfo.append(DateUtils.getDateString(campaignDate) + "\n");
         List <TankType> planes = determineCurrentAircraftList(campaignDate);
         for (TankType plane : planes)
         {
-            squadronInfo.append(plane.getDisplayName() + "   ");
+            companyInfo.append(plane.getDisplayName() + "   ");
         }
-        squadronInfo.append("\n");
+        companyInfo.append("\n");
 
-        squadronInfo.append("\n");
-        squadronInfo.append("\n");
+        companyInfo.append("\n");
+        companyInfo.append("\n");
 
-        return squadronInfo.toString();
+        return companyInfo.toString();
     }
 
     public PWCGMap getMapForAirfield(Date campaignDate)
@@ -516,11 +515,11 @@ public class Company
     public boolean isStartsCloseToFront(Date date) throws PWCGException
     {
         Side enemySide = determineEnemyCountry(date).getSide();
-        Coordinate squadronPosition = determineCurrentPosition(date);
-        FrontLinePoint closestFrontPosition = PWCGContext.getInstance().getCurrentMap().getFrontLinesForMap(date).findClosestFrontPositionForSide(squadronPosition, enemySide);
-        double distanceToFront = MathUtils.calcDist(squadronPosition, closestFrontPosition.getPosition());
+        Coordinate companyPosition = determineCurrentPosition(date);
+        FrontLinePoint closestFrontPosition = PWCGContext.getInstance().getCurrentMap().getFrontLinesForMap(date).findClosestFrontPositionForSide(companyPosition, enemySide);
+        double distanceToFront = MathUtils.calcDist(companyPosition, closestFrontPosition.getPosition());
         
-        IProductSpecificConfiguration productSpecificConfiguration = ProductSpecificConfigurationFactory.createProductSpecificConfiguration();
+        TCProductSpecificConfiguration productSpecificConfiguration = new TCProductSpecificConfiguration();
         int closeToFrontDistance = productSpecificConfiguration.getCloseToFrontDistance();
         if (distanceToFront <= closeToFrontDistance)
         {
@@ -550,22 +549,22 @@ public class Company
         }
     }
 
-    public ICountry determineSquadronCountry(Date date) throws PWCGException 
+    public ICountry determineCompanyCountry(Date date) throws PWCGException 
     {
-        ICountry squadronCountry = CountryFactory.makeCountryByCountry(country);
+        ICountry companyCountry = CountryFactory.makeCountryByCountry(country);
         
         if (date != null)
         {
-            SquadHistoryEntry squadHistoryEntry = getSquadronHistoryEntryForDate(date);
-            if (squadHistoryEntry != null)
+            CompanyHistoryEntry companyHistoryEntry = getCompanyHistoryEntryForDate(date);
+            if (companyHistoryEntry != null)
             {
-                String serviceName = squadHistoryEntry.getArmedServiceName();
+                String serviceName = companyHistoryEntry.getArmedServiceName();
                 ArmedService service = ArmedServiceFactory.createServiceManager().getArmedServiceByName(serviceName, date);
-                squadronCountry = CountryFactory.makeCountryByService(service);
+                companyCountry = CountryFactory.makeCountryByService(service);
             }
         }
         
-        return squadronCountry;
+        return companyCountry;
     }
 
 	public ICountry getCountry() 
@@ -575,24 +574,24 @@ public class Company
 
 	public int getCompanyId() 
 	{
-		return squadronId;
+		return companyId;
 	}
 
 	public void setSquadronId(int id) 
 	{
-		this.squadronId = id;
+		this.companyId = id;
 	}
 
 	public int determineSquadronSkill(Date date) throws PWCGException 
 	{
 	    int skillNow = skill;
-        SquadHistoryEntry squadHistoryEntry = getSquadronHistoryEntryForDate(date);
+        CompanyHistoryEntry companyHistoryEntry = getCompanyHistoryEntryForDate(date);
         if (date != null)
         {
-            if (squadHistoryEntry != null)
+            if (companyHistoryEntry != null)
             {
-                int skillAtDate = squadHistoryEntry.getSkill();
-                if (skillAtDate != SquadHistoryEntry.NO_SQUADRON_SKILL_CHANGE && skillAtDate > 20)
+                int skillAtDate = companyHistoryEntry.getSkill();
+                if (skillAtDate != CompanyHistoryEntry.NO_SQUADRON_SKILL_CHANGE && skillAtDate > 20)
                 {
                     skillNow = skillAtDate;
                 }
@@ -651,12 +650,12 @@ public class Company
 
 	public HashMap<String, String> getNamesInUse(Campaign campaign) throws PWCGException
     {
-	    CompanyPersonnel squadronPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(this.getCompanyId());
+	    CompanyPersonnel companyPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(this.getCompanyId());
         HashMap<String, String> namesUsed = new HashMap <String, String>();
-	    if (squadronPersonnel != null)
+	    if (companyPersonnel != null)
 	    {
-            CrewMembers squadronMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(squadronPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
-            for (CrewMember crewMember : squadronMembers.getCrewMemberList())
+            CrewMembers companyMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(companyPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
+            for (CrewMember crewMember : companyMembers.getCrewMemberList())
             {
                 int index = crewMember.getName().indexOf(" ");
                 String lastName = crewMember.getName().substring(index + 1);
@@ -681,14 +680,14 @@ public class Company
 		this.bases = airfields;
 	}
 
-	public SquadHistory getSquadHistory() 
+	public CompanyHistory getSquadHistory() 
 	{
-		return squadHistory;
+		return companyHistory;
 	}
 
-	public void setSquadHistory(SquadHistory squadHistory) 
+	public void setSquadHistory(CompanyHistory companyHistory) 
 	{
-		this.squadHistory = squadHistory;
+		this.companyHistory = companyHistory;
 	}
 
 	public int getService() 
@@ -725,7 +724,7 @@ public class Company
 
     public SquadronRoleSet getSquadronRoles()
     {
-        return squadronRoles;
+        return companyRoles;
     }
 
     public String getFileName()
@@ -749,10 +748,10 @@ public class Company
 
         if (date != null)
         {
-            SquadHistoryEntry squadHistoryEntry = getSquadronHistoryEntryForDate(date);
-            if (squadHistoryEntry != null)
+            CompanyHistoryEntry companyHistoryEntry = getCompanyHistoryEntryForDate(date);
+            if (companyHistoryEntry != null)
             {
-                code = squadHistoryEntry.getUnitIdCode();
+                code = companyHistoryEntry.getUnitIdCode();
                 if (code == null)
                 {
                     code = "";
@@ -769,10 +768,10 @@ public class Company
 
         if (date != null)
         {
-            SquadHistoryEntry squadHistoryEntry = getSquadronHistoryEntryForDate(date);
-            if (squadHistoryEntry != null)
+            CompanyHistoryEntry companyHistoryEntry = getCompanyHistoryEntryForDate(date);
+            if (companyHistoryEntry != null)
             {
-                code = squadHistoryEntry.getSubUnitIdCode();
+                code = companyHistoryEntry.getSubUnitIdCode();
             }
         }
 
@@ -781,11 +780,11 @@ public class Company
 
     public boolean isSquadronThisRole (Date date, PwcgRole requestedRole) throws PWCGException 
     {
-        return squadronRoles.isSquadronThisRole(date, requestedRole);
+        return companyRoles.isCompanyThisRole(date, requestedRole);
     }
     
-    public PwcgRoleCategory determineSquadronPrimaryRoleCategory(Date date) throws PWCGException
+    public PwcgRoleCategory determineCompanyPrimaryRoleCategory(Date date) throws PWCGException
     {
-        return squadronRoles.selectSquadronPrimaryRoleCategory(date);
+        return companyRoles.selectCompanyPrimaryRoleCategory(date);
     }
 }

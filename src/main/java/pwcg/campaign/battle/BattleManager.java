@@ -2,16 +2,11 @@ package pwcg.campaign.battle;
 
 import java.util.Date;
 
-import pwcg.campaign.api.Side;
-import pwcg.campaign.context.FrontLinesForMap;
 import pwcg.campaign.context.FrontMapIdentifier;
-import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.io.json.BattleIOJson;
-import pwcg.campaign.skirmish.SkirmishDistance;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.utils.DateUtils;
-import pwcg.core.utils.MathUtils;
 import pwcg.core.utils.PWCGLogger;
 
 public class BattleManager
@@ -46,10 +41,7 @@ public class BattleManager
                 {
 	                if (isBattleOnRightMap(battle, mapId))
 	                {
-                        if (isBattleNearPlayer(position, battle, mapId, date))
-                        {
-                            return battle;
-                        }
+                        return battle;
                     }
                 }
             }
@@ -84,20 +76,6 @@ public class BattleManager
         	return true;
         }
             
-        return false;
-    }
-    
-    private boolean isBattleNearPlayer(Coordinate position, Battle battle, FrontMapIdentifier matchingMap, Date date) throws PWCGException
-    {
-        FrontLinesForMap frontLineMarker =  PWCGContext.getInstance().getMapByMapId(matchingMap).getFrontLinesForMap(date);
-        Coordinate closestFrontLines = frontLineMarker.findClosestFrontCoordinateForSide(position, Side.ALLIED);
-
-        double distanceFromBattleFront = MathUtils.calcDist(closestFrontLines, position);
-        if (distanceFromBattleFront < SkirmishDistance.findMaxSkirmishDistance())
-        {
-            return true;
-        }
-        
         return false;
     }
 }

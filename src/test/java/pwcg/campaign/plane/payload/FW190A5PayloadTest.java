@@ -126,7 +126,7 @@ public class FW190A5PayloadTest
 
     private IPlanePayload getPayloadGeneratorForFighter() throws PWCGException
     {
-        Mockito.when(squadron.determineSquadronPrimaryRoleCategory(Mockito.any())).thenReturn(PwcgRoleCategory.FIGHTER);
+        Mockito.when(squadron.determineCompanyPrimaryRoleCategory(Mockito.any())).thenReturn(PwcgRoleCategory.FIGHTER);
         TankType fw190A5 = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByType(PlaneAttributeMapping.FW190_A5.getTankType());
         IPlanePayloadFactory payloadFactory = PWCGContext.getInstance().getPlanePayloadFactory();
         IPlanePayload payloadGenerator = payloadFactory.createPayload(fw190A5.getType(), campaign.getDate());
@@ -135,7 +135,7 @@ public class FW190A5PayloadTest
 
     private IPlanePayload getPayloadGeneratorForAttack() throws PWCGException
     {
-        Mockito.when(squadron.determineSquadronPrimaryRoleCategory(Mockito.any())).thenReturn(PwcgRoleCategory.ATTACK);
+        Mockito.when(squadron.determineCompanyPrimaryRoleCategory(Mockito.any())).thenReturn(PwcgRoleCategory.ATTACK);
         TankType fw190A5 = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByType(PlaneAttributeMapping.FW190_A5.getTankType());
         IPlanePayloadFactory payloadFactory = PWCGContext.getInstance().getPlanePayloadFactory();
         IPlanePayload payloadGenerator = payloadFactory.createPayload(fw190A5.getType(), campaign.getDate());

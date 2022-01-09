@@ -39,7 +39,7 @@ public class CrewMemberInitialVictoryBuilderTest
     public void testInitialVictoriesGermanFighter () throws PWCGException
     {
         Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(20112052);
-        ArmedService service = squadron.determineServiceForSquadron(germanCampaign.getDate());
+        ArmedService service = squadron.determineServiceForCompany(germanCampaign.getDate());
         IRankHelper rankHelper = RankFactory.createRankHelper();
         CompanyPersonnel jg52Personnel = germanCampaign.getPersonnelManager().getCompanyPersonnel(20112052);
 
@@ -71,7 +71,7 @@ public class CrewMemberInitialVictoryBuilderTest
     public void testInitialVictoriesRussianFighter () throws PWCGException
     {
         Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(10111126);
-        ArmedService service = squadron.determineServiceForSquadron(germanCampaign.getDate());
+        ArmedService service = squadron.determineServiceForCompany(germanCampaign.getDate());
         IRankHelper rankHelper = RankFactory.createRankHelper();
         
         CrewMembers squadronMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(germanCampaign.getPersonnelManager().
@@ -102,7 +102,7 @@ public class CrewMemberInitialVictoryBuilderTest
     public void testInitialVictoriesGermanFighterWest () throws PWCGException
     {
         Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(20112052);
-        ArmedService service = squadron.determineServiceForSquadron(germanCampaign.getDate());
+        ArmedService service = squadron.determineServiceForCompany(germanCampaign.getDate());
         IRankHelper rankHelper = RankFactory.createRankHelper();
         CompanyPersonnel jg52Personnel = germanCampaign.getPersonnelManager().getCompanyPersonnel(20112052);
 
@@ -135,7 +135,7 @@ public class CrewMemberInitialVictoryBuilderTest
     {
 
         Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(102362377);
-        ArmedService service = squadron.determineServiceForSquadron(americanCampaign.getDate());
+        ArmedService service = squadron.determineServiceForCompany(americanCampaign.getDate());
         IRankHelper rankHelper = RankFactory.createRankHelper();
         CompanyPersonnel fg362Personnel = americanCampaign.getPersonnelManager().getCompanyPersonnel(102362377);
 

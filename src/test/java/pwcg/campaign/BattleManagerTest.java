@@ -30,9 +30,9 @@ public class BattleManagerTest
 
     	BattleManager battleManager = PWCGContext.getInstance().getCurrentMap().getBattleManager();
     	
-    	Battle battle = battleManager.getBattleForCampaign(FrontMapIdentifier.STALINGRAD_MAP, new Coordinate(80000, 0, 80000), DateUtils.getDateYYYYMMDD("19171121"));
-        Assertions.assertTrue (battle.getName().equals("Cambrai"));
-        Assertions.assertTrue (battle.getAggressorcountry() == Country.BRITAIN);
+    	Battle battle = battleManager.getBattleForCampaign(FrontMapIdentifier.STALINGRAD_MAP, new Coordinate(80000, 0, 80000), DateUtils.getDateYYYYMMDD("19421120"));
+        Assertions.assertTrue (battle.getName().equals("Stalingrad Operation Uranus"));
+        Assertions.assertTrue (battle.getAggressorcountry() == Country.RUSSIA);
         Assertions.assertTrue (battle.getDefendercountry() == Country.GERMANY);
     }
 
@@ -42,27 +42,17 @@ public class BattleManagerTest
         PWCGContext.getInstance().changeContext(FrontMapIdentifier.STALINGRAD_MAP);
         BattleManager battleManager = PWCGContext.getInstance().getCurrentMap().getBattleManager();
     	
-    	Battle battle = battleManager.getBattleForCampaign(FrontMapIdentifier.STALINGRAD_MAP, new Coordinate(45000, 0, 220000), DateUtils.getDateYYYYMMDD("19180501"));
+    	Battle battle = battleManager.getBattleForCampaign(FrontMapIdentifier.STALINGRAD_MAP, new Coordinate(45000, 0, 220000), DateUtils.getDateYYYYMMDD("19420701"));
         Assertions.assertTrue (battle == null);
     }
 
     @Test
-    public void getBattleTestCoordinatesWrong () throws PWCGException
-    {        
-        PWCGContext.getInstance().changeContext(FrontMapIdentifier.STALINGRAD_MAP);
-        BattleManager battleManager = PWCGContext.getInstance().getCurrentMap().getBattleManager();
-    	
-    	Battle battle = battleManager.getBattleForCampaign(FrontMapIdentifier.STALINGRAD_MAP, new Coordinate(45000, 0, 20000), DateUtils.getDateYYYYMMDD("19180501"));
-        Assertions.assertTrue (battle == null);
-    }    
-
-    @Test
     public void getBattleTestMapWrong () throws PWCGException
     {        
-        PWCGContext.getInstance().changeContext(FrontMapIdentifier.STALINGRAD_MAP);
+        PWCGContext.getInstance().changeContext(FrontMapIdentifier.BODENPLATTE_MAP);
         BattleManager battleManager = PWCGContext.getInstance().getCurrentMap().getBattleManager();
     	
-    	Battle battle = battleManager.getBattleForCampaign(FrontMapIdentifier.STALINGRAD_MAP, new Coordinate(45000, 0, 220000), DateUtils.getDateYYYYMMDD("19180501"));
+    	Battle battle = battleManager.getBattleForCampaign(FrontMapIdentifier.STALINGRAD_MAP, new Coordinate(45000, 0, 220000), DateUtils.getDateYYYYMMDD("19421120"));
         Assertions.assertTrue (battle == null);
     }    
 

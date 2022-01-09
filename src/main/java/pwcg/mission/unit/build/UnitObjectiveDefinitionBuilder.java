@@ -35,7 +35,7 @@ public class UnitObjectiveDefinitionBuilder
         }
 
         UnitMissionType unitMissionType = UnitMissionType.ASSAULT;
-        PwcgRoleCategory companyPrimaryRole = playerCompany.getSquadronRoles().selectSquadronPrimaryRoleCategory(mission.getCampaign().getDate());
+        PwcgRoleCategory companyPrimaryRole = playerCompany.getSquadronRoles().selectCompanyPrimaryRoleCategory(mission.getCampaign().getDate());
         if(companyPrimaryRole == PwcgRoleCategory.MAIN_BATTLE_TANK)
         {
             if(!isAssault(assaultDefinition))

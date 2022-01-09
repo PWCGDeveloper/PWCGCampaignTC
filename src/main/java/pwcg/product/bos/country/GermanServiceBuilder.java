@@ -26,7 +26,7 @@ public class GermanServiceBuilder
     private static ArmedService createGermanArmy() throws PWCGException
     {
         ArmedService wehrmacht = new ArmedService();
-        wehrmacht.setServiceId(BoSServiceManager.WEHRMACHT);
+        wehrmacht.setServiceId(TCServiceManager.WEHRMACHT);
         wehrmacht.setCountry(CountryFactory.makeCountryByCountry(Country.GERMANY));
         wehrmacht.setNameCountry(CountryFactory.makeCountryByCountry(Country.GERMANY));
         wehrmacht.setName(WEHRMACHT_NAME);

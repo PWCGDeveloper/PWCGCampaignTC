@@ -3,8 +3,6 @@ package pwcg.mission.flight.cap;
 import java.util.ArrayList;
 import java.util.List;
 
-import pwcg.campaign.api.IProductSpecificConfiguration;
-import pwcg.campaign.factory.ProductSpecificConfigurationFactory;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.utils.MathUtils;
@@ -17,6 +15,7 @@ import pwcg.mission.flight.waypoint.missionpoint.IMissionPointSet;
 import pwcg.mission.flight.waypoint.missionpoint.MissionPointRouteSet;
 import pwcg.mission.flight.waypoint.patterns.WaypointPatternFactory;
 import pwcg.mission.mcu.McuWaypoint;
+import pwcg.product.bos.config.TCProductSpecificConfiguration;
 
 public class CAPWaypointFactory
 {
@@ -72,7 +71,7 @@ public class CAPWaypointFactory
     
     private Coordinate createPatternStartPosition(McuWaypoint ingressWaypoint) throws PWCGException
     {
-        IProductSpecificConfiguration productSpecific = ProductSpecificConfigurationFactory.createProductSpecificConfiguration();
+        TCProductSpecificConfiguration productSpecific =new TCProductSpecificConfiguration();
         int crossDistance = productSpecific.getInterceptCrossDiameterDistance();
 
         double movementAngle = MathUtils.calcAngle(flight.getTargetDefinition().getPosition(), ingressWaypoint.getPosition());
@@ -89,7 +88,7 @@ public class CAPWaypointFactory
 
     private List<McuWaypoint> createCrossPattern (McuWaypoint lastWP) throws PWCGException
     {
-        IProductSpecificConfiguration productSpecific = ProductSpecificConfigurationFactory.createProductSpecificConfiguration();
+        TCProductSpecificConfiguration productSpecific =new TCProductSpecificConfiguration();
         int crossDistance = productSpecific.getInterceptCrossDiameterDistance();
         
         List<McuWaypoint> interceptWPs = WaypointPatternFactory.generateCrossPattern(

@@ -3,17 +3,16 @@ package pwcg.mission;
 import java.util.List;
 
 import pwcg.campaign.Campaign;
-import pwcg.campaign.api.IProductSpecificConfiguration;
 import pwcg.campaign.api.Side;
 import pwcg.campaign.context.FrontLinePoint;
 import pwcg.campaign.context.FrontLinesForMap;
 import pwcg.campaign.context.MapArea;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.factory.ProductSpecificConfigurationFactory;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.utils.MathUtils;
 import pwcg.core.utils.RandomNumberGenerator;
+import pwcg.product.bos.config.TCProductSpecificConfiguration;
 
 public class MissionCenterBuilderMulti implements IMissionCenterBuilder
 {
@@ -60,7 +59,7 @@ public class MissionCenterBuilderMulti implements IMissionCenterBuilder
 
     private Coordinate findAxisFrontCoordinateWithinRadiusOfMissionCenter(Coordinate frontLineCoordinateCloseToCentralLocation) throws PWCGException
     {
-        IProductSpecificConfiguration productSpecific = ProductSpecificConfigurationFactory.createProductSpecificConfiguration();
+        TCProductSpecificConfiguration productSpecific =new TCProductSpecificConfiguration();
 
         FrontLinesForMap frontLinesForMap = PWCGContext.getInstance().getCurrentMap().getFrontLinesForMap(campaign.getDate());
         List<FrontLinePoint> nearbyFrontPointsAxis = frontLinesForMap.findClosestFrontPositionsForSide(

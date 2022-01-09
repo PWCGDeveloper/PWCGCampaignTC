@@ -38,11 +38,11 @@ public class DuringCampaignVictimGeneratorTest
         Company victimSquadron = enemySquadronFinder.getEnemyForOutOfMission(victorSquadron, campaign.getDate());
 
         DuringCampaignAirVictimGenerator  victimGenerator = new DuringCampaignAirVictimGenerator(campaign, victimSquadron);
-        Side victorSide = victorSquadron.determineSquadronCountry(campaign.getDate()).getSide();
+        Side victorSide = victorSquadron.determineCompanyCountry(campaign.getDate()).getSide();
 
         CrewMember victim = victimGenerator.generateVictimAiCrew();
         Company victimSquadronFromVictim = victim.determineSquadron();
-        Side victimSide = victimSquadron.determineSquadronCountry(campaign.getDate()).getSide();
+        Side victimSide = victimSquadron.determineCompanyCountry(campaign.getDate()).getSide();
         
         assert(victimSide != victorSide);
         assert(victimSquadron.getCompanyId() == victimSquadronFromVictim.getCompanyId());

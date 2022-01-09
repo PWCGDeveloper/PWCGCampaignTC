@@ -15,7 +15,7 @@ import pwcg.core.utils.RandomNumberGenerator;
 import pwcg.mission.flight.FlightTypes;
 import pwcg.mission.options.MissionWeather;
 
-public class BoSMissionAltitudeGenerator implements IMissionAltitudeGenerator
+public class TCMissionAltitudeGenerator implements IMissionAltitudeGenerator
 {
     static public int DIVE_BOMB_ALT = 4100;
 

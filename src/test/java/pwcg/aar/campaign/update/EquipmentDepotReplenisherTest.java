@@ -28,7 +28,7 @@ import pwcg.campaign.resupply.depot.EquipmentDepotReplenisher;
 import pwcg.campaign.resupply.depot.EquipmentReplacementUtils;
 import pwcg.campaign.resupply.depot.EquipmentUpgradeRecord;
 import pwcg.core.exception.PWCGException;
-import pwcg.product.bos.country.BoSServiceManager;
+import pwcg.product.bos.country.TCServiceManager;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.SquadronTestProfile;
 
@@ -88,7 +88,7 @@ public class EquipmentDepotReplenisherTest
     @Test
     public void testUpgradeWithWorsePlane() throws PWCGException
     {
-        EquipmentDepot equipmentDepot = campaign.getEquipmentManager().getEquipmentDepotForService(BoSServiceManager.LUFTWAFFE);
+        EquipmentDepot equipmentDepot = campaign.getEquipmentManager().getEquipmentDepotForService(TCServiceManager.LUFTWAFFE);
         EquipmentUpgradeRecord upgradeRecord = equipmentDepot.getUpgrade(me109E7);
         Assertions.assertTrue (upgradeRecord != null);
         Assertions.assertTrue (upgradeRecord.getUpgrade().getArchType().equals("bf109"));
@@ -109,7 +109,7 @@ public class EquipmentDepotReplenisherTest
     @Test
     public void testUpgradeWithBetterPlane() throws PWCGException
     {
-        EquipmentDepot equipmentDepo = campaign.getEquipmentManager().getEquipmentDepotForService(BoSServiceManager.LUFTWAFFE);
+        EquipmentDepot equipmentDepo = campaign.getEquipmentManager().getEquipmentDepotForService(TCServiceManager.LUFTWAFFE);
         EquipmentUpgradeRecord replacementPlane = equipmentDepo.getUpgrade(me109K4);
         Assertions.assertTrue (replacementPlane == null);
     }

@@ -15,8 +15,8 @@ import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.PWCGLogger;
 import pwcg.core.utils.PWCGLogger.LogLevel;
 import pwcg.mission.playerunit.crew.UnitCrewBuilder;
-import pwcg.mission.unit.UnitInformation;
 import pwcg.mission.unit.TankMcu;
+import pwcg.mission.unit.UnitInformation;
 
 public class TankMcuFactory
 {    

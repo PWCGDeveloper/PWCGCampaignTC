@@ -25,7 +25,7 @@ public class ServiceResupplyNeed
     {
         for (CompanyPersonnel squadronPersonnel : campaign.getPersonnelManager().getAllCompanyPersonnel())
         {
-            int serviceIdForSquadron = squadronPersonnel.getCompany().determineServiceForSquadron(campaign.getDate()).getServiceId();
+            int serviceIdForSquadron = squadronPersonnel.getCompany().determineServiceForCompany(campaign.getDate()).getServiceId();
             if (serviceId == serviceIdForSquadron)
             {
                 ISquadronNeed squadronResupplyNeed = squadronNeedFactory.buildSquadronNeed(campaign, squadronPersonnel.getCompany());

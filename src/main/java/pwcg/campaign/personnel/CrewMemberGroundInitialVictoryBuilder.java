@@ -65,7 +65,7 @@ public class CrewMemberGroundInitialVictoryBuilder
 
     private void factorServiceQuality(int rankPos) throws PWCGException
     {
-        ArmedService service = victorSquadron.determineServiceForSquadron(campaign.getDate());
+        ArmedService service = victorSquadron.determineServiceForCompany(campaign.getDate());
         int serviceQuality = service.getServiceQuality().getQuality(campaign.getDate()).getQualityValue();
 
         int minAdjustment = 0;

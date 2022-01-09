@@ -22,9 +22,9 @@ public class VehicleFactoryFCTest
     @Test
     public void vehicleCreateTest() throws PWCGException
     {
-        createVehicles(CountryFactory.makeCountryByCountry(Country.FRANCE), DateUtils.getDateYYYYMMDD("19170801"));
-        createVehicles(CountryFactory.makeCountryByCountry(Country.GERMANY), DateUtils.getDateYYYYMMDD("19170801"));
-        createVehicles(CountryFactory.makeCountryByCountry(Country.BRITAIN), DateUtils.getDateYYYYMMDD("19170801"));
+        createVehicles(CountryFactory.makeCountryByCountry(Country.FRANCE), DateUtils.getDateYYYYMMDD("19420801"));
+        createVehicles(CountryFactory.makeCountryByCountry(Country.GERMANY), DateUtils.getDateYYYYMMDD("19420801"));
+        createVehicles(CountryFactory.makeCountryByCountry(Country.BRITAIN), DateUtils.getDateYYYYMMDD("19420801"));
         createVehicles(CountryFactory.makeCountryByCountry(Country.USA), DateUtils.getDateYYYYMMDD("19180501"));
     }
     
@@ -46,9 +46,9 @@ public class VehicleFactoryFCTest
     @Test
     public void locomotiveCreateTest() throws PWCGException
     {
-        createLocomotive(CountryFactory.makeCountryByCountry(Country.FRANCE), DateUtils.getDateYYYYMMDD("19170801"));
-        createLocomotive(CountryFactory.makeCountryByCountry(Country.GERMANY), DateUtils.getDateYYYYMMDD("19170801"));
-        createLocomotive(CountryFactory.makeCountryByCountry(Country.BRITAIN), DateUtils.getDateYYYYMMDD("19170801"));
+        createLocomotive(CountryFactory.makeCountryByCountry(Country.FRANCE), DateUtils.getDateYYYYMMDD("19420801"));
+        createLocomotive(CountryFactory.makeCountryByCountry(Country.GERMANY), DateUtils.getDateYYYYMMDD("19420801"));
+        createLocomotive(CountryFactory.makeCountryByCountry(Country.BRITAIN), DateUtils.getDateYYYYMMDD("19420801"));
         createLocomotive(CountryFactory.makeCountryByCountry(Country.USA), DateUtils.getDateYYYYMMDD("19180501"));
     }
     

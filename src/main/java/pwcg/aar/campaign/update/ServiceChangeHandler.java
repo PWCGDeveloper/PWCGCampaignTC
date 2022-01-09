@@ -37,8 +37,8 @@ public class ServiceChangeHandler
     
     private void handleChangeOfServiceForSquadron(Company squadron, Date newDate) throws PWCGException 
     {
-        ArmedService serviceNow = squadron.determineServiceForSquadron(campaign.getDate());
-        ArmedService serviceAfter = squadron.determineServiceForSquadron(newDate);
+        ArmedService serviceNow = squadron.determineServiceForCompany(campaign.getDate());
+        ArmedService serviceAfter = squadron.determineServiceForCompany(newDate);
 
         if (serviceNow.getServiceId() != serviceAfter.getServiceId())
         {

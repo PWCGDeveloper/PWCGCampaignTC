@@ -3,10 +3,9 @@ package pwcg.mission.target;
 import java.util.ArrayList;
 import java.util.List;
 
-import pwcg.campaign.api.IProductSpecificConfiguration;
-import pwcg.campaign.factory.ProductSpecificConfigurationFactory;
 import pwcg.core.utils.RandomNumberGenerator;
 import pwcg.mission.ground.BattleSize;
+import pwcg.product.bos.config.TCProductSpecificConfiguration;
 
 public class AssaultDefinitionRange
 {
@@ -15,7 +14,7 @@ public class AssaultDefinitionRange
 
     public static int determineNumberOfAssaultSegments(BattleSize battleSize)
     {
-        IProductSpecificConfiguration productSpecific = ProductSpecificConfigurationFactory.createProductSpecificConfiguration();
+        TCProductSpecificConfiguration productSpecific =new TCProductSpecificConfiguration();
         int numAssaultSegments = productSpecific.getNumAssaultSegments(battleSize);
         return numAssaultSegments;
     }

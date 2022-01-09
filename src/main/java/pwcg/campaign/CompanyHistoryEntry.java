@@ -1,6 +1,6 @@
 package pwcg.campaign;
 
-public class SquadHistoryEntry
+public class CompanyHistoryEntry
 {
     public static final int NO_SQUADRON_SKILL_CHANGE = -1;
     private String date = "";

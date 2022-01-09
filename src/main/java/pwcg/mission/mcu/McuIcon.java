@@ -6,10 +6,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import pwcg.campaign.api.IProductSpecificConfiguration;
 import pwcg.campaign.api.Side;
 import pwcg.campaign.context.FrontLinePoint;
-import pwcg.campaign.factory.ProductSpecificConfigurationFactory;
 import pwcg.campaign.group.airfield.Airfield;
 import pwcg.campaign.utils.LCIndexGenerator;
 import pwcg.core.exception.PWCGException;
@@ -17,6 +15,7 @@ import pwcg.core.location.Coordinate;
 import pwcg.core.location.Orientation;
 import pwcg.core.utils.PWCGLogger;
 import pwcg.mission.MissionStringHandler;
+import pwcg.product.bos.config.TCProductSpecificConfiguration;
 
 public class McuIcon extends BaseFlightMcu
 {
@@ -63,7 +62,7 @@ public class McuIcon extends BaseFlightMcu
 
         setName(waypoint.getName());
 
-        IProductSpecificConfiguration productSpecificConfiguration = ProductSpecificConfigurationFactory.createProductSpecificConfiguration();
+        TCProductSpecificConfiguration productSpecificConfiguration =new TCProductSpecificConfiguration();
         if (productSpecificConfiguration.usePosition1())
         {
             rColor = 0;

@@ -84,7 +84,7 @@ public class AirfieldDistanceEvaluator
             
             Airfield squadronField = squadron.determineCurrentAirfieldAnyMap(dateNow);
             
-            if (squadron.determineSquadronCountry(dateNow).getSide() != sideSquadrons)
+            if (squadron.determineCompanyCountry(dateNow).getSide() != sideSquadrons)
             {
                 continue;
             }
@@ -96,7 +96,7 @@ public class AirfieldDistanceEvaluator
             
             String reason = " ";
             
-            PwcgRoleCategory squadronRoleCategory = squadron.determineSquadronPrimaryRoleCategory(dateNow);
+            PwcgRoleCategory squadronRoleCategory = squadron.determineCompanyPrimaryRoleCategory(dateNow);
             if (squadronRoleCategory == PwcgRoleCategory.FIGHTER)
             {
                 if (!fighterFields.containsKey(squadronField.getName()))

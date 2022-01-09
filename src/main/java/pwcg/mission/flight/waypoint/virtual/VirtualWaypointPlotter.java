@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import pwcg.campaign.api.IProductSpecificConfiguration;
-import pwcg.campaign.factory.ProductSpecificConfigurationFactory;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.location.Orientation;
@@ -13,6 +11,7 @@ import pwcg.core.utils.MathUtils;
 import pwcg.mission.flight.IFlight;
 import pwcg.mission.flight.plane.PlaneMcu;
 import pwcg.mission.flight.waypoint.missionpoint.MissionPoint;
+import pwcg.product.bos.config.TCProductSpecificConfiguration;
 
 public class VirtualWaypointPlotter
 {
@@ -112,7 +111,7 @@ public class VirtualWaypointPlotter
     {
         List<Coordinate> vwpCoordinatesForLeg = new ArrayList<>();
         
-        IProductSpecificConfiguration productSpecific = ProductSpecificConfigurationFactory.createProductSpecificConfiguration();
+        TCProductSpecificConfiguration productSpecific =new TCProductSpecificConfiguration();
         int vwpSeparationDistance = productSpecific.getVwpSeparationDistance();
         
         double backoffAngle = MathUtils.calcAngle(legEndPosition, legStartPosition);

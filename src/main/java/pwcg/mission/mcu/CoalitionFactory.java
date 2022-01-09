@@ -4,7 +4,7 @@ import java.util.List;
 
 import pwcg.campaign.api.ICountry;
 import pwcg.campaign.api.Side;
-import pwcg.product.bos.config.BoSCoalitionFactory;
+import pwcg.product.bos.config.TCCoalitionFactory;
 
 public class CoalitionFactory
 {
@@ -34,6 +34,6 @@ public class CoalitionFactory
     
     private static ICoalitionFactory buildCoalitionFactory()
     {
-        return new BoSCoalitionFactory();
+        return new TCCoalitionFactory();
     }
 }

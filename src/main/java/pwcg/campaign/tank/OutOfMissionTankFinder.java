@@ -45,14 +45,14 @@ public class OutOfMissionTankFinder
     private TankType findAlternativeTankTypeForSquadron(Company squadron, PwcgRoleCategory roleCategory, Date date) throws PWCGException
     {
         TankType planeType = PWCGContext.getInstance().getTankTypeFactory().findActiveTankTypeByCountryDateAndRole(
-                squadron.determineSquadronCountry(date), date, roleCategory);
+                squadron.determineCompanyCountry(date), date, roleCategory);
         return planeType;        
     }
 
     private TankType findAnyTankTypeForCountryAndDate(Company squadron, Date date) throws PWCGException
     {
         TankType planeType = PWCGContext.getInstance().getTankTypeFactory().findAnyTankTypeForCountryAndDate(
-                squadron.determineSquadronCountry(date), date);
+                squadron.determineCompanyCountry(date), date);
         return planeType;        
     }
 

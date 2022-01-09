@@ -197,7 +197,7 @@ public class Campaign
         for (CrewMember player : this.personnelManager.getAllActivePlayers().getCrewMemberList())
         {
             Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(player.getCompanyId());
-            PwcgRoleCategory squadronPrimaryRoleCategory = squadron.determineSquadronPrimaryRoleCategory(this.getDate());
+            PwcgRoleCategory squadronPrimaryRoleCategory = squadron.determineCompanyPrimaryRoleCategory(this.getDate());
             if (squadronPrimaryRoleCategory == PwcgRoleCategory.FIGHTER)
             {
                 return false;

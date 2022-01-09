@@ -23,7 +23,7 @@ import pwcg.campaign.crewmember.SerialNumber;
 import pwcg.campaign.personnel.PersonnelReplacementsService;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
-import pwcg.product.bos.country.BoSServiceManager;
+import pwcg.product.bos.country.TCServiceManager;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
@@ -64,7 +64,7 @@ public class CampaignPersonnelReplacementUpdaterTest
     	replacementService.setReplacementPoints(40);
     	replacementService.setDailyReplacementRate(10);
     	replacementService.setLastReplacementDate(DateUtils.removeTimeDays(campaign.getDate(), 8));
-    	replacementService.setServiceId(BoSServiceManager.LUFTWAFFE);
+    	replacementService.setServiceId(TCServiceManager.LUFTWAFFE);
     	
     	replacementServices.add(replacementService);
     	
@@ -83,7 +83,7 @@ public class CampaignPersonnelReplacementUpdaterTest
     	replacementService.setReplacementPoints(40);
     	replacementService.setDailyReplacementRate(30);
     	replacementService.setLastReplacementDate(DateUtils.removeTimeDays(campaign.getDate(), 8));
-    	replacementService.setServiceId(BoSServiceManager.VVS);
+    	replacementService.setServiceId(TCServiceManager.VVS);
     	
     	replacementServices.add(replacementService);
     	
@@ -102,7 +102,7 @@ public class CampaignPersonnelReplacementUpdaterTest
     	replacementService.setReplacementPoints(40);
     	replacementService.setDailyReplacementRate(30);
     	replacementService.setLastReplacementDate(DateUtils.removeTimeDays(campaign.getDate(), 6));
-    	replacementService.setServiceId(BoSServiceManager.VVS);
+    	replacementService.setServiceId(TCServiceManager.VVS);
     	
     	replacementServices.add(replacementService);
     	

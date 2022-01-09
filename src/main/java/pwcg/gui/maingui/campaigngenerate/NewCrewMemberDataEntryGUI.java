@@ -381,7 +381,7 @@ public class NewCrewMemberDataEntryGUI extends JPanel implements ActionListener
         
         for (Company squadron : squadronsForService)
         {            
-            PwcgRoleCategory primaryRoleCategory = squadron.determineSquadronPrimaryRoleCategory(date);
+            PwcgRoleCategory primaryRoleCategory = squadron.determineCompanyPrimaryRoleCategory(date);
 
             rolesSorted.put(primaryRoleCategory.getRoleCategoryDescription(), primaryRoleCategory);
         }

@@ -37,6 +37,6 @@ public class SquadronManagerCurrentMapAxisTest
         Company nearbySquadron = EscortSquadronSelector.getEscortSquadron(campaign, squadron, squadron.determineCurrentPosition(campaign.getDate()), new MissionSquadronRegistry());
         assert(nearbySquadron != null);
         assert(nearbySquadron.determineSide() == Side.AXIS);
-        assert(nearbySquadron.getSquadronRoles().isSquadronThisRole(campaign.getDate(), PwcgRole.ROLE_FIGHTER) == true);
+        assert(nearbySquadron.getSquadronRoles().isCompanyThisRole(campaign.getDate(), PwcgRole.ROLE_FIGHTER) == true);
     }
 }

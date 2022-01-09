@@ -7,15 +7,14 @@ import java.util.Date;
 import java.util.List;
 
 import pwcg.campaign.api.ICountry;
-import pwcg.campaign.api.IProductSpecificConfiguration;
 import pwcg.campaign.api.Side;
 import pwcg.campaign.context.Country;
-import pwcg.campaign.factory.ProductSpecificConfigurationFactory;
 import pwcg.campaign.skin.TacticalCodeColor;
 import pwcg.campaign.tank.payload.TankPayloadElement;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.PWCGLogger;
 import pwcg.core.utils.PWCGLogger.LogLevel;
+import pwcg.product.bos.config.TCProductSpecificConfiguration;
 
 public class TankType implements Cloneable
 {
@@ -116,7 +115,7 @@ public class TankType implements Cloneable
 
     public void setScriptAndModelWithPath(String name)
     {
-        IProductSpecificConfiguration productSpecificConfiguration = ProductSpecificConfigurationFactory.createProductSpecificConfiguration();
+        TCProductSpecificConfiguration productSpecificConfiguration =new TCProductSpecificConfiguration();
         if (productSpecificConfiguration.usePlaneDir())
         {
             script = "LuaScripts\\WorldObjects\\Planes\\" + name + ".txt";

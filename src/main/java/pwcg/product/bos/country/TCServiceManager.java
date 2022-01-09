@@ -12,28 +12,28 @@ import pwcg.campaign.factory.CountryFactory;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.PWCGLogger;
 
-public class BoSServiceManager extends ArmedServiceManager implements IArmedServiceManager 
+public class TCServiceManager extends ArmedServiceManager implements IArmedServiceManager 
 {
     public static int WEHRMACHT = 20111;
-    public static int SVV = 10112;
+    public static int SSV = 10112;
     public static int US_ARMY = 10113;
     public static int BRITISH_ARMY = 10114;
 
 
-    private static BoSServiceManager instance;
+    private static TCServiceManager instance;
     
-    public static BoSServiceManager getInstance()
+    public static TCServiceManager getInstance()
     {
         if (instance == null)
         {
-            instance = new BoSServiceManager();
+            instance = new TCServiceManager();
             instance.initialize();
 
         }
         return instance;
     }
     
-    private BoSServiceManager ()
+    private TCServiceManager ()
     {
     }
 
@@ -115,7 +115,7 @@ public class BoSServiceManager extends ArmedServiceManager implements IArmedServ
         }
         else if (country == Country.RUSSIA)
         {
-            return(getArmedServiceById(SVV, date));
+            return(getArmedServiceById(SSV, date));
         }
         else if (country == Country.USA)
         {

@@ -6,12 +6,10 @@ import java.util.Date;
 
 import pwcg.campaign.Campaign;
 import pwcg.campaign.api.ICountry;
-import pwcg.campaign.api.IProductSpecificConfiguration;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.CrewMembers;
 import pwcg.campaign.factory.CountryFactory;
-import pwcg.campaign.factory.ProductSpecificConfigurationFactory;
 import pwcg.campaign.skin.Skin;
 import pwcg.campaign.tank.EquippedTank;
 import pwcg.campaign.tank.TankType;
@@ -30,6 +28,7 @@ import pwcg.core.utils.PWCGLogger;
 import pwcg.core.utils.PWCGLogger.LogCategory;
 import pwcg.mission.mcu.McuEvent;
 import pwcg.mission.mcu.McuTREntity;
+import pwcg.product.bos.config.TCProductSpecificConfiguration;
 
 public class TankMcu extends EquippedTank implements Cloneable
 {
@@ -310,7 +309,7 @@ public class TankMcu extends EquippedTank implements Cloneable
             writer.newLine();
 
             // BoS specific parameters
-            IProductSpecificConfiguration productSpecificConfiguration = ProductSpecificConfigurationFactory.createProductSpecificConfiguration();
+            TCProductSpecificConfiguration productSpecificConfiguration =new TCProductSpecificConfiguration();
             if (productSpecificConfiguration.useCallSign())
             {
                 writer.write("  Callsign = " + callsign.getNum(country.getCountry()) + ";");

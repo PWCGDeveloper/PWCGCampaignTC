@@ -25,7 +25,7 @@ public class TransferHandler
 	public TransferEvent transferPlayer(Company oldSquadron, Company newSquadron) throws PWCGException 
 	{
 	    int leaveTimeForTransfer = transferleaveTime();	
-        changeInRankForServiceTransfer(oldSquadron.determineServiceForSquadron(campaign.getDate()), newSquadron.determineServiceForSquadron(campaign.getDate()));
+        changeInRankForServiceTransfer(oldSquadron.determineServiceForCompany(campaign.getDate()), newSquadron.determineServiceForCompany(campaign.getDate()));
         movePlayerToNewSquadron(newSquadron);
         TransferEvent transferEvent = createTransferEvent(leaveTimeForTransfer, oldSquadron, newSquadron);
 		

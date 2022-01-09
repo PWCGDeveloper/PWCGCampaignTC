@@ -32,28 +32,28 @@ public class BoSRank implements IRankHelper
     	    {
     	        RankStruct rankStruct = new RankStruct(rank.getRankName(), rank.getRankAbbrev());
 
-                if (rank.getRankService() == BoSServiceManager.WEHRMACHT)
+                if (rank.getRankService() == TCServiceManager.WEHRMACHT)
                 {
                     wehrmacht.put(rank.getRankId(), rankStruct);
                 }
-                else if (rank.getRankService() == BoSServiceManager.SVV)
+                else if (rank.getRankService() == TCServiceManager.SSV)
                 {
                     svv.put(rank.getRankId(), rankStruct);
                 }
-                else if (rank.getRankService() == BoSServiceManager.US_ARMY)
+                else if (rank.getRankService() == TCServiceManager.US_ARMY)
                 {
                     usarmy.put(rank.getRankId(), rankStruct);
                 }
-                else if (rank.getRankService() == BoSServiceManager.BRITISH_ARMY)
+                else if (rank.getRankService() == TCServiceManager.BRITISH_ARMY)
                 {
                     britisharmy.put(rank.getRankId(), rankStruct);
                 }
     	    }
             
-            ranksByService.put(BoSServiceManager.WEHRMACHT, wehrmacht);
-            ranksByService.put(BoSServiceManager.SVV, svv);
-            ranksByService.put(BoSServiceManager.US_ARMY, usarmy);
-            ranksByService.put(BoSServiceManager.BRITISH_ARMY, britisharmy);
+            ranksByService.put(TCServiceManager.WEHRMACHT, wehrmacht);
+            ranksByService.put(TCServiceManager.SSV, svv);
+            ranksByService.put(TCServiceManager.US_ARMY, usarmy);
+            ranksByService.put(TCServiceManager.BRITISH_ARMY, britisharmy);
 
 	    }
 	    catch (Exception e)

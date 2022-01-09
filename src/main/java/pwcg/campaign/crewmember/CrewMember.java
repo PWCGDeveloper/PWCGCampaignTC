@@ -268,7 +268,7 @@ public class CrewMember implements Cloneable
 
         if (squadron != null)
         {
-            service = squadron.determineServiceForSquadron(date);
+            service = squadron.determineServiceForCompany(date);
         }
         else
         {

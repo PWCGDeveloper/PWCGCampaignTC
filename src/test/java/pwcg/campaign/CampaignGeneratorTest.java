@@ -41,7 +41,7 @@ public class CampaignGeneratorTest
     	assert(campaign.getPersonnelManager().getAllActivePlayers().getCrewMemberList().size() == 1);
         CrewMember player = campaign.findReferencePlayer();
         Assertions.assertTrue (player.determineSquadron().getCompanyId() == SquadronTestProfile.GROSS_DEUTSCHLAND_PROFILE.getSquadronId());
-        Assertions.assertTrue (player.determineSquadron().determineSquadronCountry(campaign.getDate()).getCountry() == Country.GERMANY);
+        Assertions.assertTrue (player.determineSquadron().determineCompanyCountry(campaign.getDate()).getCountry() == Country.GERMANY);
         Assertions.assertTrue (campaign.getCampaignData().getName().equals(CampaignCacheBase.TEST_CAMPAIGN_NAME));
         assert(campaign.getPersonnelManager().getAllCompanyPersonnel().size() > 6);
         assert(campaign.getEquipmentManager().getEquipmentAllCompanies().size() > 6);
@@ -67,7 +67,7 @@ public class CampaignGeneratorTest
         
         Company squadron = squadronManager.getCompany(squadronId);
         
-        ArmedService service = squadron.determineServiceForSquadron(campaignDate);
+        ArmedService service = squadron.determineServiceForCompany(campaignDate);
         String squadronName = squadron.determineDisplayName(campaignDate);
         
         IRankHelper rank = RankFactory.createRankHelper();

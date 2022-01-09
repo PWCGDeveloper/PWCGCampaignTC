@@ -24,7 +24,7 @@ import pwcg.campaign.plane.EquippedPlane;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.CampaignRemover;
 import pwcg.core.utils.DateUtils;
-import pwcg.product.fc.country.FCServiceManager;
+import pwcg.product.fc.country.TCServiceManager;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.CampaignCacheBase;
 import pwcg.testutils.SquadronTestProfile;
@@ -80,13 +80,13 @@ public class CampaignIOJsonTest
     private void validatePersonnelReplacements(Campaign campaign) throws PWCGException
     {
         IArmedServiceManager armedServiceManager = ArmedServiceFactory.createServiceManager();
-    	ArmedService germanArmedService = armedServiceManager.getArmedServiceByName(FCServiceManager.DEUTSCHE_LUFTSTREITKRAFTE_NAME, campaign.getDate());
+    	ArmedService germanArmedService = armedServiceManager.getArmedServiceByName(TCServiceManager.WEHRMACHT, campaign.getDate());
         PersonnelReplacementsService germanReplacements = campaign.getPersonnelManager().getPersonnelReplacementsService(germanArmedService.getServiceId());
         assert(germanReplacements.getReplacements().getActiveCount(campaign.getDate()) == 20);
         assert(germanReplacements.getDailyReplacementRate() == 22);
         assert(germanReplacements.getLastReplacementDate().equals(campaign.getDate()));
 
-        ArmedService belgianArmedService = armedServiceManager.getArmedServiceByName(FCServiceManager.AVIATION_MILITAIRE_BELGE_NAME, campaign.getDate());
+        ArmedService belgianArmedService = armedServiceManager.getArmedServiceByName(TCServiceManager.AVIATION_MILITAIRE_BELGE_NAME, campaign.getDate());
         PersonnelReplacementsService belgianReplacements = campaign.getPersonnelManager().getPersonnelReplacementsService(belgianArmedService.getServiceId());
         assert(belgianReplacements.getReplacements().getActiveCount(campaign.getDate()) == 20);
         assert(belgianReplacements.getDailyReplacementRate() == 3);

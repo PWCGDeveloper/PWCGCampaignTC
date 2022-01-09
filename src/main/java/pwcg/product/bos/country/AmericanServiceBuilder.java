@@ -26,7 +26,7 @@ public class AmericanServiceBuilder
     private static ArmedService createUSArmy() throws PWCGException
     {
         ArmedService usArmy = new ArmedService();
-        usArmy.setServiceId(BoSServiceManager.US_ARMY);
+        usArmy.setServiceId(TCServiceManager.US_ARMY);
         usArmy.setCountry(CountryFactory.makeCountryByCountry(Country.USA));
         usArmy.setNameCountry(CountryFactory.makeCountryByCountry(Country.USA));
         usArmy.setName(US_ARMY_NAME);

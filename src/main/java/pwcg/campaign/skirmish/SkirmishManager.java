@@ -37,10 +37,6 @@ public class SkirmishManager
     public List<Skirmish> getSkirmishesForDate(Campaign campaign, MissionHumanParticipants participatingPlayers) throws PWCGException 
     {     
         List<Skirmish> skirmishesForCampaign =  getSetPieceSkirmishesForDate(campaign);
-        if (skirmishesForCampaign.isEmpty())
-        {
-            skirmishesForCampaign = getDynamicSkirmishesForDate(campaign, participatingPlayers);
-        }
         return skirmishesForCampaign;
     }
 
@@ -55,13 +51,6 @@ public class SkirmishManager
             }
         }
         
-        return skirmishesForCampaign;
-    }
-
-    private List<Skirmish> getDynamicSkirmishesForDate(Campaign campaign, MissionHumanParticipants participatingPlayers) throws PWCGException
-    {
-        DynamicSkirmishBuilder dynamicSkirmishBuilder = new DynamicSkirmishBuilder(campaign, participatingPlayers);
-        List<Skirmish> skirmishesForCampaign = dynamicSkirmishBuilder.getSkirmishesForDate();
         return skirmishesForCampaign;
     }
 

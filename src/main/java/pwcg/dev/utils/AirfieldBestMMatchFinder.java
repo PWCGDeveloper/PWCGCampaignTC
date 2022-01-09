@@ -28,13 +28,13 @@ public class AirfieldBestMMatchFinder
         airfieldDistanceOrganizer.process(date, FrontMapIdentifier.MOSCOW_MAP);
         
         AirfieldSet airfieldSet = airfieldDistanceOrganizer.axisAirfieldSet;
-        if (squadron.determineSquadronCountry(date).getSide() == Side.ALLIED)
+        if (squadron.determineCompanyCountry(date).getSide() == Side.ALLIED)
         {
             airfieldSet = airfieldDistanceOrganizer.alliedAirfieldSet;
         }
         
         List<Airfield> relativeFields = new ArrayList<Airfield>(airfieldSet.getBomberFields().values());
-        PwcgRoleCategory squadronRoleCategory = squadron.determineSquadronPrimaryRoleCategory(date);
+        PwcgRoleCategory squadronRoleCategory = squadron.determineCompanyPrimaryRoleCategory(date);
         if (squadronRoleCategory == PwcgRoleCategory.FIGHTER)
         {
             relativeFields = new ArrayList<Airfield>(airfieldSet.getFighterFields().values());

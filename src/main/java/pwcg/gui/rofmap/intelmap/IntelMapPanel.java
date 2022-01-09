@@ -254,7 +254,7 @@ public class IntelMapPanel extends MapPanelBase
             IntelSquadronMapPoint mapPoint = new IntelSquadronMapPoint();
             mapPoint.desc = squadron.determineDisplayName(parent.getMapDate());
             mapPoint.coord = field.getPosition().copy();
-            mapPoint.service = squadron.determineServiceForSquadron(parent.getMapDate());
+            mapPoint.service = squadron.determineServiceForCompany(parent.getMapDate());
             mapPoint.squadron = squadron;
             
             if (squadron.getCompanyId() == campaign.findReferencePlayer().getCompanyId())

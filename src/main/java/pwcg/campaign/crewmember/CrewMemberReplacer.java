@@ -48,7 +48,7 @@ public class CrewMemberReplacer  implements ICrewMemberReplacer
 		CampaignGeneratorModel generatorModel = new CampaignGeneratorModel();
         generatorModel.setPlayerRank(rank);
         generatorModel.setPlayerName(playerCrewMemberName);
-        generatorModel.setService(newPlayerSquadron.determineServiceForSquadron(campaign.getDate()));
+        generatorModel.setService(newPlayerSquadron.determineServiceForCompany(campaign.getDate()));
         generatorModel.setCampaignName(campaign.getCampaignData().getName());
         generatorModel.setCampaignDate(campaign.getDate());
         generatorModel.setSquadronName(newPlayerSquadron.determineDisplayName(campaign.getDate()));

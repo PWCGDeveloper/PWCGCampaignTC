@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
 
-import pwcg.campaign.api.IProductSpecificConfiguration;
+import pwcg.campaign.api.TCProductSpecificConfiguration;
 import pwcg.campaign.factory.ProductSpecificConfigurationFactory;
 import pwcg.core.utils.MathUtils;
 import pwcg.mission.flight.plane.PlaneMcu;
@@ -14,7 +14,7 @@ public class PlaneSpacingValidator
     
     public static void verifySpacing(List<PlaneMcu> planes)
     {
-        IProductSpecificConfiguration productSpecific = ProductSpecificConfigurationFactory.createProductSpecificConfiguration();
+        TCProductSpecificConfiguration productSpecific =new TCProductSpecificConfiguration();
         int horizontalSpacing = productSpecific.getFormationHorizontalSpacing() - 10;
 
         for (int i = 0; i < planes.size(); ++i)

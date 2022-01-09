@@ -3,13 +3,12 @@ package pwcg.campaign.context;
 import java.util.Date;
 
 import pwcg.campaign.api.ICountry;
-import pwcg.campaign.api.IProductSpecificConfiguration;
 import pwcg.campaign.api.Side;
 import pwcg.campaign.factory.CountryFactory;
-import pwcg.campaign.factory.ProductSpecificConfigurationFactory;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.utils.MathUtils;
+import pwcg.product.bos.config.TCProductSpecificConfiguration;
 
 public class CountryDesignator
 {
@@ -26,7 +25,7 @@ public class CountryDesignator
         double distanceToAllied = MathUtils.calcDist(objectCoordinate, closestAllied);
         double distanceToAxis = MathUtils.calcDist(objectCoordinate, closestAxis);
         
-        IProductSpecificConfiguration productSpecific = ProductSpecificConfigurationFactory.createProductSpecificConfiguration();
+        TCProductSpecificConfiguration productSpecific = new TCProductSpecificConfiguration();
         int neutralZone = productSpecific.geNeutralZone();
 
         if (distanceToAllied > neutralZone && distanceToAxis > neutralZone)

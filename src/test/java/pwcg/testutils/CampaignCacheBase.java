@@ -114,7 +114,7 @@ public abstract class CampaignCacheBase implements ICampaignCache
         Company company = companyManager.getCompany(profile.getSquadronId());
         
         Date campaignDate = DateUtils.getDateYYYYMMDD(profile.getDateString());
-        ArmedService service = company.determineServiceForSquadron(campaignDate);
+        ArmedService service = company.determineServiceForCompany(campaignDate);
         String companyName = company.determineDisplayName(campaignDate);
         
         IRankHelper rank = RankFactory.createRankHelper();

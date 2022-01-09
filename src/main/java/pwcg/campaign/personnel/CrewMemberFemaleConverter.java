@@ -8,13 +8,13 @@ import pwcg.campaign.crewmember.CrewMemberNames;
 import pwcg.campaign.crewmember.CrewMembers;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.RandomNumberGenerator;
-import pwcg.product.bos.country.BoSServiceManager;
+import pwcg.product.bos.country.TCServiceManager;
 
 public class CrewMemberFemaleConverter
 {
     public static CrewMember possiblyConvertToFemale(ArmedService service, CrewMember crewMember, HashMap<String, String> namesUsed) throws PWCGException
     {
-        if (service.getServiceId() != BoSServiceManager.SVV)
+        if (service.getServiceId() != TCServiceManager.SSV)
         {
             return crewMember;
         }

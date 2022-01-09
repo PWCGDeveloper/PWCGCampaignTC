@@ -12,7 +12,7 @@ import pwcg.campaign.outofmission.UnknownSquadronVictoryGenerator;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.core.utils.RandomNumberGenerator;
-import pwcg.product.bos.country.BoSServiceManager;
+import pwcg.product.bos.country.TCServiceManager;
 
 public class CrewMemberAirInitialVictoryBuilder
 {
@@ -65,7 +65,7 @@ public class CrewMemberAirInitialVictoryBuilder
 
     private void factorServiceQuality(int rankPos) throws PWCGException
     {
-        ArmedService service = victorSquadron.determineServiceForSquadron(campaign.getDate());
+        ArmedService service = victorSquadron.determineServiceForCompany(campaign.getDate());
         int serviceQuality = service.getServiceQuality().getQuality(campaign.getDate()).getQualityValue();
 
         int minAdjustment = 0;
@@ -119,10 +119,10 @@ public class CrewMemberAirInitialVictoryBuilder
 
     private void factorLuftwaffe(int rankPos) throws PWCGException
     {
-        ArmedService service = victorSquadron.determineServiceForSquadron(campaign.getDate());
+        ArmedService service = victorSquadron.determineServiceForCompany(campaign.getDate());
         int serviceQuality = service.getServiceQuality().getQuality(campaign.getDate()).getQualityValue();
 
-        if (service.getServiceId() == BoSServiceManager.WEHRMACHT)
+        if (service.getServiceId() == TCServiceManager.WEHRMACHT)
         {
             if (serviceQuality > 80)
             {

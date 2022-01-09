@@ -26,7 +26,7 @@ import pwcg.core.utils.DateUtils;
 import pwcg.gui.image.ImageIconCache;
 import pwcg.gui.utils.ContextSpecificImages;
 import pwcg.product.bos.medals.AmericanMedalManager;
-import pwcg.product.fc.country.FCServiceManager;
+import pwcg.product.fc.country.TCServiceManager;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
@@ -47,7 +47,7 @@ public class RoFAmericanMedalManagerTest extends MedalManagerTestBase
     public void testAmericanMedals () throws PWCGException
     {            	
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19180801"));
-	    service = ArmedServiceFactory.createServiceManager().getArmedServiceById(FCServiceManager.USAS, campaign.getDate());
+	    service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.USAS, campaign.getDate());
         Mockito.when(player.determineService(ArgumentMatchers.<Date>any())).thenReturn(service);
 
         awardMedal(AmericanMedalManager.PILOTS_BADGE, 0, 0);
@@ -60,7 +60,7 @@ public class RoFAmericanMedalManagerTest extends MedalManagerTestBase
     public void testMoHFail () throws PWCGException
     {            
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19180801"));
-	    service = ArmedServiceFactory.createServiceManager().getArmedServiceById(FCServiceManager.USAS, campaign.getDate());
+	    service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.USAS, campaign.getDate());
         Mockito.when(player.determineService(ArgumentMatchers.<Date>any())).thenReturn(service);
 
         awardMedal(AmericanMedalManager.PILOTS_BADGE, 0, 0);

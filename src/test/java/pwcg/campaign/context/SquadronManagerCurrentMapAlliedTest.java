@@ -43,8 +43,8 @@ public class SquadronManagerCurrentMapAlliedTest
 
         assert(nearbySquadron != null);
         assert(nearbySquadron.determineSide() == Side.ALLIED);
-        boolean isBomb = nearbySquadron.getSquadronRoles().isSquadronThisRole(campaign.getDate(), PwcgRole.ROLE_BOMB);
-        boolean isAttack = nearbySquadron.getSquadronRoles().isSquadronThisRole(campaign.getDate(), PwcgRole.ROLE_ATTACK);
+        boolean isBomb = nearbySquadron.getSquadronRoles().isCompanyThisRole(campaign.getDate(), PwcgRole.ROLE_BOMB);
+        boolean isAttack = nearbySquadron.getSquadronRoles().isCompanyThisRole(campaign.getDate(), PwcgRole.ROLE_ATTACK);
         assert(isBomb || isAttack);
     }
 

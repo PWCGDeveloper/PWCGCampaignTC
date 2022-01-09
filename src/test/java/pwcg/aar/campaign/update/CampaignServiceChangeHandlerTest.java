@@ -17,7 +17,7 @@ import pwcg.campaign.personnel.CompanyPersonnel;
 import pwcg.campaign.personnel.CrewMemberFilter;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
-import pwcg.product.fc.country.FCServiceManager;
+import pwcg.product.fc.country.TCServiceManager;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.SquadronTestProfile;
 
@@ -32,12 +32,12 @@ public class CampaignServiceChangeHandlerTest
     public void testRafTransition() throws PWCGException 
     {
         Campaign campaign = CampaignCache.makeCampaign(SquadronTestProfile.RFC_2_PROFILE);
-        ArmedService service = campaign.determinePlayerCompanies().get(0).determineServiceForSquadron(campaign.getDate());
+        ArmedService service = campaign.determinePlayerCompanies().get(0).determineServiceForCompany(campaign.getDate());
         ICountry country = service.getCountry();
         CompanyPersonnel personnel = campaign.getPersonnelManager().getCompanyPersonnel(SquadronTestProfile.RFC_2_PROFILE.getCompanyId());
 
         Assertions.assertTrue (country.getCountry() == Country.BRITAIN);
-        Assertions.assertTrue (service.getName().equals(FCServiceManager.RFC_NAME));
+        Assertions.assertTrue (service.getName().equals(BritishServiceBuilder.BRITISH_ARMY_NAME));
 
         CrewMembers rfcCrewMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(personnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
         for (CrewMember crewMember : rfcCrewMembers.getCrewMemberList())
@@ -50,9 +50,9 @@ public class CampaignServiceChangeHandlerTest
         ServiceChangeHandler serviceChangeHandler = new ServiceChangeHandler(campaign);
         serviceChangeHandler.handleChangeOfService(DateUtils.getRAFDate());
                 
-        service = campaign.determinePlayerCompanies().get(0).determineServiceForSquadron(DateUtils.getRAFDate());
+        service = campaign.determinePlayerCompanies().get(0).determineServiceForCompany(DateUtils.getRAFDate());
         Assertions.assertTrue (service.getCountry().getCountry() == Country.BRITAIN);
-        Assertions.assertTrue (service.getName().equals(FCServiceManager.RAF_NAME));
+        Assertions.assertTrue (service.getName().equals(BritishServiceBuilder.BRITISH_ARMY_NAME));
 
         CrewMembers rafCrewMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(personnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
         for (CrewMember crewMember : rafCrewMembers.getCrewMemberList())

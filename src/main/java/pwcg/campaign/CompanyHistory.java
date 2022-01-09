@@ -7,14 +7,14 @@ import java.util.List;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 
-public class SquadHistory
+public class CompanyHistory
 {
-    private List<SquadHistoryEntry> squadHistoryEntries = new ArrayList<>();
+    private List<CompanyHistoryEntry> squadHistoryEntries = new ArrayList<>();
 
-	public SquadHistoryEntry getSquadHistoryEntry(Date date) throws PWCGException
+	public CompanyHistoryEntry getSquadHistoryEntry(Date date) throws PWCGException
 	{
-	    SquadHistoryEntry selectedSquadHistoryEntry = null;
-	    for (SquadHistoryEntry squadHistoryEntry :squadHistoryEntries)
+	    CompanyHistoryEntry selectedSquadHistoryEntry = null;
+	    for (CompanyHistoryEntry squadHistoryEntry :squadHistoryEntries)
 	    {
 	        Date squadHistoryDate = DateUtils.getDateYYYYMMDD(squadHistoryEntry.getDate());
 	        if (!date.before(squadHistoryDate))
@@ -25,7 +25,7 @@ public class SquadHistory
 		return selectedSquadHistoryEntry;
 	}
 
-    public List<SquadHistoryEntry> getSquadHistoryEntries()
+    public List<CompanyHistoryEntry> getSquadHistoryEntries()
     {
         return squadHistoryEntries;
     }

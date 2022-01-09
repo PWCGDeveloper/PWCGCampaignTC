@@ -43,7 +43,7 @@ public class MissionSkinInitializerTest
         Mockito.when(flightPlanes.getPlanes()).thenReturn(planes);
         
         Mockito.when(flight.getCompany()).thenReturn(squadron);
-        Mockito.when(squadron.determineSquadronCountry(Mockito.any())).thenReturn(country);
+        Mockito.when(squadron.determineCompanyCountry(Mockito.any())).thenReturn(country);
         
         planes.clear();
         planes.add(plane1);

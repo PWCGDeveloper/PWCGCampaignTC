@@ -22,7 +22,7 @@ import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.gui.image.ImageIconCache;
 import pwcg.gui.utils.ContextSpecificImages;
-import pwcg.product.bos.country.BoSServiceManager;
+import pwcg.product.bos.country.TCServiceManager;
 import pwcg.product.bos.medals.AmericanMedalManager;
 
 @ExtendWith(MockitoExtension.class)
@@ -44,7 +44,7 @@ public class BoSAmericanMedalManagerTest extends MedalManagerTestBase
     public void testAmericanMedals () throws PWCGException
     {               
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19441001"));
-        service = ArmedServiceFactory.createServiceManager().getArmedServiceById(BoSServiceManager.USAAF, campaign.getDate());
+        service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.USAAF, campaign.getDate());
 
         awardMedal(AmericanMedalManager.PILOTS_BADGE, 0, 0);
         awardMedal(AmericanMedalManager.BRONZE_STAR, 3, 1);
@@ -58,7 +58,7 @@ public class BoSAmericanMedalManagerTest extends MedalManagerTestBase
     public void testAmericanMedalsAlternateMoHAward1 () throws PWCGException
     {               
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19441001"));
-        service = ArmedServiceFactory.createServiceManager().getArmedServiceById(BoSServiceManager.RAF, campaign.getDate());
+        service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.RAF, campaign.getDate());
 
         awardMedal(AmericanMedalManager.PILOTS_BADGE, 0, 0);
         awardMedal(AmericanMedalManager.BRONZE_STAR, 3, 1);
@@ -72,7 +72,7 @@ public class BoSAmericanMedalManagerTest extends MedalManagerTestBase
     public void testAmericanMedalsAlternateMoHAward2 () throws PWCGException
     {               
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19441001"));
-        service = ArmedServiceFactory.createServiceManager().getArmedServiceById(BoSServiceManager.RAF, campaign.getDate());
+        service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.RAF, campaign.getDate());
 
         awardMedal(AmericanMedalManager.PILOTS_BADGE, 0, 0);
         awardMedal(AmericanMedalManager.BRONZE_STAR, 3, 1);
@@ -86,7 +86,7 @@ public class BoSAmericanMedalManagerTest extends MedalManagerTestBase
     public void testMoHFail () throws PWCGException
     {            
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19441001"));
-        service = ArmedServiceFactory.createServiceManager().getArmedServiceById(BoSServiceManager.RAF, campaign.getDate());
+        service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.RAF, campaign.getDate());
 
         awardMedal(AmericanMedalManager.PILOTS_BADGE, 0, 0);
         awardMedal(AmericanMedalManager.BRONZE_STAR, 3, 1);

@@ -10,7 +10,7 @@ import pwcg.campaign.tank.PwcgRole;
 import pwcg.campaign.tank.PwcgRoleCategory;
 import pwcg.core.constants.AiSkillLevel;
 import pwcg.core.exception.PWCGException;
-import pwcg.product.bos.country.BoSServiceManager;
+import pwcg.product.bos.country.TCServiceManager;
 
 public class OutOfMissionAAAOddsCalculator
 {
@@ -80,7 +80,7 @@ public class OutOfMissionAAAOddsCalculator
         }
         
         ArmedService service = crewMember.determineService(campaign.getDate());
-        if (service.getServiceId() == BoSServiceManager.SVV)
+        if (service.getServiceId() == TCServiceManager.SSV)
         {
             shotDownOdds += 20;
         }

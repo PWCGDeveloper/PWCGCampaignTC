@@ -232,7 +232,7 @@ public class EquipmentRequestScreen extends ImageResizingPanel implements Action
         CrewMember referencePlayer = campaign.getReferencePlayer();
         ICountry country = CountryFactory.makeCountryByCountry(referencePlayer.getCountry());
         Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(referencePlayer.getCompanyId());
-        PwcgRoleCategory roleCategory = squadron.getSquadronRoles().selectSquadronPrimaryRoleCategory(campaign.getDate());
+        PwcgRoleCategory roleCategory = squadron.getSquadronRoles().selectCompanyPrimaryRoleCategory(campaign.getDate());
         List<TankType> availableTankTypes = planeTypeFactory.getAvailableTankTypes(country, roleCategory, campaign.getDate());        
 
         replacementAircraftTypeSelector = new JComboBox<String>();

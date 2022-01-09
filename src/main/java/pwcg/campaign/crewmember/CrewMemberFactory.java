@@ -62,9 +62,9 @@ public class CrewMemberFactory
         CrewMember newCrewMember = new CrewMember();
         
         HashMap<String, String> namesUsed = company.getNamesInUse(campaign);
-        ArmedService service = company.determineServiceForSquadron(campaign.getDate());
+        ArmedService service = company.determineServiceForCompany(campaign.getDate());
         
-        String squaddieName = CrewMemberNames.getInstance().getName(company.determineServiceForSquadron(campaign.getDate()), namesUsed);
+        String squaddieName = CrewMemberNames.getInstance().getName(company.determineServiceForCompany(campaign.getDate()), namesUsed);
         
         newCrewMember.setName(squaddieName);
         newCrewMember.setRank(rank);
@@ -81,7 +81,7 @@ public class CrewMemberFactory
         int numMissions = createMissionsFlown(rankPos);
         newCrewMember.setBattlesFought(numMissions);
         
-        PwcgRoleCategory companyPrimaryRoleCategory = company.determineSquadronPrimaryRoleCategory(campaign.getDate());
+        PwcgRoleCategory companyPrimaryRoleCategory = company.determineCompanyPrimaryRoleCategory(campaign.getDate());
         if (GroundVictimGenerator.shouldUse(companyPrimaryRoleCategory))
         {
             CrewMemberGroundInitialVictoryBuilder initialVictoryBuilder = new CrewMemberGroundInitialVictoryBuilder(campaign, company);
@@ -101,7 +101,7 @@ public class CrewMemberFactory
 
     private void makeCrewMemberPicture(CrewMember newCrewMember) throws PWCGException
     {
-        ArmedService service = company.determineServiceForSquadron(campaign.getDate());
+        ArmedService service = company.determineServiceForCompany(campaign.getDate());
         CrewMembers companyMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(companyPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
         CrewMemberPictureBuilder crewMemberPictureBuilder = new CrewMemberPictureBuilder(service, companyMembers);
         String picPath = crewMemberPictureBuilder.assignCrewMemberPicture();

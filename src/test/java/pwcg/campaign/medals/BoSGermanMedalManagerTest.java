@@ -26,7 +26,7 @@ import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.gui.image.ImageIconCache;
 import pwcg.gui.utils.ContextSpecificImages;
-import pwcg.product.bos.country.BoSServiceManager;
+import pwcg.product.bos.country.TCServiceManager;
 import pwcg.product.bos.medals.GermanMedalManager;
 
 @ExtendWith(MockitoExtension.class)
@@ -49,7 +49,7 @@ public class BoSGermanMedalManagerTest extends MedalManagerTestBase
     public void testGermanMedals () throws PWCGException
     {            	
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420801"));
-	    service = ArmedServiceFactory.createServiceManager().getArmedServiceById(BoSServiceManager.LUFTWAFFE, campaign.getDate());
+	    service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.LUFTWAFFE, campaign.getDate());
         Mockito.when(player.determineService(ArgumentMatchers.<Date>any())).thenReturn(service);
 
         awardMedal(GermanMedalManager.PILOTS_BADGE, 0, 0);
@@ -66,7 +66,7 @@ public class BoSGermanMedalManagerTest extends MedalManagerTestBase
     public void testKCDiamondsFail () throws PWCGException
     {            
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420801"));
-	    service = ArmedServiceFactory.createServiceManager().getArmedServiceById(BoSServiceManager.LUFTWAFFE, campaign.getDate());
+	    service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.LUFTWAFFE, campaign.getDate());
         Mockito.when(player.determineService(ArgumentMatchers.<Date>any())).thenReturn(service);
 
         awardMedal(GermanMedalManager.PILOTS_BADGE, 0, 0);
@@ -88,7 +88,7 @@ public class BoSGermanMedalManagerTest extends MedalManagerTestBase
     public void testAwardConsolidation () throws PWCGException
     {            
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420801"));
-        service = ArmedServiceFactory.createServiceManager().getArmedServiceById(BoSServiceManager.LUFTWAFFE, campaign.getDate());
+        service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.LUFTWAFFE, campaign.getDate());
         Mockito.when(player.determineService(ArgumentMatchers.<Date>any())).thenReturn(service);
 
         awardMedal(GermanMedalManager.PILOTS_BADGE, 0, 0);

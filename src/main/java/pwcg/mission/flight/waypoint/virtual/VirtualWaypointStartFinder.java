@@ -3,15 +3,14 @@ package pwcg.mission.flight.waypoint.virtual;
 import java.util.Date;
 import java.util.List;
 
-import pwcg.campaign.api.IProductSpecificConfiguration;
 import pwcg.campaign.api.Side;
 import pwcg.campaign.context.FrontLinePoint;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.factory.ProductSpecificConfigurationFactory;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.CoordinateBox;
 import pwcg.core.utils.MathUtils;
 import pwcg.mission.flight.IFlight;
+import pwcg.product.bos.config.TCProductSpecificConfiguration;
 
 public class VirtualWaypointStartFinder
 {
@@ -54,7 +53,7 @@ public class VirtualWaypointStartFinder
         {
             VirtualWayPointCoordinate vwpCoordinate = plotCoordinates.get(vwpIndex);
             double vwpDistanceToFront = getVwpDistanceFromFront(flight, vwpCoordinate);            
-            IProductSpecificConfiguration productSpecific = ProductSpecificConfigurationFactory.createProductSpecificConfiguration();
+            TCProductSpecificConfiguration productSpecific =new TCProductSpecificConfiguration();
             int vwpProximityToFrontDistance = productSpecific.getVwpProximityToFrontDistance();
             if (vwpDistanceToFront < vwpProximityToFrontDistance)
             {
@@ -73,7 +72,7 @@ public class VirtualWaypointStartFinder
         {
             VirtualWayPointCoordinate vwpCoordinate = plotCoordinates.get(vwpIndex);
             double vwpDistanceToFront = getVwpDistanceFromFront(flight, vwpCoordinate);
-            IProductSpecificConfiguration productSpecific = ProductSpecificConfigurationFactory.createProductSpecificConfiguration();
+            TCProductSpecificConfiguration productSpecific =new TCProductSpecificConfiguration();
             int vwpProximityToFrontDistance = productSpecific.getVwpProximityToFrontDistance();
             if (vwpDistanceToFront < vwpProximityToFrontDistance)
             {

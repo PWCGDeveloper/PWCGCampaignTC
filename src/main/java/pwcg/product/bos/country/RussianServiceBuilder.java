@@ -13,8 +13,8 @@ import pwcg.gui.colors.VVSColorMap;
 
 public class RussianServiceBuilder
 {
-    private static String RUSSIAN_ARMY_NAME ="Sovetskiye Sukhoputnye Voyska";
-    private static String RUSSIAN_ARMY_ICON ="ServiceSSV";
+    public static String SSV_NAME ="Sovetskiye Sukhoputnye Voyska";
+    public static String SSV_ICON ="ServiceSSV";
 
     public static List <ArmedService> createServices() throws PWCGException
     {
@@ -26,11 +26,11 @@ public class RussianServiceBuilder
     private static ArmedService createRussianArmy() throws PWCGException
     {
         ArmedService svv = new ArmedService();
-        svv.setServiceId(BoSServiceManager.SVV);
+        svv.setServiceId(TCServiceManager.SSV);
         svv.setCountry(CountryFactory.makeCountryByCountry(Country.RUSSIA));
         svv.setNameCountry(CountryFactory.makeCountryByCountry(Country.RUSSIA));
-        svv.setName(RUSSIAN_ARMY_NAME);
-        svv.setServiceIcon(RUSSIAN_ARMY_ICON);
+        svv.setName(SSV_NAME);
+        svv.setServiceIcon(SSV_ICON);
         svv.setStartDate(DateUtils.getBeginningOfGame());
         svv.setEndDate(DateUtils.getEndOfWar());
         svv.setServiceColorMap(new VVSColorMap());

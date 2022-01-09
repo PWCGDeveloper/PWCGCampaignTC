@@ -68,7 +68,7 @@ public class EmergencyResupplyHandler
     private void replacePersonnelForSquadron(CompanyPersonnel squadronPersonnel, int totalTransfers) throws PWCGException
     {
         CrewMemberReplacementFactory replacementFactory = new CrewMemberReplacementFactory(
-                campaign, squadronPersonnel.getCompany().determineServiceForSquadron(campaign.getDate()));
+                campaign, squadronPersonnel.getCompany().determineServiceForCompany(campaign.getDate()));
         
         for (int i = 0; i < totalTransfers; ++i)
         {

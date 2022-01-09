@@ -73,7 +73,7 @@ public class BeforeCampaignVictimGenerator implements IVictimGenerator
     {
         // Add the AI crewMembers
         IRankHelper rankLists = RankFactory.createRankHelper();
-        List<String> ranks = rankLists.getRanksByService(squadron.determineServiceForSquadron(campaignDate));
+        List<String> ranks = rankLists.getRanksByService(squadron.determineServiceForCompany(campaignDate));
         
         List<CrewMember> squadMembers = new ArrayList<CrewMember>();
         
@@ -91,9 +91,9 @@ public class BeforeCampaignVictimGenerator implements IVictimGenerator
             {
                 CrewMember aiCrewMember = new CrewMember();
 
-                String squaddieName = CrewMemberNames.getInstance().getName(squadron.determineServiceForSquadron(campaignDate), new HashMap<>());
+                String squaddieName = CrewMemberNames.getInstance().getName(squadron.determineServiceForCompany(campaignDate), new HashMap<>());
                 aiCrewMember.setName(squaddieName);
-                aiCrewMember.setRank(rankLists.getRankByService(rankPos, squadron.determineServiceForSquadron(campaignDate)));
+                aiCrewMember.setRank(rankLists.getRankByService(rankPos, squadron.determineServiceForCompany(campaignDate)));
 
                 squadMembers.add(aiCrewMember);
             }

@@ -84,7 +84,7 @@ public class AceManagerTest
     @Test
     public void testAcesKilled () throws PWCGException
     {            	
-    	List<TankAce> aces = aceManager.acesKilledHistoricallyInTimePeriod(DateUtils.getDateYYYYMMDD("19170801"), DateUtils.getDateYYYYMMDD("19171001"));
+    	List<TankAce> aces = aceManager.acesKilledHistoricallyInTimePeriod(DateUtils.getDateYYYYMMDD("19420801"), DateUtils.getDateYYYYMMDD("19171001"));
     	Assertions.assertTrue (aces.size() > 0);
     }
 
@@ -106,7 +106,7 @@ public class AceManagerTest
     public void testActiveAcesForSquadron () throws PWCGException
     {            	
     	Mockito.when(georgesGuynemer.getCrewMemberActiveStatus()).thenReturn(CrewMemberStatus.STATUS_ACTIVE);
-    	List<TankAce> aces = aceManager.getActiveAcesForSquadron(campaign.getPersonnelManager().getCampaignAces(), DateUtils.getDateYYYYMMDD("19170801"), SquadronTestProfile.ESC_103_PROFILE.getCompanyId());
+    	List<TankAce> aces = aceManager.getActiveAcesForSquadron(campaign.getPersonnelManager().getCampaignAces(), DateUtils.getDateYYYYMMDD("19420801"), SquadronTestProfile.ESC_103_PROFILE.getCompanyId());
     	Assertions.assertTrue (aces.size() > 0);
     }
 

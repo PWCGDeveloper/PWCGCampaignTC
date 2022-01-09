@@ -47,7 +47,7 @@ public class FlightSizeCalculatorTest
 	@Test
 	public void calcPlanesInFlightTest() throws PWCGException
 	{
-	    Mockito.when(squadron.determineSquadronPrimaryRoleCategory(Mockito.any())).thenReturn(PwcgRoleCategory.ATTACK);
+	    Mockito.when(squadron.determineCompanyPrimaryRoleCategory(Mockito.any())).thenReturn(PwcgRoleCategory.ATTACK);
 
 	    for (Country country : countries)
 	    {
@@ -60,7 +60,7 @@ public class FlightSizeCalculatorTest
     @Test
     public void calcPlanesInFlightBombTest() throws PWCGException
     {
-        Mockito.when(squadron.determineSquadronPrimaryRoleCategory(Mockito.any())).thenReturn(PwcgRoleCategory.BOMBER);
+        Mockito.when(squadron.determineCompanyPrimaryRoleCategory(Mockito.any())).thenReturn(PwcgRoleCategory.BOMBER);
 
         for (Country country : countries)
         {
@@ -81,7 +81,7 @@ public class FlightSizeCalculatorTest
     @Test
     public void calcPlanesInFlightFighterTest() throws PWCGException
     {
-        Mockito.when(squadron.determineSquadronPrimaryRoleCategory(Mockito.any())).thenReturn(PwcgRoleCategory.FIGHTER);
+        Mockito.when(squadron.determineCompanyPrimaryRoleCategory(Mockito.any())).thenReturn(PwcgRoleCategory.FIGHTER);
 
         for (Country country : countries)
         {

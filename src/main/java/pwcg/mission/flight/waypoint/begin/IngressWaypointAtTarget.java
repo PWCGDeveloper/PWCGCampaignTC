@@ -1,7 +1,5 @@
 package pwcg.mission.flight.waypoint.begin;
 
-import pwcg.campaign.api.IProductSpecificConfiguration;
-import pwcg.campaign.factory.ProductSpecificConfigurationFactory;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.utils.MathUtils;
@@ -9,6 +7,7 @@ import pwcg.core.utils.RandomNumberGenerator;
 import pwcg.mission.flight.IFlight;
 import pwcg.mission.flight.waypoint.WaypointFactory;
 import pwcg.mission.mcu.McuWaypoint;
+import pwcg.product.bos.config.TCProductSpecificConfiguration;
 
 public class IngressWaypointAtTarget implements IIngressWaypoint
 {
@@ -35,7 +34,7 @@ public class IngressWaypointAtTarget implements IIngressWaypoint
 
     private Coordinate getIngressWaypointAtTarget() throws PWCGException 
     {        
-        IProductSpecificConfiguration productSpecific = ProductSpecificConfigurationFactory.createProductSpecificConfiguration();
+        TCProductSpecificConfiguration productSpecific =new TCProductSpecificConfiguration();
         int minDistanceToTarget = productSpecific.getIngressAtTargetMinDIstance();
         int maxDistanceToTarget = productSpecific.getIngressAtTargetMaxDIstance();
         int randomDistanceToTarget = RandomNumberGenerator.getRandom(maxDistanceToTarget - minDistanceToTarget);

@@ -59,7 +59,7 @@ public class InitialCompanyStaffer
     private void addAiCrewMembers() throws PWCGException
     {
         IRankHelper rankObj = RankFactory.createRankHelper();
-        List<String> ranks = rankObj.getRanksByService(squadron.determineServiceForSquadron(campaign.getDate()));
+        List<String> ranks = rankObj.getRanksByService(squadron.determineServiceForCompany(campaign.getDate()));
         
         addNumAiCrewMembersAtRank(1, 0);
         
@@ -87,7 +87,7 @@ public class InitialCompanyStaffer
         int refinedNumCrewMembers = refineNumCrewMembersAtRank(initialNumCrewMembers, rankPos);
         
         IRankHelper rankObj = RankFactory.createRankHelper();
-        List<String> ranks = rankObj.getRanksByService(squadron.determineServiceForSquadron(campaign.getDate()));
+        List<String> ranks = rankObj.getRanksByService(squadron.determineServiceForCompany(campaign.getDate()));
 
         for (int i = 0; i < refinedNumCrewMembers; ++i)
         {
@@ -102,7 +102,7 @@ public class InitialCompanyStaffer
         for (CrewMember crewMember : squadronMembersAlreadyWithSquadron.getCrewMemberCollection().values())
         {
             IRankHelper rankObj = RankFactory.createRankHelper();
-            int squadronMemberRankPos = rankObj.getRankPosByService(crewMember.getRank(), squadron.determineServiceForSquadron(campaign.getDate()));
+            int squadronMemberRankPos = rankObj.getRankPosByService(crewMember.getRank(), squadron.determineServiceForCompany(campaign.getDate()));
             if (rankPos == squadronMemberRankPos)
             {
                 --numCrewMembers;

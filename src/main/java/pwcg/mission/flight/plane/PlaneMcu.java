@@ -6,10 +6,8 @@ import java.util.Date;
 
 import pwcg.campaign.Campaign;
 import pwcg.campaign.api.ICountry;
-import pwcg.campaign.api.IProductSpecificConfiguration;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.factory.CountryFactory;
-import pwcg.campaign.factory.ProductSpecificConfigurationFactory;
 import pwcg.campaign.plane.PlaneType;
 import pwcg.campaign.plane.payload.IPlanePayload;
 import pwcg.campaign.skin.Skin;
@@ -29,6 +27,7 @@ import pwcg.mission.flight.IFlight;
 import pwcg.mission.mcu.McuEvent;
 import pwcg.mission.mcu.McuTREntity;
 import pwcg.mission.mcu.group.IPlaneRemover;
+import pwcg.product.bos.config.TCProductSpecificConfiguration;
 
 /**
  * Plane is an instance of a plane. It derives from plane type and adds a crew,
@@ -313,7 +312,7 @@ public class PlaneMcu extends PlaneType implements Cloneable
             writer.newLine();
 
             // BoS specific parameters
-            IProductSpecificConfiguration productSpecificConfiguration = ProductSpecificConfigurationFactory.createProductSpecificConfiguration();
+            TCProductSpecificConfiguration productSpecificConfiguration =new TCProductSpecificConfiguration();
             if (productSpecificConfiguration.useCallSign())
             {
                 writer.write("  Callsign = " + callsign.getNum(country.getCountry()) + ";");

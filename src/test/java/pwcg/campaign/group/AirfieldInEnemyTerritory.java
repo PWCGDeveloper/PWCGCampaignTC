@@ -73,7 +73,7 @@ public class AirfieldInEnemyTerritory
 	private void noteBadlyPlacedSquadron(Date startDate, Company squadron, Airfield squadronField,
 	        FrontMapIdentifier mapForAirfield) throws PWCGException
 	{
-		ICountry squadronCountry = squadron.determineSquadronCountry(startDate);
+		ICountry squadronCountry = squadron.determineCompanyCountry(startDate);
 		ICountry airfieldCountry = squadronField.determineCountryOnDate(startDate);
 		if (isBadlyPlaced(squadronCountry, airfieldCountry))
 		{

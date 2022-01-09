@@ -94,8 +94,8 @@ public class SquadronTransferFinder
         Company squadronMemberCurrentSquadron = squadronManager.getCompany(crewMember.getCompanyId());
         if (squadronMemberCurrentSquadron != null)
         {
-            PwcgRoleCategory bestRoleForThisSquadron = squadronMemberCurrentSquadron.determineSquadronPrimaryRoleCategory(campaign.getDate());
-            PwcgRoleCategory bestRoleForNewSquadron = possibleSquadron.determineSquadronPrimaryRoleCategory(campaign.getDate());
+            PwcgRoleCategory bestRoleForThisSquadron = squadronMemberCurrentSquadron.determineCompanyPrimaryRoleCategory(campaign.getDate());
+            PwcgRoleCategory bestRoleForNewSquadron = possibleSquadron.determineCompanyPrimaryRoleCategory(campaign.getDate());
         
             if (bestRoleForThisSquadron == bestRoleForNewSquadron)
             {

@@ -24,7 +24,7 @@ public class BehindEnemyLinesTest
     {
         PWCGContext.setProduct(PWCGProduct.TC);
         PWCGContext.getInstance().changeContext(mapId);
-    	behindEnemyLines = new BehindEnemyLines(DateUtils.getDateYYYYMMDD("19170801"));
+    	behindEnemyLines = new BehindEnemyLines(DateUtils.getDateYYYYMMDD("19420801"));
     }
 
     @Test

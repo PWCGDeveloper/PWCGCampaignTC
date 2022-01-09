@@ -140,7 +140,7 @@ public class HistoricalAce extends CrewMember
         ArmedService service = null;
         if (referenceSquadron != null)
         {
-            service = referenceSquadron.determineServiceForSquadron(date);
+            service = referenceSquadron.determineServiceForCompany(date);
         }
         else
         {
@@ -169,7 +169,7 @@ public class HistoricalAce extends CrewMember
     {
         if (referenceSquadron != null)
         {
-            aceNow.setCountry(referenceSquadron.determineSquadronCountry(date).getCountry());
+            aceNow.setCountry(referenceSquadron.determineCompanyCountry(date).getCountry());
         }
         else
         {
@@ -276,7 +276,7 @@ public class HistoricalAce extends CrewMember
         if (squadron != null && currentRank != null)
         {
             IRankHelper rankObj = RankFactory.createRankHelper();
-            rankName = rankObj.getRankByService(currentRank.rank, squadron.determineServiceForSquadron(date));
+            rankName = rankObj.getRankByService(currentRank.rank, squadron.determineServiceForCompany(date));
         }
 
         return rankName;

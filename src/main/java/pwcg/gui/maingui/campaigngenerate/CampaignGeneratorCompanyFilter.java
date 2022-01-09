@@ -66,7 +66,7 @@ public class CampaignGeneratorCompanyFilter
 	private boolean rejectBecauseWrongRole(Company company, Date campaignDate, String roleDesc) throws PWCGException
 	{
 	    PwcgRoleCategory role = PwcgRoleCategory.getRoleCategoryFromDescription(roleDesc);
-        PwcgRoleCategory companyRole = company.determineSquadronPrimaryRoleCategory(campaignDate);
+        PwcgRoleCategory companyRole = company.determineCompanyPrimaryRoleCategory(campaignDate);
         if (role == companyRole)
         {
             return false;

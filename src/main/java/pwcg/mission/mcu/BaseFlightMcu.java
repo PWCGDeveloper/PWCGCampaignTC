@@ -7,10 +7,9 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
-import pwcg.campaign.api.IProductSpecificConfiguration;
-import pwcg.campaign.factory.ProductSpecificConfigurationFactory;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.PWCGLogger;
+import pwcg.product.bos.config.TCProductSpecificConfiguration;
 
 public class BaseFlightMcu extends BaseMcu 
 {	
@@ -153,7 +152,7 @@ public class BaseFlightMcu extends BaseMcu
     protected void writeMCUGoal(BufferedWriter writer, int goalType) throws IOException
     {
         // Ugly but I don't want to override for one line of code
-        IProductSpecificConfiguration productSpecificConfiguration = ProductSpecificConfigurationFactory.createProductSpecificConfiguration();
+        TCProductSpecificConfiguration productSpecificConfiguration =new TCProductSpecificConfiguration();
         if (productSpecificConfiguration.useWaypointGoal())
         {
             writer.write("  GoalType = " + goalType + ";");

@@ -4,16 +4,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import pwcg.campaign.api.IProductSpecificConfiguration;
 import pwcg.campaign.api.Side;
 import pwcg.campaign.context.FrontLinePoint;
 import pwcg.campaign.context.FrontLinesForMap;
 import pwcg.campaign.context.MapArea;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.factory.ProductSpecificConfigurationFactory;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.utils.MathUtils;
+import pwcg.product.bos.config.TCProductSpecificConfiguration;
 
 public class PathAlongFront
 {
@@ -174,7 +173,7 @@ public class PathAlongFront
             return INVALID_FRONT_LINE_INDEX;
         }
 
-        IProductSpecificConfiguration productSpecific = ProductSpecificConfigurationFactory.createProductSpecificConfiguration();
+        TCProductSpecificConfiguration productSpecific =new TCProductSpecificConfiguration();
         double minDistanceToNextWP = productSpecific.getMinimumDistanceBetweenPatrolPoints();
         
         int nextFrontIndex = currentPointIndex;

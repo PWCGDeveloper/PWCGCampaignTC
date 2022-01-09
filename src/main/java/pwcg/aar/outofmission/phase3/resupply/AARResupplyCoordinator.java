@@ -71,7 +71,7 @@ public class AARResupplyCoordinator
     {
         for (CompanyPersonnel squadronPersonnel : campaign.getPersonnelManager().getAllCompanyPersonnel())
         {
-            int serviceIdForSquadron = squadronPersonnel.getCompany().determineServiceForSquadron(campaign.getDate()).getServiceId();
+            int serviceIdForSquadron = squadronPersonnel.getCompany().determineServiceForCompany(campaign.getDate()).getServiceId();
             if (armedService.getServiceId() == serviceIdForSquadron)
             {
                 Equipment equipment = campaign.getEquipmentManager().getEquipmentForCompany(squadronPersonnel.getCompany().getCompanyId());

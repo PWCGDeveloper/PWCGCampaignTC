@@ -143,7 +143,7 @@ public class CampaignIntelligenceCompanyListPanel extends JPanel
     
     private boolean includeCompany(Company company, PwcgRoleCategory roleCategory) throws PWCGException
     {
-        if (company.determineSquadronPrimaryRoleCategory(campaign.getDate()) != roleCategory)
+        if (company.determineCompanyPrimaryRoleCategory(campaign.getDate()) != roleCategory)
         {
             return false;
         }

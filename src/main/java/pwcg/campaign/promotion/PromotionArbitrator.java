@@ -62,7 +62,7 @@ public class PromotionArbitrator implements IPromotionEventHandler
 
     private int getCrewMemberVictories(Campaign campaign, CrewMember crewMember) throws PWCGException
     {
-        PwcgRoleCategory roleCategory = crewMember.determineSquadron().determineSquadronPrimaryRoleCategory(campaign.getDate());
+        PwcgRoleCategory roleCategory = crewMember.determineSquadron().determineCompanyPrimaryRoleCategory(campaign.getDate());
         CrewMemberVictories victories = crewMember.getCrewMemberVictories();
         if (roleCategory == PwcgRoleCategory.FIGHTER)
         {

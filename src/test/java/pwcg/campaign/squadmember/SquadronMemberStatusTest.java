@@ -50,7 +50,7 @@ public class CrewMemberStatusTest
     public void setupTest() throws PWCGException
     {
         PWCGContext.setProduct(PWCGProduct.TC);
-        campaignDate = DateUtils.getDateYYYYMMDD("19170801");
+        campaignDate = DateUtils.getDateYYYYMMDD("19420801");
         Mockito.when(campaign.getDate()).thenReturn(campaignDate);
         Mockito.when(campaign.getSerialNumber()).thenReturn(serialNumber);
         Mockito.when(campaign.getPersonnelManager()).thenReturn(campaignPersonnelManager);
@@ -109,7 +109,7 @@ public class CrewMemberStatusTest
     @Test
     public void testUpdateStatusPlayerWound() throws PWCGException
     {
-        ArmedService service = squadron.determineServiceForSquadron(campaignDate);
+        ArmedService service = squadron.determineServiceForCompany(campaignDate);
         String squadronName = squadron.determineDisplayName(campaignDate);
         
         IRankHelper rank = RankFactory.createRankHelper();
@@ -133,7 +133,7 @@ public class CrewMemberStatusTest
     @Test
     public void testUpdateStatusPlayerSeriousWound() throws PWCGException
     {
-        ArmedService service = squadron.determineServiceForSquadron(campaignDate);
+        ArmedService service = squadron.determineServiceForCompany(campaignDate);
         String squadronName = squadron.determineDisplayName(campaignDate);
         
         IRankHelper rank = RankFactory.createRankHelper();

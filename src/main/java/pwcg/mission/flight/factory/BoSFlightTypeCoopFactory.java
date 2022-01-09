@@ -59,7 +59,7 @@ public class BoSFlightTypeCoopFactory implements IFlightTypeFactory
     private FlightTypes getFighterFlightType(Company squadron, boolean isPlayerFlight) throws PWCGException
     {
         int currentIndex = 0;
-        if (squadron.determineSquadronCountry(campaign.getDate()).getSideNoNeutral() == Side.ALLIED)
+        if (squadron.determineCompanyCountry(campaign.getDate()).getSideNoNeutral() == Side.ALLIED)
         {
             currentIndex =  addItemToWeightedList(ConfigItemKeys.AlliedLowAltPatrolMissionKey, FlightTypes.LOW_ALT_PATROL, currentIndex);
             currentIndex =  addItemToWeightedList(ConfigItemKeys.AlliedLowAltCapMissionKey, FlightTypes.LOW_ALT_CAP, currentIndex);
@@ -79,7 +79,7 @@ public class BoSFlightTypeCoopFactory implements IFlightTypeFactory
     private FlightTypes getTransportFlightType(Company squadron) throws PWCGException
     {
         int currentIndex = 0;
-        if (squadron.determineSquadronCountry(campaign.getDate()).getSideNoNeutral() == Side.ALLIED)
+        if (squadron.determineCompanyCountry(campaign.getDate()).getSideNoNeutral() == Side.ALLIED)
         {
             currentIndex =  addItemToWeightedList(ConfigItemKeys.AlliedCargoDropKey, FlightTypes.CARGO_DROP, currentIndex);
             currentIndex =  addItemToWeightedList(ConfigItemKeys.AlliedParachuteDropKey, FlightTypes.PARATROOP_DROP, currentIndex);
@@ -106,7 +106,7 @@ public class BoSFlightTypeCoopFactory implements IFlightTypeFactory
     private FlightTypes getBomberFlightType(Company squadron) throws PWCGException 
     {
         int currentIndex = 0;
-        if (squadron.determineSquadronCountry(campaign.getDate()).getSideNoNeutral() == Side.ALLIED)
+        if (squadron.determineCompanyCountry(campaign.getDate()).getSideNoNeutral() == Side.ALLIED)
         {
             currentIndex =  addItemToWeightedList(ConfigItemKeys.AlliedLowAltBombingMissionKey, FlightTypes.LOW_ALT_BOMB, currentIndex);
         }

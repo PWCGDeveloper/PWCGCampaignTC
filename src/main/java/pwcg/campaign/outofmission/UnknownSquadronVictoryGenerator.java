@@ -52,7 +52,7 @@ public class UnknownSquadronVictoryGenerator
         {
 	        victory = new Victory();
 	        Company victorCrewMemberSquadron = PWCGContext.getInstance().getCompanyManager().getCompany(victorCrewMember.getCompanyId());
-            createVictoryHeader(date, victory, victorCrewMemberSquadron.determineSquadronCountry(date).getSide().getOppositeSide());
+            createVictoryHeader(date, victory, victorCrewMemberSquadron.determineCompanyCountry(date).getSide().getOppositeSide());
 	
 	        victory.setVictim(victim);
 	        victory.setVictor(victor);
@@ -80,7 +80,7 @@ public class UnknownSquadronVictoryGenerator
         OutOfMissionTankFinder outOfMissionPlaneFinder = new OutOfMissionTankFinder();
         TankType planeType = outOfMissionPlaneFinder.findTankType(
                 squadron,
-                squadron.determineSquadronPrimaryRoleCategory(date),
+                squadron.determineCompanyPrimaryRoleCategory(date),
                 date);
 
         victor.setAirOrGround(Victory.AIRCRAFT);
