@@ -40,7 +40,7 @@ public class FlightSizeCalculatorTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         campaign = CampaignCache.makeCampaign(SquadronTestProfile.KG53_PROFILE);
     }
 

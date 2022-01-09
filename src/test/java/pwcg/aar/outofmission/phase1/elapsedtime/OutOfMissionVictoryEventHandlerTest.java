@@ -41,7 +41,7 @@ public class OutOfMissionVictoryEventHandlerTest
     @BeforeEach
     public void setupTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         campaign = CampaignCache.makeCampaign(SquadronTestProfile.ESC_103_PROFILE);
         
         Mockito.when(aarContext.getPreliminaryData()).thenReturn(preliminaryData);

@@ -51,11 +51,11 @@ public class CountryFactory
     private static ICountryFactory getCountryFactory()
     {
         ICountryFactory countryFactory = null;
-        if (PWCGContext.getProduct() == PWCGProduct.BOS)
+        if (PWCGContext.getProduct() == PWCGProduct.TC)
         {
             countryFactory = new BoSCountryFactory();
         }
-        else if (PWCGContext.getProduct() == PWCGProduct.BOS)
+        else if (PWCGContext.getProduct() == PWCGProduct.TC)
         {
             countryFactory = new BoSCountryFactory();
         }

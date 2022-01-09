@@ -43,7 +43,7 @@ public class PWCGContext
 
     private static IPWCGContextManager buildProductContext() throws PWCGException
     {
-        if (product == PWCGProduct.BOS)
+        if (product == PWCGProduct.TC)
         {
             if (PWCGContext.bosContextManager == null)
             {

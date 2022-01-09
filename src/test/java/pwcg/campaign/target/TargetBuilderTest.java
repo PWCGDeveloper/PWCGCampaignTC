@@ -39,7 +39,7 @@ public class TargetBuilderTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         campaign = CampaignCache.makeCampaign(SquadronTestProfile.FG_365_BODENPLATTE_PROFILE);
 
         if (mission == null)

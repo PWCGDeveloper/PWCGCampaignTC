@@ -14,7 +14,7 @@ public class PwcgDirectoryRestructure
     {
         try
         {
-            PwcgDirectoryRestructure.restructureDirectories(PWCGProduct.BOS);
+            PwcgDirectoryRestructure.restructureDirectories(PWCGProduct.TC);
         }
         catch (IOException e)
         {

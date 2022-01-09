@@ -30,7 +30,7 @@ public class CampaignGeneratorTest
 {
 	public CampaignGeneratorTest() throws PWCGException
 	{
-    	PWCGContext.setProduct(PWCGProduct.BOS);
+    	PWCGContext.setProduct(PWCGProduct.TC);
         PWCGContext.getInstance().changeContext(FrontMapIdentifier.STALINGRAD_MAP);
 	}
 	

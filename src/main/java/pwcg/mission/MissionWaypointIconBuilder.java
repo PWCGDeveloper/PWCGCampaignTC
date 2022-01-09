@@ -8,7 +8,8 @@ import pwcg.core.exception.PWCGException;
 import pwcg.mission.mcu.McuIcon;
 import pwcg.mission.mcu.McuIconFactory;
 import pwcg.mission.mcu.McuWaypoint;
-import pwcg.mission.playerunit.PlayerUnit;
+import pwcg.mission.unit.IPlayerUnit;
+import pwcg.mission.unit.PlayerUnit;
 
 public class MissionWaypointIconBuilder
 {
@@ -16,13 +17,13 @@ public class MissionWaypointIconBuilder
 
     public void createWaypointIcons(List<PlayerUnit> list) throws PWCGException
     {
-        for (PlayerUnit playerUnit : list)
+        for (IPlayerUnit playerUnit : list)
         {
             createWaypointIconsForUnit(playerUnit);
         }
     }
 
-    private void createWaypointIconsForUnit(PlayerUnit playerUnit) throws PWCGException
+    private void createWaypointIconsForUnit(IPlayerUnit playerUnit) throws PWCGException
     {
         List<McuWaypoint> waypoints = playerUnit.getWaypointPackage().getAllWaypoints();
 

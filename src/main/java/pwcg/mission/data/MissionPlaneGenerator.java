@@ -6,8 +6,8 @@ import java.util.List;
 import pwcg.campaign.company.Company;
 import pwcg.core.exception.PWCGException;
 import pwcg.mission.Mission;
-import pwcg.mission.playerunit.PlayerUnit;
-import pwcg.mission.playerunit.TankMcu;
+import pwcg.mission.unit.IPlayerUnit;
+import pwcg.mission.unit.TankMcu;
 
 public class MissionPlaneGenerator
 {
@@ -21,7 +21,7 @@ public class MissionPlaneGenerator
     
     public List<PwcgGeneratedMissionVehicleData> generateMissionPlaneData() throws PWCGException
     {
-        for (PlayerUnit unit : mission.getUnits().getPlayerUnits())
+        for (IPlayerUnit unit : mission.getUnits().getPlayerUnits())
         {
             makePlaneEntriesForUnit(unit);
         }
@@ -29,7 +29,7 @@ public class MissionPlaneGenerator
         return missionPlanes;
     }
 
-    private void makePlaneEntriesForUnit(PlayerUnit unit)
+    private void makePlaneEntriesForUnit(IPlayerUnit unit)
     {
         for (TankMcu vehicle : unit.getTanks())
         {

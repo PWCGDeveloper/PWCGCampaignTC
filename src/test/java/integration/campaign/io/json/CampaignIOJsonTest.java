@@ -35,7 +35,7 @@ public class CampaignIOJsonTest
     @Test
     public void campaignIOJsonTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
 
         deleteCampaign();
         writeCampaign();

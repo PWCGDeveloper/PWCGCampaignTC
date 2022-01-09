@@ -19,7 +19,7 @@ public class CampaignCacheBoS extends CampaignCacheBase implements ICampaignCach
 
     protected void initialize() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         PWCGContext.getInstance();
         if (campaignProfiles.isEmpty())
         {

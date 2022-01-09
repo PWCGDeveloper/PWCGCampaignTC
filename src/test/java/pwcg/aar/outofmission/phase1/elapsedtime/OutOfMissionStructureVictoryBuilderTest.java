@@ -35,10 +35,10 @@ public class OutOfMissionStructureVictoryBuilderTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         campaign = CampaignCache.makeCampaign(SquadronTestProfile.GROSS_DEUTSCHLAND_PROFILE);
         
-        for (CrewMember crewMember : campaign.getPersonnelManager().getCompanyPersonnel(SquadronTestProfile.GROSS_DEUTSCHLAND_PROFILE.getSquadronId()).getActiveAiCrewMembers().getCrewMemberList())
+        for (CrewMember crewMember : campaign.getPersonnelManager().getCompanyPersonnel(SquadronTestProfile.GROSS_DEUTSCHLAND_PROFILE.getSquadronId()).getActiveCrewMembers().getCrewMemberList())
         {
             if (crewMember.getCrewMemberActiveStatus() == CrewMemberStatus.STATUS_ACTIVE && !crewMember.isPlayer())
             {

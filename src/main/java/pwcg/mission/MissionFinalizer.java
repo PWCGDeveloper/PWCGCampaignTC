@@ -13,13 +13,13 @@ import pwcg.mission.ground.unittypes.GroundUnitEngagableAAAEvaluator;
 import pwcg.mission.mcu.group.MissionObjectiveGroup;
 import pwcg.mission.mcu.group.StopAttackingNearAirfieldSequence;
 import pwcg.mission.options.MissionOptions;
-import pwcg.mission.playerunit.TankMcu;
+import pwcg.mission.unit.TankMcu;
 
 public class MissionFinalizer
 {
     private Mission mission;
     private Campaign campaign;
-    private MissionPlayerUnits units;
+    private MissionUnits units;
     private boolean isFinalized = false;
     private MissionFrontLineIconBuilder frontLineIconBuilder;
     private MissionWaypointIconBuilder waypointIconBuilder = new MissionWaypointIconBuilder();

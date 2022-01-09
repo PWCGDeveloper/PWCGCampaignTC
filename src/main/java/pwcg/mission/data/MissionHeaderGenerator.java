@@ -7,7 +7,7 @@ import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.mission.Mission;
 import pwcg.mission.io.MissionFileNameBuilder;
-import pwcg.mission.playerunit.PlayerUnit;
+import pwcg.mission.unit.IPlayerUnit;
 
 public class MissionHeaderGenerator
 {
@@ -16,7 +16,7 @@ public class MissionHeaderGenerator
     {
         // Even for Coop flights we have to set the header.  Doesn't really matter which flight 
         // as long as it is a player flight
-        PlayerUnit myUnit = mission.getUnits().getReferencePlayerUnit();
+        IPlayerUnit myUnit = mission.getUnits().getReferencePlayerUnit();
         Company mySquadron = myUnit.getCompany();
         
         MissionHeader missionHeader = new MissionHeader();
@@ -30,7 +30,7 @@ public class MissionHeaderGenerator
         missionHeader.setVehicleType(myUnit.getLeadVehicle().getDisplayName());
 
         
-        missionHeader.setDuty("" + myUnit.getUnitInformation().getUnitMissionType()); 
+        missionHeader.setDuty("" + myUnit.getUnitInformation().getMissionType()); 
         
         missionHeader.setMapName(PWCGContext.getInstance().getCurrentMap().getMapName()); 
 

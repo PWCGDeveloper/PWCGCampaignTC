@@ -21,7 +21,7 @@ public class MissionGroundUnitBodenplatteTest
 {    
     public MissionGroundUnitBodenplatteTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
     }
     
     @Test

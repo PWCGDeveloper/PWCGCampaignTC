@@ -16,7 +16,7 @@ public class VehicleFactoryFCTest
 {
     public VehicleFactoryFCTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
     }
 
     @Test

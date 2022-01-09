@@ -36,7 +36,7 @@ public enum Coalition
     public static List<Coalition> getCoalitions()
     {
         List<Coalition> coalitions = new ArrayList<>();
-        if (PWCGContext.getProduct() == PWCGProduct.BOS)
+        if (PWCGContext.getProduct() == PWCGProduct.TC)
         {
             coalitions.add(COALITION_ALLIED);
             coalitions.add(COALITION_AXIS);
@@ -52,7 +52,7 @@ public enum Coalition
     public static List<Coalition> getCoalitionsForSide(Side side)
     {
         List<Coalition> coalitions = new ArrayList<>();
-        if (PWCGContext.getProduct() == PWCGProduct.BOS)
+        if (PWCGContext.getProduct() == PWCGProduct.TC)
         {
             if (side == Side.ALLIED)
             {

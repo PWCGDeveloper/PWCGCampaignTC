@@ -30,7 +30,7 @@ public class CrewMemberReplacementFactoryTest
     @BeforeEach
     public void setupTest() throws PWCGException
      {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         Mockito.when(campaign.getSerialNumber()).thenReturn(serialNumber);
     }
 

@@ -27,7 +27,7 @@ public class AARDepeletionTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         PWCGContext.getInstance().changeContext(FrontMapIdentifier.BODENPLATTE_MAP);
         campaign = CampaignCache.makeCampaignOnDisk(SquadronTestProfile.RAF_184_PROFILE);
         aarCoordinator = AARCoordinator.getInstance();

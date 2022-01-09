@@ -17,7 +17,7 @@ public class ShippingLaneIOJsonTest
     @Test
     public void readJsonChannelTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         ShippingLanes shippingLanes = ShippingLaneIOJson.readJson("Arras");
         Assertions.assertTrue (shippingLanes.getAlliedShippingLanes().size() == 0);
         Assertions.assertTrue (shippingLanes.getAxisShippingLanes().size() == 0);
@@ -26,7 +26,7 @@ public class ShippingLaneIOJsonTest
     @Test
     public void readJsonMoscowTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         ShippingLanes shippingLanes = ShippingLaneIOJson.readJson("Moscow");
         Assertions.assertTrue (shippingLanes.getAlliedShippingLanes().size() == 0);
         Assertions.assertTrue (shippingLanes.getAxisShippingLanes().size() == 0);
@@ -35,7 +35,7 @@ public class ShippingLaneIOJsonTest
     @Test
     public void readJsonStalingradTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         ShippingLanes shippingLanes = ShippingLaneIOJson.readJson("Stalingrad");
         Assertions.assertTrue (shippingLanes.getAlliedShippingLanes().size() == 0);
         Assertions.assertTrue (shippingLanes.getAxisShippingLanes().size() == 0);
@@ -44,7 +44,7 @@ public class ShippingLaneIOJsonTest
     @Test
     public void readJsonKubanTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         ShippingLanes shippingLanes = ShippingLaneIOJson.readJson("Kuban");
         Assertions.assertTrue (shippingLanes.getAlliedShippingLanes().size() > 0);
         Assertions.assertTrue (shippingLanes.getAxisShippingLanes().size() > 0);
@@ -53,7 +53,7 @@ public class ShippingLaneIOJsonTest
     @Test
     public void readJsonBodenplatteTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         ShippingLanes shippingLanes = ShippingLaneIOJson.readJson("Bodenplatte");
         Assertions.assertTrue (shippingLanes.getAlliedShippingLanes().size() == 0);
         Assertions.assertTrue (shippingLanes.getAxisShippingLanes().size() == 0);

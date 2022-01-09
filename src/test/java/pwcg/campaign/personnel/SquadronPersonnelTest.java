@@ -22,7 +22,7 @@ public class SquadronPersonnelTest {
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         campaign = CampaignCache.makeCampaign(SquadronTestProfile.JG_51_PROFILE_MOSCOW);
     }
 
@@ -30,13 +30,13 @@ public class SquadronPersonnelTest {
     public void isHumanSquadronTest() throws PWCGException
     {
         CompanyPersonnel squadronpersonnel = campaign.getPersonnelManager().getCompanyPersonnel(SquadronTestProfile.JG_51_PROFILE_MOSCOW.getCompanyId());
-        assert(squadronpersonnel.isPlayerSquadron());
+        assert(squadronpersonnel.isPlayerCompany());
     }
 
     @Test
     public void isNotHumanSquadronTest() throws PWCGException
     {
         CompanyPersonnel squadronpersonnel = campaign.getPersonnelManager().getCompanyPersonnel(20111052);
-        assert(squadronpersonnel.isPlayerSquadron() == false);
+        assert(squadronpersonnel.isPlayerCompany() == false);
     }
 }

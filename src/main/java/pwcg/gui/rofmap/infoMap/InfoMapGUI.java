@@ -182,7 +182,7 @@ public class InfoMapGUI extends MapGUI implements ActionListener
         JLabel mapLabel = PWCGLabelFactory.makeMenuLabelLarge("Choose Map");
         mapGrid.add(mapLabel);
         
-        if (PWCGContext.getProduct() == PWCGProduct.BOS)
+        if (PWCGContext.getProduct() == PWCGProduct.TC)
         {
             addToMapGrid(mapGrid, FrontMapIdentifier.MOSCOW_MAP);
             addToMapGrid(mapGrid, FrontMapIdentifier.STALINGRAD_MAP);
@@ -191,7 +191,7 @@ public class InfoMapGUI extends MapGUI implements ActionListener
             addToMapGrid(mapGrid, FrontMapIdentifier.EAST1945_MAP);
             addToMapGrid(mapGrid, FrontMapIdentifier.BODENPLATTE_MAP);
         }
-        else if (PWCGContext.getProduct() == PWCGProduct.BOS)
+        else if (PWCGContext.getProduct() == PWCGProduct.TC)
         {
             addToMapGrid(mapGrid, FrontMapIdentifier.STALINGRAD_MAP);
         }

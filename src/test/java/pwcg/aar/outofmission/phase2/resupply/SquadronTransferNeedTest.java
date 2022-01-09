@@ -49,7 +49,7 @@ public class SquadronTransferNeedTest
         activeCrewMemberCollection.clear();
         inactiveCrewMemberCollection.clear();
         
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19170430"));
         Mockito.when(campaign.getPersonnelManager()).thenReturn(campaignPersonnelManager);
         Mockito.when(campaignPersonnelManager.getCompanyPersonnel(ArgumentMatchers.<Integer>any())).thenReturn(squadronPersonnel);

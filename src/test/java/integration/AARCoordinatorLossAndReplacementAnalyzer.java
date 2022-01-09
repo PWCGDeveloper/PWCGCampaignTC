@@ -33,7 +33,7 @@ public class AARCoordinatorLossAndReplacementAnalyzer
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         campaign = CampaignCache.makeCampaignOnDisk(SquadronTestProfile.FG_354_BODENPLATTE_PROFILE);
     }
 
@@ -177,10 +177,10 @@ public class AARCoordinatorLossAndReplacementAnalyzer
         System.out.println("=====================================================");
         for (CompanyPersonnel squadronPersonnel : campaign.getPersonnelManager().getAllCompanyPersonnel())
         {
-            System.out.println(squadronPersonnel.getSquadron().determineDisplayName(campaign.getDate()));
+            System.out.println(squadronPersonnel.getCompany().determineDisplayName(campaign.getDate()));
             System.out.println(" Personnel size is " + squadronPersonnel.getCrewMembersWithAces().getActiveCount(campaign.getDate()));
             
-            Equipment equipment = campaign.getEquipmentManager().getEquipmentForCompany(squadronPersonnel.getSquadron().getCompanyId());
+            Equipment equipment = campaign.getEquipmentManager().getEquipmentForCompany(squadronPersonnel.getCompany().getCompanyId());
             System.out.println(" Equipment size is " + equipment.getActiveEquippedTanks().size());
         }
     }

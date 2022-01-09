@@ -29,7 +29,7 @@ public class InterceptPackageTest extends PwcgTestBase
 {
     public InterceptPackageTest() throws PWCGException
     {
-        super (PWCGProduct.BOS);
+        super (PWCGProduct.TC);
     }
 
     @Test

@@ -23,7 +23,7 @@ public class ConfigManagerCampaignTest
     @Test
     public void testGlobalConfigurationInitialize() throws PWCGException 
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         campaign = CampaignCache.makeCampaignOnDisk(SquadronTestProfile.STG77_PROFILE);
         
         String campaignConfigDir = campaign.getCampaignPathAutoCreateDirectory() + "config\\";

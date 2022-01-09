@@ -162,7 +162,7 @@ public class AARClaimPanel extends JPanel implements ActionListener
 
 	private boolean addBalloon()
     {
-        if (PWCGContext.getProduct() == PWCGProduct.BOS)
+        if (PWCGContext.getProduct() == PWCGProduct.TC)
         {
             return true;
         }

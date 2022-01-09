@@ -37,7 +37,7 @@ public class PlayerFlightTypeBoSTransportTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         campaign = CampaignCache.makeCampaign(SquadronTestProfile.TG2_PROFILE);
     }
 

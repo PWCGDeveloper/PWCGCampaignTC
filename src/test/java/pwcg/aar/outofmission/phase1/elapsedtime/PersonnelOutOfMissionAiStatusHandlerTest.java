@@ -30,7 +30,7 @@ public class PersonnelOutOfMissionAiStatusHandlerTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         campaign = CampaignCache.makeCampaign(SquadronTestProfile.ESC_103_PROFILE);
     }
 

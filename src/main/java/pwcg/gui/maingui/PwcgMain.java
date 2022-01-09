@@ -10,7 +10,6 @@ import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.utils.TestDriver;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.PWCGLogger;
-import pwcg.core.utils.PWCGLogger.LogLevel;
 import pwcg.gui.colors.ColorMap;
 import pwcg.gui.dialogs.ErrorDialog;
 
@@ -19,7 +18,7 @@ public class PwcgMain
 	public static void main(String[] args) 
 	{
         PwcgMain pwcg = new PwcgMain();
-        pwcg.startPWCG(args);
+        pwcg.startPWCGTC();
 	}
 
 	public PwcgMain() 
@@ -27,12 +26,12 @@ public class PwcgMain
 	}
 	
 
-	private void startPWCG(String[] args)
+	private void startPWCGTC()
 	{
         try
         {
             validatetestDriverNotEnabled();            
-            setProduct(args);
+            setProduct();
             initializePWCGStaticData();
             setupUIManager();
             
@@ -54,26 +53,9 @@ public class PwcgMain
         }
     }
 
-    private void setProduct(String[] args) throws PWCGException
+    private void setProduct() throws PWCGException
     {
-        if (args.length > 0)
-        {
-            if (args[0].equals("BoS"))
-            {
-                PWCGContext.setProduct(PWCGProduct.BOS);
-                PWCGLogger.log(LogLevel.INFO, "Running BoS");
-            }
-            else if (args[0].equals("FC"))
-            {
-                PWCGContext.setProduct(PWCGProduct.BOS);
-                PWCGLogger.log(LogLevel.INFO, "Running FC");
-            }
-        }
-        else
-        {
-            PWCGLogger.log(LogLevel.ERROR, "PWCG Product not provided");
-            throw new PWCGException("PWCG Product not provided");
-        }
+        PWCGContext.setProduct(PWCGProduct.TC);
     }
 
     private void initializePWCGStaticData()

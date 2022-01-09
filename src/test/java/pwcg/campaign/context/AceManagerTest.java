@@ -50,7 +50,7 @@ public class AceManagerTest
         Mockito.when(campaign.getPersonnelManager()).thenReturn(personnelManager);
         Mockito.when(personnelManager.getCampaignAces()).thenReturn(campaignAces);
         Mockito.when(personnelManager.getCompanyPersonnel(Mockito.anyInt())).thenReturn(squadronPersonnel);
-        Mockito.when(squadronPersonnel.isPlayerSquadron()).thenReturn(false);
+        Mockito.when(squadronPersonnel.isPlayerCompany()).thenReturn(false);
     	
     	Mockito.when(wernerVoss.getSerialNumber()).thenReturn(101175);
     	Mockito.when(wernerVoss.getCompanyId()).thenReturn(401010);
@@ -75,7 +75,7 @@ public class AceManagerTest
     	campaignAces.setCampaignAces(acesInCampaign);
 
 
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         PWCGContext.getInstance().changeContext(FrontMapIdentifier.STALINGRAD_MAP);
     	aceManager = new AceManager();
      	aceManager.configure();

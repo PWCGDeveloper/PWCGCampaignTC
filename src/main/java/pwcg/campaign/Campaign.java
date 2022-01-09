@@ -125,7 +125,7 @@ public class Campaign
     public boolean isHumanSquadron(int squadronId)
     {
         CompanyPersonnel squadronPersonnel = personnelManager.getCompanyPersonnel(squadronId);
-        return squadronPersonnel.isPlayerSquadron();
+        return squadronPersonnel.isPlayerCompany();
     }
 
     public String getCampaignDescription() throws PWCGException
@@ -215,7 +215,7 @@ public class Campaign
     public boolean isValidCampaignForProduct() throws PWCGException
     {
         Date campaignDate = campaignData.getDate();
-        if (PWCGContext.getProduct() == PWCGProduct.BOS)
+        if (PWCGContext.getProduct() == PWCGProduct.TC)
         {
             if (campaignDate.after(DateUtils.getDateYYYYMMDD("19300101")))
             {
@@ -223,7 +223,7 @@ public class Campaign
             }
 
         }
-        if (PWCGContext.getProduct() == PWCGProduct.BOS)
+        if (PWCGContext.getProduct() == PWCGProduct.TC)
         {
             if (campaignDate.before(DateUtils.getDateYYYYMMDD("19300101")))
             {

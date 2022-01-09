@@ -12,16 +12,16 @@ import pwcg.campaign.crewmember.SerialNumber;
 import pwcg.campaign.crewmember.SerialNumber.SerialNumberClassification;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.RandomNumberGenerator;
-import pwcg.mission.playerunit.PlayerUnitInformation;
+import pwcg.mission.unit.UnitInformation;
 
 public class UnitCrewBuilder
 {
-    private PlayerUnitInformation unitInformation;
+    private UnitInformation unitInformation;
 
     private Map <Integer, CrewMember> assignedCrewMap = new HashMap <>();
     private Map <Integer, CrewMember> unassignedCrewMap = new HashMap <>();
     
-	public UnitCrewBuilder(PlayerUnitInformation unitInformation)
+	public UnitCrewBuilder(UnitInformation unitInformation)
 	{
         this.unitInformation = unitInformation;
 	}

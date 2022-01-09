@@ -30,7 +30,7 @@ public class PlayerClaimResolverFuzzyNotExactTest
     @BeforeEach
     public void setupTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         Mockito.when(player.getCountry()).thenReturn(Country.GERMANY);
     }
 

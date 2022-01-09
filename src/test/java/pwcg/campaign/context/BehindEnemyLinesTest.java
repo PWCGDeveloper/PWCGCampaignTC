@@ -22,7 +22,7 @@ public class BehindEnemyLinesTest
     @BeforeEach
     public void setupTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         PWCGContext.getInstance().changeContext(mapId);
     	behindEnemyLines = new BehindEnemyLines(DateUtils.getDateYYYYMMDD("19170801"));
     }

@@ -16,7 +16,7 @@ public class InternationalizationFileKeyWriter
     {
         try
         {
-            PWCGContext.setProduct(PWCGProduct.BOS);
+            PWCGContext.setProduct(PWCGProduct.TC);
             InternationalizationFileKeyWriter internationalizationFileBuilder = new InternationalizationFileKeyWriter();
             internationalizationFileBuilder.writeKeys();
         }

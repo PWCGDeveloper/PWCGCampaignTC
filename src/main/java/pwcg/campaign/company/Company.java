@@ -73,7 +73,7 @@ public class Company
 	public static boolean isPlayerCompany (Campaign campaign, int squadronId)
 	{
 	    CompanyPersonnel squadronPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(squadronId);
-        if (squadronPersonnel != null && squadronPersonnel.isPlayerSquadron())
+        if (squadronPersonnel != null && squadronPersonnel.isPlayerCompany())
         {
             return true;
         }

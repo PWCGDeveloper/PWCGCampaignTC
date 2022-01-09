@@ -1,4 +1,4 @@
-package pwcg.mission.playerunit;
+package pwcg.mission.unit;
 
 import java.io.BufferedWriter;
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ public class UnitVehicles
 {
     private List<TankMcu> tanks = new ArrayList<>();
 
-    public UnitVehicles(PlayerUnit unit)
+    public UnitVehicles(IPlayerUnit unit)
     {
         this.tanks = unit.getTanks();
     }

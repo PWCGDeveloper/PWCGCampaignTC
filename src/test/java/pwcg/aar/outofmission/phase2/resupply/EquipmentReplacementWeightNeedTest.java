@@ -41,7 +41,7 @@ public class EquipmentReplacementWeightNeedTest
         if (!runSetupOneTime)
         {
             runSetupOneTime = true;
-            PWCGContext.setProduct(PWCGProduct.BOS);
+            PWCGContext.setProduct(PWCGProduct.TC);
             campaign = CampaignCache.makeCampaign(SquadronTestProfile.KG53_PROFILE);
             deactivateAircraft();
         }

@@ -2,7 +2,7 @@ package pwcg.campaign.context;
 
 public enum PWCGProduct
 {
-    BOS,
+    TC,
     FC, 
     NONE
 }

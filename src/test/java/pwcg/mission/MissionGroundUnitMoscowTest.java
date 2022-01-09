@@ -21,7 +21,7 @@ public class MissionGroundUnitMoscowTest
 {
     public MissionGroundUnitMoscowTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
     }
     
     @Test

@@ -55,7 +55,7 @@ public class VictoryEvaluationTest
     @BeforeEach
     public void testSetup() throws Exception
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         campaign = CampaignCache.makeCampaignOnDisk(SquadronTestProfile.JASTA_11_PROFILE);
     }
     

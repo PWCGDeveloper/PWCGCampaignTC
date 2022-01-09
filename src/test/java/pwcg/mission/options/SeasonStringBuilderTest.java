@@ -15,7 +15,7 @@ public class SeasonStringBuilderTest
 {
     public SeasonStringBuilderTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         PWCGContext.getInstance().setCurrentMap(FrontMapIdentifier.BODENPLATTE_MAP);
     }
 

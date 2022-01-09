@@ -34,8 +34,8 @@ import pwcg.gui.rofmap.brief.model.BriefingUnitParameters;
 import pwcg.gui.utils.MapPointInfoPopup;
 import pwcg.mission.Mission;
 import pwcg.mission.flight.waypoint.missionpoint.MissionPoint;
-import pwcg.mission.playerunit.PlayerUnit;
 import pwcg.mission.target.AssaultDefinition;
+import pwcg.mission.unit.IPlayerUnit;
 
 public class BriefingMapPanel extends MapPanelBase implements ActionListener
 {
@@ -262,7 +262,7 @@ public class BriefingMapPanel extends MapPanelBase implements ActionListener
         axisVirtualPoints.clear();        
     }
 
-    public void makeMapPanelVirtualPoints(PlayerUnit unit) throws PWCGException
+    public void makeMapPanelVirtualPoints(IPlayerUnit unit) throws PWCGException
     {       
         UnitMap unitMap = buildFlightMap(unit);
         if (unit.getUnitInformation().getCountry().getSideNoNeutral() == Side.ALLIED)
@@ -275,10 +275,10 @@ public class BriefingMapPanel extends MapPanelBase implements ActionListener
         }
     }
 
-    private UnitMap buildFlightMap(PlayerUnit unit) throws PWCGException
+    private UnitMap buildFlightMap(IPlayerUnit unit) throws PWCGException
     {
         UnitMap unitMap = new UnitMap();
-        unitMap.unitType = unit.getUnitInformation().getUnitMissionType().name();
+        unitMap.unitType = unit.getUnitInformation().getMissionType().name();
         unitMap.tankType = unit.getUnitTanks().getUnitLeader().getDisplayName();
         unitMap.companyId = unit.getCompany().getCompanyId();
         

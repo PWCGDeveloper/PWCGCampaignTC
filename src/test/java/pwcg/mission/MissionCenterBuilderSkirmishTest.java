@@ -24,7 +24,7 @@ public class MissionCenterBuilderSkirmishTest
 {    
     public MissionCenterBuilderSkirmishTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
     }
     
     @Test

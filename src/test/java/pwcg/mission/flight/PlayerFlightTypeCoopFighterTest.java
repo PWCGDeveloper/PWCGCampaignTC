@@ -33,7 +33,7 @@ public class PlayerFlightTypeCoopFighterTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         Campaign germanEastCampaign = CampaignCache.makeCampaign(SquadronTestProfile.JG_51_PROFILE_MOSCOW);
         Campaign germanWestCampaign = CampaignCache.makeCampaign(SquadronTestProfile.JG_26_PROFILE_WEST);
         Campaign americanCampaign = CampaignCache.makeCampaign(SquadronTestProfile.FG_362_PROFILE);

@@ -41,7 +41,7 @@ public class AARDestroyedStatusEvaluatorTest
 
     public AARDestroyedStatusEvaluatorTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
     }
 
     @BeforeEach

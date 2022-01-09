@@ -26,14 +26,14 @@ public class CoalitionFactoryTest
     @Test
     public void testCoalitionBySide() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         Coalition coalition = CoalitionFactory.getCoalitionBySide(Side.ALLIED);
         assert(coalition == Coalition.COALITION_ALLIED);
 
         coalition = CoalitionFactory.getCoalitionBySide(Side.AXIS);
         assert(coalition == Coalition.COALITION_AXIS);
 
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         coalition = CoalitionFactory.getCoalitionBySide(Side.ALLIED);
         assert(coalition == Coalition.COALITION_ENTENTE);
 
@@ -44,14 +44,14 @@ public class CoalitionFactoryTest
     @Test
     public void testFriendlyCoalition() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         Coalition coalition = CoalitionFactory.getFriendlyCoalition(britain);
         assert(coalition == Coalition.COALITION_ALLIED);
 
         coalition = CoalitionFactory.getFriendlyCoalition(germany);
         assert(coalition == Coalition.COALITION_AXIS);
 
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         coalition = CoalitionFactory.getFriendlyCoalition(britain);
         assert(coalition == Coalition.COALITION_ENTENTE);
 
@@ -62,14 +62,14 @@ public class CoalitionFactoryTest
     @Test
     public void testEnemyCoalition() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         Coalition coalition = CoalitionFactory.getEnemyCoalition(britain);
         assert(coalition == Coalition.COALITION_AXIS);
 
         coalition = CoalitionFactory.getEnemyCoalition(germany);
         assert(coalition == Coalition.COALITION_ALLIED);
 
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         coalition = CoalitionFactory.getEnemyCoalition(britain);
         assert(coalition == Coalition.COALITION_CENTRAL);
 
@@ -80,14 +80,14 @@ public class CoalitionFactoryTest
     @Test
     public void testAllCoalitions() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         List<Coalition> wwiiCoalitions = CoalitionFactory.getAllCoalitions();
         assert(wwiiCoalitions.contains(Coalition.COALITION_AXIS));
         assert(wwiiCoalitions.contains(Coalition.COALITION_ALLIED));
         assert(!wwiiCoalitions.contains(Coalition.COALITION_CENTRAL));
         assert(!wwiiCoalitions.contains(Coalition.COALITION_ENTENTE));
 
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         List<Coalition> wwiCoalitions = CoalitionFactory.getAllCoalitions();
         assert(wwiCoalitions.contains(Coalition.COALITION_CENTRAL));
         assert(wwiCoalitions.contains(Coalition.COALITION_ENTENTE));

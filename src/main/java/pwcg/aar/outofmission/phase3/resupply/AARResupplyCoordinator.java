@@ -71,11 +71,11 @@ public class AARResupplyCoordinator
     {
         for (CompanyPersonnel squadronPersonnel : campaign.getPersonnelManager().getAllCompanyPersonnel())
         {
-            int serviceIdForSquadron = squadronPersonnel.getSquadron().determineServiceForSquadron(campaign.getDate()).getServiceId();
+            int serviceIdForSquadron = squadronPersonnel.getCompany().determineServiceForSquadron(campaign.getDate()).getServiceId();
             if (armedService.getServiceId() == serviceIdForSquadron)
             {
-                Equipment equipment = campaign.getEquipmentManager().getEquipmentForCompany(squadronPersonnel.getSquadron().getCompanyId());
-                WithdrawnEquipmentReplacer withdrawnEquipmentReplacer = new WithdrawnEquipmentReplacer(campaign, equipment, squadronPersonnel.getSquadron());
+                Equipment equipment = campaign.getEquipmentManager().getEquipmentForCompany(squadronPersonnel.getCompany().getCompanyId());
+                WithdrawnEquipmentReplacer withdrawnEquipmentReplacer = new WithdrawnEquipmentReplacer(campaign, equipment, squadronPersonnel.getCompany());
                 withdrawnEquipmentReplacer.replaceWithdrawnEquipment();
             }
         }        

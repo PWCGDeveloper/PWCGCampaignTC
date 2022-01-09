@@ -42,7 +42,7 @@ public class AARCrewMemberStatusDeadEvaluatorTest
     @BeforeEach
     public void setupTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         Mockito.when(resultCrewmember.getSerialNumber()).thenReturn(SerialNumber.AI_STARTING_SERIAL_NUMBER+1);
         
         Mockito.when(campaign.getPersonnelManager()).thenReturn(personnelManager);

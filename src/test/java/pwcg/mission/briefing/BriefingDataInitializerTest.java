@@ -74,7 +74,7 @@ public class BriefingDataInitializerTest
     @BeforeEach
     public void setupTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         Mockito.when(mission.getCampaign()).thenReturn(campaign);
         Mockito.when(mission.getFlights()).thenReturn(missionFlightBuilder);
 

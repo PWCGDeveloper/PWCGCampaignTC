@@ -8,14 +8,14 @@ import pwcg.gui.rofmap.brief.builder.BriefingUnitParametersBuilder;
 import pwcg.gui.rofmap.brief.model.BriefingUnit;
 import pwcg.gui.rofmap.brief.model.BriefingUnitParameters;
 import pwcg.mission.Mission;
-import pwcg.mission.playerunit.PlayerUnit;
+import pwcg.mission.unit.IPlayerUnit;
 
 public class BriefingMissionFlightSetBuilder
 {
     public static Map<Integer, BriefingUnit> buildBriefingMissions(Mission mission) throws PWCGException
     {
         Map<Integer, BriefingUnit> briefingMissionFlights = new HashMap<>();
-        for (PlayerUnit playerUnit : mission.getUnits().getPlayerUnits())
+        for (IPlayerUnit playerUnit : mission.getUnits().getPlayerUnits())
         {
             
             BriefingUnitParameters briefingFlightParameters = buildBriefingFlightParameters(playerUnit);
@@ -29,7 +29,7 @@ public class BriefingMissionFlightSetBuilder
         return briefingMissionFlights;
     }
     
-    private static BriefingUnitParameters buildBriefingFlightParameters(PlayerUnit playerUnit) throws PWCGException
+    private static BriefingUnitParameters buildBriefingFlightParameters(IPlayerUnit playerUnit) throws PWCGException
     {     
         BriefingUnitParametersBuilder briefingFlightParametersBuilder = new BriefingUnitParametersBuilder(playerUnit);
         BriefingUnitParameters briefingFlightParameters = briefingFlightParametersBuilder.buildBriefParametersContext();

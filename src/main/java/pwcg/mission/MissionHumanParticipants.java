@@ -36,7 +36,7 @@ public class MissionHumanParticipants
 		participatingPlayersForSquadron.add(participatingPlayer);
 	}
 	
-	public List<CrewMember> getParticipatingPlayersForSquadron (int squadronId)
+	public List<CrewMember> getParticipatingPlayersForCompany (int squadronId)
 	{
 		List<CrewMember> participatingPlayersForSquadron = participatingPlayers.get(squadronId);
 		if (participatingPlayersForSquadron == null)
@@ -46,7 +46,7 @@ public class MissionHumanParticipants
 		return participatingPlayersForSquadron;
 	}
 	
-	public List<Integer> getParticipatingSquadronIds ()
+	public List<Integer> getParticipatingCompanyIds ()
 	{
 		return new ArrayList<Integer>(participatingPlayers.keySet());
 	}
@@ -58,7 +58,7 @@ public class MissionHumanParticipants
 	
 	public boolean isPlayerInMission(Company squadron, CrewMember player)
 	{
-		List<CrewMember> playersForSquadron =  getParticipatingPlayersForSquadron(squadron.getCompanyId());
+		List<CrewMember> playersForSquadron =  getParticipatingPlayersForCompany(squadron.getCompanyId());
 		for (CrewMember playerForSquadron : playersForSquadron)
 		{
 			if (playerForSquadron.getSerialNumber() == player.getSerialNumber())

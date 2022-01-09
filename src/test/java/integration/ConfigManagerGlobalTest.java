@@ -20,7 +20,7 @@ public class ConfigManagerGlobalTest
 
     public ConfigManagerGlobalTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
     }
     
 

@@ -46,7 +46,7 @@ public class CrewMemberFactoryTest
     @BeforeEach
     public void setupTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         campaignDate = DateUtils.getDateYYYYMMDD("19170801");
         Mockito.when(campaign.getDate()).thenReturn(campaignDate);
         Mockito.when(campaign.getSerialNumber()).thenReturn(serialNumber);

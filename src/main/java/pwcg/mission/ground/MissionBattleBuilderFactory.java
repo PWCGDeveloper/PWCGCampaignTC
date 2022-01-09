@@ -16,16 +16,6 @@ public class MissionBattleBuilderFactory
         {
             return new AmphibiousAssaultBuilder(mission, amphibiousAssault);
         }
-        
-        if (mission.getSkirmish() != null && mission.getSkirmish().isCargoRouteBattle())
-        {
-            return new CargoRouteBattleBuilder(mission);
-        }
-        
-        if (mission.getSkirmish() != null && mission.getSkirmish().isShipEncounterZoneBattle())
-        {
-            return new ShippingEncounterBattleBuilder(mission);
-        }
 
         if (PWCGContext.getInstance().getCurrentMap().isNoDynamicBattlePeriod(mission.getCampaign().getDate()))
         {

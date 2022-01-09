@@ -24,7 +24,7 @@ public class SquadronHistoryValidationTest
     @Test
     public void readJsonBoSSquadronsTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         List<Company> squadrons = CompanyIOJson.readJson();
         Assertions.assertTrue (squadrons.size() > 0);
         

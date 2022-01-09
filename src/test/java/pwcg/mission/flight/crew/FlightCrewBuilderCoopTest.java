@@ -37,7 +37,7 @@ public class FlightCrewBuilderCoopTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         coopCampaign = CampaignCache.makeCampaign(SquadronTestProfile.COOP_COMPETITIVE_PROFILE);
         PWCGContext.getInstance().setCampaign(coopCampaign);
     }
@@ -103,9 +103,9 @@ public class FlightCrewBuilderCoopTest
         
         List<FlightTypes> playerFlightTypeList = makeFlightTypes(participatingPlayers);
         MissionSquadronFlightTypes playerFlightTypes = new MissionSquadronFlightTypes();
-        for (int i = 0; i < participatingPlayers.getParticipatingSquadronIds().size(); ++i)
+        for (int i = 0; i < participatingPlayers.getParticipatingCompanyIds().size(); ++i)
         {
-            Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(participatingPlayers.getParticipatingSquadronIds().get(i));
+            Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(participatingPlayers.getParticipatingCompanyIds().get(i));
             playerFlightTypes.add(squadron, playerFlightTypeList.get(i));
         }
 
@@ -141,7 +141,7 @@ public class FlightCrewBuilderCoopTest
     private List<FlightTypes> makeFlightTypes(MissionHumanParticipants participatingPlayers)
     {
         List<FlightTypes> playerFlightTypes = new ArrayList<>();
-        for (int i = 0; i < participatingPlayers.getParticipatingSquadronIds().size(); ++i)
+        for (int i = 0; i < participatingPlayers.getParticipatingCompanyIds().size(); ++i)
         {
             playerFlightTypes.add(FlightTypes.GROUND_ATTACK);
         }
@@ -163,9 +163,9 @@ public class FlightCrewBuilderCoopTest
         
         List<FlightTypes> playerFlightTypeList = makeFlightTypes(participatingPlayers);
         MissionSquadronFlightTypes playerFlightTypes = new MissionSquadronFlightTypes();
-        for (int i = 0; i < participatingPlayers.getParticipatingSquadronIds().size(); ++i)
+        for (int i = 0; i < participatingPlayers.getParticipatingCompanyIds().size(); ++i)
         {
-            Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(participatingPlayers.getParticipatingSquadronIds().get(i));
+            Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(participatingPlayers.getParticipatingCompanyIds().get(i));
             playerFlightTypes.add(squadron, playerFlightTypeList.get(i));
         }
 

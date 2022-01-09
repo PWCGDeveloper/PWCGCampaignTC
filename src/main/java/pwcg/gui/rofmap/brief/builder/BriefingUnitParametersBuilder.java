@@ -4,14 +4,14 @@ import pwcg.core.exception.PWCGException;
 import pwcg.gui.rofmap.brief.model.BriefingMapPoint;
 import pwcg.gui.rofmap.brief.model.BriefingUnitParameters;
 import pwcg.mission.mcu.McuWaypoint;
-import pwcg.mission.playerunit.PlayerUnit;
+import pwcg.mission.unit.IPlayerUnit;
 
 public class BriefingUnitParametersBuilder
 {
-	private PlayerUnit playerUnit;
+	private IPlayerUnit playerUnit;
 	private BriefingUnitParameters briefingFlightParameters;
 
-	public BriefingUnitParametersBuilder (PlayerUnit playerUnit)
+	public BriefingUnitParametersBuilder (IPlayerUnit playerUnit)
 	{
         this.playerUnit = playerUnit;
         briefingFlightParameters = new BriefingUnitParameters();

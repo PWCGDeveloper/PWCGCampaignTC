@@ -21,7 +21,7 @@ public class CompanyPersonnel
     private Company company;
     private CrewMembers companyMembers = new CrewMembers();
 
-    public CompanyPersonnel (Campaign campaign, Company company)
+    public CompanyPersonnel(Campaign campaign, Company company)
     {
         this.campaign = campaign;
         this.company = company;
@@ -74,11 +74,11 @@ public class CompanyPersonnel
             {
                 if (crewMember.getCrewMemberActiveStatus() == CrewMemberStatus.STATUS_ACTIVE)
                 {
-                	return true;
+                    return true;
                 }
             }
         }
-        
+
         CrewMember crewMember = campaign.getPersonnelManager().getAnyCampaignMember(serialNumber);
         if (crewMember != null)
         {
@@ -91,7 +91,7 @@ public class CompanyPersonnel
         return false;
     }
 
-    public CrewMembers getActiveAiCrewMembers() throws PWCGException
+    public CrewMembers getActiveCrewMembers() throws PWCGException
     {
         CrewMembers campaignMembers = getCrewMembersWithAces();
         CrewMembers activeCrewMembers = CrewMemberFilter.filterActiveAIAndAcesNoWounded(campaignMembers.getCrewMemberCollection(), campaign.getDate());
@@ -111,11 +111,11 @@ public class CompanyPersonnel
                 recentlyInactiveCrewMembers.addToCrewMemberCollection(crewMember);
             }
         }
-        
+
         return recentlyInactiveCrewMembers;
     }
 
-    public Company getSquadron()
+    public Company getCompany()
     {
         return company;
     }
@@ -136,8 +136,8 @@ public class CompanyPersonnel
 
         return activeCrewMembersAndAces;
     }
-    
-    public boolean isPlayerSquadron()
+
+    public boolean isPlayerCompany()
     {
         for (CrewMember crewMember : companyMembers.getCrewMemberList())
         {
@@ -168,18 +168,19 @@ public class CompanyPersonnel
         return activePlayers;
     }
 
-	public boolean isPlayerCommander() throws PWCGException {
-		CrewMembers players = getPlayersByStatus(CrewMemberStatus.STATUS_SERIOUSLY_WOUNDED);
-		for (CrewMember player : players.getCrewMemberList())
-		{
+    public boolean isPlayerCommander() throws PWCGException
+    {
+        CrewMembers players = getPlayersByStatus(CrewMemberStatus.STATUS_SERIOUSLY_WOUNDED);
+        for (CrewMember player : players.getCrewMemberList())
+        {
             IRankHelper rank = RankFactory.createRankHelper();
-			if (rank.isCommandRank(player.getRank(), player.determineService(campaign.getDate())))
-			{
-				return true;
-			}
-		}
-		return false;
-	}
+            if (rank.isCommandRank(player.getRank(), player.determineService(campaign.getDate())))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public CrewMembers getPlayers()
     {

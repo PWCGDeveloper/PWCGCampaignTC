@@ -19,7 +19,7 @@ public class InitialSquadronStafferGASTest
     @Test
     public void generatePersonnelWithAcesTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         Campaign campaign = CampaignCache.makeCampaign(SquadronTestProfile.JASTA_11_PROFILE);
 
         Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(SquadronTestProfile.JASTA_11_PROFILE.getCompanyId());

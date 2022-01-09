@@ -17,7 +17,7 @@ public class CoopUserIOJsonTest
     @Test
     public void campaignIOJsonTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
 
         deleteCoopUser();
         writeCoopUser();

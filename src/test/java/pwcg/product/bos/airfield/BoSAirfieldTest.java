@@ -159,7 +159,7 @@ public class BoSAirfieldTest
 
 	public BoSAirfieldTest() throws PWCGException
 	{
-		PWCGContext.setProduct(PWCGProduct.BOS);
+		PWCGContext.setProduct(PWCGProduct.TC);
 	}
 
 	@Test

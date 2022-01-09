@@ -1,4 +1,4 @@
-package pwcg.mission.playerunit;
+package pwcg.mission.unit;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -170,7 +170,7 @@ public class TankMcu extends EquippedTank implements Cloneable
         return isPlayerTank;
     }
     
-    public ITankPayload buildTankPayload(PlayerUnit unit, Date date) throws PWCGException
+    public ITankPayload buildTankPayload(IPlayerUnit unit, Date date) throws PWCGException
     {
         TankPayloadFactory payloadFactory = new TankPayloadFactory();        
         payload = payloadFactory.createPayload(this.getType(), date);
@@ -336,7 +336,7 @@ public class TankMcu extends EquippedTank implements Cloneable
         }
     }
 
-    public void populateEntity(PlayerUnit unit, TankMcu unitLeader)
+    public void populateEntity(IPlayerUnit unit, TankMcu unitLeader)
     {
         if (unitLeader.getIndex() != index)
         {

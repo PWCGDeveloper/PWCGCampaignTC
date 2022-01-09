@@ -17,7 +17,7 @@ public class GroundObjectIOJsonTest
     @Test
     public void readJsonArrasTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         String mapName = "Arras";
         validateGroundStructures(mapName);
     }
@@ -25,7 +25,7 @@ public class GroundObjectIOJsonTest
     @Test
     public void readJsonMoscowTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         String mapName = "Moscow";
         validateGroundStructures(mapName);
     }
@@ -33,7 +33,7 @@ public class GroundObjectIOJsonTest
     @Test
     public void readJsonStalingradTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         String mapName = "Stalingrad";
         validateGroundStructures(mapName);
     }
@@ -41,7 +41,7 @@ public class GroundObjectIOJsonTest
     @Test
     public void readJsonKubanTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         String mapName = "Kuban";
         validateGroundStructures(mapName);
     }
@@ -49,7 +49,7 @@ public class GroundObjectIOJsonTest
     @Test
     public void readJsonBoddenplatteTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         String mapName = "Bodenplatte";
         validateGroundStructures(mapName);        
     }

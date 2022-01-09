@@ -25,7 +25,7 @@ public class AARCrewMemberStatusCapturedEvaluatorTest
 
     public AARCrewMemberStatusCapturedEvaluatorTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
     }
 
     /**

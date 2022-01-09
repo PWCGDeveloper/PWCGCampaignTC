@@ -10,7 +10,7 @@ import pwcg.campaign.crewmember.CrewMembers;
 import pwcg.campaign.personnel.CrewMemberFilter;
 import pwcg.core.exception.PWCGException;
 import pwcg.mission.MissionHumanParticipants;
-import pwcg.mission.playerunit.PlayerUnitInformation;
+import pwcg.mission.unit.UnitInformation;
 
 public class CrewFactory
 {
@@ -19,7 +19,7 @@ public class CrewFactory
     private MissionHumanParticipants participatingPlayers;
     private Map <Integer, CrewMember> crewsForSquadron = new HashMap <>();
     
-	public CrewFactory(PlayerUnitInformation unitInformation)
+	public CrewFactory(UnitInformation unitInformation)
 	{
         this.campaign = unitInformation.getCampaign();
         this.squadron = unitInformation.getCompany();

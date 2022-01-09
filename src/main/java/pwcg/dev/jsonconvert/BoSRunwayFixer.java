@@ -21,7 +21,7 @@ public class BoSRunwayFixer
     
     public static void main(String[] args) throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
 
         BoSRunwayFixer runwayFixer = new BoSRunwayFixer();
         runwayFixer.limitAllMapsToOneRunway("Moscow");

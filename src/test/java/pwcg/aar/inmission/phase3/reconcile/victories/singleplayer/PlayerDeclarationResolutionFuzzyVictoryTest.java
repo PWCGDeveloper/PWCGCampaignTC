@@ -66,7 +66,7 @@ public class PlayerDeclarationResolutionFuzzyVictoryTest
     @BeforeEach
     public void setupTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         
         fuzzyVictories.clear();
         

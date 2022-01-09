@@ -46,7 +46,7 @@ public class AARClaimPanelEventTabulatorTest
     @BeforeEach
     public void setupTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         campaignDate = DateUtils.getDateYYYYMMDD("19420420");
         Mockito.when(campaign.getDate()).thenReturn(campaignDate);
         List<Company> playerSquadrons = new ArrayList<>();

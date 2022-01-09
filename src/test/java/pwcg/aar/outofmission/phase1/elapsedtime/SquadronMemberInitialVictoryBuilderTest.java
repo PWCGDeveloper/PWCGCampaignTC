@@ -29,7 +29,7 @@ public class CrewMemberInitialVictoryBuilderTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         germanCampaign = CampaignCache.makeCampaign(SquadronTestProfile.GROSS_DEUTSCHLAND_PROFILE);
         americanCampaign = CampaignCache.makeCampaign(SquadronTestProfile.FG_362_PROFILE);
     }

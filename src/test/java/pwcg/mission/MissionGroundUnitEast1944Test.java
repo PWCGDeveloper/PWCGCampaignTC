@@ -21,7 +21,7 @@ public class MissionGroundUnitEast1944Test
 {    
     public MissionGroundUnitEast1944Test() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
     }
     
     @Test

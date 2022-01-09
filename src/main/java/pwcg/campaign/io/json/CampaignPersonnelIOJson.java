@@ -37,7 +37,7 @@ public class CampaignPersonnelIOJson
     {
         for (CompanyPersonnel squadronPersonnel : campaign.getPersonnelManager().getAllCompanyPersonnel())
         {
-            writeSquadron(campaign, squadronPersonnel.getSquadron().getCompanyId());
+            writeSquadron(campaign, squadronPersonnel.getCompany().getCompanyId());
         }
     }
 
@@ -48,7 +48,7 @@ public class CampaignPersonnelIOJson
 
         String campaignPersonnelDir = PWCGDirectoryUserManager.getInstance().getPwcgCampaignsDir() + campaign.getCampaignData().getName() + "\\Personnel\\";
         PwcgJsonWriter<CrewMembers> jsonWriterSquadrons = new PwcgJsonWriter<>();
-        jsonWriterSquadrons.writeAsJson(squadronMembersToWrite, campaignPersonnelDir, squadronPersonnel.getSquadron().getCompanyId() + ".json");
+        jsonWriterSquadrons.writeAsJson(squadronMembersToWrite, campaignPersonnelDir, squadronPersonnel.getCompany().getCompanyId() + ".json");
     }
 
     private static void writeReplacements(Campaign campaign) throws PWCGException

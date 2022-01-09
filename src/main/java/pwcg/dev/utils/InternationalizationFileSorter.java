@@ -17,7 +17,7 @@ public class InternationalizationFileSorter
     {
         try
         {
-            PWCGContext.setProduct(PWCGProduct.BOS);
+            PWCGContext.setProduct(PWCGProduct.TC);
             InternationalizationFileSorter sorter = new InternationalizationFileSorter();
             sorter.sortEnglishRecords();
         }

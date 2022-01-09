@@ -53,7 +53,7 @@ public class VictoryBuilderTest
     @BeforeEach
     public void setupTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         Mockito.when(campaign.getPersonnelManager()).thenReturn(personnelManager);
         Mockito.when(campaign.getCampaignConfigManager()).thenReturn(configManager);
 

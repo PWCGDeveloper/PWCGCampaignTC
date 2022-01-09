@@ -18,7 +18,7 @@ public class BeforeCampaignDateFinderTest
     @Test
     public void initialDateIsOKTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         Date useDate = BeforeCampaignDateFinder.useEarliestPossibleDate(DateUtils.getDateYYYYMMDD("19411002"));
         Assertions.assertTrue (useDate.equals(DateUtils.getDateYYYYMMDD("19411002")));
     }
@@ -26,7 +26,7 @@ public class BeforeCampaignDateFinderTest
     @Test
     public void initialDateIsNotOKTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         Date useDate = BeforeCampaignDateFinder.useEarliestPossibleDate(DateUtils.getDateYYYYMMDD("19410930"));
         Assertions.assertTrue (useDate.equals(DateUtils.getDateYYYYMMDD("19411001")));
     }

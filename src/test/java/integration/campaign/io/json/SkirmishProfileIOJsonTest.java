@@ -20,7 +20,7 @@ public class SkirmishProfileIOJsonTest
     @Test
     public void readJsonBoSTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         PWCGContext.getInstance();
         Map<SkirmishProfileType, SkirmishProfile> skirmishProfiles = SkirmishProfileIOJson.readJson();
         Assertions.assertTrue (skirmishProfiles.size() == 9);

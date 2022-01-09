@@ -16,7 +16,7 @@ public class RoFAirfieldInEnemyTerritory extends AirfieldInEnemyTerritory
 	public RoFAirfieldInEnemyTerritory () throws PWCGException
 	{
 		super(true);
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
 	}
 
 	@Test

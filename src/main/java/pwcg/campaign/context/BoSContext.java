@@ -76,6 +76,6 @@ public class BoSContext extends PWCGContextBase implements IPWCGContextManager
     @Override
     public PWCGDirectoryProductManager getDirectoryManager()
     {
-        return new PWCGDirectoryProductManager(PWCGProduct.BOS);
+        return new PWCGDirectoryProductManager(PWCGProduct.TC);
     }
 }

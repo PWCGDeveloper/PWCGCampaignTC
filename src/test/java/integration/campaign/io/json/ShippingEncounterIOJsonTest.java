@@ -17,7 +17,7 @@ public class ShippingEncounterIOJsonTest
     @Test
     public void readJsonKubanTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         ShipEncounterZones shipEncounterZones = ShipEncounterZonesIOJson.readJson("Kuban");
         Assertions.assertTrue (shipEncounterZones.getShipEncounterZones().size() > 0);
     }

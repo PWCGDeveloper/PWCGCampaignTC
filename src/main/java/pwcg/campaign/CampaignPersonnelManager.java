@@ -39,7 +39,7 @@ public class CampaignPersonnelManager
 
 	public void addPersonnelForCompany(CompanyPersonnel campaignPersonnel)
 	{
-	    companyPersonnelAllSquadrons.put(campaignPersonnel.getSquadron().getCompanyId(), campaignPersonnel);
+	    companyPersonnelAllSquadrons.put(campaignPersonnel.getCompany().getCompanyId(), campaignPersonnel);
 	}
 
 	public CampaignAces getCampaignAces()
@@ -136,7 +136,7 @@ public class CampaignPersonnelManager
         Map<Integer, CrewMember> allNonAceCampaignMembers =  new HashMap<>();
         for (CompanyPersonnel squadronPersonnel : campaign.getPersonnelManager().getAllCompanyPersonnel())
         {
-            allNonAceCampaignMembers.putAll(squadronPersonnel.getActiveAiCrewMembers().getCrewMemberCollection());
+            allNonAceCampaignMembers.putAll(squadronPersonnel.getActiveCrewMembers().getCrewMemberCollection());
             allNonAceCampaignMembers.putAll(squadronPersonnel.getPlayersByStatus(CrewMemberStatus.STATUS_ACTIVE).getCrewMemberCollection());
         }
         return allNonAceCampaignMembers;

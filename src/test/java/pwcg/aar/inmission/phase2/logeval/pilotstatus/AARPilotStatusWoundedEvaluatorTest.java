@@ -20,7 +20,7 @@ public class AARCrewMemberStatusWoundedEvaluatorTest
 {
     public AARCrewMemberStatusWoundedEvaluatorTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
     }
 
     /**

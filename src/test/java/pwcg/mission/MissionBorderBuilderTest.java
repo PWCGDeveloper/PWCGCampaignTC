@@ -26,7 +26,7 @@ public class MissionBorderBuilderTest
 {
     public MissionBorderBuilderTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         PWCGContext.getInstance().setCurrentMap(FrontMapIdentifier.STALINGRAD_MAP);
     }
 

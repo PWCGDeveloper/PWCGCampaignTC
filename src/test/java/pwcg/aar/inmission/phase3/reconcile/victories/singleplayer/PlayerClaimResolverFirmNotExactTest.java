@@ -30,7 +30,7 @@ public class PlayerClaimResolverFirmNotExactTest
     @BeforeEach
     public void setupTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         Mockito.when(player.isPlayer()).thenReturn(true);
         Mockito.when(player.getSerialNumber()).thenReturn(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
         Mockito.when(player.getCountry()).thenReturn(Country.GERMANY);

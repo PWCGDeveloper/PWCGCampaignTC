@@ -61,7 +61,7 @@ public class AirfieldDistanceOrganizer
 
         try
         {
-        	PWCGContext.setProduct(PWCGProduct.BOS);
+        	PWCGContext.setProduct(PWCGProduct.TC);
         	            
             PWCGContext.getInstance();
             PWCGContext.getInstance().changeContext(frontMapIdentifier);;

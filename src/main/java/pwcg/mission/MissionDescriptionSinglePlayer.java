@@ -12,14 +12,15 @@ import pwcg.core.utils.MathUtils;
 import pwcg.mission.options.MissionOptions;
 import pwcg.mission.options.MissionWeather;
 import pwcg.mission.options.WindLayer;
-import pwcg.mission.playerunit.PlayerUnit;
 import pwcg.mission.playerunit.objective.MissionObjectiveFactory;
+import pwcg.mission.unit.IPlayerUnit;
+import pwcg.mission.unit.PlayerUnit;
 
 public class MissionDescriptionSinglePlayer implements IMissionDescription 
 {
     private Mission mission;
     private Campaign campaign;
-    private PlayerUnit playerUnit;
+    private IPlayerUnit playerUnit;
     
 	private String author = "Brought to you by PWCGCampaign";
 	private String title = "";
@@ -50,7 +51,7 @@ public class MissionDescriptionSinglePlayer implements IMissionDescription
 	private ArrayList<String> enemyIntHtmlList = new ArrayList<String>();
 	private ArrayList<String> friendlyIntHtmlList = new ArrayList<String>();
 	
-    public MissionDescriptionSinglePlayer (Campaign campaign, Mission mission, PlayerUnit  playerUnit)
+    public MissionDescriptionSinglePlayer (Campaign campaign, Mission mission, IPlayerUnit  playerUnit)
     {
         this.mission = mission;
         this.campaign = campaign;
@@ -79,7 +80,7 @@ public class MissionDescriptionSinglePlayer implements IMissionDescription
             companyMap.put(unit.getCompany().determineDisplayName(campaign.getDate()), unit);
         }
 
-        for (PlayerUnit unit : companyMap.values())
+        for (IPlayerUnit unit : companyMap.values())
         {
             setUnit(playerUnit.getUnitInformation().getCountry(), unit);
         }
@@ -88,7 +89,7 @@ public class MissionDescriptionSinglePlayer implements IMissionDescription
     }
 
     
-    private void setUnit(ICountry country, PlayerUnit unit) throws PWCGException 
+    private void setUnit(ICountry country, IPlayerUnit unit) throws PWCGException 
     {
         Campaign campaign =     PWCGContext.getInstance().getCampaign();
         

@@ -1,4 +1,4 @@
-package pwcg.mission.playerunit;
+package pwcg.mission.unit;
 
 import java.util.ArrayList;
 import java.util.List;

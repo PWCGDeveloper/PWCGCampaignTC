@@ -56,7 +56,7 @@ public class KubanAttackMockCampaign
 
     public void mockCampaignSetup() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         PWCGContext.getInstance().changeContext(FrontMapIdentifier.KUBAN_MAP);
 
         date = DateUtils.getDateYYYYMMDD("19430401");

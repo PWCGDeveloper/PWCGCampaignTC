@@ -10,7 +10,7 @@ public class StaticPlaneSelectorFactory
 {
     public static IStaticPlaneSelector createStaticPlaneSelector() throws PWCGException
     {
-        if (PWCGContext.getProduct() == PWCGProduct.BOS)
+        if (PWCGContext.getProduct() == PWCGProduct.TC)
         {
             return new StaticPlaneSelector();
         }

@@ -5,20 +5,26 @@ import java.util.List;
 
 import pwcg.campaign.Campaign;
 import pwcg.core.exception.PWCGException;
-import pwcg.mission.playerunit.PlayerUnit;
+import pwcg.mission.unit.IPlayerUnit;
+import pwcg.mission.unit.PlayerUnit;
 
-public class MissionPlayerUnits
+public class MissionUnits
 {
-    private List<PlayerUnit> playerUnits = new ArrayList<>();
+    private List<IPlayerUnit> playerUnits = new ArrayList<>();
     private Mission mission;
     private Campaign campaign;
 
-    MissionPlayerUnits()
+    MissionUnits(Mission mission)
     {
         this.mission = mission;
-        this.campaign = campaign;
+        this.campaign = mission.getCampaign();
     }
     
+    public void addPlayerUnit(IPlayerUnit playerUnit)
+    {
+        playerUnits.add(playerUnit);
+    }
+
     public List<Integer> getPlayersInMission()
     {
         return null;
@@ -39,7 +45,7 @@ public class MissionPlayerUnits
         return null;
     }
 
-    public PlayerUnit getReferencePlayerUnit()
+    public IPlayerUnit getReferencePlayerUnit()
     {
         return null;
     }
@@ -51,7 +57,7 @@ public class MissionPlayerUnits
         unitFinalizer.finalizeMissionUnits();
     }
 
-    public PlayerUnit getPlayerUnitForCompany(int companyId)
+    public IPlayerUnit getPlayerUnitForCompany(int companyId)
     {
         return null;
     }

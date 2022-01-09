@@ -32,7 +32,7 @@ public class ArdennesFlightTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         fg362Campaign = CampaignCache.makeCampaign(SquadronTestProfile.FG_362_PROFILE);
     }
 

@@ -1,6 +1,7 @@
 package pwcg.mission.target;
 
 import pwcg.campaign.api.ICountry;
+import pwcg.campaign.api.Side;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.location.Orientation;
@@ -64,6 +65,35 @@ public class AssaultDefinition
         }
     }
 
+    public Coordinate getPositionForSide(Side side)
+    {
+        if(assaultingCountry.getSide() == side)
+        {
+            return assaultPosition;
+        }
+        else
+        {
+            return defensePosition;
+        }
+    }
+
+    public double getOrientationTowardsEnemy(Side side) throws PWCGException
+    {
+        double angleToEnemy = MathUtils.calcAngle(defensePosition, assaultPosition);
+        if(assaultingCountry.getSide() == side)
+        {
+            angleToEnemy = MathUtils.calcAngle(assaultPosition, defensePosition);
+        }
+        return angleToEnemy;
+     }
+
+    public double getOrientationFromEnemy(Side side) throws PWCGException
+    {
+        double angleToEnemy = getOrientationTowardsEnemy(side);
+        double angleFromEnemy = MathUtils.adjustAngle(angleToEnemy, 180);
+        return angleFromEnemy;
+     }
+    
     public static Integer getCloseToBattle()
     {
         return CLOSE_TO_BATTLE;

@@ -46,7 +46,7 @@ public class WW2PayloadTest
     @BeforeEach
     public void setupTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
 
         Mockito.when(flight.getTargetDefinition()).thenReturn(targetDefinition);
         Mockito.when(flight.getCompany()).thenReturn(squadron);

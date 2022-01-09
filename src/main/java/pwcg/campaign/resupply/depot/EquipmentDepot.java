@@ -54,7 +54,7 @@ public class EquipmentDepot
         List<EquippedTank> planesInDepotForRole = new ArrayList<>();
         for (EquippedTank equippedPlane : equipment.getAvailableDepotTanks().values())
         {
-            if (equippedPlane.getRoleCategories().get(0) == roleCategory)
+            if (equippedPlane.determinePrimaryRoleCategory() == roleCategory)
             {
                 planesInDepotForRole.add(equippedPlane);
             }

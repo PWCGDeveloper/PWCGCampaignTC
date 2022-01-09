@@ -18,7 +18,7 @@ public class AmphibiousAssaultIOJsonTest
     @Test
     public void readJsonBoSTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         PWCGContext.getInstance();
         AmphibiousAssaults amphibiousAssault = AmphibiousAssaultIOJson.readJson(FrontMapIdentifier.KUBAN_MAP.getMapName());
         Assertions.assertTrue (amphibiousAssault.getAmphibiousAssaults().size() > 0);

@@ -6,7 +6,7 @@ import java.util.List;
 import pwcg.campaign.tank.TankType;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.MathUtils;
-import pwcg.mission.playerunit.PlayerUnit;
+import pwcg.mission.unit.IPlayerUnit;
 
 public abstract class TankPayload implements ITankPayload
 {
@@ -30,7 +30,7 @@ public abstract class TankPayload implements ITankPayload
 	}
 
     @Override()
-	public int createWeaponsPayload(PlayerUnit unit) throws PWCGException
+	public int createWeaponsPayload(IPlayerUnit unit) throws PWCGException
 	{
 	    int selectedPayloadId = createWeaponsPayloadForTank(unit);
         setSelectedPayload(selectedPayloadId);
@@ -38,7 +38,7 @@ public abstract class TankPayload implements ITankPayload
 	}
 	
     @Override
-    public List<TankPayloadDesignation> getAvailablePayloadDesignations(PlayerUnit unit) throws PWCGException
+    public List<TankPayloadDesignation> getAvailablePayloadDesignations(IPlayerUnit unit) throws PWCGException
     {
         return getAvailablePayloadDesignationsForTank(unit);
     }
@@ -49,7 +49,7 @@ public abstract class TankPayload implements ITankPayload
         return payloads.getSelectedPayloadDesignation();
     }
 
-    protected List<TankPayloadDesignation> getAvailablePayloadDesignationsForTank(PlayerUnit unit) throws PWCGException
+    protected List<TankPayloadDesignation> getAvailablePayloadDesignationsForTank(IPlayerUnit unit) throws PWCGException
     {
         return payloads.getPayloadDesignations().getAllAvailablePayloadDesignations();
     }
@@ -213,6 +213,6 @@ public abstract class TankPayload implements ITankPayload
         return date;
     }
 
-    protected abstract int createWeaponsPayloadForTank(PlayerUnit unit) throws PWCGException;
+    protected abstract int createWeaponsPayloadForTank(IPlayerUnit unit) throws PWCGException;
     protected abstract void initialize();
 }

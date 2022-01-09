@@ -40,7 +40,7 @@ public class NewCrewMemberGeneratorState
     {
         stateStack.add(CampaignGeneratorWorkflow.CHOOSE_PLAYER_NAME);
         
-        if (PWCGContext.getProduct() == PWCGProduct.BOS)
+        if (PWCGContext.getProduct() == PWCGProduct.TC)
         {
             ICountry country = campaignGeneratorDO.getService().getCountry();
             if (country.getCountry() == Country.GERMANY)

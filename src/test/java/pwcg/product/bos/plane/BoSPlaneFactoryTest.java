@@ -16,7 +16,7 @@ public class BoSPlaneFactoryTest
 {	
 	public BoSPlaneFactoryTest() throws PWCGException
 	{
-    	PWCGContext.setProduct(PWCGProduct.BOS);      
+    	PWCGContext.setProduct(PWCGProduct.TC);      
 	}
 
 	@Test

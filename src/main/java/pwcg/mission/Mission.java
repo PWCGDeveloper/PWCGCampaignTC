@@ -24,8 +24,8 @@ import pwcg.mission.io.MissionFileFactory;
 import pwcg.mission.options.MissionOptions;
 import pwcg.mission.options.MissionType;
 import pwcg.mission.options.MissionWeather;
-import pwcg.mission.playerunit.PlayerUnit;
 import pwcg.mission.target.AssaultDefinition;
+import pwcg.mission.unit.IPlayerUnit;
 
 public class Mission
 {
@@ -41,11 +41,11 @@ public class Mission
     private MissionAirfields missionAirfields;
     private MissionFinalizer finalizer;
 
-    private MissionPlayerUnits missionPlayerUnits;
     private MissionFlights missionFlights;
     private SkinsInUse skinsInUse = new SkinsInUse();
 
     private MissionBattleManager battleManager = new MissionBattleManager();
+    private MissionUnits missionUnits;
     private MissionGroundUnitBuilder groundUnitBuilder;
     private MissionGroundUnitResourceManager groundUnitManager;
     private VehicleSetBuilderComprehensive vehicleSetBuilder = new VehicleSetBuilderComprehensive();
@@ -81,6 +81,7 @@ public class Mission
         MissionStringHandler subtitleHandler = MissionStringHandler.getInstance();
         subtitleHandler.clear();
 
+        missionUnits = new MissionUnits(this);
         groundUnitManager = new MissionGroundUnitResourceManager();
         groundUnitBuilder = new MissionGroundUnitBuilder(this);
         missionFlights = new MissionFlights(this);
@@ -98,7 +99,8 @@ public class Mission
 
     private void createPlayerUnits() throws PWCGException
     {
-        // TODO TC make player units
+        MissionUnitBuilder unitBuilder = new MissionUnitBuilder(this);
+        missionUnits = unitBuilder.createPlayerUnits(participatingPlayers);
     }
 
     private void createStructuresBoxForMission() throws PWCGException
@@ -206,7 +208,7 @@ public class Mission
     {
         boolean hasPlayerAllied = false;
         boolean hasPlayerAxis = false;
-        for (PlayerUnit unit : missionPlayerUnits.getPlayerUnits())
+        for (IPlayerUnit unit : missionUnits.getPlayerUnits())
         {
             if (unit.getUnitInformation().getCountry().getSide() == Side.ALLIED)
             {
@@ -348,8 +350,8 @@ public class Mission
         return finalizer;
     }
 
-    public MissionPlayerUnits getUnits()
+    public MissionUnits getUnits()
     {
-        return missionPlayerUnits;
+        return missionUnits;
     }
 }

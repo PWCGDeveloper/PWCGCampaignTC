@@ -117,7 +117,7 @@ public class CampaignCleaner
                         crewMemberSerialNumbers.put(crewMember.getSerialNumber(), new ArrayList<Integer>());
                     }
                     List<Integer> squadronsForSerialNumber = crewMemberSerialNumbers.get(crewMember.getSerialNumber());
-                    squadronsForSerialNumber.add(personnel.getSquadron().getCompanyId());
+                    squadronsForSerialNumber.add(personnel.getCompany().getCompanyId());
                 }
             }
         }
@@ -173,7 +173,7 @@ public class CampaignCleaner
                         crewMemberSerialNumbers.put(crewMember.getSerialNumber(), new ArrayList<Integer>());
                     }
                     List<Integer> squadronsForSerialNumber = crewMemberSerialNumbers.get(crewMember.getSerialNumber());
-                    squadronsForSerialNumber.add(personnel.getSquadron().getCompanyId());
+                    squadronsForSerialNumber.add(personnel.getCompany().getCompanyId());
                 }
             }
         }

@@ -37,7 +37,7 @@ public class BoSBritishMedalManagerTest extends MedalManagerTestBase
     @BeforeEach
     public void setupTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         super.setupBase();
         ICountry country = CountryFactory.makeCountryByCountry(Country.BRITAIN);
         medalManager = MedalManagerFactory.createMedalManager(country, campaign);

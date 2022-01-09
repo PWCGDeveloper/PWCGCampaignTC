@@ -18,7 +18,7 @@ public class MissionBlockBuilderTest
 {
     public MissionBlockBuilderTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
     }
 
     @Test

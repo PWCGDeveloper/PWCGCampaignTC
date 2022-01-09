@@ -6,13 +6,13 @@ import pwcg.core.location.Coordinate;
 import pwcg.core.utils.MathUtils;
 import pwcg.mission.ground.org.GroundUnitCollection;
 import pwcg.mission.ground.org.IGroundUnit;
-import pwcg.mission.playerunit.PlayerUnitInformation;
+import pwcg.mission.unit.UnitInformation;
 
 public class TargetDefinitionBuilderAAATruck implements ITargetDefinitionBuilder
 {
-    private PlayerUnitInformation unitInformation;
+    private UnitInformation unitInformation;
 
-    public TargetDefinitionBuilderAAATruck(PlayerUnitInformation unitInformation) throws PWCGException
+    public TargetDefinitionBuilderAAATruck(UnitInformation unitInformation) throws PWCGException
     {
         this.unitInformation = unitInformation;
     }

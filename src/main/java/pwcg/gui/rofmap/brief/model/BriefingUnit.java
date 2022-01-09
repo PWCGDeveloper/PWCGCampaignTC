@@ -12,8 +12,8 @@ import pwcg.core.exception.PWCGException;
 import pwcg.gui.rofmap.brief.BriefingDataInitializer;
 import pwcg.gui.rofmap.brief.BriefingPayloadHelper;
 import pwcg.mission.Mission;
-import pwcg.mission.playerunit.PlayerUnit;
 import pwcg.mission.playerunit.crew.CrewTankPayloadPairing;
+import pwcg.mission.unit.IPlayerUnit;
 
 public class BriefingUnit
 {
@@ -143,7 +143,7 @@ public class BriefingUnit
     
     private void initializeFuel()
     {
-        PlayerUnit unit = mission.getUnits().getPlayerUnitForCompany(companyId);
+        IPlayerUnit unit = mission.getUnits().getPlayerUnitForCompany(companyId);
         this.selectedFuel = unit.getLeadVehicle().getFuel();
     }
 }

@@ -33,7 +33,7 @@ public class SquadronMapFinder
     
     private void squadronIsOnMap() throws PWCGException  
     {     
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         PWCGContext.getInstance().changeContext(FrontMapIdentifier.KUBAN_MAP);
         
         TreeMap<Integer, String> airfieldsOnMapSorted = new TreeMap<>();

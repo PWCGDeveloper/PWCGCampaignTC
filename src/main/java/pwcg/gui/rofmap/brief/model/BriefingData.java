@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import pwcg.mission.Mission;
-import pwcg.mission.playerunit.PlayerUnit;
+import pwcg.mission.unit.IPlayerUnit;
 
 public class BriefingData
 {
@@ -27,9 +27,9 @@ public class BriefingData
         return briefingMissionFlights.get(selectedCompanyId);
     }
     
-    public PlayerUnit getSelectedUnit()
+    public IPlayerUnit getSelectedUnit()
     {
-        PlayerUnit playerFlight = mission.getUnits().getPlayerUnitForCompany(selectedCompanyId);
+        IPlayerUnit playerFlight = mission.getUnits().getPlayerUnitForCompany(selectedCompanyId);
         return playerFlight;
     }
 

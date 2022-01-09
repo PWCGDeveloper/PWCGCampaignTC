@@ -38,7 +38,7 @@ public class AcesKilledEventGeneratorTest
     @BeforeEach
     public void setupTest() throws PWCGException
     {         
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19170420"));
         Mockito.when(campaign.getPersonnelManager()).thenReturn(personnelManager);
     }

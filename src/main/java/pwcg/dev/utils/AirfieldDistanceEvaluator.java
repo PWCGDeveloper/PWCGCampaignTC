@@ -35,7 +35,7 @@ public class AirfieldDistanceEvaluator
     public static void main(String[] args) throws PWCGException
     {
 	    UserDir.setUserDir();
-	    PWCGContext.setProduct(PWCGProduct.BOS);
+	    PWCGContext.setProduct(PWCGProduct.TC);
 	    
         AirfieldDistanceEvaluator airfieldReporter = new AirfieldDistanceEvaluator();
         airfieldReporter.process();

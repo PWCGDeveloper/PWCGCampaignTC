@@ -155,7 +155,7 @@ public class MissionCenterBuilderFrontLines implements IMissionCenterBuilder
     private List<Coordinate> determineSquadronCoordinates() throws PWCGException
     {
         List<Coordinate> playerSquadronCoordinates = new ArrayList<>();
-        for (int playerSquadronId : participatingPlayers.getParticipatingSquadronIds())
+        for (int playerSquadronId : participatingPlayers.getParticipatingCompanyIds())
         {
             Company playerSquadron = PWCGContext.getInstance().getCompanyManager().getCompany(playerSquadronId);
             Coordinate playerSquadronCoordinate = playerSquadron.determineCurrentPosition(campaign.getDate());

@@ -24,7 +24,7 @@ public class EquipmentWeightCalculatorTest
     
     public EquipmentWeightCalculatorTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);      
+        PWCGContext.setProduct(PWCGProduct.TC);      
     }
 
     @Test

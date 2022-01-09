@@ -20,7 +20,7 @@ public class InitialSquadronEquipperTest
 {
     public InitialSquadronEquipperTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);      
+        PWCGContext.setProduct(PWCGProduct.TC);      
     }
 
     @Test

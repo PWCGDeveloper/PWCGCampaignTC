@@ -49,7 +49,7 @@ public class EmergencyResupplyHandler
     {
         int totalTransfers = calculatePersonnelToReplaceForSquadron(squadronPersonnel);
         replacePersonnelForSquadron(squadronPersonnel, totalTransfers);
-        CampaignPersonnelIOJson.writeSquadron(campaign, squadronPersonnel.getSquadron().getCompanyId());
+        CampaignPersonnelIOJson.writeSquadron(campaign, squadronPersonnel.getCompany().getCompanyId());
     }
 
     private int calculatePersonnelToReplaceForSquadron(CompanyPersonnel squadronPersonnel) throws PWCGException
@@ -68,12 +68,12 @@ public class EmergencyResupplyHandler
     private void replacePersonnelForSquadron(CompanyPersonnel squadronPersonnel, int totalTransfers) throws PWCGException
     {
         CrewMemberReplacementFactory replacementFactory = new CrewMemberReplacementFactory(
-                campaign, squadronPersonnel.getSquadron().determineServiceForSquadron(campaign.getDate()));
+                campaign, squadronPersonnel.getCompany().determineServiceForSquadron(campaign.getDate()));
         
         for (int i = 0; i < totalTransfers; ++i)
         {
             CrewMember replacement = replacementFactory.createAIReplacementCrewMember();
-            replacement.setSquadronId(squadronPersonnel.getSquadron().getCompanyId());
+            replacement.setSquadronId(squadronPersonnel.getCompany().getCompanyId());
             squadronPersonnel.addCrewMember(replacement);
         }
     }

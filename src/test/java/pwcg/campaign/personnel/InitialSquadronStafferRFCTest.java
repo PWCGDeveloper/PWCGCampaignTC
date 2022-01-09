@@ -19,7 +19,7 @@ public class InitialSquadronStafferRFCTest
     @Test
     public void generateReconPersonnelTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         Campaign campaign = CampaignCache.makeCampaign(SquadronTestProfile.RFC_2_PROFILE);
 
         Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(SquadronTestProfile.RFC_2_PROFILE.getCompanyId());

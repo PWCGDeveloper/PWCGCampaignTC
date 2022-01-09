@@ -6,7 +6,7 @@ import pwcg.core.exception.PWCGException;
 import pwcg.gui.rofmap.brief.model.BriefingData;
 import pwcg.gui.rofmap.brief.model.BriefingUnit;
 import pwcg.mission.Mission;
-import pwcg.mission.playerunit.PlayerUnit;
+import pwcg.mission.unit.IPlayerUnit;
 
 public class BriefingUnitUpdater
 {
@@ -44,7 +44,7 @@ public class BriefingUnitUpdater
 
         for (BriefingUnit briefingUnit : briefingData.getBriefingUnits())
         {
-            PlayerUnit playerUnit = mission.getUnits().getPlayerUnitForCompany(briefingUnit.getCompanyId());
+            IPlayerUnit playerUnit = mission.getUnits().getPlayerUnitForCompany(briefingUnit.getCompanyId());
             playerUnit.getWaypointPackage().updateWaypointsFromBriefing(briefingUnit.getBriefingUnitParameters().getBriefingMapMapPoints());
         }
     }
@@ -54,7 +54,7 @@ public class BriefingUnitUpdater
         Mission mission = briefingData.getMission();
         for (BriefingUnit briefingUnit : briefingData.getBriefingUnits())
         {
-            PlayerUnit playerUnit = mission.getUnits().getPlayerUnitForCompany(briefingUnit.getCompanyId());
+            IPlayerUnit playerUnit = mission.getUnits().getPlayerUnitForCompany(briefingUnit.getCompanyId());
             BriefingCrewTankUpdater crewePlaneUpdater = new BriefingCrewTankUpdater(mission.getCampaign(), playerUnit);
             crewePlaneUpdater.updatePlayerTanks(briefingUnit.getBriefingAssignmentData().getCrews());
         }
@@ -68,7 +68,7 @@ public class BriefingUnitUpdater
 
         for (BriefingUnit briefingUnit : briefingData.getBriefingUnits())
         {
-            PlayerUnit playerUnit = mission.getUnits().getPlayerUnitForCompany(briefingUnit.getCompanyId());
+            IPlayerUnit playerUnit = mission.getUnits().getPlayerUnitForCompany(briefingUnit.getCompanyId());
             playerUnit.getUnitTanks().setFuelForUnit(briefingUnit.getSelectedFuel());
         }
     }

@@ -14,7 +14,7 @@ public class InternationalizationFileMerger
     {
         try
         {
-            PWCGContext.setProduct(PWCGProduct.BOS);
+            PWCGContext.setProduct(PWCGProduct.TC);
             InternationalizationFileMerger internationalizationFileBuilder = new InternationalizationFileMerger();
             internationalizationFileBuilder.buildFileForMissingRecords();
         }

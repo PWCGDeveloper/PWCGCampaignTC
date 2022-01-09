@@ -10,8 +10,8 @@ import pwcg.campaign.tank.EquippedTank;
 import pwcg.core.exception.PWCGException;
 import pwcg.gui.rofmap.brief.model.BriefingCrewMemberAssignmentData;
 import pwcg.mission.Mission;
-import pwcg.mission.playerunit.PlayerUnit;
-import pwcg.mission.playerunit.TankMcu;
+import pwcg.mission.unit.IPlayerUnit;
+import pwcg.mission.unit.TankMcu;
 
 public class BriefingDataInitializer
 {
@@ -41,7 +41,7 @@ public class BriefingDataInitializer
             briefingAssignmentData.addPlane(companyPlane);
         }
 	    
-        PlayerUnit playerUnit = mission.getUnits().getPlayerUnitForCompany(company.getCompanyId());
+        IPlayerUnit playerUnit = mission.getUnits().getPlayerUnitForCompany(company.getCompanyId());
 	    for (TankMcu tank : playerUnit.getUnitTanks().getTanks())
 	    {
 	        briefingAssignmentData.assignCrewMember(tank.getCrewMember().getSerialNumber(), tank.getSerialNumber());

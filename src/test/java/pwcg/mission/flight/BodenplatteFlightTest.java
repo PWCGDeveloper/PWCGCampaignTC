@@ -25,7 +25,7 @@ public class BodenplatteFlightTest
 {
     public BodenplatteFlightTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
     }
 
     @Test

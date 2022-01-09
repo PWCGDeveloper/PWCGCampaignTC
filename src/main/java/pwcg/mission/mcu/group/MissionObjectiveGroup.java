@@ -14,8 +14,8 @@ import pwcg.mission.mcu.McuEvent;
 import pwcg.mission.mcu.McuMessage;
 import pwcg.mission.mcu.McuMissionObjective;
 import pwcg.mission.mcu.McuTimer;
-import pwcg.mission.playerunit.PlayerUnit;
-import pwcg.mission.playerunit.TankMcu;
+import pwcg.mission.unit.IPlayerUnit;
+import pwcg.mission.unit.TankMcu;
 
 public class MissionObjectiveGroup
 {
@@ -32,7 +32,7 @@ public class MissionObjectiveGroup
 
     public void createSuccessMissionObjective(Campaign campaign, Mission mission) throws PWCGException 
     {
-        PlayerUnit playerUnit = mission.getUnits().getReferencePlayerUnit();
+        IPlayerUnit playerUnit = mission.getUnits().getReferencePlayerUnit();
         Coordinate squadronLocation = playerUnit.getCompany().determineCurrentPosition(campaign.getDate());
         missionBeginUnit = new MissionBeginUnit(squadronLocation.copy());            
                 
@@ -47,7 +47,7 @@ public class MissionObjectiveGroup
 
     public void createFailureMissionObjective(Campaign campaign, Mission mission) throws PWCGException 
     {
-        PlayerUnit playerUnit = mission.getUnits().getReferencePlayerUnit();
+        IPlayerUnit playerUnit = mission.getUnits().getReferencePlayerUnit();
         Coordinate squadronLocation = playerUnit.getCompany().determineCurrentPosition(campaign.getDate());
         missionBeginUnit = new MissionBeginUnit(squadronLocation.copy());            
 

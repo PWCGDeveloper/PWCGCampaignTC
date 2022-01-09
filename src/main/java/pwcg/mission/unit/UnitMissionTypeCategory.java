@@ -1,4 +1,4 @@
-package pwcg.mission.playerunit;
+package pwcg.mission.unit;
 
 public enum UnitMissionTypeCategory
 {

@@ -30,7 +30,7 @@ public class AirfieldBuilder
     
     public static void main(String[] args) throws Exception
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
 
         AirfieldBuilder jsonConverter = new AirfieldBuilder();
         jsonConverter.getAirfieldNames("Bodenplatte");

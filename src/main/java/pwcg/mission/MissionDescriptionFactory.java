@@ -1,7 +1,7 @@
 package pwcg.mission;
 
 import pwcg.campaign.Campaign;
-import pwcg.mission.playerunit.PlayerUnit;
+import pwcg.mission.unit.IPlayerUnit;
 
 public class MissionDescriptionFactory 
 {
@@ -17,7 +17,7 @@ public class MissionDescriptionFactory
 	    }
 	}
 
-    public static IMissionDescription buildMissionDescription(Campaign campaign, Mission mission, PlayerUnit  playerUnit)
+    public static IMissionDescription buildMissionDescription(Campaign campaign, Mission mission, IPlayerUnit  playerUnit)
     {
         return new MissionDescriptionSinglePlayer(campaign, mission, playerUnit);
     }

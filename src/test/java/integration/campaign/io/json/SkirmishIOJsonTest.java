@@ -18,7 +18,7 @@ public class SkirmishIOJsonTest
     @Test
     public void readJsonBoSTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         PWCGContext.getInstance();
         Skirmishes skirmishes = SkirmishIOJson.readJson(FrontMapIdentifier.BODENPLATTE_MAP.getMapName());
         Assertions.assertTrue (skirmishes.getSkirmishes().size() > 0);

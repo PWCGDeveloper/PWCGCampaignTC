@@ -49,7 +49,7 @@ public class FW190A5PayloadTest
     @BeforeEach
     public void setupTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
 
         Mockito.when(flight.getCompany()).thenReturn(squadron);
         Mockito.when(flight.getCampaign()).thenReturn(campaign);

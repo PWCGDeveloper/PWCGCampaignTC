@@ -14,20 +14,20 @@ import pwcg.core.constants.Callsign;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.PWCGLogger;
 import pwcg.core.utils.PWCGLogger.LogLevel;
-import pwcg.mission.playerunit.PlayerUnitInformation;
-import pwcg.mission.playerunit.TankMcu;
 import pwcg.mission.playerunit.crew.UnitCrewBuilder;
+import pwcg.mission.unit.UnitInformation;
+import pwcg.mission.unit.TankMcu;
 
 public class TankMcuFactory
 {    
-    private PlayerUnitInformation unitInformation;
+    private UnitInformation unitInformation;
     
-    public TankMcuFactory(PlayerUnitInformation unitInformation)
+    public TankMcuFactory(UnitInformation unitInformation)
     {
         this.unitInformation = unitInformation;
     }
 
-    public List<TankMcu> createTanksForFlight(int numTanks) throws PWCGException
+    public List<TankMcu> createTanksForUnit(int numTanks) throws PWCGException
     {
         List<CrewMember> crewsForFlight = buildUnitCrews(numTanks);
         if (crewsForFlight.size() < numTanks)

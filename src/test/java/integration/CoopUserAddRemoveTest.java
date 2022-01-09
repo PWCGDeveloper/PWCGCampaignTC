@@ -35,7 +35,7 @@ public class CoopUserAddRemoveTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         coopCampaign = CampaignCache.makeCampaignOnDisk(SquadronTestProfile.COOP_COMPETITIVE_PROFILE);
     }
 

@@ -7,7 +7,7 @@ import pwcg.campaign.tank.payload.ITankPayload;
 import pwcg.campaign.tank.payload.TankPayload;
 import pwcg.campaign.tank.payload.TankPayloadElement;
 import pwcg.core.exception.PWCGException;
-import pwcg.mission.playerunit.PlayerUnit;
+import pwcg.mission.unit.IPlayerUnit;
 
 public class PzkwIVG extends TankPayload implements ITankPayload
 {
@@ -29,7 +29,7 @@ public class PzkwIVG extends TankPayload implements ITankPayload
     }
 
     @Override
-    protected int createWeaponsPayloadForTank(PlayerUnit unit) throws PWCGException
+    protected int createWeaponsPayloadForTank(IPlayerUnit unit) throws PWCGException
     {
         return 0;
     }

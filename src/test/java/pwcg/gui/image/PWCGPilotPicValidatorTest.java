@@ -22,7 +22,7 @@ public class PWCGCrewMemberPicValidatorTest
     @BeforeEach
     public void setup ()
     {
-        PWCGDirectoryProductManager directoryManager = new PWCGDirectoryProductManager(PWCGProduct.BOS);
+        PWCGDirectoryProductManager directoryManager = new PWCGDirectoryProductManager(PWCGProduct.TC);
         String imageDir  = directoryManager.getPwcgImagesDir();
         crewMemberPicDir = imageDir + "CrewMemberPictures\\";
     }

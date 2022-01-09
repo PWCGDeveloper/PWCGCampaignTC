@@ -22,7 +22,7 @@ public class EmptySpaceFinderTest
     @Test
     public void findEmptySpaceAroundAirfield() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         PWCGContext.getInstance().changeContext(FrontMapIdentifier.STALINGRAD_MAP);
         AirfieldManager airfieldManager  = PWCGContext.getInstance().getCurrentMap().getAirfieldManager();
         

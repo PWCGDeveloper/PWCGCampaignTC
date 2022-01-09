@@ -35,7 +35,7 @@ public class TargetDefinitionPreferenceBuilderTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.BOS);
+        PWCGContext.setProduct(PWCGProduct.TC);
         campaign = CampaignCache.makeCampaign(SquadronTestProfile.JG_26_PROFILE_WEST);
     }
     

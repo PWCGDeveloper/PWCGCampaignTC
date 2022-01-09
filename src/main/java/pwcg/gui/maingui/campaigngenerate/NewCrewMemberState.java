@@ -46,7 +46,7 @@ public class NewCrewMemberState
             stateStack.add(CrewMemberGeneratorWorkflow.CHOOSE_COOP_USER);
         }
         
-        if (PWCGContext.getProduct() == PWCGProduct.BOS)
+        if (PWCGContext.getProduct() == PWCGProduct.TC)
         {
             ICountry country = newCrewMemberGeneratorDO.getService().getCountry();
             if (country.getCountry() == Country.GERMANY)
