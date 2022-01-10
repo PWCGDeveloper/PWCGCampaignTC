@@ -26,7 +26,7 @@ public class SkinAnalyzer
 
 	private void initMissingSkinMap() throws PWCGException
 	{
-        List<TankType> allPlanes = PWCGContext.getInstance().getTankTypeFactory().getAllPlanes();
+        List<TankType> allPlanes = PWCGContext.getInstance().getTankTypeFactory().getAllTanks();
         
         missingSkinListMap.clear();
         
@@ -39,7 +39,7 @@ public class SkinAnalyzer
 
 	private void findMissingConfiguredSkins() throws PWCGException 
 	{
-		for (TankType plane : PWCGContext.getInstance().getTankTypeFactory().getAllPlanes())
+		for (TankType plane : PWCGContext.getInstance().getTankTypeFactory().getAllTanks())
 		{
 			SkinsForPlane skinsForPlane = PWCGContext.getInstance().getSkinManager().getSkinsForPlane(plane.getType());
 		
@@ -55,7 +55,7 @@ public class SkinAnalyzer
 	
 	private void findMissingSquadronSkins() throws PWCGException 
 	{
-		for (TankType plane : PWCGContext.getInstance().getTankTypeFactory().getAllPlanes())
+		for (TankType plane : PWCGContext.getInstance().getTankTypeFactory().getAllTanks())
 		{
 			SkinsForPlane skinsForPlane = PWCGContext.getInstance().getSkinManager().getSkinsForPlane(plane.getType());
 		
@@ -70,7 +70,7 @@ public class SkinAnalyzer
 	}
 	private void findMissingAceSkins() throws PWCGException 
 	{
-		for (TankType plane : PWCGContext.getInstance().getTankTypeFactory().getAllPlanes())
+		for (TankType plane : PWCGContext.getInstance().getTankTypeFactory().getAllTanks())
 		{
 			SkinsForPlane skinsForPlane = PWCGContext.getInstance().getSkinManager().getSkinsForPlane(plane.getType());
 		

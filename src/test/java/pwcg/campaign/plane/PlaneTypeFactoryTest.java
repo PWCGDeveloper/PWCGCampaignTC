@@ -109,14 +109,4 @@ public class TankTypeFactoryTest
             assert(planeType.getArchType().equals("bf109"));
         }
     }
-
-    @Test
-    public void testCreateActiveFightersForCampaign() throws PWCGException
-    {
-        Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420302"));
-        TankTypeFactory planeTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
-        List<TankType> planeTypes =  planeTypeFactory.getAllFightersForCampaign(campaign);
-        assert(planeTypes.size() == 14);
-    }
-
 }

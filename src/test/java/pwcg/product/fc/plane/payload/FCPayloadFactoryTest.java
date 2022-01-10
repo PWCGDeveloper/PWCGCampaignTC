@@ -28,7 +28,7 @@ public class FCPayloadFactoryTest
 		FCPayloadFactory bosPayloadFactory = new FCPayloadFactory();
 		TankTypeFactory planeTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
 
-		for (TankType bosTankType : planeTypeFactory.getAllPlanes())
+		for (TankType bosTankType : planeTypeFactory.getAllTanks())
 		{
 		    System.out.println(bosTankType.getType());
 		    

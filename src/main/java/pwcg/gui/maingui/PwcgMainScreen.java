@@ -23,7 +23,7 @@ import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGDirectorySimulatorManager;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.factory.CountryFactory;
-import pwcg.campaign.utils.PlanesOwnedManager;
+import pwcg.campaign.utils.TanksOwnedManager;
 import pwcg.core.config.ConfigItemKeys;
 import pwcg.core.config.ConfigManagerGlobal;
 import pwcg.core.config.InternationalizationManager;
@@ -40,7 +40,7 @@ import pwcg.gui.dialogs.ErrorDialog;
 import pwcg.gui.dialogs.PWCGMonitorFonts;
 import pwcg.gui.maingui.campaigngenerate.CampaignGeneratorScreen;
 import pwcg.gui.maingui.config.PwcgGlobalConfigurationScreen;
-import pwcg.gui.maingui.config.PwcgPlanesOwnedConfigurationScreen;
+import pwcg.gui.maingui.config.TanksOwnedConfigurationScreen;
 import pwcg.gui.maingui.config.PwcgSkinConfigurationAnalysisScreen;
 import pwcg.gui.maingui.coop.PwcgCoopGlobalAdminScreen;
 import pwcg.gui.rofmap.editmap.EditorMapGUI;
@@ -58,7 +58,7 @@ import pwcg.gui.utils.ToolTipManager;
 public class PwcgMainScreen extends ImageResizingPanel implements ActionListener
 {
 	private static final long serialVersionUID = 1L;
-    private static final String VERSION = "13.8.0";
+    private static final String VERSION = "1.0.0 Alpha";
 
     private PwcgThreePanelUI pwcgThreePanel;
 	private List<JButton> campaignButtonList = new ArrayList<JButton>();
@@ -153,7 +153,7 @@ public class PwcgMainScreen extends ImageResizingPanel implements ActionListener
 
 	private void setButtonsEnabled()
 	{
-		if (PlanesOwnedManager.getInstance().hasPlanesOwned())
+		if (TanksOwnedManager.getInstance().hasTanksOwned())
 		{
 			for (JButton campaignButton : campaignButtonList)
 			{
@@ -164,7 +164,7 @@ public class PwcgMainScreen extends ImageResizingPanel implements ActionListener
 		{
 			for (JButton campaignButton : campaignButtonList)
 			{
-				if (campaignButton.getActionCommand().equals("Planes Owned") || 
+				if (campaignButton.getActionCommand().equals("Tanks Owned") || 
 			        campaignButton.getActionCommand().equals("Exit"))
 				{
 					campaignButton.setEnabled(true);
@@ -231,7 +231,7 @@ public class PwcgMainScreen extends ImageResizingPanel implements ActionListener
 	{
 		buttonPanel.add(PWCGLabelFactory.makeDummyLabel());
 				
- 		makeMenuButton (InternationalizationManager.getTranslation("Planes Owned"), "Planes Owned", buttonPanel);
+ 		makeMenuButton (InternationalizationManager.getTranslation("Tanks Owned"), "Tanks Owned", buttonPanel);
         makeMenuButton (InternationalizationManager.getTranslation("Configuration"), "Configuration",buttonPanel);
         makeMenuButton (InternationalizationManager.getTranslation("Music"), "Music", buttonPanel);
         makeMenuButton (InternationalizationManager.getTranslation("Skin Analysis"), "Skin Analysis", buttonPanel);
@@ -389,9 +389,9 @@ public class PwcgMainScreen extends ImageResizingPanel implements ActionListener
             {
                 showSkinAnalysis();
             }
-            else if (action.equals("Planes Owned"))
+            else if (action.equals("Tanks Owned"))
             {
-                showPlanesOwned();
+                showTanksOwned();
             }
             else if (action.equals("Administer Coop"))
             {
@@ -445,14 +445,14 @@ public class PwcgMainScreen extends ImageResizingPanel implements ActionListener
 		}
 	}
 
-    private void showPlanesOwned() throws PWCGException 
+    private void showTanksOwned() throws PWCGException 
     {
         SoundManager.getInstance().playSound("BookOpen.WAV");
 
-        PwcgPlanesOwnedConfigurationScreen planesOwned = new PwcgPlanesOwnedConfigurationScreen(this);
-        planesOwned.makePanels();
+        TanksOwnedConfigurationScreen tanksOwned = new TanksOwnedConfigurationScreen(this);
+        tanksOwned.makePanels();
 
-        CampaignGuiContextManager.getInstance().pushToContextStack(planesOwned);
+        CampaignGuiContextManager.getInstance().pushToContextStack(tanksOwned);
     }
 
     private void showCoopAdmin() throws PWCGException 

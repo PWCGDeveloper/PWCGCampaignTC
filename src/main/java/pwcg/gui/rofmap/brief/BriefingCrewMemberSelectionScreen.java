@@ -21,7 +21,7 @@ import pwcg.campaign.CampaignMode;
 import pwcg.campaign.company.Company;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.tank.EquippedTank;
-import pwcg.campaign.utils.PlanesOwnedManager;
+import pwcg.campaign.utils.TanksOwnedManager;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.PWCGLogger;
 import pwcg.gui.CampaignGuiContextManager;
@@ -476,7 +476,7 @@ public class BriefingCrewMemberSelectionScreen extends ImageResizingPanel implem
                     if (crewMember.isPlayer())
                     {
                         EquippedTank playerPlane = crewPlanePair.getTank();
-                        if (!PlanesOwnedManager.getInstance().isPlaneOwned(playerPlane.getType()))
+                        if (!TanksOwnedManager.getInstance().isTankOwned(playerPlane.getType()))
                         {
                             ErrorDialog
                                     .userError("Player does not own his assigned plane: " + playerPlane.getDisplayName() + ".  Mission will not be written.");

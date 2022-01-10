@@ -13,22 +13,22 @@ import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.PWCGLogger;
 import pwcg.core.utils.PWCGLogger.LogLevel;
 
-public class PlanesOwnedManager 
+public class TanksOwnedManager 
 {
 
-	static private ArrayList<String> planesOwnedList = new ArrayList<String>();
+	static private ArrayList<String> tanksOwnedList = new ArrayList<String>();
 	
-	static private PlanesOwnedManager instance = null;
+	static private TanksOwnedManager instance = null;
 	
-	private PlanesOwnedManager ()
+	private TanksOwnedManager ()
 	{
 	}
 	
-	public static PlanesOwnedManager getInstance()
+	public static TanksOwnedManager getInstance()
 	{
 		if (instance == null)
 		{
-			instance = new PlanesOwnedManager();
+			instance = new TanksOwnedManager();
 			instance.read();
 		}
 		
@@ -39,14 +39,14 @@ public class PlanesOwnedManager
 	{
 		try
         {
-            String userfilename = PWCGDirectoryUserManager.getInstance().getPwcgUserConfigDir() + "PlanesOwned.config"; 
+            String userfilename = PWCGDirectoryUserManager.getInstance().getPwcgUserConfigDir() + "TanksOwned.config"; 
             File userFile = new File(userfilename);		
             BufferedWriter writer = new BufferedWriter(new FileWriter(userFile));
             
-            for(int i = 0; i < planesOwnedList.size(); ++i)
+            for(int i = 0; i < tanksOwnedList.size(); ++i)
             {
-            	String plane = planesOwnedList.get(i);
-            	writer.write(plane);
+            	String tank = tanksOwnedList.get(i);
+            	writer.write(tank);
             	writer.newLine();
             }
             
@@ -64,10 +64,10 @@ public class PlanesOwnedManager
 	{
 		try
 		{
-			String planesOwnedFilename = PWCGDirectoryUserManager.getInstance().getPwcgUserConfigDir() + "PlanesOwned.config"; 
-			File planesOwnedFile = new File(planesOwnedFilename);
+			String tanksOwnedFilename = PWCGDirectoryUserManager.getInstance().getPwcgUserConfigDir() + "TanksOwned.config"; 
+			File tanksOwnedFile = new File(tanksOwnedFilename);
 			
-			BufferedReader reader = new BufferedReader(new FileReader(planesOwnedFile));
+			BufferedReader reader = new BufferedReader(new FileReader(tanksOwnedFile));
 			String line = "";
 			
 			while ((line = reader.readLine()) != null) 
@@ -76,7 +76,7 @@ public class PlanesOwnedManager
 	
 				if (line != null && line.length() > 0)
 				{
-					planesOwnedList.add(line);
+					tanksOwnedList.add(line);
 				}
 			}
 			
@@ -88,25 +88,23 @@ public class PlanesOwnedManager
 		}
 	}
 	
-	public boolean isPlaneOwned(String planeName)
-	{
-		boolean isPlaneOwned = false;
-		
-		for(int i = 0; i < planesOwnedList.size(); ++i)
+	public boolean isTankOwned(String tankName)
+	{		
+	for(int i = 0; i < tanksOwnedList.size(); ++i)
 		{
-			String plane = planesOwnedList.get(i);
-			if (planeName.equalsIgnoreCase(plane))
+			String tank = tanksOwnedList.get(i);
+			if (tankName.equalsIgnoreCase(tank))
 			{
-				isPlaneOwned = true;
+				return true;
 			}
 		}
 		
-		return isPlaneOwned;
+		return false;
 	}
 
-	public boolean hasPlanesOwned()
+	public boolean hasTanksOwned()
 	{
-		if (planesOwnedList.size() > 0)
+		if (tanksOwnedList.size() > 0)
 		{
 			return true;
 		}
@@ -116,11 +114,11 @@ public class PlanesOwnedManager
 
 	public void clear()
 	{
-		planesOwnedList.clear();
+		tanksOwnedList.clear();
 	}
 
-	public void setPlaneOwned(String planeName)
+	public void setTankOwned(String tankName)
 	{
-		planesOwnedList.add(planeName);
+		tanksOwnedList.add(tankName);
 	}
 }

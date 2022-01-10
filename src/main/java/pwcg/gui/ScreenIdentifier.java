@@ -8,7 +8,7 @@ public enum ScreenIdentifier
     CampaignNewCrewMemberScreen("CampaignNewCrewMemberScreen", "Campaign Add New CrewMember Screen", "CampaignGenFullScreen.jpg"),
     
     PwcgSkinConfigurationAnalysisScreen("PwcgSkinConfigurationAnalysisScreen", "PWCG Skin Analysis Screen", "BrickWall.jpg"),
-    PwcgPlanesOwnedConfigurationScreen("PwcgPlanesOwnedConfigurationScreen", "PWCG Planes Owned Config Screen", "BrickWall.jpg"),
+    PwcgTanksOwnedConfigurationScreen("PwcgPlanesOwnedConfigurationScreen", "PWCG Planes Owned Config Screen", "BrickWall.jpg"),
     PwcgMusicConfigScreen("PwcgMusicConfigScreen", "PWCG Music Config Screen", "BrickWall.jpg"),
     CampaignHomeScreen("CampaignHomeScreen", "Campaign Home Screen", "BrickWall.jpg"),
     BriefingCrewMemberSelectionScreen("BriefingCrewMemberSelectionScreen", "Briefing CrewMember Selection Screen", "BrickWall.jpg"),

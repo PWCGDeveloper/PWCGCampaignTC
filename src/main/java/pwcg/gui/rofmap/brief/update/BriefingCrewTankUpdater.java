@@ -15,6 +15,7 @@ import pwcg.core.exception.PWCGException;
 import pwcg.mission.playerunit.crew.CrewTankPayloadPairing;
 import pwcg.mission.unit.ITankUnit;
 import pwcg.mission.unit.TankMcu;
+import pwcg.mission.unit.UnitPositionSetter;
 import pwcg.mission.unit.tank.TankMcuFactory;
 
 public class BriefingCrewTankUpdater
@@ -32,7 +33,13 @@ public class BriefingCrewTankUpdater
     public void updatePlayerTanks(List<CrewTankPayloadPairing> crewTanks) throws PWCGException
     {
         updateTanksFromBriefing(crewTanks);
-        replaceTanksInPlayerFlight();
+        replaceTanksInPlayerUnit();
+        resetPlayerUnitInitialPosition();
+    }
+
+    private void resetPlayerUnitInitialPosition() throws PWCGException
+    {
+        UnitPositionSetter.setUnitTankPositions(playerUnit);
     }
 
     private void updateTanksFromBriefing(List<CrewTankPayloadPairing> crewTanks) throws PWCGException
@@ -45,7 +52,7 @@ public class BriefingCrewTankUpdater
         }
     }
 
-    private void replaceTanksInPlayerFlight() throws PWCGException
+    private void replaceTanksInPlayerUnit() throws PWCGException
     {
         playerUnit.getUnitTanks().setTanks(updatedTankSet);
     }

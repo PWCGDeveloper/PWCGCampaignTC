@@ -7,7 +7,7 @@ public enum TankAttributeMapping
     PZKW_IV_G("_pziv-g"),
     PANTHER_D("_pzv-d"),
     TIGER_I("_pzvi-h1"),
-    SDKFZ_10_AAA("_sdkfz10"),
+    SDKFZ_10_AAA("_sdkfz10-5"),
     ELEFANT("_sdkfz184"),
     T34_EARLY("_t34-76stz"),
     T34_LATE("_t34-76uvz-43"),

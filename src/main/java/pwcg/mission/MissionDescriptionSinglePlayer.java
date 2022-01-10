@@ -30,8 +30,8 @@ public class MissionDescriptionSinglePlayer implements IMissionDescription
     
 	private String descSinglePlayerTemplate = 
 		"Vehicle  <VEHICLE>\n" +
-		"Squadron  <COMPANY>\n" +
-		"Airbase  <TOWN>\n" +
+		"Unit  <COMPANY>\n" +
+		"Base  <TOWN>\n" +
         "Date  <DATE>\n" +
         "Time  <TIME>\n" +
 		"\n" +

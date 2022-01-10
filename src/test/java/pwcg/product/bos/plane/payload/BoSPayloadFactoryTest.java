@@ -28,7 +28,7 @@ public class BoSPayloadFactoryTest
         PlanePayloadFactory bosPayloadFactory = new PlanePayloadFactory();
         TankTypeFactory planeTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
 
-        for (TankType bosTankType : planeTypeFactory.getAllPlanes())
+        for (TankType bosTankType : planeTypeFactory.getAllTanks())
         {
             System.out.println(bosTankType.getType());
             

@@ -467,7 +467,7 @@ public class Company
         TreeMap<Date, TankType> planeTypesTypeByIntroduction = new TreeMap<>();
         for (CompanyTankAssignment planeAssignment : tankAssignments)
         {
-            List<TankType> planeTypesForArchType = PWCGContext.getInstance().getTankTypeFactory().createPlanesByIntroduction(planeAssignment.getArchType());
+            List<TankType> planeTypesForArchType = PWCGContext.getInstance().getTankTypeFactory().createTanksByIntroduction(planeAssignment.getArchType());
             for (TankType planeType : planeTypesForArchType)
             {
                 planeTypesTypeByIntroduction.put(planeType.getIntroduction(), planeType);

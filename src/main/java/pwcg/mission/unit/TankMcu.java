@@ -12,7 +12,6 @@ import pwcg.campaign.crewmember.CrewMembers;
 import pwcg.campaign.factory.CountryFactory;
 import pwcg.campaign.skin.Skin;
 import pwcg.campaign.tank.EquippedTank;
-import pwcg.campaign.tank.TankType;
 import pwcg.campaign.tank.payload.ITankPayload;
 import pwcg.campaign.tank.payload.TankPayloadFactory;
 import pwcg.campaign.utils.IndexGenerator;
@@ -79,9 +78,9 @@ public class TankMcu extends EquippedTank implements Cloneable
         this.linkTrId = entity.getIndex();
     }
     
-    public void buildTank(TankType tankType, ICountry country) throws PWCGException
+    public void buildTank(EquippedTank equippedTank, ICountry country) throws PWCGException
     {
-        tankType.copyTemplate(this);
+        equippedTank.copyTemplate(this);
         this.setName(tankCommander.getNameAndRank());
         this.setDesc(tankCommander.getNameAndRank());
         this.setCountry(country);

@@ -102,7 +102,7 @@ public class CampaignEquipmentIOJson
             for (EquippedTank equippedPlane : replacementEquipment.getAllPlanesInDepot())
             {
                 // Propagate any updates to the aircraft definitions into plane instances
-                TankType basePlane = PWCGContext.getInstance().getTankTypeFactory().getPlaneById(equippedPlane.getType());
+                TankType basePlane = PWCGContext.getInstance().getTankTypeFactory().getTankById(equippedPlane.getType());
                 basePlane.copyTemplate(equippedPlane);
             }
         }

@@ -107,7 +107,7 @@ public class CrewMemberVictories
     
     private String getTankArchTypeForPlaneName(String planeTypeName)
     {
-        TankType planeType = PWCGContext.getInstance().getTankTypeFactory().getPlaneByDisplayName(planeTypeName);
+        TankType planeType = PWCGContext.getInstance().getTankTypeFactory().getTankByDisplayName(planeTypeName);
         String archTypeName = "Unknown";
         if (planeType != null)
         {

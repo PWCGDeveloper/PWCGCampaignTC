@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import pwcg.campaign.Campaign;
 import pwcg.campaign.api.ICountry;
 import pwcg.campaign.api.Side;
 import pwcg.campaign.io.json.TankIOJson;
@@ -60,28 +59,7 @@ public class TankTypeFactory
         return tankArchTypes.get(tankArchTypeName);
     }
 
-    public List<TankType> getAllFightersForCampaign(Campaign campaign) throws PWCGException 
-    {
-        List<TankType> aircraftTypes = new ArrayList<TankType>();
-
-        for (TankType tankType : tankTypes.values())
-        {
-            if (tankType != null)
-            {
-                if (tankType.isRoleCategory(PwcgRoleCategory.FIGHTER))
-                {
-                    if (tankType.isPlaneActive(campaign.getDate()))
-                    {
-                        aircraftTypes.add(tankType);
-                    }
-                }
-            }
-        }
-
-        return aircraftTypes;
-    }
-
-    public List<TankType> getAlliedPlanes() 
+    public List<TankType> getAlliedTanks() 
     {
         List<TankType>alliedPlanes = new ArrayList<TankType>();
 
@@ -96,7 +74,7 @@ public class TankTypeFactory
         return alliedPlanes;
     }
 
-    public List<TankType> getAllPlanes()  throws PWCGException
+    public List<TankType> getAllTanks()  throws PWCGException
     {
         List<TankType>allPlanes = new ArrayList<TankType>();
         Map<String, TankType>allPlanesSet = new HashMap<String, TankType>();
@@ -109,7 +87,7 @@ public class TankTypeFactory
         return allPlanes;
     }
 
-    public List<TankType> getAxisPlanes() 
+    public List<TankType> getAxisTanks() 
     {
         List<TankType>axisPlanes = new ArrayList<TankType>();
 
@@ -124,7 +102,7 @@ public class TankTypeFactory
         return axisPlanes;
     }
 
-    public TankType getPlaneById(String tankTypeName) throws PWCGException
+    public TankType getTankById(String tankTypeName) throws PWCGException
     {
         TankType tank = null;
         if (tankTypes.containsKey(tankTypeName))
@@ -133,7 +111,7 @@ public class TankTypeFactory
         }
         else
         {
-            throw new PWCGException ("Invalid aircraft id: " + tankTypeName);
+            throw new PWCGException ("Invalid tank id: " + tankTypeName);
         }
 
         return tank;
@@ -154,7 +132,7 @@ public class TankTypeFactory
 
         if (tank == null)
         {
-            throw new PWCGException ("Invalid aircraft name: " + tankTypeName);
+            throw new PWCGException ("Invalid tank name: " + tankTypeName);
         }
 
         return tank;
@@ -162,13 +140,13 @@ public class TankTypeFactory
 
     public TankType createTankTypeByAnyName (String name)
     {
-        TankType tank = getPlaneByTankType(name);
+        TankType tank = getTankByTankType(name);
         if (tank != null)
         {
             return tank;
         }
         
-        tank = getPlaneByDisplayName(name);
+        tank = getTankByDisplayName(name);
         if (tank != null)
         {
             return tank;
@@ -266,7 +244,7 @@ public class TankTypeFactory
     }
     
 
-    public List<TankType> createPlanesByIntroduction(String tankArchType) throws PWCGException
+    public List<TankType> createTanksByIntroduction(String tankArchType) throws PWCGException
     {
         TreeMap<Date, TankType> tankTypesTypeByIntroduction = new TreeMap<>();
         for (TankType thisPlane : tankTypes.values())
@@ -356,7 +334,7 @@ public class TankTypeFactory
         return selectedPlane;
     }
     
-    public TankType getPlaneByDisplayName(String pwcgDesc) 
+    public TankType getTankByDisplayName(String pwcgDesc) 
     {
         TankType tank = null;
 
@@ -372,7 +350,7 @@ public class TankTypeFactory
         return tank;
     }
 
-    private TankType getPlaneByTankType (String abrevName)
+    private TankType getTankByTankType (String abrevName)
     {
         TankType tank = null;
 

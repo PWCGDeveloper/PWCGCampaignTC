@@ -18,7 +18,7 @@ import javax.swing.JScrollPane;
 
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.tank.TankType;
-import pwcg.campaign.utils.PlanesOwnedManager;
+import pwcg.campaign.utils.TanksOwnedManager;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.PWCGLogger;
 import pwcg.gui.CampaignGuiContextManager;
@@ -37,14 +37,14 @@ import pwcg.gui.utils.PWCGButtonFactory;
 import pwcg.gui.utils.PWCGLabelFactory;
 import pwcg.gui.utils.ScrollBarWrapper;
 
-public class PwcgPlanesOwnedConfigurationScreen extends ImageResizingPanel implements ActionListener
+public class TanksOwnedConfigurationScreen extends ImageResizingPanel implements ActionListener
 {
     private static final long serialVersionUID = 1L;
 
     private PwcgMainScreen parent = null;
-    private Map<String, PlaneOwned> selectionBoxes = new HashMap<String, PlaneOwned>();
+    private Map<String, TankOwned> selectionBoxes = new HashMap<String, TankOwned>();
     
-	public PwcgPlanesOwnedConfigurationScreen(PwcgMainScreen parent) 
+	public TanksOwnedConfigurationScreen(PwcgMainScreen parent) 
 	{
         super("");
         this.setLayout(new BorderLayout());
@@ -56,7 +56,7 @@ public class PwcgPlanesOwnedConfigurationScreen extends ImageResizingPanel imple
     {
         try
         {
-            String imagePath = UiImageResolver.getImage(ScreenIdentifier.PwcgPlanesOwnedConfigurationScreen);
+            String imagePath = UiImageResolver.getImage(ScreenIdentifier.PwcgTanksOwnedConfigurationScreen);
             this.setImageFromName(imagePath);
             
             this.add(makeButtonPanel(), BorderLayout.WEST);
@@ -75,11 +75,11 @@ public class PwcgPlanesOwnedConfigurationScreen extends ImageResizingPanel imple
 	{
 		try
 		{
-			PlanesOwnedManager planesOwnedManager = PlanesOwnedManager.getInstance();
+			TanksOwnedManager tanksOwnedManager = TanksOwnedManager.getInstance();
 	
-			for (PlaneOwned selectionBox : selectionBoxes.values())
+			for (TankOwned selectionBox : selectionBoxes.values())
 			{				
-				if (planesOwnedManager.isPlaneOwned(selectionBox.plane.getType()))
+				if (tanksOwnedManager.isTankOwned(selectionBox.tank.getType()))
 				{
 					selectionBox.checkBox.setSelected(true);
 				}
@@ -110,10 +110,10 @@ public class PwcgPlanesOwnedConfigurationScreen extends ImageResizingPanel imple
             buttonPanel.add(PWCGLabelFactory.makeDummyLabel());
         }
         
-        JButton selectAllButton = PWCGButtonFactory.makeTranslucentMenuButton("Select All", "Select All", "Select all planes as owned", this);
+        JButton selectAllButton = PWCGButtonFactory.makeTranslucentMenuButton("Select All", "Select All", "Select all tanks as owned", this);
         buttonPanel.add(selectAllButton);
 
-        JButton deselectAllButton = PWCGButtonFactory.makeTranslucentMenuButton("Deselect All", "Deselect All", "Select all planes as not owned", this);
+        JButton deselectAllButton = PWCGButtonFactory.makeTranslucentMenuButton("Deselect All", "Deselect All", "Select all tanks as not owned", this);
         buttonPanel.add(deselectAllButton);
         
 
@@ -122,10 +122,10 @@ public class PwcgPlanesOwnedConfigurationScreen extends ImageResizingPanel imple
             buttonPanel.add(PWCGLabelFactory.makeDummyLabel());
         }
 
-        JButton acceptButton = PWCGButtonFactory.makeTranslucentMenuButton("Accept", "Accept", "Accept planes owned", this);
+        JButton acceptButton = PWCGButtonFactory.makeTranslucentMenuButton("Accept", "Accept", "Accept tanks owned", this);
         buttonPanel.add(acceptButton);
 
-        JButton cancelButton = PWCGButtonFactory.makeTranslucentMenuButton("Cancel", "Cancel", "Cancel planes owned edits", this);
+        JButton cancelButton = PWCGButtonFactory.makeTranslucentMenuButton("Cancel", "Cancel", "Cancel tanks owned edits", this);
         buttonPanel.add(cancelButton);
 
         navPanel.add (buttonPanel, BorderLayout.NORTH);
@@ -136,17 +136,17 @@ public class PwcgPlanesOwnedConfigurationScreen extends ImageResizingPanel imple
     public JPanel makeCenterPanel() throws PWCGException 
     {
         String imagePath = ContextSpecificImages.imagesMisc() + "paperFull.jpg";
-        JPanel planeSelectionPanel = new ImagePanelLayout(imagePath, new BorderLayout());
+        JPanel tankSelectionPanel = new ImagePanelLayout(imagePath, new BorderLayout());
 
         JComponent alliedPanel = makeAlliedPanel();
         JComponent axisPanel = makeAxisPanel();
         JComponent blankPanel = makeBlankPanel();
 
-        planeSelectionPanel.add (alliedPanel, BorderLayout.WEST);
-        planeSelectionPanel.add (blankPanel, BorderLayout.CENTER);
-        planeSelectionPanel.add (axisPanel, BorderLayout.EAST);
+        tankSelectionPanel.add (alliedPanel, BorderLayout.WEST);
+        tankSelectionPanel.add (blankPanel, BorderLayout.CENTER);
+        tankSelectionPanel.add (axisPanel, BorderLayout.EAST);
         
-        return planeSelectionPanel;
+        return tankSelectionPanel;
     }
 
     public JPanel makeBlankPanel() throws PWCGException 
@@ -161,44 +161,44 @@ public class PwcgPlanesOwnedConfigurationScreen extends ImageResizingPanel imple
 
     public JPanel makeAxisPanel() throws PWCGException 
     {
-        List<TankType> axisPlanes = PWCGContext.getInstance().getTankTypeFactory().getAxisPlanes();
+        List<TankType> axisPlanes = PWCGContext.getInstance().getTankTypeFactory().getAxisTanks();
         return makePlanePanel(axisPlanes);
     }
 
     public JPanel makeAlliedPanel() throws PWCGException 
     {
-        List<TankType> alliedPlanes = PWCGContext.getInstance().getTankTypeFactory().getAlliedPlanes();
+        List<TankType> alliedPlanes = PWCGContext.getInstance().getTankTypeFactory().getAlliedTanks();
         return makePlanePanel(alliedPlanes);
     }
 
-	public JPanel makePlanePanel(List<TankType> planes) throws PWCGException 
+	public JPanel makePlanePanel(List<TankType> tanks) throws PWCGException 
 	{
-        JPanel planeListOuterPanel = new JPanel(new BorderLayout());
-        planeListOuterPanel.setOpaque(false);
+        JPanel tankListOuterPanel = new JPanel(new BorderLayout());
+        tankListOuterPanel.setOpaque(false);
 		
-		TreeMap<String, TankType> planeMap = sortPlanesByType(planes);
+		TreeMap<String, TankType> tankMap = sortPlanesByType(tanks);
 		
-		JPanel planeListPanel = createPlanePanel(planeMap);
+		JPanel tankListPanel = createPlanePanel(tankMap);
 		
-        JScrollPane planeListScroll = ScrollBarWrapper.makeScrollPane(planeListPanel);
+        JScrollPane tankListScroll = ScrollBarWrapper.makeScrollPane(tankListPanel);
         
-        planeListOuterPanel.add(planeListScroll, BorderLayout.CENTER);
+        tankListOuterPanel.add(tankListScroll, BorderLayout.CENTER);
         
-        return planeListOuterPanel;
+        return tankListOuterPanel;
 	}
 
-    private TreeMap<String, TankType> sortPlanesByType(List<TankType> planes)
+    private TreeMap<String, TankType> sortPlanesByType(List<TankType> tanks)
     {
-        TreeMap<String, TankType> planeMap = new TreeMap<String, TankType>();
-        for (int i = 0; i < planes.size(); ++i)
+        TreeMap<String, TankType> tankMap = new TreeMap<String, TankType>();
+        for (int i = 0; i < tanks.size(); ++i)
         {
-            TankType plane = planes.get(i);
-            planeMap.put(plane.getType(), plane);
+            TankType tank = tanks.get(i);
+            tankMap.put(tank.getType(), tank);
         }
-        return planeMap;
+        return tankMap;
     }
 
-    private JPanel createPlanePanel(TreeMap<String, TankType> planeMap) throws PWCGException
+    private JPanel createPlanePanel(TreeMap<String, TankType> tankMap) throws PWCGException
     {
         MonitorSize monitorSize = PWCGMonitorSupport.getFrameWidth();
         int columns = 2;
@@ -207,27 +207,27 @@ public class PwcgPlanesOwnedConfigurationScreen extends ImageResizingPanel imple
             columns = 3;
         }
         
-        JPanel planeListPanel = new JPanel(new GridLayout(0, columns));
-        planeListPanel.setOpaque(false);
+        JPanel tankListPanel = new JPanel(new GridLayout(0, columns));
+        tankListPanel.setOpaque(false);
 
         Color buttonBG = ColorMap.PAPERPART_BACKGROUND;
         
-        for (TankType plane : planeMap.values())
+        for (TankType tank : tankMap.values())
 		{
-			JCheckBox b1 = ImageButton.makeCheckBox(plane.getDisplayName(), plane.getType());
+			JCheckBox b1 = ImageButton.makeCheckBox(tank.getDisplayName(), tank.getType());
 
 			b1.addActionListener(this);
 			b1.setBackground(buttonBG);
 			b1.setOpaque(false);
-			planeListPanel.add(b1);
+			tankListPanel.add(b1);
 			
-			PlaneOwned owned = new PlaneOwned();
-			owned.plane = plane;
+			TankOwned owned = new TankOwned();
+			owned.tank = tank;
 			owned.checkBox = b1;
-			selectionBoxes.put(plane.getDisplayName(), owned);
+			selectionBoxes.put(tank.getDisplayName(), owned);
 		}
         
-        return planeListPanel;
+        return tankListPanel;
     }
 
 	public void actionPerformed(ActionEvent ae)
@@ -236,34 +236,34 @@ public class PwcgPlanesOwnedConfigurationScreen extends ImageResizingPanel imple
 		{
 			if (ae.getActionCommand().equalsIgnoreCase("Select All"))
 			{
-				for (PlaneOwned box: selectionBoxes.values())
+				for (TankOwned box: selectionBoxes.values())
 				{
 					box.checkBox.setSelected(true);
 				}
 			}
 			if (ae.getActionCommand().equalsIgnoreCase("Deselect All"))
 			{
-				for (PlaneOwned box: selectionBoxes.values())
+				for (TankOwned box: selectionBoxes.values())
 				{
 					box.checkBox.setSelected(false);
 				}
 			}
 			if (ae.getActionCommand().equalsIgnoreCase("Accept"))
 			{
-					PlanesOwnedManager planesOwnedManager = PlanesOwnedManager.getInstance();
-					planesOwnedManager.clear();
+					TanksOwnedManager tanksOwnedManager = TanksOwnedManager.getInstance();
+					tanksOwnedManager.clear();
 					
-					for (PlaneOwned box: selectionBoxes.values())
+					for (TankOwned box: selectionBoxes.values())
 					{
 						JCheckBox selectionBox = box.checkBox;
 						
 						if (selectionBox.isSelected())
 						{
-							planesOwnedManager.setPlaneOwned(box.plane.getType());
+							tanksOwnedManager.setTankOwned(box.tank.getType());
 						}
 					}
 					
-					planesOwnedManager.write();
+					tanksOwnedManager.write();
  
 					parent.refresh();
 					
@@ -283,10 +283,10 @@ public class PwcgPlanesOwnedConfigurationScreen extends ImageResizingPanel imple
 		}
 	}
 
-	private class PlaneOwned
+	private class TankOwned
 	{
 		JCheckBox checkBox = null;
-		TankType plane;
+		TankType tank;
 	}
 }
 

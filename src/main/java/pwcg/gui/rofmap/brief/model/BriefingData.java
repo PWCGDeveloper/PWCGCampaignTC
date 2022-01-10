@@ -12,20 +12,20 @@ import pwcg.mission.unit.ITankUnit;
 public class BriefingData
 {
     private String missionTime = "08:30";
-    private Map<Integer, BriefingUnit> briefingMissionFlights = new HashMap<>();
+    private Map<Integer, BriefingUnit> briefingMissionUnits = new HashMap<>();
     private int selectedCompanyId = 0;
     private Mission mission;
-    private Map<Integer, String> aiFlightsToDisplay = new HashMap<>();
+    private Map<Integer, String> aiUnitsToDisplay = new HashMap<>();
 
     public BriefingData(Mission mission, Map<Integer, BriefingUnit> briefingMissionFlights)
     {
         this.mission = mission;
-        this.briefingMissionFlights = briefingMissionFlights;
+        this.briefingMissionUnits = briefingMissionFlights;
     }
 
     public BriefingUnit getActiveBriefingUnit()
     {
-        return briefingMissionFlights.get(selectedCompanyId);
+        return briefingMissionUnits.get(selectedCompanyId);
     }
     
     public ITankUnit getSelectedUnit() throws PWCGException
@@ -36,7 +36,7 @@ public class BriefingData
 
     public List<BriefingUnit> getBriefingUnits()
     {
-        return new ArrayList<>(briefingMissionFlights.values());
+        return new ArrayList<>(briefingMissionUnits.values());
     }
     
     public void changeSelectedUnit(int companyId)
@@ -61,16 +61,16 @@ public class BriefingData
     
     public void setAiFlightsToDisplay(Map<Integer, String> aiFlightsToDisplay)
     {
-        this.aiFlightsToDisplay = aiFlightsToDisplay;
+        this.aiUnitsToDisplay = aiFlightsToDisplay;
     }
 
     public void clearAiFlightsToDisplay()
     {
-        aiFlightsToDisplay.clear();
+        aiUnitsToDisplay.clear();
     }
 
     public Map<Integer, String> getAiFlightsToDisplay()
     {
-        return aiFlightsToDisplay;
+        return aiUnitsToDisplay;
     }
 }

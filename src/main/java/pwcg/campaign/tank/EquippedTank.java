@@ -49,7 +49,7 @@ public class EquippedTank extends TankType
             if (this.roleCategories.size() == 0)
             {
                 TankTypeFactory planeTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
-                TankType planeType = planeTypeFactory.getPlaneById(this.getType());
+                TankType planeType = planeTypeFactory.getTankById(this.getType());
                 planeType.copyTemplate(this);
 
                 if(this.roleCategories.size() == 0)

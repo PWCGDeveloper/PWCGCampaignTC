@@ -30,8 +30,8 @@ public class EquipmentWeightCalculatorTest
     @Test
     public void testEquipSquadronGermanFighter() throws PWCGException
     {
-        TankType me109F4 = PWCGContext.getInstance().getTankTypeFactory().getPlaneById("bf109f4");
-        TankType me109G2 = PWCGContext.getInstance().getTankTypeFactory().getPlaneById("bf109g2");
+        TankType me109F4 = PWCGContext.getInstance().getTankTypeFactory().getTankById("bf109f4");
+        TankType me109G2 = PWCGContext.getInstance().getTankTypeFactory().getTankById("bf109g2");
         List<TankType> planeTypes = new ArrayList<>();
         planeTypes.add(me109F4);
         planeTypes.add(me109G2);

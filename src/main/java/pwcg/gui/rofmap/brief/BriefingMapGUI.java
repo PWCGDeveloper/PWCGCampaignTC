@@ -144,8 +144,8 @@ public class BriefingMapGUI extends MapGUI implements ActionListener, IUnitChang
         buttonGrid.add(goBackToBriefingDescriptionButton);
 
         buttonGrid.add(PWCGLabelFactory.makeDummyLabel());
-        JButton goToWaypointEditButton = makeButton("Next: Waypoint", "Next: Waypoint", "Progress to waypoint editor screen");
-        buttonGrid.add(goToWaypointEditButton);
+        JButton goToCrewMemberSelectionButton = makeButton("Next: CrewMembers", "Next: CrewMembers", "Progress to crewMember selection screen");
+        buttonGrid.add(goToCrewMemberSelectionButton);
 
         buttonGrid.add(PWCGLabelFactory.makeDummyLabel());
         buttonGrid.add(PWCGLabelFactory.makeDummyLabel());
@@ -175,9 +175,9 @@ public class BriefingMapGUI extends MapGUI implements ActionListener, IUnitChang
             {
                 backToBriefingDescription();
             }
-            else if (action.equals("Next: Waypoint"))
+            else if (action.equals("Next: CrewMembers"))
             {
-                forwardToWaypointEditor();
+                forwardToCrewSelection();
             }
             else if (action.equals("Back to Campaign"))
             {
@@ -207,11 +207,11 @@ public class BriefingMapGUI extends MapGUI implements ActionListener, IUnitChang
         return;
     }
 
-    private void forwardToWaypointEditor() throws PWCGException 
+    private void forwardToCrewSelection() throws PWCGException 
     {
-        BriefingEditorScreen waypointEditorScreen = new BriefingEditorScreen(campaignHomeGuiBriefingWrapper);
-        waypointEditorScreen.makePanels();
-        CampaignGuiContextManager.getInstance().pushToContextStack(waypointEditorScreen);
+        BriefingCrewMemberSelectionScreen crewMemberSelection = new BriefingCrewMemberSelectionScreen(campaignHomeGuiBriefingWrapper);
+        crewMemberSelection.makePanels();
+        CampaignGuiContextManager.getInstance().pushToContextStack(crewMemberSelection);
     }
 
     @Override

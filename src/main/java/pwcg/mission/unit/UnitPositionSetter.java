@@ -12,14 +12,14 @@ public class UnitPositionSetter
     private static int HORIZONTAL_SPACING = 20;
     private static int VERTICAL_SPACING = 10;
     
-    public static void setUnitTankPositions(TankUnit tankUnit) throws PWCGException
+    public static void setUnitTankPositions(ITankUnit tankUnit) throws PWCGException
     {
         double angleToObjective = tankUnit.getUnitInformation().calcAngleToObjective();
         Coordinate startCoordinate = tankUnit.getUnitInformation().getObjective().getStartPosition();
         resetStartFormation(tankUnit, startCoordinate, angleToObjective);
     }
 
-    private static void resetStartFormation(TankUnit unit, Coordinate startCoordinate, double angleToObjective) throws PWCGException
+    private static void resetStartFormation(ITankUnit unit, Coordinate startCoordinate, double angleToObjective) throws PWCGException
     {
         setUnittOrientation(unit.getTanks(), angleToObjective);
         setTankPositions(unit.getTanks(), startCoordinate, angleToObjective);

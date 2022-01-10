@@ -176,7 +176,7 @@ public class CampaignEquipmentManager
         for (int i = 0; i < serialNumbersOfChangedPlanes.size(); ++i)
         {
             TankTypeFactory tankTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
-            TankType tankType = tankTypeFactory.getPlaneByDisplayName(tankTypeToChangeTo);
+            TankType tankType = tankTypeFactory.getTankByDisplayName(tankTypeToChangeTo);
             EquippedTank equippedTank = TankEquipmentFactory.makeTankForSquadron(campaign, tankType.getType(), company.getCompanyId());
             equippedTank.setEquipmentRequest(true);
             companyEquipment.addEquippedTankToCompany(campaign, company.getCompanyId(), equippedTank);

@@ -64,7 +64,7 @@ public class CampaignEquipmentManagerTest
         
         Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
         TankTypeFactory tankTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
-        TankType tankType = tankTypeFactory.getPlaneById(TankAttributeMapping.PANTHER_D.getTankType());
+        TankType tankType = tankTypeFactory.getTankById(TankAttributeMapping.PANTHER_D.getTankType());
         campaign.getEquipmentManager().actOnEquipmentRequest(squadron, tanksToReplace, tankType.getDisplayName());
         
         int pantherCount = 0;

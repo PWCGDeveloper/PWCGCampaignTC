@@ -24,9 +24,9 @@ public class BoSPlaneFactoryTest
 	{
 		TankTypeFactory planeTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
 		
-		for (TankType planeType : planeTypeFactory.getAllPlanes())
+		for (TankType planeType : planeTypeFactory.getAllTanks())
 		{
-			TankType plane = planeTypeFactory.getPlaneById(planeType.getType());
+			TankType plane = planeTypeFactory.getTankById(planeType.getType());
 			Assertions.assertTrue (plane.getType().equals(planeType.getType()));
 			Assertions.assertTrue (plane.getArchType() != null);
 		}

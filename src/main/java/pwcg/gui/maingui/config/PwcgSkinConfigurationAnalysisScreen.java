@@ -150,13 +150,13 @@ public class PwcgSkinConfigurationAnalysisScreen extends ImageResizingPanel impl
 
     public JPanel makeAxisPanel() throws PWCGException 
     {
-        List<TankType> axisPlanes = PWCGContext.getInstance().getTankTypeFactory().getAxisPlanes();
+        List<TankType> axisPlanes = PWCGContext.getInstance().getTankTypeFactory().getAxisTanks();
         return makePlanePanel(axisPlanes);
     }
 
     public JPanel makeAlliedPanel() throws PWCGException 
     {
-        List<TankType> alliedPlanes = PWCGContext.getInstance().getTankTypeFactory().getAlliedPlanes();
+        List<TankType> alliedPlanes = PWCGContext.getInstance().getTankTypeFactory().getAlliedTanks();
         return makePlanePanel(alliedPlanes);
     }
 

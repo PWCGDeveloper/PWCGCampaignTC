@@ -62,7 +62,7 @@ public class WW2PayloadTest
     {
         IPlanePayloadFactory payloadFactory = PWCGContext.getInstance().getPlanePayloadFactory();
 
-        for (TankType planeType : PWCGContext.getInstance().getTankTypeFactory().getAllPlanes())
+        for (TankType planeType : PWCGContext.getInstance().getTankTypeFactory().getAllTanks())
         {
             IPlanePayload payloadGenerator = payloadFactory.createPayload(planeType.getType(), campaign.getDate());
             testPatrolPayload(payloadGenerator);
