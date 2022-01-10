@@ -41,14 +41,11 @@ public class CampaignIOJson
         CampaignData campaignData = jsoReader1.readJsonFile(campaignDir, "Campaign.json"); 
         campaign.setCampaignData(campaignData);
 
-        if (campaign.isValidCampaignForProduct())
-        {
-            readCampaignAces(campaign, campaignDir);
-            readCampaignLogs(campaign, campaignDir);
-    
-            CampaignPersonnelIOJson.readJson(campaign);
-            CampaignEquipmentIOJson.readJson(campaign);
-        }
+        readCampaignAces(campaign, campaignDir);
+        readCampaignLogs(campaign, campaignDir);
+
+        CampaignPersonnelIOJson.readJson(campaign);
+        CampaignEquipmentIOJson.readJson(campaign);
     }
 
     private static void readCampaignAces(Campaign campaign, String campaignDir) throws PWCGException

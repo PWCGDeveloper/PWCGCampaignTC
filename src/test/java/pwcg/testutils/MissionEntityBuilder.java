@@ -15,7 +15,7 @@ public class MissionEntityBuilder
         TankAce aceKilledInMission = new TankAce();
         aceKilledInMission.setSerialNumber(aceSerialNumber);
         aceKilledInMission.setName(aceName);
-        aceKilledInMission.setCompanyId(SquadronTestProfile.ESC_103_PROFILE.getCompanyId());
+        aceKilledInMission.setCompanyId(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
         aceKilledInMission.setCrewMemberActiveStatus(CrewMemberStatus.STATUS_KIA, date, null);
         aceKilledInMission.setInactiveDate(date);
         for (int i = 0; i < numVictories; ++i)
@@ -32,7 +32,7 @@ public class MissionEntityBuilder
         CrewMember crewMember = new TankAce();
         crewMember.setSerialNumber(serialNumber);
         crewMember.setName(crewMemberName);
-        crewMember.setCompanyId(SquadronTestProfile.ESC_103_PROFILE.getCompanyId());
+        crewMember.setCompanyId(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
         crewMember.setCrewMemberActiveStatus(status, statusDate, returnDate);
         return crewMember;
     }

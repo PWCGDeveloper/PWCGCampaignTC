@@ -25,6 +25,8 @@ public enum WaypointType
 	RENDEZVOUS_WAYPOINT("Rendezvous"),
     DEPART_WAYPOINT("Depart"),
 
+    OBJECTIVE_WAYPOINT("Assault Objective"),
+
     MOVE_TO_WAYPOINT("Move To"), 
     HUNT_WAYPOINT("Free Hunt");
 

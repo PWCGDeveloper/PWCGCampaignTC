@@ -18,7 +18,7 @@ import pwcg.campaign.personnel.CompanyPersonnel;
 import pwcg.campaign.personnel.CrewMemberFilter;
 import pwcg.core.exception.PWCGException;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class CrewMemberInitialVictoryBuilderTest
@@ -29,9 +29,9 @@ public class CrewMemberInitialVictoryBuilderTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
-        germanCampaign = CampaignCache.makeCampaign(SquadronTestProfile.GROSS_DEUTSCHLAND_PROFILE);
-        americanCampaign = CampaignCache.makeCampaign(SquadronTestProfile.FG_362_PROFILE);
+        
+        germanCampaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
+        americanCampaign = CampaignCache.makeCampaign(CompanyTestProfile.THIRD_DIVISION_PROFILE);
     }
 
 

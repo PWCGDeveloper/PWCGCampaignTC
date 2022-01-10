@@ -13,7 +13,7 @@ import pwcg.campaign.ArmedService;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.api.ICountry;
 import pwcg.campaign.company.Company;
-import pwcg.campaign.company.SquadronRoleSet;
+import pwcg.campaign.company.CompanyRoleSet;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.CrewMemberVictories;
 import pwcg.campaign.crewmember.Victory;
@@ -27,7 +27,7 @@ public abstract class MedalManagerTestBase
     @Mock protected Company squadron;
     @Mock protected ICountry country;
     @Mock protected CrewMemberVictories squadronMemberVictories;
-    @Mock protected SquadronRoleSet squadronRoleSet;
+    @Mock protected CompanyRoleSet squadronRoleSet;
     
     protected List<CrewMember> players = new ArrayList<>();
     protected List<Victory> victories = new ArrayList<>();

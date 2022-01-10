@@ -25,7 +25,7 @@ import pwcg.mission.options.MissionOptions;
 import pwcg.mission.options.MissionType;
 import pwcg.mission.options.MissionWeather;
 import pwcg.mission.target.AssaultDefinition;
-import pwcg.mission.unit.IPlayerUnit;
+import pwcg.mission.unit.ITankUnit;
 
 public class Mission
 {
@@ -41,11 +41,11 @@ public class Mission
     private MissionAirfields missionAirfields;
     private MissionFinalizer finalizer;
 
+    private MissionUnits missionUnits;
     private MissionFlights missionFlights;
     private SkinsInUse skinsInUse = new SkinsInUse();
 
     private MissionBattleManager battleManager = new MissionBattleManager();
-    private MissionUnits missionUnits;
     private MissionGroundUnitBuilder groundUnitBuilder;
     private MissionGroundUnitResourceManager groundUnitManager;
     private VehicleSetBuilderComprehensive vehicleSetBuilder = new VehicleSetBuilderComprehensive();
@@ -208,7 +208,7 @@ public class Mission
     {
         boolean hasPlayerAllied = false;
         boolean hasPlayerAxis = false;
-        for (IPlayerUnit unit : missionUnits.getPlayerUnits())
+        for (ITankUnit unit : missionUnits.getPlayerUnits())
         {
             if (unit.getUnitInformation().getCountry().getSide() == Side.ALLIED)
             {

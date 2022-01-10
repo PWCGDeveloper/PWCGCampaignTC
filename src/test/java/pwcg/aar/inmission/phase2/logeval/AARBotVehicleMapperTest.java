@@ -46,7 +46,7 @@ public class AARBotVehicleMapperTest
     
     public AARBotVehicleMapperTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
     }
 
     @Test

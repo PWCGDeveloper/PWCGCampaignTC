@@ -49,7 +49,7 @@ public class ElapsedTimeEventGeneratorTest
     @BeforeEach
     public void setupTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
         campaignDate = DateUtils.getDateYYYYMMDD("19420901");
         Mockito.when(campaign.getDate()).thenReturn(campaignDate);
         Mockito.when(company.determineCurrentAirfieldAnyMap(campaignDate)).thenReturn(currentAirfield);

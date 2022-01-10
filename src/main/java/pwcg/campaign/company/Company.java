@@ -64,7 +64,7 @@ public class Company
 	private List<Skin> skins = new ArrayList<Skin>();
 	private CompanyHistory companyHistory;
 	private int serviceId;
-    private SquadronRoleSet companyRoles = new SquadronRoleSet();
+    private CompanyRoleSet companyRoles = new CompanyRoleSet();
     private NightMissionSet nightMissionOdds = new NightMissionSet();
 	private List<CompanyConversionPeriod> conversionPeriods = new ArrayList<>();
     private Map<Date, Callsign> callsigns = new TreeMap<>();
@@ -722,7 +722,7 @@ public class Company
         this.skins = skins;
     }
 
-    public SquadronRoleSet getSquadronRoles()
+    public CompanyRoleSet getSquadronRoles()
     {
         return companyRoles;
     }

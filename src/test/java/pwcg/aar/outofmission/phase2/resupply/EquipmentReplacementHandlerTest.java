@@ -26,7 +26,7 @@ import pwcg.campaign.resupply.equipment.EquipmentResupplyData;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 
 @ExtendWith(MockitoExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -39,8 +39,8 @@ public class EquipmentReplacementHandlerTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
-        campaign = CampaignCache.makeCampaign(SquadronTestProfile.JG_51_PROFILE_MOSCOW);
+        
+        campaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
      }
 
     @BeforeEach

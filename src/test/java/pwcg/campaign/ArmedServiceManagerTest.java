@@ -24,7 +24,7 @@ public class ArmedServiceManagerTest
 {
     public ArmedServiceManagerTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
     }
 
     @Test

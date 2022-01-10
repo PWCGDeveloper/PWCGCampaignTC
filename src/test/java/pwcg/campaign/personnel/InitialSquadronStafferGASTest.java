@@ -11,7 +11,7 @@ import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.crewmember.CrewMembers;
 import pwcg.core.exception.PWCGException;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 
 @ExtendWith(MockitoExtension.class)
 public class InitialSquadronStafferGASTest
@@ -19,10 +19,10 @@ public class InitialSquadronStafferGASTest
     @Test
     public void generatePersonnelWithAcesTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
-        Campaign campaign = CampaignCache.makeCampaign(SquadronTestProfile.JASTA_11_PROFILE);
+        
+        Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
 
-        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(SquadronTestProfile.JASTA_11_PROFILE.getCompanyId());
+        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
         
         InitialCompanyStaffer initialSquadronStaffer = new InitialCompanyStaffer(campaign, squadron);
         CompanyPersonnel squadronPersonnel = initialSquadronStaffer.generatePersonnel();        

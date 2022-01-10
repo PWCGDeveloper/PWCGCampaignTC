@@ -23,7 +23,7 @@ public class WaypointPatternFactory
                     double endAlt, 
                     double legDistance) throws PWCGException
     {
-        CircleWaypointPattern circleWaypointGenerator = new CircleWaypointPattern(campaign, flight, wpType, wpAction, wpTriggerArea, legsInCircle);
+        CircleWaypointPattern circleWaypointGenerator = new CircleWaypointPattern(flight, wpType, wpAction, wpTriggerArea, legsInCircle);
 
         List<McuWaypoint> waypoints = circleWaypointGenerator.generateCircleWPs(
                 lastWP.getPosition(), 
@@ -48,7 +48,7 @@ public class WaypointPatternFactory
             double connectSegmentDistance,
             double initialOrientation) throws PWCGException
     {
-        CreepingLinePattern pattern = new CreepingLinePattern(campaign, flight, wpType, wpAction, wpTriggerArea, legsInCreeping, initialOrientation);
+        CreepingLinePattern pattern = new CreepingLinePattern(flight, wpType, wpAction, wpTriggerArea, legsInCreeping, initialOrientation);
 
         List<McuWaypoint> waypoints = pattern.generateCreepingWPSegments(lastWP, legDistance, connectSegmentDistance);
 
@@ -65,7 +65,7 @@ public class WaypointPatternFactory
     		McuWaypoint lastWP, 
     		double legDistance) throws PWCGException
     {
-        CrossWaypointPattern pattern = new CrossWaypointPattern(campaign, flight, wpType, wpAction, wpTriggerArea);
+        CrossWaypointPattern pattern = new CrossWaypointPattern(flight, wpType, wpAction, wpTriggerArea);
 
         List<McuWaypoint> waypoints = pattern.generateCrossWPSegments(lastWP, legDistance);
 

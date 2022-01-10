@@ -126,7 +126,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 101003,
+      "companyId": 101003,
       "squadronMemberRole": "PILOT"
     },
     "Augustin Laforge": {
@@ -152,7 +152,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 101003,
+      "companyId": 101003,
       "squadronMemberRole": "PILOT"
     },
     "Cyprien Quillet": {
@@ -178,7 +178,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 101003,
+      "companyId": 101003,
       "squadronMemberRole": "PILOT"
     },
     "Test Campaign": {
@@ -204,7 +204,7 @@
       ],
       "playerRegion": "",
       "isPlayer": true,
-      "squadronId": 101003,
+      "companyId": 101003,
       "squadronMemberRole": "PILOT"
     },
     "Theophile Poligne": {
@@ -230,7 +230,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 101003,
+      "companyId": 101003,
       "squadronMemberRole": "PILOT"
     },
     "Bernard Adam": {
@@ -256,7 +256,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 101003,
+      "companyId": 101003,
       "squadronMemberRole": "PILOT"
     },
     "Marcel Marc": {
@@ -362,7 +362,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 101003,
+      "companyId": 101003,
       "squadronMemberRole": "PILOT"
     },
     "Adolphe Mayaud": {
@@ -388,7 +388,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 101003,
+      "companyId": 101003,
       "squadronMemberRole": "PILOT"
     },
     "Alfred Lagarrigue": {
@@ -466,7 +466,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 101003,
+      "companyId": 101003,
       "squadronMemberRole": "PILOT"
     }
   }

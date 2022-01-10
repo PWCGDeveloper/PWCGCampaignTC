@@ -15,26 +15,26 @@ import pwcg.campaign.personnel.CompanyPersonnel;
 import pwcg.campaign.personnel.CrewMemberFilter;
 import pwcg.core.exception.PWCGException;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 
 @ExtendWith(MockitoExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class CampaignPersonnelManagerFighterTest
+public class CampaignPersonnelManagerBritishTest
 {
 	@BeforeAll
 	public void setupSuite() throws PWCGException
 	{
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
 	}
 
     @Test
     public void getCrewMembersTest () throws PWCGException
     {            	    
-        Campaign campaign = CampaignCache.makeCampaign(SquadronTestProfile.ESC_103_PROFILE);
+        Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.SEVENTH_DIVISION_PROFILE);
 
-        CompanyPersonnel squadronPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(SquadronTestProfile.ESC_103_PROFILE.getCompanyId());
+        CompanyPersonnel squadronPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(CompanyTestProfile.SEVENTH_DIVISION_PROFILE.getCompanyId());
         CrewMembers squadronMembersNoPlayerNoAces = CrewMemberFilter.filterActiveAI(squadronPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());        
-    	Assertions.assertTrue (squadronMembersNoPlayerNoAces.getCrewMemberList().size() < (Company.COMPANY_STAFF_SIZE - 1));
+    	Assertions.assertTrue (squadronMembersNoPlayerNoAces.getCrewMemberList().size() == (Company.COMPANY_STAFF_SIZE - 1));
         
         CrewMembers squadronMembersNoPlayerWithAces = CrewMemberFilter.filterActiveAIAndAces(squadronPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());        
         Assertions.assertTrue (squadronMembersNoPlayerWithAces.getCrewMemberList().size() == (Company.COMPANY_STAFF_SIZE - 1));

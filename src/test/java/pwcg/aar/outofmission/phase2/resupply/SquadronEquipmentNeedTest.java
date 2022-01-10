@@ -48,7 +48,7 @@ public class SquadronEquipmentNeedTest
         activeEquippedPlaneCollection.clear();
         inactiveEquippedPlaneCollection.clear();
         
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420430"));
         Mockito.when(campaign.getEquipmentManager()).thenReturn(campaignEquipmentManager);
         Mockito.when(campaignEquipmentManager.getEquipmentForCompany(ArgumentMatchers.any())).thenReturn(equipment);

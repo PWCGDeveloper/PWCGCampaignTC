@@ -26,7 +26,7 @@ import pwcg.mission.target.TargetDefinition;
 import pwcg.mission.target.TargetPriorityGeneratorTactical;
 import pwcg.mission.target.TargetType;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 import pwcg.testutils.TestMissionBuilderUtility;
 
 @ExtendWith(MockitoExtension.class)
@@ -39,8 +39,8 @@ public class TargetBuilderTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
-        campaign = CampaignCache.makeCampaign(SquadronTestProfile.FG_365_BODENPLATTE_PROFILE);
+        
+        campaign = CampaignCache.makeCampaign(CompanyTestProfile.FG_365_BODENPLATTE_PROFILE);
 
         if (mission == null)
         {

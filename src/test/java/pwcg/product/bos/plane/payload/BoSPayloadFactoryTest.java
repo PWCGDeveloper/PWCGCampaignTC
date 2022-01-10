@@ -19,7 +19,7 @@ public class BoSPayloadFactoryTest
 {	
 	public BoSPayloadFactoryTest() throws PWCGException
 	{
-    	PWCGContext.setProduct(PWCGProduct.TC);      
+    	      
 	}
 
     @Test

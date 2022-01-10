@@ -20,7 +20,7 @@ import pwcg.campaign.crewmember.TankAce;
 import pwcg.campaign.crewmember.Victory;
 import pwcg.core.exception.PWCGException;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 import pwcg.testutils.VictoryMaker;
 
 @ExtendWith(MockitoExtension.class)
@@ -33,8 +33,8 @@ public class CampaignAceUpdaterTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
-        campaign = CampaignCache.makeCampaign(SquadronTestProfile.ESC_103_PROFILE);
+        
+        campaign = CampaignCache.makeCampaign(CompanyTestProfile.THIRD_DIVISION_PROFILE);
     }
 
     @Test

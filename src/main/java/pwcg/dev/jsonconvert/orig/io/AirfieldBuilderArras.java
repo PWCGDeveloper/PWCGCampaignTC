@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.TreeMap;
 
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.group.airfield.AirfieldDescriptor;
 import pwcg.campaign.group.airfield.AirfieldDescriptorSet;
 import pwcg.campaign.group.airfield.Runway;
@@ -28,7 +27,7 @@ public class AirfieldBuilderArras
     
     public static void main(String[] args) throws Exception
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
 
         AirfieldBuilderArras jsonConverter = new AirfieldBuilderArras();
         jsonConverter.getAirfieldNames("Arras");

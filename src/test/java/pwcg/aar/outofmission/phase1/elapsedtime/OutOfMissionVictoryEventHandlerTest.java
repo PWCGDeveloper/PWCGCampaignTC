@@ -24,7 +24,7 @@ import pwcg.campaign.crewmember.Victory;
 import pwcg.campaign.personnel.CrewMemberFilter;
 import pwcg.core.exception.PWCGException;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 
 @ExtendWith(MockitoExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -41,14 +41,14 @@ public class OutOfMissionVictoryEventHandlerTest
     @BeforeEach
     public void setupTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
-        campaign = CampaignCache.makeCampaign(SquadronTestProfile.ESC_103_PROFILE);
+        
+        campaign = CampaignCache.makeCampaign(CompanyTestProfile.THIRD_DIVISION_PROFILE);
         
         Mockito.when(aarContext.getPreliminaryData()).thenReturn(preliminaryData);
         
         outOfMissionCrewMembers = new CrewMembers();
         outOfMissionCrewMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(campaign.getPersonnelManager().
-                getCompanyPersonnel(SquadronTestProfile.JASTA_16_PROFILE.getCompanyId()).getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
+                getCompanyPersonnel(CompanyTestProfile.JASTA_16_PROFILE.getCompanyId()).getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
     }
 
     @Test

@@ -1,12 +1,19 @@
 package pwcg.gui.rofmap.brief.update;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import pwcg.campaign.Campaign;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.core.exception.PWCGException;
+import pwcg.core.location.Coordinate;
 import pwcg.gui.rofmap.brief.model.BriefingData;
+import pwcg.gui.rofmap.brief.model.BriefingMapPoint;
 import pwcg.gui.rofmap.brief.model.BriefingUnit;
 import pwcg.mission.Mission;
-import pwcg.mission.unit.IPlayerUnit;
+import pwcg.mission.flight.waypoint.WaypointType;
+import pwcg.mission.mcu.McuWaypoint;
+import pwcg.mission.unit.ITankUnit;
 
 public class BriefingUnitUpdater
 {
@@ -44,9 +51,34 @@ public class BriefingUnitUpdater
 
         for (BriefingUnit briefingUnit : briefingData.getBriefingUnits())
         {
-            IPlayerUnit playerUnit = mission.getUnits().getPlayerUnitForCompany(briefingUnit.getCompanyId());
-            playerUnit.getWaypointPackage().updateWaypointsFromBriefing(briefingUnit.getBriefingUnitParameters().getBriefingMapMapPoints());
+            ITankUnit playerUnit = mission.getUnits().getPlayerUnitForCompany(briefingUnit.getCompanyId());
+            List<McuWaypoint> waypoints = briefingPointToWaypoint(briefingUnit.getBriefingUnitParameters().getBriefingMapMapPoints());
+            playerUnit.setWaypoints(waypoints);
         }
+    }
+
+
+    private static List<McuWaypoint> briefingPointToWaypoint(List<BriefingMapPoint> briefingMapPoints) throws PWCGException
+    {
+        List<McuWaypoint> waypoints = new ArrayList<>();
+        
+        for (BriefingMapPoint briefingMapPoint : briefingMapPoints)
+        {
+            McuWaypoint newWaypoint = makeWaypointFromBriefing(briefingMapPoint);
+            waypoints.add(newWaypoint);
+        }
+        
+        return waypoints;
+    }
+
+    private static McuWaypoint makeWaypointFromBriefing(BriefingMapPoint waypointFromBriefing) throws PWCGException
+    {
+        McuWaypoint newWaypoint = new McuWaypoint(WaypointType.OBJECTIVE_WAYPOINT);
+        
+        Coordinate newPosition = waypointFromBriefing.getPosition();
+        newWaypoint.setSpeed(waypointFromBriefing.getCruisingSpeed());
+        newWaypoint.setPosition(newPosition);
+        return newWaypoint;
     }
 
     private static void pushCrewAndPayloadToMission(BriefingData briefingData) throws PWCGException
@@ -54,7 +86,7 @@ public class BriefingUnitUpdater
         Mission mission = briefingData.getMission();
         for (BriefingUnit briefingUnit : briefingData.getBriefingUnits())
         {
-            IPlayerUnit playerUnit = mission.getUnits().getPlayerUnitForCompany(briefingUnit.getCompanyId());
+            ITankUnit playerUnit = mission.getUnits().getPlayerUnitForCompany(briefingUnit.getCompanyId());
             BriefingCrewTankUpdater crewePlaneUpdater = new BriefingCrewTankUpdater(mission.getCampaign(), playerUnit);
             crewePlaneUpdater.updatePlayerTanks(briefingUnit.getBriefingAssignmentData().getCrews());
         }
@@ -68,7 +100,7 @@ public class BriefingUnitUpdater
 
         for (BriefingUnit briefingUnit : briefingData.getBriefingUnits())
         {
-            IPlayerUnit playerUnit = mission.getUnits().getPlayerUnitForCompany(briefingUnit.getCompanyId());
+            ITankUnit playerUnit = mission.getUnits().getPlayerUnitForCompany(briefingUnit.getCompanyId());
             playerUnit.getUnitTanks().setFuelForUnit(briefingUnit.getSelectedFuel());
         }
     }

@@ -17,7 +17,7 @@ public class CargoRoutesIOJsonTest
     @Test
     public void readJsonKubanTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
         CargoRoutes cargoRoutes = CargoRoutesIOJson.readJson("Kuban");
         Assertions.assertTrue (cargoRoutes.getRouteDefinitions().size() > 0);
     }

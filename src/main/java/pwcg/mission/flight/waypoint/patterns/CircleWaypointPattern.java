@@ -3,7 +3,6 @@ package pwcg.mission.flight.waypoint.patterns;
 import java.util.ArrayList;
 import java.util.List;
 
-import pwcg.campaign.Campaign;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.location.Orientation;
@@ -17,7 +16,6 @@ import pwcg.mission.mcu.McuWaypoint;
 
 public class CircleWaypointPattern 
 {	 	
-    private Campaign campaign;
     private List<McuWaypoint> circleWPs = new ArrayList<McuWaypoint>();
     private IFlight flight;
     private int waypointSpeed = 250;
@@ -26,9 +24,8 @@ public class CircleWaypointPattern
     private WaypointAction wpAction;
     private int legsInCircle;
     
-	public CircleWaypointPattern(Campaign campaign, IFlight flight, WaypointType wpType, WaypointAction wpAction, int wpTriggerArea, int legsInCircle) throws PWCGException 
+	public CircleWaypointPattern(IFlight flight, WaypointType wpType, WaypointAction wpAction, int wpTriggerArea, int legsInCircle) throws PWCGException 
 	{
-        this.campaign = campaign;
         this.flight = flight;
         this.wpTriggerArea = wpTriggerArea;
         this.wpType = wpType;

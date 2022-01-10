@@ -19,10 +19,8 @@ import pwcg.campaign.tank.TankTypeFactory;
 import pwcg.core.exception.PWCGException;
 import pwcg.mission.ground.vehicle.VehicleDefinitionManager;
 
-public abstract class PWCGContextBase implements IPWCGContextManager
+public abstract class PWCGContextBase
 {
-    BoSContext bosContextManager;
-
     protected Map<FrontMapIdentifier, PWCGMap> pwcgMaps = new HashMap<FrontMapIdentifier, PWCGMap>();
     protected FrontMapIdentifier currentMap = null;
     protected Campaign campaign = null;
@@ -40,7 +38,7 @@ public abstract class PWCGContextBase implements IPWCGContextManager
 
     protected List<String> campaignStartDates = new ArrayList<String>();
     
-    @Override
+
     public void configurePwcgMaps() throws PWCGException
     {        
         for (PWCGMap map : pwcgMaps.values())
@@ -66,14 +64,14 @@ public abstract class PWCGContextBase implements IPWCGContextManager
         staticObjectDefinitionManager.initialize();
     }
 
-    @Override
+
     public void changeContext(FrontMapIdentifier frontMapIdentifier) throws PWCGException  
     {
         frontMapIdentifier = StalingradMapResolver.resolveStalingradMap(campaign, frontMapIdentifier);
         currentMap = frontMapIdentifier;
     }
 
-    @Override
+
     public void setCampaign(Campaign campaign) throws PWCGException  
     {
         this.campaign = campaign;
@@ -83,7 +81,7 @@ public abstract class PWCGContextBase implements IPWCGContextManager
         }
     }
 
-    @Override
+
     public void setMapForCampaign(Campaign campaign) throws PWCGException
     {
         FrontMapIdentifier mapIdentifier = campaign.getCampaignMap();
@@ -94,7 +92,7 @@ public abstract class PWCGContextBase implements IPWCGContextManager
         }
     }
 
-    @Override
+
     public Date getEarliestPwcgDate() throws PWCGException 
     {
         Date earliesDateForPWCG = null;        
@@ -117,56 +115,56 @@ public abstract class PWCGContextBase implements IPWCGContextManager
         return earliesDateForPWCG;
     }
 
-    @Override
+
     public Campaign getCampaign()
     {
         return campaign;
     }
 
-    @Override
+
     public PWCGMap getCurrentMap()
     {
         return pwcgMaps.get(currentMap);
     }
 
-    @Override
+
     public PWCGMap getMapByMapName(String mapName)
     {
         FrontMapIdentifier mapId = FrontMapIdentifier.getFrontMapIdentifierForName(mapName);
         return pwcgMaps.get(mapId);
     }
 
-    @Override
+
     public PWCGMap getMapByMapId(FrontMapIdentifier mapId)
     {
         return pwcgMaps.get(mapId);
     }
 
-    @Override
+
     public AceManager getAceManager()
     {
         return aceManager;
     }
 
-    @Override
+
     public boolean isTestMode()
     {
         return testMode;
     }
 
-    @Override
+
     public void setTestMode(boolean testMode)
     {
         this.testMode = testMode;
     }
 
-    @Override
+
     public List<String> getCampaignStartDates()
     {
         return campaignStartDates;
     }
 
-    @Override
+
     public List<PWCGMap> getAllMaps()
     {
         List<PWCGMap> allMaps = new ArrayList<PWCGMap>();
@@ -175,7 +173,7 @@ public abstract class PWCGContextBase implements IPWCGContextManager
         return allMaps;
     }
 
-    @Override
+
     public Airfield getAirfieldAllMaps(String airfieldName)
     {
         Airfield airfield = null;
@@ -197,80 +195,80 @@ public abstract class PWCGContextBase implements IPWCGContextManager
         return airfield;
     }
 
-    @Override
+
     public void setCurrentMap(FrontMapIdentifier mapIdentifier) throws PWCGException
     {
         changeContext(mapIdentifier);        
     }
 
-    @Override
+
     public CompanyManager getCompanyManager()
     {
         return squadronManager;
     }
 
 
-    @Override
+
     public SkirmishProfileManager getSkirmishProfileManager()
     {
         return skirmishProfileManager;
     }
 
-    @Override
+
     public SkinManager getSkinManager()
     {
         return skinManager;
     }
 
-    @Override
+
     public TankTypeFactory getTankTypeFactory()
     {
         return tankTypeFactory;
     }
 
-    @Override
+
     public PlaneTypeFactory getPlaneTypeFactory()
     {
         return planeTypeFactory;
     }
 
-    @Override
+
     public List<PWCGMap> getMaps()
     {
         return new ArrayList<PWCGMap>(pwcgMaps.values());
     }
 
-    @Override
+
     public VehicleDefinitionManager getVehicleDefinitionManager()
     {
         return vehicleDefinitionManager;
     }
 
-    @Override
+
     public StaticObjectDefinitionManager getStaticObjectDefinitionManager()
     {
         return staticObjectDefinitionManager;
     }
 
-    @Override
+
     public void setMissionLogDirectory(String missionLogPath)
     {
         this.missionLogPath = missionLogPath + "\\";        
     }
 
-    @Override
+
     public String getMissionLogDirectory()
     {
         return missionLogPath;        
     }
     
-    @Override
+
     public NewspaperManager getNewspaperManager()
     {
         return newspaperManager;
     }
 
-    @Override
+
     public abstract void initializeMap() throws PWCGException;    
 
 }

@@ -22,7 +22,7 @@ public class SquadronAircraftAssignmentTest
     @Test
     public void verifyValidBoSAirfieldMoveDatesTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
         List<Company> squadrons = CompanyIOJson.readJson();
         Assertions.assertTrue (squadrons.size() > 0);
         

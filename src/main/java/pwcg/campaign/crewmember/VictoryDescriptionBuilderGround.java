@@ -1,9 +1,7 @@
 package pwcg.campaign.crewmember;
 
 import pwcg.campaign.Campaign;
-import pwcg.campaign.api.IStaticPlaneSelector;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.factory.StaticPlaneSelectorFactory;
 import pwcg.campaign.group.BlockDefinition;
 import pwcg.campaign.group.BlockDefinitionManager;
 import pwcg.core.exception.PWCGException;
@@ -136,14 +134,7 @@ public class VictoryDescriptionBuilderGround extends VictoryDescriptionBuilderBa
         PwcgStructure building = PwcgBuildingIdentifier.identifyBuilding(victoryEntity.getType());
         if (building != PwcgStructure.UNKNOWN)
         {
-            if (building == PwcgStructure.STATIC_VEHICLE)
-            {
-                return identifyStaticVehicle(victoryEntity);
-            }
-            else
-            {
-                return building.getDescription();
-            }
+            return building.getDescription();
         }
         
         String vehicleNameFromType = getVehicleName(victoryEntity.getType());
@@ -178,22 +169,6 @@ public class VictoryDescriptionBuilderGround extends VictoryDescriptionBuilderBa
         return "vehicle";
     }
 
-    private String identifyStaticVehicle(VictoryEntity victoryEntity) throws PWCGException
-    {
-        VehicleDefinition vehicle = PWCGContext.getInstance().getStaticObjectDefinitionManager().findStaticVehicle(victoryEntity.getType());
-        if (vehicle != null)
-        {
-            return vehicle.getDisplayName();
-        }
-        
-        IStaticPlaneSelector staticPlaneFactory = StaticPlaneSelectorFactory.createStaticPlaneSelector();
-        if (staticPlaneFactory.isStaticPlane(victoryEntity.getType()))
-        {
-            return "parked plane";
-        }
-
-        return "vehicle";
-    }
 
     private String getVehicleName(String vehicleDescriptor) throws PWCGException
     {

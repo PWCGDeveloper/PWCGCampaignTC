@@ -21,7 +21,7 @@ import pwcg.campaign.crewmember.Victory;
 import pwcg.core.constants.AiSkillLevel;
 import pwcg.core.exception.PWCGException;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 
 @ExtendWith(MockitoExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -36,8 +36,8 @@ public class OutOfMissionGroundVictoryEventGeneratorTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
-        campaign = CampaignCache.makeCampaign(SquadronTestProfile.GROSS_DEUTSCHLAND_PROFILE);
+        
+        campaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
         
         for (CrewMember crewMember : campaign.getPersonnelManager().getAllCampaignMembers().values())
         {

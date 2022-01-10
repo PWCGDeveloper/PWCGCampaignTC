@@ -25,7 +25,7 @@ import pwcg.mission.flight.FlightTypes;
 import pwcg.mission.flight.IFlight;
 import pwcg.mission.flight.plane.PlaneMcu;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class CoopPlayerInclusionTest
@@ -36,8 +36,8 @@ public class CoopPlayerInclusionTest
     @BeforeAll
     public void setupSuite() throws Exception
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
-        coopCampaign = CampaignCache.makeCampaign(SquadronTestProfile.COOP_COMPETITIVE_PROFILE);
+        
+        coopCampaign = CampaignCache.makeCampaign(CompanyTestProfile.COOP_COMPETITIVE_PROFILE);
         generateCoopUsers();
         generateHumanCrewMembers();
     }

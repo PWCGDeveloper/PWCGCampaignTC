@@ -21,7 +21,7 @@ import pwcg.mission.MissionProfile;
 import pwcg.mission.flight.FlightTypes;
 import pwcg.mission.flight.IFlight;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 import pwcg.testutils.TestMissionBuilderUtility;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -33,8 +33,8 @@ public class BriefingDataBuilderTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
-        campaign = CampaignCache.makeCampaign(SquadronTestProfile.KG53_PROFILE);
+        
+        campaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
 
         MissionGenerator missionGenerator = new MissionGenerator(campaign);
         mission = missionGenerator.makeTestSingleMissionFromFlightType(TestMissionBuilderUtility.buildTestParticipatingHumans(campaign), FlightTypes.GROUND_ATTACK, MissionProfile.DAY_TACTICAL_MISSION);
@@ -51,10 +51,10 @@ public class BriefingDataBuilderTest
         assert(briefingData.getActiveBriefingUnit().getBriefingAssignmentData().getCrews().size() > 0);
         
         IFlight flight = briefingData.getSelectedUnit();
-        Assertions.assertTrue (flight.getCompany().getCompanyId() == SquadronTestProfile.KG53_PROFILE.getCompanyId());
+        Assertions.assertTrue (flight.getCompany().getCompanyId() == CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
 
         BriefingUnit briefingFlight = briefingData.getActiveBriefingUnit();
-        Assertions.assertTrue (briefingFlight.getCompanyId() == SquadronTestProfile.KG53_PROFILE.getCompanyId());
+        Assertions.assertTrue (briefingFlight.getCompanyId() == CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
         
         BriefingUnitParameters briefingFlightParameters = briefingFlight.getBriefingUnitParameters();
         List<BriefingMapPoint>  briefingMapMapPoints = briefingFlightParameters.getBriefingMapMapPoints();

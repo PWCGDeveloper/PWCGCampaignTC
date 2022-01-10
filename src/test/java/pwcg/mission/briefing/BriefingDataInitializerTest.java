@@ -35,7 +35,7 @@ import pwcg.mission.MissionFlights;
 import pwcg.mission.flight.IFlight;
 import pwcg.mission.flight.IFlightPlanes;
 import pwcg.mission.flight.plane.PlaneMcu;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
@@ -74,7 +74,7 @@ public class BriefingDataInitializerTest
     @BeforeEach
     public void setupTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
         Mockito.when(mission.getCampaign()).thenReturn(campaign);
         Mockito.when(mission.getFlights()).thenReturn(missionFlightBuilder);
 
@@ -94,7 +94,7 @@ public class BriefingDataInitializerTest
         Mockito.when(squadronPersonnel.getCrewMembersWithAces()).thenReturn(squadronMembers);
         Mockito.when(squadronMembers.getCrewMemberCollection()).thenReturn(squadronPersonnelMap);
 
-        Mockito.when(squadron.getCompanyId()).thenReturn(SquadronTestProfile.JG_51_PROFILE_MOSCOW.getCompanyId());
+        Mockito.when(squadron.getCompanyId()).thenReturn(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
         
         Mockito.when(crewMember1.getSerialNumber()).thenReturn(SerialNumber.AI_STARTING_SERIAL_NUMBER+1);
         Mockito.when(crewMember2.getSerialNumber()).thenReturn(SerialNumber.AI_STARTING_SERIAL_NUMBER+2);
@@ -118,8 +118,8 @@ public class BriefingDataInitializerTest
         equippedPlanes.put(equippedPlane3.getSerialNumber(), equippedPlane3);
         equippedPlanes.put(equippedPlane4.getSerialNumber(), equippedPlane4);
 
-        Mockito.when(plane1.getCrewMember()).thenReturn(crewMember1);
-        Mockito.when(plane2.getCrewMember()).thenReturn(crewMember2);
+        Mockito.when(plane1.getTankCommander()).thenReturn(crewMember1);
+        Mockito.when(plane2.getTankCommander()).thenReturn(crewMember2);
         Mockito.when(plane1.getSerialNumber()).thenReturn(SerialNumber.PLANE_STARTING_SERIAL_NUMBER+1);
         Mockito.when(plane2.getSerialNumber()).thenReturn(SerialNumber.PLANE_STARTING_SERIAL_NUMBER+2);
 

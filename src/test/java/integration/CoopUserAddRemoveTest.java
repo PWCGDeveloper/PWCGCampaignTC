@@ -22,7 +22,7 @@ import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.CampaignRemover;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.CampaignCacheBase;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class CoopUserAddRemoveTest
@@ -35,8 +35,8 @@ public class CoopUserAddRemoveTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
-        coopCampaign = CampaignCache.makeCampaignOnDisk(SquadronTestProfile.COOP_COMPETITIVE_PROFILE);
+        
+        coopCampaign = CampaignCache.makeCampaignOnDisk(CompanyTestProfile.COOP_COMPETITIVE_PROFILE);
     }
 
     @AfterEach

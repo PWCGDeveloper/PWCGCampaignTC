@@ -1,6 +1,6 @@
 {
 	"country": "GERMANY",
-	"squadronId": 201016003,
+	"companyId": 201016003,
 	"name": "16th Panzer Division, 3rd Company",
 	"fileName": "16th Panzer Division 3 Co.json",
 	"skill": 70,
@@ -9,7 +9,7 @@
 	"tankAssignments": [
 		{
 			"archType": "pziii",
-			"introduction": "19420801",
+			"introduction": "19400101",
 			"withdrawal": "19430301"
 		},
 		{
@@ -52,8 +52,8 @@
 	"skins": [
 	],
 	"serviceId": 20111,
-	"squadronRoles": {
-		"squadronRolePeriods": [
+	"companyRoles": {
+		"companyRolePeriods": [
 			{
 				"startDate": "19400101",
 				"weightedRoles": [

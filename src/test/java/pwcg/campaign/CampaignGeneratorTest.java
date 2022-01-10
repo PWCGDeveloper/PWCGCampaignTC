@@ -13,7 +13,6 @@ import pwcg.campaign.company.CompanyManager;
 import pwcg.campaign.context.Country;
 import pwcg.campaign.context.FrontMapIdentifier;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.CrewMembers;
 import pwcg.campaign.factory.RankFactory;
@@ -23,24 +22,23 @@ import pwcg.campaign.tank.Equipment;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.testutils.CampaignCacheBase;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 
-@ExtendWith(MockitoExtension.class)
 public class CampaignGeneratorTest
 {
 	public CampaignGeneratorTest() throws PWCGException
 	{
-    	PWCGContext.setProduct(PWCGProduct.TC);
+    	
         PWCGContext.getInstance().changeContext(FrontMapIdentifier.STALINGRAD_MAP);
 	}
 	
     @Test
     public void createWWIICampaign () throws PWCGException
     {        
-    	Campaign campaign = generateCampaign(SquadronTestProfile.GROSS_DEUTSCHLAND_PROFILE.getSquadronId(), DateUtils.getDateYYYYMMDD("19420801"));
+    	Campaign campaign = generateCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId(), DateUtils.getDateYYYYMMDD("19420801"));
     	assert(campaign.getPersonnelManager().getAllActivePlayers().getCrewMemberList().size() == 1);
         CrewMember player = campaign.findReferencePlayer();
-        Assertions.assertTrue (player.determineSquadron().getCompanyId() == SquadronTestProfile.GROSS_DEUTSCHLAND_PROFILE.getSquadronId());
+        Assertions.assertTrue (player.determineSquadron().getCompanyId() == CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
         Assertions.assertTrue (player.determineSquadron().determineCompanyCountry(campaign.getDate()).getCountry() == Country.GERMANY);
         Assertions.assertTrue (campaign.getCampaignData().getName().equals(CampaignCacheBase.TEST_CAMPAIGN_NAME));
         assert(campaign.getPersonnelManager().getAllCompanyPersonnel().size() > 6);

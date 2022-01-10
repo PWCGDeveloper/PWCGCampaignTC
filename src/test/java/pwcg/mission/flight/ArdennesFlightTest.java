@@ -21,7 +21,7 @@ import pwcg.mission.target.TargetType;
 import pwcg.mission.utils.MissionFlightValidator;
 import pwcg.mission.utils.MissionInformationUtils;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 import pwcg.testutils.TestMissionBuilderUtility;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -32,8 +32,8 @@ public class ArdennesFlightTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
-        fg362Campaign = CampaignCache.makeCampaign(SquadronTestProfile.FG_362_PROFILE);
+        
+        fg362Campaign = CampaignCache.makeCampaign(CompanyTestProfile.THIRD_DIVISION_PROFILE);
     }
 
     @Test

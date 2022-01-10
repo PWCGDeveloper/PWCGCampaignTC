@@ -11,8 +11,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import pwcg.campaign.Campaign;
 import pwcg.campaign.company.Company;
-import pwcg.campaign.company.SquadronRolePeriod;
-import pwcg.campaign.company.SquadronRoleSet;
+import pwcg.campaign.company.CompanyRolePeriod;
+import pwcg.campaign.company.CompanyRoleSet;
 import pwcg.campaign.company.SquadronRoleWeight;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGProduct;
@@ -23,7 +23,7 @@ import pwcg.mission.Mission;
 import pwcg.mission.MissionGenerator;
 import pwcg.mission.flight.IFlight;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 import pwcg.testutils.TestMissionBuilderUtility;
 
 @ExtendWith(MockitoExtension.class)
@@ -35,24 +35,24 @@ public class TargetDefinitionPreferenceBuilderTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
-        campaign = CampaignCache.makeCampaign(SquadronTestProfile.JG_26_PROFILE_WEST);
+        
+        campaign = CampaignCache.makeCampaign(CompanyTestProfile.JG_26_PROFILE_WEST);
     }
     
     @Test
     public void tankBustTargetTypeTest() throws PWCGException
     {
-        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(SquadronTestProfile.JG_26_PROFILE_WEST.getCompanyId());
+        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.JG_26_PROFILE_WEST.getCompanyId());
         
         SquadronRoleWeight squadronRoleWeight = new SquadronRoleWeight();
         squadronRoleWeight.setRole(PwcgRole.ROLE_TANK_BUSTER);
         squadronRoleWeight.setWeight(100);
         
-        SquadronRolePeriod squadronRolePeriod = new SquadronRolePeriod();
+        CompanyRolePeriod squadronRolePeriod = new CompanyRolePeriod();
         squadronRolePeriod.setStartDate(DateUtils.getDateYYYYMMDD("19400101"));
         squadronRolePeriod.setWeightedRoles(Arrays.asList(squadronRoleWeight));
 
-        SquadronRoleSet squadronRoleSet = squadron.getSquadronRoles();
+        CompanyRoleSet squadronRoleSet = squadron.getSquadronRoles();
         squadronRoleSet.overrideRolesForTest(Arrays.asList(squadronRolePeriod));
 
         MissionGenerator missionGenerator = new MissionGenerator(campaign);
@@ -68,17 +68,17 @@ public class TargetDefinitionPreferenceBuilderTest
     @Test
     public void trainBustTargetTypeTest() throws PWCGException
     {
-        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(SquadronTestProfile.JG_26_PROFILE_WEST.getCompanyId());
+        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.JG_26_PROFILE_WEST.getCompanyId());
         
         SquadronRoleWeight squadronRoleWeight = new SquadronRoleWeight();
         squadronRoleWeight.setRole(PwcgRole.ROLE_TRAIN_BUSTER);
         squadronRoleWeight.setWeight(100);
         
-        SquadronRolePeriod squadronRolePeriod = new SquadronRolePeriod();
+        CompanyRolePeriod squadronRolePeriod = new CompanyRolePeriod();
         squadronRolePeriod.setStartDate(DateUtils.getDateYYYYMMDD("19400101"));
         squadronRolePeriod.setWeightedRoles(Arrays.asList(squadronRoleWeight));
 
-        SquadronRoleSet squadronRoleSet = squadron.getSquadronRoles();
+        CompanyRoleSet squadronRoleSet = squadron.getSquadronRoles();
         squadronRoleSet.overrideRolesForTest(Arrays.asList(squadronRolePeriod));
 
         MissionGenerator missionGenerator = new MissionGenerator(campaign);
@@ -94,17 +94,17 @@ public class TargetDefinitionPreferenceBuilderTest
     @Test
     public void shippingTargetTypeTest() throws PWCGException
     {
-        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(SquadronTestProfile.JG_26_PROFILE_WEST.getCompanyId());
+        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.JG_26_PROFILE_WEST.getCompanyId());
         
         SquadronRoleWeight squadronRoleWeight = new SquadronRoleWeight();
         squadronRoleWeight.setRole(PwcgRole.ROLE_ANTI_SHIPPING);
         squadronRoleWeight.setWeight(100);
         
-        SquadronRolePeriod squadronRolePeriod = new SquadronRolePeriod();
+        CompanyRolePeriod squadronRolePeriod = new CompanyRolePeriod();
         squadronRolePeriod.setStartDate(DateUtils.getDateYYYYMMDD("19400101"));
         squadronRolePeriod.setWeightedRoles(Arrays.asList(squadronRoleWeight));
 
-        SquadronRoleSet squadronRoleSet = squadron.getSquadronRoles();
+        CompanyRoleSet squadronRoleSet = squadron.getSquadronRoles();
         squadronRoleSet.overrideRolesForTest(Arrays.asList(squadronRolePeriod));
 
         MissionGenerator missionGenerator = new MissionGenerator(campaign);

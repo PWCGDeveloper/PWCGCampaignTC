@@ -19,7 +19,7 @@ public class FCPayloadFactoryTest
 {	
 	public FCPayloadFactoryTest() throws PWCGException
 	{
-    	PWCGContext.setProduct(PWCGProduct.TC);      
+    	      
 	}
 
 	@Test

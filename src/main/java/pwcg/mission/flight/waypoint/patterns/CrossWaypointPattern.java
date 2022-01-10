@@ -3,7 +3,6 @@ package pwcg.mission.flight.waypoint.patterns;
 import java.util.ArrayList;
 import java.util.List;
 
-import pwcg.campaign.Campaign;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.location.Orientation;
@@ -26,16 +25,14 @@ public class CrossWaypointPattern
 {       
     private static final int MAX_CROSS_SEGMENTS = 3;
     
-    private Campaign campaign;
     private IFlight flight;
     private List<McuWaypoint> crossWPs = new ArrayList<McuWaypoint>();
     private int wpTriggerArea = 1000;
     private WaypointType waypointType;
     private WaypointAction waypointAction;
     
-    public CrossWaypointPattern(Campaign campaign, IFlight flight, WaypointType waypointType, WaypointAction waypointAction, int wpTriggerArea) throws PWCGException 
+    public CrossWaypointPattern(IFlight flight, WaypointType waypointType, WaypointAction waypointAction, int wpTriggerArea) throws PWCGException 
     {
-        this.campaign = campaign;
         this.flight = flight;
         this.wpTriggerArea = wpTriggerArea;
         this.waypointType = waypointType;

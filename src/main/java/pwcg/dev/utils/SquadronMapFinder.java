@@ -6,7 +6,6 @@ import java.util.TreeMap;
 import pwcg.campaign.company.Company;
 import pwcg.campaign.context.FrontMapIdentifier;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.group.airfield.Airfield;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
@@ -33,7 +32,7 @@ public class SquadronMapFinder
     
     private void squadronIsOnMap() throws PWCGException  
     {     
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
         PWCGContext.getInstance().changeContext(FrontMapIdentifier.KUBAN_MAP);
         
         TreeMap<Integer, String> airfieldsOnMapSorted = new TreeMap<>();

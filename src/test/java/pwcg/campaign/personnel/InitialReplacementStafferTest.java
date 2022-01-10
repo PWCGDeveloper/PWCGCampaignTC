@@ -16,7 +16,7 @@ import pwcg.campaign.crewmember.CrewMembers;
 import pwcg.campaign.factory.ArmedServiceFactory;
 import pwcg.core.exception.PWCGException;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 
 @ExtendWith(MockitoExtension.class)
 public class InitialReplacementStafferTest
@@ -25,8 +25,8 @@ public class InitialReplacementStafferTest
     @Test
     public void generateReplacementsTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
-        Campaign campaign = CampaignCache.makeCampaign(SquadronTestProfile.JG_51_PROFILE_MOSCOW);
+        
+        Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
 
         List<ArmedService> armedServices = ArmedServiceFactory.createServiceManager().getAllActiveArmedServices(campaign.getDate());
         for (ArmedService service : armedServices)

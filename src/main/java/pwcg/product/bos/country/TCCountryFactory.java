@@ -9,7 +9,7 @@ import pwcg.campaign.context.FrontMapIdentifier;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGMap;
 
-public class BoSCountryFactory implements ICountryFactory
+public class TCCountryFactory implements ICountryFactory
 {
 
     public ICountry makeNeutralCountry()

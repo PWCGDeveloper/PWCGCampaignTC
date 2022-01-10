@@ -22,7 +22,7 @@ public class AARLogFileSetFactoryTest
 
     public AARLogFileSetFactoryTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
     }
     
     @Test

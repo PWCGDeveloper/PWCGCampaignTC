@@ -67,7 +67,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501493,
+      "companyId": 501493,
       "squadronMemberRole": "PILOT"
     },
     "Christian Welser": {
@@ -121,7 +121,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501215,
+      "companyId": 501215,
       "squadronMemberRole": "PILOT"
     },
     "Uwe Schneider": {
@@ -323,7 +323,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501215,
+      "companyId": 501215,
       "squadronMemberRole": "OBSERVER"
     },
     "Fabian Spener": {
@@ -434,7 +434,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501246,
+      "companyId": 501246,
       "squadronMemberRole": "PILOT"
     },
     "Berthold Lehning": {
@@ -464,7 +464,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501016,
+      "companyId": 501016,
       "squadronMemberRole": "PILOT"
     },
     "Carsten Olbrich": {
@@ -529,7 +529,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501246,
+      "companyId": 501246,
       "squadronMemberRole": "PILOT"
     },
     "Friedhelm Scherchen": {
@@ -554,7 +554,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501215,
+      "companyId": 501215,
       "squadronMemberRole": "OBSERVER"
     },
     "Klemens Schilder": {
@@ -608,7 +608,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501493,
+      "companyId": 501493,
       "squadronMemberRole": "OBSERVER"
     },
     "Eberhardt Auch": {
@@ -755,7 +755,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501215,
+      "companyId": 501215,
       "squadronMemberRole": "PILOT"
     },
     "Gebhard Zinn": {
@@ -1004,7 +1004,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501478,
+      "companyId": 501478,
       "squadronMemberRole": "PILOT"
     },
     "Lukas Heffter": {
@@ -1294,7 +1294,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501215,
+      "companyId": 501215,
       "squadronMemberRole": "OBSERVER"
     },
     "Urs Kehlmann": {
@@ -1474,7 +1474,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501246,
+      "companyId": 501246,
       "squadronMemberRole": "PILOT"
     },
     "Conrad Seiler": {
@@ -1590,7 +1590,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501493,
+      "companyId": 501493,
       "squadronMemberRole": "PILOT"
     },
     "Dietrich Holweck": {
@@ -1615,7 +1615,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501004,
+      "companyId": 501004,
       "squadronMemberRole": "PILOT"
     },
     "Patrik Schorner": {
@@ -3854,7 +3854,7 @@
       ],
       "playerRegion": "Bavaria",
       "isPlayer": true,
-      "squadronId": 501016,
+      "companyId": 501016,
       "squadronMemberRole": "PILOT"
     },
     "Rudiger Hoelscher": {
@@ -4029,7 +4029,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501215,
+      "companyId": 501215,
       "squadronMemberRole": "OBSERVER"
     },
     "Jonas Rowohlt": {
@@ -4093,7 +4093,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501493,
+      "companyId": 501493,
       "squadronMemberRole": "OBSERVER"
     },
     "Ewald Stock": {
@@ -4193,7 +4193,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501246,
+      "companyId": 501246,
       "squadronMemberRole": "OBSERVER"
     },
     "Florian Lasch": {
@@ -4436,7 +4436,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501004,
+      "companyId": 501004,
       "squadronMemberRole": "PILOT"
     },
     "Rupert Puckler": {
@@ -4575,7 +4575,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501493,
+      "companyId": 501493,
       "squadronMemberRole": "PILOT"
     },
     "Erhard Weidner": {
@@ -4790,7 +4790,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501493,
+      "companyId": 501493,
       "squadronMemberRole": "OBSERVER"
     },
     "Wolfram Tendler": {
@@ -5039,7 +5039,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501493,
+      "companyId": 501493,
       "squadronMemberRole": "PILOT"
     },
     "Veit Traub": {
@@ -5272,7 +5272,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501215,
+      "companyId": 501215,
       "squadronMemberRole": "OBSERVER"
     },
     "Rupert Freudenberg": {
@@ -5493,7 +5493,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501215,
+      "companyId": 501215,
       "squadronMemberRole": "OBSERVER"
     },
     "Torsten Nessler": {
@@ -5518,7 +5518,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501246,
+      "companyId": 501246,
       "squadronMemberRole": "OBSERVER"
     },
     "Ewald Weinwurm": {
@@ -5543,7 +5543,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501004,
+      "companyId": 501004,
       "squadronMemberRole": "PILOT"
     },
     "Johannes Vahlen": {
@@ -5568,7 +5568,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501016,
+      "companyId": 501016,
       "squadronMemberRole": "PILOT"
     },
     "Tobias Klemme": {
@@ -5622,7 +5622,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501246,
+      "companyId": 501246,
       "squadronMemberRole": "OBSERVER"
     },
     "Lukas Westerman": {
@@ -5695,7 +5695,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501215,
+      "companyId": 501215,
       "squadronMemberRole": "PILOT"
     },
     "Tobias Platz": {
@@ -5829,7 +5829,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501493,
+      "companyId": 501493,
       "squadronMemberRole": "PILOT"
     },
     "Fritz Stock": {
@@ -5859,7 +5859,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501016,
+      "companyId": 501016,
       "squadronMemberRole": "PILOT"
     },
     "Wilfried Oppert": {
@@ -5913,7 +5913,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501246,
+      "companyId": 501246,
       "squadronMemberRole": "OBSERVER"
     },
     "Ruprecht Hess": {
@@ -6024,7 +6024,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501016,
+      "companyId": 501016,
       "squadronMemberRole": "PILOT"
     },
     "Oswald Fromm": {
@@ -6247,7 +6247,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501016,
+      "companyId": 501016,
       "squadronMemberRole": "PILOT"
     },
     "Detlef Schwarzer": {
@@ -6565,7 +6565,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501016,
+      "companyId": 501016,
       "squadronMemberRole": "PILOT"
     },
     "Marko Kupferblum": {
@@ -6642,7 +6642,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501246,
+      "companyId": 501246,
       "squadronMemberRole": "OBSERVER"
     },
     "Lambrecht Tauber": {
@@ -6730,7 +6730,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501493,
+      "companyId": 501493,
       "squadronMemberRole": "PILOT"
     },
     "Mario Falck": {
@@ -6830,7 +6830,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501004,
+      "companyId": 501004,
       "squadronMemberRole": "PILOT"
     },
     "Eberhardt Stockert": {
@@ -6930,7 +6930,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501215,
+      "companyId": 501215,
       "squadronMemberRole": "PILOT"
     },
     "Siegfried Ganzfried": {
@@ -7156,7 +7156,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501246,
+      "companyId": 501246,
       "squadronMemberRole": "PILOT"
     },
     "Augustus Kass": {
@@ -7236,7 +7236,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501016,
+      "companyId": 501016,
       "squadronMemberRole": "PILOT"
     },
     "Heiner Waldbrunn": {
@@ -7324,7 +7324,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501493,
+      "companyId": 501493,
       "squadronMemberRole": "PILOT"
     },
     "Gunther Huwyler": {
@@ -7401,7 +7401,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501004,
+      "companyId": 501004,
       "squadronMemberRole": "PILOT"
     },
     "Heinrich Schonborn": {
@@ -7535,7 +7535,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501246,
+      "companyId": 501246,
       "squadronMemberRole": "PILOT"
     },
     "Harald Bronstein": {
@@ -7560,7 +7560,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501004,
+      "companyId": 501004,
       "squadronMemberRole": "PILOT"
     },
     "Nikolaus Fechter": {
@@ -7706,7 +7706,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501215,
+      "companyId": 501215,
       "squadronMemberRole": "PILOT"
     },
     "Nikolaus Schildhauer": {
@@ -7983,7 +7983,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501246,
+      "companyId": 501246,
       "squadronMemberRole": "PILOT"
     },
     "Carsten Kantner": {
@@ -8008,7 +8008,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501004,
+      "companyId": 501004,
       "squadronMemberRole": "PILOT"
     },
     "Maxim Wien": {
@@ -8044,7 +8044,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501246,
+      "companyId": 501246,
       "squadronMemberRole": "PILOT"
     },
     "Meinhard Frohlich": {
@@ -8098,7 +8098,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501215,
+      "companyId": 501215,
       "squadronMemberRole": "PILOT"
     },
     "Kristof Bahr": {
@@ -8139,7 +8139,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501016,
+      "companyId": 501016,
       "squadronMemberRole": "PILOT"
     },
     "Rudiger Bretschneider": {
@@ -8429,7 +8429,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501215,
+      "companyId": 501215,
       "squadronMemberRole": "PILOT"
     },
     "Florian Lohmuller": {
@@ -8454,7 +8454,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501215,
+      "companyId": 501215,
       "squadronMemberRole": "OBSERVER"
     },
     "Konrad Herxheimer": {
@@ -8797,7 +8797,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501246,
+      "companyId": 501246,
       "squadronMemberRole": "PILOT"
     },
     "Jonas Westheimer": {
@@ -8822,7 +8822,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501246,
+      "companyId": 501246,
       "squadronMemberRole": "OBSERVER"
     },
     "Friedrich Beethoven": {
@@ -8951,7 +8951,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501215,
+      "companyId": 501215,
       "squadronMemberRole": "PILOT"
     },
     "Heinrich Haeberli": {
@@ -9085,7 +9085,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501493,
+      "companyId": 501493,
       "squadronMemberRole": "PILOT"
     },
     "Hasso Lobe": {
@@ -9311,7 +9311,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501246,
+      "companyId": 501246,
       "squadronMemberRole": "PILOT"
     },
     "Luther Schaumann": {
@@ -9357,7 +9357,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501016,
+      "companyId": 501016,
       "squadronMemberRole": "PILOT"
     },
     "Dietrich osterreich": {
@@ -9382,7 +9382,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501493,
+      "companyId": 501493,
       "squadronMemberRole": "OBSERVER"
     },
     "Ulrich Holler": {
@@ -9407,7 +9407,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501215,
+      "companyId": 501215,
       "squadronMemberRole": "PILOT"
     },
     "Erhard Kesselring": {
@@ -9531,7 +9531,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501215,
+      "companyId": 501215,
       "squadronMemberRole": "OBSERVER"
     },
     "Wenzel Scheiner": {
@@ -9751,7 +9751,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501215,
+      "companyId": 501215,
       "squadronMemberRole": "OBSERVER"
     },
     "Benjamin Singermann": {
@@ -9879,7 +9879,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501246,
+      "companyId": 501246,
       "squadronMemberRole": "OBSERVER"
     },
     "Herbert Klemm": {
@@ -10003,7 +10003,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501493,
+      "companyId": 501493,
       "squadronMemberRole": "OBSERVER"
     },
     "Sepp Homberg": {
@@ -10103,7 +10103,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501215,
+      "companyId": 501215,
       "squadronMemberRole": "OBSERVER"
     },
     "Theodor Huwyler": {
@@ -10128,7 +10128,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501493,
+      "companyId": 501493,
       "squadronMemberRole": "OBSERVER"
     },
     "Ludwig Closterman": {
@@ -10251,7 +10251,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501215,
+      "companyId": 501215,
       "squadronMemberRole": "OBSERVER"
     },
     "Ingemar Beckermann": {
@@ -10321,7 +10321,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501016,
+      "companyId": 501016,
       "squadronMemberRole": "PILOT"
     },
     "Ernst Charles Behm": {
@@ -10444,7 +10444,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501004,
+      "companyId": 501004,
       "squadronMemberRole": "PILOT"
     },
     "Knut Seger": {
@@ -10469,7 +10469,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501493,
+      "companyId": 501493,
       "squadronMemberRole": "OBSERVER"
     },
     "Wolfe Beckermann": {
@@ -10494,7 +10494,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501004,
+      "companyId": 501004,
       "squadronMemberRole": "PILOT"
     },
     "Erik Wotraubek": {
@@ -10519,7 +10519,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501004,
+      "companyId": 501004,
       "squadronMemberRole": "PILOT"
     },
     "Gebhard Schonbaum": {
@@ -10676,7 +10676,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501016,
+      "companyId": 501016,
       "squadronMemberRole": "PILOT"
     },
     "Jens Luxemburg": {
@@ -10799,7 +10799,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501004,
+      "companyId": 501004,
       "squadronMemberRole": "PILOT"
     },
     "Bernd Lewysohn": {
@@ -10922,7 +10922,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501493,
+      "companyId": 501493,
       "squadronMemberRole": "OBSERVER"
     },
     "Dirk Schafer": {
@@ -10947,7 +10947,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501004,
+      "companyId": 501004,
       "squadronMemberRole": "PILOT"
     },
     "Simon Gans": {
@@ -11047,7 +11047,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501215,
+      "companyId": 501215,
       "squadronMemberRole": "OBSERVER"
     },
     "Viktor Schiller": {
@@ -11147,7 +11147,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501246,
+      "companyId": 501246,
       "squadronMemberRole": "OBSERVER"
     },
     "Lambrecht Steinberg": {
@@ -11321,7 +11321,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501013,
+      "companyId": 501013,
       "squadronMemberRole": "PILOT"
     },
     "Kaspar Aschner": {
@@ -11346,7 +11346,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501215,
+      "companyId": 501215,
       "squadronMemberRole": "PILOT"
     },
     "Arnold Bach": {
@@ -11371,7 +11371,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501004,
+      "companyId": 501004,
       "squadronMemberRole": "PILOT"
     },
     "Bernd Treich": {
@@ -11568,7 +11568,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501215,
+      "companyId": 501215,
       "squadronMemberRole": "OBSERVER"
     },
     "Poldi Hechler": {
@@ -11593,7 +11593,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501013,
+      "companyId": 501013,
       "squadronMemberRole": "PILOT"
     },
     "Baldemar May": {
@@ -11836,7 +11836,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501224,
+      "companyId": 501224,
       "squadronMemberRole": "OBSERVER"
     },
     "Joachim Lechner": {
@@ -12033,7 +12033,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501016,
+      "companyId": 501016,
       "squadronMemberRole": "PILOT"
     },
     "Ingemar Waxman": {
@@ -12058,7 +12058,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501016,
+      "companyId": 501016,
       "squadronMemberRole": "PILOT"
     },
     "Sepp Zuber": {
@@ -12237,7 +12237,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501215,
+      "companyId": 501215,
       "squadronMemberRole": "PILOT"
     },
     "Veit Eisenstein": {
@@ -12399,7 +12399,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501493,
+      "companyId": 501493,
       "squadronMemberRole": "PILOT"
     },
     "Johann Hanneman": {
@@ -12440,7 +12440,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501016,
+      "companyId": 501016,
       "squadronMemberRole": "PILOT"
     },
     "Gottlieb Grunebaum": {
@@ -12465,7 +12465,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501004,
+      "companyId": 501004,
       "squadronMemberRole": "PILOT"
     },
     "Karl Nostitz": {
@@ -12609,7 +12609,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501016,
+      "companyId": 501016,
       "squadronMemberRole": "PILOT"
     },
     "Ralf Schulz": {
@@ -12663,7 +12663,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501004,
+      "companyId": 501004,
       "squadronMemberRole": "PILOT"
     },
     "Oskar Schulberg": {
@@ -12688,7 +12688,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501493,
+      "companyId": 501493,
       "squadronMemberRole": "OBSERVER"
     },
     "Marko Lexis": {
@@ -12713,7 +12713,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501009,
+      "companyId": 501009,
       "squadronMemberRole": "PILOT"
     },
     "Bruno Fux": {
@@ -12738,7 +12738,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501301,
+      "companyId": 501301,
       "squadronMemberRole": "PILOT"
     },
     "Arnold Dieterich": {
@@ -12768,7 +12768,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501016,
+      "companyId": 501016,
       "squadronMemberRole": "PILOT"
     },
     "Jakob Beckenbauer": {
@@ -12798,7 +12798,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501010,
+      "companyId": 501010,
       "squadronMemberRole": "PILOT"
     },
     "Sigfried Zachariae": {
@@ -12823,7 +12823,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501014,
+      "companyId": 501014,
       "squadronMemberRole": "PILOT"
     },
     "Stefan Rorer": {
@@ -12848,7 +12848,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501005,
+      "companyId": 501005,
       "squadronMemberRole": "PILOT"
     },
     "Jonas Germar": {
@@ -12873,7 +12873,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501003,
+      "companyId": 501003,
       "squadronMemberRole": "PILOT"
     },
     "Kurt Weide": {
@@ -12898,7 +12898,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501301,
+      "companyId": 501301,
       "squadronMemberRole": "PILOT"
     },
     "Kaspar Schuhbeck": {
@@ -12923,7 +12923,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501010,
+      "companyId": 501010,
       "squadronMemberRole": "PILOT"
     },
     "Ralf Bohme": {
@@ -12977,7 +12977,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501007,
+      "companyId": 501007,
       "squadronMemberRole": "PILOT"
     },
     "Gregor Mohring": {
@@ -13002,7 +13002,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501007,
+      "companyId": 501007,
       "squadronMemberRole": "PILOT"
     },
     "Paul Lehninger": {
@@ -13056,7 +13056,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501007,
+      "companyId": 501007,
       "squadronMemberRole": "PILOT"
     },
     "Urs Kohring": {
@@ -13081,7 +13081,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501014,
+      "companyId": 501014,
       "squadronMemberRole": "PILOT"
     },
     "Hasso Katzmann": {
@@ -13111,7 +13111,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501007,
+      "companyId": 501007,
       "squadronMemberRole": "PILOT"
     },
     "Leopold Weller": {
@@ -13136,7 +13136,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501003,
+      "companyId": 501003,
       "squadronMemberRole": "PILOT"
     },
     "Sven Charles Behm": {
@@ -13161,7 +13161,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501301,
+      "companyId": 501301,
       "squadronMemberRole": "PILOT"
     },
     "Walfred Wolzogen": {
@@ -13186,7 +13186,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501008,
+      "companyId": 501008,
       "squadronMemberRole": "PILOT"
     },
     "Emil Buchtel": {
@@ -13211,7 +13211,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501005,
+      "companyId": 501005,
       "squadronMemberRole": "PILOT"
     },
     "Jonas Frey": {
@@ -13236,7 +13236,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501010,
+      "companyId": 501010,
       "squadronMemberRole": "PILOT"
     },
     "Georg Schurer": {
@@ -13261,7 +13261,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501010,
+      "companyId": 501010,
       "squadronMemberRole": "PILOT"
     },
     "Sven Scheerbart": {
@@ -13286,7 +13286,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501016,
+      "companyId": 501016,
       "squadronMemberRole": "PILOT"
     },
     "Poldi Baumholtz": {
@@ -13311,7 +13311,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501301,
+      "companyId": 501301,
       "squadronMemberRole": "PILOT"
     },
     "Harald Pannartz": {
@@ -13336,7 +13336,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501010,
+      "companyId": 501010,
       "squadronMemberRole": "PILOT"
     },
     "Emmerich Hergenrother": {
@@ -13361,7 +13361,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501016,
+      "companyId": 501016,
       "squadronMemberRole": "PILOT"
     },
     "Wilhelm Haeusser": {
@@ -13386,7 +13386,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501005,
+      "companyId": 501005,
       "squadronMemberRole": "PILOT"
     }
   }

@@ -13,20 +13,20 @@ import pwcg.campaign.plane.EquippedPlane;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 
 @ExtendWith(MockitoExtension.class)
 public class CampaignEquipmentArchtypeChangeHandlerTest
 {    
     public CampaignEquipmentArchtypeChangeHandlerTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
     }
     
     @Test
     public void testArchtypeReplacement() throws PWCGException 
     {
-        Campaign campaign = CampaignCache.makeCampaign(SquadronTestProfile.GROSS_DEUTSCHLAND_PROFILE);
+        Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
         assertTankArchType(campaign, "bf109");
         assertNotTankArchType(campaign, "fw190");
         int daysOff = DateUtils.daysDifference(campaign.getDate(), DateUtils.getDateYYYYMMDD("19420514"));
@@ -39,7 +39,7 @@ public class CampaignEquipmentArchtypeChangeHandlerTest
     @Test
     public void testArchtypeNoReplacement() throws PWCGException 
     {
-        Campaign campaign = CampaignCache.makeCampaign(SquadronTestProfile.GROSS_DEUTSCHLAND_PROFILE);
+        Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
         assertTankArchType(campaign, "bf109");
         assertNotTankArchType(campaign, "fw190");
         int daysOff = DateUtils.daysDifference(campaign.getDate(), DateUtils.getDateYYYYMMDD("19420513"));

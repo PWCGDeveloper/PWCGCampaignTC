@@ -6,27 +6,22 @@ import java.util.List;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.mission.flight.waypoint.WaypointFactory;
-import pwcg.mission.flight.waypoint.missionpoint.IMissionPointSet;
-import pwcg.mission.flight.waypoint.missionpoint.MissionPointRouteSet;
 import pwcg.mission.mcu.McuWaypoint;
-import pwcg.mission.unit.IPlayerUnit;
+import pwcg.mission.unit.ITankUnit;
 
 public class AAAWaypointFactory
 {
-    private IPlayerUnit unit;
-    private MissionPointRouteSet missionPointSet = new MissionPointRouteSet();
+    private ITankUnit unit;
 
-    public AAAWaypointFactory(IPlayerUnit unit) throws PWCGException
+    public AAAWaypointFactory(ITankUnit unit) throws PWCGException
     {
         this.unit = unit;
     }
 
-    public IMissionPointSet createWaypoints() throws PWCGException
+    public List<McuWaypoint> createWaypoints() throws PWCGException
     {        
         List<McuWaypoint> waypoints = createTargetWaypoints();
-        missionPointSet.addWaypoints(waypoints);
-
-        return missionPointSet;
+        return waypoints;
     }
     
     private List<McuWaypoint> createTargetWaypoints() throws PWCGException  

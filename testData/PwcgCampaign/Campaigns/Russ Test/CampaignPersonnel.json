@@ -23,7 +23,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 10111126,
+      "companyId": 10111126,
       "squadronMemberRole": "PILOT"
     },
     "Emil Zhivenkov": {
@@ -73,7 +73,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 10111126,
+      "companyId": 10111126,
       "squadronMemberRole": "PILOT"
     },
     "Valentin Dubolazov": {
@@ -99,7 +99,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 10111126,
+      "companyId": 10111126,
       "squadronMemberRole": "PILOT"
     },
     "Russ Test": {
@@ -154,7 +154,7 @@
       ],
       "playerRegion": "",
       "isPlayer": true,
-      "squadronId": 10111126,
+      "companyId": 10111126,
       "squadronMemberRole": "PILOT"
     },
     "Yan Tsigler": {
@@ -495,7 +495,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 10111126,
+      "companyId": 10111126,
       "squadronMemberRole": "PILOT"
     },
     "Artur Pugin": {
@@ -545,7 +545,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 10111126,
+      "companyId": 10111126,
       "squadronMemberRole": "PILOT"
     },
     "Iosif Batishchev": {
@@ -669,7 +669,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 10111126,
+      "companyId": 10111126,
       "squadronMemberRole": "PILOT"
     },
     "Kirill Pirogov": {
@@ -695,7 +695,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 10111126,
+      "companyId": 10111126,
       "squadronMemberRole": "PILOT"
     },
     "Artur Primakov": {
@@ -745,7 +745,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 10111126,
+      "companyId": 10111126,
       "squadronMemberRole": "PILOT"
     },
     "Vasily Chaplin": {
@@ -795,7 +795,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 10111126,
+      "companyId": 10111126,
       "squadronMemberRole": "PILOT"
     },
     "Eldar Khudovekov": {
@@ -826,7 +826,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 10111126,
+      "companyId": 10111126,
       "squadronMemberRole": "PILOT"
     },
     "Konstantin Golubov": {
@@ -852,7 +852,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 10111126,
+      "companyId": 10111126,
       "squadronMemberRole": "PILOT"
     },
     "Iosif Yozhov": {
@@ -878,7 +878,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 10111126,
+      "companyId": 10111126,
       "squadronMemberRole": "PILOT"
     },
     "Vadim Zykov": {
@@ -904,7 +904,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 10111126,
+      "companyId": 10111126,
       "squadronMemberRole": "PILOT"
     }
   }

@@ -23,7 +23,7 @@ import pwcg.campaign.plane.Equipment;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class AARCoordinatorLossAndReplacementAnalyzer
@@ -33,8 +33,8 @@ public class AARCoordinatorLossAndReplacementAnalyzer
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
-        campaign = CampaignCache.makeCampaignOnDisk(SquadronTestProfile.FG_354_BODENPLATTE_PROFILE);
+        
+        campaign = CampaignCache.makeCampaignOnDisk(CompanyTestProfile.FG_354_BODENPLATTE_PROFILE);
     }
 
     @Test

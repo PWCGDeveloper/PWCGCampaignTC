@@ -6,7 +6,7 @@ import java.util.List;
 import pwcg.campaign.company.Company;
 import pwcg.core.exception.PWCGException;
 import pwcg.mission.Mission;
-import pwcg.mission.unit.IPlayerUnit;
+import pwcg.mission.unit.ITankUnit;
 import pwcg.mission.unit.TankMcu;
 
 public class MissionPlaneGenerator
@@ -21,7 +21,7 @@ public class MissionPlaneGenerator
     
     public List<PwcgGeneratedMissionVehicleData> generateMissionPlaneData() throws PWCGException
     {
-        for (IPlayerUnit unit : mission.getUnits().getPlayerUnits())
+        for (ITankUnit unit : mission.getUnits().getPlayerUnits())
         {
             makePlaneEntriesForUnit(unit);
         }
@@ -29,7 +29,7 @@ public class MissionPlaneGenerator
         return missionPlanes;
     }
 
-    private void makePlaneEntriesForUnit(IPlayerUnit unit)
+    private void makePlaneEntriesForUnit(ITankUnit unit)
     {
         for (TankMcu vehicle : unit.getTanks())
         {
@@ -40,8 +40,8 @@ public class MissionPlaneGenerator
     private void makeMissionPlaneEntry(Company squadron, TankMcu vehicle)
     {
         PwcgGeneratedMissionVehicleData missionPlaneData = new PwcgGeneratedMissionVehicleData();
-        missionPlaneData.setCrewMemberName(vehicle.getCrewMember().getNameAndRank());
-        missionPlaneData.setCrewMemberSerialNumber(vehicle.getCrewMember().getSerialNumber());
+        missionPlaneData.setCrewMemberName(vehicle.getTankCommander().getNameAndRank());
+        missionPlaneData.setCrewMemberSerialNumber(vehicle.getTankCommander().getSerialNumber());
         missionPlaneData.setVehicleSerialNumber(vehicle.getSerialNumber());
         missionPlaneData.setCompanyId(squadron.getCompanyId());
         missionPlaneData.setVehicleType(vehicle.getType());

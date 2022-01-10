@@ -1,21 +1,23 @@
 package pwcg.mission.unit;
 
 import java.io.BufferedWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import pwcg.campaign.company.Company;
 import pwcg.core.exception.PWCGException;
-import pwcg.mission.flight.waypoint.WaypointPackage;
+import pwcg.mission.mcu.McuWaypoint;
 import pwcg.mission.unit.tank.TankMcuFactory;
 
-public abstract class PlayerUnit implements IPlayerUnit
+public abstract class PlayerUnit implements ITankUnit
 {
     protected UnitVehicles unitVehicles;
     protected UnitInformation unitInformation;
-    
+    protected List<McuWaypoint> waypoints = new ArrayList<>();
+
     public PlayerUnit(UnitInformation unitInformation)
     {
-        this.unitVehicles = new UnitVehicles(this);
+        this.unitVehicles = new UnitVehicles();
         this.unitInformation = unitInformation;
     }
 
@@ -56,19 +58,24 @@ public abstract class PlayerUnit implements IPlayerUnit
     @Override
     public TankMcu getLeadVehicle()
     {
-        return null;
+        return unitVehicles.getUnitLeader();
     }
 
     @Override
-    public WaypointPackage getWaypointPackage()
+    public List<McuWaypoint> getWaypoints()
     {
-        return null;
+        return waypoints;
     }
 
+    public void setWaypoints(List<McuWaypoint> waypoints)
+    {
+        this.waypoints = waypoints;
+    }
+    
     @Override
     public Company getCompany()
     {
-        return null;
+        return unitInformation.getCompany();
     }
 
     @Override

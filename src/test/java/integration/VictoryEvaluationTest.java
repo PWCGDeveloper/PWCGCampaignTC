@@ -42,7 +42,7 @@ import pwcg.mission.flight.IFlight;
 import pwcg.mission.flight.plane.PlaneMcu;
 import pwcg.mission.io.MissionFileNameBuilder;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 import pwcg.testutils.TestMissionBuilderUtility;
 
 public class VictoryEvaluationTest
@@ -55,8 +55,8 @@ public class VictoryEvaluationTest
     @BeforeEach
     public void testSetup() throws Exception
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
-        campaign = CampaignCache.makeCampaignOnDisk(SquadronTestProfile.JASTA_11_PROFILE);
+        
+        campaign = CampaignCache.makeCampaignOnDisk(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
     }
     
     @Test
@@ -215,7 +215,7 @@ public class VictoryEvaluationTest
         Map<Integer, Integer> playerFlightVictories = new HashMap<>();
         for(PlaneMcu plane : playerFlightPlanes)
         {
-            playerFlightVictories.put(plane.getCrewMember().getSerialNumber(), plane.getCrewMember().getCrewMemberVictories().getAirToAirVictories().size());
+            playerFlightVictories.put(plane.getTankCommander().getSerialNumber(), plane.getTankCommander().getCrewMemberVictories().getAirToAirVictories().size());
         }
 
 

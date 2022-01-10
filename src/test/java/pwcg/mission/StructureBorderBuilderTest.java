@@ -15,7 +15,7 @@ import pwcg.core.config.ConfigSimple;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.CoordinateBox;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class StructureBorderBuilderTest
@@ -25,9 +25,9 @@ public class StructureBorderBuilderTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
         PWCGContext.getInstance().setCurrentMap(FrontMapIdentifier.STALINGRAD_MAP);
-        campaign = CampaignCache.makeCampaign(SquadronTestProfile.GROSS_DEUTSCHLAND_PROFILE);
+        campaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
     }
 
     @Test

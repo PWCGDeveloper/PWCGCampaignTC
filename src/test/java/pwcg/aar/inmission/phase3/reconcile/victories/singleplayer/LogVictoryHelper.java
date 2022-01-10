@@ -13,7 +13,7 @@ import pwcg.campaign.context.Country;
 import pwcg.campaign.crewmember.SerialNumber;
 import pwcg.core.location.Coordinate;
 import pwcg.product.bos.country.BoSCountry;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 
 public class LogVictoryHelper
 {
@@ -27,7 +27,7 @@ public class LogVictoryHelper
         victim.setCrewMemberSerialNumber(SerialNumber.AI_STARTING_SERIAL_NUMBER + 100);
         victim.setVehicleType("albatrosd5");
         victim.setCountry(new BoSCountry(Country.GERMANY));
-        victim.setCompanyId(SquadronTestProfile.JASTA_11_PROFILE.getCompanyId());
+        victim.setCompanyId(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
         victim.intializeCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER + 100);
 
         makeVictory(victor, victim);
@@ -41,7 +41,7 @@ public class LogVictoryHelper
         victim.setCrewMemberSerialNumber(SerialNumber.AI_STARTING_SERIAL_NUMBER + 100);
         victim.setVehicleType("albatrosd5");
         victim.setCountry(new BoSCountry(Country.GERMANY));
-        victim.setCompanyId(SquadronTestProfile.JASTA_11_PROFILE.getCompanyId());
+        victim.setCompanyId(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
         victim.intializeCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER + 100);
 
         makeVictory(victor, victim);
@@ -86,7 +86,7 @@ public class LogVictoryHelper
         victor.setCrewMemberSerialNumber(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
         victor.setVehicleType("spad13");
         victor.setCountry(new BoSCountry(Country.FRANCE));
-        victor.setCompanyId(SquadronTestProfile.ESC_103_PROFILE.getCompanyId());
+        victor.setCompanyId(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
         victor.intializeCrewMember(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
         return victor;
     }

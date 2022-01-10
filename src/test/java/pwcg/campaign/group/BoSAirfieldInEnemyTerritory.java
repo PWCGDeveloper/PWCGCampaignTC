@@ -17,7 +17,7 @@ public class BoSAirfieldInEnemyTerritory extends AirfieldInEnemyTerritory
 	public BoSAirfieldInEnemyTerritory () throws PWCGException
 	{
 		super(true);
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
 	}
 	
 	@BeforeEach

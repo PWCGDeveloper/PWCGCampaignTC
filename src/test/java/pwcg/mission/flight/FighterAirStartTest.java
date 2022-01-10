@@ -23,7 +23,7 @@ import pwcg.mission.flight.waypoint.WaypointAction;
 import pwcg.mission.flight.waypoint.missionpoint.MissionPoint;
 import pwcg.mission.mcu.group.virtual.VirtualWaypointPackageValidator;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 import pwcg.testutils.TestMissionBuilderUtility;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -34,8 +34,8 @@ public class FighterAirStartTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
-        campaign = CampaignCache.makeCampaign(SquadronTestProfile.JG_51_PROFILE_MOSCOW);
+        
+        campaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
         
         campaign.getCampaignConfigManager().setConfigParam(ConfigItemKeys.AllowAirStartsKey, "1");
     }

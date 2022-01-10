@@ -30,7 +30,7 @@ import pwcg.campaign.crewmember.SerialNumber;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.utils.DateUtils;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
@@ -51,7 +51,7 @@ public class ClaimResolverTest
     @BeforeEach
     public void setupTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
 
         verifiedVictories = new ConfirmedVictories();
         playerDeclarationSet = new PlayerDeclarations();
@@ -80,7 +80,7 @@ public class ClaimResolverTest
         {
             LogPlane victor = new LogPlane(10+1);
             victor.setCrewMemberSerialNumber(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
-            victor.setCompanyId(SquadronTestProfile.JASTA_11_PROFILE.getCompanyId());
+            victor.setCompanyId(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
             victor.intializeCrewMember(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
             
             LogPlane victim = new LogPlane(100+i);
@@ -115,7 +115,7 @@ public class ClaimResolverTest
     public void testClaimDenied() throws PWCGException
     {
         boolean isNewsworthy = false;
-        ClaimDeniedEvent claimDenied = new ClaimDeniedEvent(campaign, "Any Plane", SquadronTestProfile.ESC_103_PROFILE.getCompanyId(), SerialNumber.PLAYER_STARTING_SERIAL_NUMBER, campaign.getDate(), isNewsworthy);
+        ClaimDeniedEvent claimDenied = new ClaimDeniedEvent(campaign, "Any Plane", CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId(), SerialNumber.PLAYER_STARTING_SERIAL_NUMBER, campaign.getDate(), isNewsworthy);
 
         Mockito.when(claimDenier.determineClaimDenied(ArgumentMatchers.<Integer>any(), ArgumentMatchers.<PlayerVictoryDeclaration>any())).thenReturn(claimDenied);
 

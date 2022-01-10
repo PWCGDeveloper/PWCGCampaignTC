@@ -37,7 +37,7 @@ public class BoSGermanMedalManagerTest extends MedalManagerTestBase
     @BeforeEach
     public void setupTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
         super.setupBase();
         Mockito.when(country.isCountry(Country.GERMANY)).thenReturn(true);
         ICountry country = CountryFactory.makeCountryByCountry(Country.GERMANY);

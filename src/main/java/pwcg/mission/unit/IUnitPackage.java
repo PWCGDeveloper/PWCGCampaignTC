@@ -6,5 +6,5 @@ import pwcg.core.exception.PWCGException;
 
 public interface IUnitPackage
 {
-    List<IPlayerUnit> createUnitPackage(UnitInformation unitInformation) throws PWCGException;
+    List<ITankUnit> createUnitPackage(UnitInformation unitInformation) throws PWCGException;
 }

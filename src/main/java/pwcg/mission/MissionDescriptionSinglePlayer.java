@@ -13,14 +13,13 @@ import pwcg.mission.options.MissionOptions;
 import pwcg.mission.options.MissionWeather;
 import pwcg.mission.options.WindLayer;
 import pwcg.mission.playerunit.objective.MissionObjectiveFactory;
-import pwcg.mission.unit.IPlayerUnit;
-import pwcg.mission.unit.PlayerUnit;
+import pwcg.mission.unit.ITankUnit;
 
 public class MissionDescriptionSinglePlayer implements IMissionDescription 
 {
     private Mission mission;
     private Campaign campaign;
-    private IPlayerUnit playerUnit;
+    private ITankUnit playerUnit;
     
 	private String author = "Brought to you by PWCGCampaign";
 	private String title = "";
@@ -51,7 +50,7 @@ public class MissionDescriptionSinglePlayer implements IMissionDescription
 	private ArrayList<String> enemyIntHtmlList = new ArrayList<String>();
 	private ArrayList<String> friendlyIntHtmlList = new ArrayList<String>();
 	
-    public MissionDescriptionSinglePlayer (Campaign campaign, Mission mission, IPlayerUnit  playerUnit)
+    public MissionDescriptionSinglePlayer (Campaign campaign, Mission mission, ITankUnit  playerUnit)
     {
         this.mission = mission;
         this.campaign = campaign;
@@ -74,13 +73,13 @@ public class MissionDescriptionSinglePlayer implements IMissionDescription
         setCompany(playerUnit.getCompany().determineDisplayName(campaign.getDate()));
         buildTitleDescription(campaign.getCampaignData().getName(), playerUnit.getUnitInformation().getCompany().determineDisplayName(campaign.getDate()));
 
-        HashMap<String, PlayerUnit> companyMap = new HashMap<>();
-        for (PlayerUnit unit : mission.getUnits().getPlayerUnits())
+        HashMap<String, ITankUnit> companyMap = new HashMap<>();
+        for (ITankUnit unit : mission.getUnits().getPlayerUnits())
         {
             companyMap.put(unit.getCompany().determineDisplayName(campaign.getDate()), unit);
         }
 
-        for (IPlayerUnit unit : companyMap.values())
+        for (ITankUnit unit : companyMap.values())
         {
             setUnit(playerUnit.getUnitInformation().getCountry(), unit);
         }
@@ -89,7 +88,7 @@ public class MissionDescriptionSinglePlayer implements IMissionDescription
     }
 
     
-    private void setUnit(ICountry country, IPlayerUnit unit) throws PWCGException 
+    private void setUnit(ICountry country, ITankUnit unit) throws PWCGException 
     {
         Campaign campaign =     PWCGContext.getInstance().getCampaign();
         

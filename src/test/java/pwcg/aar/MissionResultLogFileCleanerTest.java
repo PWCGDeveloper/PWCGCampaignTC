@@ -30,7 +30,7 @@ public class MissionResultLogFileCleanerTest
 
     public MissionResultLogFileCleanerTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
     }
     
     @BeforeEach

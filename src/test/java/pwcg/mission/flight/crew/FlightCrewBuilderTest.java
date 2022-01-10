@@ -23,7 +23,7 @@ import pwcg.mission.flight.FlightTypes;
 import pwcg.mission.flight.NecessaryFlightType;
 import pwcg.mission.playerunit.crew.UnitCrewBuilder;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 import pwcg.testutils.TestMissionBuilderUtility;
 
 @ExtendWith(MockitoExtension.class)
@@ -36,8 +36,8 @@ public class FlightCrewBuilderTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
-        campaign = CampaignCache.makeCampaign(SquadronTestProfile.KG53_PROFILE);
+        
+        campaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
 
         MissionGenerator missionGenerator = new MissionGenerator(campaign);
         mission = missionGenerator.makeTestSingleMissionFromFlightType(TestMissionBuilderUtility.buildTestParticipatingHumans(campaign), FlightTypes.GROUND_ATTACK, MissionProfile.DAY_TACTICAL_MISSION);
@@ -47,7 +47,7 @@ public class FlightCrewBuilderTest
     public void testPlayerFlightGeneration() throws PWCGException
     {
         FlightInformation flightInformation = new FlightInformation(mission, NecessaryFlightType.PLAYER_FLIGHT);
-        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(SquadronTestProfile.KG53_PROFILE.getCompanyId());
+        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
         flightInformation.setCompany(squadron);
         
         UnitCrewBuilder flightCrewBuilder = new UnitCrewBuilder(flightInformation);
@@ -55,7 +55,7 @@ public class FlightCrewBuilderTest
         
         List<CrewMember> players = campaign.getPersonnelManager().getAllActivePlayers().getCrewMemberList();
         boolean playerFound = false;
-        CompanyPersonnel squadronPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(SquadronTestProfile.KG53_PROFILE.getCompanyId());        
+        CompanyPersonnel squadronPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());        
         for (CrewMember crew : assignedCrewMap)
         {
             assert(squadronPersonnel.isActiveCrewMember(crew.getSerialNumber()));

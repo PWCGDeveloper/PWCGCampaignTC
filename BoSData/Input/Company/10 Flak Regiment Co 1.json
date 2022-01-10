@@ -1,6 +1,6 @@
 {
 	"country": "GERMANY",
-	"squadronId": 201910001,
+	"companyId": 201910001,
 	"name": "10 Flak Regiment, 1st Company",
 	"fileName": "10 Flak Regiment Co 1.json",
 	"skill": 60,
@@ -46,8 +46,8 @@
 	},
 	"skins": [],
 	"serviceId": 20111,
-	"squadronRoles": {
-		"squadronRolePeriods": [
+	"companyRoles": {
+		"companyRolePeriods": [
 			{
 				"startDate": "19400101",
 				"weightedRoles": [

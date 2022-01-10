@@ -1,61 +1,35 @@
 package pwcg.campaign.context;
 
 import pwcg.core.exception.PWCGException;
-import pwcg.core.utils.PWCGLogger;
 
 public class PWCGContext 
 {
-    protected static BoSContext bosContextManager = null;
-    protected static PWCGProduct product = PWCGProduct.NONE;
+    protected static TCContext tcContext = null;
+    protected static PWCGProduct product = PWCGProduct.TC;
 
 	protected PWCGContext()
     {
     }
 
-    public static IPWCGContextManager getInstance() 
+    public static TCContext getInstance() 
     {
         try
         {
-            return buildProductContext();
-        }
-        catch (Exception e)
-        {
-            PWCGLogger.logException(e);
-        }
-        
-        return null;
-    }
-
-    public static PWCGProduct getProduct()
-    {
-        return product;
-    }
-
-    public static void setProduct(PWCGProduct product) throws PWCGException
-    {
-        if (PWCGContext.product != product)
-        {
-            bosContextManager = null;
-            PWCGContext.product = product;
             buildProductContext();
         }
+        catch(PWCGException e)
+        {
+            
+        }
+        return tcContext;
     }
 
-    private static IPWCGContextManager buildProductContext() throws PWCGException
+    private static void buildProductContext() throws PWCGException
     {
-        if (product == PWCGProduct.TC)
+        if (PWCGContext.tcContext == null)
         {
-            if (PWCGContext.bosContextManager == null)
-            {
-                PWCGContext.bosContextManager = new BoSContext();
-                PWCGContext.bosContextManager.initialize();
-            }
-            
-            return PWCGContext.bosContextManager;
-        }
-        else
-        {
-            throw new PWCGException("No product defined");
+            PWCGContext.tcContext = new TCContext();
+            PWCGContext.tcContext.initialize();
         }
     }
 }

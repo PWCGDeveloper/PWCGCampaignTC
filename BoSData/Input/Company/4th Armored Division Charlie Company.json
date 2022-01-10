@@ -1,6 +1,6 @@
 {
 	"country": "USA",
-	"squadronId": 102004003,
+	"companyId": 102004003,
 	"name": "4th Armored Division Charlie Company",
 	"fileName": "4th Armored Division Charlie Company.json",
 	"skill": 70 ,
@@ -27,8 +27,8 @@
 	"skins": [
 	],
 	"serviceId": 10113,
-	"squadronRoles": {
-		"squadronRolePeriods": [
+	"companyRoles": {
+		"companyRolePeriods": [
 			{
 				"startDate": "19400101",
 				"weightedRoles": [

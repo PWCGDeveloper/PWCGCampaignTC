@@ -30,7 +30,7 @@ import pwcg.campaign.resupply.depot.EquipmentUpgradeRecord;
 import pwcg.core.exception.PWCGException;
 import pwcg.product.bos.country.TCServiceManager;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
@@ -47,8 +47,8 @@ public class EquipmentDepotReplenisherTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
-        campaign = CampaignCache.makeCampaign(SquadronTestProfile.KG53_PROFILE);
+        
+        campaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
     }
 
     @BeforeEach

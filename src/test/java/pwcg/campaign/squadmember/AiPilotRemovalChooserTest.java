@@ -46,7 +46,7 @@ public class AiCrewMemberRemovalChooserTest
     @BeforeEach
     public void setupTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
         campaignDate = DateUtils.getDateYYYYMMDD("19420801");
         Mockito.when(campaign.getDate()).thenReturn(campaignDate);
         Mockito.when(campaign.getPersonnelManager()).thenReturn(campaignPersonnelManager);

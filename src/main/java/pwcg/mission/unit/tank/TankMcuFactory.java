@@ -110,7 +110,7 @@ public class TankMcuFactory
 
     private void setTankDescription(TankMcu tank) throws PWCGException
     {
-        tank.setDesc(tank.getCommander().getNameAndRank());
+        tank.setDesc(tank.getTankCommander().getNameAndRank());
     }
 
     private void setTankCallsign(int numInFormation, TankMcu tank)
@@ -124,12 +124,12 @@ public class TankMcuFactory
     private void setAiSkillLevelForTank(TankMcu tank) throws PWCGException
     {
         AiSkillLevel aiLevel = AiSkillLevel.COMMON;
-        if (tank.getCommander().isPlayer())
+        if (tank.getTankCommander().isPlayer())
         {
             aiLevel = AiSkillLevel.PLAYER;
 
         }
-        else if (tank.getCommander() instanceof TankAce)
+        else if (tank.getTankCommander() instanceof TankAce)
         {
             aiLevel = AiSkillLevel.ACE;
 
@@ -144,7 +144,7 @@ public class TankMcuFactory
 
     private AiSkillLevel assignAiSkillLevel(TankMcu tank) throws PWCGException
     {
-        AiSkillLevel aiLevel = tank.getCommander().getAiSkillLevel();
+        AiSkillLevel aiLevel = tank.getTankCommander().getAiSkillLevel();
         return aiLevel;
     }
  }

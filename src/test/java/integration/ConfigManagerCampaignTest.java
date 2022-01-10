@@ -13,7 +13,7 @@ import pwcg.core.config.ConfigManagerCampaign;
 import pwcg.core.config.ConfigSet;
 import pwcg.core.exception.PWCGException;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ConfigManagerCampaignTest
@@ -23,8 +23,8 @@ public class ConfigManagerCampaignTest
     @Test
     public void testGlobalConfigurationInitialize() throws PWCGException 
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
-        campaign = CampaignCache.makeCampaignOnDisk(SquadronTestProfile.STG77_PROFILE);
+        
+        campaign = CampaignCache.makeCampaignOnDisk(CompanyTestProfile.STG77_PROFILE);
         
         String campaignConfigDir = campaign.getCampaignPathAutoCreateDirectory() + "config\\";
         ConfigManagerCampaign campaignConfigManager = new ConfigManagerCampaign(campaignConfigDir);

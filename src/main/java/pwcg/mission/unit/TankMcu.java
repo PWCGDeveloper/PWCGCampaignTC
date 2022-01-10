@@ -58,7 +58,7 @@ public class TankMcu extends EquippedTank implements Cloneable
     private McuTREntity entity;
 
     private Campaign campaign;
-    private CrewMember crewMember;
+    private CrewMember tankCommander;
 
     public TankMcu()
     {
@@ -73,7 +73,7 @@ public class TankMcu extends EquippedTank implements Cloneable
         super();
 
         this.campaign = campaign;
-        this.crewMember = crewMember;
+        this.tankCommander = crewMember;
 
         this.index = IndexGenerator.getInstance().getNextIndex();
         this.entity = new McuTREntity(index);
@@ -83,8 +83,8 @@ public class TankMcu extends EquippedTank implements Cloneable
     public void buildTank(TankType tankType, ICountry country) throws PWCGException
     {
         tankType.copyTemplate(this);
-        this.setName(crewMember.getNameAndRank());
-        this.setDesc(crewMember.getNameAndRank());
+        this.setName(tankCommander.getNameAndRank());
+        this.setDesc(tankCommander.getNameAndRank());
         this.setCountry(country);
         setDeleteAfterDeath();
     }
@@ -141,7 +141,7 @@ public class TankMcu extends EquippedTank implements Cloneable
         tank.linkTrId = tank.entity.getIndex();
 
         tank.campaign = this.campaign;
-        tank.crewMember = this.crewMember;
+        tank.tankCommander = this.tankCommander;
     }
 
     public void populateEntity(TankMcu unitLeader)
@@ -169,7 +169,7 @@ public class TankMcu extends EquippedTank implements Cloneable
         return isPlayerTank;
     }
     
-    public ITankPayload buildTankPayload(IPlayerUnit unit, Date date) throws PWCGException
+    public ITankPayload buildTankPayload(ITankUnit unit, Date date) throws PWCGException
     {
         TankPayloadFactory payloadFactory = new TankPayloadFactory();        
         payload = payloadFactory.createPayload(this.getType(), date);
@@ -335,7 +335,7 @@ public class TankMcu extends EquippedTank implements Cloneable
         }
     }
 
-    public void populateEntity(IPlayerUnit unit, TankMcu unitLeader)
+    public void populateEntity(ITankUnit unit, TankMcu unitLeader)
     {
         if (unitLeader.getIndex() != index)
         {
@@ -519,14 +519,14 @@ public class TankMcu extends EquippedTank implements Cloneable
         validateFuel();
     }
 
-    public CrewMember getCrewMember()
+    public CrewMember getTankCommander()
     {
-        return crewMember;
+        return tankCommander;
     }
 
     public void replaceCrewMember(CrewMember newCrewMember)
     {
-        this.crewMember = newCrewMember;
+        this.tankCommander = newCrewMember;
     }
 
     public Callsign getCallsign()
@@ -605,11 +605,4 @@ public class TankMcu extends EquippedTank implements Cloneable
     {
         return entity;
     }
-
-    public CrewMember getCommander()
-    {
-        return null;
-    }
-    
-    
 }

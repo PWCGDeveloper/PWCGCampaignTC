@@ -1,6 +1,6 @@
 {
 	"country": "USA",
-	"squadronId": 102003005,
+	"companyId": 102003005,
 	"name": "3rd Armored Division Easy Company",
 	"fileName": "3rd Armored Division Easy Company.json",
 	"skill": 60,
@@ -27,8 +27,8 @@
 	"skins": [
 	],
 	"serviceId": 10113,
-	"squadronRoles": {
-		"squadronRolePeriods": [
+	"companyRoles": {
+		"companyRolePeriods": [
 			{
 				"startDate": "19400101",
 				"weightedRoles": [

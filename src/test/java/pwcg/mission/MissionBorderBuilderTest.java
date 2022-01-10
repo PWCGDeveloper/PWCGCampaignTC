@@ -19,21 +19,21 @@ import pwcg.core.utils.DateUtils;
 import pwcg.core.utils.MathUtils;
 import pwcg.mission.flight.FlightTypes;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 
 @ExtendWith(MockitoExtension.class)
 public class MissionBorderBuilderTest
 {
     public MissionBorderBuilderTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
         PWCGContext.getInstance().setCurrentMap(FrontMapIdentifier.STALINGRAD_MAP);
     }
 
     @Test
     public void singlePlayerMissionBoxTest() throws PWCGException
     {
-        Campaign campaign = CampaignCache.makeCampaign(SquadronTestProfile.GROSS_DEUTSCHLAND_PROFILE);
+        Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
         PWCGContext.getInstance().setCampaign(campaign);
         MissionHumanParticipants participatingPlayers = new MissionHumanParticipants();
 
@@ -60,7 +60,7 @@ public class MissionBorderBuilderTest
     @Test
     public void multiPlayerMissionBoxTest() throws PWCGException
     {
-        Campaign coopCampaign = CampaignCache.makeCampaign(SquadronTestProfile.COOP_COMPETITIVE_PROFILE);
+        Campaign coopCampaign = CampaignCache.makeCampaign(CompanyTestProfile.COOP_COMPETITIVE_PROFILE);
         PWCGContext.getInstance().setCampaign(coopCampaign);
         
         MissionHumanParticipants participatingPlayers = new MissionHumanParticipants();
@@ -86,7 +86,7 @@ public class MissionBorderBuilderTest
     @Test
     public void buildBorderForSkirmishTest() throws PWCGException
     {
-        Campaign campaign = CampaignCache.makeCampaign(SquadronTestProfile.FG_362_PROFILE);
+        Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.THIRD_DIVISION_PROFILE);
         PWCGContext.getInstance().setCampaign(campaign);
         campaign.setDate(DateUtils.getDateYYYYMMDD("19440917"));
         

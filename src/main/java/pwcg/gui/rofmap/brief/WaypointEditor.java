@@ -18,7 +18,6 @@ public class WaypointEditor implements IWaypointDetails
 {
     private long associatedWaypointID;
     private JLabel descTextField;
-    private JTextField altitudeTextField;
     private JTextField cruisingSpeedTextField;
     private JLabel distanceTextField;
     private JLabel headingTextField;
@@ -34,20 +33,9 @@ public class WaypointEditor implements IWaypointDetails
         descTextField = makeLabelField();
         descTextField.setText(thisMapPoint.getDesc());
 
-        altitudeTextField = makeTextField();
         cruisingSpeedTextField = makeTextField();
         distanceTextField = makeLabelField();
         headingTextField = makeLabelField();
-        
-        if (thisMapPoint.isEditable())
-        {
-            altitudeTextField.setEditable(true);
-        }
-        else
-        {
-            altitudeTextField.setEditable(false);
-            altitudeTextField.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-        }
 
         calculateWPParameters(previousMapPoint, thisMapPoint);
     }
@@ -56,12 +44,7 @@ public class WaypointEditor implements IWaypointDetails
     {
         return descTextField;
     }
-
-    public JTextField getAltitudeField()
-    {
-        return altitudeTextField;
-    }
-
+    
     public JTextField getCruisingSpeedField()
     {
         return cruisingSpeedTextField;
@@ -77,19 +60,9 @@ public class WaypointEditor implements IWaypointDetails
         return headingTextField;
     }
 
-    public int getAltitudeValue()
-    {
-        return Integer.parseInt(altitudeTextField.getText());
-    }
-
     public int getCruisingSpeedValue()
     {
         return Integer.parseInt(cruisingSpeedTextField.getText());
-    }
-
-    public void setEnabled(boolean enabled)
-    {
-        altitudeTextField.setEditable(enabled);
     }
 
     private void calculateWPParameters(BriefingMapPoint previousMapPoint, BriefingMapPoint briefingMapPoint) throws PWCGException
@@ -103,7 +76,6 @@ public class WaypointEditor implements IWaypointDetails
             heading = BriefingMapPointDistanceCalculator.calculateHeading(previousMapPoint.getPosition(), briefingMapPoint.getPosition());
         }
 
-        altitudeTextField.setText("" + briefingMapPoint.getAltitude());
         cruisingSpeedTextField.setText("" + briefingMapPoint.getCruisingSpeed());
         distanceTextField.setText(Integer.valueOf(distance / 1000).toString());
         headingTextField.setText(Integer.valueOf(heading).toString());
@@ -111,7 +83,6 @@ public class WaypointEditor implements IWaypointDetails
     
     public void refreshTextFields()
     {
-        refreshTextField(altitudeTextField);
         refreshTextField(cruisingSpeedTextField);
         refreshTextField(distanceTextField);
         refreshTextField(headingTextField);

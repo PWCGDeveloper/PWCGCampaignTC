@@ -5,7 +5,7 @@ import java.util.List;
 import pwcg.campaign.company.Company;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.core.exception.PWCGException;
-import pwcg.mission.unit.IPlayerUnit;
+import pwcg.mission.unit.ITankUnit;
 import pwcg.mission.unit.IUnitPackage;
 import pwcg.mission.unit.UnitInformation;
 import pwcg.mission.unit.UnitInformationFactory;
@@ -34,8 +34,8 @@ public class MissionUnitBuilder
             
             UnitInformation UnitInformation = UnitInformationFactory.buildUnitInformation(mission, playerCompany, participatingPlayers);
 
-            List<IPlayerUnit> playerUnits = buildPlayerUnit(UnitInformation);
-            for (IPlayerUnit playerUnit : playerUnits)
+            List<ITankUnit> playerUnits = buildPlayerUnit(UnitInformation);
+            for (ITankUnit playerUnit : playerUnits)
             {
                 missionUnits.addPlayerUnit(playerUnit);
             }
@@ -44,7 +44,7 @@ public class MissionUnitBuilder
         return missionUnits;
     }
     
-    private List<IPlayerUnit> buildPlayerUnit(UnitInformation unitInformation) throws PWCGException
+    private List<ITankUnit> buildPlayerUnit(UnitInformation unitInformation) throws PWCGException
     {
         IUnitPackage unitPackage = null;
         if (unitInformation.getMissionType() == UnitMissionType.ASSAULT)
@@ -64,7 +64,7 @@ public class MissionUnitBuilder
             unitPackage = new AAAPackage();
         }
         
-        List<IPlayerUnit> playerUnits = unitPackage.createUnitPackage(unitInformation);
+        List<ITankUnit> playerUnits = unitPackage.createUnitPackage(unitInformation);
         return playerUnits;
     }
 }

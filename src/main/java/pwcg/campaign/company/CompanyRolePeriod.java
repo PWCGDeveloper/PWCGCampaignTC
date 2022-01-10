@@ -3,7 +3,7 @@ package pwcg.campaign.company;
 import java.util.Date;
 import java.util.List;
 
-public class SquadronRolePeriod
+public class CompanyRolePeriod
 {
     private Date startDate;
     private List<SquadronRoleWeight> weightedRoles;

@@ -15,7 +15,7 @@ public class AARMissionLogFileSetTest
 {
     public AARMissionLogFileSetTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
     }
     
     @Test

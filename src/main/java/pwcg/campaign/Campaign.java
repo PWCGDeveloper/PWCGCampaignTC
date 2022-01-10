@@ -12,7 +12,6 @@ import pwcg.campaign.context.FrontMapIdentifier;
 import pwcg.campaign.context.MapFinderForCampaign;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGDirectoryUserManager;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.CrewMembers;
 import pwcg.campaign.crewmember.SerialNumber;
@@ -27,7 +26,6 @@ import pwcg.campaign.utils.TestDriver;
 import pwcg.core.config.ConfigManagerCampaign;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.exception.PWCGUserException;
-import pwcg.core.utils.DateUtils;
 import pwcg.core.utils.PWCGLogger;
 import pwcg.mission.Mission;
 import pwcg.mission.options.MapSeasonalParameters.Season;
@@ -101,10 +99,6 @@ public class Campaign
         try
         {
             CampaignIOJson.readJson(this);
-            if (!isValidCampaignForProduct())
-            {
-                return false;
-            }
         }
         catch (PWCGException e)
         {
@@ -207,29 +201,6 @@ public class Campaign
             {
                 return false;
             }
-        }
-
-        return true;
-    }
-
-    public boolean isValidCampaignForProduct() throws PWCGException
-    {
-        Date campaignDate = campaignData.getDate();
-        if (PWCGContext.getProduct() == PWCGProduct.TC)
-        {
-            if (campaignDate.after(DateUtils.getDateYYYYMMDD("19300101")))
-            {
-                return false;
-            }
-
-        }
-        if (PWCGContext.getProduct() == PWCGProduct.TC)
-        {
-            if (campaignDate.before(DateUtils.getDateYYYYMMDD("19300101")))
-            {
-                return false;
-            }
-
         }
 
         return true;

@@ -18,20 +18,20 @@ import pwcg.mission.target.TargetType;
 import pwcg.mission.utils.MissionFlightValidator;
 import pwcg.mission.utils.MissionInformationUtils;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 import pwcg.testutils.TestMissionBuilderUtility;
 
 public class BodenplatteFlightTest
 {
     public BodenplatteFlightTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
     }
 
     @Test
     public void hasSkirmishAndAirfieldAttackForGermanTest() throws PWCGException
     {        
-        Campaign campaign = CampaignCache.makeCampaign(SquadronTestProfile.JG_26_PROFILE_WEST);
+        Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.JG_26_PROFILE_WEST);
         campaign.setDate(DateUtils.getDateYYYYMMDD("19450101"));
         MissionGenerator missionGenerator = new MissionGenerator(campaign);
         Mission mission = missionGenerator.makeMission(TestMissionBuilderUtility.buildTestParticipatingHumans(campaign));
@@ -49,7 +49,7 @@ public class BodenplatteFlightTest
     @Test
     public void hasAttackOnOphovenTest() throws PWCGException
     {        
-        Campaign campaign = CampaignCache.makeCampaign(SquadronTestProfile.FG_354_BODENPLATTE_PROFILE);
+        Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.FG_354_BODENPLATTE_PROFILE);
         campaign.setDate(DateUtils.getDateYYYYMMDD("19450101"));
         MissionGenerator missionGenerator = new MissionGenerator(campaign);
         Mission mission = missionGenerator.makeMission(TestMissionBuilderUtility.buildTestParticipatingHumans(campaign));
@@ -73,7 +73,7 @@ public class BodenplatteFlightTest
     @Test
     public void hasAttackOnVolkelTest() throws PWCGException
     {        
-        Campaign campaign = CampaignCache.makeCampaign(SquadronTestProfile.RAF_326_BODENPLATTE_PROFILE);
+        Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.RAF_326_BODENPLATTE_PROFILE);
         campaign.setDate(DateUtils.getDateYYYYMMDD("19450101"));
         MissionGenerator missionGenerator = new MissionGenerator(campaign);
         Mission mission = missionGenerator.makeMission(TestMissionBuilderUtility.buildTestParticipatingHumans(campaign));

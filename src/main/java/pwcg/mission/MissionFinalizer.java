@@ -19,7 +19,6 @@ public class MissionFinalizer
 {
     private Mission mission;
     private Campaign campaign;
-    private MissionUnits units;
     private boolean isFinalized = false;
     private MissionFrontLineIconBuilder frontLineIconBuilder;
     private MissionWaypointIconBuilder waypointIconBuilder = new MissionWaypointIconBuilder();
@@ -32,7 +31,6 @@ public class MissionFinalizer
     {
         this.mission = mission;
         this.campaign = mission.getCampaign();
-        this.units = mission.getUnits();
     }
 
     public void finalizeMission() throws PWCGException
@@ -47,7 +45,7 @@ public class MissionFinalizer
             mission.getGroundUnitBuilder().finalizeGroundUnits();
             
             frontLineIconBuilder.buildFrontLineIcons();
-            waypointIconBuilder.createWaypointIcons(units.getPlayerUnits());
+            waypointIconBuilder.createWaypointIcons(mission.getUnits().getPlayerUnits());
             assaultIconBuilder.createAssaultIcons(mission.getBattleManager().getMissionAssaultDefinitions());
             mission.getMissionBlocks().adjustBlockDamageAndSmoke();
 
@@ -68,7 +66,7 @@ public class MissionFinalizer
 
     private void setMissionScript(MissionOptions missionOptions) throws PWCGException
     {
-        List<TankMcu> playerVehicles = units.getReferencePlayerUnit().getTanks();
+        List<TankMcu> playerVehicles = mission.getUnits().getReferencePlayerUnit().getTanks();
         String playerScript = playerVehicles.get(0).getScript();
         missionOptions.setPlayerConfig(playerScript);
     }

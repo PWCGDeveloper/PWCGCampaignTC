@@ -3,7 +3,6 @@ package pwcg.mission.flight.waypoint.patterns;
 import java.util.ArrayList;
 import java.util.List;
 
-import pwcg.campaign.Campaign;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.location.Orientation;
@@ -26,7 +25,6 @@ public class CreepingLinePattern
 {       
     private static final int MAX_CREEP_SEGMENTS = 3;
     
-    private Campaign campaign;
     List<McuWaypoint> creepingWPs = new ArrayList<McuWaypoint>();
     private IFlight flight;
     private int wpTriggerArea = 1000;
@@ -36,7 +34,6 @@ public class CreepingLinePattern
     private double initialOrientation;
 
     public CreepingLinePattern(
-            Campaign campaign, 
             IFlight flight, 
             WaypointType waypointType, 
             WaypointAction waypointAction, 
@@ -44,7 +41,6 @@ public class CreepingLinePattern
             int legsInCreeping,
             double initialOrientation) throws PWCGException 
     {
-        this.campaign = campaign;
         this.flight = flight;
         this.wpTriggerArea = wpTriggerArea;
         this.waypointType = waypointType;

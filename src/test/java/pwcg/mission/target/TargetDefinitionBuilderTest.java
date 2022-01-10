@@ -14,7 +14,7 @@ import pwcg.mission.Mission;
 import pwcg.mission.MissionGenerator;
 import pwcg.mission.flight.IFlight;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 import pwcg.testutils.TestMissionBuilderUtility;
 
 @ExtendWith(MockitoExtension.class)
@@ -26,8 +26,8 @@ public class TargetDefinitionBuilderTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
-        campaign = CampaignCache.makeCampaign(SquadronTestProfile.JG_26_PROFILE_WEST);
+        
+        campaign = CampaignCache.makeCampaign(CompanyTestProfile.JG_26_PROFILE_WEST);
     }
 
     @Test

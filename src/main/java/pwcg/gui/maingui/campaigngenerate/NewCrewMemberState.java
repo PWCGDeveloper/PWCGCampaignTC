@@ -5,10 +5,6 @@ import java.util.List;
 
 import pwcg.campaign.Campaign;
 import pwcg.campaign.CampaignMode;
-import pwcg.campaign.api.ICountry;
-import pwcg.campaign.context.Country;
-import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.core.exception.PWCGException;
 import pwcg.gui.utils.PWCGStringValidator;
 
@@ -44,15 +40,6 @@ public class NewCrewMemberState
         if (campaign.getCampaignData().getCampaignMode() != CampaignMode.CAMPAIGN_MODE_SINGLE)
         {
             stateStack.add(CrewMemberGeneratorWorkflow.CHOOSE_COOP_USER);
-        }
-        
-        if (PWCGContext.getProduct() == PWCGProduct.TC)
-        {
-            ICountry country = newCrewMemberGeneratorDO.getService().getCountry();
-            if (country.getCountry() == Country.GERMANY)
-            {
-                stateStack.add(CrewMemberGeneratorWorkflow.CHOOSE_REGION);
-            }
         }
 
         stateStack.add(CrewMemberGeneratorWorkflow.CHOOSE_ROLE);

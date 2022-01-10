@@ -8,7 +8,7 @@ import pwcg.core.utils.PWCGLogger;
 import pwcg.gui.rofmap.brief.model.BriefingCrewMemberAssignmentData;
 import pwcg.mission.Mission;
 import pwcg.mission.playerunit.crew.CrewTankPayloadPairing;
-import pwcg.mission.unit.IPlayerUnit;
+import pwcg.mission.unit.ITankUnit;
 import pwcg.mission.unit.TankMcu;
 
 public class BriefingPayloadHelper
@@ -70,7 +70,7 @@ public class BriefingPayloadHelper
 
     private void assignPayloadsToCrewPlanes() throws PWCGException
     {
-        IPlayerUnit playerUnit = mission.getUnits().getPlayerUnitForCompany(briefingAssignmentData.getCompany().getCompanyId());
+        ITankUnit playerUnit = mission.getUnits().getPlayerUnitForCompany(briefingAssignmentData.getCompany().getCompanyId());
         for (TankMcu tank : playerUnit.getTanks())
         {
             CrewTankPayloadPairing crewTank = briefingAssignmentData.findAssignedCrewPairingByPlane(tank.getSerialNumber());
@@ -83,7 +83,7 @@ public class BriefingPayloadHelper
 
     private void assignModificationsToCrewPlanes() throws PWCGException
     {
-        IPlayerUnit playerUnit = mission.getUnits().getPlayerUnitForCompany(briefingAssignmentData.getCompany().getCompanyId());
+        ITankUnit playerUnit = mission.getUnits().getPlayerUnitForCompany(briefingAssignmentData.getCompany().getCompanyId());
         for (TankMcu tank : playerUnit.getTanks())
         {
             CrewTankPayloadPairing crewPlane = briefingAssignmentData.findAssignedCrewPairingByPlane(tank.getSerialNumber());
@@ -126,7 +126,7 @@ public class BriefingPayloadHelper
     
     private void setPayloadFromPayloadFactory(CrewTankPayloadPairing crewPlane) throws PWCGException
     {
-        IPlayerUnit playerUnit = mission.getUnits().getPlayerUnitForCompany(briefingAssignmentData.getCompany().getCompanyId());
+        ITankUnit playerUnit = mission.getUnits().getPlayerUnitForCompany(briefingAssignmentData.getCompany().getCompanyId());
         TankPayloadFactory payloadFactory = new TankPayloadFactory();
         ITankPayload payload = payloadFactory.createPayload(crewPlane.getTank().getType(), mission.getCampaign().getDate());
         payload.createWeaponsPayload(playerUnit);

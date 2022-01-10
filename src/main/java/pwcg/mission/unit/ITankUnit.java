@@ -5,9 +5,9 @@ import java.util.List;
 
 import pwcg.campaign.company.Company;
 import pwcg.core.exception.PWCGException;
-import pwcg.mission.flight.waypoint.WaypointPackage;
+import pwcg.mission.mcu.McuWaypoint;
 
-public interface IPlayerUnit
+public interface ITankUnit
 {
 
     void createUnit() throws PWCGException;
@@ -18,7 +18,7 @@ public interface IPlayerUnit
 
     TankMcu getLeadVehicle();
 
-    WaypointPackage getWaypointPackage();
+    List<McuWaypoint> getWaypoints();
 
     Company getCompany();
 
@@ -27,5 +27,7 @@ public interface IPlayerUnit
     void preparePlaneForCoop() throws PWCGException;
 
     void write(BufferedWriter writer);
+
+    void setWaypoints(List<McuWaypoint> waypoints);
 
 }

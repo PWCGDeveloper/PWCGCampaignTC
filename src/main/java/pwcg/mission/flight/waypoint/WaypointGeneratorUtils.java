@@ -114,9 +114,7 @@ public class WaypointGeneratorUtils
         for (int i = 0; i < playerWaypoints.size(); ++i)
         {
             McuWaypoint playerWaypoint = playerWaypoints.get(i);
-            if (playerWaypoint.getWpAction() == WaypointAction.WP_ACTION_PATROL ||
-                playerWaypoint.getWpAction() == WaypointAction.WP_ACTION_RECON)
-                            
+            if (playerWaypoint.getWpAction() == WaypointAction.WP_ACTION_PATROL)
             {
                 selectedWaypoints.add(playerWaypoint);
             }

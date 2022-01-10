@@ -17,7 +17,7 @@ public class SkinManagerTest
 {
     public SkinManagerTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
     }
 
     @Test

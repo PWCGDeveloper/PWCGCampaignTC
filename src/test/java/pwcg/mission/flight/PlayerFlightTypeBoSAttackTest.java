@@ -25,7 +25,7 @@ import pwcg.mission.target.TargetCategory;
 import pwcg.mission.target.TargetDefinition;
 import pwcg.mission.target.TargetType;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 import pwcg.testutils.TestMissionBuilderUtility;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -36,8 +36,8 @@ public class PlayerFlightTypeBoSAttackTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
-        campaign = CampaignCache.makeCampaign(SquadronTestProfile.REGIMENT_503_PROFILE);
+        
+        campaign = CampaignCache.makeCampaign(CompanyTestProfile.TANK_DIVISION_147_PROFILE);
     }
 
     @Test

@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pwcg.campaign.CampaignMode;
-import pwcg.campaign.api.ICountry;
-import pwcg.campaign.context.Country;
-import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.core.exception.PWCGException;
 import pwcg.gui.utils.PWCGStringValidator;
 
@@ -21,7 +17,6 @@ public class NewCrewMemberGeneratorState
     public enum CampaignGeneratorWorkflow
     {
         CHOOSE_PLAYER_NAME,
-        CHOOSE_REGION,
         CHOOSE_COOP_USER,
         CHOOSE_MAP,
         CHOOSE_DATE,
@@ -39,16 +34,7 @@ public class NewCrewMemberGeneratorState
     public void buildStateStack() throws PWCGException
     {
         stateStack.add(CampaignGeneratorWorkflow.CHOOSE_PLAYER_NAME);
-        
-        if (PWCGContext.getProduct() == PWCGProduct.TC)
-        {
-            ICountry country = campaignGeneratorDO.getService().getCountry();
-            if (country.getCountry() == Country.GERMANY)
-            {
-                stateStack.add(CampaignGeneratorWorkflow.CHOOSE_REGION);
-            }
-        }
-
+ 
         if (campaignGeneratorDO.getCampaignMode() != CampaignMode.CAMPAIGN_MODE_SINGLE)
         {
             stateStack.add(CampaignGeneratorWorkflow.CHOOSE_COOP_USER);

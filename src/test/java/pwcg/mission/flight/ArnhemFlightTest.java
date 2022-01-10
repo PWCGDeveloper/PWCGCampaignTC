@@ -21,7 +21,7 @@ import pwcg.mission.target.TargetType;
 import pwcg.mission.utils.MissionFlightValidator;
 import pwcg.mission.utils.MissionInformationUtils;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 import pwcg.testutils.TestMissionBuilderUtility;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -32,8 +32,8 @@ public class ArnhemFlightTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
-        campaign = CampaignCache.makeCampaign(SquadronTestProfile.RAF_184_PROFILE);
+        
+        campaign = CampaignCache.makeCampaign(CompanyTestProfile.SEVENTH_DIVISION_PROFILE);
     }
 
     @Test
@@ -118,7 +118,7 @@ public class ArnhemFlightTest
 
     private void noSkirmish(Date date) throws PWCGException
     {
-        Campaign campaign = CampaignCache.makeCampaign(SquadronTestProfile.RAF_184_PROFILE);
+        Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.SEVENTH_DIVISION_PROFILE);
         campaign.setDate(date);
         MissionGenerator missionGenerator = new MissionGenerator(campaign);
         Mission mission = missionGenerator.makeMission(TestMissionBuilderUtility.buildTestParticipatingHumans(campaign));

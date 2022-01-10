@@ -14,20 +14,20 @@ import pwcg.core.exception.PWCGException;
 import pwcg.mission.flight.FlightTypes;
 import pwcg.mission.target.TargetType;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 import pwcg.testutils.TestMissionBuilderUtility;
 
 public class MissionGroundUnitMoscowTest
 {
     public MissionGroundUnitMoscowTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
     }
     
     @Test
     public void verifySmallerDistanceToFront () throws PWCGException
     {
-        Campaign campaign = CampaignCache.makeCampaign(SquadronTestProfile.JG_51_PROFILE_MOSCOW);
+        Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
         FrontMapIdentifier map = PWCGContext.getInstance().getCurrentMap().getMapIdentifier();
         assert(map == FrontMapIdentifier.MOSCOW_MAP);
 

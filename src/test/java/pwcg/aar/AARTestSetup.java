@@ -36,7 +36,7 @@ import pwcg.campaign.resupply.personnel.SquadronTransferData;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.mission.data.MissionHeader;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 
 public abstract class AARTestSetup
 {
@@ -81,7 +81,7 @@ public abstract class AARTestSetup
 
     protected void setupAARMocks() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
         players = new ArrayList<>();
         players.add(player);
         
@@ -99,9 +99,9 @@ public abstract class AARTestSetup
         Mockito.when(campaign.getCampaignData()).thenReturn(campaignData);
         Mockito.when(campaign.getReferencePlayer()).thenReturn(player);
         Mockito.when(squadronEsc103.determineDisplayName(Mockito.any())).thenReturn("Esc 103");
-        Mockito.when(squadronEsc103.getCompanyId()).thenReturn(SquadronTestProfile.ESC_103_PROFILE.getCompanyId());
+        Mockito.when(squadronEsc103.getCompanyId()).thenReturn(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
         Mockito.when(jasta11.determineDisplayName(Mockito.any())).thenReturn("Jasta 11");
-        Mockito.when(jasta11.getCompanyId()).thenReturn(SquadronTestProfile.JASTA_11_PROFILE.getCompanyId());
+        Mockito.when(jasta11.getCompanyId()).thenReturn(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
         Mockito.when(campaignData.getName()).thenReturn("Player Name");
 
         Mockito.when(campaign.getPersonnelManager()).thenReturn(personnelManager);
@@ -148,7 +148,7 @@ public abstract class AARTestSetup
     private void mockPersonnel() throws PWCGException
     {
         Mockito.when(player.getSerialNumber()).thenReturn(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
-        Mockito.when(player.getCompanyId()).thenReturn(SquadronTestProfile.ESC_103_PROFILE.getCompanyId());
+        Mockito.when(player.getCompanyId()).thenReturn(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
         Mockito.when(player.determineService(ArgumentMatchers.any())).thenReturn(frenchAirForce);
         Mockito.when(player.getCountry()).thenReturn(Country.FRANCE);
         Mockito.when(player.determineSquadron()).thenReturn(squadronEsc103);
@@ -159,10 +159,10 @@ public abstract class AARTestSetup
         Mockito.when(crewMember2.getSerialNumber()).thenReturn(SerialNumber.AI_STARTING_SERIAL_NUMBER+2);
         Mockito.when(crewMember3.getSerialNumber()).thenReturn(SerialNumber.AI_STARTING_SERIAL_NUMBER+3);
 
-        Mockito.when(enemyCrewMember1.getCompanyId()).thenReturn(SquadronTestProfile.JASTA_11_PROFILE.getCompanyId());
-        Mockito.when(crewMember1.getCompanyId()).thenReturn(SquadronTestProfile.ESC_103_PROFILE.getCompanyId());
-        Mockito.when(crewMember2.getCompanyId()).thenReturn(SquadronTestProfile.ESC_103_PROFILE.getCompanyId());
-        Mockito.when(crewMember3.getCompanyId()).thenReturn(SquadronTestProfile.ESC_103_PROFILE.getCompanyId());
+        Mockito.when(enemyCrewMember1.getCompanyId()).thenReturn(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
+        Mockito.when(crewMember1.getCompanyId()).thenReturn(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
+        Mockito.when(crewMember2.getCompanyId()).thenReturn(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
+        Mockito.when(crewMember3.getCompanyId()).thenReturn(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
 
         Mockito.when(enemyCrewMember1.getCountry()).thenReturn(Country.GERMANY);
         Mockito.when(crewMember1.getCountry()).thenReturn(Country.FRANCE);
@@ -185,10 +185,10 @@ public abstract class AARTestSetup
         Mockito.when(ace3.getSerialNumber()).thenReturn(SerialNumber.ACE_STARTING_SERIAL_NUMBER+3);
         Mockito.when(ace4.getSerialNumber()).thenReturn(SerialNumber.ACE_STARTING_SERIAL_NUMBER+4);
 
-        Mockito.when(ace1.getCompanyId()).thenReturn(SquadronTestProfile.ESC_103_PROFILE.getCompanyId());
-        Mockito.when(ace2.getCompanyId()).thenReturn(SquadronTestProfile.ESC_103_PROFILE.getCompanyId());
-        Mockito.when(ace3.getCompanyId()).thenReturn(SquadronTestProfile.ESC_103_PROFILE.getCompanyId());
-        Mockito.when(ace4.getCompanyId()).thenReturn(SquadronTestProfile.ESC_103_PROFILE.getCompanyId());
+        Mockito.when(ace1.getCompanyId()).thenReturn(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
+        Mockito.when(ace2.getCompanyId()).thenReturn(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
+        Mockito.when(ace3.getCompanyId()).thenReturn(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
+        Mockito.when(ace4.getCompanyId()).thenReturn(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
         
         Mockito.when(ace1.determineSquadron()).thenReturn(squadronEsc103);
         Mockito.when(ace2.determineSquadron()).thenReturn(squadronEsc103);
@@ -200,10 +200,10 @@ public abstract class AARTestSetup
         Mockito.when(ace3.getCountry()).thenReturn(Country.FRANCE);
         Mockito.when(ace4.getCountry()).thenReturn(Country.FRANCE);
         
-        Mockito.when(enemyPlane1.getCompanyId()).thenReturn(SquadronTestProfile.JASTA_11_PROFILE.getCompanyId());
-        Mockito.when(plane1.getCompanyId()).thenReturn(SquadronTestProfile.ESC_103_PROFILE.getCompanyId());
-        Mockito.when(plane2.getCompanyId()).thenReturn(SquadronTestProfile.ESC_103_PROFILE.getCompanyId());
-        Mockito.when(plane3.getCompanyId()).thenReturn(SquadronTestProfile.ESC_103_PROFILE.getCompanyId());
+        Mockito.when(enemyPlane1.getCompanyId()).thenReturn(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
+        Mockito.when(plane1.getCompanyId()).thenReturn(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
+        Mockito.when(plane2.getCompanyId()).thenReturn(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
+        Mockito.when(plane3.getCompanyId()).thenReturn(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
         
         Mockito.when(enemyPlane1.getSerialNumber()).thenReturn(SerialNumber.PLANE_STARTING_SERIAL_NUMBER+100);
         Mockito.when(plane1.getSerialNumber()).thenReturn(SerialNumber.PLANE_STARTING_SERIAL_NUMBER);

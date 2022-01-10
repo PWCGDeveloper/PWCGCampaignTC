@@ -28,7 +28,7 @@ import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.product.fc.country.TCServiceManager;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 
 @ExtendWith(MockitoExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -41,13 +41,13 @@ public class TransferHandlerTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
     }
 
     @BeforeEach
     public void setupTest() throws PWCGException
     {        
-        campaign = CampaignCache.makeCampaign(SquadronTestProfile.JASTA_11_PROFILE);
+        campaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
         Mockito.when(armedService.getServiceId()).thenReturn(TCServiceManager.WEHRMACHT);
     }
 
@@ -104,7 +104,7 @@ public class TransferHandlerTest
         for (CrewMember crewMember : allActiveCampaignMembers.getCrewMemberList())
         {
             Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(crewMember.getCompanyId());
-            if (!crewMember.isPlayer() && squadron.getCompanyId() == SquadronTestProfile.JASTA_11_PROFILE.getCompanyId())
+            if (!crewMember.isPlayer() && squadron.getCompanyId() == CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId())
             {
                 Date inactiveDate = DateUtils.removeTimeDays(campaign.getDate(), 10);
                 crewMember.setCrewMemberActiveStatus(CrewMemberStatus.STATUS_KIA, inactiveDate, null);

@@ -16,7 +16,7 @@ import pwcg.campaign.plane.Equipment;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class AARDepeletionTest
@@ -27,9 +27,9 @@ public class AARDepeletionTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
         PWCGContext.getInstance().changeContext(FrontMapIdentifier.BODENPLATTE_MAP);
-        campaign = CampaignCache.makeCampaignOnDisk(SquadronTestProfile.RAF_184_PROFILE);
+        campaign = CampaignCache.makeCampaignOnDisk(CompanyTestProfile.SEVENTH_DIVISION_PROFILE);
         aarCoordinator = AARCoordinator.getInstance();
     }
 

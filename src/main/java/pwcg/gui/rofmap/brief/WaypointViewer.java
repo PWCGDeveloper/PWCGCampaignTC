@@ -15,7 +15,6 @@ public class WaypointViewer implements IWaypointDetails
 {
     private long associatedWaypointID;
     private JLabel descField;
-    private JLabel altitudeField;
     private JLabel cruisingSpeedField;
     private JLabel distanceField;
     private JLabel headingField;
@@ -32,7 +31,6 @@ public class WaypointViewer implements IWaypointDetails
         descField = makeLabelField();
         descField.setText(thisMapPoint.getDesc());
 
-        altitudeField = makeLabelField();
         cruisingSpeedField = makeLabelField();
         distanceField = makeLabelField();
         headingField = makeLabelField();
@@ -44,12 +42,6 @@ public class WaypointViewer implements IWaypointDetails
     public JLabel getDescriptionField()
     {
         return descField;
-    }
-
-    @Override
-    public JLabel getAltitudeField()
-    {
-        return altitudeField;
     }
 
     @Override
@@ -71,12 +63,6 @@ public class WaypointViewer implements IWaypointDetails
     }
 
     @Override
-    public int getAltitudeValue()
-    {
-        return Integer.parseInt(altitudeField.getText());
-    }
-
-    @Override
     public int getCruisingSpeedValue()
     {
         return Integer.parseInt(cruisingSpeedField.getText());
@@ -93,7 +79,6 @@ public class WaypointViewer implements IWaypointDetails
             heading = BriefingMapPointDistanceCalculator.calculateHeading(previousMapPoint.getPosition(), briefingMapPoint.getPosition());
         }
 
-        altitudeField.setText("" + briefingMapPoint.getAltitude());
         cruisingSpeedField.setText("" + briefingMapPoint.getCruisingSpeed());
         distanceField.setText(Integer.valueOf(distance / 1000).toString());
         headingField.setText(Integer.valueOf(heading).toString());

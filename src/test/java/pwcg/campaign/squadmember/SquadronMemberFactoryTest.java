@@ -29,7 +29,7 @@ import pwcg.campaign.personnel.CompanyPersonnel;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.testutils.CampaignCacheBase;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 
 @ExtendWith(MockitoExtension.class)
 public class CrewMemberFactoryTest
@@ -46,7 +46,7 @@ public class CrewMemberFactoryTest
     @BeforeEach
     public void setupTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
         campaignDate = DateUtils.getDateYYYYMMDD("19420801");
         Mockito.when(campaign.getDate()).thenReturn(campaignDate);
         Mockito.when(campaign.getSerialNumber()).thenReturn(serialNumber);
@@ -55,7 +55,7 @@ public class CrewMemberFactoryTest
         List<TankAce> aces = new ArrayList<>();
         Mockito.when(campaignAces.getActiveCampaignAcesBySquadron(Mockito.anyInt())).thenReturn(aces);
         
-        squadron = PWCGContext.getInstance().getCompanyManager().getCompany(SquadronTestProfile.ESC_3_PROFILE.getCompanyId()); 
+        squadron = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.ESC_3_PROFILE.getCompanyId()); 
         squadronPersonnel = new CompanyPersonnel(campaign, squadron);
     }
 

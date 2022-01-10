@@ -36,7 +36,7 @@ public class AARChronologicalEventListBuilderTest
 
     public AARChronologicalEventListBuilderTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
     }
 
     @Test

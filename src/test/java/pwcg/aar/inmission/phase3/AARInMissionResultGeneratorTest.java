@@ -41,7 +41,7 @@ import pwcg.core.logfiles.LogFileSet;
 import pwcg.product.bos.country.BoSCountry;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.CampaignPersonnelTestHelper;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
@@ -73,8 +73,8 @@ public class AARInMissionResultGeneratorTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
-        campaign = CampaignCache.makeCampaign(SquadronTestProfile.ESC_103_PROFILE);
+        
+        campaign = CampaignCache.makeCampaign(CompanyTestProfile.THIRD_DIVISION_PROFILE);
         
     }
 
@@ -85,10 +85,10 @@ public class AARInMissionResultGeneratorTest
         firmVictories = new ArrayList<>();
         playerDeclarationSet = new PlayerDeclarations();
 
-        playerPlaneVictor.setCompanyId(SquadronTestProfile.ESC_103_PROFILE.getCompanyId());
-        aiPlaneVictor.setCompanyId(SquadronTestProfile.ESC_103_PROFILE.getCompanyId());
+        playerPlaneVictor.setCompanyId(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
+        aiPlaneVictor.setCompanyId(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
         wernerVossPlaneVictor.setSquadronId(401010);
-        gerogesGuynemerPlaneVictor.setCompanyId(SquadronTestProfile.ESC_103_PROFILE.getCompanyId());
+        gerogesGuynemerPlaneVictor.setCompanyId(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
         
         Mockito.when(evaluationData.getCrewMembersInMission()).thenReturn(crewMemberStatusList);
         Mockito.when(evaluationData.getVictoryResults()).thenReturn(firmVictories);   
@@ -150,7 +150,7 @@ public class AARInMissionResultGeneratorTest
         victim.setPlaneSerialNumber(planeSerialNumber);
         victim.setVehicleType("albatrosd5");
         victim.setCountry(new BoSCountry(Country.GERMANY));
-        victim.setCompanyId(SquadronTestProfile.JASTA_11_PROFILE.getCompanyId());
+        victim.setCompanyId(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
         victim.intializeCrewMember(crewMemberSerialNumber);
 
         LogVictory resultVictory = new LogVictory(10);

@@ -13,17 +13,17 @@ import pwcg.campaign.tank.payload.TankPayloadFactory;
 import pwcg.core.constants.AiSkillLevel;
 import pwcg.core.exception.PWCGException;
 import pwcg.mission.playerunit.crew.CrewTankPayloadPairing;
-import pwcg.mission.unit.IPlayerUnit;
+import pwcg.mission.unit.ITankUnit;
 import pwcg.mission.unit.TankMcu;
 import pwcg.mission.unit.tank.TankMcuFactory;
 
 public class BriefingCrewTankUpdater
 {
     private Campaign campaign;
-    private IPlayerUnit playerUnit;
+    private ITankUnit playerUnit;
     private List<TankMcu> updatedTankSet = new ArrayList<>();
     
-    public BriefingCrewTankUpdater(Campaign campaign, IPlayerUnit playerFlight)
+    public BriefingCrewTankUpdater(Campaign campaign, ITankUnit playerFlight)
     {
         this.campaign = campaign;
         this.playerUnit = playerFlight;

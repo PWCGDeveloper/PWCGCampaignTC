@@ -28,7 +28,7 @@ public class MissionGenerator
         return this.makeMission(participatingPlayers, new HashMap<>());
     }
     
-    public Mission makeMission(MissionHumanParticipants participatingPlayers, Map<Integer, PwcgRole> squadronRoleOverride) throws PWCGException
+    public Mission makeMission(MissionHumanParticipants participatingPlayers, Map<Integer, PwcgRole> companyRoleOverride) throws PWCGException
     {
         MissionOptions missionOptions = new MissionOptions(campaign.getDate());
         missionOptions.createFlightSpecificMissionOptions();

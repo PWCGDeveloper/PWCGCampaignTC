@@ -41,7 +41,6 @@ public class WaypointInformationPopup extends JPopupMenu
         int accumulatedDistance = 0;
         int distance = 0;
         int heading = 0;
-        int altitude = 0;
         int cruiseSpeed = 0;
         String description = "";
         
@@ -57,7 +56,6 @@ public class WaypointInformationPopup extends JPopupMenu
             }
             
             description = briefingMapPoint.getDesc();
-            altitude = briefingMapPoint.getAltitude();
             cruiseSpeed = briefingMapPoint.getCruisingSpeed();
             
             accumulatedDistance += distance;
@@ -72,7 +70,6 @@ public class WaypointInformationPopup extends JPopupMenu
         
         StringBuffer waypointInformation = new StringBuffer("<html>");
         waypointInformation.append(description + "<br>");
-        waypointInformation.append("Altitude  :       " + altitude + " meters<br>");
         waypointInformation.append("Speed  :          " + cruiseSpeed + " kph<br>");
         waypointInformation.append("Heading  :        " + heading + "<br>");
         waypointInformation.append("Distance :        " + (distance/1000) + " km<br>");

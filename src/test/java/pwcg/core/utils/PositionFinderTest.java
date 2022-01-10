@@ -21,7 +21,7 @@ public class PositionFinderTest
     @Test
     public void readJsonTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
         PositionFinder<Airfield> positionFinder = new PositionFinder<Airfield>();
         TCProductSpecificConfiguration productSpecific =new TCProductSpecificConfiguration();
         double radius = productSpecific.getAdditionalInitialTargetRadius(FlightTypes.GROUND_ATTACK);

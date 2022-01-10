@@ -10,10 +10,9 @@ import pwcg.campaign.api.Side;
 import pwcg.campaign.company.Company;
 import pwcg.campaign.context.Country;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
-import pwcg.product.bos.country.BoSCountryFactory;
+import pwcg.product.bos.country.TCCountryFactory;
 
 public class CountryFactory
 {
@@ -51,15 +50,7 @@ public class CountryFactory
     private static ICountryFactory getCountryFactory()
     {
         ICountryFactory countryFactory = null;
-        if (PWCGContext.getProduct() == PWCGProduct.TC)
-        {
-            countryFactory = new BoSCountryFactory();
-        }
-        else if (PWCGContext.getProduct() == PWCGProduct.TC)
-        {
-            countryFactory = new BoSCountryFactory();
-        }
-        
+        countryFactory = new TCCountryFactory();
         return countryFactory;
     }
 

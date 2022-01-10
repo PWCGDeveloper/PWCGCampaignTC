@@ -23,7 +23,7 @@ import pwcg.mission.MissionProfile;
 import pwcg.mission.flight.FlightTypes;
 import pwcg.mission.mcu.McuWaypoint;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 import pwcg.testutils.TestMissionBuilderUtility;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -36,8 +36,8 @@ public class BriefingMissionUpdaterTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
-        campaign = CampaignCache.makeCampaign(SquadronTestProfile.KG53_PROFILE);
+        
+        campaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
 
         MissionGenerator missionGenerator = new MissionGenerator(campaign);
         mission = missionGenerator.makeTestSingleMissionFromFlightType(TestMissionBuilderUtility.buildTestParticipatingHumans(campaign), FlightTypes.BOMB, MissionProfile.DAY_TACTICAL_MISSION);
@@ -52,7 +52,7 @@ public class BriefingMissionUpdaterTest
         changeWaypointData();
         BriefingUnitUpdater.pushEditsToMission(briefingData);
         
-        for (McuWaypoint waypoint : mission.getFlights().getPlayerFlightForSquadron(SquadronTestProfile.KG53_PROFILE.getCompanyId()).getWaypointPackage().getAllWaypoints())
+        for (McuWaypoint waypoint : mission.getFlights().getPlayerFlightForSquadron(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId()).getWaypointPackage().getAllWaypoints())
         {
             if (waypoint.getDesc().equals("Target Approach"))
             {

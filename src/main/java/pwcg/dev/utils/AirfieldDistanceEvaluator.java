@@ -9,7 +9,6 @@ import pwcg.campaign.company.Company;
 import pwcg.campaign.company.CompanyManager;
 import pwcg.campaign.context.FrontMapIdentifier;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.group.airfield.Airfield;
 import pwcg.campaign.tank.PwcgRoleCategory;
 import pwcg.core.exception.PWCGException;
@@ -35,7 +34,7 @@ public class AirfieldDistanceEvaluator
     public static void main(String[] args) throws PWCGException
     {
 	    UserDir.setUserDir();
-	    PWCGContext.setProduct(PWCGProduct.TC);
+	    
 	    
         AirfieldDistanceEvaluator airfieldReporter = new AirfieldDistanceEvaluator();
         airfieldReporter.process();

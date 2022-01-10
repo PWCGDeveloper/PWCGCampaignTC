@@ -16,7 +16,7 @@ import pwcg.mission.flight.FlightTypes;
 import pwcg.mission.flight.plane.PlaneMcu;
 import pwcg.mission.flight.validate.PlayerEscortFlightValidator;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 import pwcg.testutils.TestMissionBuilderUtility;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -28,8 +28,8 @@ public class PlayerFlightTypeBoSEscortTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
-        campaign = CampaignCache.makeCampaign(SquadronTestProfile.JG_51_PROFILE_MOSCOW);
+        
+        campaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
     }
 
     @Test

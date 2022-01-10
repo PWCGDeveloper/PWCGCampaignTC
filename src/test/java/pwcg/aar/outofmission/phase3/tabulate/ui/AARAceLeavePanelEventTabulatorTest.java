@@ -20,7 +20,7 @@ import pwcg.campaign.crewmember.CrewMemberStatus;
 import pwcg.campaign.crewmember.TankAce;
 import pwcg.campaign.resupply.personnel.TransferRecord;
 import pwcg.core.exception.PWCGException;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
@@ -50,7 +50,7 @@ public class AARAceLeavePanelEventTabulatorTest extends AARTestSetup
     @Test
     public void oneAceOnLeave () throws PWCGException
     {             
-        transferRecords.add(new TransferRecord(ace, SquadronTestProfile.JASTA_11_PROFILE.getCompanyId(), CrewMemberStatus.STATUS_ON_LEAVE));
+        transferRecords.add(new TransferRecord(ace, CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId(), CrewMemberStatus.STATUS_ON_LEAVE));
 
         AceLeavePanelEventTabulator aceLeavePanelEventTabulator = new AceLeavePanelEventTabulator(campaign, aarContext);
         AARAceLeavePanelData aceLeavePanelData = aceLeavePanelEventTabulator.tabulateForAARAceLeavePanel();
@@ -60,7 +60,7 @@ public class AARAceLeavePanelEventTabulatorTest extends AARTestSetup
     @Test
     public void noAcesOnLeave () throws PWCGException
     {             
-        transferRecords.add(new TransferRecord(ace, SquadronTestProfile.JASTA_11_PROFILE.getCompanyId(), SquadronTestProfile.JASTA_16_PROFILE.getCompanyId()));
+        transferRecords.add(new TransferRecord(ace, CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId(), CompanyTestProfile.JASTA_16_PROFILE.getCompanyId()));
 
         AceLeavePanelEventTabulator aceLeavePanelEventTabulator = new AceLeavePanelEventTabulator(campaign, aarContext);
         AARAceLeavePanelData aceLeavePanelData = aceLeavePanelEventTabulator.tabulateForAARAceLeavePanel();

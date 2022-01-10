@@ -22,7 +22,7 @@ import pwcg.gui.dialogs.ErrorDialog;
 import pwcg.gui.utils.PWCGButtonFactory;
 import pwcg.gui.utils.PWCGLabelFactory;
 import pwcg.mission.Mission;
-import pwcg.mission.unit.IPlayerUnit;
+import pwcg.mission.unit.ITankUnit;
 
 public class BriefingCompanyChooser implements ActionListener
 {
@@ -54,7 +54,7 @@ public class BriefingCompanyChooser implements ActionListener
         flightChooserButtonPanelGrid.add(spacerLabel3);
 
         Map<Integer, Company> playerSquadronsInMission = new HashMap<>();
-        for (IPlayerUnit playerUnit : mission.getUnits().getPlayerUnits())
+        for (ITankUnit playerUnit : mission.getUnits().getPlayerUnits())
         {
             Company squadron = playerUnit.getCompany();
             playerSquadronsInMission.put(squadron.getCompanyId(), squadron);

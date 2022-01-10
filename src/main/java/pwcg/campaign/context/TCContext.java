@@ -2,20 +2,10 @@ package pwcg.campaign.context;
 
 import pwcg.core.exception.PWCGException;
 
-public class BoSContext extends PWCGContextBase implements IPWCGContextManager
+public class TCContext extends PWCGContextBase
 { 
-	protected BoSContext()
+    public TCContext()
     {
-        campaignStartDates.add("01/10/1941");
-        campaignStartDates.add("01/11/1941");
-        campaignStartDates.add("01/12/1941");
-        campaignStartDates.add("01/01/1942");
-        campaignStartDates.add("01/02/1942");
-        campaignStartDates.add("01/03/1942");
-        campaignStartDates.add("01/04/1942");
-        campaignStartDates.add("01/05/1942");
-        campaignStartDates.add("01/06/1942");
-        campaignStartDates.add("01/07/1942");
         campaignStartDates.add("01/08/1942");
         campaignStartDates.add("01/09/1942");
         campaignStartDates.add("01/10/1942");
@@ -49,7 +39,6 @@ public class BoSContext extends PWCGContextBase implements IPWCGContextManager
         campaignStartDates.add("01/02/1945");
     }
 
-    @Override
     protected void initialize() throws PWCGException  
     {
         PWCGMap stalingradMap = PWCGMapFactory.getMap(FrontMapIdentifier.STALINGRAD_MAP);
@@ -67,13 +56,11 @@ public class BoSContext extends PWCGContextBase implements IPWCGContextManager
         super.initialize();
     }
 
-    @Override
     public void initializeMap() throws PWCGException  
     {
-        changeContext(FrontMapIdentifier.MOSCOW_MAP);
+        changeContext(FrontMapIdentifier.STALINGRAD_MAP);
     }
 
-    @Override
     public PWCGDirectoryProductManager getDirectoryManager()
     {
         return new PWCGDirectoryProductManager(PWCGProduct.TC);

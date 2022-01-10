@@ -21,7 +21,7 @@ import pwcg.campaign.crewmember.CrewMemberStatus;
 import pwcg.core.exception.PWCGException;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.CampaignPersonnelTestHelper;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 
 @ExtendWith(MockitoExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -33,8 +33,8 @@ public class PersonnelSquadronLossHandlerTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
-        campaign = CampaignCache.makeCampaign(SquadronTestProfile.ESC_103_PROFILE);
+        
+        campaign = CampaignCache.makeCampaign(CompanyTestProfile.THIRD_DIVISION_PROFILE);
     }
 
     @BeforeEach

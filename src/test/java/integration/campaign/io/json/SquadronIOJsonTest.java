@@ -23,7 +23,7 @@ public class SquadronIOJsonTest
     @Test
     public void readJsonRoFSquadronsTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
         List<Company> squadrons = CompanyIOJson.readJson();
         Assertions.assertTrue (squadrons.size() > 0);
 
@@ -85,7 +85,7 @@ public class SquadronIOJsonTest
     @Test
     public void readJsonBoSSquadronsTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
         List<Company> squadrons = CompanyIOJson.readJson();
         Assertions.assertTrue (squadrons.size() > 0);
         
@@ -102,7 +102,7 @@ public class SquadronIOJsonTest
     @Test
     public void writeJsonBoSSquadronsTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
         List<Company> squadrons = CompanyIOJson.readJson();
         
         PwcgJsonWriter<Company> jsonWriter = new PwcgJsonWriter<>();

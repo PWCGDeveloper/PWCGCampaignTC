@@ -1,6 +1,6 @@
 {
 	"country": "GERMANY",
-	"squadronId": 201911003,
+	"companyId": 201911003,
 	"name": "11 Flak Regiment, 3rd Company",
 	"fileName": "11 Flak Regiment Co 3.json",
 	"skill": 60,
@@ -27,8 +27,8 @@
 	},
 	"skins": [],
 	"serviceId": 20111,
-	"squadronRoles": {
-		"squadronRolePeriods": [
+	"companyRoles": {
+		"companyRolePeriods": [
 			{
 				"startDate": "19400101",
 				"weightedRoles": [

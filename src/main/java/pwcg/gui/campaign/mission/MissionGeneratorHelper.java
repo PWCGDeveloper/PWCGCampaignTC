@@ -19,13 +19,13 @@ public class MissionGeneratorHelper
 {
 
     public static void showBriefingMap(Campaign campaign, CampaignHomeGuiBriefingWrapper campaignHomeGuiBriefingWrapper,
-            MissionHumanParticipants participatingPlayers, Map<Integer, PwcgRole> squadronRoleOverride) throws PWCGException
+            MissionHumanParticipants participatingPlayers, Map<Integer, PwcgRole> companyRoleOverride) throws PWCGException
     {
         MusicManager.playMissionBriefingTheme();
         SoundManager.getInstance().playSound("Typewriter.WAV");
 
         GuiMissionInitiator missionInitiator = new GuiMissionInitiator(campaign, participatingPlayers);
-        Mission mission = missionInitiator.makeMission(squadronRoleOverride);
+        Mission mission = missionInitiator.makeMission(companyRoleOverride);
 
         BriefingDescriptionScreen briefingMap = new BriefingDescriptionScreen(campaignHomeGuiBriefingWrapper, mission);
         briefingMap.makePanels();

@@ -19,7 +19,7 @@ import pwcg.mission.MissionProfile;
 import pwcg.mission.flight.FlightTypes;
 import pwcg.mission.ground.vehicle.VehicleSetBuilderComprehensive;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 import pwcg.testutils.TestMissionBuilderUtility;
 
 @ExtendWith(MockitoExtension.class)
@@ -31,8 +31,8 @@ public class VehicleSetBuilderComprehensiveTest
     @BeforeAll 
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
-        campaign = CampaignCache.makeCampaign(SquadronTestProfile.JG_51_PROFILE_MOSCOW);
+        
+        campaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
         campaign.setDate(DateUtils.getDateYYYYMMDD("19411103"));
     }
 

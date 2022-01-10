@@ -14,7 +14,7 @@
   "missionPlanes": [
     {
       "aircraftType": "p39l1",
-      "squadronId": 10111126,
+      "companyId": 10111126,
       "crew": {
         "pilot": "Iosif Batishchev",
         "observer": "",
@@ -24,7 +24,7 @@
     },
     {
       "aircraftType": "p39l1",
-      "squadronId": 10111126,
+      "companyId": 10111126,
       "crew": {
         "pilot": "Artur Primakov",
         "observer": "",
@@ -34,7 +34,7 @@
     },
     {
       "aircraftType": "p39l1",
-      "squadronId": 10111126,
+      "companyId": 10111126,
       "crew": {
         "pilot": "Artur Pugin",
         "observer": "",
@@ -44,7 +44,7 @@
     },
     {
       "aircraftType": "p39l1",
-      "squadronId": 10111126,
+      "companyId": 10111126,
       "crew": {
         "pilot": "Russ Test",
         "observer": "",
@@ -54,7 +54,7 @@
     },
     {
       "aircraftType": "p39l1",
-      "squadronId": 10111495,
+      "companyId": 10111495,
       "crew": {
         "pilot": "Georgy Barbolin",
         "observer": "",
@@ -64,7 +64,7 @@
     },
     {
       "aircraftType": "p39l1",
-      "squadronId": 10111495,
+      "companyId": 10111495,
       "crew": {
         "pilot": "Emil Bovarin",
         "observer": "",
@@ -74,7 +74,7 @@
     },
     {
       "aircraftType": "p39l1",
-      "squadronId": 10111495,
+      "companyId": 10111495,
       "crew": {
         "pilot": "Anton Statnik",
         "observer": "",
@@ -84,7 +84,7 @@
     },
     {
       "aircraftType": "p39l1",
-      "squadronId": 10111495,
+      "companyId": 10111495,
       "crew": {
         "pilot": "Zakhar Dubow",
         "observer": "",
@@ -94,7 +94,7 @@
     },
     {
       "aircraftType": "la5s8",
-      "squadronId": 10111027,
+      "companyId": 10111027,
       "crew": {
         "pilot": "Igor Yurasov",
         "observer": "",
@@ -104,7 +104,7 @@
     },
     {
       "aircraftType": "la5s8",
-      "squadronId": 10111027,
+      "companyId": 10111027,
       "crew": {
         "pilot": "Vasily Ubeysobakin",
         "observer": "",
@@ -114,7 +114,7 @@
     },
     {
       "aircraftType": "lagg3s29",
-      "squadronId": 10111233,
+      "companyId": 10111233,
       "crew": {
         "pilot": "Fyodor Pashin",
         "observer": "",
@@ -124,7 +124,7 @@
     },
     {
       "aircraftType": "lagg3s29",
-      "squadronId": 10111233,
+      "companyId": 10111233,
       "crew": {
         "pilot": "Moisey Smolin",
         "observer": "",
@@ -134,7 +134,7 @@
     },
     {
       "aircraftType": "lagg3s29",
-      "squadronId": 10111233,
+      "companyId": 10111233,
       "crew": {
         "pilot": "Vyacheslav Yevstigneyev",
         "observer": "",
@@ -144,7 +144,7 @@
     },
     {
       "aircraftType": "lagg3s29",
-      "squadronId": 10111233,
+      "companyId": 10111233,
       "crew": {
         "pilot": "Ilya Burdukovsky",
         "observer": "",
@@ -154,7 +154,7 @@
     },
     {
       "aircraftType": "mc202s8",
-      "squadronId": 20115021,
+      "companyId": 20115021,
       "crew": {
         "pilot": "Bernaba Rossetti",
         "observer": "",
@@ -164,7 +164,7 @@
     },
     {
       "aircraftType": "mc202s8",
-      "squadronId": 20115021,
+      "companyId": 20115021,
       "crew": {
         "pilot": "Biagio Rossetti",
         "observer": "",
@@ -174,7 +174,7 @@
     },
     {
       "aircraftType": "mc202s8",
-      "squadronId": 20115021,
+      "companyId": 20115021,
       "crew": {
         "pilot": "Nuccio Monti",
         "observer": "",
@@ -184,7 +184,7 @@
     },
     {
       "aircraftType": "mc202s8",
-      "squadronId": 20115021,
+      "companyId": 20115021,
       "crew": {
         "pilot": "Palla De Angelis",
         "observer": "",

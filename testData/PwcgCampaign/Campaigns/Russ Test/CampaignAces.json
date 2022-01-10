@@ -398,7 +398,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 20113052,
+      "companyId": 20113052,
       "squadronMemberRole": "PILOT"
     },
     "Arkady Fedorovich Kovacevich": {
@@ -876,7 +876,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 10112009,
+      "companyId": 10112009,
       "squadronMemberRole": "PILOT"
     }
   }

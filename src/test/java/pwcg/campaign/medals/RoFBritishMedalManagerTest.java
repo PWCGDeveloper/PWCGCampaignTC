@@ -35,7 +35,7 @@ public class RoFBritishMedalManagerTest extends MedalManagerTestBase
     @BeforeEach
     public void setupTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
         super.setupBase();
         Mockito.when(country.isCountry(Country.BRITAIN)).thenReturn(true);
         ICountry country = CountryFactory.makeCountryByCountry(Country.BRITAIN);

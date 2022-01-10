@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.TreeMap;
 
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.group.Block;
 import pwcg.campaign.group.airfield.AirfieldDescriptor;
 import pwcg.campaign.group.airfield.AirfieldDescriptorSet;
@@ -30,7 +29,7 @@ public class AirfieldBuilder
     
     public static void main(String[] args) throws Exception
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
 
         AirfieldBuilder jsonConverter = new AirfieldBuilder();
         jsonConverter.getAirfieldNames("Bodenplatte");

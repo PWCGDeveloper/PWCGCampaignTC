@@ -22,7 +22,7 @@ import pwcg.mission.ground.MissionTruckConvoyBuilder;
 import pwcg.mission.ground.org.GroundUnitCollection;
 import pwcg.mission.ground.org.IGroundUnit;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 import pwcg.testutils.TestMissionBuilderUtility;
 import pwcg.testutils.TestMissionFlightTypeBuilder;
 
@@ -34,8 +34,8 @@ public class MissionGroundUnitBuilderTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
-        campaign = CampaignCache.makeCampaign(SquadronTestProfile.STG77_PROFILE);
+        
+        campaign = CampaignCache.makeCampaign(CompanyTestProfile.STG77_PROFILE);
     }
 
     @Test

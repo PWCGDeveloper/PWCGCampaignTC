@@ -6,7 +6,6 @@ import java.util.List;
 
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.MathUtils;
-import pwcg.gui.rofmap.brief.model.BriefingMapPoint;
 import pwcg.mission.flight.FlightPlanes;
 import pwcg.mission.flight.IFlight;
 import pwcg.mission.flight.plane.PlaneMcu;
@@ -115,15 +114,6 @@ public class WaypointPackage implements IWaypointPackage
         }
     }
 
-
-    @Override
-    public void updateWaypointsFromBriefing(List<BriefingMapPoint> briefingMapPoints) throws PWCGException
-    {
-        removeUnwantedWaypoints(briefingMapPoints);
-        modifyWaypointsFromBriefing(briefingMapPoints);
-        addBriefingMapPoints(briefingMapPoints);
-    }
-
     @Override
     public void addMissionPointSet(IMissionPointSet missionPointSet)
     {
@@ -198,57 +188,6 @@ public class WaypointPackage implements IWaypointPackage
             }
             previousMissionPointSet = missionPointSet;
         }
-    }
-
-    private void removeUnwantedWaypoints(List<BriefingMapPoint> briefingMapPoints) throws PWCGException
-    {
-        for (IMissionPointSet missionPointSet : missionPointSets)
-        {
-            missionPointSet.removeUnwantedWaypoints(briefingMapPoints);
-        }        
-    }
-
-    private void modifyWaypointsFromBriefing(List<BriefingMapPoint> briefingMapPoints) throws PWCGException
-    {
-        for (BriefingMapPoint briefingMapPoint : briefingMapPoints)
-        {
-            IMissionPointSet targetMissionPointSet = findWaypoint(briefingMapPoint.getWaypointID());
-            if (targetMissionPointSet != null)
-            {
-                targetMissionPointSet.updateWaypointFromBriefing(briefingMapPoint);
-            }
-        }
-    }
-
-    private void addBriefingMapPoints(List<BriefingMapPoint> briefingMapPoints) throws PWCGException
-    {
-        BriefingMapPoint previousMapPointFromBriefing = null;
-        for (BriefingMapPoint briefingMapPoint : briefingMapPoints)
-        {
-            if (briefingMapPoint.isWaypoint() && previousMapPointFromBriefing != null)
-            {
-                IMissionPointSet targetMissionPointSet = findWaypoint(briefingMapPoint.getWaypointID());
-                if (targetMissionPointSet == null)
-                {
-                    IMissionPointSet targetMissionPointSetToAdd = findWaypoint(previousMapPointFromBriefing.getWaypointID());
-                    long waypointIdForAddedWP = targetMissionPointSetToAdd.addWaypointFromBriefing(briefingMapPoint, previousMapPointFromBriefing.getWaypointID());
-                    briefingMapPoint.setWaypointID(waypointIdForAddedWP);
-                }
-            }
-            previousMapPointFromBriefing = briefingMapPoint;
-        }
-    }
-    
-    private IMissionPointSet findWaypoint(long waypointId)
-    {
-        for (IMissionPointSet missionPointSet : missionPointSets)
-        {
-            if (missionPointSet.containsWaypoint(waypointId))
-            {
-                return missionPointSet;
-            }
-        }
-        return null;
     }
 
     @Override

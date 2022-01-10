@@ -20,7 +20,7 @@ import pwcg.mission.target.TargetDefinition;
 import pwcg.mission.target.TargetDefinitionBuilderStructural;
 import pwcg.mission.target.TargetType;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 import pwcg.testutils.TestMissionBuilderUtility;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -32,8 +32,8 @@ public class TargetDefinitionBuilderStructuralTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
-        campaign = CampaignCache.makeCampaign(SquadronTestProfile.STG77_PROFILE);
+        
+        campaign = CampaignCache.makeCampaign(CompanyTestProfile.STG77_PROFILE);
 
         if (mission == null)
         {

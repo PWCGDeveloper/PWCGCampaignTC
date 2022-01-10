@@ -42,7 +42,7 @@ public class CrewMembersTest
     @BeforeEach
     public void setupTest() throws PWCGException 
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
         
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420801"));
 

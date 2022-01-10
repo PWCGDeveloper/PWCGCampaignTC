@@ -46,7 +46,7 @@ public class ClaimDenierTest
     @BeforeEach
     public void setupTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
         
         players = new ArrayList<>();
         players.add(player);

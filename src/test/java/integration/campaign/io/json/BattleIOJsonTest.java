@@ -18,7 +18,7 @@ public class BattleIOJsonTest
     @Test
     public void readJsonTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
         Battles battles = BattleIOJson.readJson(FrontMapIdentifier.STALINGRAD_MAP.getMapName());
         Assertions.assertTrue (battles.getBattles().size() > 0);
     }
@@ -26,7 +26,7 @@ public class BattleIOJsonTest
     @Test
     public void readJsonBoSTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
         Battles battles = BattleIOJson.readJson(FrontMapIdentifier.STALINGRAD_MAP.getMapName());
         Assertions.assertTrue (battles.getBattles().size() > 0);
     }

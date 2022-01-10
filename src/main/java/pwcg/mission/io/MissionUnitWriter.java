@@ -7,7 +7,7 @@ import pwcg.campaign.utils.TestDriver;
 import pwcg.core.exception.PWCGException;
 import pwcg.mission.Mission;
 import pwcg.mission.flight.IFlight;
-import pwcg.mission.unit.IPlayerUnit;
+import pwcg.mission.unit.ITankUnit;
 import pwcg.mission.unit.PlayerUnit;
 
 public class MissionUnitWriter 
@@ -41,15 +41,15 @@ public class MissionUnitWriter
         flight.write(writer);
     }
 
-    private void writePlayerUnits(List<PlayerUnit> units, BufferedWriter writer) throws PWCGException
+    private void writePlayerUnits(List<ITankUnit> units, BufferedWriter writer) throws PWCGException
     {
-        for (IPlayerUnit unit : units)
+        for (ITankUnit unit : units)
         {
             writePlayerUnit(writer, unit);
         }
     }
 
-    private void writePlayerUnit(BufferedWriter writer, IPlayerUnit unit) throws PWCGException
+    private void writePlayerUnit(BufferedWriter writer, ITankUnit unit) throws PWCGException
     {
         unit.write(writer);
     }

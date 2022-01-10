@@ -4,8 +4,6 @@ import java.io.BufferedWriter;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 
-import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.io.json.InternationalizationRecordsIO;
 import pwcg.core.config.InternationalizationRecords;
 import pwcg.core.exception.PWCGException;
@@ -16,7 +14,7 @@ public class InternationalizationFileKeyWriter
     {
         try
         {
-            PWCGContext.setProduct(PWCGProduct.TC);
+            
             InternationalizationFileKeyWriter internationalizationFileBuilder = new InternationalizationFileKeyWriter();
             internationalizationFileBuilder.writeKeys();
         }

@@ -22,15 +22,6 @@ public class WaypointFactory
         return waypoint;
     }
 
-	public static McuWaypoint createClimbWaypointType()
-	{
-		McuWaypoint waypoint = new McuWaypoint(WaypointType.CLIMB_WAYPOINT);
-		waypoint.setWpAction(WaypointAction.WP_ACTION_CLIMB);
-		waypoint.setPriority(WaypointPriority.PRIORITY_LOW);			
-		
-		return waypoint;
-	}
-
 	public static McuWaypoint createIngressWaypointType()
 	{
 		McuWaypoint waypoint = new McuWaypoint(WaypointType.INGRESS_WAYPOINT);
@@ -49,46 +40,10 @@ public class WaypointFactory
         return waypoint;
     }
 
-	public static McuWaypoint createLandingApproachWaypointType()
-	{
-		McuWaypoint waypoint = new McuWaypoint(WaypointType.LANDING_APPROACH_WAYPOINT);
-		waypoint.setWpAction(WaypointAction.WP_ACTION_LANDING_APPROACH);
-		waypoint.setPriority(WaypointPriority.PRIORITY_LOW);			
-		
-		return waypoint;
-	}
-
 	public static McuWaypoint createPatrolWaypointType()
 	{
 		McuWaypoint waypoint = new McuWaypoint(WaypointType.PATROL_WAYPOINT);
 		waypoint.setWpAction(WaypointAction.WP_ACTION_PATROL);
-		waypoint.setPriority(WaypointPriority.PRIORITY_LOW);			
-		
-		return waypoint;
-	}
-
-	public static McuWaypoint createBalloonBustWaypointType()
-	{
-		McuWaypoint waypoint = new McuWaypoint(WaypointType.BALLOON_BUST_WAYPOINT);
-		waypoint.setWpAction(WaypointAction.WP_ACTION_BALLOON);
-		waypoint.setPriority(WaypointPriority.PRIORITY_LOW);			
-		
-		return waypoint;
-	}
-
-	public static McuWaypoint createBalloonDefenseWaypointType()
-	{
-		McuWaypoint waypoint = new McuWaypoint(WaypointType.BALLOON_DEFENSE_WAYPOINT);
-		waypoint.setWpAction(WaypointAction.WP_ACTION_BALLOON);
-		waypoint.setPriority(WaypointPriority.PRIORITY_LOW);			
-		
-		return waypoint;
-	}
-
-	public static McuWaypoint createRendezvousWaypointType()
-	{
-		McuWaypoint waypoint = new McuWaypoint(WaypointType.RENDEZVOUS_WAYPOINT);
-		waypoint.setWpAction(WaypointAction.WP_ACTION_RENDEZVOUS);
 		waypoint.setPriority(WaypointPriority.PRIORITY_LOW);			
 		
 		return waypoint;
@@ -114,30 +69,6 @@ public class WaypointFactory
 	{
 		McuWaypoint waypoint = new McuWaypoint(WaypointType.TARGET_EGRESS_WAYPOINT);
 		waypoint.setWpAction(WaypointAction.WP_ACTION_TARGET_EGRESS);
-		waypoint.setPriority(WaypointPriority.PRIORITY_MED);			
-		return waypoint;
-	}
-
-	public static McuWaypoint createArtillerySpotWaypointType()
-	{
-		McuWaypoint waypoint = new McuWaypoint(WaypointType.ARTILLERY_SPOT_WAYPOINT);
-		waypoint.setWpAction(WaypointAction.WP_ACTION_SPOT);
-		waypoint.setPriority(WaypointPriority.PRIORITY_MED);			
-		return waypoint;
-	}
-
-	public static McuWaypoint createReconWaypointType()
-	{
-		McuWaypoint waypoint = new McuWaypoint(WaypointType.RECON_WAYPOINT);
-		waypoint.setWpAction(WaypointAction.WP_ACTION_RECON);
-		waypoint.setPriority(WaypointPriority.PRIORITY_MED);			
-		return waypoint;
-	}
-	
-	public static McuWaypoint createSpyExtractWaypointType()
-	{
-		McuWaypoint waypoint = new McuWaypoint(WaypointType.SPY_EXTRACT_WAYPOINT);
-		waypoint.setWpAction(WaypointAction.WP_ACTION_SPY);
 		waypoint.setPriority(WaypointPriority.PRIORITY_MED);			
 		return waypoint;
 	}

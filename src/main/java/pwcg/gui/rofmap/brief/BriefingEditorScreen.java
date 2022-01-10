@@ -181,9 +181,6 @@ public class BriefingEditorScreen extends ImageResizingPanel implements ActionLi
             IWaypointDetails editor = editorPanel.getWaypointEditors().getWaypointEditorByid(briefingMapPoint.getWaypointID());
             if (editor != null)
             {
-                int altitude = editor.getAltitudeValue();
-                briefingMapPoint.setAltitude(altitude);
-                
                 int cruisingSpeed = editor.getCruisingSpeedValue();
                 briefingMapPoint.setCruisingSpeed(cruisingSpeed);
             }

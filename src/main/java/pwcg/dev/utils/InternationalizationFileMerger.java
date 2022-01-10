@@ -3,8 +3,6 @@ package pwcg.dev.utils;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
-import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.io.json.InternationalizationRecordsIO;
 import pwcg.core.config.InternationalizationRecords;
 
@@ -14,7 +12,7 @@ public class InternationalizationFileMerger
     {
         try
         {
-            PWCGContext.setProduct(PWCGProduct.TC);
+            
             InternationalizationFileMerger internationalizationFileBuilder = new InternationalizationFileMerger();
             internationalizationFileBuilder.buildFileForMissingRecords();
         }

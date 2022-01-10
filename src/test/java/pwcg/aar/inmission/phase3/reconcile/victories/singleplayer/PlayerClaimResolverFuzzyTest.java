@@ -19,7 +19,7 @@ public class PlayerClaimResolverFuzzyTest
 {
     public PlayerClaimResolverFuzzyTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
     }
 
     @Test

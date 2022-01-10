@@ -20,7 +20,7 @@ import pwcg.campaign.personnel.StructureVictoryBuilder;
 import pwcg.core.exception.PWCGException;
 import pwcg.mission.ground.building.PwcgStructure;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 
 @ExtendWith(MockitoExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -35,10 +35,10 @@ public class OutOfMissionStructureVictoryBuilderTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
-        campaign = CampaignCache.makeCampaign(SquadronTestProfile.GROSS_DEUTSCHLAND_PROFILE);
         
-        for (CrewMember crewMember : campaign.getPersonnelManager().getCompanyPersonnel(SquadronTestProfile.GROSS_DEUTSCHLAND_PROFILE.getSquadronId()).getActiveCrewMembers().getCrewMemberList())
+        campaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
+        
+        for (CrewMember crewMember : campaign.getPersonnelManager().getCompanyPersonnel(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId()).getActiveCrewMembers().getCrewMemberList())
         {
             if (crewMember.getCrewMemberActiveStatus() == CrewMemberStatus.STATUS_ACTIVE && !crewMember.isPlayer())
             {

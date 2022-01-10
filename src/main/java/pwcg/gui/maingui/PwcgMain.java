@@ -6,7 +6,6 @@ import java.awt.Insets;
 import javax.swing.UIManager;
 
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.utils.TestDriver;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.PWCGLogger;
@@ -55,7 +54,7 @@ public class PwcgMain
 
     private void setProduct() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
     }
 
     private void initializePWCGStaticData()

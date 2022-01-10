@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.TreeMap;
 
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.group.Block;
 import pwcg.campaign.io.json.LocationIOJson;
 import pwcg.core.exception.PWCGException;
@@ -20,7 +19,7 @@ public class CityNameBuilder
 {    
     public static void main(String[] args) throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
 
         CityNameBuilder jsonConverter = new CityNameBuilder();
         jsonConverter.getCityNames("Arras");

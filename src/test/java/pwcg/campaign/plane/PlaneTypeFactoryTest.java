@@ -25,7 +25,7 @@ public class TankTypeFactoryTest
     
     public TankTypeFactoryTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
     }
 
     @Test

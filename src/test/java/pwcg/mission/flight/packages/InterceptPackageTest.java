@@ -22,7 +22,7 @@ import pwcg.mission.flight.NecessaryFlightType;
 import pwcg.mission.mcu.McuWaypoint;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.PwcgTestBase;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 import pwcg.testutils.TestMissionBuilderUtility;
 
 public class InterceptPackageTest extends PwcgTestBase
@@ -35,7 +35,7 @@ public class InterceptPackageTest extends PwcgTestBase
     @Test
     public void playerPackageTest() throws PWCGException
     {
-        Campaign campaign = CampaignCache.makeCampaign(SquadronTestProfile.JG_26_PROFILE_WEST);
+        Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.JG_26_PROFILE_WEST);
         MissionFlights missionFlights = buildFlight(campaign);
         
         List<IFlight> opposingFlights = missionFlights.getNecessaryFlightsByType(NecessaryFlightType.OPPOSING_FLIGHT);

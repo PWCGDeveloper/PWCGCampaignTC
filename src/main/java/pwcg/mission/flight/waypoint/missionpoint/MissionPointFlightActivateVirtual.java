@@ -136,12 +136,6 @@ public class MissionPointFlightActivateVirtual implements IMissionPointSet, IVir
     }
 
     @Override
-    public long addWaypointFromBriefing(BriefingMapPoint newWaypoint, long waypointIdAfter) throws PWCGException
-    {
-        throw new PWCGException("No waypoints in flight activate");                                
-    }
-
-    @Override
     public void removeUnwantedWaypoints(List<BriefingMapPoint> waypointsInBriefing) throws PWCGException
     {
     }

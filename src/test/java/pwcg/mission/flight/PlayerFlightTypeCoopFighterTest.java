@@ -22,35 +22,35 @@ import pwcg.mission.flight.offensive.OffensiveFlight;
 import pwcg.mission.flight.patrol.PatrolFlight;
 import pwcg.mission.flight.validate.PatrolFlightValidator;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 import pwcg.testutils.TestMissionBuilderUtility;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class PlayerFlightTypeCoopFighterTest
 {
-    private static Map<SquadronTestProfile, Campaign> campaigns = new HashMap<>();
+    private static Map<CompanyTestProfile, Campaign> campaigns = new HashMap<>();
 
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
-        Campaign germanEastCampaign = CampaignCache.makeCampaign(SquadronTestProfile.JG_51_PROFILE_MOSCOW);
-        Campaign germanWestCampaign = CampaignCache.makeCampaign(SquadronTestProfile.JG_26_PROFILE_WEST);
-        Campaign americanCampaign = CampaignCache.makeCampaign(SquadronTestProfile.FG_362_PROFILE);
-        Campaign britishCampaign = CampaignCache.makeCampaign(SquadronTestProfile.RAF_184_PROFILE);
-        Campaign russianCampaign = CampaignCache.makeCampaign(SquadronTestProfile.REGIMENT_11_PROFILE);
         
-        campaigns.put(SquadronTestProfile.JG_51_PROFILE_MOSCOW, germanEastCampaign);
-        campaigns.put(SquadronTestProfile.JG_26_PROFILE_WEST, germanWestCampaign);
-        campaigns.put(SquadronTestProfile.FG_362_PROFILE, americanCampaign);
-        campaigns.put(SquadronTestProfile.RAF_184_PROFILE, britishCampaign);
-        campaigns.put(SquadronTestProfile.REGIMENT_11_PROFILE, russianCampaign);
+        Campaign germanEastCampaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
+        Campaign germanWestCampaign = CampaignCache.makeCampaign(CompanyTestProfile.JG_26_PROFILE_WEST);
+        Campaign americanCampaign = CampaignCache.makeCampaign(CompanyTestProfile.THIRD_DIVISION_PROFILE);
+        Campaign britishCampaign = CampaignCache.makeCampaign(CompanyTestProfile.SEVENTH_DIVISION_PROFILE);
+        Campaign russianCampaign = CampaignCache.makeCampaign(CompanyTestProfile.REGIMENT_11_PROFILE);
+        
+        campaigns.put(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE, germanEastCampaign);
+        campaigns.put(CompanyTestProfile.JG_26_PROFILE_WEST, germanWestCampaign);
+        campaigns.put(CompanyTestProfile.THIRD_DIVISION_PROFILE, americanCampaign);
+        campaigns.put(CompanyTestProfile.SEVENTH_DIVISION_PROFILE, britishCampaign);
+        campaigns.put(CompanyTestProfile.REGIMENT_11_PROFILE, russianCampaign);
     }
 
     @Test
     public void patrolFlightTest() throws PWCGException
     {
-        for (SquadronTestProfile profile: campaigns.keySet()) 
+        for (CompanyTestProfile profile: campaigns.keySet()) 
         {
         	Campaign campaign = campaigns.get(profile);
             PWCGContext.getInstance().setCampaign(campaign);
@@ -72,7 +72,7 @@ public class PlayerFlightTypeCoopFighterTest
     @Test
     public void lowAltPatrolFlightTest() throws PWCGException
     {
-        for (SquadronTestProfile profile: campaigns.keySet()) 
+        for (CompanyTestProfile profile: campaigns.keySet()) 
         {
         	Campaign campaign = campaigns.get(profile);
             PWCGContext.getInstance().setCampaign(campaign);
@@ -94,7 +94,7 @@ public class PlayerFlightTypeCoopFighterTest
     @Test
     public void lowAltCapFlightTest() throws PWCGException
     {
-        for (SquadronTestProfile profile: campaigns.keySet()) 
+        for (CompanyTestProfile profile: campaigns.keySet()) 
         {
         	Campaign campaign = campaigns.get(profile);
             PWCGContext.getInstance().setCampaign(campaign);
@@ -116,7 +116,7 @@ public class PlayerFlightTypeCoopFighterTest
     @Test
     public void interceptFlightTest() throws PWCGException
     {
-        for (SquadronTestProfile profile: campaigns.keySet()) 
+        for (CompanyTestProfile profile: campaigns.keySet()) 
         {
         	Campaign campaign = campaigns.get(profile);
             PWCGContext.getInstance().setCampaign(campaign);
@@ -138,7 +138,7 @@ public class PlayerFlightTypeCoopFighterTest
     @Test
     public void offensiveFlightTest() throws PWCGException
     {
-        for (SquadronTestProfile profile: campaigns.keySet()) 
+        for (CompanyTestProfile profile: campaigns.keySet()) 
         {
         	Campaign campaign = campaigns.get(profile);
             PWCGContext.getInstance().setCampaign(campaign);

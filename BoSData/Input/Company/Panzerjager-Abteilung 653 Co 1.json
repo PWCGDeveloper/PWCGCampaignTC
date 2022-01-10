@@ -1,6 +1,6 @@
 {
 	"country": "GERMANY",
-	"squadronId": 201653001,
+	"companyId": 201653001,
 	"name": "653rd Panzerjager-Abteilung, 1st Company",
 	"fileName": "Panzerjager-Abteilung 653 Co 1.json",
 	"skill": 60,
@@ -39,8 +39,8 @@
 	},
 	"skins": [],
 	"serviceId": 20111,
-	"squadronRoles": {
-		"squadronRolePeriods": [
+	"companyRoles": {
+		"companyRolePeriods": [
 			{
 				"startDate": "19400101",
 				"weightedRoles": [

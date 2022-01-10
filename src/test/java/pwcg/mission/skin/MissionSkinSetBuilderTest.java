@@ -38,7 +38,7 @@ public class MissionSkinSetBuilderTest
     @BeforeEach
     public void setupTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
         
         Mockito.when(flight.getCampaign()).thenReturn(campaign);
 

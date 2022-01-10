@@ -7,14 +7,14 @@ import pwcg.campaign.tank.PwcgRoleCategory;
 
 public class SquadronRoleWeightCalculator
 {
-    public static PwcgRoleCategory calculateHeaviestSquadronRole(SquadronRolePeriod squadronRolePeriod)
+    public static PwcgRoleCategory calculateHeaviestSquadronRole(CompanyRolePeriod squadronRolePeriod)
     {
         Map<PwcgRoleCategory, Integer> weightedRoleCategories = calculateCategoryWeights(squadronRolePeriod);
         PwcgRoleCategory heaviestCategory = determineHeaviestCategory(weightedRoleCategories);
         return heaviestCategory;
     }
 
-    private static Map<PwcgRoleCategory, Integer> calculateCategoryWeights(SquadronRolePeriod squadronRolePeriod)
+    private static Map<PwcgRoleCategory, Integer> calculateCategoryWeights(CompanyRolePeriod squadronRolePeriod)
     {
         Map<PwcgRoleCategory, Integer> weightedRoleCategories = new HashMap<>();
         for (SquadronRoleWeight squadronRoleWeight : squadronRolePeriod.getWeightedRoles())

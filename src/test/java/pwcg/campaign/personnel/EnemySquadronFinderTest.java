@@ -39,7 +39,7 @@ public class EnemySquadronFinderTest
     @BeforeEach
     public void setupTest() throws PWCGException
      {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
         PWCGContext.getInstance().setCurrentMap(FrontMapIdentifier.STALINGRAD_MAP);
 
         ICountry squadronCountry = CountryFactory.makeCountryByCountry(Country.GERMANY);

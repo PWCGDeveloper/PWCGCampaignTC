@@ -28,7 +28,7 @@ public class GroundDeclarationResolverTest
 
     public GroundDeclarationResolverTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
     }
 
     @Test

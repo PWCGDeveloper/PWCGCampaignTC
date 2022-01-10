@@ -28,7 +28,7 @@ import pwcg.campaign.promotion.PromotionArbitrator;
 import pwcg.core.exception.PWCGException;
 import pwcg.product.bos.country.TCServiceManager;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 import pwcg.testutils.VictoryMaker;
 
 @ExtendWith(MockitoExtension.class)
@@ -45,8 +45,8 @@ public class PromotionEventHandlerLuftwaffeFighterTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
-        campaign = CampaignCache.makeCampaign(SquadronTestProfile.JG_52_PROFILE_STALINGRAD);
+        
+        campaign = CampaignCache.makeCampaign(CompanyTestProfile.JG_52_PROFILE_STALINGRAD);
     }
 
     @BeforeEach
@@ -113,7 +113,7 @@ public class PromotionEventHandlerLuftwaffeFighterTest
         Mockito.when(crewMember.getBattlesFought()).thenReturn(150);
         Mockito.when(crewMember.getRank()).thenReturn("Hauptmann");
         Mockito.when(crewMember.isPlayer()).thenReturn(true);
-        Mockito.when(crewMember.getCompanyId()).thenReturn(SquadronTestProfile.JG_52_PROFILE_STALINGRAD.getCompanyId());
+        Mockito.when(crewMember.getCompanyId()).thenReturn(CompanyTestProfile.JG_52_PROFILE_STALINGRAD.getCompanyId());
 
         String promotion = PromotionEventHandler.promoteNonHistoricalCrewMembers(campaign, crewMember);
 
@@ -130,7 +130,7 @@ public class PromotionEventHandlerLuftwaffeFighterTest
         Mockito.when(crewMember.getBattlesFought()).thenReturn(150);
         Mockito.when(crewMember.getRank()).thenReturn("Hauptmann");
         Mockito.when(crewMember.isPlayer()).thenReturn(false);
-        Mockito.when(crewMember.getCompanyId()).thenReturn(SquadronTestProfile.JG_52_PROFILE_STALINGRAD.getCompanyId());
+        Mockito.when(crewMember.getCompanyId()).thenReturn(CompanyTestProfile.JG_52_PROFILE_STALINGRAD.getCompanyId());
 
         String promotion = PromotionEventHandler.promoteNonHistoricalCrewMembers(campaign, crewMember);
 

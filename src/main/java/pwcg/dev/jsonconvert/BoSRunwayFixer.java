@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.group.airfield.AirfieldConfiguration;
 import pwcg.campaign.group.airfield.AirfieldDescriptor;
 import pwcg.campaign.group.airfield.AirfieldDescriptorSet;
@@ -21,7 +20,7 @@ public class BoSRunwayFixer
     
     public static void main(String[] args) throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
 
         BoSRunwayFixer runwayFixer = new BoSRunwayFixer();
         runwayFixer.limitAllMapsToOneRunway("Moscow");

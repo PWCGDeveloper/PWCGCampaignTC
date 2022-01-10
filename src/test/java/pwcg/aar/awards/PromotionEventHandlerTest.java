@@ -26,7 +26,7 @@ import pwcg.campaign.plane.PwcgRoleCategory;
 import pwcg.campaign.promotion.PromotionArbitrator;
 import pwcg.core.exception.PWCGException;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 import pwcg.testutils.VictoryMaker;
 
 @ExtendWith(MockitoExtension.class)
@@ -42,8 +42,8 @@ public class PromotionEventHandlerTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
-        campaign = CampaignCache.makeCampaign(SquadronTestProfile.ESC_103_PROFILE);
+        
+        campaign = CampaignCache.makeCampaign(CompanyTestProfile.THIRD_DIVISION_PROFILE);
     }
 
     @BeforeEach

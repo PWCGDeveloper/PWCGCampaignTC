@@ -35,7 +35,7 @@ public class SquadronMoveHandlerTest
     @BeforeEach
     public void setupTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
         PWCGContext.getInstance().changeContext(FrontMapIdentifier.MOSCOW_MAP);
                 
         campaignDate = DateUtils.getDateYYYYMMDD("19411120");

@@ -1,6 +1,6 @@
 {
 	"country": "GERMANY",
-	"squadronId": 201001002,
+	"companyId": 201001002,
 	"name": "Gross Deutschland Division, 2nd Company",
 	"fileName": "Gross Deutschland Division 2 Co.json",
 	"skill": 80,
@@ -57,8 +57,8 @@
 	"skins": [
 	],
 	"serviceId": 20111,
-	"squadronRoles": {
-		"squadronRolePeriods": [
+	"companyRoles": {
+		"companyRolePeriods": [
 			{
 				"startDate": "19400101",
 				"weightedRoles": [

@@ -8,16 +8,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
-
 public class InternationalizationFileSorter
 {
     public static void main(String[] args)
     {
         try
         {
-            PWCGContext.setProduct(PWCGProduct.TC);
+            
             InternationalizationFileSorter sorter = new InternationalizationFileSorter();
             sorter.sortEnglishRecords();
         }

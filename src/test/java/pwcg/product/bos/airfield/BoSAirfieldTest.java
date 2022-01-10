@@ -8,7 +8,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import pwcg.campaign.Campaign;
 import pwcg.campaign.context.FrontMapIdentifier;
-import pwcg.campaign.context.IPWCGContextManager;
+import pwcg.campaign.context.TCContext;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGMap;
 import pwcg.campaign.context.PWCGProduct;
@@ -22,7 +22,7 @@ import pwcg.core.utils.MathUtils;
 import pwcg.mission.Mission;
 import pwcg.mission.options.MissionWeather;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 
 @ExtendWith(MockitoExtension.class)
 public class BoSAirfieldTest
@@ -159,13 +159,13 @@ public class BoSAirfieldTest
 
 	public BoSAirfieldTest() throws PWCGException
 	{
-		PWCGContext.setProduct(PWCGProduct.TC);
+		
 	}
 
 	@Test
 	public void airfieldCheckMoscowTest() throws PWCGException
 	{
-        Campaign campaign = CampaignCache.makeCampaign(SquadronTestProfile.JG_51_PROFILE_MOSCOW);
+        Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
         campaign.setCampaignConfigManager(configManagerCampaign);
         PWCGContext.getInstance().setCampaign(campaign);
 
@@ -181,7 +181,7 @@ public class BoSAirfieldTest
 	@Test
 	public void pathTest() throws PWCGException
 	{
-	    IPWCGContextManager contextManager = PWCGContext.getInstance();
+	    TCContext contextManager = PWCGContext.getInstance();
 
 	    for (PWCGMap map : contextManager.getAllMaps())
 	    {

@@ -12,15 +12,11 @@ public interface IWaypointDetails
 
     JComponent getDescriptionField();
 
-    JComponent getAltitudeField();
-
     JComponent getCruisingSpeedField();
 
     JComponent getDistanceField();
 
     JComponent getHeadingField();
-
-    int getAltitudeValue();
 
     int getCruisingSpeedValue();
 

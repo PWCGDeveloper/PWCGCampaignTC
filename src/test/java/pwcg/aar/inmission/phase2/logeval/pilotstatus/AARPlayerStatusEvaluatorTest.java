@@ -58,7 +58,7 @@ public class AARPlayerStatusEvaluatorTest
 
     public AARPlayerStatusEvaluatorTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
     }
 
     @BeforeEach

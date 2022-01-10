@@ -19,22 +19,22 @@ import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.product.fc.country.TCServiceManager;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 
 public class CampaignServiceChangeHandlerTest
 {
     public CampaignServiceChangeHandlerTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
     }
 
     @Test
     public void testRafTransition() throws PWCGException 
     {
-        Campaign campaign = CampaignCache.makeCampaign(SquadronTestProfile.RFC_2_PROFILE);
+        Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.RFC_2_PROFILE);
         ArmedService service = campaign.determinePlayerCompanies().get(0).determineServiceForCompany(campaign.getDate());
         ICountry country = service.getCountry();
-        CompanyPersonnel personnel = campaign.getPersonnelManager().getCompanyPersonnel(SquadronTestProfile.RFC_2_PROFILE.getCompanyId());
+        CompanyPersonnel personnel = campaign.getPersonnelManager().getCompanyPersonnel(CompanyTestProfile.RFC_2_PROFILE.getCompanyId());
 
         Assertions.assertTrue (country.getCountry() == Country.BRITAIN);
         Assertions.assertTrue (service.getName().equals(BritishServiceBuilder.BRITISH_ARMY_NAME));

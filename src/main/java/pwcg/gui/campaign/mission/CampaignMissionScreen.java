@@ -154,8 +154,7 @@ public class CampaignMissionScreen extends ImageResizingPanel implements ActionL
     {
         if (action.contentEquals(CAMP_MISSION))
         {
-            boolean isLoneWolf = false;
-            generateMission(isLoneWolf);
+            generateMission();
         }
         else
         {
@@ -176,11 +175,11 @@ public class CampaignMissionScreen extends ImageResizingPanel implements ActionL
         CampaignGuiContextManager.getInstance().pushToContextStack(coopPersonaChooser);
     }
 
-    private void generateMission(boolean isLoneWolf) throws PWCGException
+    private void generateMission() throws PWCGException
     {
-        Map<Integer, PwcgRole> squadronRoleOverride = new HashMap<>();
+        Map<Integer, PwcgRole> companyRoleOverride = new HashMap<>();
         MissionHumanParticipants participatingPlayers = MissionGeneratorHelper.buildParticipatingPlayersSinglePlayer(campaign);
-        MissionGeneratorHelper.showBriefingMap(campaign, campaignHomeGuiBriefingWrapper, participatingPlayers, squadronRoleOverride);
+        MissionGeneratorHelper.showBriefingMap(campaign, campaignHomeGuiBriefingWrapper, participatingPlayers, companyRoleOverride);
     }
 
     private void generateMissionWithRoleOverride() throws PWCGException

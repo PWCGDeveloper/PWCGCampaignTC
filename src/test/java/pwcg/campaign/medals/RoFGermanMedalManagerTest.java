@@ -33,7 +33,7 @@ public class RoFGermanMedalManagerTest extends MedalManagerTestBase
     @BeforeEach
     public void setupTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
         super.setupBase();
         service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.WEHRMACHT, DateUtils.getDateYYYYMMDD("19171001"));
 

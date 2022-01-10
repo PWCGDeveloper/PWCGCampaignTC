@@ -22,7 +22,7 @@ public class TerminalWaypointGenerator
         Orientation orient = new Orientation();
         orient.setyOri(0);
 
-        McuWaypoint approachWP = WaypointFactory.createLandingApproachWaypointType();
+        McuWaypoint approachWP = WaypointFactory.createPatrolWaypointType();
         approachWP.setTriggerArea(McuWaypoint.LAND_AREA);
         approachWP.setSpeed(flight.getFlightCruisingSpeed());
         approachWP.setPosition(approachCoords);

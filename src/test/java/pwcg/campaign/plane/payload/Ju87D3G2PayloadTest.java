@@ -51,7 +51,7 @@ public class Ju87D3G2PayloadTest
     @BeforeEach
     public void setupTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
 
         Mockito.when(flight.getTargetDefinition()).thenReturn(targetDefinition);
     }

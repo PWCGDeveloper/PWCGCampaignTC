@@ -30,14 +30,14 @@ public abstract class CampaignCacheBase implements ICampaignCache
     protected abstract void initialize() throws PWCGException;
 
 
-    protected void makeProfile(SquadronTestProfile profile) throws PWCGException
+    protected void makeProfile(CompanyTestProfile profile) throws PWCGException
     {
         CampaignGeneratorModel generatorModel = makeCampaignModelForProfile (profile);
         campaignProfiles.put(profile.getKey(), generatorModel);
     }
 
     @Override
-    public Campaign makeCampaignForceCreation(SquadronTestProfile profile) throws PWCGException
+    public Campaign makeCampaignForceCreation(CompanyTestProfile profile) throws PWCGException
     {
         initialize();
         if (campaignProfiles.containsKey(profile.getKey()))
@@ -52,7 +52,7 @@ public abstract class CampaignCacheBase implements ICampaignCache
 	            List<CrewMember> players = campaign.getPersonnelManager().getAllActivePlayers().getCrewMemberList();
 	            assert(players.size() == 1);
 	            
-	            addMoreCrewMembersForCoop(campaign, "Squadron Mate", "Leutnant", SquadronTestProfile.COOP_COMPETITIVE_PROFILE.getSquadronId());
+	            addMoreCrewMembersForCoop(campaign, "Squadron Mate", "Leutnant", CompanyTestProfile.COOP_COMPETITIVE_PROFILE.getCompanyId());
 	            players = campaign.getPersonnelManager().getAllActivePlayers().getCrewMemberList();
 	            assert(players.size() == 2);
 	            
@@ -108,10 +108,10 @@ public abstract class CampaignCacheBase implements ICampaignCache
                 companyId);
     }
     
-	public static CampaignGeneratorModel makeCampaignModelForProfile(SquadronTestProfile profile) throws PWCGException
+	public static CampaignGeneratorModel makeCampaignModelForProfile(CompanyTestProfile profile) throws PWCGException
     {
         CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
-        Company company = companyManager.getCompany(profile.getSquadronId());
+        Company company = companyManager.getCompany(profile.getCompanyId());
         
         Date campaignDate = DateUtils.getDateYYYYMMDD(profile.getDateString());
         ArmedService service = company.determineServiceForCompany(campaignDate);

@@ -11,7 +11,7 @@ import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGProduct;
 import pwcg.core.exception.PWCGException;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 
 @ExtendWith(MockitoExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -22,14 +22,14 @@ public class SquadronPersonnelTest {
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
-        campaign = CampaignCache.makeCampaign(SquadronTestProfile.JG_51_PROFILE_MOSCOW);
+        
+        campaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
     }
 
     @Test
     public void isHumanSquadronTest() throws PWCGException
     {
-        CompanyPersonnel squadronpersonnel = campaign.getPersonnelManager().getCompanyPersonnel(SquadronTestProfile.JG_51_PROFILE_MOSCOW.getCompanyId());
+        CompanyPersonnel squadronpersonnel = campaign.getPersonnelManager().getCompanyPersonnel(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
         assert(squadronpersonnel.isPlayerCompany());
     }
 

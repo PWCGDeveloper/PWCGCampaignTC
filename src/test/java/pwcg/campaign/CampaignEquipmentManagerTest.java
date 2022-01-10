@@ -3,6 +3,7 @@ package pwcg.campaign;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -10,15 +11,14 @@ import org.junit.jupiter.api.TestInstance;
 import pwcg.campaign.company.Company;
 import pwcg.campaign.context.FrontMapIdentifier;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
-import pwcg.campaign.plane.PlaneAttributeMapping;
-import pwcg.campaign.plane.Equipment;
-import pwcg.campaign.plane.EquippedPlane;
-import pwcg.campaign.plane.TankType;
-import pwcg.campaign.plane.TankTypeFactory;
+import pwcg.campaign.tank.Equipment;
+import pwcg.campaign.tank.EquippedTank;
+import pwcg.campaign.tank.TankAttributeMapping;
+import pwcg.campaign.tank.TankType;
+import pwcg.campaign.tank.TankTypeFactory;
 import pwcg.core.exception.PWCGException;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class CampaignEquipmentManagerTest
@@ -26,54 +26,55 @@ public class CampaignEquipmentManagerTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
         PWCGContext.getInstance().changeContext(FrontMapIdentifier.STALINGRAD_MAP);
     }
     
     @Test
     public void makeAircraftForSquadronTest () throws PWCGException
     {
-        Campaign campaign = CampaignCache.makeCampaign(SquadronTestProfile.GROSS_DEUTSCHLAND_PROFILE_FW190);
-        Equipment equipment = campaign.getEquipmentManager().getEquipmentForCompany(SquadronTestProfile.GROSS_DEUTSCHLAND_PROFILE_FW190.getCompanyId());
-        for (EquippedTank plane : equipment.getActiveEquippedTanks().values())
+        Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
+        Equipment equipment = campaign.getEquipmentManager().getEquipmentForCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
+        for (EquippedTank tank : equipment.getActiveEquippedTanks().values())
         {
-            assert(plane.getType().contentEquals(PlaneAttributeMapping.FW190_A3.getTankType()));
+            Assertions.assertTrue(TankAttributeMapping.TIGER_I.getTankType().equals(tank.getType()));
         }
         
 
     }
     
     @Test
-    public void replaceAircraftForSquadronTest () throws PWCGException
+    public void replaceTanksForCompanyTest () throws PWCGException
     {
-        List<Integer> planesToReplace = new ArrayList<>();
+        List<Integer> tanksToReplace = new ArrayList<>();
         
-        Campaign campaign = CampaignCache.makeCampaign(SquadronTestProfile.GROSS_DEUTSCHLAND_PROFILE_FW190);
-        Equipment equipment = campaign.getEquipmentManager().getEquipmentForCompany(SquadronTestProfile.GROSS_DEUTSCHLAND_PROFILE_FW190.getCompanyId());
+        Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
+        Equipment equipment = campaign.getEquipmentManager().getEquipmentForCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
         int count = 0;
-        for (EquippedTank plane : equipment.getActiveEquippedTanks().values())
+        for (EquippedTank tank : equipment.getActiveEquippedTanks().values())
         {
-            assert(plane.getType().contentEquals(PlaneAttributeMapping.FW190_A3.getTankType()));
+            String wtf = TankAttributeMapping.TIGER_I.getTankType();
+            Assertions.assertTrue(TankAttributeMapping.TIGER_I.getTankType().equals(tank.getType()));
             if (count == 0 || count == 3 || count == 6)
             {
-                planesToReplace.add(plane.getSerialNumber());
+                tanksToReplace.add(tank.getSerialNumber());
             }
             ++count;
         }
         
-        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(SquadronTestProfile.GROSS_DEUTSCHLAND_PROFILE_FW190.getCompanyId());
-        TankTypeFactory planeTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
-        TankType planeType = planeTypeFactory.getPlaneById("bf109f4");
-        campaign.getEquipmentManager().actOnEquipmentRequest(squadron, planesToReplace, planeType.getDisplayName());
+        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
+        TankTypeFactory tankTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
+        TankType tankType = tankTypeFactory.getPlaneById(TankAttributeMapping.PANTHER_D.getTankType());
+        campaign.getEquipmentManager().actOnEquipmentRequest(squadron, tanksToReplace, tankType.getDisplayName());
         
-        int bf109Count = 0;
-        for (EquippedTank plane : equipment.getActiveEquippedTanks().values())
+        int pantherCount = 0;
+        for (EquippedTank tank : equipment.getActiveEquippedTanks().values())
         {
-            if (plane.getType().contentEquals(PlaneAttributeMapping.BF109_F4.getTankType()))
+            if (tank.getType().contentEquals(TankAttributeMapping.PANTHER_D.getTankType()))
             {
-                ++bf109Count;
+                ++pantherCount;
             }
         }
-        assert(bf109Count == 3);
+        assert(pantherCount == 3);
     }
 }

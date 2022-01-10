@@ -21,7 +21,6 @@ import javax.swing.JRadioButton;
 import pwcg.campaign.company.CompanyManager;
 import pwcg.campaign.context.FrontMapIdentifier;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.core.utils.PWCGLogger;
@@ -182,23 +181,12 @@ public class InfoMapGUI extends MapGUI implements ActionListener
         JLabel mapLabel = PWCGLabelFactory.makeMenuLabelLarge("Choose Map");
         mapGrid.add(mapLabel);
         
-        if (PWCGContext.getProduct() == PWCGProduct.TC)
-        {
-            addToMapGrid(mapGrid, FrontMapIdentifier.MOSCOW_MAP);
-            addToMapGrid(mapGrid, FrontMapIdentifier.STALINGRAD_MAP);
-            addToMapGrid(mapGrid, FrontMapIdentifier.KUBAN_MAP);
-            addToMapGrid(mapGrid, FrontMapIdentifier.EAST1944_MAP);
-            addToMapGrid(mapGrid, FrontMapIdentifier.EAST1945_MAP);
-            addToMapGrid(mapGrid, FrontMapIdentifier.BODENPLATTE_MAP);
-        }
-        else if (PWCGContext.getProduct() == PWCGProduct.TC)
-        {
-            addToMapGrid(mapGrid, FrontMapIdentifier.STALINGRAD_MAP);
-        }
-        else
-        {
-            throw new PWCGException("No valid product selected");
-        }
+        addToMapGrid(mapGrid, FrontMapIdentifier.MOSCOW_MAP);
+        addToMapGrid(mapGrid, FrontMapIdentifier.STALINGRAD_MAP);
+        addToMapGrid(mapGrid, FrontMapIdentifier.KUBAN_MAP);
+        addToMapGrid(mapGrid, FrontMapIdentifier.EAST1944_MAP);
+        addToMapGrid(mapGrid, FrontMapIdentifier.EAST1945_MAP);
+        addToMapGrid(mapGrid, FrontMapIdentifier.BODENPLATTE_MAP);
 
         return mapPanel;
     }

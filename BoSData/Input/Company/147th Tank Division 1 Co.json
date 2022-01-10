@@ -1,6 +1,6 @@
 {
 	"country": "RUSSIA",
-	"squadronId": 101147001,
+	"companyId": 101147001,
 	"name": "147th Tank Division, 1st Company",
 	"fileName": "147th Tank Division 1 Co.json",
 	"skill": 30,
@@ -48,8 +48,8 @@
 	"skins": [
 	],
 	"serviceId": 10112,
-	"squadronRoles": {
-		"squadronRolePeriods": [
+	"companyRoles": {
+		"companyRolePeriods": [
 			{
 				"startDate": "19400101",
 				"weightedRoles": [

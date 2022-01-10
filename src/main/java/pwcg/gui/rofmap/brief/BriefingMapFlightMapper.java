@@ -4,7 +4,7 @@ import pwcg.core.exception.PWCGException;
 import pwcg.core.location.CoordinateBox;
 import pwcg.gui.rofmap.brief.model.BriefingUnit;
 import pwcg.mission.Mission;
-import pwcg.mission.unit.IPlayerUnit;
+import pwcg.mission.unit.ITankUnit;
 
 public class BriefingMapFlightMapper
 {
@@ -28,18 +28,18 @@ public class BriefingMapFlightMapper
         Mission mission = briefingMissionHandler.getMission();
         mapPanel.clearVirtualPoints();
 
-        for (IPlayerUnit playerUnit : mission.getUnits().getPlayerUnits())
+        for (ITankUnit playerUnit : mission.getUnits().getPlayerUnits())
         {
             mapPanel.makeMapPanelVirtualPoints(playerUnit);
         }
 
-        for (IPlayerUnit playerUnit : mission.getUnits().getAiUnits())
+        for (ITankUnit playerUnit : mission.getUnits().getAiUnits())
         {
             mapFlightAndLinkedFlights(playerUnit);
         }
     }
 
-    private void mapFlightAndLinkedFlights(IPlayerUnit playerUnit) throws PWCGException
+    private void mapFlightAndLinkedFlights(ITankUnit playerUnit) throws PWCGException
     {
         mapPanel.makeMapPanelVirtualPoints(playerUnit);
     }

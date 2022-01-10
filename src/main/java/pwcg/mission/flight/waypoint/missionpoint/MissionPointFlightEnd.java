@@ -7,7 +7,6 @@ import java.util.List;
 import pwcg.core.exception.PWCGException;
 import pwcg.mission.flight.FlightPlanes;
 import pwcg.mission.flight.IFlight;
-import pwcg.mission.flight.waypoint.WaypointAction;
 import pwcg.mission.flight.waypoint.end.TerminalWaypointGenerator;
 import pwcg.mission.mcu.BaseFlightMcu;
 import pwcg.mission.mcu.McuWaypoint;
@@ -34,8 +33,6 @@ public class MissionPointFlightEnd extends MissionPointSetSingleWaypointSet impl
     public List<MissionPoint> getFlightMissionPoints() throws PWCGException
     {
         List<MissionPoint> waypointsCoordinates =  super.getWaypointsAsMissionPoints();
-        MissionPoint landPoint = new MissionPoint(flight.getFlightInformation().getHomePosition(), WaypointAction.WP_ACTION_LANDING_APPROACH);
-        waypointsCoordinates.add(landPoint);
         return waypointsCoordinates;
     }
 

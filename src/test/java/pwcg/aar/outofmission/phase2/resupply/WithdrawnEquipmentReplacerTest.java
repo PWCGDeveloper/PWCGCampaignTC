@@ -40,7 +40,7 @@ public class WithdrawnEquipmentReplacerTest
     @BeforeEach
     public void setupTest() throws PWCGException
     {        
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
         Mockito.when(squadron.getCompanyId()).thenReturn(20111051);
         Mockito.when(campaign.getSerialNumber()).thenReturn(serialNumber);
         equipment = new Equipment();

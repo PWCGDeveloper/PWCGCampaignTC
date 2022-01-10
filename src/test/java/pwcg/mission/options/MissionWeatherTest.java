@@ -25,7 +25,7 @@ public class MissionWeatherTest
     @BeforeEach
     public void setupTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
         PWCGContext.getInstance().setCurrentMap(FrontMapIdentifier.BODENPLATTE_MAP);
 
         Mockito.when(campaign.getCampaignConfigManager()).thenReturn(configManager);

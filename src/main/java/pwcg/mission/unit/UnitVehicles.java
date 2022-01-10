@@ -13,9 +13,8 @@ public class UnitVehicles
 {
     private List<TankMcu> tanks = new ArrayList<>();
 
-    public UnitVehicles(IPlayerUnit unit)
+    public UnitVehicles()
     {
-        this.tanks = unit.getTanks();
     }
 
     public List<TankMcu> getAiTanks() throws PWCGException 
@@ -23,7 +22,7 @@ public class UnitVehicles
         List<TankMcu> aiVehicles = new ArrayList<>();
         for (TankMcu tank : tanks)
         {
-            if (!tank.getCrewMember().isPlayer())
+            if (!tank.getTankCommander().isPlayer())
             {
                 aiVehicles.add(tank);
             }
@@ -37,7 +36,7 @@ public class UnitVehicles
         List<TankMcu> playerVehicles = new ArrayList<>();
         for (TankMcu tank : tanks)
         {
-            if (tank.getCrewMember().isPlayer())
+            if (tank.getTankCommander().isPlayer())
             {
                 playerVehicles.add(tank);
             }
@@ -51,7 +50,7 @@ public class UnitVehicles
         TankMcu crewMemberVehicle = null;
         for (TankMcu tank : tanks)
         {
-            if (tank.getCrewMember().getSerialNumber() == crewMemberSerialNumber)
+            if (tank.getTankCommander().getSerialNumber() == crewMemberSerialNumber)
             {
                 crewMemberVehicle = tank;
                 break;

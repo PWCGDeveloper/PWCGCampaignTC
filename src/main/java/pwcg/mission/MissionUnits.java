@@ -5,12 +5,13 @@ import java.util.List;
 
 import pwcg.campaign.Campaign;
 import pwcg.core.exception.PWCGException;
-import pwcg.mission.unit.IPlayerUnit;
+import pwcg.mission.unit.ITankUnit;
 import pwcg.mission.unit.PlayerUnit;
+import pwcg.mission.unit.TankMcu;
 
 public class MissionUnits
 {
-    private List<IPlayerUnit> playerUnits = new ArrayList<>();
+    private List<ITankUnit> tankUnits = new ArrayList<>();
     private Mission mission;
     private Campaign campaign;
 
@@ -20,24 +21,41 @@ public class MissionUnits
         this.campaign = mission.getCampaign();
     }
     
-    public void addPlayerUnit(IPlayerUnit playerUnit)
+    public void addPlayerUnit(ITankUnit playerUnit)
     {
-        playerUnits.add(playerUnit);
+        tankUnits.add(playerUnit);
     }
 
-    public List<Integer> getPlayersInMission()
+    public List<Integer> determinePlayerVehicleIds() throws PWCGException
     {
-        return null;
+        List<Integer> playersInMission = new ArrayList<>();
+        for (ITankUnit unit : tankUnits)
+        {
+            for (TankMcu tank : unit.getUnitTanks().getPlayerTanks())
+            {
+                if (tank.getTankCommander().isPlayer())
+                {
+                    playersInMission.add(tank.getLinkTrId());
+                }
+            }
+        }
+        return playersInMission;
     }
 
-    public List<Integer> determinePlayerVehicleIds()
+    public List<ITankUnit> getPlayerUnits() throws PWCGException
     {
-        return null;
-    }
-
-    public List<PlayerUnit> getPlayerUnits()
-    {
-        return null;
+        List<ITankUnit> playerUnits = new ArrayList<>();
+        for (ITankUnit unit : playerUnits)
+        {
+            for (TankMcu tank : unit.getUnitTanks().getPlayerTanks())
+            {
+                if (tank.getTankCommander().isPlayer())
+                {
+                    playerUnits.add(unit);
+                }
+            }
+        }
+        return playerUnits;
     }
 
     public List<PlayerUnit> getAiUnits()
@@ -45,9 +63,9 @@ public class MissionUnits
         return null;
     }
 
-    public IPlayerUnit getReferencePlayerUnit()
+    public ITankUnit getReferencePlayerUnit()
     {
-        return null;
+        return tankUnits.get(0);
     }
     
 
@@ -57,8 +75,15 @@ public class MissionUnits
         unitFinalizer.finalizeMissionUnits();
     }
 
-    public IPlayerUnit getPlayerUnitForCompany(int companyId)
+    public ITankUnit getPlayerUnitForCompany(int companyId) throws PWCGException
     {
+        for (ITankUnit unit : getPlayerUnits())
+        {
+            if (unit.getCompany().getCompanyId() == companyId)
+            {
+                return unit;
+            }
+        }
         return null;
     }
 

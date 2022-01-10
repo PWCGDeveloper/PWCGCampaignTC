@@ -11,8 +11,6 @@ import pwcg.aar.AAROutOfMissionStepper;
 import pwcg.aar.data.AARContext;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
 import pwcg.campaign.Campaign;
-import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.CrewMemberStatus;
 import pwcg.campaign.tank.EquippedTank;
@@ -21,7 +19,7 @@ import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.CampaignRemover;
 import pwcg.core.utils.DateUtils;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class AARCoordinatorCampaignUpdateIntegrityValidator
@@ -35,8 +33,7 @@ public class AARCoordinatorCampaignUpdateIntegrityValidator
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
-        campaign = CampaignCache.makeCampaignOnDisk(SquadronTestProfile.JG_51_PROFILE_MOSCOW);
+        campaign = CampaignCache.makeCampaignOnDisk(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
     }
 
     @Test

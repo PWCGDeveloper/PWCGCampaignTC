@@ -1,6 +1,6 @@
 {
 	"country": "GERMANY",
-	"squadronId": 201001001,
+	"companyId": 201001001,
 	"name": "Gross Deutschland Division, 1st Company",
 	"fileName": "Gross Deutschland Division 1 Co.json",
 	"skill": 90,
@@ -10,12 +10,12 @@
 		{
 			"archType": "pziii",
 			"introduction": "19400101",
-			"withdrawal": "19420501"
+			"withdrawal": "19420430"
 		},
 		{
 			"archType": "pziv",
 			"introduction": "19420501",
-			"withdrawal": "19420801"
+			"withdrawal": "19420731"
 		},
 		{
 			"archType": "tiger",
@@ -57,8 +57,8 @@
 	"skins": [
 	],
 	"serviceId": 20111,
-	"squadronRoles": {
-		"squadronRolePeriods": [
+	"companyRoles": {
+		"companyRolePeriods": [
 			{
 				"startDate": "19400101",
 				"weightedRoles": [

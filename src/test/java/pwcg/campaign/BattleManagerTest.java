@@ -20,7 +20,7 @@ public class BattleManagerTest
 {
     public BattleManagerTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
     }
     
     @Test

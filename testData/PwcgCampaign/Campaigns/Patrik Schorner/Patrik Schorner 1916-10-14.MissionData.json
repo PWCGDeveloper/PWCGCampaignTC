@@ -14,7 +14,7 @@
   "missionPlanes": [
     {
       "aircraftType": "albatrosd2",
-      "squadronId": 501016,
+      "companyId": 501016,
       "crew": {
         "pilot": "Patrik Schorner",
         "observer": "",
@@ -24,7 +24,7 @@
     },
     {
       "aircraftType": "albatrosd2",
-      "squadronId": 501016,
+      "companyId": 501016,
       "crew": {
         "pilot": "Detlef Schwarzer",
         "observer": "",
@@ -34,7 +34,7 @@
     },
     {
       "aircraftType": "albatrosd2",
-      "squadronId": 501016,
+      "companyId": 501016,
       "crew": {
         "pilot": "Joachim Lechner",
         "observer": "",
@@ -44,7 +44,7 @@
     },
     {
       "aircraftType": "halberstadtd2",
-      "squadronId": 501016,
+      "companyId": 501016,
       "crew": {
         "pilot": "Ingemar Beckermann",
         "observer": "",
@@ -54,7 +54,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronId": 501223,
+      "companyId": 501223,
       "crew": {
         "pilot": "Hartmut Hardenburg",
         "observer": "Florian Schimscheiner",
@@ -64,7 +64,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronId": 501223,
+      "companyId": 501223,
       "crew": {
         "pilot": "Niklaus Guns",
         "observer": "Friedhelm Enzensberger",
@@ -74,7 +74,7 @@
     },
     {
       "aircraftType": "nieuport17brit",
-      "squadronId": 102001,
+      "companyId": 102001,
       "crew": {
         "pilot": "Clive Holcott",
         "observer": "",
@@ -84,7 +84,7 @@
     },
     {
       "aircraftType": "nieuport17brit",
-      "squadronId": 102001,
+      "companyId": 102001,
       "crew": {
         "pilot": "Carney Younger",
         "observer": "",
@@ -94,7 +94,7 @@
     },
     {
       "aircraftType": "nieuport17brit",
-      "squadronId": 102001,
+      "companyId": 102001,
       "crew": {
         "pilot": "Hale Bardolf",
         "observer": "",
@@ -104,7 +104,7 @@
     },
     {
       "aircraftType": "nieuport17brit",
-      "squadronId": 102001,
+      "companyId": 102001,
       "crew": {
         "pilot": "Benjamin Wilkins",
         "observer": "",
@@ -114,7 +114,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronId": 101107,
+      "companyId": 101107,
       "crew": {
         "pilot": "Julien Kalandoff",
         "observer": "Gaspard Ignace",
@@ -124,7 +124,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronId": 101107,
+      "companyId": 101107,
       "crew": {
         "pilot": "Antonin Vasseur",
         "observer": "Augustin Martinez",
@@ -134,7 +134,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronId": 101107,
+      "companyId": 101107,
       "crew": {
         "pilot": "Honore Kalandoff",
         "observer": "Sauveur Vertadier",
@@ -144,7 +144,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronId": 101107,
+      "companyId": 101107,
       "crew": {
         "pilot": "Celestin Morliere",
         "observer": "Auguste Discors",
@@ -154,7 +154,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronId": 101020,
+      "companyId": 101020,
       "crew": {
         "pilot": "Samuel Le Bars",
         "observer": "Leo Kunsch",
@@ -164,7 +164,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronId": 101020,
+      "companyId": 101020,
       "crew": {
         "pilot": "Alfred Ratoin",
         "observer": "Gilbert Lafon",
@@ -174,7 +174,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronId": 101020,
+      "companyId": 101020,
       "crew": {
         "pilot": "Justin Paniez",
         "observer": "Henri Vertadier",
@@ -184,7 +184,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronId": 101020,
+      "companyId": 101020,
       "crew": {
         "pilot": "Marceau Lafontaine",
         "observer": "Leandre de Anchald",

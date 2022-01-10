@@ -52,7 +52,7 @@ public class AssaultBuilderTest
     @BeforeEach
     public void setupTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
         PWCGContext.getInstance().setCurrentMap(FrontMapIdentifier.STALINGRAD_MAP);
 
         List<IFlight> playerFlights = new ArrayList<>();

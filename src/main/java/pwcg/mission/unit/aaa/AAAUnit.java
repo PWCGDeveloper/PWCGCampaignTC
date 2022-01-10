@@ -1,7 +1,6 @@
 package pwcg.mission.unit.aaa;
 
 import pwcg.core.exception.PWCGException;
-import pwcg.mission.flight.waypoint.missionpoint.IMissionPointSet;
 import pwcg.mission.unit.PlayerUnit;
 import pwcg.mission.unit.UnitInformation;
 
@@ -15,8 +14,7 @@ public class AAAUnit extends PlayerUnit
     @Override
     protected void createWaypoints() throws PWCGException
     {
-        AAAWaypointFactory missionWaypointFactory = new AAAWaypointFactory(this);
-        IMissionPointSet missionWaypoints = missionWaypointFactory.createWaypoints();
-        this.getWaypointPackage().addMissionPointSet(missionWaypoints);
+        AAAWaypointFactory waypointFactory = new AAAWaypointFactory(this);
+        waypoints = waypointFactory.createWaypoints();
     }
 }

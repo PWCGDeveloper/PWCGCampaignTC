@@ -15,7 +15,7 @@ import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGProduct;
 import pwcg.core.exception.PWCGException;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class SquadronReducerTest
@@ -23,13 +23,13 @@ public class SquadronReducerTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
     }
 
     @Test
     public void anomaliesRemoved() throws PWCGException
     {
-        Campaign campaign = CampaignCache.makeCampaign(SquadronTestProfile.JG_52_PROFILE_STALINGRAD);
+        Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.JG_52_PROFILE_STALINGRAD);
         CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
         List<Company> allSquadrons = squadronManager.getAllCompanies();
         List<Company> squadronsWithoutAnomalies = CompanyReducer.reduceToNoAnomalies(allSquadrons, campaign.getDate());
@@ -45,7 +45,7 @@ public class SquadronReducerTest
     @Test
     public void jg51NotAnAnomaly() throws PWCGException
     {
-        Campaign campaign = CampaignCache.makeCampaign(SquadronTestProfile.REGIMENT_11_PROFILE);        
+        Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.REGIMENT_11_PROFILE);        
         CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
         List<Company> allSquadrons = squadronManager.getAllCompanies();
         List<Company> squadronsWithoutAnomalies = CompanyReducer.reduceToNoAnomalies(allSquadrons, campaign.getDate());
@@ -70,7 +70,7 @@ public class SquadronReducerTest
     @Test
     public void noAnomaliesRemoved() throws PWCGException
     {
-        Campaign campaign = CampaignCache.makeCampaign(SquadronTestProfile.REGIMENT_11_PROFILE);        
+        Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.REGIMENT_11_PROFILE);        
         CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
         List<Company> allSquadrons = squadronManager.getAllCompanies();
         List<Company> squadronsWithoutAnomalies = CompanyReducer.reduceToNoAnomalies(allSquadrons, campaign.getDate());

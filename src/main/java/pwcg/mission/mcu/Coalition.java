@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pwcg.campaign.api.Side;
-import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 
 public enum Coalition
 {
@@ -36,43 +34,21 @@ public enum Coalition
     public static List<Coalition> getCoalitions()
     {
         List<Coalition> coalitions = new ArrayList<>();
-        if (PWCGContext.getProduct() == PWCGProduct.TC)
-        {
-            coalitions.add(COALITION_ALLIED);
-            coalitions.add(COALITION_AXIS);
-        }
-        else
-        {
-            coalitions.add(COALITION_ENTENTE);
-            coalitions.add(COALITION_CENTRAL);
-        }
+        coalitions.add(COALITION_ALLIED);
+        coalitions.add(COALITION_AXIS);
         return coalitions;
     }
 
     public static List<Coalition> getCoalitionsForSide(Side side)
     {
         List<Coalition> coalitions = new ArrayList<>();
-        if (PWCGContext.getProduct() == PWCGProduct.TC)
+        if (side == Side.ALLIED)
         {
-            if (side == Side.ALLIED)
-            {
-                coalitions.add(COALITION_ALLIED);
-            }
-            else
-            {
-                coalitions.add(COALITION_AXIS);
-            }
+            coalitions.add(COALITION_ALLIED);
         }
         else
         {
-            if (side == Side.ALLIED)
-            {
-                coalitions.add(COALITION_ENTENTE);
-            }
-            else
-            {
-                coalitions.add(COALITION_CENTRAL);
-            }
+            coalitions.add(COALITION_AXIS);
         }
         return coalitions;
     }

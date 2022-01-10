@@ -59,7 +59,7 @@ public class AiDeclarationResolutionFirmTest
     @BeforeEach
     public void setupTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
         
         firmVictories.clear();
         

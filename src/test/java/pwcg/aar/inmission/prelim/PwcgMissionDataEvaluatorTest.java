@@ -32,7 +32,7 @@ public class PwcgMissionDataEvaluatorTest
 
     public PwcgMissionDataEvaluatorTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
     }
 
     @Test

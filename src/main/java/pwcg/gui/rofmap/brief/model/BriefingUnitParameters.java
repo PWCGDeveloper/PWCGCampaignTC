@@ -49,7 +49,6 @@ public class BriefingUnitParameters
                     double heading = MathUtils.calcAngle(previousBriefingMapPoint.getPosition(), nextBriefingMapPoint.getPosition());
                     
                     Coordinate newMapPointPosition = MathUtils.calcNextCoord(previousBriefingMapPoint.getPosition(), heading, (distance / 2));
-                    newMapPointPosition.setYPos(previousBriefingMapPoint.getAltitude());
                     briefingMapPointToAdd.setPosition(newMapPointPosition);
                     this.briefingMapPoints.add(actionMapPointIndex+1, briefingMapPointToAdd);
                 }

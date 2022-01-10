@@ -10,7 +10,7 @@ import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGProduct;
 import pwcg.core.exception.PWCGException;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class AARCoordinatorTransferTest
@@ -22,9 +22,9 @@ public class AARCoordinatorTransferTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
         PWCGContext.getInstance().changeContext(FrontMapIdentifier.MOSCOW_MAP);
-        campaign = CampaignCache.makeCampaign(SquadronTestProfile.JG_51_PROFILE_MOSCOW);
+        campaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
         expectedResults = new ExpectedResults(campaign);
         aarCoordinator = AARCoordinator.getInstance();
         aarCoordinator.reset(campaign);

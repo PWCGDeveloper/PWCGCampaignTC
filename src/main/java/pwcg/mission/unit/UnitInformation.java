@@ -22,6 +22,7 @@ public class UnitInformation
         this.mission = mission;
         this.campaign = mission.getCampaign();
         this.company = company;
+        this.crewMembers = crewMembers;
         this.objective = objective;
     }
     

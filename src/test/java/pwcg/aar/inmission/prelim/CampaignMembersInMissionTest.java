@@ -22,7 +22,7 @@ import pwcg.campaign.crewmember.SerialNumber;
 import pwcg.core.exception.PWCGException;
 import pwcg.mission.data.PwcgGeneratedMissionVehicleData;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 
 @ExtendWith(MockitoExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -37,8 +37,8 @@ public class CampaignMembersInMissionTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
-        campaign = CampaignCache.makeCampaign(SquadronTestProfile.REGIMENT_503_PROFILE);
+        
+        campaign = CampaignCache.makeCampaign(CompanyTestProfile.TANK_DIVISION_147_PROFILE);
     }
 
 

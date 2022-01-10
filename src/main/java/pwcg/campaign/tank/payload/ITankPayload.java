@@ -3,7 +3,7 @@ package pwcg.campaign.tank.payload;
 import java.util.List;
 
 import pwcg.core.exception.PWCGException;
-import pwcg.mission.unit.IPlayerUnit;
+import pwcg.mission.unit.ITankUnit;
 
 public interface ITankPayload
 {
@@ -12,10 +12,10 @@ public interface ITankPayload
     TankModifications getModifications();
 
     TankPayloadDesignation getSelectedPayloadDesignation() throws PWCGException;
-    List<TankPayloadDesignation> getAvailablePayloadDesignations(IPlayerUnit unit) throws PWCGException;
+    List<TankPayloadDesignation> getAvailablePayloadDesignations(ITankUnit unit) throws PWCGException;
     int getPayloadIdByDescription(String payloadDescription);
     String getPayloadMaskByDescription(String payloadDescription);
-    public int createWeaponsPayload(IPlayerUnit unit) throws PWCGException;
+    public int createWeaponsPayload(ITankUnit unit) throws PWCGException;
     void createStandardWeaponsPayload();
     int getSelectedPayloadId();
     void setSelectedPayloadId(int selectedPrimaryPayloadId);

@@ -27,7 +27,7 @@ public class InitialReplacementEquipperTest
     
     public InitialReplacementEquipperTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
     }
 
     @Test

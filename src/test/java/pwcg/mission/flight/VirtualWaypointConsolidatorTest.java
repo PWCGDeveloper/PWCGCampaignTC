@@ -35,7 +35,7 @@ public class VirtualWaypointConsolidatorTest
     @BeforeEach
     public void setupTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
 
         Coordinate coordinate1 = new Coordinate(99, 0, 101);
         Coordinate coordinate2 = new Coordinate(101, 0, 99);

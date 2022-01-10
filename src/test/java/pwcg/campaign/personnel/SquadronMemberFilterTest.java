@@ -18,7 +18,7 @@ import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.CrewMemberPicker;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 
 @ExtendWith(MockitoExtension.class)
 public class CrewMemberFilterTest
@@ -32,12 +32,12 @@ public class CrewMemberFilterTest
     @BeforeEach
     public void setupTest() throws PWCGException
      {
-        PWCGContext.setProduct(PWCGProduct.TC);
-        campaign = CampaignCache.makeCampaign(SquadronTestProfile.JG_51_PROFILE_MOSCOW);
+        
+        campaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
         
         while (woundedCrewMembers.size() < 5)
         {
-            CrewMember crewMember = CrewMemberPicker.pickNonAceCampaignMember(campaign, SquadronTestProfile.JG_51_PROFILE_MOSCOW.getCompanyId());
+            CrewMember crewMember = CrewMemberPicker.pickNonAceCampaignMember(campaign, CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
             crewMember.setCrewMemberActiveStatus(CrewMemberStatus.STATUS_WOUNDED, campaign.getDate(), DateUtils.advanceTimeDays(campaign.getDate(), 10));
             if (!campaignMemberUsed(crewMember.getSerialNumber()) && crewMember.isPlayer() == false)
             {
@@ -47,7 +47,7 @@ public class CrewMemberFilterTest
         
         while (maimedCrewMembers.size() < 4)
         {
-            CrewMember crewMember = CrewMemberPicker.pickNonAceCampaignMember(campaign, SquadronTestProfile.JG_51_PROFILE_MOSCOW.getCompanyId());
+            CrewMember crewMember = CrewMemberPicker.pickNonAceCampaignMember(campaign, CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
             crewMember.setCrewMemberActiveStatus(CrewMemberStatus.STATUS_SERIOUSLY_WOUNDED, campaign.getDate(), null);
             if (!campaignMemberUsed(crewMember.getSerialNumber()) && crewMember.isPlayer() == false)
             {
@@ -57,7 +57,7 @@ public class CrewMemberFilterTest
         
         while (deadCrewMembers.size() < 3)
         {
-            CrewMember crewMember = CrewMemberPicker.pickNonAceCampaignMember(campaign, SquadronTestProfile.JG_51_PROFILE_MOSCOW.getCompanyId());
+            CrewMember crewMember = CrewMemberPicker.pickNonAceCampaignMember(campaign, CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
             crewMember.setCrewMemberActiveStatus(CrewMemberStatus.STATUS_KIA, campaign.getDate(), null);
             if (!campaignMemberUsed(crewMember.getSerialNumber()) && crewMember.isPlayer() == false)
             {
@@ -67,7 +67,7 @@ public class CrewMemberFilterTest
         
         while (capturedCrewMembers.size() < 2)
         {
-            CrewMember crewMember = CrewMemberPicker.pickNonAceCampaignMember(campaign, SquadronTestProfile.JG_51_PROFILE_MOSCOW.getCompanyId());
+            CrewMember crewMember = CrewMemberPicker.pickNonAceCampaignMember(campaign, CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
             crewMember.setCrewMemberActiveStatus(CrewMemberStatus.STATUS_CAPTURED, campaign.getDate(), null);
             if (!campaignMemberUsed(crewMember.getSerialNumber()) && crewMember.isPlayer() == false)
             {

@@ -18,7 +18,6 @@ import pwcg.aar.AARCoordinator;
 import pwcg.aar.inmission.phase3.reconcile.victories.singleplayer.PlayerDeclarations;
 import pwcg.aar.inmission.phase3.reconcile.victories.singleplayer.PlayerVictoryDeclaration;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.tank.TankType;
 import pwcg.core.config.InternationalizationManager;
 import pwcg.core.exception.PWCGException;
@@ -142,10 +141,6 @@ public class AARClaimPanel extends JPanel implements ActionListener
         cbPlane.setFont(font);
 
         List<String> planeTypesInMission = AARCoordinator.getInstance().getAarContext().getPreliminaryData().getClaimPanelData().getEnemyTankTypesInMission();
-        if (addBalloon()) 
-        {
-            planeTypesInMission.add(TankType.BALLOON);
-        }
         
         for (String planeName : planeTypesInMission)
         {
@@ -159,16 +154,6 @@ public class AARClaimPanel extends JPanel implements ActionListener
         }
         return cbPlane;
     }
-
-	private boolean addBalloon()
-    {
-        if (PWCGContext.getProduct() == PWCGProduct.TC)
-        {
-            return true;
-        }
-        return false;
-    }
-
     public PlayerDeclarations getPlayerDeclarations() throws PWCGException 
 	{
 	    PlayerDeclarations playerDeclarations = new PlayerDeclarations();

@@ -35,7 +35,7 @@ import pwcg.campaign.crewmember.SerialNumber;
 import pwcg.campaign.factory.CountryFactory;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
@@ -67,7 +67,7 @@ public class AiDeclarationResolutionRandomTest
     public void setupTest() throws PWCGException
     {
         
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
 
         randomVictories.clear();
         campaignMembersInmission.clear();
@@ -101,7 +101,7 @@ public class AiDeclarationResolutionRandomTest
         playerSquadronsInMission.add(playerSquadron);
         Mockito.when(preliminaryData.getPlayerSquadronsInMission()).thenReturn(playerSquadronsInMission);
 
-        int squadronId = SquadronTestProfile.JASTA_11_PROFILE.getCompanyId();
+        int squadronId = CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId();
         Mockito.when(playerSquadron.getCompanyId()).thenReturn(squadronId);
         playerVictor.setSquadronId(squadronId);
         aiVictor.setSquadronId(squadronId);

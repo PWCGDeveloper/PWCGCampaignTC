@@ -20,7 +20,7 @@ import pwcg.campaign.resupply.depot.EquipmentReplacementWeightUsage;
 import pwcg.core.exception.PWCGException;
 import pwcg.product.bos.country.TCServiceManager;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 
 @ExtendWith(MockitoExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -32,9 +32,9 @@ public class EquipmentReplacementWeightUsageTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
-        earlyCampaign = CampaignCache.makeCampaign(SquadronTestProfile.JG_51_PROFILE_MOSCOW);
-        lateCampaign = CampaignCache.makeCampaign(SquadronTestProfile.JG_26_PROFILE_WEST);
+        
+        earlyCampaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
+        lateCampaign = CampaignCache.makeCampaign(CompanyTestProfile.JG_26_PROFILE_WEST);
     }
     
     @Test

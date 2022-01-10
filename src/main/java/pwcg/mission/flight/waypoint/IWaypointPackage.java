@@ -4,7 +4,6 @@ import java.io.BufferedWriter;
 import java.util.List;
 
 import pwcg.core.exception.PWCGException;
-import pwcg.gui.rofmap.brief.model.BriefingMapPoint;
 import pwcg.mission.flight.FlightPlanes;
 import pwcg.mission.flight.plane.PlaneMcu;
 import pwcg.mission.flight.waypoint.missionpoint.IMissionPointSet;
@@ -28,8 +27,6 @@ public interface IWaypointPackage
     void setAttackToTriggerOnPlane(List<PlaneMcu> planes) throws PWCGException;
 
     MissionPoint getMissionPointByAction(WaypointAction action) throws PWCGException;
-
-    void updateWaypointsFromBriefing(List<BriefingMapPoint> waypointsInBriefing) throws PWCGException;
     
     void write(BufferedWriter writer) throws PWCGException, PWCGException;
 

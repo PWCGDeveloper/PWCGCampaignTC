@@ -5,8 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import pwcg.core.exception.PWCGException;
 import pwcg.mission.Mission;
-import pwcg.mission.unit.IPlayerUnit;
+import pwcg.mission.unit.ITankUnit;
 
 public class BriefingData
 {
@@ -27,9 +28,9 @@ public class BriefingData
         return briefingMissionFlights.get(selectedCompanyId);
     }
     
-    public IPlayerUnit getSelectedUnit()
+    public ITankUnit getSelectedUnit() throws PWCGException
     {
-        IPlayerUnit playerFlight = mission.getUnits().getPlayerUnitForCompany(selectedCompanyId);
+        ITankUnit playerFlight = mission.getUnits().getPlayerUnitForCompany(selectedCompanyId);
         return playerFlight;
     }
 

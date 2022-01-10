@@ -5,11 +5,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
 
-import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.SerialNumber;
 import pwcg.campaign.factory.ArmedServiceFactory;
@@ -17,9 +13,8 @@ import pwcg.campaign.personnel.InitialReplacementStaffer;
 import pwcg.campaign.personnel.PersonnelReplacementsService;
 import pwcg.core.exception.PWCGException;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.SquadronTestProfile;
+import pwcg.testutils.CompanyTestProfile;
 
-@ExtendWith(MockitoExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class CampaignPersonnelManagerTest
 {
@@ -28,15 +23,8 @@ public class CampaignPersonnelManagerTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
-        campaign = CampaignCache.makeCampaign(SquadronTestProfile.REGIMENT_503_PROFILE);
-    }
-
-    @Test
-    public void testAceRetrieval() throws PWCGException
-    {
-        CrewMember ace = campaign.getPersonnelManager().getAnyCampaignMember(201001);
-        assert(ace.getName().equals("Hermann Graf"));
+        
+        campaign = CampaignCache.makeCampaign(CompanyTestProfile.TANK_DIVISION_147_PROFILE);
     }
 
     @Test

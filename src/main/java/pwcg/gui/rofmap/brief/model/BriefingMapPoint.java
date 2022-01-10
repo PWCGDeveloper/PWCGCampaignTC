@@ -9,7 +9,6 @@ public class BriefingMapPoint
     private long waypointID = 0;
 
     private Coordinate position;
-    private int altitude;
     private int cruisingSpeed;
     private int distanceToNextPoint;
     private boolean editable = true;
@@ -27,7 +26,6 @@ public class BriefingMapPoint
     {
         BriefingMapPoint copy = new BriefingMapPoint(masterNewWaypointId);
         copy.position = this.position.copy();
-        copy.altitude = this.altitude;
         copy.cruisingSpeed = this.cruisingSpeed;
         copy.distanceToNextPoint = 0;
         copy.editable = this.editable;
@@ -45,16 +43,6 @@ public class BriefingMapPoint
     public void setPosition(Coordinate position)
     {
         this.position = position;
-    }
-
-    public int getAltitude()
-    {
-        return altitude;
-    }
-
-    public void setAltitude(int altitude)
-    {
-        this.altitude = altitude;
     }
 
     public int getCruisingSpeed()

@@ -1,6 +1,6 @@
 {
 	"country": "GERMANY",
-	"squadronId": 201011003,
+	"companyId": 201011003,
 	"name": "Panzer Lehr Division 1 Co.json",
 	"fileName": "Panzer Lehr Division 1 Co.json",
 	"skill": 80,
@@ -10,11 +10,11 @@
 		{
 			"archType": "pziii",
 			"introduction": "19400101",
-			"withdrawal": "19420801"
+			"withdrawal": "19420701"
 		},
 		{
 			"archType": "pziv",
-			"introduction": "19420801",
+			"introduction": "19420701",
 			"withdrawal": "19431001"
 		},
 		{
@@ -37,8 +37,8 @@
 	},
 	"skins": [],
 	"serviceId": 20111,
-	"squadronRoles": {
-		"squadronRolePeriods": [
+	"companyRoles": {
+		"companyRolePeriods": [
 			{
 				"startDate": "19400101",
 				"weightedRoles": [

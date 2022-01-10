@@ -45,7 +45,7 @@ public class AARMissionFileLogResultMatcherTest
     @BeforeAll
     public static void setup() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);        
+                
     }
     
     @Test

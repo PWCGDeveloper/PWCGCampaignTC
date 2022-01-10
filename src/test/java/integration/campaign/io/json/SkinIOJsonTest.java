@@ -20,7 +20,7 @@ public class SkinIOJsonTest
     @Test
     public void readJsonRoFSkinsConfiguredTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
         Map<String, SkinSet> skins = SkinIOJson.readSkinSet(SkinSetType.SKIN_CONFIGURED.getSkinSetName());
         Assertions.assertTrue (skins.size() > 0);
     }
@@ -28,7 +28,7 @@ public class SkinIOJsonTest
     @Test
     public void readJsonRoFSkinsDoNotUseTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
         Map<String, SkinSet> skins = SkinIOJson.readSkinSet(SkinSetType.SKIN_DO_NOT_USE.getSkinSetName());
         Assertions.assertTrue (skins.size() == 0);
     }
@@ -36,7 +36,7 @@ public class SkinIOJsonTest
     @Test
     public void readJsonBoSSkinsConfiguredTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
         Map<String, SkinSet> skins = SkinIOJson.readSkinSet(SkinSetType.SKIN_CONFIGURED.getSkinSetName());
         Assertions.assertTrue (skins.size() > 0);
     }
@@ -44,7 +44,7 @@ public class SkinIOJsonTest
     @Test
     public void readJsonBoSSkinsDoNotUseTest() throws PWCGException
     {
-        PWCGContext.setProduct(PWCGProduct.TC);
+        
         Map<String, SkinSet> skins = SkinIOJson.readSkinSet(SkinSetType.SKIN_DO_NOT_USE.getSkinSetName());
         Assertions.assertTrue (skins.size() > 0);
     }

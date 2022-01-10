@@ -1,6 +1,6 @@
 {
 	"country": "USA",
-	"squadronId": 102002001,
+	"companyId": 102002001,
 	"name": "2nd Armored Division Able Company",
 	"fileName": "2nd Armored Division Able Company.json",
 	"skill": 60,
@@ -27,8 +27,8 @@
 	"skins": [
 	],
 	"serviceId": 10113,
-	"squadronRoles": {
-		"squadronRolePeriods": [
+	"companyRoles": {
+		"companyRolePeriods": [
 			{
 				"startDate": "19400101",
 				"weightedRoles": [

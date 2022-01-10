@@ -17,7 +17,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Frank Hunter": {
@@ -37,7 +37,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Georg von Hantelmann": {
@@ -88,7 +88,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Field Kindley": {
@@ -119,7 +119,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Rene Dorme": {
@@ -637,7 +637,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 101003,
+      "companyId": 101003,
       "squadronMemberRole": "PILOT"
     },
     "Bernard Artigau": {
@@ -668,7 +668,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Stanley Rosevear": {
@@ -688,7 +688,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Erich Lowenhardt": {
@@ -760,7 +760,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "W A Billy Bishop": {
@@ -827,7 +827,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Dennis Latimer": {
@@ -847,7 +847,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Arthur Whealy": {
@@ -867,7 +867,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "William Claxton": {
@@ -887,7 +887,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Elliot White Springs": {
@@ -918,7 +918,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Julius Buckler": {
@@ -965,7 +965,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Paul Baer": {
@@ -985,7 +985,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Theodor Rumpel": {
@@ -1026,7 +1026,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Jacques Ehrlich": {
@@ -1046,7 +1046,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Karl Bolle": {
@@ -1108,7 +1108,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "John Gurdon": {
@@ -1128,7 +1128,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Leonard Rochford": {
@@ -1148,7 +1148,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Otto Kissenberth": {
@@ -1278,7 +1278,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501016,
+      "companyId": 501016,
       "squadronMemberRole": "PILOT"
     },
     "Bruno Loerzer": {
@@ -1402,7 +1402,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501005,
+      "companyId": 501005,
       "squadronMemberRole": "PILOT"
     },
     "Otto Konnecke": {
@@ -1433,7 +1433,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Walter Blume": {
@@ -1464,7 +1464,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Hans Kirschstein": {
@@ -1505,7 +1505,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Max Muller": {
@@ -1755,7 +1755,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501002,
+      "companyId": 501002,
       "squadronMemberRole": "PILOT"
     },
     "Hermann Frommherz": {
@@ -1796,7 +1796,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Armand Pinsard": {
@@ -1863,7 +1863,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 101077,
+      "companyId": 101077,
       "squadronMemberRole": "PILOT"
     },
     "Rudolf Berthold": {
@@ -2145,7 +2145,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501014,
+      "companyId": 501014,
       "squadronMemberRole": "PILOT"
     },
     "Clifford McEwen": {
@@ -2176,7 +2176,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Richard Wenzl": {
@@ -2227,7 +2227,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Friedrich von Roth": {
@@ -2268,7 +2268,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Wilhelm Frankl": {
@@ -2673,7 +2673,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501004,
+      "companyId": 501004,
       "squadronMemberRole": "PILOT"
     },
     "Manfred von Richthofen": {
@@ -3290,7 +3290,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501002,
+      "companyId": 501002,
       "squadronMemberRole": "PILOT"
     },
     "Xavier Dannhuber": {
@@ -3310,7 +3310,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Heinrich Bongartz": {
@@ -3341,7 +3341,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "William Barker": {
@@ -3372,7 +3372,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Heinrich Arntzen": {
@@ -3473,7 +3473,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Raoul Lufbery": {
@@ -3646,7 +3646,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 101124,
+      "companyId": 101124,
       "squadronMemberRole": "PILOT"
     },
     "Olivier von Beaulieu-Marconnay": {
@@ -3707,7 +3707,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Hector Garaud": {
@@ -3727,7 +3727,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Arthur Laumann": {
@@ -3774,7 +3774,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Thomas Middleton": {
@@ -3794,7 +3794,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Franz Hemer": {
@@ -3825,7 +3825,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Gustave Daladier": {
@@ -3856,7 +3856,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "William Alexander": {
@@ -3907,7 +3907,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Joseph S T Fall": {
@@ -3938,7 +3938,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Paul Baumer": {
@@ -4009,7 +4009,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Keith Caldwell": {
@@ -4064,7 +4064,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 102008,
+      "companyId": 102008,
       "squadronMemberRole": "PILOT"
     },
     "G H Beery Bowman": {
@@ -4152,7 +4152,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 102029,
+      "companyId": 102029,
       "squadronMemberRole": "PILOT"
     },
     "Roderick S Dallas": {
@@ -4348,7 +4348,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 102001,
+      "companyId": 102001,
       "squadronMemberRole": "PILOT"
     },
     "Walter von Bulow-Bothkamp": {
@@ -4467,7 +4467,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "James Slater": {
@@ -4487,7 +4487,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Claude M Haegelen": {
@@ -4518,7 +4518,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Fernand Guyou": {
@@ -4538,7 +4538,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "George Vaughn": {
@@ -4569,7 +4569,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Lothar von Richthofen": {
@@ -4631,7 +4631,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Percy Clayson": {
@@ -4651,7 +4651,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Egon Koepsch": {
@@ -4692,7 +4692,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Robert von Greim": {
@@ -4757,7 +4757,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "John Gilmour": {
@@ -4858,7 +4858,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 102027,
+      "companyId": 102027,
       "squadronMemberRole": "PILOT"
     },
     "Hugo Schafer": {
@@ -4889,7 +4889,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Joachim von Bertrab": {
@@ -4920,7 +4920,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Kurt Wusthoff": {
@@ -4961,7 +4961,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Frank Soden": {
@@ -4981,7 +4981,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Donald MacLaren": {
@@ -5012,7 +5012,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Alexander Pentland": {
@@ -5077,7 +5077,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 102016,
+      "companyId": 102016,
       "squadronMemberRole": "PILOT"
     },
     "Jean Casale": {
@@ -5219,7 +5219,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 101023,
+      "companyId": 101023,
       "squadronMemberRole": "PILOT"
     },
     "Karl Schafer": {
@@ -5270,7 +5270,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Hans von Adam": {
@@ -5301,7 +5301,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Charles Booker": {
@@ -5332,7 +5332,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Andrew Beauchamp-Proctor": {
@@ -5363,7 +5363,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Otto Fruhner": {
@@ -5394,7 +5394,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Karl Menckhoff": {
@@ -5435,7 +5435,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Karl Thom": {
@@ -5455,7 +5455,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Harald Auffarth": {
@@ -5507,7 +5507,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Joseph de Sevin": {
@@ -5551,7 +5551,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 101012,
+      "companyId": 101012,
       "squadronMemberRole": "PILOT"
     },
     "Cecil Arthur Lewis": {
@@ -5582,7 +5582,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Joseph White": {
@@ -5602,7 +5602,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Gotthard Sachsenberg": {
@@ -5679,7 +5679,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "S M Kink Kinkead": {
@@ -5769,7 +5769,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 102103,
+      "companyId": 102103,
       "squadronMemberRole": "PILOT"
     },
     "Armand Turenne": {
@@ -5857,7 +5857,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Fritz Putter": {
@@ -5877,7 +5877,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "William Staton": {
@@ -5897,7 +5897,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Maurice Boyau": {
@@ -5928,7 +5928,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 101077,
+      "companyId": 101077,
       "squadronMemberRole": "PILOT"
     },
     "William Harvey": {
@@ -5959,7 +5959,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Max Immelmann": {
@@ -6408,7 +6408,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501009,
+      "companyId": 501009,
       "squadronMemberRole": "PILOT"
     },
     "William L Jordan": {
@@ -6428,7 +6428,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Frank Quigley": {
@@ -6448,7 +6448,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "James McCudden": {
@@ -6549,7 +6549,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 102029,
+      "companyId": 102029,
       "squadronMemberRole": "PILOT"
     },
     "Heinrich Gontermann": {
@@ -6627,7 +6627,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Elwyn King": {
@@ -6647,7 +6647,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Werner Preuss": {
@@ -6667,7 +6667,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Arthur P F Rhys Davids": {
@@ -6698,7 +6698,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Robert A Little": {
@@ -6799,7 +6799,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Werner Voss": {
@@ -6959,7 +6959,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Alfred Lindenberger": {
@@ -6990,7 +6990,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Frank Baylies": {
@@ -7010,7 +7010,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Gabriel Guerin": {
@@ -7030,7 +7030,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Hans Klein": {
@@ -7071,7 +7071,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Karl Schlegel": {
@@ -7091,7 +7091,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Raymond Collishaw": {
@@ -7245,7 +7245,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Albert Carter": {
@@ -7276,7 +7276,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Reginald Hoidge": {
@@ -7307,7 +7307,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Kurt Wolff": {
@@ -7358,7 +7358,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Hermann Becker": {
@@ -7389,7 +7389,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "A H Harry Cobby": {
@@ -7420,7 +7420,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Jean Chaput": {
@@ -7636,7 +7636,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 101057,
+      "companyId": 101057,
       "squadronMemberRole": "PILOT"
     },
     "Michel Coiffard": {
@@ -7667,7 +7667,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Oswald Boelcke": {
@@ -8650,7 +8650,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501002,
+      "companyId": 501002,
       "squadronMemberRole": "PILOT"
     },
     "Gwilym Hugh Lewis": {
@@ -8728,7 +8728,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 102032,
+      "companyId": 102032,
       "squadronMemberRole": "PILOT"
     },
     "Hermann Goring": {
@@ -8875,7 +8875,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Francis Gillet": {
@@ -8906,7 +8906,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Ira Taffy Jones": {
@@ -8937,7 +8937,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Franz Buechner": {
@@ -8988,7 +8988,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Josef Raesch": {
@@ -9019,7 +9019,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Alfred Heurtaux": {
@@ -9476,7 +9476,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 101003,
+      "companyId": 101003,
       "squadronMemberRole": "PILOT"
     },
     "Bernard Barny de Romanet": {
@@ -9496,7 +9496,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Otto Loffler": {
@@ -9547,7 +9547,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Rudolf Windisch": {
@@ -9602,7 +9602,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "E Mick Mannock": {
@@ -9663,7 +9663,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Rene Fonck": {
@@ -9739,7 +9739,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Paul Billik": {
@@ -9759,7 +9759,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "William Shields": {
@@ -9779,7 +9779,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Frederick McCall": {
@@ -9799,7 +9799,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Andrew McKeever": {
@@ -9830,7 +9830,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Georg Meyer": {
@@ -9850,7 +9850,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Josef Mai": {
@@ -9947,7 +9947,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Gerald Maxwell": {
@@ -9978,7 +9978,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Emil Thuy": {
@@ -10044,7 +10044,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Alfred Atkey": {
@@ -10064,7 +10064,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Matthew Frew": {
@@ -10084,7 +10084,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Cecil King": {
@@ -10104,7 +10104,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Fritz Bernert": {
@@ -10384,7 +10384,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501004,
+      "companyId": 501004,
       "squadronMemberRole": "PILOT"
     },
     "Karl Allmenroder": {
@@ -10421,7 +10421,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Louis Jenkin": {
@@ -10441,7 +10441,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Henry Burden": {
@@ -10472,7 +10472,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "William Campbell": {
@@ -10503,7 +10503,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Peter Carpenter": {
@@ -10523,7 +10523,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Philip F Fullard": {
@@ -10564,7 +10564,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Charles Nungesser": {
@@ -11100,7 +11100,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 101065,
+      "companyId": 101065,
       "squadronMemberRole": "PILOT"
     },
     "Jean Sardier": {
@@ -11167,7 +11167,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Josef Jacobs": {
@@ -11288,7 +11288,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501012,
+      "companyId": 501012,
       "squadronMemberRole": "PILOT"
     },
     "Ernst Udet": {
@@ -11432,7 +11432,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501015,
+      "companyId": 501015,
       "squadronMemberRole": "PILOT"
     },
     "Harold Whistler": {
@@ -11452,7 +11452,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Omer Demeuldre": {
@@ -11496,7 +11496,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Thomas Harrison": {
@@ -11516,7 +11516,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Edmond Thieffry": {
@@ -11536,7 +11536,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Max Nather": {
@@ -11577,7 +11577,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Eduard von Dostler": {
@@ -11608,7 +11608,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "John Leacroft": {
@@ -11639,7 +11639,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Kurt Wintgens": {
@@ -12124,7 +12124,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501001,
+      "companyId": 501001,
       "squadronMemberRole": "PILOT"
     },
     "Henri Hay de Slade": {
@@ -12155,7 +12155,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Marius Ambrogi": {
@@ -12175,7 +12175,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Gustav Doerr": {
@@ -12195,7 +12195,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Albert Deullin": {
@@ -12514,7 +12514,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 101003,
+      "companyId": 101003,
       "squadronMemberRole": "PILOT"
     },
     "Eddie Rickenbacker": {
@@ -12555,7 +12555,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Pierre Marinovitch": {
@@ -12575,7 +12575,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "George E H McElroy": {
@@ -12595,7 +12595,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Adolf von Tutschek": {
@@ -12646,7 +12646,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Albert Ball": {
@@ -13422,7 +13422,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Erwin Bohme": {
@@ -13733,7 +13733,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 501002,
+      "companyId": 501002,
       "squadronMemberRole": "PILOT"
     },
     "Lanoe Hawker": {
@@ -13937,7 +13937,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 102024,
+      "companyId": 102024,
       "squadronMemberRole": "PILOT"
     },
     "Felix Madon": {
@@ -14084,7 +14084,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 101038,
+      "companyId": 101038,
       "squadronMemberRole": "PILOT"
     },
     "Fritz Rumey": {
@@ -14151,7 +14151,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Pavel Argeyev": {
@@ -14171,7 +14171,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Hans Pippart": {
@@ -14202,7 +14202,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Theodor Dahlmann": {
@@ -14233,7 +14233,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Willy Coppens": {
@@ -14253,7 +14253,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Leon J Bourjade": {
@@ -14273,7 +14273,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Georges Guynemer": {
@@ -14990,7 +14990,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": 101003,
+      "companyId": 101003,
       "squadronMemberRole": "PILOT"
     },
     "Henry W Woollett": {
@@ -15021,7 +15021,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Ulrich Neckel": {
@@ -15072,7 +15072,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Theo Osterkamp": {
@@ -15129,7 +15129,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Robert Compston": {
@@ -15149,7 +15149,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Tom Falcon Hazell": {
@@ -15180,7 +15180,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "August Hanko": {
@@ -15221,7 +15221,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Marcel Nogues": {
@@ -15241,7 +15241,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Oskar von Boenigk": {
@@ -15272,7 +15272,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Hans von der Marwitz": {
@@ -15303,7 +15303,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Carl Degelow": {
@@ -15365,7 +15365,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Howard Burdick": {
@@ -15385,7 +15385,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Kurt Monnington": {
@@ -15442,7 +15442,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Frank Luke": {
@@ -15473,7 +15473,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Joseph Veltjens": {
@@ -15534,7 +15534,7 @@
       "medals": [],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     },
     "Eduard von Schleich": {
@@ -15596,7 +15596,7 @@
       ],
       "playerRegion": "",
       "isPlayer": false,
-      "squadronId": -1,
+      "companyId": -1,
       "squadronMemberRole": "PILOT"
     }
   }
