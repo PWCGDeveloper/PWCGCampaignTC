@@ -1,4 +1,4 @@
-package pwcg.mission.flight;
+package pwcg.mission.unit;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -15,7 +15,7 @@ import pwcg.testutils.CompanyTestProfile;
 import pwcg.testutils.TestMissionBuilderUtility;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class PlayerUnitBuildTest 
+public class TankUnitBuildTest 
 {    
     private Campaign campaign;    
 
@@ -27,11 +27,12 @@ public class PlayerUnitBuildTest
     }
 
 	@Test
-	public void groundAttackFlightTest() throws PWCGException
+	public void tankUnitMissionCreateAndWriteTest() throws PWCGException
 	{
         MissionGenerator missionGenerator = new MissionGenerator(campaign);
         Mission mission = missionGenerator.makeMission(TestMissionBuilderUtility.buildTestParticipatingHumans(campaign));
         mission.finalizeMission();
+        mission.write();
         ITankUnit unit = mission.getUnits().getPlayerUnits().get(0);
         Assertions.assertNotNull(unit);
  	}

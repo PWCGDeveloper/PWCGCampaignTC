@@ -26,7 +26,7 @@ public interface ITankUnit
 
     void preparePlaneForCoop() throws PWCGException;
 
-    void write(BufferedWriter writer);
+    void write(BufferedWriter writer) throws PWCGException;
 
     void setWaypoints(List<McuWaypoint> waypoints);
 

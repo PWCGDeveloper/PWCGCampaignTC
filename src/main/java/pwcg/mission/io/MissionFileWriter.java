@@ -40,6 +40,7 @@ public class MissionFileWriter implements IMissionFile
 		    writeMissionFileHeader(writer);            
             writeMissionOptions(writer);
             writeUnits(writer);       
+            writeFlights(writer);       
             writeVehiclesForTest(writer);
             
             if (!TestDriver.getInstance().isCreatePlayerOnly())
@@ -133,7 +134,13 @@ public class MissionFileWriter implements IMissionFile
 
     private void writeUnits(BufferedWriter writer) throws PWCGException
     {
-        MissionUnitWriter missionFlightWriter = new MissionUnitWriter(mission);
+        MissionUnitWriter missionUnitWriter = new MissionUnitWriter(mission);
+        missionUnitWriter.writeUnits(writer);
+    }
+
+    private void writeFlights(BufferedWriter writer) throws PWCGException
+    {
+        MissionFlightWriter missionFlightWriter = new MissionFlightWriter(mission);
         missionFlightWriter.writeFlights(writer);
     }
 

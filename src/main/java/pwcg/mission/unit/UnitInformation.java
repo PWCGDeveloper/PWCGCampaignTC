@@ -6,6 +6,7 @@ import pwcg.campaign.Campaign;
 import pwcg.campaign.api.ICountry;
 import pwcg.campaign.company.Company;
 import pwcg.campaign.crewmember.CrewMember;
+import pwcg.core.exception.PWCGException;
 import pwcg.mission.Mission;
 
 public class UnitInformation
@@ -24,6 +25,11 @@ public class UnitInformation
         this.company = company;
         this.crewMembers = crewMembers;
         this.objective = objective;
+    }
+    
+    public double calcAngleToObjective() throws PWCGException
+    {
+        return objective.calcAngleToObjective();
     }
     
     public ICountry getCountry()

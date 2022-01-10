@@ -1,10 +1,10 @@
 package pwcg.mission.unit.assault;
 
 import pwcg.core.exception.PWCGException;
-import pwcg.mission.unit.PlayerUnit;
+import pwcg.mission.unit.TankUnit;
 import pwcg.mission.unit.UnitInformation;
 
-public class AssaultUnit extends PlayerUnit
+public class AssaultUnit extends TankUnit
 {
     public AssaultUnit(UnitInformation unitInformation)
     {

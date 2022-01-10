@@ -46,7 +46,6 @@ public class TankMcu extends EquippedTank implements Cloneable
     private int limitAmmo = 1;
     private Callsign callsign = Callsign.NONE;
     private int callnum = 0;
-    private int time = 60;
     private double fuel = .6;
     private int damageReport = 50;
     private ICountry country = CountryFactory.makeNeutralCountry();
@@ -121,7 +120,6 @@ public class TankMcu extends EquippedTank implements Cloneable
         tank.limitAmmo = this.limitAmmo;
         tank.callsign = this.callsign;
         tank.callnum = this.callnum;
-        tank.time = this.time;
         tank.fuel = this.fuel;
         tank.damageReport = this.damageReport;
         tank.country = CountryFactory.makeCountryByCountry(this.country.getCountry());
@@ -256,8 +254,6 @@ public class TankMcu extends EquippedTank implements Cloneable
             writer.write("{");
             writer.newLine();
 
-            super.write(writer);
-
             writer.write("  Name = \"\u0001" + name + "\";");
             writer.newLine();
             writer.write("  Index = " + index + ";");
@@ -265,10 +261,35 @@ public class TankMcu extends EquippedTank implements Cloneable
             writer.write("  LinkTrId = " + linkTrId + ";");
             writer.newLine();
 
+            super.write(writer);
+
             position.write(writer);
             orientation.write(writer);
 
             country.writeAdjusted(writer);
+            writer.write("  NumberInFormation = " + numberInFormation + ";");
+            writer.newLine();            writer.write("  Vulnerable = " + vulnerable + ";");
+            writer.newLine();
+            writer.write("  Engageable = " + engageable + ";");
+            writer.newLine();
+            writer.write("  LimitAmmo = " + limitAmmo + ";");
+            writer.newLine();
+            writer.write("  AILevel = " + aiSkillLevel.getAiSkillLevel() + ";");
+            writer.newLine();
+            writer.write("  DamageReport = " + damageReport + ";");
+            writer.newLine();
+            writer.write("  DamageThreshold = " + damageThreshold + ";");
+            writer.newLine();
+            writer.write("  DeleteAfterDeath = " + deleteAfterDeath + ";");
+            writer.newLine();
+            writer.write("  CoopStart = " + coopStart + ";");
+            writer.newLine();
+            writer.write("  PayloadId = " + payload.getSelectedPayloadId() + ";");
+            writer.newLine();
+            writer.write("  WMMask = " + payload.generateFullModificationMask() + ";");
+            writer.newLine();
+            writer.write("  Fuel = " + fuel + ";");
+            writer.newLine();
 
             String skinName = "";
             if (skin != null)
@@ -283,30 +304,6 @@ public class TankMcu extends EquippedTank implements Cloneable
 
             writer.write("  Skin = \"" + skinName + "\";");
             writer.newLine();
-            writer.write("  AILevel = " + aiSkillLevel.getAiSkillLevel() + ";");
-            writer.newLine();
-            writer.write("  CoopStart = " + coopStart + ";");
-            writer.newLine();
-            writer.write("  NumberInFormation = " + numberInFormation + ";");
-            writer.newLine();
-            writer.write("  Vulnerable = " + vulnerable + ";");
-            writer.newLine();
-            writer.write("  Engageable = " + engageable + ";");
-            writer.newLine();
-            writer.write("  LimitAmmo = " + limitAmmo + ";");
-            writer.newLine();
-            writer.write("  Time = " + time + ";");
-            writer.newLine();
-            writer.write("  DamageReport = " + damageReport + ";");
-            writer.newLine();
-            writer.write("  DamageThreshold = " + damageThreshold + ";");
-            writer.newLine();
-            writer.write("  PayloadId = " + payload.getSelectedPayloadId() + ";");
-            writer.newLine();
-            writer.write("  DeleteAfterDeath = " + deleteAfterDeath + ";");
-            writer.newLine();
-            writer.write("  Fuel = " + fuel + ";");
-            writer.newLine();
 
             // BoS specific parameters
             TCProductSpecificConfiguration productSpecificConfiguration =new TCProductSpecificConfiguration();
@@ -318,8 +315,6 @@ public class TankMcu extends EquippedTank implements Cloneable
                 writer.newLine();
             }
 
-            writer.write("  WMMask = " + payload.generateFullModificationMask() + ";");
-            writer.newLine();
 
             writer.write("}");
             writer.newLine();
@@ -464,16 +459,6 @@ public class TankMcu extends EquippedTank implements Cloneable
     public void setLimitAmmo(int limitAmmo)
     {
         this.limitAmmo = limitAmmo;
-    }
-
-    public int getTime()
-    {
-        return time;
-    }
-
-    public void setTime(int time)
-    {
-        this.time = time;
     }
 
     public int getDamageReport()

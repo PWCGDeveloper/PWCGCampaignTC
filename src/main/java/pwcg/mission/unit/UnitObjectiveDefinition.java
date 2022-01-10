@@ -1,6 +1,8 @@
 package pwcg.mission.unit;
 
+import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
+import pwcg.core.utils.MathUtils;
 
 public class UnitObjectiveDefinition
 {
@@ -19,12 +21,12 @@ public class UnitObjectiveDefinition
 
     public Coordinate getStartPosition()
     {
-        return startPosition;
+        return startPosition.copy();
     }
 
     public Coordinate getEndPosition()
     {
-        return endPosition;
+        return endPosition.copy();
     }
 
     public UnitMissionType getMissionType()
@@ -35,5 +37,10 @@ public class UnitObjectiveDefinition
     public boolean isDefending()
     {
         return isDefending;
+    }
+
+    public double calcAngleToObjective() throws PWCGException
+    {
+        return MathUtils.calcAngle(startPosition, endPosition);
     }
 }

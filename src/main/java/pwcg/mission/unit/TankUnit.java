@@ -9,13 +9,13 @@ import pwcg.core.exception.PWCGException;
 import pwcg.mission.mcu.McuWaypoint;
 import pwcg.mission.unit.tank.TankMcuFactory;
 
-public abstract class PlayerUnit implements ITankUnit
+public abstract class TankUnit implements ITankUnit
 {
     protected UnitVehicles unitVehicles;
     protected UnitInformation unitInformation;
     protected List<McuWaypoint> waypoints = new ArrayList<>();
 
-    public PlayerUnit(UnitInformation unitInformation)
+    public TankUnit(UnitInformation unitInformation)
     {
         this.unitVehicles = new UnitVehicles();
         this.unitInformation = unitInformation;
@@ -26,21 +26,8 @@ public abstract class PlayerUnit implements ITankUnit
     {
         buildTanks();
         setUnitPayload();
+        createInitialPosition();
         createWaypoints();
-    }
-
-    private void buildTanks() throws PWCGException
-    {
-        int numTanks = unitInformation.getParticipatingPlayersForCompany().size();
-        if(numTanks < 4)
-        {
-            numTanks = 4;
-        }
-                
-        TankMcuFactory tankMcuFactory = new TankMcuFactory(unitInformation);        
-        List<TankMcu> tanks = tankMcuFactory.createTanksForUnit(numTanks);
-        unitVehicles.setTanks(tanks);
-        unitVehicles.setFuelForUnit(1.0);
     }
 
     @Override
@@ -91,8 +78,17 @@ public abstract class PlayerUnit implements ITankUnit
     }
 
     @Override
-    public void write(BufferedWriter writer)
+    public void write(BufferedWriter writer) throws PWCGException
     {        
+        for(TankMcu tank : unitVehicles.getTanks())
+        {
+            tank.write(writer);
+        }
+
+        for(McuWaypoint waypoint : waypoints)
+        {
+            waypoint.write(writer);
+        }
     }
 
     protected void setUnitPayload() throws PWCGException
@@ -101,6 +97,25 @@ public abstract class PlayerUnit implements ITankUnit
         {
             tank.buildTankPayload(this, unitInformation.getCampaign().getDate());
         }
+    }
+
+    private void buildTanks() throws PWCGException
+    {
+        int numTanks = unitInformation.getParticipatingPlayersForCompany().size();
+        if(numTanks < 4)
+        {
+            numTanks = 4;
+        }
+                
+        TankMcuFactory tankMcuFactory = new TankMcuFactory(unitInformation);        
+        List<TankMcu> tanks = tankMcuFactory.createTanksForUnit(numTanks);
+        unitVehicles.setTanks(tanks);
+        unitVehicles.setFuelForUnit(1.0);
+    }
+
+    private void createInitialPosition() throws PWCGException
+    {
+        UnitPositionSetter.setUnitTankPositions(this);
     }
 
     abstract protected void createWaypoints() throws PWCGException;

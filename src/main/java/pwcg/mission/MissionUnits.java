@@ -6,7 +6,7 @@ import java.util.List;
 import pwcg.campaign.Campaign;
 import pwcg.core.exception.PWCGException;
 import pwcg.mission.unit.ITankUnit;
-import pwcg.mission.unit.PlayerUnit;
+import pwcg.mission.unit.TankUnit;
 import pwcg.mission.unit.TankMcu;
 
 public class MissionUnits
@@ -45,7 +45,7 @@ public class MissionUnits
     public List<ITankUnit> getPlayerUnits() throws PWCGException
     {
         List<ITankUnit> playerUnits = new ArrayList<>();
-        for (ITankUnit unit : playerUnits)
+        for (ITankUnit unit : tankUnits)
         {
             for (TankMcu tank : unit.getUnitTanks().getPlayerTanks())
             {
@@ -58,9 +58,9 @@ public class MissionUnits
         return playerUnits;
     }
 
-    public List<PlayerUnit> getAiUnits()
+    public List<TankUnit> getAiUnits()
     {
-        return null;
+        return new ArrayList<>();
     }
 
     public ITankUnit getReferencePlayerUnit()
