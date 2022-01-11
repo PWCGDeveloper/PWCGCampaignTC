@@ -7,7 +7,7 @@ import java.util.Map;
 
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogAIEntity;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogCrewMember;
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogVictory;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.logfiles.LogEventData;
@@ -35,7 +35,7 @@ public class AARDestroyedStatusEvaluator
         {                    
             LogAIEntity logVictor = vehicleBuilder.getVehicle(atype3.getVictor());
             LogAIEntity logVictim = vehicleBuilder.getVehicle(atype3.getVictim());
-
+            
             LogVictory logVictory = new LogVictory(atype3.getSequenceNum());
             logVictory.setLocation(atype3.getLocation());
 
@@ -89,7 +89,7 @@ public class AARDestroyedStatusEvaluator
 
     private LogCrewMember matchDeadBotToCrewMember(IAType3 atype3)
     {
-        for (LogPlane planeEntity : vehicleBuilder.getLogPlanes().values())
+        for (LogTank planeEntity : vehicleBuilder.getLogTanks().values())
         {
             LogCrewMember crewMemberEntity = planeEntity.getLogCrewMember();
             if (crewMemberEntity.getBotId().equals(atype3.getVictim()))

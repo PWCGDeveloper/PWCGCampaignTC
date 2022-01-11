@@ -15,7 +15,7 @@ import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 
 import pwcg.aar.inmission.phase2.logeval.AARVehicleBuilder;
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.api.ICountry;
 import pwcg.campaign.context.Country;
@@ -45,8 +45,8 @@ public class AAREquipmentStatusEvaluatorTest
          
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420601"));
 
-        Map <String, LogPlane> planeAiEntities = makePlaneEntities();
-        Mockito.when(aarVehicleBuilder.getLogPlanes()).thenReturn(planeAiEntities);
+        Map <String, LogTank> planeAiEntities = makePlaneEntities();
+        Mockito.when(aarVehicleBuilder.getLogTanks()).thenReturn(planeAiEntities);
     }
 
     @Test
@@ -84,24 +84,24 @@ public class AAREquipmentStatusEvaluatorTest
     private void runTestWithStatusCheck(AAREquipmentStatusEvaluator AAREquipmentStatusEvaluator, int expectedStatus) throws PWCGException
     {
         AAREquipmentStatusEvaluator.determineFateOfPlanesInMission();
-        for (LogPlane resultPlaneAfter : aarVehicleBuilder.getLogPlanes().values())
+        for (LogTank resultPlaneAfter : aarVehicleBuilder.getLogTanks().values())
         {
-            Assertions.assertTrue (resultPlaneAfter.getPlaneStatus() == expectedStatus);
+            Assertions.assertTrue (resultPlaneAfter.getTankStatus() == expectedStatus);
         }
     }
 
-    private Map <String, LogPlane> makePlaneEntities() throws PWCGException
+    private Map <String, LogTank> makePlaneEntities() throws PWCGException
     {
         ICountry country = CountryFactory.makeCountryByCountry(Country.RUSSIA);
 
-        LogPlane resultPlane = new LogPlane(1);
+        LogTank resultPlane = new LogTank(1);
         resultPlane.setLandAt(new Coordinate());
         resultPlane.setCountry(country);
         resultPlane.intializeCrewMember(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
-        resultPlane.setSquadronId(10131132);
-        resultPlane.setPlaneStatus(TankStatus.STATUS_DEPLOYED);
+        resultPlane.setCompanyId(10131132);
+        resultPlane.setTankStatus(TankStatus.STATUS_DEPLOYED);
 
-        Map <String, LogPlane> planeAiEntities = new HashMap <>();
+        Map <String, LogTank> planeAiEntities = new HashMap <>();
         planeAiEntities.put("11111", resultPlane);        
         return planeAiEntities;
     }

@@ -6,7 +6,7 @@ import java.util.List;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogAIEntity;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogBalloon;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogGroundUnit;
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogUnknown;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogVictory;
 import pwcg.campaign.context.Country;
@@ -21,9 +21,9 @@ public class LogVictoryHelper
 
     public void createPlaneVictory()
     {
-        LogPlane victor = makeVictor();
+        LogTank victor = makeVictor();
         
-        LogPlane victim = new LogPlane(1);
+        LogTank victim = new LogTank(1);
         victim.setCrewMemberSerialNumber(SerialNumber.AI_STARTING_SERIAL_NUMBER + 100);
         victim.setVehicleType("albatrosd5");
         victim.setCountry(new BoSCountry(Country.GERMANY));
@@ -37,7 +37,7 @@ public class LogVictoryHelper
     {
         LogUnknown victor = new LogUnknown();
         
-        LogPlane victim = new LogPlane(1);
+        LogTank victim = new LogTank(1);
         victim.setCrewMemberSerialNumber(SerialNumber.AI_STARTING_SERIAL_NUMBER + 100);
         victim.setVehicleType("albatrosd5");
         victim.setCountry(new BoSCountry(Country.GERMANY));
@@ -49,7 +49,7 @@ public class LogVictoryHelper
 
     public void createBalloonVictory()
     {
-        LogPlane victor = makeVictor();
+        LogTank victor = makeVictor();
         
         LogBalloon victim = new LogBalloon(10000);
         victim.setVehicleType("drachen");
@@ -71,7 +71,7 @@ public class LogVictoryHelper
 
     public void createGroundVictory()
     {
-        LogPlane victor = makeVictor();
+        LogTank victor = makeVictor();
         
         LogGroundUnit victim = new LogGroundUnit(1000);
         victim.setVehicleType("tank");
@@ -80,9 +80,9 @@ public class LogVictoryHelper
         makeVictory(victor, victim);
     }
 
-    public LogPlane makeVictor()
+    public LogTank makeVictor()
     {
-        LogPlane victor = new LogPlane(1);
+        LogTank victor = new LogTank(1);
         victor.setCrewMemberSerialNumber(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
         victor.setVehicleType("spad13");
         victor.setCountry(new BoSCountry(Country.FRANCE));

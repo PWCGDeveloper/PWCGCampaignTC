@@ -7,14 +7,16 @@ Tank crew pictures
 
 Mission:
 Tank payloads
+More opposition
+Not defense only
+More interesting opposition
+- more AT guns
+- more enemy tanks
+replace existing tank unit
+record AI tank units
+Do not create tank units as base ground units
+Add tank units after the fact
 
-Player units
-Player mission types
-TargetDefinitionBuilderAAATruck - use asbasisforplayer target types
-
-Add human crewed vehicles
-Place player unit into mission
-Do not place other playable units into mission
 
 AAR:
 Add out of mission for tank units

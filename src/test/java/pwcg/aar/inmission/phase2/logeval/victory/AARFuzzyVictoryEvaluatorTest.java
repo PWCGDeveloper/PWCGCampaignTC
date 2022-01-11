@@ -9,7 +9,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import pwcg.aar.inmission.phase2.logeval.AARVehicleBuilder;
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogUnknown;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogVictory;
 import pwcg.core.exception.PWCGException;
@@ -29,9 +29,9 @@ public class AARFuzzyVictoryEvaluatorTest
     private LogVictory victoryResult;
     
     @Mock
-    private LogPlane victor;
+    private LogTank victor;
     
-    private LogPlane victim;
+    private LogTank victim;
     
     private LogUnknown unknownVictorEntity = new LogUnknown();
     
@@ -39,13 +39,13 @@ public class AARFuzzyVictoryEvaluatorTest
     public void setupTest()
     {
         victoryResult = new LogVictory(10);
-        victim = new LogPlane(1);
+        victim = new LogTank(1);
     }
     
     @Test
     public void testUseFuzzyVictoryTrue () throws PWCGException
     {
-        victoryResult.setVictim(new LogPlane(2));
+        victoryResult.setVictim(new LogTank(2));
         victim.setId("11111");
         Mockito.when(vehicleBuilder.getVehicle(ArgumentMatchers.<String>any())).thenReturn(victim);
         Mockito.when(randomAssignment.markForRandomAssignment(victoryResult)).thenReturn(unknownVictorEntity);
@@ -98,8 +98,8 @@ public class AARFuzzyVictoryEvaluatorTest
     @Test
     public void testUseFuzzyVictoryFalseBecauseNotNullVictor () throws PWCGException
     {
-        victoryResult.setVictor(new LogPlane(3));
-        victoryResult.setVictim(new LogPlane(4));
+        victoryResult.setVictor(new LogTank(3));
+        victoryResult.setVictim(new LogTank(4));
         victim.setId("11111");
         unknownVictorEntity.setId("11111");
 
@@ -118,7 +118,7 @@ public class AARFuzzyVictoryEvaluatorTest
     @Test
     public void testUseFuzzyVictoryFalseBecauseVehicleBuilderCouldNotIdentifyVictim () throws PWCGException
     {
-        victoryResult.setVictim(new LogPlane(5));
+        victoryResult.setVictim(new LogTank(5));
         victim.setId("11111");
         Mockito.when(vehicleBuilder.getVehicle(ArgumentMatchers.<String>any())).thenReturn(null);
         unknownVictorEntity.setId("11111");

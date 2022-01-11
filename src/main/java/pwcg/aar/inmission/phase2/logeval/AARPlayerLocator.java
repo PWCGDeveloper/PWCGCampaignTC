@@ -3,7 +3,7 @@ package pwcg.aar.inmission.phase2.logeval;
 import java.util.ArrayList;
 import java.util.List;
 
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.core.location.Coordinate;
 import pwcg.core.logfiles.LogEventData;
 import pwcg.core.logfiles.event.IAType2;
@@ -14,7 +14,7 @@ public class AARPlayerLocator
 {
     private AARVehicleBuilder aarVehicleBuilder = null;
     private LogEventData logEventData = null;
-    private List<LogPlane> playerPlanes = new ArrayList<>();
+    private List<LogTank> playerPlanes = new ArrayList<>();
     private List<Coordinate> playerLocations = new ArrayList<>();
 
     public AARPlayerLocator(LogEventData logEventData, AARVehicleBuilder aarVehicleBuilder)
@@ -53,7 +53,7 @@ public class AARPlayerLocator
 
     private boolean isPlayerPlane(String planeId)
     {
-        for (LogPlane playerLogPlane : playerPlanes)
+        for (LogTank playerLogPlane : playerPlanes)
         {
             if (playerLogPlane.getId().equals(planeId))
             {

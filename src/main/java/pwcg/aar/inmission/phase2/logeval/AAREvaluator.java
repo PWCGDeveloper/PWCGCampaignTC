@@ -65,10 +65,10 @@ public class AAREvaluator
     
     private AARMissionEvaluationData createMissionEvaluation() throws PWCGException
     {
-        AARCrewBuilder crewBuilder= new AARCrewBuilder(aarVehicleBuilder.getLogPlanes());
+        AARCrewBuilder crewBuilder= new AARCrewBuilder(aarVehicleBuilder.getLogTanks());
 
         AARMissionEvaluationData evaluationData = new AARMissionEvaluationData();
-        evaluationData.setPlaneAiEntities(aarVehicleBuilder.getLogPlanes());
+        evaluationData.setPlaneAiEntities(aarVehicleBuilder.getLogTanks());
         evaluationData.setVictoryResults(aarVictoryEvaluator.getVictoryResults());
         evaluationData.setCrewMembersInMission(crewBuilder.buildCrewMembersFromLogPlanes());
         evaluationData.setChronologicalEvents(aarChronologicalEventListBuilder.getChronologicalEvents());
@@ -85,7 +85,7 @@ public class AAREvaluator
     {
         AARAreaOfCombat areaOfCombat = new AARAreaOfCombat(aarDestroyedStatusEvaluator.getDeadLogVehicleList());
         AARFuzzyVictoryEvaluator fuzzyVictoryEvaluator = createAARFuzzyVictoryEvaluator(areaOfCombat);
-        return new AARVictoryEvaluator(campaign, aarContext.getPreliminaryData().getPwcgMissionData(), fuzzyVictoryEvaluator, aarDestroyedStatusEvaluator);
+        return new AARVictoryEvaluator(fuzzyVictoryEvaluator, aarDestroyedStatusEvaluator);
     }
     
     private AARFuzzyVictoryEvaluator createAARFuzzyVictoryEvaluator(AARAreaOfCombat areaOfCombat)

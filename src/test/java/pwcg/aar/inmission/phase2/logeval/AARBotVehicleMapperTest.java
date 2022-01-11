@@ -13,7 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.aar.prelim.PwcgMissionData;
 import pwcg.aar.prelim.PwcgMissionDataEvaluator;
 import pwcg.campaign.Campaign;
@@ -91,11 +91,11 @@ public class AARBotVehicleMapperTest
         LogEventData logEventData = testMissionEntityGenerator.getAARLogEventData();
         AARBotVehicleMapper aarBotVehicleMapper = new AARBotVehicleMapper(logEventData);
 
-        Map <String, LogPlane> planeAiEntities = testMissionEntityGenerator.getPlaneAiEntities();
+        Map <String, LogTank> planeAiEntities = testMissionEntityGenerator.getPlaneAiEntities();
         aarBotVehicleMapper.mapBotsToCrews(planeAiEntities);
                 
         assert(planeAiEntities.size() == numFrenchPlanes + numGermanPlanes);
-        for (LogPlane missionResultPlane : planeAiEntities.values())
+        for (LogTank missionResultPlane : planeAiEntities.values())
         {
             assert(missionResultPlane.getLogCrewMember() != null);
             if (missionResultPlane.getId().equals("1001"))

@@ -11,7 +11,7 @@ import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogGroundUnit;
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTurret;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogVictory;
 import pwcg.campaign.Campaign;
@@ -74,21 +74,21 @@ public class VictoryBuilderTest
     {
         Mockito.when(configManager.getIntConfigParam(ConfigItemKeys.DetailedVictoryDescriptionKey)).thenReturn(0);
 
-        LogPlane logVictor = new LogPlane(1);
+        LogTank logVictor = new LogTank(1);
         logVictor.setCrashedInSight(true);
         logVictor.setName(victor.getNameAndRank());
         logVictor.setCrewMemberSerialNumber(victor.getSerialNumber());
         logVictor.setVehicleType("Bf109 F-2");
-        logVictor.setSquadronId(20111052);
+        logVictor.setCompanyId(20111052);
         logVictor.intializeCrewMember(victor.getSerialNumber());
         logVictor.getLogCrewMember().setStatus(CrewMemberStatus.STATUS_ACTIVE);
 
-        LogPlane logVictim = new LogPlane(2);
+        LogTank logVictim = new LogTank(2);
         logVictim.setCrashedInSight(true);
         logVictim.setName(victim.getNameAndRank());
         logVictim.setCrewMemberSerialNumber(victim.getSerialNumber());
         logVictim.setVehicleType("Il-2 mod.1941");
-        logVictim.setSquadronId(10121312);
+        logVictim.setCompanyId(10121312);
         logVictim.intializeCrewMember(victim.getSerialNumber());
         logVictim.getLogCrewMember().setStatus(CrewMemberStatus.STATUS_CAPTURED);
 
@@ -114,21 +114,21 @@ public class VictoryBuilderTest
     @Test
     public void buildVictoryFogOfWar () throws PWCGException
     {
-        LogPlane logVictor = new LogPlane(1);
+        LogTank logVictor = new LogTank(1);
         logVictor.setCrashedInSight(true);
         logVictor.setName(victor.getNameAndRank());
         logVictor.setCrewMemberSerialNumber(victor.getSerialNumber());
         logVictor.setVehicleType("Bf109 F-2");
-        logVictor.setSquadronId(20111052);
+        logVictor.setCompanyId(20111052);
         logVictor.intializeCrewMember(victor.getSerialNumber());
         logVictor.getLogCrewMember().setStatus(CrewMemberStatus.STATUS_ACTIVE);
 
-        LogPlane logVictim = new LogPlane(2);
+        LogTank logVictim = new LogTank(2);
         logVictim.setCrashedInSight(true);
         logVictim.setName(victim.getNameAndRank());
         logVictim.setCrewMemberSerialNumber(victim.getSerialNumber());
         logVictim.setVehicleType("Il-2 mod.1941");
-        logVictim.setSquadronId(10121312);
+        logVictim.setCompanyId(10121312);
         logVictim.intializeCrewMember(victim.getSerialNumber());
         logVictim.getLogCrewMember().setStatus(CrewMemberStatus.STATUS_CAPTURED);
 
@@ -154,12 +154,12 @@ public class VictoryBuilderTest
     @Test
     public void buildVictoryPlaneGround () throws PWCGException
     {
-        LogPlane logVictor = new LogPlane(1);
+        LogTank logVictor = new LogTank(1);
         logVictor.setCrashedInSight(true);
         logVictor.setName(victor.getNameAndRank());
         logVictor.setCrewMemberSerialNumber(victor.getSerialNumber());
         logVictor.setVehicleType("Bf109 F-2");
-        logVictor.setSquadronId(20111052);
+        logVictor.setCompanyId(20111052);
         logVictor.intializeCrewMember(victor.getSerialNumber());
         logVictor.getLogCrewMember().setStatus(CrewMemberStatus.STATUS_ACTIVE);
 
@@ -191,24 +191,24 @@ public class VictoryBuilderTest
     {
         Mockito.when(configManager.getIntConfigParam(ConfigItemKeys.DetailedVictoryDescriptionKey)).thenReturn(0);
 
-        LogPlane logVictor = new LogPlane(1);
+        LogTank logVictor = new LogTank(1);
         logVictor.setCrashedInSight(true);
         logVictor.setName(victor.getNameAndRank());
         logVictor.setCrewMemberSerialNumber(victor.getSerialNumber());
         logVictor.setVehicleType("Ju 88 A-4");
-        logVictor.setSquadronId(20111052);
+        logVictor.setCompanyId(20111052);
         logVictor.intializeCrewMember(victor.getSerialNumber());
         logVictor.getLogCrewMember().setStatus(CrewMemberStatus.STATUS_ACTIVE);
 
         AType12 atype12 = new AType12("200", "Turret_Ju88A4_1", "Turret_Ju88A4_1", logVictor.getCountry(), logVictor.getId(), new Coordinate(500000, 0, 50000));
         LogTurret logVictorTurret = logVictor.createTurret(atype12);
 
-        LogPlane logVictim = new LogPlane(3);
+        LogTank logVictim = new LogTank(3);
         logVictim.setCrashedInSight(true);
         logVictim.setName(victim.getNameAndRank());
         logVictim.setCrewMemberSerialNumber(victim.getSerialNumber());
         logVictim.setVehicleType("Il-2 mod.1941");
-        logVictim.setSquadronId(10121312);
+        logVictim.setCompanyId(10121312);
         logVictim.intializeCrewMember(victim.getSerialNumber());
         logVictim.getLogCrewMember().setStatus(CrewMemberStatus.STATUS_CAPTURED);
 

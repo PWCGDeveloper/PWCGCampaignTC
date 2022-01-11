@@ -2,7 +2,7 @@ package pwcg.aar.inmission.phase1.parse;
 
 import pwcg.aar.AARFactory;
 import pwcg.aar.inmission.phase2.logeval.AARVehicleBuilder;
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.aar.prelim.AARPreliminaryData;
 import pwcg.campaign.Campaign;
 import pwcg.core.exception.PWCGException;
@@ -31,7 +31,7 @@ public class AARLogSetValidator
         vehicleBuilder.buildVehicleListsByVehicleType(logEventData);
         
         boolean referencePlayerFound = false;
-        for (LogPlane logPlane : vehicleBuilder.getLogPlanes().values())
+        for (LogTank logPlane : vehicleBuilder.getLogTanks().values())
         {
             if (logPlane.getCrewMemberSerialNumber() == campaign.getReferencePlayer().getSerialNumber())
             {

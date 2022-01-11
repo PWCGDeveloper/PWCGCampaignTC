@@ -20,7 +20,7 @@ import pwcg.aar.inmission.phase2.logeval.crewmemberstatus.AARCrewMemberStatusDea
 import pwcg.aar.inmission.phase2.logeval.crewmemberstatus.AARCrewMemberStatusEvaluator;
 import pwcg.aar.inmission.phase2.logeval.crewmemberstatus.AARCrewMemberStatusWoundedEvaluator;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogCrewMember;
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.aar.prelim.PwcgMissionData;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.api.ICountry;
@@ -78,7 +78,7 @@ public class AARCrewMemberStatusEvaluatorTest
         AARCrewMemberStatusEvaluator aarCrewMemberStatusEvaluator = makeEvaluator();
         
         aarCrewMemberStatusEvaluator.determineFateOfCrewsInMission();
-        for (LogPlane resultPlaneAfter : aarVehicleBuilder.getLogPlanes().values())
+        for (LogTank resultPlaneAfter : aarVehicleBuilder.getLogTanks().values())
         {
             LogCrewMember crewmanAfter = resultPlaneAfter.getLogCrewMember();
             Assertions.assertTrue (crewmanAfter.getStatus() == CrewMemberStatus.STATUS_ACTIVE);
@@ -156,15 +156,15 @@ public class AARCrewMemberStatusEvaluatorTest
         Mockito.when(logEventData.getDestroyedEventForPlaneByBot(ArgumentMatchers.<String>any())).thenReturn(atype3);
         Mockito.when(logEventData.getDamageForBot(ArgumentMatchers.<String>any())).thenReturn(new ArrayList<IAType2>());
 
-        Map <String, LogPlane> planeAiEntities = makePlaneEntities();
+        Map <String, LogTank> planeAiEntities = makePlaneEntities();
 
-        Mockito.when(aarVehicleBuilder.getLogPlanes()).thenReturn(planeAiEntities);
+        Mockito.when(aarVehicleBuilder.getLogTanks()).thenReturn(planeAiEntities);
     }
 
     private AARCrewMemberStatusEvaluator makeEvaluator() throws PWCGException
     {
         Mockito.when(campaign.getCampaignConfigManager()).thenReturn(configManager);
-        Mockito.when(configManager.getIntConfigParam(ConfigItemKeys.CrewMemberInjuryKey)).thenReturn(4);
+        Mockito.when(configManager.getIntConfigParam(ConfigItemKeys.TankCommanderInjuryKey)).thenReturn(4);
         Mockito.when(pwcgMissionData.getMissionHeader()).thenReturn(missionHeader);
         Mockito.when(missionHeader.getMapName()).thenReturn(FrontMapIdentifier.STALINGRAD_MAP.getMapName());
 
@@ -178,17 +178,17 @@ public class AARCrewMemberStatusEvaluatorTest
     private void runTestWithStatusCheck(AARCrewMemberStatusEvaluator aarCrewMemberStatusEvaluator, int expectedStatus) throws PWCGException
     {
         aarCrewMemberStatusEvaluator.determineFateOfCrewsInMission();
-        for (LogPlane resultPlaneAfter : aarVehicleBuilder.getLogPlanes().values())
+        for (LogTank resultPlaneAfter : aarVehicleBuilder.getLogTanks().values())
         {
             LogCrewMember crewmanAfter = resultPlaneAfter.getLogCrewMember();
             Assertions.assertTrue (crewmanAfter.getStatus() == expectedStatus);
         }
     }
 
-    private Map <String, LogPlane> makePlaneEntities() throws PWCGException
+    private Map <String, LogTank> makePlaneEntities() throws PWCGException
     {
-        Map <String, LogPlane> planeAiEntities = new HashMap <>();
-        LogPlane resultPlane = new LogPlane(2);
+        Map <String, LogTank> planeAiEntities = new HashMap <>();
+        LogTank resultPlane = new LogTank(2);
         resultPlane.setLandAt(new Coordinate());
         ICountry country = CountryFactory.makeCountryByCountry(Country.BRITAIN);
         resultPlane.setCountry(country);

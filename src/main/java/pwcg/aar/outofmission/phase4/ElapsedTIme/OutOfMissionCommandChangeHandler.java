@@ -22,12 +22,12 @@ public class OutOfMissionCommandChangeHandler
         
         for (CrewMember player : campaign.getPersonnelManager().getAllActivePlayers().getCrewMemberList())
         {
-            if (player.determineIsCrewMemberCommander())
+            if (player.determineIsCrewMemberCommander(campaign))
             {
             	CompanyPersonnel playerPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(player.getCompanyId());
                 for (CrewMember crewMember : playerPersonnel.getCrewMembers().getCrewMemberList())
                 {
-                    if (!crewMember.isPlayer() && crewMember.determineIsCrewMemberCommander())
+                    if (!crewMember.isPlayer() && crewMember.determineIsCrewMemberCommander(campaign))
                     {
                         crewMember.setCrewMemberActiveStatus(CrewMemberStatus.STATUS_TRANSFERRED, campaign.getDate(), null);
                         personnelLosses.addPersonnelTransferredHome(crewMember);

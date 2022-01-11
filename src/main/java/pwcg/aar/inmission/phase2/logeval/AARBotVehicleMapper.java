@@ -3,7 +3,7 @@ package pwcg.aar.inmission.phase2.logeval;
 import java.util.List;
 import java.util.Map;
 
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.logfiles.LogEventData;
 import pwcg.core.logfiles.event.IAType12;
@@ -13,16 +13,16 @@ import pwcg.core.utils.PWCGLogger.LogLevel;
 public class AARBotVehicleMapper 
 {
     private LogEventData logEventData;
-    private Map <String, LogPlane> planeAiEntities;
+    private Map <String, LogTank> tankAiEntities;
     
     public AARBotVehicleMapper (LogEventData logEventData)
     {
         this.logEventData = logEventData;
     }
 
-    public void mapBotsToCrews(Map <String, LogPlane> planeAiEntities) throws PWCGException
+    public void mapBotsToCrews(Map <String, LogTank> tankAiEntities) throws PWCGException
     {
-        this.planeAiEntities = planeAiEntities;        
+        this.tankAiEntities = tankAiEntities;        
         mapBotsToCrewPosition(logEventData.getBots());
     }
     
@@ -30,36 +30,36 @@ public class AARBotVehicleMapper
     {
         for (IAType12 atype12Bot : botList)
         {
-            String planeId = logEventData.getPlaneIdByBot(atype12Bot);
+            String tankId = logEventData.getPlaneIdByBot(atype12Bot);
 
-            LogPlane planeResult = getMissionResultPlaneById(planeId);
-            if (planeResult != null)
+            LogTank tankResult = getMissionResultPlaneById(tankId);
+            if (tankResult != null)
             {
-                if (atype12Bot.getType().contains("BotCrewMember") || atype12Bot.getType().contains("Common Bot"))
+                if (atype12Bot.getType().contains("BotTank"))
                 {
-                    mapBotCrewMember(atype12Bot, planeResult);
+                    mapBotCrewMember(atype12Bot, tankResult);
                 }
             }
             else
             {
-                PWCGLogger.log(LogLevel.ERROR, "While adding bot = No plane found for bot: " + atype12Bot.getId() + " for plane id: " + planeId);
+                PWCGLogger.log(LogLevel.ERROR, "While adding bot = No tank found for bot: " + atype12Bot.getId() + " for tank id: " + tankId);
             }
         }
     }
 
-    private void mapBotCrewMember(IAType12 atype12, LogPlane planeResult) throws PWCGException
+    private void mapBotCrewMember(IAType12 atype12, LogTank tankResult) throws PWCGException
     {
-        PWCGLogger.log(LogLevel.DEBUG, "Add CrewMember bot for : " + planeResult.getLogCrewMember().getSerialNumber() + "   " + atype12.getId());
-        planeResult.mapBotToCrew(atype12.getId());
+        PWCGLogger.log(LogLevel.DEBUG, "Add CrewMember bot for : " + tankResult.getLogCrewMember().getSerialNumber() + "   " + atype12.getId());
+        tankResult.mapBotToCrew(atype12.getId());
     }
     
-    private LogPlane getMissionResultPlaneById(String id)
+    private LogTank getMissionResultPlaneById(String id)
     {
-        for (LogPlane planeResult : planeAiEntities.values())
+        for (LogTank tankResult : tankAiEntities.values())
         {
-            if (planeResult.isWithPlane(id))
+            if (tankResult.isWithPlane(id))
             {
-                return planeResult;
+                return tankResult;
             }
         }
 

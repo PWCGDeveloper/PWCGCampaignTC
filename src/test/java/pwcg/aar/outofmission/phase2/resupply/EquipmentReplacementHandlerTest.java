@@ -75,7 +75,7 @@ public class EquipmentReplacementHandlerTest
                 {
                     if (playerSquadron.getCompanyId() != equippedPlane.getCompanyId())
                     {
-                        equippedPlane.setPlaneStatus(TankStatus.STATUS_DESTROYED);
+                        equippedPlane.setTankStatus(TankStatus.STATUS_DESTROYED);
                         equippedPlane.setDateRemovedFromService(inactiveDate);
                         ++numInactivated;
                     }
@@ -115,7 +115,7 @@ public class EquipmentReplacementHandlerTest
             Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(playerSquadron.getCompanyId());
             if (squadron.getCompanyId() == equippedPlane.getCompanyId())
             {                
-                equippedPlane.setPlaneStatus(TankStatus.STATUS_DESTROYED);
+                equippedPlane.setTankStatus(TankStatus.STATUS_DESTROYED);
                 equippedPlane.setDateRemovedFromService(inactiveDate);
                 ++numInactivated;
             }

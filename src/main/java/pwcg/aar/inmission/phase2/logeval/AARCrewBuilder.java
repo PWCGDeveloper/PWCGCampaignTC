@@ -6,16 +6,16 @@ import java.util.List;
 import java.util.Map;
 
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogCrewMember;
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.campaign.crewmember.SerialNumber;
 import pwcg.campaign.crewmember.SerialNumber.SerialNumberClassification;
 import pwcg.core.exception.PWCGException;
 
 public class AARCrewBuilder
 {
-    private Map <String, LogPlane> planeAiEntities = new HashMap <>();
+    private Map <String, LogTank> planeAiEntities = new HashMap <>();
 
-    public AARCrewBuilder(Map <String, LogPlane> planeAiEntities)
+    public AARCrewBuilder(Map <String, LogTank> planeAiEntities)
     {
         this.planeAiEntities = planeAiEntities;
     }
@@ -23,7 +23,7 @@ public class AARCrewBuilder
     public List<LogCrewMember> buildCrewMembersFromLogPlanes() throws PWCGException
     {
         List<LogCrewMember> crewMembersInMission = new ArrayList<LogCrewMember>();
-        for (LogPlane logPlane : planeAiEntities.values())
+        for (LogTank logPlane : planeAiEntities.values())
         {
             crewMembersInMission.add(logPlane.getLogCrewMember());
         }
@@ -39,7 +39,7 @@ public class AARCrewBuilder
     public List<LogCrewMember> buildAcesFromLogPlanes()
     {
         List<LogCrewMember> aceCrewsInMission = new ArrayList<LogCrewMember>();
-        for (LogPlane logPlane : planeAiEntities.values())
+        for (LogTank logPlane : planeAiEntities.values())
         {
             if (SerialNumber.getSerialNumberClassification(logPlane.getCrewMemberSerialNumber()) == SerialNumberClassification.ACE)
             {

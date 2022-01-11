@@ -18,7 +18,7 @@ import org.mockito.quality.Strictness;
 import pwcg.aar.inmission.phase2.logeval.AARDamageStatus;
 import pwcg.aar.inmission.phase2.logeval.AARMissionEvaluationData;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogDamage;
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogVictory;
 import pwcg.aar.inmission.phase3.reconcile.victories.common.ConfirmedVictories;
 import pwcg.aar.inmission.phase3.reconcile.victories.common.VictorySorter;
@@ -60,8 +60,8 @@ public class PlayerDeclarationResolutionFuzzyVictoryTest
     private List<LogVictory> emptyList = new ArrayList<>();        
     private List<CrewMember> players = new ArrayList<>();
 
-    private LogPlane playerVictor = new LogPlane(1);
-    private LogPlane aiVictor = new LogPlane(2);
+    private LogTank playerVictor = new LogTank(1);
+    private LogTank aiVictor = new LogTank(2);
     
     @BeforeEach
     public void setupTest() throws PWCGException
@@ -211,7 +211,7 @@ public class PlayerDeclarationResolutionFuzzyVictoryTest
 
     private void createVictoryWithPlayerDamage(Integer victimSerialNumber, String aircraftType, PwcgRoleCategory approximateRole)
     {        
-        LogPlane victim = createVictimPlane(victimSerialNumber, aircraftType, approximateRole);
+        LogTank victim = createVictimPlane(victimSerialNumber, aircraftType, approximateRole);
 
         LogVictory resultVictory = new LogVictory(10);
         resultVictory.setVictim(victim);
@@ -225,16 +225,16 @@ public class PlayerDeclarationResolutionFuzzyVictoryTest
 
     private void createVictoryNoPlayerDamage(Integer victimSerialNumber, String aircraftType, PwcgRoleCategory approximateRole)
     {        
-        LogPlane victim = createVictimPlane(victimSerialNumber, aircraftType, approximateRole);
+        LogTank victim = createVictimPlane(victimSerialNumber, aircraftType, approximateRole);
 
         LogVictory resultVictory = new LogVictory(10);
         resultVictory.setVictim(victim);
         fuzzyVictories.add(resultVictory);
     }
 
-    private LogPlane createVictimPlane(Integer victimSerialNumber, String aircraftType, PwcgRoleCategory approximateRole)
+    private LogTank createVictimPlane(Integer victimSerialNumber, String aircraftType, PwcgRoleCategory approximateRole)
     {
-        LogPlane victim = new LogPlane(1);
+        LogTank victim = new LogTank(1);
         victim.setCrewMemberSerialNumber(victimSerialNumber);
         victim.setVehicleType(aircraftType);
         victim.setRoleCategory(approximateRole);
@@ -244,7 +244,7 @@ public class PlayerDeclarationResolutionFuzzyVictoryTest
 
     private void createFriendlyVictory(Integer victorSerialNumber, Integer victimSerialNumber)
     {        
-        LogPlane victim = new LogPlane(3);
+        LogTank victim = new LogTank(3);
         victim.setCrewMemberSerialNumber(victimSerialNumber);
         victim.setVehicleType("albatrosd5");
         victim.setCountry(new BoSCountry(Country.GERMANY));

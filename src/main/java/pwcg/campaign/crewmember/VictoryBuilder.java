@@ -3,7 +3,7 @@ package pwcg.campaign.crewmember;
 import java.util.Date;
 
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogAIEntity;
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTurret;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogVictory;
 import pwcg.campaign.Campaign;
@@ -49,9 +49,9 @@ public class VictoryBuilder
             LogTurret logTurret = (LogTurret)logEntity;
             logEntity = logTurret.getParent();
         }
-        if (logEntity instanceof LogPlane)
+        if (logEntity instanceof LogTank)
         {
-            LogPlane logPlane = (LogPlane)logEntity;
+            LogTank logPlane = (LogTank)logEntity;
             CrewMember crewMember = logPlane.getCrewMemberForLogEvent(campaign);
             if (crewMember != null)
             {
@@ -64,9 +64,9 @@ public class VictoryBuilder
 
     private void completeAirVictory(LogVictory missionVictory, Victory victory)
     {
-        if (missionVictory.getVictim() instanceof LogPlane)
+        if (missionVictory.getVictim() instanceof LogTank)
         {
-            LogPlane missionPlane = (LogPlane)missionVictory.getVictim();
+            LogTank missionPlane = (LogTank)missionVictory.getVictim();
             victory.setCrashedInSight(missionPlane.isCrashedInSight());
         }
     }

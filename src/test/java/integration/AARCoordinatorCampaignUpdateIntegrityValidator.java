@@ -9,7 +9,7 @@ import org.junit.jupiter.api.TestInstance;
 
 import pwcg.aar.AAROutOfMissionStepper;
 import pwcg.aar.data.AARContext;
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.CrewMemberStatus;
@@ -28,7 +28,7 @@ public class AARCoordinatorCampaignUpdateIntegrityValidator
     private AARContext aarContext;
 
     private Map<Integer, CrewMember> personnelLosses;
-    private Map<Integer, LogPlane> equipmentLosses;
+    private Map<Integer, LogTank> equipmentLosses;
 
     @BeforeAll
     public void setupSuite() throws PWCGException
@@ -89,9 +89,9 @@ public class AARCoordinatorCampaignUpdateIntegrityValidator
 
     private void validateEquipmentLossesInMemory() throws PWCGException
     {
-        for (LogPlane lostPlane : equipmentLosses.values())
+        for (LogTank lostPlane : equipmentLosses.values())
         {
-            EquippedTank lostPlaneFromEquipment = campaign.getEquipmentManager().getEquipmentForCompany(lostPlane.getSquadronId()).getEquippedTank(lostPlane.getPlaneSerialNumber());
+            EquippedTank lostPlaneFromEquipment = campaign.getEquipmentManager().getEquipmentForCompany(lostPlane.getCompanyId()).getEquippedTank(lostPlane.getTankSerialNumber());
             assert (lostPlaneFromEquipment != null);
             assert (lostPlaneFromEquipment.getPlaneStatus() == TankStatus.STATUS_DESTROYED);
         }

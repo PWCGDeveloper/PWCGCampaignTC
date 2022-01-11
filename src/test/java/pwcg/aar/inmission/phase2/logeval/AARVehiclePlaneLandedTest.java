@@ -12,7 +12,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGProduct;
 import pwcg.core.exception.PWCGException;
@@ -45,7 +45,7 @@ public class AARVehiclePlaneLandedTest
     @Mock
     AType6 logLandedEvent2;
 
-    private Map <String, LogPlane> planeAiEntities = new HashMap<>();
+    private Map <String, LogTank> planeAiEntities = new HashMap<>();
 
     @BeforeEach
     public void setup () throws PWCGException
@@ -88,21 +88,21 @@ public class AARVehiclePlaneLandedTest
     }
 
 
-    private Map <String, LogPlane> makePlaneEntities()
+    private Map <String, LogTank> makePlaneEntities()
     {
-        LogPlane resultPlane1 = new LogPlane(1);
+        LogTank resultPlane1 = new LogTank(1);
         resultPlane1.setId("101");
         planeAiEntities.put("11111", resultPlane1);
         
-        LogPlane resultPlane2 = new LogPlane(2);
+        LogTank resultPlane2 = new LogTank(2);
         resultPlane2.setId("102");
         planeAiEntities.put("22222", resultPlane2);
         
-        LogPlane resultPlane3 = new LogPlane(3);
+        LogTank resultPlane3 = new LogTank(3);
         resultPlane3.setId("999");
         planeAiEntities.put("99999", resultPlane3);
         
-        LogPlane resultPlane4 = new LogPlane(4);
+        LogTank resultPlane4 = new LogTank(4);
         resultPlane4.setId("104");
         planeAiEntities.put("44444", resultPlane4);
                 

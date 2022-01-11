@@ -12,18 +12,18 @@ import pwcg.core.utils.PWCGLogger;
 import pwcg.core.utils.PWCGLogger.LogLevel;
 import pwcg.mission.data.PwcgGeneratedMissionVehicleData;
 
-public class LogPlane extends LogAIEntity
+public class LogTank extends LogAIEntity
 {
     private Coordinate landAt = null;
-    private Integer squadronId;
+    private Integer companyId;
     private boolean crashedInSight = false;
     private LogCrewMember logCrewMember;
     private int crewMemberSerialNumber;
-    private int planeSerialNumber;
-    private int planeStatus = TankStatus.STATUS_DEPLOYED;
+    private int tankSerialNumber;
+    private int tankStatus = TankStatus.STATUS_DEPLOYED;
     private LogTurrets turrets = new LogTurrets();
 
-    public LogPlane(int sequenceNumber)
+    public LogTank(int sequenceNumber)
     {
         super(sequenceNumber);
     }
@@ -40,23 +40,23 @@ public class LogPlane extends LogAIEntity
 
     public void initializeFromMissionPlane(PwcgGeneratedMissionVehicleData missionPlane)
     {        
-        this.squadronId = missionPlane.getCompanyId();
+        this.companyId = missionPlane.getCompanyId();
         this.crewMemberSerialNumber = missionPlane.getCrewMemberSerialNumber();
-        this.planeSerialNumber = missionPlane.getVehicleSerialNumber();
+        this.tankSerialNumber = missionPlane.getVehicleSerialNumber();
         intializeCrewMember(missionPlane.getCrewMemberSerialNumber());
     }
 
-    public void initializeFromOutOfMission(Campaign campaign, EquippedTank plane, CrewMember crewMember) throws PWCGException
+    public void initializeFromOutOfMission(Campaign campaign, EquippedTank tank, CrewMember crewMember) throws PWCGException
     {
-        this.squadronId = crewMember.getCompanyId();
+        this.companyId = crewMember.getCompanyId();
         this.crewMemberSerialNumber = crewMember.getSerialNumber();
-        this.planeSerialNumber = plane.getSerialNumber();
+        this.tankSerialNumber = tank.getSerialNumber();
 
         super.setId(""+super.getSequenceNum());
         super.setCountry(crewMember.determineCountry(campaign.getDate()));
         super.setName(crewMember.getNameAndRank());
-        super.setVehicleType(plane.getDisplayName());
-        super.setRoleCategory(plane.determinePrimaryRoleCategory());
+        super.setVehicleType(tank.getDisplayName());
+        super.setRoleCategory(tank.determinePrimaryRoleCategory());
     }
 
     public void intializeCrewMember(int serialNumber)
@@ -126,7 +126,7 @@ public class LogPlane extends LogAIEntity
         CrewMember crewMember = campaign.getPersonnelManager().getAnyCampaignMember(crewMemberSerialNumber);
         if (crewMember != null)
         {
-            if (Company.isPlayerCompany(campaign, squadronId))
+            if (Company.isPlayerCompany(campaign, companyId))
             {
                 return true;
             }
@@ -157,14 +157,14 @@ public class LogPlane extends LogAIEntity
         this.crashedInSight = crashedInSight;
     }    
 
-    public Integer getSquadronId()
+    public Integer getCompanyId()
     {
-        return squadronId;
+        return companyId;
     }
 
-    public void setSquadronId(Integer squadronId)
+    public void setCompanyId(Integer companyId)
     {
-        this.squadronId = squadronId;
+        this.companyId = companyId;
     }
 
     public int getCrewMemberSerialNumber()
@@ -177,23 +177,23 @@ public class LogPlane extends LogAIEntity
         this.crewMemberSerialNumber = crewMemberSerialNumber;
     }
 
-    public int getPlaneSerialNumber()
+    public int getTankSerialNumber()
     {
-        return planeSerialNumber;
+        return tankSerialNumber;
     }
 
-    public void setPlaneSerialNumber(int planeSerialNumber)
+    public void setTankSerialNumber(int tankSerialNumber)
     {
-        this.planeSerialNumber = planeSerialNumber;
+        this.tankSerialNumber = tankSerialNumber;
     }
 
-    public int getPlaneStatus()
+    public int getTankStatus()
     {
-        return planeStatus;
+        return tankStatus;
     }
 
-    public void setPlaneStatus(int planeStatus)
+    public void setTankStatus(int tankStatus)
     {
-        this.planeStatus = planeStatus;
+        this.tankStatus = tankStatus;
     }
 }

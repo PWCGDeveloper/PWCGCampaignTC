@@ -14,7 +14,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogBalloon;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogBase;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogDamage;
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogVictory;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogWaypoint;
 import pwcg.aar.inmission.phase2.logeval.victory.AARVictoryEvaluator;
@@ -67,14 +67,14 @@ public class AARChronologicalEventListBuilderTest
 
     private int mockPlaneSpawn(int lastSequenceNumber)
     {
-        Map<String, LogPlane> planeAiEntities = new HashMap <>();
+        Map<String, LogTank> planeAiEntities = new HashMap <>();
         int i = lastSequenceNumber;
         for (; i < lastSequenceNumber+3; ++i)
         {
-            LogPlane planeSpawn = new LogPlane(i);
+            LogTank planeSpawn = new LogTank(i);
             planeAiEntities.put("" + i, planeSpawn);
         }
-        Mockito.when(aarVehicleBuilder.getLogPlanes()).thenReturn(planeAiEntities);
+        Mockito.when(aarVehicleBuilder.getLogTanks()).thenReturn(planeAiEntities);
         
         return i;
     }

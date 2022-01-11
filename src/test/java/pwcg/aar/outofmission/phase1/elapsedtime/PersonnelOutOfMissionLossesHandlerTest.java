@@ -17,7 +17,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import pwcg.aar.data.AARContext;
 import pwcg.aar.data.AARPersonnelLosses;
 import pwcg.aar.data.CampaignUpdateData;
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.aar.prelim.AARPreliminaryData;
 import pwcg.aar.prelim.CampaignMembersOutOfMissionFinder;
 import pwcg.campaign.Campaign;
@@ -66,7 +66,7 @@ public class PersonnelOutOfMissionLossesHandlerTest
             mocked.when(() -> CampaignMembersOutOfMissionFinder.getActiveCampaignMembersNotInMission(Mockito.any(), Mockito.any())).thenReturn(squadronMembers);
 
             OutOfMissionLossHandler outOfMissionLossesHandler = new OutOfMissionLossHandler(campaign, aarContext);
-            outOfMissionLossesHandler.lossesOutOfMission(new HashMap<Integer, CrewMember>(), new HashMap<Integer, LogPlane>());
+            outOfMissionLossesHandler.lossesOutOfMission(new HashMap<Integer, CrewMember>(), new HashMap<Integer, LogTank>());
             AARPersonnelLosses lossesInMissionDataTotal = outOfMissionLossesHandler.getOutOfMissionPersonnelLosses();
             Assertions.assertTrue (lossesInMissionDataTotal.getAcesKilled(campaign).size() > 0);
         }
@@ -87,7 +87,7 @@ public class PersonnelOutOfMissionLossesHandlerTest
     
             OutOfMissionLossHandler outOfMissionLossesHandler = new OutOfMissionLossHandler(campaign, aarContext);
             CrewMembers allAiCampaignMembers = CrewMemberFilter.filterActiveAI(campaign.getPersonnelManager().getAllCampaignMembers(), campaign.getDate());
-            outOfMissionLossesHandler.lossesOutOfMission(allAiCampaignMembers.getCrewMemberCollection(), new HashMap<Integer, LogPlane>());
+            outOfMissionLossesHandler.lossesOutOfMission(allAiCampaignMembers.getCrewMemberCollection(), new HashMap<Integer, LogTank>());
     
             AARPersonnelLosses lossesInMissionDataTotal = outOfMissionLossesHandler.getOutOfMissionPersonnelLosses();
             aiKilled.putAll(lossesInMissionDataTotal.getPersonnelKilled());

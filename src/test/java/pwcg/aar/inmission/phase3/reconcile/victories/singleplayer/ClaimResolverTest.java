@@ -14,7 +14,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogVictory;
 import pwcg.aar.inmission.phase3.reconcile.victories.IClaimResolver;
 import pwcg.aar.inmission.phase3.reconcile.victories.ReconciledMissionVictoryData;
@@ -78,14 +78,14 @@ public class ClaimResolverTest
     {
         for (int i = 0; i < 3; ++i)
         {
-            LogPlane victor = new LogPlane(10+1);
+            LogTank victor = new LogTank(10+1);
             victor.setCrewMemberSerialNumber(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
             victor.setCompanyId(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
             victor.intializeCrewMember(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
             
-            LogPlane victim = new LogPlane(100+i);
+            LogTank victim = new LogTank(100+i);
             victim.setCrewMemberSerialNumber(SerialNumber.AI_STARTING_SERIAL_NUMBER);
-            victim.setSquadronId(302056);
+            victim.setCompanyId(302056);
             victim.intializeCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER);
 
             LogVictory missionResultVictory = new LogVictory(1000+i);

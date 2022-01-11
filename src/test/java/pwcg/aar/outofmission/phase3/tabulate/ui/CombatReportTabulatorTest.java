@@ -22,7 +22,7 @@ import pwcg.aar.data.AAREquipmentLosses;
 import pwcg.aar.data.AARPersonnelAcheivements;
 import pwcg.aar.data.AARPersonnelLosses;
 import pwcg.aar.inmission.phase2.logeval.AARMissionEvaluationData;
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.aar.tabulate.combatreport.AARCombatReportTabulator;
 import pwcg.aar.ui.display.model.AARCombatReportPanelData;
 import pwcg.aar.ui.events.CrewMemberStatusEventGenerator;
@@ -105,11 +105,11 @@ public class CombatReportTabulatorTest extends AARTestSetup
         Mockito.when(crewMemberStatusEventGenerator.createCrewMemberLossEvents(ArgumentMatchers.<AARPersonnelLosses>any())).thenReturn(crewMembersLost);
 
         boolean isNewsworthy = true;
-        LogPlane logPlane = new LogPlane(AARContextEventSequence.getNextOutOfMissionEventSequenceNumber());
+        LogTank logPlane = new LogTank(AARContextEventSequence.getNextOutOfMissionEventSequenceNumber());
         logPlane.initializeFromOutOfMission(campaign, plane1, crewMember1);
         PlaneStatusEvent planeStatusEvent = new PlaneStatusEvent(campaign, logPlane, TankStatus.STATUS_DESTROYED, isNewsworthy);
 
-        LogPlane logPlaneNotFromSquadron = new LogPlane(AARContextEventSequence.getNextOutOfMissionEventSequenceNumber());
+        LogTank logPlaneNotFromSquadron = new LogTank(AARContextEventSequence.getNextOutOfMissionEventSequenceNumber());
         logPlaneNotFromSquadron.initializeFromOutOfMission(campaign, plane2, crewMember2);
         PlaneStatusEvent planeStatusEventNotFromSquadron = new PlaneStatusEvent(campaign, logPlane, TankStatus.STATUS_DESTROYED, isNewsworthy);
 

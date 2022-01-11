@@ -1,6 +1,6 @@
 package pwcg.aar.ui.events.model;
 
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.CampaignEquipmentManager;
 import pwcg.campaign.CampaignPersonnelManager;
@@ -19,11 +19,11 @@ public class PlaneStatusEvent extends AARCrewMemberEvent
     private String squadronName;
 	private int planeStatus;
 	
-    public PlaneStatusEvent(Campaign campaign, LogPlane lostPlane, int planeStatus, boolean isNewsWorthy)
+    public PlaneStatusEvent(Campaign campaign, LogTank lostPlane, int planeStatus, boolean isNewsWorthy)
     {
-        super(campaign, lostPlane.getSquadronId(), lostPlane.getCrewMemberSerialNumber(), campaign.getDate(), isNewsWorthy);
+        super(campaign, lostPlane.getCompanyId(), lostPlane.getCrewMemberSerialNumber(), campaign.getDate(), isNewsWorthy);
         this.crewMemberSerialNumber = lostPlane.getCrewMemberSerialNumber();
-        this.planeSerialNumber = lostPlane.getPlaneSerialNumber();
+        this.planeSerialNumber = lostPlane.getTankSerialNumber();
         this.planeStatus = planeStatus;
         
         try

@@ -15,7 +15,7 @@ import org.mockito.quality.Strictness;
 
 import pwcg.aar.data.AARContext;
 import pwcg.aar.inmission.phase2.logeval.AARMissionEvaluationData;
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogVictory;
 import pwcg.aar.inmission.phase3.reconcile.victories.common.ConfirmedVictories;
 import pwcg.aar.inmission.phase3.reconcile.victories.common.VictorySorter;
@@ -53,8 +53,8 @@ public class AiDeclarationResolutionFirmTest
     private List<LogVictory> emptyList = new ArrayList<>();        
     private List<CrewMember> players = new ArrayList<>();
 
-    private LogPlane playerVictor = new LogPlane(1);
-    private LogPlane aiVictor = new LogPlane(2);
+    private LogTank playerVictor = new LogTank(1);
+    private LogTank aiVictor = new LogTank(2);
 
     @BeforeEach
     public void setupTest() throws PWCGException
@@ -67,20 +67,20 @@ public class AiDeclarationResolutionFirmTest
         Mockito.when(campaign.getPersonnelManager()).thenReturn(personnelManager);   
 
         playerVictor.setCrewMemberSerialNumber(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
-        playerVictor.setPlaneSerialNumber(SerialNumber.PLANE_STARTING_SERIAL_NUMBER + 1);
+        playerVictor.setTankSerialNumber(SerialNumber.PLANE_STARTING_SERIAL_NUMBER + 1);
         aiVictor.setCrewMemberSerialNumber(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1);
-        aiVictor.setPlaneSerialNumber(SerialNumber.PLANE_STARTING_SERIAL_NUMBER + 2);
+        aiVictor.setTankSerialNumber(SerialNumber.PLANE_STARTING_SERIAL_NUMBER + 2);
 
         createVictory(playerVictor, SerialNumber.AI_STARTING_SERIAL_NUMBER + 1000);
         createVictory(aiVictor, SerialNumber.AI_STARTING_SERIAL_NUMBER + 1001);
         createVictory(aiVictor, SerialNumber.AI_STARTING_SERIAL_NUMBER + 1002);
     }
 
-    private void createVictory(LogPlane victor, Integer victimSerialNumber) throws PWCGException
+    private void createVictory(LogTank victor, Integer victimSerialNumber) throws PWCGException
     {        
-        LogPlane victim = new LogPlane(3);
+        LogTank victim = new LogTank(3);
         victim.setCrewMemberSerialNumber(victimSerialNumber);
-        victim.setPlaneSerialNumber(SerialNumber.PLANE_STARTING_SERIAL_NUMBER + 100);
+        victim.setTankSerialNumber(SerialNumber.PLANE_STARTING_SERIAL_NUMBER + 100);
         
         LogVictory resultVictory = new LogVictory(10);
         resultVictory.setVictor(victor);

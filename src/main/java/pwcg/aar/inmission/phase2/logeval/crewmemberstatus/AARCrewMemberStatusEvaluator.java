@@ -5,7 +5,7 @@ import java.util.List;
 import pwcg.aar.inmission.phase2.logeval.AARDestroyedStatusEvaluator;
 import pwcg.aar.inmission.phase2.logeval.AARVehicleBuilder;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogCrewMember;
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.crewmember.CrewMemberStatus;
 import pwcg.campaign.crewmember.SerialNumber;
@@ -35,7 +35,7 @@ public class AARCrewMemberStatusEvaluator
 
     public void determineFateOfCrewsInMission () throws PWCGException 
     {        
-        for (LogPlane resultPlane : aarVehicleBuilder.getLogPlanes().values())
+        for (LogTank resultPlane : aarVehicleBuilder.getLogTanks().values())
         {            
             LogCrewMember resultCrewmember = resultPlane.getLogCrewMember();
             determineCrewMemberStatus(resultPlane, resultCrewmember);
@@ -44,7 +44,7 @@ public class AARCrewMemberStatusEvaluator
 
 
     private void determineCrewMemberStatus(
-                    LogPlane resultPlane,
+                    LogTank resultPlane,
                     LogCrewMember resultCrewmember) throws PWCGException
     {
         setCrewMemberWounded(resultCrewmember);
@@ -75,7 +75,7 @@ public class AARCrewMemberStatusEvaluator
         }
     }
 
-    private void setCrewMemberDead(LogPlane resultPlane, LogCrewMember resultCrewmember) throws PWCGException 
+    private void setCrewMemberDead(LogTank resultPlane, LogCrewMember resultCrewmember) throws PWCGException 
     {        
         int oddsOfDeathDueToAiStupidity = 10;
         IAType3 destroyedEventForPlane = logEventData.getDestroyedEventForPlaneByBot(resultCrewmember.getBotId());

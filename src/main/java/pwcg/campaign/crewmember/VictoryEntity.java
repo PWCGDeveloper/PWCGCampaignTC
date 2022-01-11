@@ -6,7 +6,7 @@ import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogAIEntity;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogBalloon;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogCrewMember;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogGroundUnit;
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTurret;
 import pwcg.campaign.company.Company;
 import pwcg.campaign.context.PWCGContext;
@@ -30,9 +30,9 @@ public class VictoryEntity
 
     public void initialize (Date victoryDate, LogAIEntity logEntity, String crewMemberName) throws PWCGException
     {
-        if (logEntity instanceof LogPlane)
+        if (logEntity instanceof LogTank)
         {
-            LogPlane logPlane = (LogPlane)logEntity;
+            LogTank logPlane = (LogTank)logEntity;
             initializeForPlane(victoryDate, logPlane, crewMemberName);
         }
         else if (logEntity instanceof LogBalloon)
@@ -62,9 +62,9 @@ public class VictoryEntity
         return true;
     }
 
-    private void initializeForPlane(Date victoryDate, LogPlane logPlane, String crewMemberName) throws PWCGException
+    private void initializeForPlane(Date victoryDate, LogTank logPlane, String crewMemberName) throws PWCGException
     {                    
-        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(logPlane.getSquadronId());
+        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(logPlane.getCompanyId());
         LogCrewMember logCrewMember = logPlane.getLogCrewMember();
 
         airOrGround = Victory.AIRCRAFT;
@@ -92,10 +92,10 @@ public class VictoryEntity
 
     private void initializeForTurret(Date victoryDate, LogTurret logTurret, String crewMemberName) throws PWCGException
     {
-        if (!(logTurret.getParent() instanceof LogPlane))
+        if (!(logTurret.getParent() instanceof LogTank))
             throw new PWCGException("Parent of turret is not a plane");
 
-        LogPlane logPlane = (LogPlane) logTurret.getParent();
+        LogTank logPlane = (LogTank) logTurret.getParent();
         initializeForPlane(victoryDate, logPlane, crewMemberName);
         isGunner = true;
     }

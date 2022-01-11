@@ -102,7 +102,7 @@ public class AARVehicleBuilderTest
         AARVehicleBuilder aarVehicleBuilder = createAARVehicleBuilder(); 
         aarVehicleBuilder.buildVehicleListsByVehicleType(logEventData);
         
-        assert(aarVehicleBuilder.getLogPlanes().size() == numFrenchPlanes + numGermanPlanes);
+        assert(aarVehicleBuilder.getLogTanks().size() == numFrenchPlanes + numGermanPlanes);
         assert(aarVehicleBuilder.getLogBalloons().size() == numFrenchBalloons + numGermanBalloons);
         assert(aarVehicleBuilder.getLogGroundUNits().size() == numFrenchTrucks + numGermanTrucks);
     }

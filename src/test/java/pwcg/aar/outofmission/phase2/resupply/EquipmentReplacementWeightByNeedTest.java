@@ -55,14 +55,14 @@ public class EquipmentReplacementWeightByNeedTest
                     Date threeWeeksAgo = DateUtils.removeTimeDays(campaign.getDate(), 21);
                     ++numDestroyedOverOneWeekAgo;
                     equippedPlane.setDateRemovedFromService(threeWeeksAgo);
-                    equippedPlane.setPlaneStatus(TankStatus.STATUS_DESTROYED);
+                    equippedPlane.setTankStatus(TankStatus.STATUS_DESTROYED);
                 }
                 else if (numDestroyedlessThanOneWeekAgo < 1)
                 {
                     Date threeDaysAgo = DateUtils.removeTimeDays(campaign.getDate(), 3);
                     ++numDestroyedlessThanOneWeekAgo;
                     equippedPlane.setDateRemovedFromService(threeDaysAgo);
-                    equippedPlane.setPlaneStatus(TankStatus.STATUS_DESTROYED);
+                    equippedPlane.setTankStatus(TankStatus.STATUS_DESTROYED);
                 }
                 else
                 {

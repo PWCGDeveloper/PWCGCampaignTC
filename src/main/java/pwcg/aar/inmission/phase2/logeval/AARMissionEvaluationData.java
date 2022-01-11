@@ -7,20 +7,20 @@ import java.util.Map;
 
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogBase;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogCrewMember;
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogVictory;
 import pwcg.core.exception.PWCGException;
 
 public class AARMissionEvaluationData
 {
-    private Map <String, LogPlane> planeAiEntities = new HashMap <>();
+    private Map <String, LogTank> planeAiEntities = new HashMap <>();
     private List<LogVictory> victoryResults = new ArrayList <>();
     private List<LogCrewMember> crewMembersInMission = new ArrayList<>();
     private List<LogBase> chronologicalEvents = new ArrayList<>();
     
-    public LogPlane getPlaneInMissionBySerialNumber(Integer serialNumber) throws PWCGException
+    public LogTank getPlaneInMissionBySerialNumber(Integer serialNumber) throws PWCGException
     {
-        for (LogPlane missionPlane : planeAiEntities.values())
+        for (LogTank missionPlane : planeAiEntities.values())
         {
             if (missionPlane.isCrewMember(serialNumber))
             {
@@ -33,7 +33,7 @@ public class AARMissionEvaluationData
     
     public boolean wasCrewMemberInMission(Integer serialNumber) throws PWCGException
     {
-        for (LogPlane missionPlane : planeAiEntities.values())
+        for (LogTank missionPlane : planeAiEntities.values())
         {
             if (missionPlane.isCrewMember(serialNumber))
             {
@@ -44,12 +44,12 @@ public class AARMissionEvaluationData
         return false;
     }
 
-    public Map<String, LogPlane> getPlaneAiEntities()
+    public Map<String, LogTank> getPlaneAiEntities()
     {
         return planeAiEntities;
     }
 
-    public void setPlaneAiEntities(Map<String, LogPlane> planeAiEntities)
+    public void setPlaneAiEntities(Map<String, LogTank> planeAiEntities)
     {
         this.planeAiEntities = planeAiEntities;
     }

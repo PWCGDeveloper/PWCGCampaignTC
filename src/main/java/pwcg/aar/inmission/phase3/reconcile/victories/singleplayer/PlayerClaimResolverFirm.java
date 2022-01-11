@@ -1,6 +1,6 @@
 package pwcg.aar.inmission.phase3.reconcile.victories.singleplayer;
 
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogVictory;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.crewmember.CrewMember;
@@ -22,13 +22,13 @@ public class PlayerClaimResolverFirm
         {
             if (!VictoryResolverSameSideDetector.isSameSide(player, resultVictory))
             {
-                if (resultVictory.getVictor() instanceof LogPlane)
+                if (resultVictory.getVictor() instanceof LogTank)
                 {
                     if (PlayerVictoryResolver.isPlayerVictory(player, resultVictory.getVictor()))
                     {
-                        if (resultVictory.getVictim() instanceof LogPlane)
+                        if (resultVictory.getVictim() instanceof LogTank)
                         {
-                            LogPlane victimPlane = (LogPlane)resultVictory.getVictim();
+                            LogTank victimPlane = (LogTank)resultVictory.getVictim();
                             TankType shotDownPlane = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(victimPlane.getVehicleType());
                             TankType claimedPlane = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(playerDeclaration.getAircraftType());
             

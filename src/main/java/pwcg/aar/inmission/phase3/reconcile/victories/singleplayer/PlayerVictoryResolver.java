@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogAIEntity;
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogVictory;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.core.exception.PWCGException;
@@ -15,9 +15,9 @@ public abstract class PlayerVictoryResolver
 
     public static boolean isPlayerVictory(CrewMember crewMember, LogAIEntity victoriousVehicle) throws PWCGException
     {
-        if (victoriousVehicle instanceof LogPlane)
+        if (victoriousVehicle instanceof LogTank)
         {
-            LogPlane victoriousPlane = (LogPlane)victoriousVehicle;
+            LogTank victoriousPlane = (LogTank)victoriousVehicle;
             if (crewMember.isPlayer())
             {
                 if (crewMember.getSerialNumber() == victoriousPlane.getCrewMemberSerialNumber())

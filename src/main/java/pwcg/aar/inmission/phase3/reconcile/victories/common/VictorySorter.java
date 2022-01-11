@@ -5,7 +5,7 @@ import java.util.List;
 
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogAIEntity;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogBalloon;
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogUnknown;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogVictory;
 import pwcg.campaign.tank.PwcgRoleCategory;
@@ -117,7 +117,7 @@ public class VictorySorter
         LogAIEntity logVictim = logVictory.getVictim();
         if (logVictim != null)
         {
-            if (logVictim instanceof LogPlane)
+            if (logVictim instanceof LogTank)
             {
                 return true;
             }

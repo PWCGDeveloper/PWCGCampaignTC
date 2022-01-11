@@ -68,7 +68,7 @@ public class AARPlayerStatusAdjuster
 	private int getConfiguredMaxPlayerInjury() throws PWCGException
 	{
 		ConfigManagerCampaign configManager = campaign.getCampaignConfigManager();
-        int maxPlayerInjury = configManager.getIntConfigParam(ConfigItemKeys.CrewMemberInjuryKey);
+        int maxPlayerInjury = configManager.getIntConfigParam(ConfigItemKeys.TankCommanderInjuryKey);
 		return maxPlayerInjury;
 	}
 }

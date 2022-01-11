@@ -16,7 +16,7 @@ import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 
 import pwcg.aar.inmission.phase2.logeval.AARMissionEvaluationData;
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogVictory;
 import pwcg.aar.inmission.phase3.reconcile.victories.common.ConfirmedVictories;
 import pwcg.aar.inmission.phase3.reconcile.victories.common.VictorySorter;
@@ -55,8 +55,8 @@ public class PlayerDeclarationResolutionFirmVictoryTest
     private List<LogVictory> emptyList = new ArrayList<>();        
     private List<CrewMember> players = new ArrayList<>();
 
-    private LogPlane playerVictor = new LogPlane(1);
-    private LogPlane aiVictor = new LogPlane(2);
+    private LogTank playerVictor = new LogTank(1);
+    private LogTank aiVictor = new LogTank(2);
     
     @BeforeEach
     public void setupTest() throws PWCGException
@@ -181,12 +181,12 @@ public class PlayerDeclarationResolutionFirmVictoryTest
 
     private void createVictory(Integer victorSerialNumber, Integer victimSerialNumber)
     {        
-        LogPlane victim = new LogPlane(3);
+        LogTank victim = new LogTank(3);
         victim.setCrewMemberSerialNumber(victimSerialNumber);
         victim.setVehicleType("albatrosd5");
         victim.setCountry(new BoSCountry(Country.GERMANY));
 
-        LogPlane victor = new LogPlane(4);
+        LogTank victor = new LogTank(4);
         victor.setVehicleType("spad13");
         victor.setCrewMemberSerialNumber(victorSerialNumber);
         victor.setCountry(new BoSCountry(Country.FRANCE));
@@ -200,12 +200,12 @@ public class PlayerDeclarationResolutionFirmVictoryTest
 
     private void createFriendlyVictory(Integer victorSerialNumber, Integer victimSerialNumber)
     {        
-        LogPlane victim = new LogPlane(3);
+        LogTank victim = new LogTank(3);
         victim.setCrewMemberSerialNumber(victimSerialNumber);
         victim.setVehicleType("spad13");
         victim.setCountry(new BoSCountry(Country.FRANCE));
 
-        LogPlane victor = new LogPlane(4);
+        LogTank victor = new LogTank(4);
         victor.setVehicleType("spad13");
         victor.setCrewMemberSerialNumber(victorSerialNumber);
         victor.setCountry(new BoSCountry(Country.FRANCE));

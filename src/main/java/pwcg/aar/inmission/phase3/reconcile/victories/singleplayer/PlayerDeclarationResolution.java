@@ -3,7 +3,7 @@ package pwcg.aar.inmission.phase3.reconcile.victories.singleplayer;
 import java.util.Map;
 
 import pwcg.aar.inmission.phase2.logeval.AARMissionEvaluationData;
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogVictory;
 import pwcg.aar.inmission.phase3.reconcile.victories.common.ConfirmedVictories;
 import pwcg.aar.inmission.phase3.reconcile.victories.common.VictorySorter;
@@ -163,7 +163,7 @@ public class PlayerDeclarationResolution
             CrewMember player = campaign.getPersonnelManager().getAnyCampaignMember(playerSerialNumber);
             if (!VictoryResolverSameSideDetector.isSameSide(player, resultVictory))
             {
-                if (resultVictory.getVictor() instanceof LogPlane)
+                if (resultVictory.getVictor() instanceof LogTank)
                 {
                     CrewMember crewMember = campaign.getPersonnelManager().getAnyCampaignMember(playerSerialNumber);
                     if (PlayerVictoryResolver.isPlayerVictory(crewMember, resultVictory.getVictor()))
@@ -207,7 +207,7 @@ public class PlayerDeclarationResolution
 
     private boolean didPlayerDamagePlane(Integer playerSerialNumber, LogVictory resultVictory) throws PWCGException
     {
-        LogPlane playerPlane = evaluationData.getPlaneInMissionBySerialNumber(playerSerialNumber);
+        LogTank playerPlane = evaluationData.getPlaneInMissionBySerialNumber(playerSerialNumber);
         boolean didPlayerDamagePlane = resultVictory.didCrewMemberDamagePlane(playerPlane.getId());
         return didPlayerDamagePlane;
     }
@@ -218,7 +218,7 @@ public class PlayerDeclarationResolution
         {
             victoryDeclaration.confirmDeclaration(true, shotDownPlaneName);
     
-            LogPlane playerPlane = evaluationData.getPlaneInMissionBySerialNumber(playerSerialNumber);
+            LogTank playerPlane = evaluationData.getPlaneInMissionBySerialNumber(playerSerialNumber);
             if (playerPlane != null)
             {
                 resultVictory.setVictor(playerPlane);

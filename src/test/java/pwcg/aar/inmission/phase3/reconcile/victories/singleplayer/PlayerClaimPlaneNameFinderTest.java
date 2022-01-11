@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogVictory;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGProduct;
@@ -22,7 +22,7 @@ public class PlayerClaimPlaneNameFinderTest
     @Test
     public void testPlaneNameFoundByVictoryResult() throws PWCGException
     {
-        LogPlane victim = new LogPlane(1);
+        LogTank victim = new LogTank(1);
         victim.setVehicleType("se5a");
 
         LogVictory victory = new LogVictory(2);

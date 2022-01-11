@@ -150,7 +150,7 @@ public class EquipmentReplacementWeightNeedTest
         int numDestroyed = 0;
         for (EquippedTank equippedPlane : squadronEquipment.getActiveEquippedTanks().values())
         {
-            equippedPlane.setPlaneStatus(TankStatus.STATUS_DESTROYED);
+            equippedPlane.setTankStatus(TankStatus.STATUS_DESTROYED);
             Date dateDestroyed = DateUtils.removeTimeDays(campaign.getDate(), 10);
             equippedPlane.setDateRemovedFromService(dateDestroyed);
             ++numDestroyed;

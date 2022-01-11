@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogCrewMember;
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.campaign.context.Country;
 import pwcg.campaign.crewmember.SerialNumber;
 import pwcg.campaign.factory.CountryFactory;
@@ -23,7 +23,7 @@ public class TestMissionEntityGenerator
     private List<IAType12> vehicles = new ArrayList<>();
     private Map<String, IAType12> crewMemberBots = new HashMap<>();
     private Map<Integer, PwcgGeneratedMissionVehicleData> missionPlanes = new HashMap<>();
-    private Map <String, LogPlane> planeAiEntities = new HashMap<>();
+    private Map <String, LogTank> planeAiEntities = new HashMap<>();
 
     public void makeMissionArtifacts(
                     int numFrenchPlanes, 
@@ -132,11 +132,11 @@ public class TestMissionEntityGenerator
 
     private void makeMissionResultPlaneFighter(String crewMemberName, Integer crewMemberSerialNumber, Integer planeSerialNumber, IAType12 plane) throws PWCGException
     {
-    	LogPlane missionResultPlane = new LogPlane(1);
+    	LogTank missionResultPlane = new LogTank(1);
         missionResultPlane.setVehicleType(plane.getType());
         missionResultPlane.setId(plane.getId());
         missionResultPlane.setCrewMemberSerialNumber(crewMemberSerialNumber);
-        missionResultPlane.setPlaneSerialNumber(planeSerialNumber);
+        missionResultPlane.setTankSerialNumber(planeSerialNumber);
 
         LogCrewMember crewMemberCrewMember = new LogCrewMember();
         crewMemberCrewMember.setSerialNumber(crewMemberSerialNumber);
@@ -161,7 +161,7 @@ public class TestMissionEntityGenerator
         return missionPlanes.get(key);
     }
 
-    public Map<String, LogPlane> getPlaneAiEntities()
+    public Map<String, LogTank> getPlaneAiEntities()
     {
         return planeAiEntities;
     }

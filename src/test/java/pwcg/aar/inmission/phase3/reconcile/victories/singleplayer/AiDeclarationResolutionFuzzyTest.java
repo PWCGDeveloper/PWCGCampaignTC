@@ -17,7 +17,7 @@ import org.mockito.quality.Strictness;
 
 import pwcg.aar.data.AARContext;
 import pwcg.aar.inmission.phase2.logeval.AARMissionEvaluationData;
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogVictory;
 import pwcg.aar.inmission.phase3.reconcile.victories.common.ConfirmedVictories;
 import pwcg.aar.inmission.phase3.reconcile.victories.common.VictorySorter;
@@ -61,9 +61,9 @@ public class AiDeclarationResolutionFuzzyTest
     private List<LogVictory> emptyList = new ArrayList<>();        
     private List<CrewMember> players = new ArrayList<>();
 
-    private LogPlane playerVictor = new LogPlane(1);
-    private LogPlane aiVictorOne = new LogPlane(2);
-    private LogPlane aiVictorTwo = new LogPlane(3);
+    private LogTank playerVictor = new LogTank(1);
+    private LogTank aiVictorOne = new LogTank(2);
+    private LogTank aiVictorTwo = new LogTank(3);
 
     @BeforeEach
     public void setupTest() throws PWCGException
@@ -111,9 +111,9 @@ public class AiDeclarationResolutionFuzzyTest
         Mockito.when(preliminaryData.getPlayerSquadronsInMission()).thenReturn(playerSquadronsInMission);
 
         int squadronId = CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId();
-        playerVictor.setSquadronId(squadronId);
-        aiVictorOne.setSquadronId(squadronId);
-        aiVictorTwo.setSquadronId(squadronId);
+        playerVictor.setCompanyId(squadronId);
+        aiVictorOne.setCompanyId(squadronId);
+        aiVictorTwo.setCompanyId(squadronId);
         Mockito.when(aiSquadMember1.getCompanyId()).thenReturn(squadronId);
         Mockito.when(aiSquadMember2.getCompanyId()).thenReturn(squadronId);
         Mockito.when(squadron.getCompanyId()).thenReturn(squadronId);
@@ -121,7 +121,7 @@ public class AiDeclarationResolutionFuzzyTest
 
     private void createVictory(Integer victimSerialNumber) throws PWCGException
     {        
-        LogPlane victim = new LogPlane(4);
+        LogTank victim = new LogTank(4);
         victim.setCrewMemberSerialNumber(victimSerialNumber);
         victim.setCountry(CountryFactory.makeCountryByCountry(Country.RUSSIA));
         

@@ -10,7 +10,7 @@ import org.junit.jupiter.api.TestInstance;
 import pwcg.aar.AARFactory;
 import pwcg.aar.AAROutOfMissionStepper;
 import pwcg.aar.data.AARContext;
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.api.Side;
 import pwcg.campaign.context.PWCGContext;
@@ -103,7 +103,7 @@ public class AARCoordinatorLossAndReplacementAnalyzer
             
             int alliedEquipmentLosses = 0;
             int axisEquipmentLosses = 0;
-            for (LogPlane lostPlane : aarContext.getEquipmentLosses().getPlanesDestroyed().values())
+            for (LogTank lostPlane : aarContext.getEquipmentLosses().getPlanesDestroyed().values())
             {
                 if (lostPlane.getCountry().getSide() == Side.ALLIED)
                 {

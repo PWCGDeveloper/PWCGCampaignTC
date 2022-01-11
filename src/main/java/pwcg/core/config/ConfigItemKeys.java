@@ -13,7 +13,7 @@ public class ConfigItemKeys
 	public static final String UseGenericUIKey = "UseGenericUI";
     public static final String InternationalizationFileKey = "InternationalizationFile";
 
-    public static final String CrewMemberInjuryKey = "CrewMemberInjury";
+    public static final String TankCommanderInjuryKey = "TankCommanderInjury";
     public static final String DetailedVictoryDescriptionKey = "DetailedVictoryDescription";
 	public static final String SimpleConfigAirKey = "SimpleConfigAir";
     public static final String SimpleConfigGroundKey = "SimpleConfigGround";

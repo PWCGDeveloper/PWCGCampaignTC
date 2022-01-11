@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import pwcg.aar.data.AAREquipmentLosses;
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.aar.ui.events.model.PlaneStatusEvent;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.tank.TankStatus;
@@ -22,22 +22,22 @@ public class PlaneStatusEventGenerator
 
     public Map<Integer, PlaneStatusEvent> createPlaneLossEvents(AAREquipmentLosses equipmentLossesInMission) throws PWCGException
     {
-        for (LogPlane lostPlane : equipmentLossesInMission.getPlanesDestroyed().values())
+        for (LogTank lostPlane : equipmentLossesInMission.getPlanesDestroyed().values())
         {
             PlaneStatusEvent equippedPlaneLostEvent = makePlaneLostEvent(lostPlane);
-            planeStatusEvents.put(lostPlane.getPlaneSerialNumber(), equippedPlaneLostEvent);
+            planeStatusEvents.put(lostPlane.getTankSerialNumber(), equippedPlaneLostEvent);
         }
         
-        for (LogPlane lostPlane : equipmentLossesInMission.getPlanesDestroyed().values())
+        for (LogTank lostPlane : equipmentLossesInMission.getPlanesDestroyed().values())
         {
             PlaneStatusEvent equippedPlaneLostEvent = makePlaneLostEvent(lostPlane);
-            planeStatusEvents.put(lostPlane.getPlaneSerialNumber(), equippedPlaneLostEvent);
+            planeStatusEvents.put(lostPlane.getTankSerialNumber(), equippedPlaneLostEvent);
         }
         
         return planeStatusEvents;
     }
 
-    private PlaneStatusEvent makePlaneLostEvent(LogPlane lostPlane) throws PWCGException
+    private PlaneStatusEvent makePlaneLostEvent(LogTank lostPlane) throws PWCGException
     {
         boolean isNewsworthy = true;
         PlaneStatusEvent planeStatusEvent = new PlaneStatusEvent(campaign, lostPlane, TankStatus.STATUS_DESTROYED, isNewsworthy);

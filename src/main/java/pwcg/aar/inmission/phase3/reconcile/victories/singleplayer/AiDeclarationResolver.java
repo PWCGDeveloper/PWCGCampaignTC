@@ -5,7 +5,7 @@ import java.util.Map;
 
 import pwcg.aar.data.AARContext;
 import pwcg.aar.inmission.phase2.logeval.AARMissionEvaluationData;
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogUnknown;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogVictory;
 import pwcg.aar.inmission.phase3.reconcile.victories.common.ConfirmedVictories;
@@ -57,9 +57,9 @@ public class AiDeclarationResolver  extends PlayerVictoryResolver
 
     private void resolveAiFirmClaim(LogVictory resultVictory) throws PWCGException 
     {
-        if (resultVictory.getVictor() instanceof LogPlane)
+        if (resultVictory.getVictor() instanceof LogTank)
         {
-            LogPlane victorPlanePlane = (LogPlane)resultVictory.getVictor();
+            LogTank victorPlanePlane = (LogTank)resultVictory.getVictor();
             CrewMember squadronMemberVictor = campaign.getPersonnelManager().getAnyCampaignMember(victorPlanePlane.getCrewMemberSerialNumber());
             if (squadronMemberVictor != null)
             {
@@ -146,9 +146,9 @@ public class AiDeclarationResolver  extends PlayerVictoryResolver
     {
         for (LogVictory confirmedAiVictory : confirmedAiVictories.getConfirmedVictories())
         {
-            if (confirmedAiVictory.getVictor() instanceof LogPlane)
+            if (confirmedAiVictory.getVictor() instanceof LogTank)
             {
-                LogPlane victorPlanePlane = (LogPlane)confirmedAiVictory.getVictor();
+                LogTank victorPlanePlane = (LogTank)confirmedAiVictory.getVictor();
                 if (victorPlanePlane.getCrewMemberSerialNumber() == serialNumber)
                 {
                     return true;
@@ -162,7 +162,7 @@ public class AiDeclarationResolver  extends PlayerVictoryResolver
     private void createAiVictory(LogVictory resultVictory, CrewMember crewMemberVictor) throws PWCGException
     {
         AARMissionEvaluationData evaluationData = aarContext.getMissionEvaluationData();
-        LogPlane squadronMemberPlane = evaluationData.getPlaneInMissionBySerialNumber(crewMemberVictor.getSerialNumber());
+        LogTank squadronMemberPlane = evaluationData.getPlaneInMissionBySerialNumber(crewMemberVictor.getSerialNumber());
         if (squadronMemberPlane != null)
         {
             resultVictory.setVictor(squadronMemberPlane);

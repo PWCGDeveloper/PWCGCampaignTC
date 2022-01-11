@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogVictory;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.crewmember.CrewMember;
@@ -27,9 +27,9 @@ public class VictoryEventHandler
 	{
 		for (LogVictory resultVictory : missionVictories.getConfirmedVictories())
 		{
-            if (resultVictory.getVictor() instanceof LogPlane)
+            if (resultVictory.getVictor() instanceof LogTank)
             {
-                LogPlane victorPlanePlane = (LogPlane)resultVictory.getVictor();
+                LogTank victorPlanePlane = (LogTank)resultVictory.getVictor();
     			CrewMember crewMember = campaign.getPersonnelManager().getAnyCampaignMember(victorPlanePlane.getCrewMemberSerialNumber());
     			if (crewMember != null)
     			{			    

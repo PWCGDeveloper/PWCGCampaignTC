@@ -5,7 +5,7 @@ import java.util.Map;
 import pwcg.aar.data.AARContext;
 import pwcg.aar.data.AAREquipmentLosses;
 import pwcg.aar.data.AARPersonnelLosses;
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.core.exception.PWCGException;
@@ -35,7 +35,7 @@ public class AARSimulatedMission
         outOfMissionLosses(victoriesOutOMission.getShotDownCrewMembers(), victoriesOutOMission.getShotDownPlanes());
     }
 
-    private void outOfMissionLosses(Map<Integer, CrewMember> shotDownCrewMembers, Map<Integer, LogPlane> shotDownPlanes) throws PWCGException 
+    private void outOfMissionLosses(Map<Integer, CrewMember> shotDownCrewMembers, Map<Integer, LogTank> shotDownPlanes) throws PWCGException 
     {
         OutOfMissionLossHandler lossHandler = new  OutOfMissionLossHandler(campaign, aarContext);
         lossHandler.lossesOutOfMission(shotDownCrewMembers, shotDownPlanes);

@@ -6,7 +6,7 @@ import java.util.Map;
 import pwcg.aar.data.AARContext;
 import pwcg.aar.data.AAREquipmentLosses;
 import pwcg.aar.data.AARPersonnelLosses;
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.core.exception.PWCGException;
@@ -24,7 +24,7 @@ public class OutOfMissionLossHandler
         this.aarContext = aarContext;
     }
 
-    public void lossesOutOfMission(Map<Integer, CrewMember> shotDownCrewMembers, Map<Integer, LogPlane> shotDownPlanes) throws PWCGException
+    public void lossesOutOfMission(Map<Integer, CrewMember> shotDownCrewMembers, Map<Integer, LogTank> shotDownPlanes) throws PWCGException
     {
         calculateHistoricalAceLosses();
         calculateShotDownPersonnelLosses(shotDownCrewMembers);
@@ -49,7 +49,7 @@ public class OutOfMissionLossHandler
         outOfMissionPersonnelLosses.merge(outOfMissionPersonnelLossesForTheDay);
     }
 
-    private void calculateShotDownEquipmentLosses(Map<Integer, LogPlane> shotDownPlanes)
+    private void calculateShotDownEquipmentLosses(Map<Integer, LogTank> shotDownPlanes)
     {
         mergePlaneLosses(shotDownPlanes);
     }
@@ -66,14 +66,14 @@ public class OutOfMissionLossHandler
 
     private void calculateEquipmentLossesToAAA(OutOfMissionAAALossCalculator aaaLossCalculator)
     {
-        Map<Integer, LogPlane> planeLossesDueToAAA = aaaLossCalculator.getPlanesLostDueToAAA();
+        Map<Integer, LogTank> planeLossesDueToAAA = aaaLossCalculator.getPlanesLostDueToAAA();
         mergePlaneLosses(planeLossesDueToAAA);
     }
 
-    private void mergePlaneLosses(Map<Integer, LogPlane> planeLossesDueToAAA)
+    private void mergePlaneLosses(Map<Integer, LogTank> planeLossesDueToAAA)
     {
         AAREquipmentLosses equipmentLosses = new AAREquipmentLosses();
-        for (LogPlane planeShotDown : planeLossesDueToAAA.values())
+        for (LogTank planeShotDown : planeLossesDueToAAA.values())
         {
             equipmentLosses.addPlaneDestroyed(planeShotDown);
         }

@@ -85,7 +85,10 @@ public class LogLineParser
 
         if(atype12.getType().contains("Bot"))
         {
-            logEventData.addBot(atype12.getId(), atype12);
+            if(!atype12.getType().contains("BotPilot"))
+            {
+                logEventData.addBot(atype12.getId(), atype12);
+            }
         }
         else if (atype12.getPid().contains(LogParser.UNKNOWN_MISSION_LOG_ENTITY))
         {

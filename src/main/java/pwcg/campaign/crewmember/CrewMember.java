@@ -322,9 +322,8 @@ public class CrewMember implements Cloneable
         return squadron;
     }
 
-    public boolean determineIsCrewMemberCommander() throws PWCGException
+    public boolean determineIsCrewMemberCommander(Campaign campaign) throws PWCGException
     {
-        Campaign campaign = PWCGContext.getInstance().getCampaign();
         IRankHelper rankObj = RankFactory.createRankHelper();
         int rankPos = rankObj.getRankPosByService(getRank(), determineService(campaign.getDate()));
         if (rankPos == 0)

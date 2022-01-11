@@ -10,7 +10,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogCrewMember;
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.CampaignPersonnelManager;
 import pwcg.campaign.context.PWCGContext;
@@ -44,7 +44,7 @@ public class AARCrewBuilderTest
     @Mock
     private CrewMember aiNotInSquadron;
 
-    private static Map <String, LogPlane> planeAiEntities = new HashMap <>();
+    private static Map <String, LogTank> planeAiEntities = new HashMap <>();
     
     public AARCrewBuilderTest() throws PWCGException
     {        
@@ -63,7 +63,7 @@ public class AARCrewBuilderTest
         LogCrewMember crewMember = new LogCrewMember();
         crewMember.setSerialNumber(crewMemberSerialNumber);
         
-        LogPlane plane1 = new LogPlane(1);
+        LogTank plane1 = new LogTank(1);
         plane1.setCrewMemberSerialNumber(crewMemberSerialNumber);
         plane1.intializeCrewMember(crewMemberSerialNumber);
         

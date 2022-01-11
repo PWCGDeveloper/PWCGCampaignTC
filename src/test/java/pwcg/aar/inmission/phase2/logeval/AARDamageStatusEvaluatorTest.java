@@ -15,7 +15,7 @@ import org.mockito.quality.Strictness;
 
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogAIEntity;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogDamage;
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGProduct;
 import pwcg.core.exception.PWCGException;
@@ -32,11 +32,11 @@ public class AARDamageStatusEvaluatorTest
     private static final String VICTIM_ID_2 = "101";
     private static final String VICTIM_ID_1 = "100";
     
-    private LogPlane damagedVictim1 = new LogPlane(1);
-    private LogPlane damagedVictim2 = new LogPlane(1);
+    private LogTank damagedVictim1 = new LogTank(1);
+    private LogTank damagedVictim2 = new LogTank(1);
 
-    private LogPlane damagedVictor1 = new LogPlane(1);
-    private LogPlane damagedVictor2 = new LogPlane(1);
+    private LogTank damagedVictor1 = new LogTank(1);
+    private LogTank damagedVictor2 = new LogTank(1);
     
     @Mock private LogEventData logEventData;
     @Mock private AARVehicleBuilder aarVehicleBuilder;

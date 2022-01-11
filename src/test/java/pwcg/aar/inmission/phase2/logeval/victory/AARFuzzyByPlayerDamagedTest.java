@@ -9,7 +9,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import pwcg.aar.inmission.phase2.logeval.AARDamageStatusEvaluator;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogAIEntity;
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogVictory;
 import pwcg.core.exception.PWCGException;
 
@@ -19,8 +19,8 @@ public class AARFuzzyByPlayerDamagedTest
     @Mock private AARDamageStatusEvaluator aarDamageStatusEvaluator;
     @Mock private LogVictory victoryResult; 
     
-    private LogPlane playerPlane = new LogPlane(1);
-    private LogPlane shotDownPlane1 = new LogPlane(2);
+    private LogTank playerPlane = new LogTank(1);
+    private LogTank shotDownPlane1 = new LogTank(2);
 
     @BeforeEach
     public void setupTest() throws PWCGException

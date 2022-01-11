@@ -45,7 +45,7 @@ public class AARChronologicalEventListBuilder
 
     private void addPlaneSpawnEventsToChronologicalList()
     {
-        for (LogAIEntity logCrewMember : evaluator.getAarVehicleBuilder().getLogPlanes().values())
+        for (LogAIEntity logCrewMember : evaluator.getAarVehicleBuilder().getLogTanks().values())
         {
             PWCGLogger.log(LogLevel.DEBUG, "" + logCrewMember.getSequenceNum() + ": " + "CrewMember: " + logCrewMember.getId());
             chronologicalEvents.put(logCrewMember.getSequenceNum(), logCrewMember);

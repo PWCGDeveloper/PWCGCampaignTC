@@ -20,7 +20,7 @@ import org.mockito.quality.Strictness;
 import pwcg.aar.data.AARContext;
 import pwcg.aar.inmission.phase2.logeval.AARMissionEvaluationData;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogCrewMember;
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogVictory;
 import pwcg.aar.inmission.phase3.reconcile.victories.singleplayer.PlayerDeclarations;
 import pwcg.aar.inmission.phase3.reconcile.victories.singleplayer.PlayerVictoryDeclaration;
@@ -57,10 +57,10 @@ public class AARInMissionResultGeneratorTest
     private CrewMember corporalInFlight;
     private CrewMember sltInFlight;
     private CrewMember ltInFlight;
-    private LogPlane playerPlaneVictor = new LogPlane(1);
-    private LogPlane aiPlaneVictor = new LogPlane(2);
-    private LogPlane wernerVossPlaneVictor = new LogPlane(3);
-    private LogPlane gerogesGuynemerPlaneVictor = new LogPlane(4);
+    private LogTank playerPlaneVictor = new LogTank(1);
+    private LogTank aiPlaneVictor = new LogTank(2);
+    private LogTank wernerVossPlaneVictor = new LogTank(3);
+    private LogTank gerogesGuynemerPlaneVictor = new LogTank(4);
 
     @Mock private AARMissionEvaluationData evaluationData;
     @Mock private LogFileSet missionLogFileSet;
@@ -87,7 +87,7 @@ public class AARInMissionResultGeneratorTest
 
         playerPlaneVictor.setCompanyId(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
         aiPlaneVictor.setCompanyId(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
-        wernerVossPlaneVictor.setSquadronId(401010);
+        wernerVossPlaneVictor.setCompanyId(401010);
         gerogesGuynemerPlaneVictor.setCompanyId(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
         
         Mockito.when(evaluationData.getCrewMembersInMission()).thenReturn(crewMemberStatusList);
@@ -143,11 +143,11 @@ public class AARInMissionResultGeneratorTest
         playerDeclarations.put(playerInFlight.getSerialNumber(), playerDeclarationSet);
     }
 
-    private void createVictory(LogPlane victor, Integer crewMemberSerialNumber, Integer planeSerialNumber)
+    private void createVictory(LogTank victor, Integer crewMemberSerialNumber, Integer planeSerialNumber)
     {
-        LogPlane victim = new LogPlane(3);
+        LogTank victim = new LogTank(3);
         victim.setCrewMemberSerialNumber(crewMemberSerialNumber);
-        victim.setPlaneSerialNumber(planeSerialNumber);
+        victim.setTankSerialNumber(planeSerialNumber);
         victim.setVehicleType("albatrosd5");
         victim.setCountry(new BoSCountry(Country.GERMANY));
         victim.setCompanyId(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());

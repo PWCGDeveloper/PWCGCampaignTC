@@ -10,7 +10,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogVictory;
 import pwcg.campaign.context.Country;
 import pwcg.campaign.context.PWCGContext;
@@ -39,11 +39,11 @@ public class PlayerClaimResolverFirmTest
     @Test
     public void testPlayerFirmVictoryFound() throws PWCGException
     {
-        LogPlane victim = new LogPlane(1);
+        LogTank victim = new LogTank(1);
         victim.setVehicleType("se5a");
         victim.setCountry(new BoSCountry(Country.BRITAIN));
 
-        LogPlane victor = new LogPlane(2);
+        LogTank victor = new LogTank(2);
         victor.setVehicleType("albatrosd5");
         victor.setCrewMemberSerialNumber(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
         victor.setCountry(new BoSCountry(Country.GERMANY));
@@ -64,11 +64,11 @@ public class PlayerClaimResolverFirmTest
     @Test
     public void testPlayerFirmVictoryNotFoundBecausePlaneMismatch() throws PWCGException
     {
-        LogPlane victim = new LogPlane(1);
+        LogTank victim = new LogTank(1);
         victim.setVehicleType("se5a");
         victim.setCountry(new BoSCountry(Country.BRITAIN));
 
-        LogPlane victor = new LogPlane(2);
+        LogTank victor = new LogTank(2);
         victor.setVehicleType("albatrosd5");
         victor.setCrewMemberSerialNumber(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
         victor.setCountry(new BoSCountry(Country.GERMANY));
@@ -89,11 +89,11 @@ public class PlayerClaimResolverFirmTest
     @Test
     public void testPlayerFirmVictoryNotFoundBecauseVictoryPlaneNotFound() throws PWCGException
     {
-        LogPlane victim = new LogPlane(1);
+        LogTank victim = new LogTank(1);
         victim.setVehicleType("notarealplane");
         victim.setCountry(new BoSCountry(Country.BRITAIN));
 
-        LogPlane victor = new LogPlane(2);
+        LogTank victor = new LogTank(2);
         victor.setVehicleType("albatrosd5");
         victor.setCrewMemberSerialNumber(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
         victor.setCountry(new BoSCountry(Country.GERMANY));
@@ -114,11 +114,11 @@ public class PlayerClaimResolverFirmTest
     @Test
     public void testPlayerFirmVictoryNotFoundBecauseClaimPlaneNotFound() throws PWCGException
     {
-        LogPlane victim = new LogPlane(1);
+        LogTank victim = new LogTank(1);
         victim.setVehicleType("se5a");
         victim.setCountry(new BoSCountry(Country.BRITAIN));
 
-        LogPlane victor = new LogPlane(2);
+        LogTank victor = new LogTank(2);
         victor.setVehicleType("albatrosd5");
         victor.setCrewMemberSerialNumber(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
         victor.setCountry(new BoSCountry(Country.GERMANY));
@@ -139,11 +139,11 @@ public class PlayerClaimResolverFirmTest
     @Test
     public void testPlayerFirmVictoryNotFoundBecauseVictoryAlreadyConfirmed() throws PWCGException
     {
-        LogPlane victim = new LogPlane(1);
+        LogTank victim = new LogTank(1);
         victim.setVehicleType("se5a");
         victim.setCountry(new BoSCountry(Country.BRITAIN));
 
-        LogPlane victor = new LogPlane(2);
+        LogTank victor = new LogTank(2);
         victor.setVehicleType("albatrosd5");
         victor.setCrewMemberSerialNumber(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
         victor.setCountry(new BoSCountry(Country.GERMANY));
@@ -165,12 +165,12 @@ public class PlayerClaimResolverFirmTest
     @Test
     public void testNoFriendlyVictories () throws PWCGException
     {   
-        LogPlane victim = new LogPlane(1);
+        LogTank victim = new LogTank(1);
         victim.setRoleCategory(PwcgRoleCategory.FIGHTER);
         victim.setVehicleType("albatrosd5");
         victim.setCountry(new BoSCountry(Country.GERMANY));
 
-        LogPlane victor = new LogPlane(2);
+        LogTank victor = new LogTank(2);
         victor.setVehicleType("albatrosd5");
         victor.setCrewMemberSerialNumber(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
         victim.setCountry(new BoSCountry(Country.GERMANY));
