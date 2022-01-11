@@ -19,7 +19,7 @@ public class CampaignCompanyGenerator
         this.company = company;
     }
     
-    public void createSquadron(CampaignGeneratorModel generatorModel) throws PWCGException
+    public void createCompany(CampaignGeneratorModel generatorModel) throws PWCGException
     {
         createCompanyStaff(generatorModel);
         createCompanyEquipment(generatorModel);

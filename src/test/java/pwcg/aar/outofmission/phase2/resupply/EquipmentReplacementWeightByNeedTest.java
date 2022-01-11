@@ -78,11 +78,11 @@ public class EquipmentReplacementWeightByNeedTest
         removePlanesFromCampaign(earlyCampaign);
         
         ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(20101);
-        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
-        List<Company> squadronsForService = squadronManager.getActiveCompaniesForService(earlyCampaign.getDate(), service);
+        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+        List<Company> companysForService = companyManager.getActiveCompaniesForService(earlyCampaign.getDate(), service);
         
         EquipmentReplacementWeightByNeed equipmentReplacementWeightUsage = new EquipmentReplacementWeightByNeed(earlyCampaign);
-        Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftNeedByArchType(squadronsForService);
+        Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftNeedByArchType(companysForService);
 
         assert(aircraftUsageByArchType.containsKey("bf109"));
         assert(aircraftUsageByArchType.containsKey("bf110"));
@@ -116,11 +116,11 @@ public class EquipmentReplacementWeightByNeedTest
         removePlanesFromCampaign(earlyCampaign);
 
         ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(10101);
-        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
-        List<Company> squadronsForService = squadronManager.getActiveCompaniesForService(earlyCampaign.getDate(), service);
+        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+        List<Company> companysForService = companyManager.getActiveCompaniesForService(earlyCampaign.getDate(), service);
         
         EquipmentReplacementWeightByNeed equipmentReplacementWeightUsage = new EquipmentReplacementWeightByNeed(earlyCampaign);
-        Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftNeedByArchType(squadronsForService);
+        Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftNeedByArchType(companysForService);
 
         assert(aircraftUsageByArchType.containsKey("il2"));
         assert(aircraftUsageByArchType.containsKey("i16"));
@@ -150,11 +150,11 @@ public class EquipmentReplacementWeightByNeedTest
         removePlanesFromCampaign(earlyCampaign);
 
         ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(20202);
-        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
-        List<Company> squadronsForService = squadronManager.getActiveCompaniesForService(earlyCampaign.getDate(), service);
+        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+        List<Company> companysForService = companyManager.getActiveCompaniesForService(earlyCampaign.getDate(), service);
         
         EquipmentReplacementWeightByNeed equipmentReplacementWeightUsage = new EquipmentReplacementWeightByNeed(earlyCampaign);
-        Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftNeedByArchType(squadronsForService);
+        Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftNeedByArchType(companysForService);
 
         assert(aircraftUsageByArchType.containsKey("mc200"));
         assert(aircraftUsageByArchType.size() == 1);
@@ -166,11 +166,11 @@ public class EquipmentReplacementWeightByNeedTest
         removePlanesFromCampaign(lateCampaign);
 
         ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(20101);
-        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
-        List<Company> squadronsForService = squadronManager.getActiveCompaniesForService(lateCampaign.getDate(), service);
+        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+        List<Company> companysForService = companyManager.getActiveCompaniesForService(lateCampaign.getDate(), service);
         
         EquipmentReplacementWeightByNeed equipmentReplacementWeightUsage = new EquipmentReplacementWeightByNeed(lateCampaign);
-        Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftNeedByArchType(squadronsForService);
+        Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftNeedByArchType(companysForService);
 
         assert(aircraftUsageByArchType.containsKey("bf109"));
         assert(aircraftUsageByArchType.containsKey("ju88"));
@@ -195,11 +195,11 @@ public class EquipmentReplacementWeightByNeedTest
         removePlanesFromCampaign(lateCampaign);
 
         ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(TCServiceManager.USAAF);
-        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
-        List<Company> squadronsForService = squadronManager.getActiveCompaniesForService(lateCampaign.getDate(), service);
+        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+        List<Company> companysForService = companyManager.getActiveCompaniesForService(lateCampaign.getDate(), service);
         
         EquipmentReplacementWeightByNeed equipmentReplacementWeightUsage = new EquipmentReplacementWeightByNeed(lateCampaign);
-        Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftNeedByArchType(squadronsForService);
+        Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftNeedByArchType(companysForService);
 
         assert(aircraftUsageByArchType.containsKey("p47"));
     }
@@ -210,11 +210,11 @@ public class EquipmentReplacementWeightByNeedTest
         removePlanesFromCampaign(lateCampaign);
 
         ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(TCServiceManager.RAF);
-        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
-        List<Company> squadronsForService = squadronManager.getActiveCompaniesForService(lateCampaign.getDate(), service);
+        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+        List<Company> companysForService = companyManager.getActiveCompaniesForService(lateCampaign.getDate(), service);
         
         EquipmentReplacementWeightByNeed equipmentReplacementWeightUsage = new EquipmentReplacementWeightByNeed(lateCampaign);
-        Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftNeedByArchType(squadronsForService);
+        Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftNeedByArchType(companysForService);
 
         assert(aircraftUsageByArchType.containsKey("spitfire"));
     }

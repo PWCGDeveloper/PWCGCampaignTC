@@ -1,4 +1,4 @@
-package pwcg.campaign.squadron;
+package pwcg.campaign.company;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ import pwcg.testutils.CampaignCache;
 import pwcg.testutils.CompanyTestProfile;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class SquadronReducerTest
+public class CompanyReducerTest
 {    
     @BeforeAll
     public void setupSuite() throws PWCGException
@@ -30,15 +30,15 @@ public class SquadronReducerTest
     public void anomaliesRemoved() throws PWCGException
     {
         Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.JG_52_PROFILE_STALINGRAD);
-        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
-        List<Company> allSquadrons = squadronManager.getAllCompanies();
-        List<Company> squadronsWithoutAnomalies = CompanyReducer.reduceToNoAnomalies(allSquadrons, campaign.getDate());
+        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+        List<Company> allCompanys = companyManager.getAllCompanies();
+        List<Company> companysWithoutAnomalies = CompanyReducer.reduceToNoAnomalies(allCompanys, campaign.getDate());
         
-        assert(squadronsWithoutAnomalies.size() > 30);
-        for (Company squadron : squadronsWithoutAnomalies)
+        assert(companysWithoutAnomalies.size() > 30);
+        for (Company company : companysWithoutAnomalies)
         {
-            Assertions.assertTrue (squadron.getCompanyId() != 20115021);
-            Assertions.assertTrue (squadron.getCompanyId() != 20111051);
+            Assertions.assertTrue (company.getCompanyId() != 20115021);
+            Assertions.assertTrue (company.getCompanyId() != 20111051);
         }
     }
 
@@ -46,18 +46,18 @@ public class SquadronReducerTest
     public void jg51NotAnAnomaly() throws PWCGException
     {
         Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.REGIMENT_11_PROFILE);        
-        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
-        List<Company> allSquadrons = squadronManager.getAllCompanies();
-        List<Company> squadronsWithoutAnomalies = CompanyReducer.reduceToNoAnomalies(allSquadrons, campaign.getDate());
+        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+        List<Company> allCompanys = companyManager.getAllCompanies();
+        List<Company> companysWithoutAnomalies = CompanyReducer.reduceToNoAnomalies(allCompanys, campaign.getDate());
         
         boolean jg51Found = false;
         
-        assert(squadronsWithoutAnomalies.size() > 30);
-        for (Company squadron : squadronsWithoutAnomalies)
+        assert(companysWithoutAnomalies.size() > 30);
+        for (Company company : companysWithoutAnomalies)
         {
-            Assertions.assertTrue (squadron.getCompanyId() != 20115021);
+            Assertions.assertTrue (company.getCompanyId() != 20115021);
             
-            if (squadron.getCompanyId() != 20111051)
+            if (company.getCompanyId() != 20111051)
             {
                 jg51Found = true;
             }
@@ -71,22 +71,22 @@ public class SquadronReducerTest
     public void noAnomaliesRemoved() throws PWCGException
     {
         Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.REGIMENT_11_PROFILE);        
-        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
-        List<Company> allSquadrons = squadronManager.getAllCompanies();
-        List<Company> squadronsWithoutAnomalies = CompanyReducer.reduceToNoAnomalies(allSquadrons, campaign.getDate());
+        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+        List<Company> allCompanys = companyManager.getAllCompanies();
+        List<Company> companysWithoutAnomalies = CompanyReducer.reduceToNoAnomalies(allCompanys, campaign.getDate());
         
         boolean gruppo21Found = false;
         boolean jg51Found = false;
         
-        assert(squadronsWithoutAnomalies.size() > 30);
-        for (Company squadron : squadronsWithoutAnomalies)
+        assert(companysWithoutAnomalies.size() > 30);
+        for (Company company : companysWithoutAnomalies)
         {            
-            if (squadron.getCompanyId() != 20115021)
+            if (company.getCompanyId() != 20115021)
             {
                 gruppo21Found = true;
             }
             
-            if (squadron.getCompanyId() != 20111051)
+            if (company.getCompanyId() != 20111051)
             {
                 jg51Found = true;
             }

@@ -39,10 +39,10 @@ public class AARCrewBuilderTest
     private CrewMember player;
 
     @Mock
-    private CrewMember aiInSquadron;
+    private CrewMember aiInCompany;
 
     @Mock
-    private CrewMember aiNotInSquadron;
+    private CrewMember aiNotInCompany;
 
     private static Map <String, LogTank> planeAiEntities = new HashMap <>();
     

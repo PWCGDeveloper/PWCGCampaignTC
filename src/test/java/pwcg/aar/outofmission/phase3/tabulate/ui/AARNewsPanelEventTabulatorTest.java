@@ -25,25 +25,25 @@ import pwcg.testutils.MissionEntityBuilder;
 @MockitoSettings(strictness = Strictness.LENIENT)
 public class AARNewsPanelEventTabulatorTest extends AARTestSetup
 {
-    private Map<Integer, CrewMember> squadronMembersKilled = new HashMap<>();
-    private Map<Integer, CrewMember> squadronMembersCaptured = new HashMap<>();
-    private Map<Integer, CrewMember> squadronMembersMaimed = new HashMap<>();
-    private Map<Integer, CrewMember> acesKilledMissionSquadron = new HashMap<>();
+    private Map<Integer, CrewMember> crewMembersKilled = new HashMap<>();
+    private Map<Integer, CrewMember> crewMembersCaptured = new HashMap<>();
+    private Map<Integer, CrewMember> crewMembersMaimed = new HashMap<>();
+    private Map<Integer, CrewMember> acesKilledMissionCompany = new HashMap<>();
 
     @BeforeEach
     public void setupTest() throws PWCGException
     {
         setupAARMocks();
         
-        squadronMembersKilled.clear();
-        squadronMembersCaptured.clear();
-        squadronMembersMaimed.clear();
-        acesKilledMissionSquadron.clear();
+        crewMembersKilled.clear();
+        crewMembersCaptured.clear();
+        crewMembersMaimed.clear();
+        acesKilledMissionCompany.clear();
         
-        Mockito.when(personnelLosses.getPersonnelKilled()).thenReturn(squadronMembersKilled);
-        Mockito.when(personnelLosses.getPersonnelCaptured()).thenReturn(squadronMembersCaptured);
-        Mockito.when(personnelLosses.getPersonnelMaimed()).thenReturn(squadronMembersMaimed);
-        Mockito.when(personnelLosses.getAcesKilled(campaign)).thenReturn(acesKilledMissionSquadron);
+        Mockito.when(personnelLosses.getPersonnelKilled()).thenReturn(crewMembersKilled);
+        Mockito.when(personnelLosses.getPersonnelCaptured()).thenReturn(crewMembersCaptured);
+        Mockito.when(personnelLosses.getPersonnelMaimed()).thenReturn(crewMembersMaimed);
+        Mockito.when(personnelLosses.getAcesKilled(campaign)).thenReturn(acesKilledMissionCompany);
     }
 
     @Test
@@ -54,10 +54,10 @@ public class AARNewsPanelEventTabulatorTest extends AARTestSetup
         TankAce ace3 = MissionEntityBuilder.makeDeadAceWithVictories("Ace C", SerialNumber.ACE_STARTING_SERIAL_NUMBER+3, AcesKilledEventGenerator.NUM_VICTORIES_FOR_ACE_TO_BE_NEWSWORTHY, campaign.getDate());
         TankAce ace4 = MissionEntityBuilder.makeDeadAceWithVictories("Ace D", SerialNumber.ACE_STARTING_SERIAL_NUMBER+4, AcesKilledEventGenerator.NUM_VICTORIES_FOR_ACE_TO_BE_NEWSWORTHY, campaign.getDate());
         
-        squadronMembersKilled.put(ace1.getSerialNumber(), ace1);
-        squadronMembersCaptured.put(ace2.getSerialNumber(), ace2);
-        acesKilledMissionSquadron.put(ace3.getSerialNumber(), ace3);
-        acesKilledMissionSquadron.put(ace4.getSerialNumber(), ace4);
+        crewMembersKilled.put(ace1.getSerialNumber(), ace1);
+        crewMembersCaptured.put(ace2.getSerialNumber(), ace2);
+        acesKilledMissionCompany.put(ace3.getSerialNumber(), ace3);
+        acesKilledMissionCompany.put(ace4.getSerialNumber(), ace4);
         
         NewsPanelEventTabulator newsPanelEventTabulator = new NewsPanelEventTabulator(campaign, aarContext);
         AARNewsPanelData newsPanelData = newsPanelEventTabulator.createNewspaperEvents();
@@ -73,10 +73,10 @@ public class AARNewsPanelEventTabulatorTest extends AARTestSetup
         TankAce ace3 = MissionEntityBuilder.makeDeadAceWithVictories("Ace C", SerialNumber.ACE_STARTING_SERIAL_NUMBER+3, AcesKilledEventGenerator.NUM_VICTORIES_FOR_ACE_TO_BE_NEWSWORTHY-1, campaign.getDate());
         TankAce ace4 = MissionEntityBuilder.makeDeadAceWithVictories("Ace D", SerialNumber.ACE_STARTING_SERIAL_NUMBER+4, AcesKilledEventGenerator.NUM_VICTORIES_FOR_ACE_TO_BE_NEWSWORTHY, campaign.getDate());
         
-        squadronMembersKilled.put(ace1.getSerialNumber(), ace1);
-        squadronMembersCaptured.put(ace2.getSerialNumber(), ace2);
-        acesKilledMissionSquadron.put(ace3.getSerialNumber(), ace3);
-        acesKilledMissionSquadron.put(ace4.getSerialNumber(), ace4);
+        crewMembersKilled.put(ace1.getSerialNumber(), ace1);
+        crewMembersCaptured.put(ace2.getSerialNumber(), ace2);
+        acesKilledMissionCompany.put(ace3.getSerialNumber(), ace3);
+        acesKilledMissionCompany.put(ace4.getSerialNumber(), ace4);
 
         NewsPanelEventTabulator newsPanelEventTabulator = new NewsPanelEventTabulator(campaign, aarContext);
         AARNewsPanelData newsPanelData = newsPanelEventTabulator.createNewspaperEvents();

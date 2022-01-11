@@ -21,7 +21,7 @@ public class MissionObjectiveLocation
         return missionObjectiveLocation;
     }
 
-    static String getMissionObjectiveLocation(Company squadron, Date date, Coordinate position) throws PWCGException 
+    static String getMissionObjectiveLocation(Company company, Date date, Coordinate position) throws PWCGException 
     {
         String targetName =  PWCGContext.getInstance().getCurrentMap().getGroupManager().getTownFinder().findClosestTown(position).getName();
         return " near " + targetName;

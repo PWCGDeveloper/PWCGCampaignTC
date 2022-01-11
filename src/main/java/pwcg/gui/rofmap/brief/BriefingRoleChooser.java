@@ -16,7 +16,7 @@ import javax.swing.SwingConstants;
 
 import pwcg.campaign.Campaign;
 import pwcg.campaign.company.Company;
-import pwcg.campaign.company.SquadronRoleWeight;
+import pwcg.campaign.company.CompanyRoleWeight;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.tank.PwcgRole;
@@ -43,7 +43,7 @@ public class BriefingRoleChooser extends ImageResizingPanel implements ActionLis
     private Campaign campaign;
     private CampaignHomeGuiBriefingWrapper campaignHomeGuiBriefingWrapper;
     private MissionHumanParticipants participatingPlayers;
-    private Map<Integer, JComboBox<String>> squadronToRoleMapping = new HashMap<>();
+    private Map<Integer, JComboBox<String>> companyToRoleMapping = new HashMap<>();
 
     public BriefingRoleChooser(
             Campaign campaign, 
@@ -111,37 +111,37 @@ public class BriefingRoleChooser extends ImageResizingPanel implements ActionLis
 
         for (CrewMember participatingPlayer : participatingPlayers.getAllParticipatingPlayers())
         {
-            int squadronId = participatingPlayer.getCompanyId();
+            int companyId = participatingPlayer.getCompanyId();
             
-            JLabel squadronNameLabel = makeSquadronNameLabel(squadronId);
-            JComboBox<String> roleSelector = makeRoleSelectorForSquadron(squadronId);
-            roleSelectionGrid.add(squadronNameLabel);
+            JLabel companyNameLabel = makeCompanyNameLabel(companyId);
+            JComboBox<String> roleSelector = makeRoleSelectorForCompany(companyId);
+            roleSelectionGrid.add(companyNameLabel);
             roleSelectionGrid.add(roleSelector);
 
-            squadronToRoleMapping.put(squadronId, roleSelector);
+            companyToRoleMapping.put(companyId, roleSelector);
         }
         
         roleSelectionPanel.add(roleSelectionGrid, BorderLayout.NORTH);
         return roleSelectionPanel;
     }
 
-    private JLabel makeSquadronNameLabel(int squadronId) throws PWCGException
+    private JLabel makeCompanyNameLabel(int companyId) throws PWCGException
     {        
         Font font = PWCGMonitorFonts.getPrimaryFont();
-        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(squadronId);
-        JLabel squadronNameLabel = PWCGLabelFactory.makeTransparentLabel(
-                squadron.determineDisplayName(campaign.getDate()), ColorMap.PAPER_FOREGROUND, font, SwingConstants.LEFT);
-        return squadronNameLabel;
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(companyId);
+        JLabel companyNameLabel = PWCGLabelFactory.makeTransparentLabel(
+                company.determineDisplayName(campaign.getDate()), ColorMap.PAPER_FOREGROUND, font, SwingConstants.LEFT);
+        return companyNameLabel;
     }
 
-    private JComboBox<String> makeRoleSelectorForSquadron(int squadronId) throws PWCGException
+    private JComboBox<String> makeRoleSelectorForCompany(int companyId) throws PWCGException
     {
         JComboBox<String> roleSelector = new JComboBox<String>();
-        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(squadronId);
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(companyId);
 
         roleSelector.addItem(PwcgRole.ROLE_NONE.getRoleDescription());
 
-        for (SquadronRoleWeight weightedRoles : squadron.getSquadronRoles().selectRoleSetByDate(campaign.getDate()).getWeightedRoles())
+        for (CompanyRoleWeight weightedRoles : company.getCompanyRoles().selectRoleSetByDate(campaign.getDate()).getWeightedRoles())
         {
             roleSelector.addItem(weightedRoles.getRole().getRoleDescription());
         }
@@ -162,8 +162,8 @@ public class BriefingRoleChooser extends ImageResizingPanel implements ActionLis
             String action = ae.getActionCommand();
             if (action.equalsIgnoreCase("CreateMission"))
             {
-                Map<Integer, PwcgRole> squadronRoleOverride = buildRoleOverrideMap();
-                MissionGeneratorHelper.showBriefingMap(campaign, campaignHomeGuiBriefingWrapper, participatingPlayers, squadronRoleOverride);
+                Map<Integer, PwcgRole> companyRoleOverride = buildRoleOverrideMap();
+                MissionGeneratorHelper.showBriefingMap(campaign, campaignHomeGuiBriefingWrapper, participatingPlayers, companyRoleOverride);
             }
             else if (action.equalsIgnoreCase("ScrubMission"))
             {
@@ -179,18 +179,18 @@ public class BriefingRoleChooser extends ImageResizingPanel implements ActionLis
 
     private Map<Integer, PwcgRole> buildRoleOverrideMap()
     {
-        Map<Integer, PwcgRole> squadronRoleOverride = new HashMap<>();
-        for (int squadronId : squadronToRoleMapping.keySet())
+        Map<Integer, PwcgRole> companyRoleOverride = new HashMap<>();
+        for (int companyId : companyToRoleMapping.keySet())
         {
-            JComboBox<String> roleSelector = squadronToRoleMapping.get(squadronId);
+            JComboBox<String> roleSelector = companyToRoleMapping.get(companyId);
             String roleDescription = (String) roleSelector.getSelectedItem();
             PwcgRole role = PwcgRole.getRoleFromDescription(roleDescription);
             if (role != null && role != PwcgRole.ROLE_NONE)
             {
-                squadronRoleOverride.put(squadronId, role);
+                companyRoleOverride.put(companyId, role);
             }
         }
-        return squadronRoleOverride;
+        return companyRoleOverride;
     }
 }
 

@@ -19,15 +19,15 @@ public class EquipmentReplacementWeightUsage
         this.campaignDate = campaignDate;
     }
 
-    public Map<String, Integer> getAircraftUsageByArchType(List<Company> squadronsForService) throws PWCGException
+    public Map<String, Integer> getAircraftUsageByArchType(List<Company> companysForService) throws PWCGException
     {
         Map<String, Integer> aircraftUsageByArchType = new HashMap<>();
         
-        for (Company squadron : squadronsForService)
+        for (Company company : companysForService)
         {
-            if (CompanyViability.isCompanyActive(squadron, campaignDate))
+            if (CompanyViability.isCompanyActive(company, campaignDate))
             {
-                List<TankArchType> currentAircraftArchTypes = squadron.determineCurrentAircraftArchTypes(campaignDate);
+                List<TankArchType> currentAircraftArchTypes = company.determineCurrentAircraftArchTypes(campaignDate);
                 for (TankArchType planeArchType : currentAircraftArchTypes)
                 {
                     if (excludeFromWeightedList(planeArchType.getTankArchTypeName()))

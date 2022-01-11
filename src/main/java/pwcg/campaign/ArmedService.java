@@ -23,8 +23,8 @@ public class ArmedService
     private String name;
     private Date startDate;
     private Date endDate;
-    private double dailyPersonnelReplacementRatePerSquadron = 1.5;
-    private double dailyEquipmentReplacementRatePerSquadron = 3.0;
+    private double dailyPersonnelReplacementRatePerCompany = 1.5;
+    private double dailyEquipmentReplacementRatePerCompany = 3.0;
     private ArmedServiceQualitySet serviceQuality = new ArmedServiceQualitySet();
     private IServiceColorMap serviceColorMap;
     private List<String> picDirs = new ArrayList<String>();
@@ -139,27 +139,27 @@ public class ArmedService
 		serviceQuality.addQuality(this, qualityDate, qualityValue);
 	}
 
-	public void setDailyEquipmentReplacementRatePerSquadron(double dailyEquipmentReplacementRatePerSquadron)
+	public void setDailyEquipmentReplacementRatePerCompany(double dailyEquipmentReplacementRatePerCompany)
     {
-        this.dailyEquipmentReplacementRatePerSquadron = dailyEquipmentReplacementRatePerSquadron;
+        this.dailyEquipmentReplacementRatePerCompany = dailyEquipmentReplacementRatePerCompany;
     }
 
-	public void setDailyPersonnelReplacementRatePerSquadron(double dailyPersonnelReplacementRatePerSquadron)
+	public void setDailyPersonnelReplacementRatePerCompany(double dailyPersonnelReplacementRatePerCompany)
     {
-        this.dailyPersonnelReplacementRatePerSquadron = dailyPersonnelReplacementRatePerSquadron;
+        this.dailyPersonnelReplacementRatePerCompany = dailyPersonnelReplacementRatePerCompany;
     }
 
     public int getDailyEquipmentReplacementRate(Date date) throws PWCGException
     {
-        List<Company> squadrons = PWCGContext.getInstance().getCompanyManager().getActiveCompaniesForService(date, this);
-        double dailyEquipmentReplacementRateForThisDate = dailyEquipmentReplacementRatePerSquadron * squadrons.size();
+        List<Company> companys = PWCGContext.getInstance().getCompanyManager().getActiveCompaniesForService(date, this);
+        double dailyEquipmentReplacementRateForThisDate = dailyEquipmentReplacementRatePerCompany * companys.size();
         return Double.valueOf(dailyEquipmentReplacementRateForThisDate).intValue();
     }
 
     public int getDailyPersonnelReplacementRate(Date date) throws PWCGException
     {
-        List<Company> squadrons = PWCGContext.getInstance().getCompanyManager().getActiveCompaniesForService(date, this);
-        double dailyEquipmentReplacementRateForThisDate = dailyPersonnelReplacementRatePerSquadron * squadrons.size();
+        List<Company> companys = PWCGContext.getInstance().getCompanyManager().getActiveCompaniesForService(date, this);
+        double dailyEquipmentReplacementRateForThisDate = dailyPersonnelReplacementRatePerCompany * companys.size();
         return Double.valueOf(dailyEquipmentReplacementRateForThisDate).intValue();
     }
 

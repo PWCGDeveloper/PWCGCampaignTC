@@ -39,8 +39,8 @@ public class PersonnelOutOfMissionAiStatusHandlerTest
     {     
         PersonnelOutOfMissionStatusHandler personnelLossOutOfMissionHandler = new PersonnelOutOfMissionStatusHandler();
         Map<Integer, CrewMember> campaignMembers = campaign.getPersonnelManager().getActiveCampaignMembers();
-        CrewMembers squadronMembersInMissionOtherThanPlayer = CrewMemberFilter.filterActiveAI(campaignMembers, campaign.getDate());
-        personnelLossOutOfMissionHandler.determineFateOfShotDownCrewMembers(squadronMembersInMissionOtherThanPlayer.getCrewMemberCollection());
+        CrewMembers crewMembersInMissionOtherThanPlayer = CrewMemberFilter.filterActiveAI(campaignMembers, campaign.getDate());
+        personnelLossOutOfMissionHandler.determineFateOfShotDownCrewMembers(crewMembersInMissionOtherThanPlayer.getCrewMemberCollection());
         
         Map<Integer, CrewMember> aiKilled = new HashMap<>();
         Map<Integer, CrewMember> aiMaimed = new HashMap<>();

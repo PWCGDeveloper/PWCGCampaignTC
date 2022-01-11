@@ -263,12 +263,12 @@ public class CrewMember implements Cloneable
     public ArmedService determineService(Date date) throws PWCGException
     {
         ArmedService service = null;
-        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
-        Company squadron = squadronManager.getCompany(companyId);
+        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+        Company company = companyManager.getCompany(companyId);
 
-        if (squadron != null)
+        if (company != null)
         {
-            service = squadron.determineServiceForCompany(date);
+            service = company.determineServiceForCompany(date);
         }
         else
         {
@@ -283,7 +283,7 @@ public class CrewMember implements Cloneable
 
         if (service == null)
         {
-            throw new PWCGException("No service found. Squadron is " + companyId);
+            throw new PWCGException("No service found. Company is " + companyId);
         }
 
         return service;
@@ -301,25 +301,25 @@ public class CrewMember implements Cloneable
 
     public ICountry determineCountry(Date date) throws PWCGException
     {
-        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
-        Company squadron = squadronManager.getCompany(companyId);
-        if (squadron == null)
+        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+        Company company = companyManager.getCompany(companyId);
+        if (company == null)
         {
-            throw new PWCGException("No country found. Squadron is " + companyId);
+            throw new PWCGException("No country found. Company is " + companyId);
         }
 
-        return squadron.getCountry();
+        return company.getCountry();
     }
 
-    public Company determineSquadron() throws PWCGException
+    public Company determineCompany() throws PWCGException
     {
-        Company squadron = null;
+        Company company = null;
         if (companyId > 0)
         {
-            squadron = PWCGContext.getInstance().getCompanyManager().getCompany(companyId);
+            company = PWCGContext.getInstance().getCompanyManager().getCompany(companyId);
         }
 
-        return squadron;
+        return company;
     }
 
     public boolean determineIsCrewMemberCommander(Campaign campaign) throws PWCGException
@@ -342,9 +342,9 @@ public class CrewMember implements Cloneable
         return new CrewMemberVictories(victories);
     }
 
-    public void setSquadronId(int squadronId)
+    public void setCompanyId(int companyId)
     {
-        this.companyId = squadronId;
+        this.companyId = companyId;
     }
 
     public String getName()

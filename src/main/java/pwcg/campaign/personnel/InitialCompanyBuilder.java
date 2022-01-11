@@ -9,10 +9,10 @@ public class InitialCompanyBuilder
 {
     public void buildNewCompanies(Campaign campaign) throws PWCGException
     {
-        CampaignUpdateNewCompanyStaffer newSquadronStaffer = new CampaignUpdateNewCompanyStaffer(campaign);
-        newSquadronStaffer.staffNewCompanies();
+        CampaignUpdateNewCompanyStaffer newCompanyStaffer = new CampaignUpdateNewCompanyStaffer(campaign);
+        newCompanyStaffer.staffNewCompanies();
 
-        CampaignUpdateNewCompanyEquipper newSquadronEquipper = new CampaignUpdateNewCompanyEquipper(campaign);
-        newSquadronEquipper.equipNewSquadrons();
+        CampaignUpdateNewCompanyEquipper newCompanyEquipper = new CampaignUpdateNewCompanyEquipper(campaign);
+        newCompanyEquipper.equipNewCompanys();
     }
 }

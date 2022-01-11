@@ -39,7 +39,7 @@ public class CrewMemberReplacementFactory
         replacementCrewMember.setName(squaddieName);
         replacementCrewMember.setRank(rank);
         replacementCrewMember.setCountry(service.getCountry().getCountry());
-        replacementCrewMember.setSquadronId(Company.REPLACEMENT);
+        replacementCrewMember.setCompanyId(Company.REPLACEMENT);
         replacementCrewMember.setSerialNumber(campaign.getSerialNumber().getNextCrewMemberSerialNumber());
         replacementCrewMember.setBattlesFought(0);        
         replacementCrewMember.setAiSkillLevel(aiSkillLevel);

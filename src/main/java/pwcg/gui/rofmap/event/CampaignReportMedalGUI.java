@@ -43,7 +43,7 @@ public class CampaignReportMedalGUI extends AARDocumentIconPanel
 
     protected String getBodyText() throws PWCGException
     {
-        String medalText = "Squadron: " + medalEvent.getSquadronName() + "\n";
+        String medalText = "Company: " + medalEvent.getCompanyName() + "\n";
         medalText += "Date: " + DateUtils.getDateStringPretty(medalEvent.getDate()) + "\n";
         medalText += medalRecipient.getNameAndRank() + " has been awarded the " + medalEvent.getMedal() + ".\n";               
 

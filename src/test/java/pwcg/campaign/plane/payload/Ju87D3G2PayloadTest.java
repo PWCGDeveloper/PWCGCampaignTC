@@ -44,7 +44,7 @@ public class Ju87D3G2PayloadTest
     @Mock
     Campaign campaign;
     @Mock
-    Company squadron;
+    Company company;
     @Mock
     ConfigManagerCampaign configManagerCampaign;
 
@@ -73,7 +73,7 @@ public class Ju87D3G2PayloadTest
     }
 
     @Test
-    public void testAttackMissionAttackSquadronBeforeG3() throws PWCGException
+    public void testAttackMissionAttackCompanyBeforeG3() throws PWCGException
     {
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19430101"));
         IPlanePayload payloadGenerator = getPayloadGeneratorForAttack();
@@ -81,7 +81,7 @@ public class Ju87D3G2PayloadTest
     }
 
     @Test
-    public void testAttackMissionAttackSquadronUsingG3() throws PWCGException
+    public void testAttackMissionAttackCompanyUsingG3() throws PWCGException
     {
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19430801"));
         IPlanePayload payloadGenerator = getPayloadGeneratorForAttack();

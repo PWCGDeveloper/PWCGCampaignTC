@@ -21,8 +21,8 @@ public class PromotionMinimumCriteria
 
     public void setMinimumPromotionStandards(CrewMember crewMember, Date date) throws PWCGException
     {
-        int serviceId = crewMember.determineSquadron().getService();
-        PwcgRoleCategory roleCategory = crewMember.determineSquadron().determineCompanyPrimaryRoleCategory(date);
+        int serviceId = crewMember.determineCompany().getService();
+        PwcgRoleCategory roleCategory = crewMember.determineCompany().determineCompanyPrimaryRoleCategory(date);
 
         setMissionsFlownForPromotion(serviceId, roleCategory);
         setVictoriesForPromotion(serviceId, roleCategory);

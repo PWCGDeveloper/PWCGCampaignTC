@@ -14,7 +14,7 @@ import pwcg.core.location.Coordinate;
 import pwcg.core.location.CoordinateBox;
 import pwcg.mission.Mission;
 import pwcg.mission.MissionHumanParticipants;
-import pwcg.mission.MissionSquadronFlightTypes;
+import pwcg.mission.MissionCompanyFlightTypes;
 import pwcg.mission.flight.FlightTypes;
 import pwcg.mission.target.TargetType;
 import pwcg.testutils.CampaignCache;

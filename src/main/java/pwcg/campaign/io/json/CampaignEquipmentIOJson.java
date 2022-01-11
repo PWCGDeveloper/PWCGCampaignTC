@@ -33,19 +33,19 @@ public class CampaignEquipmentIOJson
 
     private static void writeEquipmentForCampaign(Campaign campaign) throws PWCGException
     {
-        for (Integer squadronId : campaign.getEquipmentManager().getEquipmentAllCompanies().keySet())
+        for (Integer companyId : campaign.getEquipmentManager().getEquipmentAllCompanies().keySet())
         {
-            writeEquipmentForSquadron(campaign, squadronId);
+            writeEquipmentForCompany(campaign, companyId);
         }
     }
 
-    public static void writeEquipmentForSquadron(Campaign campaign, int squadronId) throws PWCGException
+    public static void writeEquipmentForCompany(Campaign campaign, int companyId) throws PWCGException
     {
-        Equipment squadronEquipment = campaign.getEquipmentManager().getEquipmentForCompany(squadronId);
+        Equipment companyEquipment = campaign.getEquipmentManager().getEquipmentForCompany(companyId);
 
         PwcgJsonWriter<Equipment> jsonWriterEquipment = new PwcgJsonWriter<>();
         String campaignEquipmentReplacementDir = PWCGDirectoryUserManager.getInstance().getPwcgCampaignsDir() + campaign.getCampaignData().getName() + "\\Equipment\\";
-        jsonWriterEquipment.writeAsJson(squadronEquipment, campaignEquipmentReplacementDir, squadronId + ".json");
+        jsonWriterEquipment.writeAsJson(companyEquipment, campaignEquipmentReplacementDir, companyId + ".json");
     }
 
     private static void writeReplacements(Campaign campaign) throws PWCGException
@@ -61,22 +61,22 @@ public class CampaignEquipmentIOJson
 
     public static void readJson(Campaign campaign) throws PWCGException
     {
-        readSquadrons(campaign);
+        readCompanys(campaign);
         readReplacements(campaign);
     }
 
-    private static void readSquadrons(Campaign campaign) throws PWCGException
+    private static void readCompanys(Campaign campaign) throws PWCGException
     {
         String campaignEquipmentDir = PWCGDirectoryUserManager.getInstance().getPwcgCampaignsDir() + campaign.getCampaignData().getName() + "\\Equipment\\";
         List<File> jsonFiles = FileUtils.getFilesWithFilter(campaignEquipmentDir, ".json");
         for (File jsonFile : jsonFiles)
         {
             JsonObjectReader<Equipment> jsoReader = new JsonObjectReader<>(Equipment.class);
-            Equipment squadronEquipment = jsoReader.readJsonFile(campaignEquipmentDir, jsonFile.getName());
-            int squadronId = Integer.valueOf(FileUtils.stripFileExtension(jsonFile.getName()));
-            campaign.getEquipmentManager().addEquipmentForCompany(squadronId, squadronEquipment);
+            Equipment companyEquipment = jsoReader.readJsonFile(campaignEquipmentDir, jsonFile.getName());
+            int companyId = Integer.valueOf(FileUtils.stripFileExtension(jsonFile.getName()));
+            campaign.getEquipmentManager().addEquipmentForCompany(companyId, companyEquipment);
             
-            for (EquippedTank equippedPlane : squadronEquipment.getEquippedTanks().values())
+            for (EquippedTank equippedPlane : companyEquipment.getEquippedTanks().values())
             {
                 equippedPlane.updateFromTankType();
             }

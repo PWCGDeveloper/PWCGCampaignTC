@@ -63,8 +63,8 @@ public class CoopUserAddRemoveTest
     
     private void createCoopPersonaCrewMember() throws Exception
     {
-        CrewMemberReplacer squadronMemberReplacer = new CrewMemberReplacer(coopCampaign);
-        newCrewMember = squadronMemberReplacer.createPersona(personaName, "Leutnant", "II./St.G.77", coopuser);
+        CrewMemberReplacer companyMemberReplacer = new CrewMemberReplacer(coopCampaign);
+        newCrewMember = companyMemberReplacer.createPersona(personaName, "Leutnant", "II./St.G.77", coopuser);
         coopCampaign.write();
         
         verifyNewCrewMember();        
@@ -73,10 +73,10 @@ public class CoopUserAddRemoveTest
 
     private void verifyNewCrewMember() throws PWCGException
     {
-        CrewMember squadronMemberFromPersonnel = coopCampaign.getPersonnelManager().getAnyCampaignMember(newCrewMember.getSerialNumber());
-        assert(squadronMemberFromPersonnel != null);
-        assert(squadronMemberFromPersonnel.getCompanyId() == 20122077);
-        assert(squadronMemberFromPersonnel.getCrewMemberActiveStatus() == CrewMemberStatus.STATUS_ACTIVE);
+        CrewMember companyMemberFromPersonnel = coopCampaign.getPersonnelManager().getAnyCampaignMember(newCrewMember.getSerialNumber());
+        assert(companyMemberFromPersonnel != null);
+        assert(companyMemberFromPersonnel.getCompanyId() == 20122077);
+        assert(companyMemberFromPersonnel.getCrewMemberActiveStatus() == CrewMemberStatus.STATUS_ACTIVE);
     }
 
     private void verifyNewCoopPersona() throws PWCGException
@@ -116,10 +116,10 @@ public class CoopUserAddRemoveTest
 
         assert(CoopUserManager.getIntance().getCoopUser(coopuser) == null);
 
-        CrewMember squadronMemberFromPersonnel = coopCampaign.getPersonnelManager().getAnyCampaignMember(newCrewMember.getSerialNumber());
-        assert(squadronMemberFromPersonnel != null);
-        assert(squadronMemberFromPersonnel.getCompanyId() == 20122077);
-        assert(squadronMemberFromPersonnel.getCrewMemberActiveStatus() == CrewMemberStatus.STATUS_RETIRED);
+        CrewMember companyMemberFromPersonnel = coopCampaign.getPersonnelManager().getAnyCampaignMember(newCrewMember.getSerialNumber());
+        assert(companyMemberFromPersonnel != null);
+        assert(companyMemberFromPersonnel.getCompanyId() == 20122077);
+        assert(companyMemberFromPersonnel.getCrewMemberActiveStatus() == CrewMemberStatus.STATUS_RETIRED);
     }
 
 }

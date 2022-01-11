@@ -23,20 +23,20 @@ public class SkirmishFlightTypeFactory implements IFlightTypeFactory
     }
 
     @Override
-    public FlightTypes getFlightType(Company squadron, boolean isPlayerFlight, PwcgRole missionRole) throws PWCGException
+    public FlightTypes getFlightType(Company company, boolean isPlayerFlight, PwcgRole missionRole) throws PWCGException
     {
-        missionRole = skirmish.forceRoleConversion(missionRole, squadron.determineSide());
+        missionRole = skirmish.forceRoleConversion(missionRole, company.determineSide());
         
         FlightTypes flightType = FlightTypes.ANY;
-        if (skirmish.hasFlighTypeForRole(squadron, missionRole))
+        if (skirmish.hasFlighTypeForRole(company, missionRole))
         {
-            flightType = skirmish.getFlighTypeForRole(squadron, missionRole);
-            PWCGLogger.log(LogLevel.DEBUG, "Skirmish flight type factory returned: " + flightType + " for role " + missionRole + " Squadron " + squadron.determineDisplayName(campaign.getDate()));
+            flightType = skirmish.getFlighTypeForRole(company, missionRole);
+            PWCGLogger.log(LogLevel.DEBUG, "Skirmish flight type factory returned: " + flightType + " for role " + missionRole + " Company " + company.determineDisplayName(campaign.getDate()));
         }
         else
         {
-            flightType = backupFlightTypeFactory.getFlightType(squadron, isPlayerFlight, missionRole);
-            PWCGLogger.log(LogLevel.DEBUG, "Backup flight type factory returned: " + flightType + " for role " + missionRole + " Squadron " + squadron.determineDisplayName(campaign.getDate()));
+            flightType = backupFlightTypeFactory.getFlightType(company, isPlayerFlight, missionRole);
+            PWCGLogger.log(LogLevel.DEBUG, "Backup flight type factory returned: " + flightType + " for role " + missionRole + " Company " + company.determineDisplayName(campaign.getDate()));
         }
 
         return flightType;

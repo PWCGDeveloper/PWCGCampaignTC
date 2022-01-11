@@ -17,48 +17,48 @@ import pwcg.core.exception.PWCGException;
 public class InitialCompanyEquipper 
 {
     private Campaign campaign;
-    private Company squadron;
+    private Company company;
     private Equipment equipment = new Equipment();
     private int planesNeeded = Company.COMPANY_EQUIPMENT_SIZE;
     private EquipmentWeightCalculator equipmentWeightCalculator;
 
-	public InitialCompanyEquipper(Campaign campaign, Company squadron, EquipmentWeightCalculator equipmentWeightCalculator) 
+	public InitialCompanyEquipper(Campaign campaign, Company company, EquipmentWeightCalculator equipmentWeightCalculator) 
 	{
         this.campaign = campaign;
-        this.squadron = squadron;
+        this.company = company;
         this.equipmentWeightCalculator = equipmentWeightCalculator;
 	}
 
     public Equipment generateEquipment() throws PWCGException 
     {
-        determinePlaneWeightsForSquadron();
-        generatePlanesForSquadron();
+        determinePlaneWeightsForCompany();
+        generatePlanesForCompany();
         return equipment;
     }
     
-    private void determinePlaneWeightsForSquadron() throws PWCGException
+    private void determinePlaneWeightsForCompany() throws PWCGException
     {
-        List<TankArchType> currentAircraftArchTypes = squadron.determineCurrentAircraftArchTypes(campaign.getDate());
+        List<TankArchType> currentAircraftArchTypes = company.determineCurrentAircraftArchTypes(campaign.getDate());
         
-        List<TankType> planeTypesInSquadron = new ArrayList<>();
+        List<TankType> planeTypesInCompany = new ArrayList<>();
         for (TankArchType planeArchType : currentAircraftArchTypes)
         {
             List<TankType> planeTypesForArchType = PWCGContext.getInstance().getTankTypeFactory().createActiveTankTypesForArchType(planeArchType.getTankArchTypeName(), campaign.getDate());
-            planeTypesInSquadron.addAll(planeTypesForArchType);
+            planeTypesInCompany.addAll(planeTypesForArchType);
         }
         
-        equipmentWeightCalculator.determinePlaneWeightsForPlanes(planeTypesInSquadron);
+        equipmentWeightCalculator.determinePlaneWeightsForPlanes(planeTypesInCompany);
     }
 
-    private void generatePlanesForSquadron() throws PWCGException 
+    private void generatePlanesForCompany() throws PWCGException 
     {       
         
         for (int i = 0; i < planesNeeded; ++i)
         {
             String planeTypeName = equipmentWeightCalculator.getTankTypeFromWeight();
             
-            EquippedTank equippedPlane = TankEquipmentFactory.makeTankForSquadron(campaign, planeTypeName, squadron.getCompanyId());
-            equipment.addEquippedTankToCompany(campaign, squadron.getCompanyId(), equippedPlane);
+            EquippedTank equippedPlane = TankEquipmentFactory.makeTankForCompany(campaign, planeTypeName, company.getCompanyId());
+            equipment.addEquippedTankToCompany(campaign, company.getCompanyId(), equippedPlane);
         }
     }
 

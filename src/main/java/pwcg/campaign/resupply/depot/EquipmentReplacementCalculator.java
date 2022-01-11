@@ -15,7 +15,7 @@ import pwcg.core.utils.RandomNumberGenerator;
 public class EquipmentReplacementCalculator
 {
     private Campaign campaign;
-    private List<String> squadronNeedsForLosses = new ArrayList<>();
+    private List<String> companyNeedsForLosses = new ArrayList<>();
     private List<String> weightedArchTypeUsage = new ArrayList<>();
     private int needIndex = 0;
 
@@ -24,10 +24,10 @@ public class EquipmentReplacementCalculator
         this.campaign = campaign;
     }
 
-    public void createArchTypeForReplacementPlane(List<Company> squadronsForService) throws PWCGException
+    public void createArchTypeForReplacementPlane(List<Company> companysForService) throws PWCGException
     {
-        loadWeightsByUsage(squadronsForService);        
-        loadWeightsByNeed(squadronsForService);        
+        loadWeightsByUsage(companysForService);        
+        loadWeightsByNeed(companysForService);        
     }
 
     public String chooseArchTypeForReplacementByUsage() throws PWCGException
@@ -39,17 +39,17 @@ public class EquipmentReplacementCalculator
     
     public boolean hasMoreForReplacement()
     {
-        return (needIndex < squadronNeedsForLosses.size());
+        return (needIndex < companyNeedsForLosses.size());
     }
 
     public String chooseArchTypeForReplacementByNeed() throws PWCGException
     {
         verifyWasInitialized();
-        if (needIndex == squadronNeedsForLosses.size())
+        if (needIndex == companyNeedsForLosses.size())
         {
             throw new PWCGException("Requested more planes than available for need");
         }
-        String archType = squadronNeedsForLosses.get(needIndex);
+        String archType = companyNeedsForLosses.get(needIndex);
         ++needIndex;
         return archType;
     }
@@ -62,18 +62,18 @@ public class EquipmentReplacementCalculator
         }
     }
 
-    private void loadWeightsByUsage(List<Company> squadronsForService) throws PWCGException
+    private void loadWeightsByUsage(List<Company> companysForService) throws PWCGException
     {
         EquipmentReplacementWeightUsage equipmentReplacementWeightUsage = new EquipmentReplacementWeightUsage(campaign.getDate());
-        Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftUsageByArchType(squadronsForService);
+        Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftUsageByArchType(companysForService);
         loadWeightedList(aircraftUsageByArchType, weightedArchTypeUsage);        
     }
 
-    private void loadWeightsByNeed(List<Company> squadronsForService) throws PWCGException
+    private void loadWeightsByNeed(List<Company> companysForService) throws PWCGException
     {
         EquipmentReplacementWeightByNeed equipmentReplacementWeightByNeed = new EquipmentReplacementWeightByNeed(campaign);
-        Map<String, Integer> replacementsForLosses = equipmentReplacementWeightByNeed.getAircraftNeedByArchType(squadronsForService);
-        loadWeightedList(replacementsForLosses, squadronNeedsForLosses);
+        Map<String, Integer> replacementsForLosses = equipmentReplacementWeightByNeed.getAircraftNeedByArchType(companysForService);
+        loadWeightedList(replacementsForLosses, companyNeedsForLosses);
     }
 
     private void loadWeightedList(Map<String, Integer> aircraftReplacementWeights, List<String> needs) throws PWCGException

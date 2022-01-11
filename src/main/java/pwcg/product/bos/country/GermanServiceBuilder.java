@@ -47,8 +47,8 @@ public class GermanServiceBuilder
         wehrmacht.addServiceQuality(DateUtils.getDateYYYYMMDD("19440101"), 70);
         wehrmacht.addServiceQuality(DateUtils.getDateYYYYMMDD("19440601"), 60);
 
-        wehrmacht.setDailyPersonnelReplacementRatePerSquadron(1.3);
-        wehrmacht.setDailyEquipmentReplacementRatePerSquadron(1.0);
+        wehrmacht.setDailyPersonnelReplacementRatePerCompany(1.3);
+        wehrmacht.setDailyEquipmentReplacementRatePerCompany(1.0);
         
         wehrmacht.setAirVictoriesForgreatAce(20);
         wehrmacht.setGroundVictoriesForgreatAce(50);

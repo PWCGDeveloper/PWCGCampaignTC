@@ -49,8 +49,8 @@ public class AARClaimPanelEventTabulatorTest
         
         campaignDate = DateUtils.getDateYYYYMMDD("19420420");
         Mockito.when(campaign.getDate()).thenReturn(campaignDate);
-        List<Company> playerSquadrons = new ArrayList<>();
-        playerSquadrons.add(company);
+        List<Company> playerCompanys = new ArrayList<>();
+        playerCompanys.add(company);
         
         Mockito.when(aarPreliminarytData.getPwcgMissionData()).thenReturn(pwcgMissionData);
 

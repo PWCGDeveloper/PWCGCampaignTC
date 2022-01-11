@@ -50,7 +50,7 @@ public class Mission
     private MissionGroundUnitResourceManager groundUnitManager;
     private VehicleSetBuilderComprehensive vehicleSetBuilder = new VehicleSetBuilderComprehensive();
 
-    private MissionSquadronRegistry missionSquadronRegistry = new MissionSquadronRegistry();
+    private MissionCompanyRegistry missionCompanyRegistry = new MissionCompanyRegistry();
     private Skirmish skirmish;
     
     private MissionEffects missionEffects = new MissionEffects();
@@ -340,9 +340,9 @@ public class Mission
         return skirmish;
     }
 
-    public MissionSquadronRegistry getMissionSquadronRegistry()
+    public MissionCompanyRegistry getMissionCompanyRegistry()
     {
-        return missionSquadronRegistry;
+        return missionCompanyRegistry;
     }
 
     public MissionFinalizer getFinalizer()

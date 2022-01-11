@@ -25,7 +25,7 @@ import pwcg.mission.flight.plane.PlaneMcu;
 public class MissionSkinSetBuilderTest
 {
     @Mock private Campaign campaign;
-    @Mock private Company squadron;
+    @Mock private Company company;
     @Mock private IFlight flight;
     @Mock private IFlightPlanes flightPlanes;
     @Mock private PlaneMcu plane1;
@@ -45,8 +45,8 @@ public class MissionSkinSetBuilderTest
         Mockito.when(flight.getFlightPlanes()).thenReturn(flightPlanes);
         Mockito.when(flightPlanes.getPlanes()).thenReturn(planes);
         
-        Mockito.when(flight.getCompany()).thenReturn(squadron);
-        Mockito.when(squadron.determineCompanyCountry(Mockito.any())).thenReturn(country);
+        Mockito.when(flight.getCompany()).thenReturn(company);
+        Mockito.when(company.determineCompanyCountry(Mockito.any())).thenReturn(country);
         
         planes.clear();
         planes.add(plane1);
@@ -57,7 +57,7 @@ public class MissionSkinSetBuilderTest
     @Test
     public void buildMissionSkinSetForSummer() throws Exception
     {
-        Mockito.when(squadron.getCompanyId()).thenReturn(20111003);
+        Mockito.when(company.getCompanyId()).thenReturn(20111003);
         Mockito.when(country.getCountryName()).thenReturn("Germany");
 
         Mockito.when(plane1.getType()).thenReturn("bf109f4");
@@ -68,15 +68,15 @@ public class MissionSkinSetBuilderTest
 
         MissionSkinSet missionSkinSet = MissionSkinSetBuilder.buildSummerMissionSkinSet(flight);
         assert(missionSkinSet.getFactorySkins("bf109f4").size() > 0);
-        assert(missionSkinSet.getSquadronSkins("bf109f4").size() > 0);
-        assert(missionSkinSet.getSquadronPersonalSkins("bf109f4").size() > 0);
-        assert(missionSkinSet.getNonSquadronPersonalSkin("bf109f4").size() > 0);
+        assert(missionSkinSet.getCompanySkins("bf109f4").size() > 0);
+        assert(missionSkinSet.getCompanyPersonalSkins("bf109f4").size() > 0);
+        assert(missionSkinSet.getNonCompanyPersonalSkin("bf109f4").size() > 0);
     }
         
     @Test
     public void buildMissionSkinSetForWinter() throws PWCGException
     {
-        Mockito.when(squadron.getCompanyId()).thenReturn(10111011);
+        Mockito.when(company.getCompanyId()).thenReturn(10111011);
         Mockito.when(country.getCountryName()).thenReturn("Russia");
 
         Mockito.when(plane1.getType()).thenReturn("lagg3s29");
@@ -87,15 +87,15 @@ public class MissionSkinSetBuilderTest
 
         MissionSkinSet missionSkinSet = MissionSkinSetBuilder.buildWinterMissionSkinSet(flight);
         assert(missionSkinSet.getFactorySkins("lagg3s29").size() > 0);
-        assert(missionSkinSet.getSquadronSkins("lagg3s29").size() == 0);
-        assert(missionSkinSet.getSquadronPersonalSkins("lagg3s29").size() > 0);
-        assert(missionSkinSet.getNonSquadronPersonalSkin("lagg3s29").size() > 0);
+        assert(missionSkinSet.getCompanySkins("lagg3s29").size() == 0);
+        assert(missionSkinSet.getCompanyPersonalSkins("lagg3s29").size() > 0);
+        assert(missionSkinSet.getNonCompanyPersonalSkin("lagg3s29").size() > 0);
     }
     
     @Test
     public void buildMissionSkinSetForDiffentTankTypesInFlight() throws PWCGException
     {
-        Mockito.when(squadron.getCompanyId()).thenReturn(20111003);
+        Mockito.when(company.getCompanyId()).thenReturn(20111003);
         Mockito.when(country.getCountryName()).thenReturn("Germany");
 
         Mockito.when(plane1.getType()).thenReturn("bf109f4");
@@ -106,13 +106,13 @@ public class MissionSkinSetBuilderTest
 
         MissionSkinSet missionSkinSet = MissionSkinSetBuilder.buildSummerMissionSkinSet(flight);
         assert(missionSkinSet.getFactorySkins("bf109f4").size() > 0);
-        assert(missionSkinSet.getSquadronSkins("bf109f4").size() > 0);
-        assert(missionSkinSet.getSquadronPersonalSkins("bf109f4").size() > 0);
-        assert(missionSkinSet.getNonSquadronPersonalSkin("bf109f4").size() > 0);
+        assert(missionSkinSet.getCompanySkins("bf109f4").size() > 0);
+        assert(missionSkinSet.getCompanyPersonalSkins("bf109f4").size() > 0);
+        assert(missionSkinSet.getNonCompanyPersonalSkin("bf109f4").size() > 0);
         
         assert(missionSkinSet.getFactorySkins("bf109f2").size() > 0);
-        assert(missionSkinSet.getSquadronSkins("bf109f2").size() > 0);
-        assert(missionSkinSet.getSquadronPersonalSkins("bf109f2").size() > 0);
-        assert(missionSkinSet.getNonSquadronPersonalSkin("bf109f2").size() > 0);
+        assert(missionSkinSet.getCompanySkins("bf109f2").size() > 0);
+        assert(missionSkinSet.getCompanyPersonalSkins("bf109f2").size() > 0);
+        assert(missionSkinSet.getNonCompanyPersonalSkin("bf109f2").size() > 0);
     }
 }

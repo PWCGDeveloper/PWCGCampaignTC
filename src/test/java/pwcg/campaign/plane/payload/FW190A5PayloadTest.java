@@ -42,7 +42,7 @@ public class FW190A5PayloadTest
     @Mock
     Campaign campaign;
     @Mock
-    Company squadron;
+    Company company;
     @Mock
     ConfigManagerCampaign configManagerCampaign;
 
@@ -51,7 +51,7 @@ public class FW190A5PayloadTest
     {
         
 
-        Mockito.when(flight.getCompany()).thenReturn(squadron);
+        Mockito.when(flight.getCompany()).thenReturn(company);
         Mockito.when(flight.getCampaign()).thenReturn(campaign);
         Mockito.when(flight.getTargetDefinition()).thenReturn(targetDefinition);
     }
@@ -93,7 +93,7 @@ public class FW190A5PayloadTest
     }
 
     @Test
-    public void testAttackMissionFighterSquadronBeforeG3() throws PWCGException
+    public void testAttackMissionFighterCompanyBeforeG3() throws PWCGException
     {
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19430101"));
         IPlanePayload payloadGenerator = getPayloadGeneratorForFighter();
@@ -101,7 +101,7 @@ public class FW190A5PayloadTest
     }
 
     @Test
-    public void testAttackMissionFighterSquadronAfterG3() throws PWCGException
+    public void testAttackMissionFighterCompanyAfterG3() throws PWCGException
     {
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19430801"));
         IPlanePayload payloadGenerator = getPayloadGeneratorForFighter();
@@ -109,7 +109,7 @@ public class FW190A5PayloadTest
     }
 
     @Test
-    public void testAttackMissionAttackSquadronBeforeG3() throws PWCGException
+    public void testAttackMissionAttackCompanyBeforeG3() throws PWCGException
     {
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19430101"));
         IPlanePayload payloadGenerator = getPayloadGeneratorForAttack();
@@ -117,7 +117,7 @@ public class FW190A5PayloadTest
     }
 
     @Test
-    public void testAttackMissionAttackSquadronUsingG3() throws PWCGException
+    public void testAttackMissionAttackCompanyUsingG3() throws PWCGException
     {
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19430801"));
         IPlanePayload payloadGenerator = getPayloadGeneratorForAttack();
@@ -126,7 +126,7 @@ public class FW190A5PayloadTest
 
     private IPlanePayload getPayloadGeneratorForFighter() throws PWCGException
     {
-        Mockito.when(squadron.determineCompanyPrimaryRoleCategory(Mockito.any())).thenReturn(PwcgRoleCategory.FIGHTER);
+        Mockito.when(company.determineCompanyPrimaryRoleCategory(Mockito.any())).thenReturn(PwcgRoleCategory.FIGHTER);
         TankType fw190A5 = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByType(PlaneAttributeMapping.FW190_A5.getTankType());
         IPlanePayloadFactory payloadFactory = PWCGContext.getInstance().getPlanePayloadFactory();
         IPlanePayload payloadGenerator = payloadFactory.createPayload(fw190A5.getType(), campaign.getDate());
@@ -135,7 +135,7 @@ public class FW190A5PayloadTest
 
     private IPlanePayload getPayloadGeneratorForAttack() throws PWCGException
     {
-        Mockito.when(squadron.determineCompanyPrimaryRoleCategory(Mockito.any())).thenReturn(PwcgRoleCategory.ATTACK);
+        Mockito.when(company.determineCompanyPrimaryRoleCategory(Mockito.any())).thenReturn(PwcgRoleCategory.ATTACK);
         TankType fw190A5 = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByType(PlaneAttributeMapping.FW190_A5.getTankType());
         IPlanePayloadFactory payloadFactory = PWCGContext.getInstance().getPlanePayloadFactory();
         IPlanePayload payloadGenerator = payloadFactory.createPayload(fw190A5.getType(), campaign.getDate());

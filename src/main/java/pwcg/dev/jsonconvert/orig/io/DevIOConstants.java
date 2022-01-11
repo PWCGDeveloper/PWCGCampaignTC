@@ -91,9 +91,9 @@ public class DevIOConstants
 	public static String SKINSET = "SkinSet";
 	
 	public static String SQUAD  	= "Squad ";
-	public static String SQUADHISTORY = "SquadronHistory";
+	public static String SQUADHISTORY = "CompanyHistory";
 	public static String SQUADNAME  = "SquadName";
-	public static String SQUADRON  	= "Squadron";
+	public static String Company  	= "Company";
 	public static String STARTDATE  = "StartDate";
 	public static String STATUS = "Status";
 	public static String SW_CORNER  = "SW";
@@ -106,11 +106,11 @@ public class DevIOConstants
 	public static String VICTORY_VICTIM_AIR_GROUND = "VictoryVictimAirGround";
 	public static String VICTORY_VICTIM_PILOT = "VictoryVictimCrewMember";
 	public static String VICTORY_VICTIM_PILOT_STATUS = "VictoryVictimCrewMemberStatus";
-	public static String VICTORY_VICTIM_SQUADRON = "VictoryVictimSquadron";
+	public static String VICTORY_VICTIM_Company = "VictoryVictimCompany";
 	public static String VICTORY_VICTIM_TYPE = "VictoryVictimType";
 	public static String VICTORY_VICTOR_AIR_GROUND = "VictoryVictorAirGround";
 	public static String VICTORY_VICTOR_PILOT = "VictoryVictorCrewMember";
-	public static String VICTORY_VICTOR_SQUADRON = "VictoryVictorSquadron";
+	public static String VICTORY_VICTOR_Company = "VictoryVictorCompany";
 	public static String VICTORY_VICTOR_TYPE = "VictoryVictorType";
 	
 	public static String WIDTH  	= "Width";

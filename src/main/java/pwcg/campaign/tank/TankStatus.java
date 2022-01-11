@@ -8,7 +8,7 @@ public class TankStatus
     public static final int STATUS_DESTROYED = -1;
     public static final int STATUS_REMOVED_FROM_SERVICE = -2;
 
-    public static final String DEPLOYED_STATUS_DESC = "Deployed to squadron";
+    public static final String DEPLOYED_STATUS_DESC = "Deployed to company";
     public static final String DEPOT_STATUS_DESC = "Available in depot";
     public static final String DESTROYED_STATUS_DESC = "Destroyed";
     public static final String REMOVED_FROM_SERVICE_DESC = "Removed from service";

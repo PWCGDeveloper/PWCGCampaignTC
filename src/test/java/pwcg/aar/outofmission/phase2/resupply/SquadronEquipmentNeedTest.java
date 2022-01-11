@@ -22,19 +22,19 @@ import pwcg.campaign.crewmember.SerialNumber;
 import pwcg.campaign.personnel.CompanyPersonnel;
 import pwcg.campaign.plane.Equipment;
 import pwcg.campaign.plane.EquippedPlane;
-import pwcg.campaign.resupply.equipment.SquadronEquipmentNeed;
+import pwcg.campaign.resupply.equipment.CompanyEquipmentNeed;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 
 @ExtendWith(MockitoExtension.class)
-public class SquadronEquipmentNeedTest
+public class CompanyEquipmentNeedTest
 {
     @Mock private Campaign campaign;
-    @Mock private Company squadron;
+    @Mock private Company company;
     @Mock private CampaignEquipmentManager campaignEquipmentManager;
     @Mock private Equipment equipment;
     @Mock private AARPersonnelLosses lossesInMissionData;
-    @Mock private CompanyPersonnel squadronPersonnel;
+    @Mock private CompanyPersonnel companyPersonnel;
     @Mock private EquippedTank equippedPlane;
 
     private Map<Integer, EquippedTank> activeEquippedPlaneCollection = new HashMap<>();
@@ -60,18 +60,18 @@ public class SquadronEquipmentNeedTest
     @Test
     public void testResupplyWithNoEquipment() throws PWCGException
     {
-        SquadronEquipmentNeed squadronTransferNeed = new SquadronEquipmentNeed(campaign, squadron);
-        squadronTransferNeed.determineResupplyNeeded();
-        Assertions.assertTrue (squadronTransferNeed.needsResupply() == true);
+        CompanyEquipmentNeed companyTransferNeed = new CompanyEquipmentNeed(campaign, company);
+        companyTransferNeed.determineResupplyNeeded();
+        Assertions.assertTrue (companyTransferNeed.needsResupply() == true);
         
         for (int i = 0; i < Company.COMPANY_EQUIPMENT_SIZE - 1; ++i)
         {
-            squadronTransferNeed.noteResupply();
-            Assertions.assertTrue (squadronTransferNeed.needsResupply() == true);
+            companyTransferNeed.noteResupply();
+            Assertions.assertTrue (companyTransferNeed.needsResupply() == true);
         }
 
-        squadronTransferNeed.noteResupply();
-        Assertions.assertTrue (squadronTransferNeed.needsResupply() == false);
+        companyTransferNeed.noteResupply();
+        Assertions.assertTrue (companyTransferNeed.needsResupply() == false);
     }
     
 
@@ -83,18 +83,18 @@ public class SquadronEquipmentNeedTest
             activeEquippedPlaneCollection.put(serialNumber.getNextPlaneSerialNumber(), equippedPlane);
         }
         
-        SquadronEquipmentNeed squadronResupplyNeed = new SquadronEquipmentNeed(campaign, squadron);
-        squadronResupplyNeed.determineResupplyNeeded();
-        Assertions.assertTrue (squadronResupplyNeed.needsResupply() == true);
+        CompanyEquipmentNeed companyResupplyNeed = new CompanyEquipmentNeed(campaign, company);
+        companyResupplyNeed.determineResupplyNeeded();
+        Assertions.assertTrue (companyResupplyNeed.needsResupply() == true);
         
         for (int i = 0; i < 2; ++i)
         {
-            squadronResupplyNeed.noteResupply();
-            Assertions.assertTrue (squadronResupplyNeed.needsResupply() == true);
+            companyResupplyNeed.noteResupply();
+            Assertions.assertTrue (companyResupplyNeed.needsResupply() == true);
         }
 
-        squadronResupplyNeed.noteResupply();
-        Assertions.assertTrue (squadronResupplyNeed.needsResupply() == false);
+        companyResupplyNeed.noteResupply();
+        Assertions.assertTrue (companyResupplyNeed.needsResupply() == false);
     }
     
 
@@ -111,18 +111,18 @@ public class SquadronEquipmentNeedTest
             inactiveEquippedPlaneCollection.put(serialNumber.getNextPlaneSerialNumber(), equippedPlane);
         }
 
-        SquadronEquipmentNeed squadronResupplyNeed = new SquadronEquipmentNeed(campaign, squadron);
-        squadronResupplyNeed.determineResupplyNeeded();
-        Assertions.assertTrue (squadronResupplyNeed.needsResupply() == true);
+        CompanyEquipmentNeed companyResupplyNeed = new CompanyEquipmentNeed(campaign, company);
+        companyResupplyNeed.determineResupplyNeeded();
+        Assertions.assertTrue (companyResupplyNeed.needsResupply() == true);
         
         for (int i = 0; i < 2; ++i)
         {
-            squadronResupplyNeed.noteResupply();
-            Assertions.assertTrue (squadronResupplyNeed.needsResupply() == true);
+            companyResupplyNeed.noteResupply();
+            Assertions.assertTrue (companyResupplyNeed.needsResupply() == true);
         }
 
-        squadronResupplyNeed.noteResupply();
-        Assertions.assertTrue (squadronResupplyNeed.needsResupply() == false);
+        companyResupplyNeed.noteResupply();
+        Assertions.assertTrue (companyResupplyNeed.needsResupply() == false);
     }
 
     @Test
@@ -138,9 +138,9 @@ public class SquadronEquipmentNeedTest
             inactiveEquippedPlaneCollection.put(serialNumber.getNextPlaneSerialNumber(), equippedPlane);
         }
 
-        SquadronEquipmentNeed squadronResupplyNeed = new SquadronEquipmentNeed(campaign, squadron);
-        squadronResupplyNeed.determineResupplyNeeded();
-        Assertions.assertTrue (squadronResupplyNeed.needsResupply() == false);
+        CompanyEquipmentNeed companyResupplyNeed = new CompanyEquipmentNeed(campaign, company);
+        companyResupplyNeed.determineResupplyNeeded();
+        Assertions.assertTrue (companyResupplyNeed.needsResupply() == false);
     }
 
 }

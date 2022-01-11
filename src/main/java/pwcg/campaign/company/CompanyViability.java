@@ -62,7 +62,7 @@ public class CompanyViability
             return false;
         }
         
-        if (!companyPersonnel.isSquadronPersonnelViable())
+        if (!companyPersonnel.isCompanyPersonnelViable())
         {
             return false;
         }
@@ -86,17 +86,17 @@ public class CompanyViability
         return true;
     }
 
-    public static List<Company> reduceToAIOnly(Campaign campaign, List<Company> selectedSquadrons) throws PWCGException
+    public static List<Company> reduceToAIOnly(Campaign campaign, List<Company> selectedCompanys) throws PWCGException
     {
-        List<Company> selectedSquadronsNoPlayer = new ArrayList<>();
-        for (Company company : selectedSquadrons)
+        List<Company> selectedCompanysNoPlayer = new ArrayList<>();
+        for (Company company : selectedCompanys)
         {
             if (!campaign.getPersonnelManager().companyHasActivePlayers(company.getCompanyId()))
             {
-                selectedSquadronsNoPlayer.add(company);
+                selectedCompanysNoPlayer.add(company);
             }
         }
-        return selectedSquadronsNoPlayer;
+        return selectedCompanysNoPlayer;
     }
     
     public static List<Company> reduceToSide(Side side, List<Company> companies) throws PWCGException
@@ -163,7 +163,7 @@ public class CompanyViability
         {
             for (PwcgRole acceptableRole : acceptableRoles)
             {
-                if (company.isSquadronThisRole(date, acceptableRole))
+                if (company.isCompanyThisRole(date, acceptableRole))
                 {
                     companiesWithRole.put(company.getCompanyId(), company);
                 }

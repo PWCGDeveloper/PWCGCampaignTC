@@ -73,10 +73,10 @@ public class AirToGroundVictoryBuilder
 
     private VictoryEntity createVictor(Date date) throws PWCGException
     {        
-        Company squadron = victorCrewMember.determineSquadron();
-        if (squadron != null)
+        Company company = victorCrewMember.determineCompany();
+        if (company != null)
         {
-            TankType victorTankType = squadron.determineBestPlane(date);
+            TankType victorTankType = company.determineBestPlane(date);
     
             if (victorTankType != null)
             {
@@ -84,7 +84,7 @@ public class AirToGroundVictoryBuilder
                 victor.setAirOrGround(Victory.AIRCRAFT);
                 victor.setType(victorTankType.getDisplayName());
                 victor.setName(victorTankType.getDisplayName());
-                victor.setSquadronName(squadron.determineDisplayName(date));
+                victor.setCompanyName(company.determineDisplayName(date));
                 victor.setCrewMemberName(victorCrewMember.getRank() + " " + victorCrewMember.getName());
                 victor.setCrewMemberSerialNumber(victorCrewMember.getSerialNumber());
                 victor.setCrewMemberStatus(CrewMemberStatus.STATUS_ACTIVE);
@@ -101,7 +101,7 @@ public class AirToGroundVictoryBuilder
         victim.setAirOrGround(Victory.VEHICLE);
         victim.setType(victimVehicle.getVehicleType());
         victim.setName(victimVehicle.getVehicleName());
-        victim.setSquadronName("");
+        victim.setCompanyName("");
         victim.setCrewMemberName("");
         victim.setCrewMemberSerialNumber(SerialNumber.NO_SERIAL_NUMBER);
         victim.setCrewMemberStatus(CrewMemberStatus.STATUS_KIA);
@@ -112,11 +112,11 @@ public class AirToGroundVictoryBuilder
     {
         String eventLocationDescription = "";
         
-        Coordinate squadronPosition = victorCrewMember.determineSquadron().determineCurrentPosition(date);
-        if (squadronPosition != null)
+        Coordinate companyPosition = victorCrewMember.determineCompany().determineCurrentPosition(date);
+        if (companyPosition != null)
         {
             FrontLinesForMap frontLines = PWCGContext.getInstance().getCurrentMap().getFrontLinesForMap(date);
-            FrontLinePoint eventPosition = frontLines.findCloseFrontPositionForSide(squadronPosition, 100000, enemySide);
+            FrontLinePoint eventPosition = frontLines.findCloseFrontPositionForSide(companyPosition, 100000, enemySide);
     
             eventLocationDescription =  PWCGContext.getInstance().getCurrentMap().getGroupManager().getTownFinder().findClosestTown(eventPosition.getPosition()).getName();
             if (eventLocationDescription == null || eventLocationDescription.isEmpty())

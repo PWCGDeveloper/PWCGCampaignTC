@@ -11,13 +11,13 @@ public class CrewMemberReplacerCoop extends CrewMemberReplacer  implements ICrew
         super(campaign);
     }
 	
-    public CrewMember createPersona(String playerCrewMemberName, String rank, String squadronName, String coopUsername) throws PWCGUserException, Exception
+    public CrewMember createPersona(String playerCrewMemberName, String rank, String companyName, String coopUsername) throws PWCGUserException, Exception
     {        
-        CrewMember newSquadronMewmber = super.createPersona(playerCrewMemberName, rank, squadronName, coopUsername);
+        CrewMember newCompanyMewmber = super.createPersona(playerCrewMemberName, rank, companyName, coopUsername);
         if (campaign.isCoop())
         {
-            CoopUserManager.getIntance().createCoopPersona(campaign.getName(), newSquadronMewmber, coopUsername);
+            CoopUserManager.getIntance().createCoopPersona(campaign.getName(), newCompanyMewmber, coopUsername);
         }
-        return newSquadronMewmber;
+        return newCompanyMewmber;
     }
 }

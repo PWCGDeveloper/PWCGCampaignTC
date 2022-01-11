@@ -62,9 +62,9 @@ public class PWCGDirectoryProductManager
         return getPwcgInputDir() + "Company\\";
     }
 
-    public String getPwcgSquadronMovingFrontDir()
+    public String getPwcgCompanyMovingFrontDir()
     {
-        return getPwcgInputDir() + "SquadronMovingFront\\";
+        return getPwcgInputDir() + "CompanyMovingFront\\";
     }
 
     public String getPwcgImagesDir()

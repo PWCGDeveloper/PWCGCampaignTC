@@ -10,23 +10,23 @@ public class InitialReplacementStaffer
 {
     public static final int NUM_INITIAL_REPLACEMENTS = 20;
     
-    private CrewMemberReplacementFactory squadronMemberFactory;
-    private CrewMembers squadronMembers;
+    private CrewMemberReplacementFactory companyMemberFactory;
+    private CrewMembers crewMembers;
     
     public InitialReplacementStaffer(Campaign campaign, ArmedService service) 
     {
-        squadronMembers = new CrewMembers();
-        squadronMemberFactory = new CrewMemberReplacementFactory(campaign, service);
+        crewMembers = new CrewMembers();
+        companyMemberFactory = new CrewMemberReplacementFactory(campaign, service);
     }
 
     public CrewMembers staffReplacementsForService() throws PWCGException
     {
         for (int i = 0; i < NUM_INITIAL_REPLACEMENTS; ++i)
         {
-            CrewMember replacement = squadronMemberFactory.createAIReplacementCrewMember();
-            squadronMembers.addToCrewMemberCollection(replacement);
+            CrewMember replacement = companyMemberFactory.createAIReplacementCrewMember();
+            crewMembers.addToCrewMemberCollection(replacement);
         }
         
-        return squadronMembers;
+        return crewMembers;
     }
 }

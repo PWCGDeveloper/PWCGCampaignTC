@@ -45,7 +45,7 @@ public class HurricanePayloadTest
     @Mock
     Campaign campaign;
     @Mock
-    Company squadron;
+    Company company;
     @Mock
     ConfigManagerCampaign configManagerCampaign;
 
@@ -54,7 +54,7 @@ public class HurricanePayloadTest
     {
         
 
-        Mockito.when(flight.getCompany()).thenReturn(squadron);
+        Mockito.when(flight.getCompany()).thenReturn(company);
         Mockito.when(flight.getTargetDefinition()).thenReturn(targetDefinition);
     }
 
@@ -62,7 +62,7 @@ public class HurricanePayloadTest
     public void testVVSPatrolPayloadBeforeShvak() throws PWCGException
     {
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19411001"));
-        Mockito.when(squadron.getCountry()).thenReturn(CountryFactory.makeCountryByCountry(Country.RUSSIA));
+        Mockito.when(company.getCountry()).thenReturn(CountryFactory.makeCountryByCountry(Country.RUSSIA));
         IPlanePayload payloadGenerator = getPayloadGeneratorForFighter();
         Mockito.when(flight.getFlightType()).thenReturn(FlightTypes.PATROL);
         runPayload(payloadGenerator, Arrays.asList(0));
@@ -72,7 +72,7 @@ public class HurricanePayloadTest
     public void testVVSPatrolPayloadAfterShvak() throws PWCGException
     {
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420420"));
-        Mockito.when(squadron.getCountry()).thenReturn(CountryFactory.makeCountryByCountry(Country.RUSSIA));
+        Mockito.when(company.getCountry()).thenReturn(CountryFactory.makeCountryByCountry(Country.RUSSIA));
         IPlanePayload payloadGenerator = getPayloadGeneratorForFighter();
         Mockito.when(flight.getFlightType()).thenReturn(FlightTypes.PATROL);
         runPayload(payloadGenerator, Arrays.asList(0, 17));
@@ -82,7 +82,7 @@ public class HurricanePayloadTest
     public void testVVSPatrolPayloadAfterHispano() throws PWCGException
     {
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19430103"));
-        Mockito.when(squadron.getCountry()).thenReturn(CountryFactory.makeCountryByCountry(Country.RUSSIA));
+        Mockito.when(company.getCountry()).thenReturn(CountryFactory.makeCountryByCountry(Country.RUSSIA));
         IPlanePayload payloadGenerator = getPayloadGeneratorForFighter();
         Mockito.when(flight.getFlightType()).thenReturn(FlightTypes.PATROL);
         runPayload(payloadGenerator, Arrays.asList(17, 12));
@@ -92,7 +92,7 @@ public class HurricanePayloadTest
     public void testRAFPatrolPayloadBeforeHispano() throws PWCGException
     {
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19400101"));
-        Mockito.when(squadron.getCountry()).thenReturn(CountryFactory.makeCountryByCountry(Country.BRITAIN));
+        Mockito.when(company.getCountry()).thenReturn(CountryFactory.makeCountryByCountry(Country.BRITAIN));
         IPlanePayload payloadGenerator = getPayloadGeneratorForFighter();
         Mockito.when(flight.getFlightType()).thenReturn(FlightTypes.PATROL);
         runPayload(payloadGenerator, Arrays.asList(0));
@@ -102,7 +102,7 @@ public class HurricanePayloadTest
     public void testRAFPatrolPayloadAfterHispano() throws PWCGException
     {
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19410601"));
-        Mockito.when(squadron.getCountry()).thenReturn(CountryFactory.makeCountryByCountry(Country.BRITAIN));
+        Mockito.when(company.getCountry()).thenReturn(CountryFactory.makeCountryByCountry(Country.BRITAIN));
         IPlanePayload payloadGenerator = getPayloadGeneratorForFighter();
         Mockito.when(flight.getFlightType()).thenReturn(FlightTypes.PATROL);
         runPayload(payloadGenerator, Arrays.asList(12));
@@ -112,7 +112,7 @@ public class HurricanePayloadTest
     public void testAttackMissionVVSBeforeShvak() throws PWCGException
     {
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19411001"));
-        Mockito.when(squadron.getCountry()).thenReturn(CountryFactory.makeCountryByCountry(Country.RUSSIA));
+        Mockito.when(company.getCountry()).thenReturn(CountryFactory.makeCountryByCountry(Country.RUSSIA));
         Mockito.when(flight.getFlightType()).thenReturn(FlightTypes.GROUND_ATTACK);
         IPlanePayload payloadGenerator = getPayloadGeneratorForFighter();
 
@@ -132,7 +132,7 @@ public class HurricanePayloadTest
     public void testAttackMissionVVSAfterShvak() throws PWCGException
     {
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420420"));
-        Mockito.when(squadron.getCountry()).thenReturn(CountryFactory.makeCountryByCountry(Country.RUSSIA));
+        Mockito.when(company.getCountry()).thenReturn(CountryFactory.makeCountryByCountry(Country.RUSSIA));
         Mockito.when(flight.getFlightType()).thenReturn(FlightTypes.GROUND_ATTACK);
         IPlanePayload payloadGenerator = getPayloadGeneratorForFighter();
 
@@ -152,7 +152,7 @@ public class HurricanePayloadTest
     public void testAttackMissionVVSAfterHispano() throws PWCGException
     {
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19430103"));
-        Mockito.when(squadron.getCountry()).thenReturn(CountryFactory.makeCountryByCountry(Country.RUSSIA));
+        Mockito.when(company.getCountry()).thenReturn(CountryFactory.makeCountryByCountry(Country.RUSSIA));
         Mockito.when(flight.getFlightType()).thenReturn(FlightTypes.GROUND_ATTACK);
         IPlanePayload payloadGenerator = getPayloadGeneratorForFighter();
 
@@ -172,7 +172,7 @@ public class HurricanePayloadTest
     public void testAttackMissionRAFBeforeHispano() throws PWCGException
     {
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19400801"));
-        Mockito.when(squadron.getCountry()).thenReturn(CountryFactory.makeCountryByCountry(Country.BRITAIN));
+        Mockito.when(company.getCountry()).thenReturn(CountryFactory.makeCountryByCountry(Country.BRITAIN));
         Mockito.when(flight.getFlightType()).thenReturn(FlightTypes.GROUND_ATTACK);
         IPlanePayload payloadGenerator = getPayloadGeneratorForFighter();
 
@@ -193,7 +193,7 @@ public class HurricanePayloadTest
     public void testAttackMissionRAFAfterHispano() throws PWCGException
     {
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19410601"));
-        Mockito.when(squadron.getCountry()).thenReturn(CountryFactory.makeCountryByCountry(Country.BRITAIN));
+        Mockito.when(company.getCountry()).thenReturn(CountryFactory.makeCountryByCountry(Country.BRITAIN));
         Mockito.when(flight.getFlightType()).thenReturn(FlightTypes.GROUND_ATTACK);
         IPlanePayload payloadGenerator = getPayloadGeneratorForFighter();
 

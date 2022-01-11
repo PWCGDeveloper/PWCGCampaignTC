@@ -11,7 +11,7 @@ public class ContextSpecificImages
     public static String menuPathForNation(Campaign campaign) throws PWCGException 
     {
 		CrewMember referencePlayer = campaign.findReferencePlayer();
-        String nationality = referencePlayer.determineSquadron().getCountry().getNationality();
+        String nationality = referencePlayer.determineCompany().getCountry().getNationality();
         String picPath = PWCGContext.getInstance().getDirectoryManager().getPwcgImagesDir() + "Menus\\" + nationality + "\\";
         
         return picPath;

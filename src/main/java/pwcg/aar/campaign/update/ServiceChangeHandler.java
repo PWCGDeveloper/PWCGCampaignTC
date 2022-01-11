@@ -29,28 +29,28 @@ public class ServiceChangeHandler
 
     public void handleChangeOfService(Date newDate) throws PWCGException 
     {
-        for (Company squadron : PWCGContext.getInstance().getCompanyManager().getActiveCompanies(campaign.getDate()))
+        for (Company company : PWCGContext.getInstance().getCompanyManager().getActiveCompanies(campaign.getDate()))
         {
-            handleChangeOfServiceForSquadron(squadron, newDate);
+            handleChangeOfServiceForCompany(company, newDate);
         }
     }
     
-    private void handleChangeOfServiceForSquadron(Company squadron, Date newDate) throws PWCGException 
+    private void handleChangeOfServiceForCompany(Company company, Date newDate) throws PWCGException 
     {
-        ArmedService serviceNow = squadron.determineServiceForCompany(campaign.getDate());
-        ArmedService serviceAfter = squadron.determineServiceForCompany(newDate);
+        ArmedService serviceNow = company.determineServiceForCompany(campaign.getDate());
+        ArmedService serviceAfter = company.determineServiceForCompany(newDate);
 
         if (serviceNow.getServiceId() != serviceAfter.getServiceId())
         {
-            changeService(squadron, serviceNow, serviceAfter);
+            changeService(company, serviceNow, serviceAfter);
         }
     }
 
-    private void changeService(Company squadron, ArmedService serviceNow, ArmedService serviceAfter) throws PWCGException
+    private void changeService(Company company, ArmedService serviceNow, ArmedService serviceAfter) throws PWCGException
     {
-        CompanyPersonnel squadronPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(squadron.getCompanyId());
-        CrewMembers squadronMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(squadronPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
-        for (CrewMember crewMember : squadronMembers.getCrewMemberList())
+        CompanyPersonnel companyPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(company.getCompanyId());
+        CrewMembers crewMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(companyPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
+        for (CrewMember crewMember : crewMembers.getCrewMemberList())
         {
             setCrewMemberRanksForNewService(crewMember, serviceNow, serviceAfter);
             setCrewMemberCountryForNewService(crewMember, serviceAfter);

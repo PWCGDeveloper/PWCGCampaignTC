@@ -80,7 +80,7 @@ public class AAREquipmentChangePanel extends AARDocumentPanel
         for (PlaneStatusEvent planeStatusEvent : equipmentLossPanelData.getEquipmentLost().values())
 		{
             CrewMember referencePlayer = campaign.findReferencePlayer();
-            if (planeStatusEvent.getSquadronId() == referencePlayer.getCompanyId())
+            if (planeStatusEvent.getCompanyId() == referencePlayer.getCompanyId())
             {
                 CampaignReportEquipmentStatusGUI equipmentChangeGui = new CampaignReportEquipmentStatusGUI(campaign, planeStatusEvent);
                 String tabName = "Plane Lost: " + planeStatusEvent.getPlaneSerialNumber();

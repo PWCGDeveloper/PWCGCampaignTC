@@ -11,5 +11,5 @@ public interface IServiceColorMap
 {
     Color getColorForRole(PwcgRoleCategory roleCategory);
 
-    Color getColorForSquadron(Company squadron, Date date) throws PWCGException;
+    Color getColorForCompany(Company company, Date date) throws PWCGException;
 }

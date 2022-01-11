@@ -16,29 +16,29 @@ import pwcg.core.exception.PWCGException;
 public class CampaignUpdateNewCompanyEquipper
 {
     private Campaign campaign;
-    private List<Integer> squadronsEquipped = new ArrayList<>();
+    private List<Integer> companysEquipped = new ArrayList<>();
     
     public CampaignUpdateNewCompanyEquipper (Campaign campaign) 
     {
         this.campaign = campaign;
     }
 
-    public List<Integer> equipNewSquadrons() throws PWCGException
+    public List<Integer> equipNewCompanys() throws PWCGException
     {
-        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
-        for (Company squadron : squadronManager.getActiveCompanies(campaign.getDate()))
+        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+        for (Company company : companyManager.getActiveCompanies(campaign.getDate()))
         {
-            if (campaign.getEquipmentManager().getEquipmentForCompany(squadron.getCompanyId()) == null)
+            if (campaign.getEquipmentManager().getEquipmentForCompany(company.getCompanyId()) == null)
             {
                 EquipmentWeightCalculator equipmentWeightCalculator = new EquipmentWeightCalculator(campaign.getDate());
-                InitialCompanyEquipper equipmentStaffer = new InitialCompanyEquipper(campaign, squadron, equipmentWeightCalculator);
-                Equipment squadronEquipment = equipmentStaffer.generateEquipment();
-                campaign.getEquipmentManager().addEquipmentForCompany(squadron.getCompanyId(), squadronEquipment);
-                squadronsEquipped.add(squadron.getCompanyId());
-                CampaignEquipmentIOJson.writeEquipmentForSquadron(campaign, squadron.getCompanyId());
+                InitialCompanyEquipper equipmentStaffer = new InitialCompanyEquipper(campaign, company, equipmentWeightCalculator);
+                Equipment companyEquipment = equipmentStaffer.generateEquipment();
+                campaign.getEquipmentManager().addEquipmentForCompany(company.getCompanyId(), companyEquipment);
+                companysEquipped.add(company.getCompanyId());
+                CampaignEquipmentIOJson.writeEquipmentForCompany(campaign, company.getCompanyId());
             }
         }
         
-        return squadronsEquipped;
+        return companysEquipped;
     }
 }

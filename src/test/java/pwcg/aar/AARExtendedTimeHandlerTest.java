@@ -52,27 +52,27 @@ public class AARExtendedTimeHandlerTest
     @Test
     public void testPersonnelReplacedWhenTimePassed () throws PWCGException
     {
-        CrewMembers squadronMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(
+        CrewMembers crewMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(
                         campaign.getPersonnelManager().getCompanyPersonnel(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId()).getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
-        for (CrewMember crewMember : squadronMembers.getCrewMemberList())
+        for (CrewMember crewMember : crewMembers.getCrewMemberList())
         {
             if (!crewMember.isPlayer())
             {
                 crewMember.setCrewMemberActiveStatus(CrewMemberStatus.STATUS_KIA, campaign.getDate(), null);
             }
-            CrewMembers squadronMembersLeft = CrewMemberFilter.filterActiveAIAndPlayerAndAces(
+            CrewMembers crewMembersLeft = CrewMemberFilter.filterActiveAIAndPlayerAndAces(
                             campaign.getPersonnelManager().getCompanyPersonnel(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId()).getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
-            if (squadronMembersLeft.getCrewMemberCollection().size() < 3)
+            if (crewMembersLeft.getCrewMemberCollection().size() < 3)
             {
                 break;
             }
         }
         
-        CrewMembers squadronMembersLeft = CrewMemberFilter.filterActiveAIAndPlayerAndAces(
+        CrewMembers crewMembersLeft = CrewMemberFilter.filterActiveAIAndPlayerAndAces(
                         campaign.getPersonnelManager().getCompanyPersonnel(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId()).getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
         
         int numLeaves = 0;
-        int numCrewMembers = squadronMembersLeft.getCrewMemberCollection().size();
+        int numCrewMembers = crewMembersLeft.getCrewMemberCollection().size();
         while (numCrewMembers < 9)
         {
             AARExtendedTimeHandler extendedTimeHandler = new AARExtendedTimeHandler(campaign, aarContext);
@@ -84,16 +84,16 @@ public class AARExtendedTimeHandlerTest
             else
             {
                 ++numLeaves;
-                squadronMembersLeft = CrewMemberFilter.filterActiveAIAndPlayerAndAces(
+                crewMembersLeft = CrewMemberFilter.filterActiveAIAndPlayerAndAces(
                                 campaign.getPersonnelManager().getCompanyPersonnel(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId()).getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
-                numCrewMembers = squadronMembersLeft.getCrewMemberCollection().size();
+                numCrewMembers = crewMembersLeft.getCrewMemberCollection().size();
             }
         }
         
         Assertions.assertTrue (numLeaves < 10);
-        CrewMembers squadronMembersAfter = CrewMemberFilter.filterActiveAIAndPlayerAndAces(
+        CrewMembers crewMembersAfter = CrewMemberFilter.filterActiveAIAndPlayerAndAces(
                         campaign.getPersonnelManager().getCompanyPersonnel(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId()).getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
-        assert(squadronMembersAfter.getCrewMemberCollection().size() >= 9);
+        assert(crewMembersAfter.getCrewMemberCollection().size() >= 9);
     }
 
     
@@ -131,9 +131,9 @@ public class AARExtendedTimeHandlerTest
         }
         
         Assertions.assertTrue (numLeaves < 10);
-        CrewMembers squadronMembersAfter = CrewMemberFilter.filterActiveAIAndPlayerAndAces(
+        CrewMembers crewMembersAfter = CrewMemberFilter.filterActiveAIAndPlayerAndAces(
                         campaign.getPersonnelManager().getCompanyPersonnel(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId()).getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
-        assert(squadronMembersAfter.getCrewMemberCollection().size() >= 9);
+        assert(crewMembersAfter.getCrewMemberCollection().size() >= 9);
     }
 
     @Test

@@ -137,8 +137,8 @@ public class ConfigItemKeys
 	public static final String AiFighterFlightsForGroundCampaignMaxKey = "AiFighterFlightsForGroundCampaignMax";
 	public static final String AiFighterFlightsForFighterCampaignMaxKey = "AiFighterFlightsForFighterCampaignMax";
 
-	public static final String InitialSquadronSearchRadiusKey = "InitialSquadronSearchRadius";
-	public static final String MaxSquadronSearchRadiusKey = "MaxSquadronSearchRadius";
+	public static final String InitialCompanySearchRadiusKey = "InitialCompanySearchRadius";
+	public static final String MaxCompanySearchRadiusKey = "MaxCompanySearchRadius";
 	public static final String OddsOfAceFlyingKey = "OddsOfAceFlying";
 
 	public static final String AllowAirStartsKey = "AllowAirStarts";
@@ -158,7 +158,7 @@ public class ConfigItemKeys
 	public static final String DebriefSpeedKey = "DebriefSpeed";
 	public static final String MissionsCreditedKey = "MissionsCredited";
     public static final String ShowAllUnitsInBreifingKey = "ShowAllUnitsInBreifing";
-    public static final String RemoveNonHistoricalSquadronsKey = "RemoveNonHistoricalSquadrons";
+    public static final String RemoveNonHistoricalCompanysKey = "RemoveNonHistoricalCompanys";
     public static final String SaveStupidAiKey = "SaveStupidAi";
     
 	public static final String PrimaryFontKey = "PrimaryFont";

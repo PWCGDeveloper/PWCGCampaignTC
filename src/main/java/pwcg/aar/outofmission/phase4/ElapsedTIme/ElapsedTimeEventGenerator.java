@@ -3,8 +3,8 @@ package pwcg.aar.outofmission.phase4.ElapsedTIme;
 import java.util.Date;
 
 import pwcg.aar.data.AARContext;
+import pwcg.aar.ui.events.model.CompanyMoveEvent;
 import pwcg.aar.ui.events.model.EndOfWarEvent;
-import pwcg.aar.ui.events.model.SquadronMoveEvent;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.core.exception.PWCGException;
@@ -26,7 +26,7 @@ public class ElapsedTimeEventGenerator
     {
         if (!endOfWar())
         {
-            squadronMove();
+            companyMove();
         }
         
         return elapsedTimeEvents;
@@ -46,15 +46,15 @@ public class ElapsedTimeEventGenerator
         return false;
     }
 
-    private void squadronMove() throws PWCGException
+    private void companyMove() throws PWCGException
     {
-        SquadronMoveHandler squadronMoveHandler = new SquadronMoveHandler(campaign);
+        CompanyMoveHandler companyMoveHandler = new CompanyMoveHandler(campaign);
         for (CrewMember player : campaign.getPersonnelManager().getAllActivePlayers().getCrewMemberList())
         {
-	        SquadronMoveEvent squadronMoveEvent = squadronMoveHandler.squadronMoves(aarContext.getNewDate(), player.determineSquadron());
-	        if (squadronMoveEvent != null)
+	        CompanyMoveEvent companyMoveEvent = companyMoveHandler.companyMoves(aarContext.getNewDate(), player.determineCompany());
+	        if (companyMoveEvent != null)
 	        {
-	            elapsedTimeEvents.addSquadronMoveEvent(squadronMoveEvent);
+	            elapsedTimeEvents.addCompanyMoveEvent(companyMoveEvent);
 	        }
         }
     }

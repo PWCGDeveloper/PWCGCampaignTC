@@ -33,10 +33,10 @@ public class AARTransferPanelEventTabulatorTest extends AARTestSetup
     @Test
     public void testTransferInEvent() throws PWCGException 
     {
-        List<TransferRecord> squadronMemberTransferredIn = new ArrayList<>();
-        TransferRecord squadronMemberTransfer = new TransferRecord(crewMember1, CompanyTestProfile.ESC_3_PROFILE.getCompanyId(), CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
-        squadronMemberTransferredIn.add(squadronMemberTransfer);        
-        Mockito.when(squadronMembersTransferred.getCrewMembersTransferred()).thenReturn(squadronMemberTransferredIn);
+        List<TransferRecord> companyMemberTransferredIn = new ArrayList<>();
+        TransferRecord companyMemberTransfer = new TransferRecord(crewMember1, CompanyTestProfile.ESC_3_PROFILE.getCompanyId(), CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
+        companyMemberTransferredIn.add(companyMemberTransfer);        
+        Mockito.when(crewMembersTransferred.getCrewMembersTransferred()).thenReturn(companyMemberTransferredIn);
 
         List<TransferRecord> acesTransferredIn = new ArrayList<>();
         TransferRecord aceTransfer = new TransferRecord(ace1, CompanyTestProfile.ESC_3_PROFILE.getCompanyId(), CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
@@ -54,10 +54,10 @@ public class AARTransferPanelEventTabulatorTest extends AARTestSetup
     @Test
     public void testTransferOutEvent() throws PWCGException 
     {
-        List<TransferRecord> squadronMemberTransferredOut = new ArrayList<>();
-        TransferRecord squadronMemberTransfer = new TransferRecord(crewMember1, CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId(), CompanyTestProfile.ESC_3_PROFILE.getCompanyId());
-        squadronMemberTransferredOut.add(squadronMemberTransfer);        
-        Mockito.when(squadronMembersTransferred.getCrewMembersTransferred()).thenReturn(squadronMemberTransferredOut);
+        List<TransferRecord> companyMemberTransferredOut = new ArrayList<>();
+        TransferRecord companyMemberTransfer = new TransferRecord(crewMember1, CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId(), CompanyTestProfile.ESC_3_PROFILE.getCompanyId());
+        companyMemberTransferredOut.add(companyMemberTransfer);        
+        Mockito.when(crewMembersTransferred.getCrewMembersTransferred()).thenReturn(companyMemberTransferredOut);
 
         List<TransferRecord> acesTransferredIn = new ArrayList<>();
         TransferRecord aceTransfer = new TransferRecord(ace1, CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId(), CompanyTestProfile.ESC_3_PROFILE.getCompanyId());

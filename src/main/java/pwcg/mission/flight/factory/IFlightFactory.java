@@ -10,7 +10,7 @@ public interface IFlightFactory
 {
     IFlight buildFlight(
             Mission mission,
-            Company squadron,
+            Company company,
             FlightTypes flightType,
             boolean isPlayerFlight) throws PWCGException;
 }

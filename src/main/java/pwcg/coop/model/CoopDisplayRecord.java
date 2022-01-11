@@ -7,7 +7,7 @@ public class CoopDisplayRecord
     private String username = "unknown";
     private String pilorNameAndRank = "unknown";
     private String campaignName = "unknown";
-    private String squadronName = "unknown";
+    private String companyName = "unknown";
     private int crewMemberStatus = CrewMemberStatus.STATUS_ACTIVE;
     private int crewMemberSerialNumber = 0;
 
@@ -41,14 +41,14 @@ public class CoopDisplayRecord
         this.campaignName = campaignName;
     }
 
-    public String getSquadronName()
+    public String getCompanyName()
     {
-        return squadronName;
+        return companyName;
     }
 
-    public void setSquadronName(String squadronName)
+    public void setCompanyName(String companyName)
     {
-        this.squadronName = squadronName;
+        this.companyName = companyName;
     }
 
     public int getCrewMemberStatus()

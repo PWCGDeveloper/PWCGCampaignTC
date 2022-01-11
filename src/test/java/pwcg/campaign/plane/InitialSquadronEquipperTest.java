@@ -16,22 +16,22 @@ import pwcg.testutils.CampaignCache;
 import pwcg.testutils.CompanyTestProfile;
 
 @ExtendWith(MockitoExtension.class)
-public class InitialSquadronEquipperTest
+public class InitialCompanyEquipperTest
 {
-    public InitialSquadronEquipperTest() throws PWCGException
+    public InitialCompanyEquipperTest() throws PWCGException
     {
               
     }
 
     @Test
-    public void testEquipSquadronGermanFighter() throws PWCGException
+    public void testEquipCompanyGermanFighter() throws PWCGException
     {
         Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);        
-        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
         
         EquipmentWeightCalculator equipmentWeightCalculator = new EquipmentWeightCalculator(campaign.getDate());
-        InitialCompanyEquipper squadronEquipper = new InitialCompanyEquipper(campaign, squadron, equipmentWeightCalculator);
-        Equipment equipment = squadronEquipper.generateEquipment();
+        InitialCompanyEquipper companyEquipper = new InitialCompanyEquipper(campaign, company, equipmentWeightCalculator);
+        Equipment equipment = companyEquipper.generateEquipment();
         
         assert(equipment.getActiveEquippedTanks().size() == Company.COMPANY_EQUIPMENT_SIZE);
         for (EquippedTank equippedPlane : equipment.getActiveEquippedTanks().values())
@@ -43,14 +43,14 @@ public class InitialSquadronEquipperTest
     }
 
     @Test
-    public void testEquipSquadronGermanBomber() throws PWCGException
+    public void testEquipCompanyGermanBomber() throws PWCGException
     {
         Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);        
-        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
         
         EquipmentWeightCalculator equipmentWeightCalculator = new EquipmentWeightCalculator(campaign.getDate());
-        InitialCompanyEquipper squadronEquipper = new InitialCompanyEquipper(campaign, squadron, equipmentWeightCalculator);
-        Equipment equipment = squadronEquipper.generateEquipment();
+        InitialCompanyEquipper companyEquipper = new InitialCompanyEquipper(campaign, company, equipmentWeightCalculator);
+        Equipment equipment = companyEquipper.generateEquipment();
         
         assert(equipment.getActiveEquippedTanks().size() == Company.COMPANY_EQUIPMENT_SIZE);
         for (EquippedTank equippedPlane : equipment.getActiveEquippedTanks().values())
@@ -62,14 +62,14 @@ public class InitialSquadronEquipperTest
     }
 
     @Test
-    public void testEquipSquadronGermanDiveBomber() throws PWCGException
+    public void testEquipCompanyGermanDiveBomber() throws PWCGException
     {
         Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.STG77_PROFILE);        
-        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.STG77_PROFILE.getCompanyId());
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.STG77_PROFILE.getCompanyId());
         
         EquipmentWeightCalculator equipmentWeightCalculator = new EquipmentWeightCalculator(campaign.getDate());
-        InitialCompanyEquipper squadronEquipper = new InitialCompanyEquipper(campaign, squadron, equipmentWeightCalculator);
-        Equipment equipment = squadronEquipper.generateEquipment();
+        InitialCompanyEquipper companyEquipper = new InitialCompanyEquipper(campaign, company, equipmentWeightCalculator);
+        Equipment equipment = companyEquipper.generateEquipment();
         
         assert(equipment.getActiveEquippedTanks().size() == Company.COMPANY_EQUIPMENT_SIZE);
         for (EquippedTank equippedPlane : equipment.getActiveEquippedTanks().values())
@@ -81,14 +81,14 @@ public class InitialSquadronEquipperTest
     }
 
     @Test
-    public void testEquipSquadronGermanTransport() throws PWCGException
+    public void testEquipCompanyGermanTransport() throws PWCGException
     {
         Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.TG2_PROFILE);        
-        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.TG2_PROFILE.getCompanyId());
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.TG2_PROFILE.getCompanyId());
         
         EquipmentWeightCalculator equipmentWeightCalculator = new EquipmentWeightCalculator(campaign.getDate());
-        InitialCompanyEquipper squadronEquipper = new InitialCompanyEquipper(campaign, squadron, equipmentWeightCalculator);
-        Equipment equipment = squadronEquipper.generateEquipment();
+        InitialCompanyEquipper companyEquipper = new InitialCompanyEquipper(campaign, company, equipmentWeightCalculator);
+        Equipment equipment = companyEquipper.generateEquipment();
         
         assert(equipment.getActiveEquippedTanks().size() == Company.COMPANY_EQUIPMENT_SIZE);
         for (EquippedTank equippedPlane : equipment.getActiveEquippedTanks().values())
@@ -100,14 +100,14 @@ public class InitialSquadronEquipperTest
     }
 
     @Test
-    public void testEquipSquadronRussianAttack() throws PWCGException
+    public void testEquipCompanyRussianAttack() throws PWCGException
     {
         Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.TANK_DIVISION_147_PROFILE);        
-        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.TANK_DIVISION_147_PROFILE.getCompanyId());
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.TANK_DIVISION_147_PROFILE.getCompanyId());
         
         EquipmentWeightCalculator equipmentWeightCalculator = new EquipmentWeightCalculator(campaign.getDate());
-        InitialCompanyEquipper squadronEquipper = new InitialCompanyEquipper(campaign, squadron, equipmentWeightCalculator);
-        Equipment equipment = squadronEquipper.generateEquipment();
+        InitialCompanyEquipper companyEquipper = new InitialCompanyEquipper(campaign, company, equipmentWeightCalculator);
+        Equipment equipment = companyEquipper.generateEquipment();
         
         assert(equipment.getActiveEquippedTanks().size() == Company.COMPANY_EQUIPMENT_SIZE);
         for (EquippedTank equippedPlane : equipment.getActiveEquippedTanks().values())

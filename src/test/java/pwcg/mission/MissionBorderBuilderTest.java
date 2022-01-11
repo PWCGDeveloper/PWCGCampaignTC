@@ -42,17 +42,17 @@ public class MissionBorderBuilderTest
         
         for (int i = 0; i < 10; ++i)
         {
-            Company playerSquadron = participatingPlayers.getAllParticipatingPlayers().get(0).determineSquadron();
-            MissionSquadronFlightTypes playerFlightTypes = MissionSquadronFlightTypes.buildPlayerFlightType(FlightTypes.PATROL, playerSquadron);
+            Company playerCompany = participatingPlayers.getAllParticipatingPlayers().get(0).determineCompany();
+            MissionCompanyFlightTypes playerFlightTypes = MissionCompanyFlightTypes.buildPlayerFlightType(FlightTypes.PATROL, playerCompany);
 
             MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(campaign, participatingPlayers, null, playerFlightTypes);
             
             CoordinateBox missionBorders = missionBorderBuilder.buildCoordinateBox();
             Coordinate missionBoxCenter = missionBorders.getCenter();
             
-            Coordinate playerSquadronLocation = playerSquadron.determineCurrentPosition(campaign.getDate());
+            Coordinate playerCompanyLocation = playerCompany.determineCurrentPosition(campaign.getDate());
             
-            double distanceToMission = MathUtils.calcDist(missionBoxCenter, playerSquadronLocation);
+            double distanceToMission = MathUtils.calcDist(missionBoxCenter, playerCompanyLocation);
             assert(distanceToMission < 85000);
         }
     }
@@ -71,8 +71,8 @@ public class MissionBorderBuilderTest
         
         for (int i = 0; i < 10; ++i)
         {
-            Company playerSquadron = participatingPlayers.getAllParticipatingPlayers().get(0).determineSquadron();
-            MissionSquadronFlightTypes playerFlightTypes = MissionSquadronFlightTypes.buildPlayerFlightType(FlightTypes.PATROL, playerSquadron);
+            Company playerCompany = participatingPlayers.getAllParticipatingPlayers().get(0).determineCompany();
+            MissionCompanyFlightTypes playerFlightTypes = MissionCompanyFlightTypes.buildPlayerFlightType(FlightTypes.PATROL, playerCompany);
 
             MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(coopCampaign, participatingPlayers, null, playerFlightTypes);
 
@@ -99,8 +99,8 @@ public class MissionBorderBuilderTest
         SkirmishBuilder skirmishBuilder = new SkirmishBuilder(campaign, participatingPlayers);
         Skirmish skirmish = skirmishBuilder.chooseBestSkirmish();
 
-        Company playerSquadron = participatingPlayers.getAllParticipatingPlayers().get(0).determineSquadron();
-        MissionSquadronFlightTypes playerFlightTypes = MissionSquadronFlightTypes.buildPlayerFlightType(FlightTypes.PATROL, playerSquadron);
+        Company playerCompany = participatingPlayers.getAllParticipatingPlayers().get(0).determineCompany();
+        MissionCompanyFlightTypes playerFlightTypes = MissionCompanyFlightTypes.buildPlayerFlightType(FlightTypes.PATROL, playerCompany);
 
         MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(campaign, participatingPlayers, skirmish, playerFlightTypes);
 

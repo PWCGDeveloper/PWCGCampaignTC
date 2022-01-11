@@ -1,7 +1,7 @@
 {
   "missionHeader": {
     "missionFileName": "Patrik Schorner 1916-07-03",
-    "squadron": "Jasta 4",
+    "company": "Jasta 4",
     "date": "19160703",
     "time": "18:30:00",
     "aircraftType": "AircraftType \u003d Fokker E.II",
@@ -10,11 +10,11 @@
     "duty": "ESCORT",
     "altitude": 3413
   },
-  "missionDescription": "Mission:\nAircraft  Fokker E.III\nSquadron  Jasta 4\nAirbase  Bonneuil Ferme\nDate  1916-07-03\n\nWeather Report\nMostly clear, some high altitude clouds.\nCloud layer is 5092 meters.\nWind speed is 0 M/S.\nWind direction is 69.\n\nPrimary Objective\nEscort our flight to the location near Camp.  Accompany them until they cross our lines.\n\n\n",
+  "missionDescription": "Mission:\nAircraft  Fokker E.III\nCompany  Jasta 4\nAirbase  Bonneuil Ferme\nDate  1916-07-03\n\nWeather Report\nMostly clear, some high altitude clouds.\nCloud layer is 5092 meters.\nWind speed is 0 M/S.\nWind direction is 69.\n\nPrimary Objective\nEscort our flight to the location near Camp.  Accompany them until they cross our lines.\n\n\n",
   "missionPlanes": [
     {
       "aircraftType": "fokkere3",
-      "squadronName": "Jasta 4",
+      "companyName": "Jasta 4",
       "crew": {
         "pilot": "Patrik Schorner",
         "observer": "",
@@ -24,7 +24,7 @@
     },
     {
       "aircraftType": "fokkere3",
-      "squadronName": "Jasta 4",
+      "companyName": "Jasta 4",
       "crew": {
         "pilot": "Florian Lasch",
         "observer": "",
@@ -34,7 +34,7 @@
     },
     {
       "aircraftType": "fokkere3",
-      "squadronName": "Jasta 4",
+      "companyName": "Jasta 4",
       "crew": {
         "pilot": "Fritz Bernert",
         "observer": "",
@@ -44,7 +44,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 44",
+      "companyName": "FA 44",
       "crew": {
         "pilot": "Joachim Manner",
         "observer": "Friedhelm Wetterhahn",
@@ -54,7 +54,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 44",
+      "companyName": "FA 44",
       "crew": {
         "pilot": "Emmerich Zotz",
         "observer": "Erwin Feigenspan",
@@ -64,7 +64,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 44",
+      "companyName": "FA 44",
       "crew": {
         "pilot": "Erich Lehmann",
         "observer": "Hermann Holler",
@@ -74,7 +74,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 44",
+      "companyName": "FA 44",
       "crew": {
         "pilot": "Reinhard Noffke",
         "observer": "Raimund Lang",
@@ -84,7 +84,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 44",
+      "companyName": "FA 44",
       "crew": {
         "pilot": "Markus Weber",
         "observer": "Emmerich Herzl",
@@ -94,7 +94,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 44",
+      "companyName": "FA 44",
       "crew": {
         "pilot": "Detlef Rosenberger",
         "observer": "Ferdinand Linde",
@@ -104,7 +104,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 281",
+      "companyName": "FA 281",
       "crew": {
         "pilot": "Eberhardt Neumarkt",
         "observer": "Wolfgang Mader",
@@ -114,7 +114,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 281",
+      "companyName": "FA 281",
       "crew": {
         "pilot": "Anton Wendenbaum",
         "observer": "Siegfried Mitterer",
@@ -124,7 +124,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "No 16 Squadron RFC",
+      "companyName": "No 16 Company RFC",
       "crew": {
         "pilot": "Aaron Duredent",
         "observer": "Troy Stockton",
@@ -134,7 +134,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "No 16 Squadron RFC",
+      "companyName": "No 16 Company RFC",
       "crew": {
         "pilot": "Connell Hakebourne",
         "observer": "Marvin Walker",
@@ -144,7 +144,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "No 16 Squadron RFC",
+      "companyName": "No 16 Company RFC",
       "crew": {
         "pilot": "Morton Dryden",
         "observer": "Ambrose Hornebolt",
@@ -154,7 +154,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "No 16 Squadron RFC",
+      "companyName": "No 16 Company RFC",
       "crew": {
         "pilot": "Calvin Leech",
         "observer": "Fitzgerald Leverer",
@@ -164,7 +164,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 52",
+      "companyName": "Esc 52",
       "crew": {
         "pilot": "Alcide Labourdette",
         "observer": "Cornil Mordant",
@@ -174,7 +174,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "No 23 Squadron RFC",
+      "companyName": "No 23 Company RFC",
       "crew": {
         "pilot": "Edgar Hervey",
         "observer": "Harold Roland",

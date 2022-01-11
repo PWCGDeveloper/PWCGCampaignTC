@@ -11,12 +11,12 @@ import pwcg.campaign.crewmember.CrewMember;
 public class ExpectedResults
 {
     private Campaign campaign;
-    private int squadronMemberCrewMemberSerialNumber;
+    private int companyMemberCrewMemberSerialNumber;
     private List<Integer> lostCrewMembers = new ArrayList<>();
     private int playerAirVictories = 0;
     private int playerGroundVictories = 0;
-    private int squadronMemberAirVictories = 0;
-    private int squadronMemberGroundVictories = 0;
+    private int companyMemberAirVictories = 0;
+    private int companyMemberGroundVictories = 0;
     private int enemyAirVictories = 0;
 
     public ExpectedResults (Campaign campaign)
@@ -51,12 +51,12 @@ public class ExpectedResults
 
     public int getCrewMemberCrewMemberSerialNumber()
     {
-        return squadronMemberCrewMemberSerialNumber;
+        return companyMemberCrewMemberSerialNumber;
     }
 
-    public void setCrewMemberCrewMemberSerialNumber(int squadronMemberCrewMemberSerialNumber)
+    public void setCrewMemberCrewMemberSerialNumber(int companyMemberCrewMemberSerialNumber)
     {
-        this.squadronMemberCrewMemberSerialNumber = squadronMemberCrewMemberSerialNumber;
+        this.companyMemberCrewMemberSerialNumber = companyMemberCrewMemberSerialNumber;
     }
 
     public List<Integer> getLostCrewMembers()
@@ -96,22 +96,22 @@ public class ExpectedResults
 
     public int getCrewMemberAirVictories()
     {
-        return squadronMemberAirVictories;
+        return companyMemberAirVictories;
     }
 
     public void addCrewMemberAirVictories()
     {
-        ++squadronMemberAirVictories;
+        ++companyMemberAirVictories;
     }
 
     public int getCrewMemberGroundVictories()
     {
-        return squadronMemberGroundVictories;
+        return companyMemberGroundVictories;
     }
 
     public void addCrewMemberGroundVictories()
     {
-        ++squadronMemberGroundVictories;
+        ++companyMemberGroundVictories;
     }
 
 

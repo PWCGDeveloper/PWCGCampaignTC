@@ -14,7 +14,7 @@ import pwcg.testutils.CampaignCache;
 import pwcg.testutils.CompanyTestProfile;
 
 @ExtendWith(MockitoExtension.class)
-public class InitialSquadronStafferGASTest
+public class InitialCompanyStafferGASTest
 {
     @Test
     public void generatePersonnelWithAcesTest() throws PWCGException
@@ -22,12 +22,12 @@ public class InitialSquadronStafferGASTest
         
         Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
 
-        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
         
-        InitialCompanyStaffer initialSquadronStaffer = new InitialCompanyStaffer(campaign, squadron);
-        CompanyPersonnel squadronPersonnel = initialSquadronStaffer.generatePersonnel();        
-        CrewMembers squadronMembers = squadronPersonnel.getCrewMembersWithAces();
-        CrewMembers filteredCrewMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(squadronMembers.getCrewMemberCollection(), campaign.getDate());        
+        InitialCompanyStaffer initialCompanyStaffer = new InitialCompanyStaffer(campaign, company);
+        CompanyPersonnel companyPersonnel = initialCompanyStaffer.generatePersonnel();        
+        CrewMembers crewMembers = companyPersonnel.getCrewMembersWithAces();
+        CrewMembers filteredCrewMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(crewMembers.getCrewMemberCollection(), campaign.getDate());        
         
         assert(filteredCrewMembers.getCrewMemberList().size() == Company.COMPANY_STAFF_SIZE);
     }

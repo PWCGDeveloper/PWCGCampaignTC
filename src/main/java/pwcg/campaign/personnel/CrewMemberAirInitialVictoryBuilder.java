@@ -8,7 +8,7 @@ import pwcg.campaign.Campaign;
 import pwcg.campaign.company.Company;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.Victory;
-import pwcg.campaign.outofmission.UnknownSquadronVictoryGenerator;
+import pwcg.campaign.outofmission.UnknownCompanyVictoryGenerator;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.core.utils.RandomNumberGenerator;
@@ -17,21 +17,21 @@ import pwcg.product.bos.country.TCServiceManager;
 public class CrewMemberAirInitialVictoryBuilder
 {
     private Campaign campaign;
-    private Company victorSquadron;
+    private Company victorCompany;
     private int minVictories;
     private int maxVictories;
 
-    public CrewMemberAirInitialVictoryBuilder(Campaign campaign, Company squadron)
+    public CrewMemberAirInitialVictoryBuilder(Campaign campaign, Company company)
     {
         this.campaign = campaign;
-        this.victorSquadron = squadron;
+        this.victorCompany = company;
     }
     
     public void createCrewMemberVictories(CrewMember newCrewMember, int rankPos) throws PWCGException
     {
         initializeVictoriesFromRank(rankPos);
         factorServiceQuality(rankPos);
-        factorSquadronQuality(rankPos);
+        factorCompanyQuality(rankPos);
         factorLuftwaffe(rankPos);
         resetForEarlyWWI(rankPos);
 
@@ -65,7 +65,7 @@ public class CrewMemberAirInitialVictoryBuilder
 
     private void factorServiceQuality(int rankPos) throws PWCGException
     {
-        ArmedService service = victorSquadron.determineServiceForCompany(campaign.getDate());
+        ArmedService service = victorCompany.determineServiceForCompany(campaign.getDate());
         int serviceQuality = service.getServiceQuality().getQuality(campaign.getDate()).getQualityValue();
 
         int minAdjustment = 0;
@@ -90,26 +90,26 @@ public class CrewMemberAirInitialVictoryBuilder
         maxVictories += maxAdjustment;
     }
 
-    private void factorSquadronQuality(int rankPos) throws PWCGException
+    private void factorCompanyQuality(int rankPos) throws PWCGException
     {
-        int squadronQuality = victorSquadron.determineSquadronSkill(campaign.getDate());
+        int companyQuality = victorCompany.determineCompanySkill(campaign.getDate());
         
         int minAdjustment = 0;
         int maxAdjustment = 0;
         if (rankPos == 2)
         {
-            minAdjustment = (squadronQuality / 10) - 10;
-            maxAdjustment = (squadronQuality / 10) - 6;
+            minAdjustment = (companyQuality / 10) - 10;
+            maxAdjustment = (companyQuality / 10) - 6;
         }
         else if (rankPos == 1)
         {
-            minAdjustment = (squadronQuality / 10) - 8;
-            maxAdjustment = (squadronQuality / 10) - 5;
+            minAdjustment = (companyQuality / 10) - 8;
+            maxAdjustment = (companyQuality / 10) - 5;
         }
         else if (rankPos == 0)
         {
-            minAdjustment = (squadronQuality / 10) - 6;
-            maxAdjustment = (squadronQuality / 10) - 4;
+            minAdjustment = (companyQuality / 10) - 6;
+            maxAdjustment = (companyQuality / 10) - 4;
         }
 
         minVictories += minAdjustment;
@@ -119,7 +119,7 @@ public class CrewMemberAirInitialVictoryBuilder
 
     private void factorLuftwaffe(int rankPos) throws PWCGException
     {
-        ArmedService service = victorSquadron.determineServiceForCompany(campaign.getDate());
+        ArmedService service = victorCompany.determineServiceForCompany(campaign.getDate());
         int serviceQuality = service.getServiceQuality().getQuality(campaign.getDate()).getQualityValue();
 
         if (service.getServiceId() == TCServiceManager.WEHRMACHT)
@@ -187,7 +187,7 @@ public class CrewMemberAirInitialVictoryBuilder
         for (int i = victories; i > 0; --i)
         {
             Date victoryDate = generateVictoryDate(i);
-            Victory victory = generateVictoryWithoutSquadron(victoryDate, newCrewMember);
+            Victory victory = generateVictoryWithoutCompany(victoryDate, newCrewMember);
             if (victory != null)
             {
                 newCrewMember.addVictory(victory);
@@ -195,10 +195,10 @@ public class CrewMemberAirInitialVictoryBuilder
         }
     }
 
-    private Victory generateVictoryWithoutSquadron(Date victoryDate, CrewMember newCrewMember) throws PWCGException
+    private Victory generateVictoryWithoutCompany(Date victoryDate, CrewMember newCrewMember) throws PWCGException
     {
-        UnknownSquadronVictoryGenerator unknownSquadronVictoryGenerator = new UnknownSquadronVictoryGenerator(newCrewMember);
-        return unknownSquadronVictoryGenerator.generateOutOfMissionVictory(victoryDate);
+        UnknownCompanyVictoryGenerator unknownCompanyVictoryGenerator = new UnknownCompanyVictoryGenerator(newCrewMember);
+        return unknownCompanyVictoryGenerator.generateOutOfMissionVictory(victoryDate);
     }
 
     private Date generateVictoryDate(int i) throws PWCGException

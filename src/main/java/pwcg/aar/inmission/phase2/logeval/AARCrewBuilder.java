@@ -30,7 +30,7 @@ public class AARCrewBuilder
         
         if (crewMembersInMission.isEmpty())
         {
-            throw new PWCGException("No squadron members found for mission");
+            throw new PWCGException("No company members found for mission");
         }
         
         return crewMembersInMission;

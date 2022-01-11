@@ -26,7 +26,7 @@ import pwcg.mission.flight.plane.PlaneMcu;
 public class MissionSkinGeneratorTest
 {
     @Mock private Campaign campaign;
-    @Mock private Company squadron;
+    @Mock private Company company;
     @Mock private IFlight flight;
     @Mock private IFlightPlanes flightPlanes;
     @Mock private ICountry country;
@@ -49,14 +49,14 @@ public class MissionSkinGeneratorTest
         Mockito.when(flight.getFlightPlanes()).thenReturn(flightPlanes);
         Mockito.when(flightPlanes.getPlanes()).thenReturn(planes);
         
-        Mockito.when(flight.getCompany()).thenReturn(squadron);
-        Mockito.when(squadron.determineCompanyCountry(Mockito.any())).thenReturn(country);
+        Mockito.when(flight.getCompany()).thenReturn(company);
+        Mockito.when(company.determineCompanyCountry(Mockito.any())).thenReturn(country);
     }
 
     @Test
     public void buildMissionSkinSetForSummerJu87() throws Exception
     {
-        Mockito.when(squadron.getCompanyId()).thenReturn(20121002);
+        Mockito.when(company.getCompanyId()).thenReturn(20121002);
         Mockito.when(country.getCountryName()).thenReturn("Germany");
         
         planes.clear();
@@ -65,15 +65,15 @@ public class MissionSkinGeneratorTest
 
         MissionSkinSet missionSkinSet = MissionSkinGenerator.buildMissionSkinSet(flight);
         Assertions.assertTrue (missionSkinSet.getFactorySkins("ju87d3").size() > 0);
-        Assertions.assertTrue (missionSkinSet.getSquadronSkins("ju87d3").size() > 0);
-        Assertions.assertTrue (missionSkinSet.getSquadronPersonalSkins("ju87d3").size() > 0);
-        Assertions.assertTrue (missionSkinSet.getNonSquadronPersonalSkin("ju87d3").size() > 0);
+        Assertions.assertTrue (missionSkinSet.getCompanySkins("ju87d3").size() > 0);
+        Assertions.assertTrue (missionSkinSet.getCompanyPersonalSkins("ju87d3").size() > 0);
+        Assertions.assertTrue (missionSkinSet.getNonCompanyPersonalSkin("ju87d3").size() > 0);
     }
 
     @Test
     public void buildMissionSkinSetForSummerIl2M42() throws Exception
     {
-        Mockito.when(squadron.getCompanyId()).thenReturn(10121062);
+        Mockito.when(company.getCompanyId()).thenReturn(10121062);
         Mockito.when(country.getCountryName()).thenReturn("Russia");
         
         planes.clear();
@@ -82,9 +82,9 @@ public class MissionSkinGeneratorTest
 
         MissionSkinSet missionSkinSet = MissionSkinGenerator.buildMissionSkinSet(flight);
         Assertions.assertTrue (missionSkinSet.getFactorySkins("il2m42").size() > 0);
-        Assertions.assertTrue (missionSkinSet.getSquadronSkins("il2m42").size() > 0);
-        Assertions.assertTrue (missionSkinSet.getSquadronPersonalSkins("il2m42").size() > 0);
-        Assertions.assertTrue (missionSkinSet.getNonSquadronPersonalSkin("il2m42").size() > 0);
+        Assertions.assertTrue (missionSkinSet.getCompanySkins("il2m42").size() > 0);
+        Assertions.assertTrue (missionSkinSet.getCompanyPersonalSkins("il2m42").size() > 0);
+        Assertions.assertTrue (missionSkinSet.getNonCompanyPersonalSkin("il2m42").size() > 0);
     }
 
 }

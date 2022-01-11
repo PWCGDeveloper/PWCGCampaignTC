@@ -58,9 +58,9 @@ public class AirfieldDistanceEvaluator
                              
                 airfieldDistanceOrganizer.process(startDate, FrontMapIdentifier.MOSCOW_MAP);
                 
-                analyzeSquadrons(airfieldDistanceOrganizer.alliedAirfieldSet, startDate, Side.ALLIED);
+                analyzeCompanys(airfieldDistanceOrganizer.alliedAirfieldSet, startDate, Side.ALLIED);
                 
-                analyzeSquadrons(airfieldDistanceOrganizer.axisAirfieldSet, startDate, Side.AXIS);
+                analyzeCompanys(airfieldDistanceOrganizer.axisAirfieldSet, startDate, Side.AXIS);
             }
         }
         catch (Exception e)
@@ -69,48 +69,48 @@ public class AirfieldDistanceEvaluator
         }
     }
 
-    private void analyzeSquadrons(AirfieldSet airfieldSet, Date dateNow, Side sideSquadrons) throws PWCGException
+    private void analyzeCompanys(AirfieldSet airfieldSet, Date dateNow, Side sideCompanys) throws PWCGException
     {
-        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
+        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
         
         Map <String, Airfield> fighterFields = airfieldSet.getFighterFields();
         Map <String, Airfield> bomberFields = airfieldSet.getBomberFields();
 
-        List<Company> allActiveSquadrons = squadronManager.getActiveCompanies(dateNow);
-        for (Company squadron : allActiveSquadrons)
+        List<Company> allActiveCompanys = companyManager.getActiveCompanies(dateNow);
+        for (Company company : allActiveCompanys)
         {
             boolean bad = false;
             
-            Airfield squadronField = squadron.determineCurrentAirfieldAnyMap(dateNow);
+            Airfield companyField = company.determineCurrentAirfieldAnyMap(dateNow);
             
-            if (squadron.determineCompanyCountry(dateNow).getSide() != sideSquadrons)
+            if (company.determineCompanyCountry(dateNow).getSide() != sideCompanys)
             {
                 continue;
             }
             
-            if (squadronField == null)
+            if (companyField == null)
             {
                 continue;
             }
             
             String reason = " ";
             
-            PwcgRoleCategory squadronRoleCategory = squadron.determineCompanyPrimaryRoleCategory(dateNow);
-            if (squadronRoleCategory == PwcgRoleCategory.FIGHTER)
+            PwcgRoleCategory companyRoleCategory = company.determineCompanyPrimaryRoleCategory(dateNow);
+            if (companyRoleCategory == PwcgRoleCategory.FIGHTER)
             {
-                if (!fighterFields.containsKey(squadronField.getName()))
+                if (!fighterFields.containsKey(companyField.getName()))
                 {
-                    if (bomberFields.containsKey(squadronField.getName()))
+                    if (bomberFields.containsKey(companyField.getName()))
                     {
                         reason = " ... is at a bomber field";
                         bad = true;
                     }
-                    else if (airfieldSet.getFieldsTooClose().containsKey(squadronField.getName()))
+                    else if (airfieldSet.getFieldsTooClose().containsKey(companyField.getName()))
                     {
                         reason = " ... is too close";
                         bad = true;
                     }
-                    else if (airfieldSet.getFieldsTooFar().containsKey(squadronField.getName()))
+                    else if (airfieldSet.getFieldsTooFar().containsKey(companyField.getName()))
                     {
                         reason = " ... is too far";
                         bad = true;
@@ -120,19 +120,19 @@ public class AirfieldDistanceEvaluator
             else
             {
                 
-                if (!bomberFields.containsKey(squadronField.getName()))
+                if (!bomberFields.containsKey(companyField.getName()))
                 {
-                    if (fighterFields.containsKey(squadronField.getName()))
+                    if (fighterFields.containsKey(companyField.getName()))
                     {
                         reason = " ... is at a fighter field";
                         bad = true;
                     }
-                    else if (airfieldSet.getFieldsTooClose().containsKey(squadronField.getName()))
+                    else if (airfieldSet.getFieldsTooClose().containsKey(companyField.getName()))
                     {
                         reason = " ... is too close";
                         bad = true;
                     }
-                    else if (airfieldSet.getFieldsTooFar().containsKey(squadronField.getName()))
+                    else if (airfieldSet.getFieldsTooFar().containsKey(companyField.getName()))
                     {
                         reason = " ... is too far";
                         bad = true;
@@ -143,10 +143,10 @@ public class AirfieldDistanceEvaluator
 
             if (bad)
             {
-                PWCGLogger.log(LogLevel.DEBUG, "\nSquadron " + squadron.getCompanyId() + " at field " + squadronField.getName() + " on date " + dateNow + reason);
-                int distance = AirfieldReporter.getDistanceToFront(squadronField, sideSquadrons, dateNow);
-                PWCGLogger.log(LogLevel.DEBUG, squadronField.getName() + "   Km to front: " + distance);
-                AirfieldBestMMatchFinder.recommendBestMatch(squadron, dateNow);
+                PWCGLogger.log(LogLevel.DEBUG, "\nCompany " + company.getCompanyId() + " at field " + companyField.getName() + " on date " + dateNow + reason);
+                int distance = AirfieldReporter.getDistanceToFront(companyField, sideCompanys, dateNow);
+                PWCGLogger.log(LogLevel.DEBUG, companyField.getName() + "   Km to front: " + distance);
+                AirfieldBestMMatchFinder.recommendBestMatch(company, dateNow);
             }
         }
     }

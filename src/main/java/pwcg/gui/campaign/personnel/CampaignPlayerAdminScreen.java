@@ -188,7 +188,7 @@ public class CampaignPlayerAdminScreen extends ImageResizingPanel implements Act
         {
             if (getCrewMemberForSelectedCrewMember().getCrewMemberActiveStatus() == CrewMemberStatus.STATUS_ACTIVE)
             {
-                buttonPanel.add(makeActionButton("Transfer CrewMember", "Transfer a coop persona to a new squadron"));
+                buttonPanel.add(makeActionButton("Transfer CrewMember", "Transfer a coop persona to a new company"));
                 buttonPanel.add(makeActionButton("Retire CrewMember", "Retire a coop persona. Cannot be undone"));
             }
             else

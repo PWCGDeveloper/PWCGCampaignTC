@@ -11,7 +11,7 @@ import pwcg.mission.Mission;
 import pwcg.mission.MissionBorderBuilder;
 import pwcg.mission.MissionFlights;
 import pwcg.mission.MissionHumanParticipants;
-import pwcg.mission.MissionSquadronFlightTypes;
+import pwcg.mission.MissionCompanyFlightTypes;
 import pwcg.mission.flight.FlightTypes;
 import pwcg.mission.ground.vehicle.VehicleDefinition;
 import pwcg.mission.options.MissionOptions;
@@ -40,8 +40,8 @@ public class TestMissionBuilderUtility
     {
         MissionHumanParticipants participatingPlayers = buildTestParticipatingHumans(campaign);
 
-        Company playerSquadron = participatingPlayers.getAllParticipatingPlayers().get(0).determineSquadron();
-        MissionSquadronFlightTypes playerFlightTypes = MissionSquadronFlightTypes.buildPlayerFlightType(flightType, playerSquadron);
+        Company playerCompany = participatingPlayers.getAllParticipatingPlayers().get(0).determineCompany();
+        MissionCompanyFlightTypes playerFlightTypes = MissionCompanyFlightTypes.buildPlayerFlightType(flightType, playerCompany);
 
         MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(campaign, participatingPlayers, null, playerFlightTypes);
         CoordinateBox missionBorders = missionBorderBuilder.buildCoordinateBox();

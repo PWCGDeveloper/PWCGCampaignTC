@@ -10,19 +10,19 @@ import pwcg.core.exception.PWCGException;
 public class MissionRoleGenerator
 {
 
-    public static PwcgRole getMissionRole(Campaign campaign, Map<Integer, PwcgRole> squadronRoleOverride, Company playerSquadron) throws PWCGException
+    public static PwcgRole getMissionRole(Campaign campaign, Map<Integer, PwcgRole> companyRoleOverride, Company playerCompany) throws PWCGException
     {
-        PwcgRole missionRole = playerSquadron.getSquadronRoles().selectRoleForMission(campaign.getDate());
-        if (squadronRoleOverride.containsKey(playerSquadron.getCompanyId()))
+        PwcgRole missionRole = playerCompany.getCompanyRoles().selectRoleForMission(campaign.getDate());
+        if (companyRoleOverride.containsKey(playerCompany.getCompanyId()))
         {
-            missionRole = squadronRoleOverride.get(playerSquadron.getCompanyId());
+            missionRole = companyRoleOverride.get(playerCompany.getCompanyId());
         }
         return missionRole;
     }
 
-    public static PwcgRole getMissionRole(Campaign campaign, Company playerSquadron) throws PWCGException
+    public static PwcgRole getMissionRole(Campaign campaign, Company playerCompany) throws PWCGException
     {
-        PwcgRole missionRole = playerSquadron.getSquadronRoles().selectRoleForMission(campaign.getDate());
+        PwcgRole missionRole = playerCompany.getCompanyRoles().selectRoleForMission(campaign.getDate());
         return missionRole;
     }
 }

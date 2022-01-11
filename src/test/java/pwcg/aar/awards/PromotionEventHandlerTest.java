@@ -36,8 +36,8 @@ public class PromotionEventHandlerTest
     private Campaign campaign;
     
     @Mock private CrewMember crewMember;
-    @Mock private Company squadron;
-    @Mock private CrewMemberVictories squadronMemberVictories;
+    @Mock private Company company;
+    @Mock private CrewMemberVictories companyMemberVictories;
 
     @BeforeAll
     public void setupSuite() throws PWCGException
@@ -49,7 +49,7 @@ public class PromotionEventHandlerTest
     @BeforeEach
     public void setupTest() throws PWCGException
     {        
-        Mockito.when(crewMember.getCrewMemberVictories()).thenReturn(squadronMemberVictories);
+        Mockito.when(crewMember.getCrewMemberVictories()).thenReturn(companyMemberVictories);
     }
 
     @Test
@@ -58,8 +58,8 @@ public class PromotionEventHandlerTest
         Mockito.when(crewMember.determineService(ArgumentMatchers.<Date>any())).thenReturn(campaign.determinePlayerCompanies().get(0).determineServiceForCompany(campaign.getDate()));
         Mockito.when(crewMember.getBattlesFought()).thenReturn(30);
         Mockito.when(crewMember.getRank()).thenReturn("Corporal");
-        Mockito.when(crewMember.determineSquadron()).thenReturn(squadron);
-        Mockito.when(squadron.determineCompanyPrimaryRoleCategory(ArgumentMatchers.<Date>any())).thenReturn(PwcgRoleCategory.RECON);
+        Mockito.when(crewMember.determineCompany()).thenReturn(company);
+        Mockito.when(company.determineCompanyPrimaryRoleCategory(ArgumentMatchers.<Date>any())).thenReturn(PwcgRoleCategory.RECON);
 
         String promotion = PromotionEventHandler.promoteNonHistoricalCrewMembers(campaign, crewMember);
 
@@ -70,13 +70,13 @@ public class PromotionEventHandlerTest
     public void promoteCorporalToSergentFighter () throws PWCGException
     {     
         List<Victory> victories = VictoryMaker.makeMultipleAlliedVictories(1, campaign.getDate());
-        Mockito.when(squadronMemberVictories.getAirToAirVictoryCount()).thenReturn(victories.size());
+        Mockito.when(companyMemberVictories.getAirToAirVictoryCount()).thenReturn(victories.size());
 
         Mockito.when(crewMember.determineService(ArgumentMatchers.<Date>any())).thenReturn(campaign.determinePlayerCompanies().get(0).determineServiceForCompany(campaign.getDate()));
         Mockito.when(crewMember.getBattlesFought()).thenReturn(20);
         Mockito.when(crewMember.getRank()).thenReturn("Corporal");
-        Mockito.when(crewMember.determineSquadron()).thenReturn(squadron);
-        Mockito.when(squadron.determineCompanyPrimaryRoleCategory(ArgumentMatchers.<Date>any())).thenReturn(PwcgRoleCategory.FIGHTER);
+        Mockito.when(crewMember.determineCompany()).thenReturn(company);
+        Mockito.when(company.determineCompanyPrimaryRoleCategory(ArgumentMatchers.<Date>any())).thenReturn(PwcgRoleCategory.FIGHTER);
 
         String promotion = PromotionEventHandler.promoteNonHistoricalCrewMembers(campaign, crewMember);
 
@@ -89,8 +89,8 @@ public class PromotionEventHandlerTest
         Mockito.when(crewMember.determineService(ArgumentMatchers.<Date>any())).thenReturn(campaign.determinePlayerCompanies().get(0).determineServiceForCompany(campaign.getDate()));
         Mockito.when(crewMember.getBattlesFought()).thenReturn(10);
         Mockito.when(crewMember.getRank()).thenReturn("Corporal");
-        Mockito.when(crewMember.determineSquadron()).thenReturn(squadron);
-        Mockito.when(squadron.determineCompanyPrimaryRoleCategory(ArgumentMatchers.<Date>any())).thenReturn(PwcgRoleCategory.RECON);
+        Mockito.when(crewMember.determineCompany()).thenReturn(company);
+        Mockito.when(company.determineCompanyPrimaryRoleCategory(ArgumentMatchers.<Date>any())).thenReturn(PwcgRoleCategory.RECON);
 
         String promotion = PromotionEventHandler.promoteNonHistoricalCrewMembers(campaign, crewMember);
 

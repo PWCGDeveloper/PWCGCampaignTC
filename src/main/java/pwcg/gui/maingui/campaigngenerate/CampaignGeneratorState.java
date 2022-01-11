@@ -22,7 +22,7 @@ public class CampaignGeneratorState
         CHOOSE_DATE,
         CHOOSE_ROLE,
         CHOOSE_RANK,
-        CHOOSE_SQUADRON,
+        CHOOSE_Company,
         COMPLETE
     }
     
@@ -44,7 +44,7 @@ public class CampaignGeneratorState
         stateStack.add(CampaignGeneratorWorkflow.CHOOSE_DATE);
         stateStack.add(CampaignGeneratorWorkflow.CHOOSE_ROLE);
         stateStack.add(CampaignGeneratorWorkflow.CHOOSE_RANK);
-        stateStack.add(CampaignGeneratorWorkflow.CHOOSE_SQUADRON);
+        stateStack.add(CampaignGeneratorWorkflow.CHOOSE_Company);
         stateStack.add(CampaignGeneratorWorkflow.COMPLETE);
     }
 

@@ -33,7 +33,7 @@ public class PersonnelFilterTest
     		crewMember.setName(names[i]);
     		crewMember.setSerialNumber(SerialNumber.AI_STARTING_SERIAL_NUMBER + i);
     		crewMember.setCrewMemberActiveStatus(CrewMemberStatus.STATUS_ACTIVE, null, null);
-    		crewMember.setSquadronId(101003);
+    		crewMember.setCompanyId(101003);
     		testCrewMembers.put(crewMember.getSerialNumber(), crewMember);
     	}
     }
@@ -79,22 +79,22 @@ public class PersonnelFilterTest
     }
     
     @Test
-    public void applySquadronFilterTest () throws PWCGException
+    public void applyCompanyFilterTest () throws PWCGException
     {         
         for (int i = 3; i < 7; ++i)
         {
             CrewMember crewMember = testCrewMembers.get(SerialNumber.AI_STARTING_SERIAL_NUMBER + i);
-            crewMember.setSquadronId(101005);
+            crewMember.setCompanyId(101005);
         }
 
         Map<Integer, CrewMember> returnCrewMembers = new HashMap<Integer, CrewMember>();
         
         PersonnelFilter personnelFilter = new PersonnelFilter(false);       
-        returnCrewMembers = personnelFilter.applySquadronFilter(testCrewMembers, 101005);
+        returnCrewMembers = personnelFilter.applyCompanyFilter(testCrewMembers, 101005);
         Assertions.assertTrue (returnCrewMembers.size() == 4);
         
         personnelFilter = new PersonnelFilter(true);
-        returnCrewMembers = personnelFilter.applySquadronFilter(testCrewMembers, 101005);
+        returnCrewMembers = personnelFilter.applyCompanyFilter(testCrewMembers, 101005);
         Assertions.assertTrue (returnCrewMembers.size() == 6);
      }
     

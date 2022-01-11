@@ -20,17 +20,17 @@ import pwcg.core.utils.PWCGLogger.LogLevel;
 
 public class CampaignGeneratorCompanyFilter
 {
-	public List<String> makeSquadronChoices(Date campaignDate, ArmedService dateCorrectedService, FrontMapIdentifier selectedCampaignMap, String selectedRole, boolean playerIsCommander) throws PWCGException 
+	public List<String> makeCompanyChoices(Date campaignDate, ArmedService dateCorrectedService, FrontMapIdentifier selectedCampaignMap, String selectedRole, boolean playerIsCommander) throws PWCGException 
 	{
-		List<String> validSquadrons = new ArrayList<>();
+		List<String> validCompanys = new ArrayList<>();
 	    try
 	    {
     		CompanyManager companyManager =  PWCGContext.getInstance().getCompanyManager();
     		List<Company> companyList = companyManager.getPlayerCompaniesByService(dateCorrectedService, campaignDate);
-            PWCGLogger.log(LogLevel.DEBUG, "makeSquadronChoices company list size: " + companyList.size());
+            PWCGLogger.log(LogLevel.DEBUG, "makeCompanyChoices company list size: " + companyList.size());
     		for (Company company : companyList)
     		{
-                PWCGLogger.log(LogLevel.DEBUG, company.determineDisplayName(campaignDate) + " makeSquadronChoices evaluate company");
+                PWCGLogger.log(LogLevel.DEBUG, company.determineDisplayName(campaignDate) + " makeCompanyChoices evaluate company");
 
        			if (rejectBecauseWrongRole(company, campaignDate, selectedRole))
     			{
@@ -51,7 +51,7 @@ public class CampaignGeneratorCompanyFilter
     			}
     			
 				String companyDisplayName = company.determineDisplayName(campaignDate);
-				validSquadrons.add(companyDisplayName);
+				validCompanys.add(companyDisplayName);
     		}
 	    }
 	    catch (Exception exp)
@@ -60,7 +60,7 @@ public class CampaignGeneratorCompanyFilter
             throw exp;
 	    }
 	    
-	    return validSquadrons;
+	    return validCompanys;
 	}
 	
 	private boolean rejectBecauseWrongRole(Company company, Date campaignDate, String roleDesc) throws PWCGException
@@ -79,7 +79,7 @@ public class CampaignGeneratorCompanyFilter
 	{
 		AceManager aceManager = PWCGContext.getInstance().getAceManager();
 		CampaignAces aces =  aceManager.loadFromHistoricalAces(campaignDate);
-		List<TankAce> companyAces =  aceManager.getActiveAcesForSquadron(aces, campaignDate, company.getCompanyId());
+		List<TankAce> companyAces =  aceManager.getActiveAcesForCompany(aces, campaignDate, company.getCompanyId());
 		if (companyAces.size() > 0)
 		{
 			if (playerIsCommander && company.isCommandedByAce(companyAces, campaignDate))

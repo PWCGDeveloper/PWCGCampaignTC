@@ -90,10 +90,10 @@ public class AARCoordinatorOutOfMission
 
     private void outOfMissionAwards() throws PWCGException 
     {
-        Map<Integer, CrewMember> squadronMembersToEvaluate = campaign.getPersonnelManager().getActiveCampaignMembers();
+        Map<Integer, CrewMember> crewMembersToEvaluate = campaign.getPersonnelManager().getActiveCampaignMembers();
         
         CampaignAwardsGenerator campaignMemberAwardsGenerator = new CampaignAwardsGenerator(campaign, aarContext);
-        AARPersonnelAwards campaignMemberAwards = campaignMemberAwardsGenerator.createCampaignMemberAwards(new ArrayList<>(squadronMembersToEvaluate.values()));
+        AARPersonnelAwards campaignMemberAwards = campaignMemberAwardsGenerator.createCampaignMemberAwards(new ArrayList<>(crewMembersToEvaluate.values()));
         aarContext.getPersonnelAwards().merge(campaignMemberAwards);
     }
 

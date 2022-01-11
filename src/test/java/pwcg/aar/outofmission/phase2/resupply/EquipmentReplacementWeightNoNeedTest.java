@@ -16,9 +16,9 @@ import pwcg.campaign.company.CompanyManager;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.factory.ArmedServiceFactory;
-import pwcg.campaign.resupply.SquadronNeedFactory;
-import pwcg.campaign.resupply.SquadronNeedFactory.SquadronNeedType;
-import pwcg.campaign.resupply.depot.EquipmentNeedForSquadronsCalculator;
+import pwcg.campaign.resupply.CompanyNeedFactory;
+import pwcg.campaign.resupply.CompanyNeedFactory.CompanyNeedType;
+import pwcg.campaign.resupply.depot.EquipmentNeedForCompanysCalculator;
 import pwcg.core.exception.PWCGException;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.CompanyTestProfile;
@@ -41,12 +41,12 @@ public class EquipmentReplacementWeightNoNeedTest
     public void testGermanNeedNoLosses() throws PWCGException
     {
         ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(20101);
-        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
-        List<Company> squadronsForService = squadronManager.getActiveCompaniesForService(campaign.getDate(), service);
+        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+        List<Company> companysForService = companyManager.getActiveCompaniesForService(campaign.getDate(), service);
         
-        SquadronNeedFactory squadronNeedFactory = new SquadronNeedFactory(SquadronNeedType.EQUIPMENT);
-        EquipmentNeedForSquadronsCalculator equipmentReplacementWeightNeed = new EquipmentNeedForSquadronsCalculator(campaign, squadronNeedFactory);
-        Map<String, Integer> aircraftNeedByArchType = equipmentReplacementWeightNeed.getAircraftNeedByArchType(squadronsForService);
+        CompanyNeedFactory companyNeedFactory = new CompanyNeedFactory(CompanyNeedType.EQUIPMENT);
+        EquipmentNeedForCompanysCalculator equipmentReplacementWeightNeed = new EquipmentNeedForCompanysCalculator(campaign, companyNeedFactory);
+        Map<String, Integer> aircraftNeedByArchType = equipmentReplacementWeightNeed.getAircraftNeedByArchType(companysForService);
 
         assert(aircraftNeedByArchType.size() == 0);
     }
@@ -55,12 +55,12 @@ public class EquipmentReplacementWeightNoNeedTest
     public void testRussianNeedNoLosses() throws PWCGException
     {
         ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(10101);
-        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
-        List<Company> squadronsForService = squadronManager.getActiveCompaniesForService(campaign.getDate(), service);
+        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+        List<Company> companysForService = companyManager.getActiveCompaniesForService(campaign.getDate(), service);
         
-        SquadronNeedFactory squadronNeedFactory = new SquadronNeedFactory(SquadronNeedType.EQUIPMENT);
-        EquipmentNeedForSquadronsCalculator equipmentReplacementWeightNeed = new EquipmentNeedForSquadronsCalculator(campaign, squadronNeedFactory);
-        Map<String, Integer> aircraftNeedByArchType = equipmentReplacementWeightNeed.getAircraftNeedByArchType(squadronsForService);
+        CompanyNeedFactory companyNeedFactory = new CompanyNeedFactory(CompanyNeedType.EQUIPMENT);
+        EquipmentNeedForCompanysCalculator equipmentReplacementWeightNeed = new EquipmentNeedForCompanysCalculator(campaign, companyNeedFactory);
+        Map<String, Integer> aircraftNeedByArchType = equipmentReplacementWeightNeed.getAircraftNeedByArchType(companysForService);
 
         assert(aircraftNeedByArchType.size() == 0);
     }
@@ -69,12 +69,12 @@ public class EquipmentReplacementWeightNoNeedTest
     public void testItalianNeedNoLosses() throws PWCGException
     {
         ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(20202);
-        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
-        List<Company> squadronsForService = squadronManager.getActiveCompaniesForService(campaign.getDate(), service);
+        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+        List<Company> companysForService = companyManager.getActiveCompaniesForService(campaign.getDate(), service);
         
-        SquadronNeedFactory squadronNeedFactory = new SquadronNeedFactory(SquadronNeedType.EQUIPMENT);
-        EquipmentNeedForSquadronsCalculator equipmentReplacementWeightNeed = new EquipmentNeedForSquadronsCalculator(campaign, squadronNeedFactory);
-        Map<String, Integer> aircraftNeedByArchType = equipmentReplacementWeightNeed.getAircraftNeedByArchType(squadronsForService);
+        CompanyNeedFactory companyNeedFactory = new CompanyNeedFactory(CompanyNeedType.EQUIPMENT);
+        EquipmentNeedForCompanysCalculator equipmentReplacementWeightNeed = new EquipmentNeedForCompanysCalculator(campaign, companyNeedFactory);
+        Map<String, Integer> aircraftNeedByArchType = equipmentReplacementWeightNeed.getAircraftNeedByArchType(companysForService);
 
         assert(aircraftNeedByArchType.size() == 0);
     }

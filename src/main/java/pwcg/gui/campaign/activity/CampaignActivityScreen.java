@@ -74,7 +74,7 @@ public class CampaignActivityScreen extends ImageResizingPanel implements Action
 
         if (isDisplayTransferButton())
         {
-            JButton transferButton = PWCGButtonFactory.makeTranslucentMenuButton("Transfer", "CampFlowTransfer", "Transfer to a new squadron", this);
+            JButton transferButton = PWCGButtonFactory.makeTranslucentMenuButton("Transfer", "CampFlowTransfer", "Transfer to a new company", this);
             buttonPanel.add(transferButton);
         }
 
@@ -86,8 +86,8 @@ public class CampaignActivityScreen extends ImageResizingPanel implements Action
         JButton equipmentRequestButton = PWCGButtonFactory.makeTranslucentMenuButton("Equipment Request", "EquipmentRequest", "Make a request for specific equipment", this);
         buttonPanel.add(equipmentRequestButton);
 
-        JButton squadronLogButton = PWCGButtonFactory.makeTranslucentMenuButton("Squadron Log", "CampFlowLog", "View campaign logs", this);
-        buttonPanel.add(squadronLogButton);
+        JButton companyLogButton = PWCGButtonFactory.makeTranslucentMenuButton("Company Log", "CampFlowLog", "View campaign logs", this);
+        buttonPanel.add(companyLogButton);
 
         JButton newsButton = PWCGButtonFactory.makeTranslucentMenuButton("News", "CampFlowNews", "View campaign news", this);
         buttonPanel.add(newsButton);
@@ -197,7 +197,7 @@ public class CampaignActivityScreen extends ImageResizingPanel implements Action
         SoundManager.getInstance().playSound("BookOpen.WAV");
 
         CrewMember referencePlayer = campaign.findReferencePlayer();
-        CampaignSquadronLogScreen logDisplay = new CampaignSquadronLogScreen(referencePlayer.getCompanyId());
+        CampaignCompanyLogScreen logDisplay = new CampaignCompanyLogScreen(referencePlayer.getCompanyId());
         logDisplay.makePanels();
 
         CampaignGuiContextManager.getInstance().pushToContextStack(logDisplay);

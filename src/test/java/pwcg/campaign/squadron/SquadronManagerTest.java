@@ -1,4 +1,4 @@
-package pwcg.campaign.squadron;
+package pwcg.campaign.company;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ import pwcg.testutils.CompanyTestProfile;
 
 @ExtendWith(MockitoExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class SquadronManagerTest
+public class CompanyManagerTest
 {
     Campaign campaign;
     
@@ -35,39 +35,39 @@ public class SquadronManagerTest
     }
 
     @Test
-    public void getSquadronTest() throws PWCGException
+    public void getCompanyTest() throws PWCGException
     {
-        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
-        Company squadron = squadronManager.getCompany(20111052);
-        assert(squadron.determineDisplayName(campaign.getDate()).equals("I./JG52"));
+        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+        Company company = companyManager.getCompany(20111052);
+        assert(company.determineDisplayName(campaign.getDate()).equals("I./JG52"));
     }
 
     @Test
-    public void getActiveSquadronsTest() throws PWCGException
+    public void getActiveCompanysTest() throws PWCGException
     {
-        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
-        List<Company> squadrons = squadronManager.getActiveCompanies(campaign.getDate());
+        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+        List<Company> companys = companyManager.getActiveCompanies(campaign.getDate());
         
         boolean foundJG52 = false;
         boolean foundStg2 = false;
         boolean found132Reg = false;
         boolean foundHs129 = false;
-        for (Company squadron : squadrons)
+        for (Company company : companys)
         {
-            String squadronName = squadron.determineDisplayName(campaign.getDate());
-            if (squadronName.equals("I./JG52"))
+            String companyName = company.determineDisplayName(campaign.getDate());
+            if (companyName.equals("I./JG52"))
             {
                 foundJG52 = true;
             }
-            else if (squadronName.equals("II./St.G.2"))
+            else if (companyName.equals("II./St.G.2"))
             {
                 foundStg2 = true;
             }
-            else if (squadronName.equals("132nd Bomber Air Regiment"))
+            else if (companyName.equals("132nd Bomber Air Regiment"))
             {
                 found132Reg = true;
             }
-            else if (squadronName.equals("IV(Pz)./Sch.G.2"))
+            else if (companyName.equals("IV(Pz)./Sch.G.2"))
             {
                 foundHs129 = true;
             }
@@ -79,31 +79,31 @@ public class SquadronManagerTest
     }
 
     @Test
-    public void getActiveSquadronsForSideTest() throws PWCGException
+    public void getActiveCompanysForSideTest() throws PWCGException
     {
-        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
-        List<Company> squadrons = squadronManager.getActiveCompaniesForSide(campaign.getDate(), Side.AXIS);
+        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+        List<Company> companys = companyManager.getActiveCompaniesForSide(campaign.getDate(), Side.AXIS);
         
         boolean foundJG52 = false;
         boolean foundStg2 = false;
         boolean found132Reg = false;
         boolean foundHs129 = false;
-        for (Company squadron : squadrons)
+        for (Company company : companys)
         {
-            String squadronName = squadron.determineDisplayName(campaign.getDate());
-            if (squadronName.equals("I./JG52"))
+            String companyName = company.determineDisplayName(campaign.getDate());
+            if (companyName.equals("I./JG52"))
             {
                 foundJG52 = true;
             }
-            else if (squadronName.equals("II./St.G.2"))
+            else if (companyName.equals("II./St.G.2"))
             {
                 foundStg2 = true;
             }
-            else if (squadronName.equals("132nd Bomber Air Regiment"))
+            else if (companyName.equals("132nd Bomber Air Regiment"))
             {
                 found132Reg = true;
             }
-            else if (squadronName.equals("IV(Pz)./Sch.G.2"))
+            else if (companyName.equals("IV(Pz)./Sch.G.2"))
             {
                 foundHs129 = true;
             }
@@ -115,7 +115,7 @@ public class SquadronManagerTest
     }
 
     @Test
-    public void getViableSquadronsTest() throws PWCGException
+    public void getViableCompanysTest() throws PWCGException
     {
         int II_StG2_id = 20122002;
         CompanyPersonnel personnel = campaign.getPersonnelManager().getCompanyPersonnel(II_StG2_id);
@@ -129,29 +129,29 @@ public class SquadronManagerTest
             ++numSaved;
         }
         
-        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
-        List<Company> squadrons = squadronManager.getViableCompanies(campaign);
+        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+        List<Company> companys = companyManager.getViableCompanies(campaign);
         
         boolean foundJG52 = false;
         boolean foundStg2 = false;
         boolean found132Reg = false;
         boolean foundHs129 = false;
-        for (Company squadron : squadrons)
+        for (Company company : companys)
         {
-            String squadronName = squadron.determineDisplayName(campaign.getDate());
-            if (squadronName.equals("I./JG52"))
+            String companyName = company.determineDisplayName(campaign.getDate());
+            if (companyName.equals("I./JG52"))
             {
                 foundJG52 = true;
             }
-            else if (squadronName.equals("II./St.G.2"))
+            else if (companyName.equals("II./St.G.2"))
             {
                 foundStg2 = true;
             }
-            else if (squadronName.equals("132nd Bomber Air Regiment"))
+            else if (companyName.equals("132nd Bomber Air Regiment"))
             {
                 found132Reg = true;
             }
-            else if (squadronName.equals("IV(Pz)./Sch.G.2"))
+            else if (companyName.equals("IV(Pz)./Sch.G.2"))
             {
                 foundHs129 = true;
             }

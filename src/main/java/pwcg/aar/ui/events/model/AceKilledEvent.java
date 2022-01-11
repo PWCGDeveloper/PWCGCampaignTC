@@ -8,9 +8,9 @@ public class AceKilledEvent extends AARCrewMemberEvent
 {
     private String status = "";
 
-    public AceKilledEvent(Campaign campaign, String status, int squadronId, int crewMemberSerialNumber, Date date, boolean isNewsWorthy)
+    public AceKilledEvent(Campaign campaign, String status, int companyId, int crewMemberSerialNumber, Date date, boolean isNewsWorthy)
     {
-        super(campaign, squadronId, crewMemberSerialNumber, date, isNewsWorthy);
+        super(campaign, companyId, crewMemberSerialNumber, date, isNewsWorthy);
         this.status = status;
     }
 

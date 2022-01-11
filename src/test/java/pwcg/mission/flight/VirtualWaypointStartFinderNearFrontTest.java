@@ -27,7 +27,7 @@ import pwcg.mission.flight.waypoint.virtual.VirtualWaypointStartFinder;
 public class VirtualWaypointStartFinderNearFrontTest
 {
     @Mock private IFlight flight;
-    @Mock private Company squadron;
+    @Mock private Company company;
     @Mock private Campaign campaign;
     @Mock private Mission mission;
     @Mock private VirtualWayPointCoordinate vwpCoordinate1;
@@ -41,9 +41,9 @@ public class VirtualWaypointStartFinderNearFrontTest
     public void setupTest() throws PWCGException
     {
         
-        Mockito.when(flight.getCompany()).thenReturn(squadron);
+        Mockito.when(flight.getCompany()).thenReturn(company);
         Mockito.when(flight.getCampaign()).thenReturn(campaign);
-        Mockito.when(squadron.determineSide()).thenReturn(Side.AXIS);
+        Mockito.when(company.determineSide()).thenReturn(Side.AXIS);
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420801"));
         PWCGContext.getInstance().setCampaign(campaign);
         PWCGContext.getInstance().changeContext(FrontMapIdentifier.STALINGRAD_MAP);

@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class CrewMemberFilterSpecification
 {
-    public static final int NO_SQUADRON_FILTER = 0;
+    public static final int NO_Company_FILTER = 0;
     
     private Date date;
     private boolean includeInactive = false;
@@ -13,7 +13,7 @@ public class CrewMemberFilterSpecification
     private boolean includeAI = true;
     private boolean includePlayer = true;
     private boolean includeWounded = true;
-    private int specifySquadron = NO_SQUADRON_FILTER;
+    private int specifyCompany = NO_Company_FILTER;
 
     public Date getDate()
     {
@@ -55,9 +55,9 @@ public class CrewMemberFilterSpecification
         this.includeAI = includeAI;
     }
 
-    public static int getNoSquadronFilter()
+    public static int getNoCompanyFilter()
     {
-        return NO_SQUADRON_FILTER;
+        return NO_Company_FILTER;
     }
 
     public boolean isIncludeInactive()
@@ -80,14 +80,14 @@ public class CrewMemberFilterSpecification
         this.includeActive = includeActive;
     }
 
-    public int getSpecifySquadron()
+    public int getSpecifyCompany()
     {
-        return specifySquadron;
+        return specifyCompany;
     }
 
-    public void setSpecifySquadron(int specifySquadron)
+    public void setSpecifyCompany(int specifyCompany)
     {
-        this.specifySquadron = specifySquadron;
+        this.specifyCompany = specifyCompany;
     }
 
     public boolean isIncludeWounded()

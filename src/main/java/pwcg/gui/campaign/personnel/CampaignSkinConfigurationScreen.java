@@ -121,17 +121,17 @@ public class CampaignSkinConfigurationScreen extends ImageResizingPanel implemen
     private JPanel createCrewMemberSelectionPanel() throws PWCGException, PWCGException
     {
         List<CrewMember> crewMembersNoAces = makeCrewMemberList();
-        JPanel squadronPanel = CampaignHomeRightPanelFactory.makeCampaignHomeCrewMembersRightPanel(this, crewMembersNoAces);
+        JPanel companyPanel = CampaignHomeRightPanelFactory.makeCampaignHomeCrewMembersRightPanel(this, crewMembersNoAces);
 
-        return squadronPanel;
+        return companyPanel;
     }
 
     private List<CrewMember> makeCrewMemberList() throws PWCGException 
     {
         CrewMember referencePlayer = campaign.findReferencePlayer();
-        CompanyPersonnel squadronPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(referencePlayer.getCompanyId());
-        CrewMembers squadronMembers = CrewMemberFilter.filterActiveAIAndPlayer(squadronPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
-        return squadronMembers.sortCrewMembers(campaign.getDate());
+        CompanyPersonnel companyPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(referencePlayer.getCompanyId());
+        CrewMembers crewMembers = CrewMemberFilter.filterActiveAIAndPlayer(companyPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
+        return crewMembers.sortCrewMembers(campaign.getDate());
     }
 
     private void makePlainButtons(JPanel buttonPanel) throws PWCGException

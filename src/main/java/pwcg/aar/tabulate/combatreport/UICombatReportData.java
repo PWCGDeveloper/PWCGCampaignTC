@@ -5,25 +5,25 @@ import pwcg.aar.ui.display.model.AARCombatReportPanelData;
 
 public class UICombatReportData
 {
-    private int squadronId;
+    private int companyId;
     private AARCombatReportPanelData combatReportPanelData;
     private AARCombatReportMapData combatReportMapData;
 
-    public UICombatReportData(int squadronId)
+    public UICombatReportData(int companyId)
     {
-        this.squadronId = squadronId;
+        this.companyId = companyId;
         this.combatReportPanelData = new AARCombatReportPanelData();
         this.combatReportMapData = new AARCombatReportMapData();
     }
 
-    public int getSquadronId()
+    public int getCompanyId()
     {
-        return squadronId;
+        return companyId;
     }
 
-    public void setSquadronId(int squadronId)
+    public void setCompanyId(int companyId)
     {
-        this.squadronId = squadronId;
+        this.companyId = companyId;
     }
 
     public AARCombatReportPanelData getCombatReportPanelData()

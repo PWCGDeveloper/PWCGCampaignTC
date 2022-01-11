@@ -1,7 +1,7 @@
 {
   "missionHeader": {
     "missionFileName": "Patrik Schorner 1916-07-27",
-    "squadron": "Jasta 16b",
+    "company": "Jasta 16b",
     "date": "19160727",
     "time": "14:30:00",
     "aircraftType": "AircraftType \u003d Halberstadt D.I",
@@ -10,11 +10,11 @@
     "duty": "OFFENSIVE",
     "altitude": 3528
   },
-  "missionDescription": "Mission:\nAircraft  Halberstadt D.II\nSquadron  Jasta 16b\nAirbase  Balatre,E Roye\nDate  1916-07-27\n\nWeather Report\nMedium cloud cover, medium altitude.\nCloud layer is 2246 meters.\nWind speed is 1 M/S.\nWind direction is 215.\n\nPrimary Objective\nPenetrate enemy airspace at the specified airfields near Montdidier.  Engage any enemy aircraft that you encounter.\n\n\n",
+  "missionDescription": "Mission:\nAircraft  Halberstadt D.II\nCompany  Jasta 16b\nAirbase  Balatre,E Roye\nDate  1916-07-27\n\nWeather Report\nMedium cloud cover, medium altitude.\nCloud layer is 2246 meters.\nWind speed is 1 M/S.\nWind direction is 215.\n\nPrimary Objective\nPenetrate enemy airspace at the specified airfields near Montdidier.  Engage any enemy aircraft that you encounter.\n\n\n",
   "missionPlanes": [
     {
       "aircraftType": "halberstadtd2",
-      "squadronName": "Jasta 16b",
+      "companyName": "Jasta 16b",
       "crew": {
         "pilot": "Patrik Schorner",
         "observer": "",
@@ -24,7 +24,7 @@
     },
     {
       "aircraftType": "halberstadtd2",
-      "squadronName": "Jasta 16b",
+      "companyName": "Jasta 16b",
       "crew": {
         "pilot": "Berthold Lehning",
         "observer": "",
@@ -34,7 +34,7 @@
     },
     {
       "aircraftType": "halberstadtd2",
-      "squadronName": "Jasta 16b",
+      "companyName": "Jasta 16b",
       "crew": {
         "pilot": "Gebhard Schonbaum",
         "observer": "",
@@ -44,7 +44,7 @@
     },
     {
       "aircraftType": "halberstadtd2",
-      "squadronName": "Jasta 16b",
+      "companyName": "Jasta 16b",
       "crew": {
         "pilot": "Karl Nostitz",
         "observer": "",
@@ -54,7 +54,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 210",
+      "companyName": "FA 210",
       "crew": {
         "pilot": "Fritz Kohnstamm",
         "observer": "Dominik Kleinmann",
@@ -64,7 +64,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 210",
+      "companyName": "FA 210",
       "crew": {
         "pilot": "Emmerich Hattendorf",
         "observer": "Arno Schrotter",
@@ -74,7 +74,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 210",
+      "companyName": "FA 210",
       "crew": {
         "pilot": "Niklaus Rosenhayn",
         "observer": "Urs Flohr",
@@ -84,7 +84,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 210",
+      "companyName": "FA 210",
       "crew": {
         "pilot": "Konrad Steinmeier",
         "observer": "Hubert Beckmann",
@@ -94,7 +94,7 @@
     },
     {
       "aircraftType": "rolc2a",
-      "squadronName": "Schlasta 2",
+      "companyName": "Schlasta 2",
       "crew": {
         "pilot": "Hartmut Waldstein",
         "observer": "Jonas Walch",
@@ -104,7 +104,7 @@
     },
     {
       "aircraftType": "rolc2a",
-      "squadronName": "Schlasta 2",
+      "companyName": "Schlasta 2",
       "crew": {
         "pilot": "Anton Wohlermann",
         "observer": "Kristian Fink",
@@ -114,7 +114,7 @@
     },
     {
       "aircraftType": "rolc2a",
-      "squadronName": "Schlasta 2",
+      "companyName": "Schlasta 2",
       "crew": {
         "pilot": "Gustav Nesler",
         "observer": "Dirk Alterman",
@@ -124,7 +124,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 52",
+      "companyName": "Esc 52",
       "crew": {
         "pilot": "Arthur Robillot",
         "observer": "Gaspard Saulnier",
@@ -134,7 +134,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 52",
+      "companyName": "Esc 52",
       "crew": {
         "pilot": "Theophile Mitteau",
         "observer": "Raymond Eschenbrenner",
@@ -144,7 +144,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 52",
+      "companyName": "Esc 52",
       "crew": {
         "pilot": "Charles-Henri Riou",
         "observer": "Alain Kerblat",
@@ -154,7 +154,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 52",
+      "companyName": "Esc 52",
       "crew": {
         "pilot": "Casimir Noel",
         "observer": "Jacques Brunet",

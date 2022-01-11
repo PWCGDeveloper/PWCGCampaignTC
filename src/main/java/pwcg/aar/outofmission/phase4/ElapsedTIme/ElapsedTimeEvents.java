@@ -3,12 +3,12 @@ package pwcg.aar.outofmission.phase4.ElapsedTIme;
 import java.util.ArrayList;
 import java.util.List;
 
+import pwcg.aar.ui.events.model.CompanyMoveEvent;
 import pwcg.aar.ui.events.model.EndOfWarEvent;
-import pwcg.aar.ui.events.model.SquadronMoveEvent;
 
 public class ElapsedTimeEvents
 {
-    private List<SquadronMoveEvent> squadronMoveEvents = new ArrayList<>();
+    private List<CompanyMoveEvent> companyMoveEvents = new ArrayList<>();
     private EndOfWarEvent endOfWarEvent = null;
 
     public EndOfWarEvent getEndOfWarEvent()
@@ -21,19 +21,19 @@ public class ElapsedTimeEvents
         this.endOfWarEvent = endOfWarEvent;
     }
 
-    public List<SquadronMoveEvent> getSquadronMoveEvents()
+    public List<CompanyMoveEvent> getCompanyMoveEvents()
     {
-        return squadronMoveEvents;
+        return companyMoveEvents;
     }
 
-    public void addSquadronMoveEvent(SquadronMoveEvent squadronMoveEvent)
+    public void addCompanyMoveEvent(CompanyMoveEvent companyMoveEvent)
     {
-        this.squadronMoveEvents.add(squadronMoveEvent);
+        this.companyMoveEvents.add(companyMoveEvent);
     }
     
     public void merge(ElapsedTimeEvents elapsedTimeEvents)
     {
-        squadronMoveEvents.addAll(elapsedTimeEvents.getSquadronMoveEvents());
+        companyMoveEvents.addAll(elapsedTimeEvents.getCompanyMoveEvents());
         if (endOfWarEvent == null)
         {
             endOfWarEvent = elapsedTimeEvents.getEndOfWarEvent();

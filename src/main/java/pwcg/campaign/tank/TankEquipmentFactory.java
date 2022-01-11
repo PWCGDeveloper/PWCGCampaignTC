@@ -11,11 +11,11 @@ import pwcg.core.utils.RandomNumberGenerator;
 
 public class TankEquipmentFactory
 {
-    public static EquippedTank makeTankForSquadron (Campaign campaign, String tankTypeName, int squadronId) throws PWCGException
+    public static EquippedTank makeTankForCompany (Campaign campaign, String tankTypeName, int companyId) throws PWCGException
     {
         TankTypeFactory tankTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
         TankType tankType = tankTypeFactory.createTankTypeByType(tankTypeName);        
-        EquippedTank equippedPlane = new EquippedTank(tankType, campaign.getSerialNumber().getNextPlaneSerialNumber(), squadronId, TankStatus.STATUS_DEPLOYED);
+        EquippedTank equippedPlane = new EquippedTank(tankType, campaign.getSerialNumber().getNextPlaneSerialNumber(), companyId, TankStatus.STATUS_DEPLOYED);
 
         return equippedPlane;
     }

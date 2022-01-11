@@ -112,26 +112,26 @@ public class CrewMemberFilterTest
  
         assert(numPlayers == 1);
 
-        CrewMembers squadronMembers;
-        squadronMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(allCampaignMembers, campaign.getDate());
-        assert(squadronMembers.getCrewMemberList().size() == (allCampaignMembers.size() - numInactive));
+        CrewMembers crewMembers;
+        crewMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(allCampaignMembers, campaign.getDate());
+        assert(crewMembers.getCrewMemberList().size() == (allCampaignMembers.size() - numInactive));
         
-        squadronMembers = CrewMemberFilter.filterActiveAI(allCampaignMembers, campaign.getDate());
-        assert(squadronMembers.getCrewMemberList().size() == (allCampaignMembers.size() - (numInactive + numAces + numPlayers)));
+        crewMembers = CrewMemberFilter.filterActiveAI(allCampaignMembers, campaign.getDate());
+        assert(crewMembers.getCrewMemberList().size() == (allCampaignMembers.size() - (numInactive + numAces + numPlayers)));
         
-        squadronMembers = CrewMemberFilter.filterActiveAIAndPlayer(allCampaignMembers, campaign.getDate());
-        assert(squadronMembers.getCrewMemberList().size() == (allCampaignMembers.size() - (numInactive + numAces)));
+        crewMembers = CrewMemberFilter.filterActiveAIAndPlayer(allCampaignMembers, campaign.getDate());
+        assert(crewMembers.getCrewMemberList().size() == (allCampaignMembers.size() - (numInactive + numAces)));
         
-        squadronMembers = CrewMemberFilter.filterActiveAIAndAces(allCampaignMembers, campaign.getDate());
-        assert(squadronMembers.getCrewMemberList().size() == (allCampaignMembers.size() - (numInactive + numPlayers)));
+        crewMembers = CrewMemberFilter.filterActiveAIAndAces(allCampaignMembers, campaign.getDate());
+        assert(crewMembers.getCrewMemberList().size() == (allCampaignMembers.size() - (numInactive + numPlayers)));
         
-        squadronMembers = CrewMemberFilter.filterInactiveAIAndPlayerAndAces(allCampaignMembers, campaign.getDate());
-        assert(squadronMembers.getCrewMemberList().size() == (numInactive));
+        crewMembers = CrewMemberFilter.filterInactiveAIAndPlayerAndAces(allCampaignMembers, campaign.getDate());
+        assert(crewMembers.getCrewMemberList().size() == (numInactive));
         
-        squadronMembers = CrewMemberFilter.filterActiveAINoWounded(allCampaignMembers, campaign.getDate());
-        assert(squadronMembers.getCrewMemberList().size() == (allCampaignMembers.size() - (numInactive + numAces + numPlayers + numWounded)));
+        crewMembers = CrewMemberFilter.filterActiveAINoWounded(allCampaignMembers, campaign.getDate());
+        assert(crewMembers.getCrewMemberList().size() == (allCampaignMembers.size() - (numInactive + numAces + numPlayers + numWounded)));
         
-        validateFiltersOnActive(squadronMembers.getCrewMemberList().size());
+        validateFiltersOnActive(crewMembers.getCrewMemberList().size());
     }
     
     public void validateFiltersOnActive(int numActiveExpected) throws PWCGException

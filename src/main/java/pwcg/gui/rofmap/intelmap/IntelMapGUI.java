@@ -60,7 +60,7 @@ public class IntelMapGUI extends MapGUI implements ActionListener
 			setOpaque(false);
 			setBackground(bg);
 
-	        List<FrontMapIdentifier> airfieldMaps = AirfieldManager.getMapIdForAirfield(campaign.findReferencePlayer().determineSquadron().determineCurrentAirfieldName(campaign.getDate()));
+	        List<FrontMapIdentifier> airfieldMaps = AirfieldManager.getMapIdForAirfield(campaign.findReferencePlayer().determineCompany().determineCurrentAirfieldName(campaign.getDate()));
             PWCGContext.getInstance().changeContext(airfieldMaps.get(0));
 								
 			this.add(BorderLayout.EAST, makeRightPanel(-1));
@@ -130,9 +130,9 @@ public class IntelMapGUI extends MapGUI implements ActionListener
         IntelMapPanel mapPanel = (IntelMapPanel)mapScroll.getMapPanel();
         
 		Point initialPosition = null;
-	    for (IntelSquadronMapPoint mapPoint : mapPanel.getSquadronPoints().values())
+	    for (IntelCompanyMapPoint mapPoint : mapPanel.getCompanyPoints().values())
 	    {
-	    	if (mapPoint.isPlayerSquadron)
+	    	if (mapPoint.isPlayerCompany)
 	    	{
 				initialPosition = mapPanel.coordinateToPoint(mapPoint.coord);
 	    	}
@@ -165,8 +165,8 @@ public class IntelMapGUI extends MapGUI implements ActionListener
         rightPanel.setOpaque(false);
         rightPanel.setBackground(bgColor); 
 
-        JPanel squadronInfoPanel = makeInfoPanel(squadId);
-        rightPanel.add(squadronInfoPanel, BorderLayout.CENTER);
+        JPanel companyInfoPanel = makeInfoPanel(squadId);
+        rightPanel.add(companyInfoPanel, BorderLayout.CENTER);
         
         Dimension imagePanelDimensions = ImageToDisplaySizer.getTextAreaDimensionsForScreen(450);
         rightPanel.setPreferredSize(new Dimension(imagePanelDimensions.width, imagePanelDimensions.height));
@@ -180,21 +180,21 @@ public class IntelMapGUI extends MapGUI implements ActionListener
 		squadDescriptionPanel.setOpaque(false);
 		
 
-		JTextPane squadDesc = makeIntelSquadronDescription(squadId);
+		JTextPane squadDesc = makeIntelCompanyDescription(squadId);
 		squadDescriptionPanel.add(squadDesc, BorderLayout.CENTER);
 		
 		return squadDescriptionPanel;
 	}
 
-	private JTextPane makeIntelSquadronDescription(int squadId) throws PWCGException
+	private JTextPane makeIntelCompanyDescription(int squadId) throws PWCGException
 	{
 		Font font = PWCGMonitorFonts.getTypewriterFont();
 
-		String squadronText = "";
-		Company squadron =  PWCGContext.getInstance().getCompanyManager().getCompany(squadId);
-		if (squadron != null)
+		String companyText = "";
+		Company company =  PWCGContext.getInstance().getCompanyManager().getCompany(squadId);
+		if (company != null)
 		{
-			squadronText = squadron.determineSquadronDescription(mapDate);
+			companyText = company.determineCompanyDescription(mapDate);
 		}
 
 		Dimension screenSize = PWCGMonitorSupport.getPWCGFrameSize();
@@ -203,7 +203,7 @@ public class IntelMapGUI extends MapGUI implements ActionListener
 		JTextPane squadDesc = new JTextPane();
 		squadDesc.setFont(font);
 		squadDesc.setOpaque(false);
-		squadDesc.setText(squadronText);
+		squadDesc.setText(companyText);
 		squadDesc.setPreferredSize(new Dimension(300, preferredPanelLength));
         return squadDesc;
 	}

@@ -14,7 +14,7 @@ import pwcg.core.exception.PWCGException;
 public class CampaignUpdateNewCompanyStaffer
 {
     private Campaign campaign;
-    private List<Integer> squadronsAdded = new ArrayList<>();
+    private List<Integer> companysAdded = new ArrayList<>();
     
     public CampaignUpdateNewCompanyStaffer (Campaign campaign) 
     {
@@ -23,19 +23,19 @@ public class CampaignUpdateNewCompanyStaffer
 
     public List<Integer> staffNewCompanies() throws PWCGException
     {
-        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
-        List<Company> squadronsToStaff = squadronManager.getActiveCompanies(campaign.getDate());
-        for (Company squadron : squadronsToStaff)
+        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+        List<Company> companysToStaff = companyManager.getActiveCompanies(campaign.getDate());
+        for (Company company : companysToStaff)
         {
-            if (campaign.getPersonnelManager().getCompanyPersonnel(squadron.getCompanyId()) == null)
+            if (campaign.getPersonnelManager().getCompanyPersonnel(company.getCompanyId()) == null)
             {
-                InitialCompanyStaffer squadronStaffer = new InitialCompanyStaffer(campaign, squadron);
-                CompanyPersonnel squadronPersonnel = squadronStaffer.generatePersonnel();
-                campaign.getPersonnelManager().addPersonnelForCompany(squadronPersonnel);
-                squadronsAdded.add(squadron.getCompanyId());
+                InitialCompanyStaffer companyStaffer = new InitialCompanyStaffer(campaign, company);
+                CompanyPersonnel companyPersonnel = companyStaffer.generatePersonnel();
+                campaign.getPersonnelManager().addPersonnelForCompany(companyPersonnel);
+                companysAdded.add(company.getCompanyId());
             }
         }
         
-        return squadronsAdded;
+        return companysAdded;
     }
 }

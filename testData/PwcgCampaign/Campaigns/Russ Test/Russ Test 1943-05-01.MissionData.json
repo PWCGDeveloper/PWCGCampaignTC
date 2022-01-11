@@ -1,7 +1,7 @@
 {
   "missionHeader": {
     "missionFileName": "Russ Test 1943-05-01",
-    "squadron": "16th Guards Fighter Air Regiment",
+    "company": "16th Guards Fighter Air Regiment",
     "date": "19430501",
     "time": "1.5.1943",
     "aircraftType": "P-39L-1",
@@ -10,7 +10,7 @@
     "duty": "PATROL",
     "altitude": 3593
   },
-  "missionDescription": "Mission: \nAircraft  P-39L-1\nSquadron  16th Guards Fighter Air Regiment\nAirbase  Ivanovskaya\nDate  1.5.1943\n\nWeather Report \n    Mostly clear, some high altitude clouds.\n    Cloud layer is 6144 meters.\n    Wind speed is 0 M/S.\n    Wind direction is 307.\n\nPrimary Objective \n    Patrol airspace  near Kievskoe.  Engage any enemy aircraft that you encounter.\n\n",
+  "missionDescription": "Mission: \nAircraft  P-39L-1\nCompany  16th Guards Fighter Air Regiment\nAirbase  Ivanovskaya\nDate  1.5.1943\n\nWeather Report \n    Mostly clear, some high altitude clouds.\n    Cloud layer is 6144 meters.\n    Wind speed is 0 M/S.\n    Wind direction is 307.\n\nPrimary Objective \n    Patrol airspace  near Kievskoe.  Engage any enemy aircraft that you encounter.\n\n",
   "missionPlanes": [
     {
       "aircraftType": "p39l1",

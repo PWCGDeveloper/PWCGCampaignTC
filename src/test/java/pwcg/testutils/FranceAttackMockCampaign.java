@@ -45,7 +45,7 @@ public class FranceAttackMockCampaign
     protected Date date;
     protected MissionGroundUnitResourceManager missionGroundUnitResourceManager = new MissionGroundUnitResourceManager();
     protected CoordinateBox missionBorders;
-    protected Company squadron;
+    protected Company company;
 
     public void mockCampaignSetup() throws PWCGException
     {
@@ -54,7 +54,7 @@ public class FranceAttackMockCampaign
 
         date = DateUtils.getDateYYYYMMDD("19180501");
         
-        squadron = PWCGContext.getInstance().getCompanyManager().getCompany(401010);
+        company = PWCGContext.getInstance().getCompanyManager().getCompany(401010);
 
         Mockito.when(campaign.getCampaignConfigManager()).thenReturn(configManager);
         Mockito.when(campaign.getDate()).thenReturn(date);

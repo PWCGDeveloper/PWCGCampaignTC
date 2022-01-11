@@ -40,11 +40,11 @@ public class CrewMemberStatusTest
     @Mock private CampaignAces campaignAces;
 
     private Date campaignDate;
-    private CompanyPersonnel squadronPersonnel;
-    private Company squadron;
+    private CompanyPersonnel companyPersonnel;
+    private Company company;
     private SerialNumber serialNumber = new SerialNumber();
     
-    private CrewMemberFactory squadronMemberFactory;
+    private CrewMemberFactory companyMemberFactory;
 
     @BeforeEach
     public void setupTest() throws PWCGException
@@ -56,18 +56,18 @@ public class CrewMemberStatusTest
         Mockito.when(campaign.getPersonnelManager()).thenReturn(campaignPersonnelManager);
         Mockito.when(campaignPersonnelManager.getCampaignAces()).thenReturn(campaignAces);
         List<TankAce> aces = new ArrayList<>();
-        Mockito.when(campaignAces.getActiveCampaignAcesBySquadron(Mockito.anyInt())).thenReturn(aces);
+        Mockito.when(campaignAces.getActiveCampaignAcesByCompany(Mockito.anyInt())).thenReturn(aces);
 
-        squadron = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId()); 
-        squadronPersonnel = new CompanyPersonnel(campaign, squadron);
+        company = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId()); 
+        companyPersonnel = new CompanyPersonnel(campaign, company);
 
-        squadronMemberFactory = new  CrewMemberFactory (campaign, squadron, squadronPersonnel);
+        companyMemberFactory = new  CrewMemberFactory (campaign, company, companyPersonnel);
     }
     
     @Test
     public void testUpdateStatusActive() throws PWCGException
     {
-        CrewMember crewMember = squadronMemberFactory.createInitialAICrewMember("Sergent");
+        CrewMember crewMember = companyMemberFactory.createInitialAICrewMember("Sergent");
         crewMember.setCrewMemberActiveStatus(CrewMemberStatus.STATUS_ACTIVE, campaign.getDate(), null);
         assert(crewMember.getCrewMemberActiveStatus() == CrewMemberStatus.STATUS_ACTIVE);
         assert(crewMember.getRecoveryDate() == null);
@@ -77,7 +77,7 @@ public class CrewMemberStatusTest
     @Test
     public void testUpdateStatusKilled() throws PWCGException
     {
-        CrewMember crewMember = squadronMemberFactory.createInitialAICrewMember("Sergent");
+        CrewMember crewMember = companyMemberFactory.createInitialAICrewMember("Sergent");
         crewMember.setCrewMemberActiveStatus(CrewMemberStatus.STATUS_KIA, campaign.getDate(), null);
         assert(crewMember.getCrewMemberActiveStatus() == CrewMemberStatus.STATUS_KIA);
         assert(crewMember.getRecoveryDate() == null);
@@ -88,7 +88,7 @@ public class CrewMemberStatusTest
     public void testUpdateStatusWounded() throws PWCGException
     {
         Date returnDate = DateUtils.advanceTimeDays(campaign.getDate(), 21);
-        CrewMember crewMember = squadronMemberFactory.createInitialAICrewMember("Sergent");
+        CrewMember crewMember = companyMemberFactory.createInitialAICrewMember("Sergent");
         crewMember.setCrewMemberActiveStatus(CrewMemberStatus.STATUS_WOUNDED, campaign.getDate(), returnDate);
         assert(crewMember.getCrewMemberActiveStatus() == CrewMemberStatus.STATUS_WOUNDED);
         assert(crewMember.getRecoveryDate().after(campaign.getDate()));
@@ -99,7 +99,7 @@ public class CrewMemberStatusTest
     public void testUpdateStatusAiSeriousWound() throws PWCGException
     {
         Date returnDate = DateUtils.advanceTimeDays(campaign.getDate(), 90);
-        CrewMember crewMember = squadronMemberFactory.createInitialAICrewMember("Sergent");
+        CrewMember crewMember = companyMemberFactory.createInitialAICrewMember("Sergent");
         crewMember.setCrewMemberActiveStatus(CrewMemberStatus.STATUS_SERIOUSLY_WOUNDED, campaign.getDate(), returnDate);
         assert(crewMember.getCrewMemberActiveStatus() == CrewMemberStatus.STATUS_SERIOUSLY_WOUNDED);
         assert(crewMember.getRecoveryDate() == null);
@@ -109,8 +109,8 @@ public class CrewMemberStatusTest
     @Test
     public void testUpdateStatusPlayerWound() throws PWCGException
     {
-        ArmedService service = squadron.determineServiceForCompany(campaignDate);
-        String squadronName = squadron.determineDisplayName(campaignDate);
+        ArmedService service = company.determineServiceForCompany(campaignDate);
+        String companyName = company.determineDisplayName(campaignDate);
         
         IRankHelper rank = RankFactory.createRankHelper();
         String rankName = rank.getRankByService(2, service);
@@ -121,8 +121,8 @@ public class CrewMemberStatusTest
         generatorModel.setPlayerRank(rankName);
         generatorModel.setPlayerRegion("");
         generatorModel.setService(service);
-        generatorModel.setSquadronName(squadronName);
-        CrewMember player = squadronMemberFactory.createPlayer(generatorModel);
+        generatorModel.setCompanyName(companyName);
+        CrewMember player = companyMemberFactory.createPlayer(generatorModel);
         Date returnDate = DateUtils.advanceTimeDays(campaign.getDate(), 90);
         player.setCrewMemberActiveStatus(CrewMemberStatus.STATUS_WOUNDED, campaign.getDate(), returnDate);
         assert(player.getCrewMemberActiveStatus() == CrewMemberStatus.STATUS_WOUNDED);
@@ -133,8 +133,8 @@ public class CrewMemberStatusTest
     @Test
     public void testUpdateStatusPlayerSeriousWound() throws PWCGException
     {
-        ArmedService service = squadron.determineServiceForCompany(campaignDate);
-        String squadronName = squadron.determineDisplayName(campaignDate);
+        ArmedService service = company.determineServiceForCompany(campaignDate);
+        String companyName = company.determineDisplayName(campaignDate);
         
         IRankHelper rank = RankFactory.createRankHelper();
         String rankName = rank.getRankByService(2, service);
@@ -145,8 +145,8 @@ public class CrewMemberStatusTest
         generatorModel.setPlayerRank(rankName);
         generatorModel.setPlayerRegion("");
         generatorModel.setService(service);
-        generatorModel.setSquadronName(squadronName);
-        CrewMember player = squadronMemberFactory.createPlayer(generatorModel);
+        generatorModel.setCompanyName(companyName);
+        CrewMember player = companyMemberFactory.createPlayer(generatorModel);
         Date returnDate = DateUtils.advanceTimeDays(campaign.getDate(), 90);
         player.setCrewMemberActiveStatus(CrewMemberStatus.STATUS_SERIOUSLY_WOUNDED, campaign.getDate(), returnDate);
         assert(player.getCrewMemberActiveStatus() == CrewMemberStatus.STATUS_SERIOUSLY_WOUNDED);

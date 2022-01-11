@@ -16,7 +16,7 @@ import pwcg.campaign.context.FrontMapIdentifier;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.crewmember.CrewMember;
-import pwcg.campaign.plane.SquadronPlaneAssignment;
+import pwcg.campaign.plane.CompanyPlaneAssignment;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.logfiles.LogEventData;
 import pwcg.testutils.CampaignCache;
@@ -30,7 +30,7 @@ public class AARCoordinatorInMissionTest
     private static ExpectedResults expectedResults;
     private static int playerMissionsFlown = 0;
 
-    private List<Company> squadronsInMission = new ArrayList<>();
+    private List<Company> companysInMission = new ArrayList<>();
     private Map<Integer, PlayerDeclarations> playerDeclarations;
 
     @BeforeAll
@@ -59,21 +59,21 @@ public class AARCoordinatorInMissionTest
 
     public void createArtifacts () throws PWCGException
     {               
-        makeSquadronsInMission();
+        makeCompanysInMission();
         makePreliminary();
         makePlayerDeclarations();
         makeMissionLogEvents();
     }
 
-    private void makeSquadronsInMission() throws PWCGException
+    private void makeCompanysInMission() throws PWCGException
     {
-        SquadronForMissionBuilder squadronForMissionBuilder = new SquadronForMissionBuilder(campaign);
-        squadronsInMission = squadronForMissionBuilder.makeSquadronsInMission();
+        CompanyForMissionBuilder companyForMissionBuilder = new CompanyForMissionBuilder(campaign);
+        companysInMission = companyForMissionBuilder.makeCompanysInMission();
     }
 
     private void makePreliminary() throws PWCGException
     {
-        TestPreliminaryDataBuilder preliminaryDataBuilder = new TestPreliminaryDataBuilder(campaign, squadronsInMission);
+        TestPreliminaryDataBuilder preliminaryDataBuilder = new TestPreliminaryDataBuilder(campaign, companysInMission);
         AARPreliminaryData preliminaryData = preliminaryDataBuilder.makePreliminaryForTestMission();
         aarCoordinator.getAarContext().setPreliminaryData(preliminaryData);
     }
@@ -93,11 +93,11 @@ public class AARCoordinatorInMissionTest
         aarCoordinator.getAarContext().setLogEventData(missionLogRawData);
     }
     
-    public static CompanyTankAssignment getPlaneForSquadron(int SquadronId) throws PWCGException
+    public static CompanyTankAssignment getPlaneForCompany(int CompanyId) throws PWCGException
     {
-        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(SquadronId);
-        List<CompanyTankAssignment> squadronPlaneAssignments = squadron.getPlaneAssignments();
-        return squadronPlaneAssignments.get(0);
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyId);
+        List<CompanyTankAssignment> companyPlaneAssignments = company.getPlaneAssignments();
+        return companyPlaneAssignments.get(0);
     }
 
 }

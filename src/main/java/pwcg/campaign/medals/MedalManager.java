@@ -82,8 +82,8 @@ public abstract class MedalManager implements IMedalManager
             medal = awardFighter(crewMember, service, victoriesThisMission);
             if (medal == null)
             {
-                Company squadron =  crewMember.determineSquadron();
-                if (squadron != null && !squadron.isSquadronThisRole(campaign.getDate(), PwcgRole.ROLE_FIGHTER))
+                Company company =  crewMember.determineCompany();
+                if (company != null && !company.isCompanyThisRole(campaign.getDate(), PwcgRole.ROLE_FIGHTER))
                 {
                     medal = awardBomber(crewMember, service, victoriesThisMission);
                 }

@@ -15,73 +15,73 @@ import pwcg.core.utils.RandomNumberGenerator;
 
 public class CrewMembers
 {
-    private Map<Integer, CrewMember> squadronMemberCollection = new ConcurrentHashMap<>();
+    private Map<Integer, CrewMember> companyMemberCollection = new ConcurrentHashMap<>();
 
     public Map<Integer, CrewMember> getCrewMemberCollection()
     {
-        return squadronMemberCollection;
+        return companyMemberCollection;
     }
 
     public List<CrewMember> getCrewMemberList()
     {
-        return new ArrayList<>(squadronMemberCollection.values());
+        return new ArrayList<>(companyMemberCollection.values());
     }
 
-    public void setCrewMemberCollection(Map<Integer, CrewMember> squadronMembers)
+    public void setCrewMemberCollection(Map<Integer, CrewMember> crewMembers)
     {
-        this.squadronMemberCollection = squadronMembers;
+        this.companyMemberCollection = crewMembers;
     }
 
     public void addToCrewMemberCollection(CrewMember crewMember)
     {
-        squadronMemberCollection.put(crewMember.getSerialNumber(), crewMember);
+        companyMemberCollection.put(crewMember.getSerialNumber(), crewMember);
     }
 
     public void addCrewMembers(CrewMembers newCrewMembers)
     {
-        squadronMemberCollection.putAll(newCrewMembers.squadronMemberCollection);
+        companyMemberCollection.putAll(newCrewMembers.companyMemberCollection);
     }
 
     public boolean isCrewMember(Integer serialNumber)
     {
-        return squadronMemberCollection.containsKey(serialNumber);
+        return companyMemberCollection.containsKey(serialNumber);
     }
 
     public CrewMember findCrewMember() throws PWCGException
     {
-        List<Integer> serialNumbers = new ArrayList<>(squadronMemberCollection.keySet());
+        List<Integer> serialNumbers = new ArrayList<>(companyMemberCollection.keySet());
         int index = RandomNumberGenerator.getRandom(serialNumbers.size());
         int serialNumber = serialNumbers.get(index);
-        CrewMember crewMember = squadronMemberCollection.get(serialNumber);
+        CrewMember crewMember = companyMemberCollection.get(serialNumber);
         return crewMember;
     }
 
     public CrewMember removeCrewMember(int serialNumber) throws PWCGException
     {
-        CrewMember crewMember = squadronMemberCollection.remove(serialNumber);
+        CrewMember crewMember = companyMemberCollection.remove(serialNumber);
         return crewMember;
     }
 
     public int getActiveCount(Date date) throws PWCGException
     {
-        CrewMembers activeCrewMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAcesNoWounded(squadronMemberCollection, date);
+        CrewMembers activeCrewMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAcesNoWounded(companyMemberCollection, date);
         return activeCrewMembers.getCrewMemberList().size();
     }
     
     public CrewMember getCrewMember(int serialNumber)
     {
-        CrewMember crewMember = squadronMemberCollection.get(serialNumber);
+        CrewMember crewMember = companyMemberCollection.get(serialNumber);
         return crewMember;
     }
     
     public void clear()
     {
-        squadronMemberCollection.clear();
+        companyMemberCollection.clear();
     }
 
     public CrewMember getCrewMemberByName(String name) throws PWCGException
     {
-        for (CrewMember crewMember : squadronMemberCollection.values())
+        for (CrewMember crewMember : companyMemberCollection.values())
         {
             if (crewMember.getName().equals(name))
             {
@@ -89,13 +89,13 @@ public class CrewMembers
             }
         }
         
-        throw new PWCGException("No squadronmember found for name " + name);
+        throw new PWCGException("No companymember found for name " + name);
     }
     
     public List<CrewMember> sortCrewMembers(Date date) throws PWCGException 
     {
         Map<String, CrewMember> sortedCrewMembers = new TreeMap<>();
-        for (CrewMember crewMember : squadronMemberCollection.values())
+        for (CrewMember crewMember : companyMemberCollection.values())
         {            
             IRankHelper rankObj = RankFactory.createRankHelper();
             int rankPos = rankObj.getRankPosByService(crewMember.getRank(), crewMember.determineService(date));

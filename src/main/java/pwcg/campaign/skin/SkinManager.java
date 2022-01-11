@@ -23,59 +23,59 @@ public class SkinManager
         skinsForPlanes = skinLoader.loadPwcgSkins();
     }
 
-    public List<Skin> getSquadronSkinsByPlaneSquadronDate(String planeName, int squadronId, Date date)
+    public List<Skin> getCompanySkinsByPlaneCompanyDate(String planeName, int companyId, Date date)
     {
-    	List<Skin> skinsForSquadron = new ArrayList<Skin>();
+    	List<Skin> skinsForCompany = new ArrayList<Skin>();
 
         if (skinsForPlanes.containsKey(planeName))
         {
-        	SkinSet squadronSkinSet = skinsForPlanes.get(planeName).getSquadronSkins();
-        	skinsForSquadron = new ArrayList<>(squadronSkinSet.getSkins().values());
-            skinsForSquadron = SkinFilter.skinFilterSquadron(skinsForSquadron, squadronId);
-            skinsForSquadron = SkinFilter.skinFilterDate(skinsForSquadron, date);
+        	SkinSet companySkinSet = skinsForPlanes.get(planeName).getCompanySkins();
+        	skinsForCompany = new ArrayList<>(companySkinSet.getSkins().values());
+            skinsForCompany = SkinFilter.skinFilterCompany(skinsForCompany, companyId);
+            skinsForCompany = SkinFilter.skinFilterDate(skinsForCompany, date);
         }
         else
         {
-            PWCGLogger.log(LogLevel.ERROR, "getSkinsBySquadronPlaneDateInUse: Invalid plane " + planeName);
+            PWCGLogger.log(LogLevel.ERROR, "getSkinsByCompanyPlaneDateInUse: Invalid plane " + planeName);
         }
         
-        return skinsForSquadron;
+        return skinsForCompany;
     }
 
-    public List<Skin> getSkinsBySquadron(int squadronId)
+    public List<Skin> getSkinsByCompany(int companyId)
     {
-        List<Skin> configuredSkinsForSquadron = new ArrayList<Skin>();
+        List<Skin> configuredSkinsForCompany = new ArrayList<Skin>();
 
         for (SkinsForPlane skinsForPlane : skinsForPlanes.values())
         {
             SkinSet configuredSkins = skinsForPlane.getConfiguredSkins();
-        	configuredSkinsForSquadron = new ArrayList<>(configuredSkins.getSkins().values());
-            List<Skin> skinsForSquadronAndPlane = SkinFilter.skinFilterSquadron(configuredSkinsForSquadron, squadronId);
+        	configuredSkinsForCompany = new ArrayList<>(configuredSkins.getSkins().values());
+            List<Skin> skinsForCompanyAndPlane = SkinFilter.skinFilterCompany(configuredSkinsForCompany, companyId);
             
-            configuredSkinsForSquadron.addAll(skinsForSquadronAndPlane);
+            configuredSkinsForCompany.addAll(skinsForCompanyAndPlane);
         }
 
         
-        return configuredSkinsForSquadron;
+        return configuredSkinsForCompany;
     }
 
-	public List<Skin> getSkinsByPlaneSquadronDateInUse(String planeName, int squadronId, Date date)
+	public List<Skin> getSkinsByPlaneCompanyDateInUse(String planeName, int companyId, Date date)
 	{
-        List<Skin> skinsForSquadronPlaneDate = new ArrayList<Skin>();
+        List<Skin> skinsForCompanyPlaneDate = new ArrayList<Skin>();
 
         if (skinsForPlanes.containsKey(planeName))
         {
             SkinSet configuredSkins = skinsForPlanes.get(planeName).getConfiguredSkins();
-            skinsForSquadronPlaneDate = new ArrayList<>(configuredSkins.getSkins().values());
-            skinsForSquadronPlaneDate = SkinFilter.skinFilterSquadron(skinsForSquadronPlaneDate, squadronId);
-            skinsForSquadronPlaneDate = SkinFilter.skinFilterDate(skinsForSquadronPlaneDate, date);
+            skinsForCompanyPlaneDate = new ArrayList<>(configuredSkins.getSkins().values());
+            skinsForCompanyPlaneDate = SkinFilter.skinFilterCompany(skinsForCompanyPlaneDate, companyId);
+            skinsForCompanyPlaneDate = SkinFilter.skinFilterDate(skinsForCompanyPlaneDate, date);
         }
         else
         {
-            PWCGLogger.log(LogLevel.ERROR, "getSkinsBySquadronPlaneDateInUse: Invalid plane " + planeName);
+            PWCGLogger.log(LogLevel.ERROR, "getSkinsByCompanyPlaneDateInUse: Invalid plane " + planeName);
         }
 		
-		return skinsForSquadronPlaneDate;
+		return skinsForCompanyPlaneDate;
 	}
 
     public List<Skin> getPersonalSkinsByPlaneCountryDateInUse(String planeName, String countryName, Date date)
@@ -86,7 +86,7 @@ public class SkinManager
         {
         	SkinSet configuredSkins = skinsForPlanes.get(planeName).getConfiguredSkins();
         	skinsForCountryPlaneDate = new ArrayList<>(configuredSkins.getSkins().values());
-        	skinsForCountryPlaneDate = SkinFilter.skinFilterSquadron(skinsForCountryPlaneDate, Skin.PERSONAL_SKIN);
+        	skinsForCountryPlaneDate = SkinFilter.skinFilterCompany(skinsForCountryPlaneDate, Skin.PERSONAL_SKIN);
         	skinsForCountryPlaneDate = SkinFilter.skinFilterDate(skinsForCountryPlaneDate, date);
         	skinsForCountryPlaneDate = SkinFilter.skinFilterCountry(skinsForCountryPlaneDate, countryName);
         }
@@ -98,41 +98,41 @@ public class SkinManager
         return skinsForCountryPlaneDate;
     }
 
-    public List<Skin> getSkinsBySquadronPlaneDate(String planeName, int squadronId, Date date)
+    public List<Skin> getSkinsByCompanyPlaneDate(String planeName, int companyId, Date date)
     {
-        List<Skin> skinsForSquadronPlaneDate = new ArrayList<Skin>();
+        List<Skin> skinsForCompanyPlaneDate = new ArrayList<Skin>();
 
         if (skinsForPlanes.containsKey(planeName))
         {
         	SkinSet configuredSkins = skinsForPlanes.get(planeName).getConfiguredSkins();
-        	skinsForSquadronPlaneDate = new ArrayList<>(configuredSkins.getSkins().values());
-            skinsForSquadronPlaneDate = SkinFilter.skinFilterSquadron(skinsForSquadronPlaneDate, squadronId);
-            skinsForSquadronPlaneDate = SkinFilter.skinFilterDate(skinsForSquadronPlaneDate, date);
+        	skinsForCompanyPlaneDate = new ArrayList<>(configuredSkins.getSkins().values());
+            skinsForCompanyPlaneDate = SkinFilter.skinFilterCompany(skinsForCompanyPlaneDate, companyId);
+            skinsForCompanyPlaneDate = SkinFilter.skinFilterDate(skinsForCompanyPlaneDate, date);
         }
         else
         {
-            PWCGLogger.log(LogLevel.ERROR, "getSkinsBySquadronPlaneDate: Invalid plane " + planeName);
+            PWCGLogger.log(LogLevel.ERROR, "getSkinsByCompanyPlaneDate: Invalid plane " + planeName);
         }
         
-        return skinsForSquadronPlaneDate;
+        return skinsForCompanyPlaneDate;
     }
 
-    public List<Skin> getSkinsByPlaneSquadron(String planeName, int squadronId)
+    public List<Skin> getSkinsByPlaneCompany(String planeName, int companyId)
     {
-        List<Skin> skinsForSquadronPlane = new ArrayList<Skin>();
+        List<Skin> skinsForCompanyPlane = new ArrayList<Skin>();
 
         if (skinsForPlanes.containsKey(planeName))
         {
         	SkinSet configuredSkins = skinsForPlanes.get(planeName).getConfiguredSkins();
-        	skinsForSquadronPlane = new ArrayList<>(configuredSkins.getSkins().values());
-            skinsForSquadronPlane = SkinFilter.skinFilterSquadron(skinsForSquadronPlane, squadronId);
+        	skinsForCompanyPlane = new ArrayList<>(configuredSkins.getSkins().values());
+            skinsForCompanyPlane = SkinFilter.skinFilterCompany(skinsForCompanyPlane, companyId);
         }
         else
         {
-            PWCGLogger.log(LogLevel.ERROR, "getSkinsByPlaneSquadron: Invalid plane " + planeName);
+            PWCGLogger.log(LogLevel.ERROR, "getSkinsByPlaneCompany: Invalid plane " + planeName);
         }
         
-        return skinsForSquadronPlane;
+        return skinsForCompanyPlane;
     }
 
     public List<Skin> getSkinsByPlaneCountry(String planeName,  String countryName)

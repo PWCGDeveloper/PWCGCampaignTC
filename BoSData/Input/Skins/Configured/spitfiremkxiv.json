@@ -67,8 +67,8 @@
 			"definedInGame": true,
 			"winter": false
 		},
-		"92 Squadron": {
-			"skinName": "92 Squadron",
+		"92 Company": {
+			"skinName": "92 Company",
 			"planeType": "spitfiremkixe",
 			"startDate": "19440601",
 			"endDate": "19450601",
@@ -239,7 +239,7 @@
 			"endDate": "19450101",
 			"squadId": 103084041,
 			"country": "Britain",
-			"category": "Squadron",
+			"category": "Company",
 			"definedInGame": false,
 			"winter": false
 		},
@@ -250,7 +250,7 @@
 			"endDate": "19450101",
 			"squadId": 103084041,
 			"country": "Britain",
-			"category": "Squadron",
+			"category": "Company",
 			"definedInGame": false,
 			"winter": false
 		},
@@ -261,7 +261,7 @@
 			"endDate": "19450101",
 			"squadId": 103084041,
 			"country": "Britain",
-			"category": "Squadron",
+			"category": "Company",
 			"definedInGame": false,
 			"winter": false
 		},
@@ -272,7 +272,7 @@
 			"endDate": "19450101",
 			"squadId": 103084041,
 			"country": "Britain",
-			"category": "Squadron",
+			"category": "Company",
 			"definedInGame": false,
 			"winter": false
 		},
@@ -283,7 +283,7 @@
 			"endDate": "19450101",
 			"squadId": 103084041,
 			"country": "Britain",
-			"category": "Squadron",
+			"category": "Company",
 			"definedInGame": false,
 			"winter": false
 		},
@@ -294,7 +294,7 @@
 			"endDate": "19450101",
 			"squadId": 103084041,
 			"country": "Britain",
-			"category": "Squadron",
+			"category": "Company",
 			"definedInGame": false,
 			"winter": false
 		},
@@ -305,7 +305,7 @@
 			"endDate": "19450101",
 			"squadId": 103084041,
 			"country": "Britain",
-			"category": "Squadron",
+			"category": "Company",
 			"definedInGame": false,
 			"winter": false
 		},
@@ -316,7 +316,7 @@
 			"endDate": "19450101",
 			"squadId": 103084041,
 			"country": "Britain",
-			"category": "Squadron",
+			"category": "Company",
 			"definedInGame": false,
 			"winter": false
 		},
@@ -327,7 +327,7 @@
 			"endDate": "19450101",
 			"squadId": 103084041,
 			"country": "Britain",
-			"category": "Squadron",
+			"category": "Company",
 			"definedInGame": false,
 			"winter": false
 		},
@@ -338,7 +338,7 @@
 			"endDate": "19450101",
 			"squadId": 103084041,
 			"country": "Britain",
-			"category": "Squadron",
+			"category": "Company",
 			"definedInGame": false,
 			"winter": false
 		},
@@ -349,7 +349,7 @@
 			"endDate": "19450101",
 			"squadId": 103084041,
 			"country": "Britain",
-			"category": "Squadron",
+			"category": "Company",
 			"definedInGame": false,
 			"winter": false
 		},
@@ -360,7 +360,7 @@
 			"endDate": "19450601",
 			"squadId": 103084041,
 			"country": "Britain",
-			"category": "Squadron",
+			"category": "Company",
 			"definedInGame": false,
 			"winter": false
 		},
@@ -371,7 +371,7 @@
 			"endDate": "19450601",
 			"squadId": 103084041,
 			"country": "Britain",
-			"category": "Squadron",
+			"category": "Company",
 			"definedInGame": false,
 			"winter": false
 		},
@@ -382,7 +382,7 @@
 			"endDate": "19450601",
 			"squadId": 103084041,
 			"country": "Britain",
-			"category": "Squadron",
+			"category": "Company",
 			"definedInGame": false,
 			"winter": false
 		},
@@ -393,7 +393,7 @@
 			"endDate": "19450601",
 			"squadId": 103084041,
 			"country": "Britain",
-			"category": "Squadron",
+			"category": "Company",
 			"definedInGame": false,
 			"winter": false
 		},
@@ -404,7 +404,7 @@
 			"endDate": "19450601",
 			"squadId": 103084041,
 			"country": "Britain",
-			"category": "Squadron",
+			"category": "Company",
 			"definedInGame": false,
 			"winter": false
 		},
@@ -415,7 +415,7 @@
 			"endDate": "19450601",
 			"squadId": 103084041,
 			"country": "Britain",
-			"category": "Squadron",
+			"category": "Company",
 			"definedInGame": false,
 			"winter": false
 		},
@@ -426,7 +426,7 @@
 			"endDate": "19450601",
 			"squadId": 103084041,
 			"country": "Britain",
-			"category": "Squadron",
+			"category": "Company",
 			"definedInGame": false,
 			"winter": false
 		},
@@ -437,7 +437,7 @@
 			"endDate": "19450601",
 			"squadId": 103084041,
 			"country": "Britain",
-			"category": "Squadron",
+			"category": "Company",
 			"definedInGame": false,
 			"winter": false
 		},
@@ -448,7 +448,7 @@
 			"endDate": "19450601",
 			"squadId": 103084041,
 			"country": "Britain",
-			"category": "Squadron",
+			"category": "Company",
 			"definedInGame": false,
 			"winter": false
 		},
@@ -459,7 +459,7 @@
 			"endDate": "19450601",
 			"squadId": 103084041,
 			"country": "Britain",
-			"category": "Squadron",
+			"category": "Company",
 			"definedInGame": false,
 			"winter": false
 		},
@@ -470,7 +470,7 @@
 			"endDate": "19450601",
 			"squadId": 103084041,
 			"country": "Britain",
-			"category": "Squadron",
+			"category": "Company",
 			"definedInGame": false,
 			"winter": false
 		},
@@ -481,7 +481,7 @@
 			"endDate": "19450601",
 			"squadId": 103084041,
 			"country": "Britain",
-			"category": "Squadron",
+			"category": "Company",
 			"definedInGame": false,
 			"winter": false
 		}

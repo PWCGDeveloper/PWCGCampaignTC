@@ -120,8 +120,8 @@ public class MissionBlockBuilder
     {
         for (CrewMember player : mission.getParticipatingPlayers().getAllParticipatingPlayers())
         {
-            Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(player.getCompanyId());
-            Airfield airfield = squadron.determineCurrentAirfieldAnyMap(mission.getCampaign().getDate());
+            Company company = PWCGContext.getInstance().getCompanyManager().getCompany(player.getCompanyId());
+            Airfield airfield = company.determineCurrentAirfieldAnyMap(mission.getCampaign().getDate());
             CoordinateBox airfieldBox = CoordinateBox.coordinateBoxFromCenter(airfield.getPosition(), 10000);
             if (airfieldBox.isInBox(blockPosition))
             {

@@ -7,5 +7,5 @@ import pwcg.mission.flight.FlightTypes;
 
 public interface IFlightTypeFactory
 {
-    FlightTypes getFlightType(Company squadron, boolean isPlayerFlight, PwcgRole roleOverride) throws PWCGException;
+    FlightTypes getFlightType(Company company, boolean isPlayerFlight, PwcgRole roleOverride) throws PWCGException;
 }

@@ -50,8 +50,8 @@ public class CampaignSkinConfigurationCrewMemberPanel extends ImageResizingPanel
 
     private JPanel skinsPlanePanel = null;
 
-    private JCheckBox squadronCheckBox = null;
-    private JCheckBox nonSquadronCheckBox = null;
+    private JCheckBox companyCheckBox = null;
+    private JCheckBox nonCompanyCheckBox = null;
     private JCheckBox looseCheckBox = null;
 
     private JPanel skinsCrewMemberInfoPanel = null;
@@ -111,18 +111,18 @@ public class CampaignSkinConfigurationCrewMemberPanel extends ImageResizingPanel
     {
         SkinSessionManager skinSessionManager = parent.getSkinSessionManager();
 
-        skinSessionManager.setSquadronSkinsSelected(false);
-        skinSessionManager.setNonSquadronSkinsSelected(false);
+        skinSessionManager.setCompanySkinsSelected(false);
+        skinSessionManager.setNonCompanySkinsSelected(false);
         skinSessionManager.setLooseSkinsSelected(false);
 
-        if (squadronCheckBox.isSelected())
+        if (companyCheckBox.isSelected())
         {
-            skinSessionManager.setSquadronSkinsSelected(true);
+            skinSessionManager.setCompanySkinsSelected(true);
         }
 
-        if (nonSquadronCheckBox.isSelected())
+        if (nonCompanyCheckBox.isSelected())
         {
-            skinSessionManager.setNonSquadronSkinsSelected(true);
+            skinSessionManager.setNonCompanySkinsSelected(true);
         }
 
         if (looseCheckBox.isSelected())
@@ -133,19 +133,19 @@ public class CampaignSkinConfigurationCrewMemberPanel extends ImageResizingPanel
 
     private void setButtonsFromSessionManagerSelections() throws PWCGException
     {
-        squadronCheckBox.setSelected(false);
-        nonSquadronCheckBox.setSelected(false);
+        companyCheckBox.setSelected(false);
+        nonCompanyCheckBox.setSelected(false);
         looseCheckBox.setSelected(false);
 
         SkinSessionManager skinSessionManager = parent.getSkinSessionManager();
-        if (skinSessionManager.isSquadronSkinsSelected())
+        if (skinSessionManager.isCompanySkinsSelected())
         {
-            squadronCheckBox.setSelected(true);
+            companyCheckBox.setSelected(true);
         }
 
-        if (skinSessionManager.isNonSquadronSkinsSelected())
+        if (skinSessionManager.isNonCompanySkinsSelected())
         {
-            nonSquadronCheckBox.setSelected(true);
+            nonCompanyCheckBox.setSelected(true);
         }
 
         if (skinSessionManager.isLooseSkinsSelected())
@@ -190,11 +190,11 @@ public class CampaignSkinConfigurationCrewMemberPanel extends ImageResizingPanel
         Color fgColor = ColorMap.PAPER_FOREGROUND;
 
         // Add a radio button for each skin set
-        squadronCheckBox = makeCheckBox("Squadron", "SelectSkinSet:" + "Squadron", fgColor);
-        skinCategoryButtonGrid.add(squadronCheckBox);
+        companyCheckBox = makeCheckBox("Company", "SelectSkinSet:" + "Company", fgColor);
+        skinCategoryButtonGrid.add(companyCheckBox);
 
-        nonSquadronCheckBox = makeCheckBox("Non Squadron", "SelectSkinSet:" + "Non Squadron", fgColor);
-        skinCategoryButtonGrid.add(nonSquadronCheckBox);
+        nonCompanyCheckBox = makeCheckBox("Non Company", "SelectSkinSet:" + "Non Company", fgColor);
+        skinCategoryButtonGrid.add(nonCompanyCheckBox);
 
         looseCheckBox = makeCheckBox("Loose", "SelectSkinSet:" + "Loose", fgColor);
         skinCategoryButtonGrid.add(looseCheckBox);
@@ -225,19 +225,19 @@ public class CampaignSkinConfigurationCrewMemberPanel extends ImageResizingPanel
         JPanel aircraftButtonGrid = new JPanel(new GridLayout(0, 1));
         aircraftButtonGrid.setOpaque(false);
 
-        String labelText = InternationalizationManager.getTranslation("Squadron Aircraft");
+        String labelText = InternationalizationManager.getTranslation("Company Aircraft");
         JLabel label = PWCGLabelFactory.makeTransparentLabel(labelText, ColorMap.PAPER_FOREGROUND, PWCGMonitorFonts.getPrimaryFont(), SwingConstants.LEFT);
         aircraftButtonGrid.add(label);
 
         CrewMember referencePlayer = campaign.findReferencePlayer();
-        Company company = referencePlayer.determineSquadron();
+        Company company = referencePlayer.determineCompany();
 
-        List<TankType> squadronPlanes = company.determineCurrentAircraftList(campaign.getDate());
+        List<TankType> companyPlanes = company.determineCurrentAircraftList(campaign.getDate());
 
-        List<TankType> squadronPlanesByBest = TankSorter.sortTanksByGoodness(squadronPlanes);
+        List<TankType> companyPlanesByBest = TankSorter.sortTanksByGoodness(companyPlanes);
 
         boolean planeSelected = false;
-        for (TankType plane : squadronPlanesByBest)
+        for (TankType plane : companyPlanesByBest)
         {
             // Add this aircraft to the aircraft button group and panel
             JRadioButton aircraftButton = makeRadioButton(plane.getDisplayName(), "SelectPlane:" + plane.getType(), ColorMap.PAPER_FOREGROUND);

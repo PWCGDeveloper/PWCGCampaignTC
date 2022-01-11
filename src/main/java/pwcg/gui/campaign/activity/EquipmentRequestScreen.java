@@ -231,8 +231,8 @@ public class EquipmentRequestScreen extends ImageResizingPanel implements Action
         TankTypeFactory planeTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
         CrewMember referencePlayer = campaign.getReferencePlayer();
         ICountry country = CountryFactory.makeCountryByCountry(referencePlayer.getCountry());
-        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(referencePlayer.getCompanyId());
-        PwcgRoleCategory roleCategory = squadron.getSquadronRoles().selectCompanyPrimaryRoleCategory(campaign.getDate());
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(referencePlayer.getCompanyId());
+        PwcgRoleCategory roleCategory = company.getCompanyRoles().selectCompanyPrimaryRoleCategory(campaign.getDate());
         List<TankType> availableTankTypes = planeTypeFactory.getAvailableTankTypes(country, roleCategory, campaign.getDate());        
 
         replacementAircraftTypeSelector = new JComboBox<String>();
@@ -350,9 +350,9 @@ public class EquipmentRequestScreen extends ImageResizingPanel implements Action
             String planeTypeToChangeTo = (String) replacementAircraftTypeSelector.getSelectedItem();
             
             CrewMember referencePlayer = campaign.getReferencePlayer();
-            Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(referencePlayer.getCompanyId());
+            Company company = PWCGContext.getInstance().getCompanyManager().getCompany(referencePlayer.getCompanyId());
     
-            campaign.getEquipmentManager().actOnEquipmentRequest(squadron, serialNumbersOfChangedPlanes, planeTypeToChangeTo);
+            campaign.getEquipmentManager().actOnEquipmentRequest(company, serialNumbersOfChangedPlanes, planeTypeToChangeTo);
         }
     }
 

@@ -41,7 +41,7 @@ public class CrewMemberSkill
         if (isAdjustSkill(crewMember))
         {
             adjustCrewMemberSkillForPerformance(crewMember);
-            adjustCrewMemberSkillForSquadronSkill(crewMember, company);
+            adjustCrewMemberSkillForCompanySkill(crewMember, company);
         }
     }
 
@@ -99,16 +99,16 @@ public class CrewMemberSkill
         }
     }
 	
-    private void adjustCrewMemberSkillForSquadronSkill(CrewMember crewMember, Company company) throws PWCGException
+    private void adjustCrewMemberSkillForCompanySkill(CrewMember crewMember, Company company) throws PWCGException
     {
-        // Adjust for squadron skill
-        int squadronAdjustmentRoll = RandomNumberGenerator.getRandom(100);
+        // Adjust for company skill
+        int companyAdjustmentRoll = RandomNumberGenerator.getRandom(100);
 
-        // Adjustments for elite squadrons
-        int squadronQuality = company.determineSquadronSkill(campaign.getDate());
-        if (squadronQuality >= 80)
+        // Adjustments for elite companys
+        int companyQuality = company.determineCompanySkill(campaign.getDate());
+        if (companyQuality >= 80)
         {
-            // No novices in elite squadrons
+            // No novices in elite companys
             if (crewMember.getAiSkillLevel() == AiSkillLevel.NOVICE)
             {
                 crewMember.setAiSkillLevel(AiSkillLevel.COMMON);
@@ -116,19 +116,19 @@ public class CrewMemberSkill
             // Mostly veterans
             else if (crewMember.getAiSkillLevel() == AiSkillLevel.COMMON)
             {
-                if  (squadronAdjustmentRoll > 50)
+                if  (companyAdjustmentRoll > 50)
                 {
                     crewMember.setAiSkillLevel(AiSkillLevel.VETERAN);
                 }
             }
         }
-        // Adjustments for quality squadrons
-        else if (squadronQuality >= 60)
+        // Adjustments for quality companys
+        else if (companyQuality >= 60)
         {
-            // Very good squadrons will not have many novices
+            // Very good companys will not have many novices
             if (crewMember.getAiSkillLevel() == AiSkillLevel.NOVICE)
             {
-                if (squadronAdjustmentRoll > 30)
+                if (companyAdjustmentRoll > 30)
                 {
                     crewMember.setAiSkillLevel(AiSkillLevel.COMMON);
                 }
@@ -136,23 +136,23 @@ public class CrewMemberSkill
             // and will tend to have more veterans
             else if (crewMember.getAiSkillLevel() == AiSkillLevel.COMMON)
             {
-                if (squadronAdjustmentRoll > 70)
+                if (companyAdjustmentRoll > 70)
                 {
                     crewMember.setAiSkillLevel(AiSkillLevel.VETERAN);
                 }
             }
         }
-        // Adjustments for common squadrons - no adjustments
-        else if (squadronQuality >= 45)
+        // Adjustments for common companys - no adjustments
+        else if (companyQuality >= 45)
         {
         }
-        // Adjustments for poor squadrons
+        // Adjustments for poor companys
         else 
         {
-            // Very good squadrons will not have many veterans
+            // Very good companys will not have many veterans
             if (crewMember.getAiSkillLevel() == AiSkillLevel.VETERAN)
             {
-                if (squadronAdjustmentRoll < 60)
+                if (companyAdjustmentRoll < 60)
                 {
                     crewMember.setAiSkillLevel(AiSkillLevel.COMMON);
                 }
@@ -160,7 +160,7 @@ public class CrewMemberSkill
             // and will tend to have more novices
             else if (crewMember.getAiSkillLevel() == AiSkillLevel.COMMON)
             {
-                if (squadronAdjustmentRoll < 40)
+                if (companyAdjustmentRoll < 40)
                 {
                     crewMember.setAiSkillLevel(AiSkillLevel.NOVICE);
                 }

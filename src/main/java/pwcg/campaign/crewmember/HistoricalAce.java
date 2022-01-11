@@ -22,7 +22,7 @@ import pwcg.core.utils.RandomNumberGenerator;
 
 public class HistoricalAce extends CrewMember
 {
-    protected List<HistoricalAceSquadron> squadrons = new ArrayList<HistoricalAceSquadron>();
+    protected List<HistoricalAceCompany> companys = new ArrayList<HistoricalAceCompany>();
     protected List<HistoricalAceRank> ranks = new ArrayList<HistoricalAceRank>();
 
     public HistoricalAce()
@@ -40,9 +40,9 @@ public class HistoricalAce extends CrewMember
         determineAceVictories(date, aceNow);
         determineAceMissionsFlown(aceNow);
         determineAceMedals(date, aceNow);
-        Company referenceSquadron = determineHistoricalAceSquadron(date, aceNow);
-        determineAceCountry(date, aceNow, referenceSquadron);
-        determineHistoricalAceRank(date, aceNow, referenceSquadron);
+        Company referenceCompany = determineHistoricalAceCompany(date, aceNow);
+        determineAceCountry(date, aceNow, referenceCompany);
+        determineHistoricalAceRank(date, aceNow, referenceCompany);
         determineAceSkins(aceNow);
         
         return aceNow;
@@ -93,43 +93,43 @@ public class HistoricalAce extends CrewMember
         }
     }
 
-    private Company determineHistoricalAceSquadron(Date date, TankAce aceNow) throws PWCGException
+    private Company determineHistoricalAceCompany(Date date, TankAce aceNow) throws PWCGException
     {
-        aceNow.setSquadronId(-1);
+        aceNow.setCompanyId(-1);
 
-        HistoricalAceSquadron lastHistoricalAceSquadron = null;
-        for (int i = 0; i < squadrons.size(); ++i)
+        HistoricalAceCompany lastHistoricalAceCompany = null;
+        for (int i = 0; i < companys.size(); ++i)
         {
-            HistoricalAceSquadron aceSquadron = squadrons.get(i);
-            if (date.after(aceSquadron.date))
+            HistoricalAceCompany aceCompany = companys.get(i);
+            if (date.after(aceCompany.date))
             {
-                if (aceSquadron.squadron == CrewMemberStatus.STATUS_ON_LEAVE)
+                if (aceCompany.company == CrewMemberStatus.STATUS_ON_LEAVE)
                 {
                     aceNow.setCrewMemberActiveStatus(CrewMemberStatus.STATUS_ON_LEAVE, null, null);
                 }
-                else if (aceSquadron.squadron == CrewMemberStatus.STATUS_KIA)
+                else if (aceCompany.company == CrewMemberStatus.STATUS_KIA)
                 {
                     aceNow.setCrewMemberActiveStatus(CrewMemberStatus.STATUS_KIA, date, null);
                 }
                 else
                 {
                     aceNow.setCrewMemberActiveStatus(CrewMemberStatus.STATUS_ACTIVE, null, null);
-                    lastHistoricalAceSquadron = aceSquadron;
-                    aceNow.setSquadronId(lastHistoricalAceSquadron.squadron);
+                    lastHistoricalAceCompany = aceCompany;
+                    aceNow.setCompanyId(lastHistoricalAceCompany.company);
                 }
             }
         }
 
-        Company squadron = null;
-        if (lastHistoricalAceSquadron != null)
+        Company company = null;
+        if (lastHistoricalAceCompany != null)
         {
-            squadron = PWCGContext.getInstance().getCompanyManager().getCompany(lastHistoricalAceSquadron.squadron);
+            company = PWCGContext.getInstance().getCompanyManager().getCompany(lastHistoricalAceCompany.company);
         }
 
-        return squadron;
+        return company;
     }
 
-    private void determineHistoricalAceRank(Date date, TankAce aceNow, Company referenceSquadron) throws PWCGException
+    private void determineHistoricalAceRank(Date date, TankAce aceNow, Company referenceCompany) throws PWCGException
     {
         if (ranks.size() > 5)
         {
@@ -138,9 +138,9 @@ public class HistoricalAce extends CrewMember
         
         
         ArmedService service = null;
-        if (referenceSquadron != null)
+        if (referenceCompany != null)
         {
-            service = referenceSquadron.determineServiceForCompany(date);
+            service = referenceCompany.determineServiceForCompany(date);
         }
         else
         {
@@ -165,11 +165,11 @@ public class HistoricalAce extends CrewMember
         }
     }
 
-    private void determineAceCountry(Date date, TankAce aceNow, Company referenceSquadron) throws PWCGException
+    private void determineAceCountry(Date date, TankAce aceNow, Company referenceCompany) throws PWCGException
     {
-        if (referenceSquadron != null)
+        if (referenceCompany != null)
         {
-            aceNow.setCountry(referenceSquadron.determineCompanyCountry(date).getCountry());
+            aceNow.setCountry(referenceCompany.determineCompanyCountry(date).getCountry());
         }
         else
         {
@@ -189,11 +189,11 @@ public class HistoricalAce extends CrewMember
 
     public int getStatus(Date date)
     {
-        for (HistoricalAceSquadron squadron : getSquadrons())
+        for (HistoricalAceCompany company : getCompanys())
         {
-            if (squadron.squadron == CrewMemberStatus.STATUS_KIA)
+            if (company.company == CrewMemberStatus.STATUS_KIA)
             {
-                if (date.after(squadron.date))
+                if (date.after(company.date))
                 {
                     return CrewMemberStatus.STATUS_KIA;
                 }
@@ -229,31 +229,31 @@ public class HistoricalAce extends CrewMember
         return medalsAtDate;
     }
 
-    public int getCurrentSquadron(Date date, boolean useOnLeave)
+    public int getCurrentCompany(Date date, boolean useOnLeave)
     {
-        int currentSquadron = -1;
+        int currentCompany = -1;
 
-        for (int i = 0; i < squadrons.size(); ++i)
+        for (int i = 0; i < companys.size(); ++i)
         {
-            HistoricalAceSquadron squadron = squadrons.get(i);
+            HistoricalAceCompany company = companys.get(i);
 
-            if (!squadron.date.after(date))
+            if (!company.date.after(date))
             {
                 if (useOnLeave == true)
                 {
-                    currentSquadron = squadron.squadron;
+                    currentCompany = company.company;
                 }
                 else
                 {
-                    if (squadron.squadron != CrewMemberStatus.STATUS_ON_LEAVE)
+                    if (company.company != CrewMemberStatus.STATUS_ON_LEAVE)
                     {
-                        currentSquadron = squadron.squadron;
+                        currentCompany = company.company;
                     }
                 }
             }
         }
 
-        return currentSquadron;
+        return currentCompany;
     }
 
     public String getCurrentRank(Date date) throws PWCGException
@@ -270,13 +270,13 @@ public class HistoricalAce extends CrewMember
 
         String rankName = "";
 
-        int squadId = getCurrentSquadron(date, false);
-        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(squadId);
+        int squadId = getCurrentCompany(date, false);
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(squadId);
 
-        if (squadron != null && currentRank != null)
+        if (company != null && currentRank != null)
         {
             IRankHelper rankObj = RankFactory.createRankHelper();
-            rankName = rankObj.getRankByService(currentRank.rank, squadron.determineServiceForCompany(date));
+            rankName = rankObj.getRankByService(currentRank.rank, company.determineServiceForCompany(date));
         }
 
         return rankName;
@@ -299,22 +299,22 @@ public class HistoricalAce extends CrewMember
         return numVictories;
     }
 
-    public void addHistoricalAceSquadron(int squadron, Date date)
+    public void addHistoricalAceCompany(int company, Date date)
     {
-        HistoricalAceSquadron as = new HistoricalAceSquadron();
-        as.squadron = squadron;
+        HistoricalAceCompany as = new HistoricalAceCompany();
+        as.company = company;
         as.date = date;
-        squadrons.add(as);
+        companys.add(as);
     }
 
-    public List<HistoricalAceSquadron> getSquadrons()
+    public List<HistoricalAceCompany> getCompanys()
     {
-        return squadrons;
+        return companys;
     }
 
-    public void setSquadrons(ArrayList<HistoricalAceSquadron> squadrons)
+    public void setCompanys(ArrayList<HistoricalAceCompany> companys)
     {
-        this.squadrons = squadrons;
+        this.companys = companys;
     }
 
     public List<HistoricalAceRank> getRanks()
@@ -337,9 +337,9 @@ public class HistoricalAce extends CrewMember
         return country;
     }
 
-    public void setSquadrons(List<HistoricalAceSquadron> squadrons)
+    public void setCompanys(List<HistoricalAceCompany> companys)
     {
-        this.squadrons = squadrons;
+        this.companys = companys;
     }
 
     public void setRanks(List<HistoricalAceRank> ranks)

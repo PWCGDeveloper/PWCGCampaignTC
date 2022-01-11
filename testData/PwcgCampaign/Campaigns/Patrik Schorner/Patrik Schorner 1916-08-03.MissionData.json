@@ -1,7 +1,7 @@
 {
   "missionHeader": {
     "missionFileName": "Patrik Schorner 1916-08-03",
-    "squadron": "Jasta 16b",
+    "company": "Jasta 16b",
     "date": "19160803",
     "time": "17:30:00",
     "aircraftType": "AircraftType \u003d Halberstadt D.I",
@@ -10,11 +10,11 @@
     "duty": "OFFENSIVE",
     "altitude": 2822
   },
-  "missionDescription": "Mission:\nAircraft  Halberstadt D.II\nSquadron  Jasta 16b\nAirbase  Balatre,E Roye\nDate  1916-08-03\n\nWeather Report\nHeavy cloud cover, low altitude.\nCloud layer is 1494 meters.\nWind speed is 2 M/S.\nWind direction is 249.\n\nPrimary Objective\nPenetrate enemy airspace near Ribecourt.  Engage any enemy aircraft that you encounter.\n\n\n",
+  "missionDescription": "Mission:\nAircraft  Halberstadt D.II\nCompany  Jasta 16b\nAirbase  Balatre,E Roye\nDate  1916-08-03\n\nWeather Report\nHeavy cloud cover, low altitude.\nCloud layer is 1494 meters.\nWind speed is 2 M/S.\nWind direction is 249.\n\nPrimary Objective\nPenetrate enemy airspace near Ribecourt.  Engage any enemy aircraft that you encounter.\n\n\n",
   "missionPlanes": [
     {
       "aircraftType": "halberstadtd2",
-      "squadronName": "Jasta 16b",
+      "companyName": "Jasta 16b",
       "crew": {
         "pilot": "Patrik Schorner",
         "observer": "",
@@ -24,7 +24,7 @@
     },
     {
       "aircraftType": "halberstadtd2",
-      "squadronName": "Jasta 16b",
+      "companyName": "Jasta 16b",
       "crew": {
         "pilot": "Johann Hanneman",
         "observer": "",
@@ -34,7 +34,7 @@
     },
     {
       "aircraftType": "halberstadtd2",
-      "squadronName": "Jasta 16b",
+      "companyName": "Jasta 16b",
       "crew": {
         "pilot": "Gebhard Schonbaum",
         "observer": "",
@@ -44,7 +44,7 @@
     },
     {
       "aircraftType": "halberstadtd2",
-      "squadronName": "Jasta 16b",
+      "companyName": "Jasta 16b",
       "crew": {
         "pilot": "Karl Nostitz",
         "observer": "",
@@ -54,7 +54,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 276",
+      "companyName": "FA 276",
       "crew": {
         "pilot": "Horst Gottlieb",
         "observer": "Hildebrand Schlesinger",
@@ -64,7 +64,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 276",
+      "companyName": "FA 276",
       "crew": {
         "pilot": "Baldemar Thimig",
         "observer": "Dolf Oppeln",
@@ -74,7 +74,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 276",
+      "companyName": "FA 276",
       "crew": {
         "pilot": "Reinhard Wecker",
         "observer": "Leopold Schnitzler",
@@ -84,7 +84,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 261",
+      "companyName": "FA 261",
       "crew": {
         "pilot": "Helge Hochberg",
         "observer": "Martin Scherzer",
@@ -94,7 +94,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 261",
+      "companyName": "FA 261",
       "crew": {
         "pilot": "Christof Ulm",
         "observer": "Wilfried Huhn",
@@ -104,7 +104,7 @@
     },
     {
       "aircraftType": "nieuport17brit",
-      "squadronName": "Esc 37",
+      "companyName": "Esc 37",
       "crew": {
         "pilot": "Felix Mourrut",
         "observer": "",
@@ -114,7 +114,7 @@
     },
     {
       "aircraftType": "nieuport17brit",
-      "squadronName": "Esc 37",
+      "companyName": "Esc 37",
       "crew": {
         "pilot": "Frederic Laborie",
         "observer": "",
@@ -124,7 +124,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 2",
+      "companyName": "Esc 2",
       "crew": {
         "pilot": "Cyrille Noel",
         "observer": "Hippolyte Phily",
@@ -134,7 +134,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 2",
+      "companyName": "Esc 2",
       "crew": {
         "pilot": "Leandre Lagarde",
         "observer": "Joseph Labarge",
@@ -144,7 +144,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 227",
+      "companyName": "Esc 227",
       "crew": {
         "pilot": "Michel Antier",
         "observer": "Aime Baboud",
@@ -154,7 +154,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 227",
+      "companyName": "Esc 227",
       "crew": {
         "pilot": "Jules Lachassine",
         "observer": "Charles Clermont",

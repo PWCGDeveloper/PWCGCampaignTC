@@ -33,7 +33,7 @@ import pwcg.testutils.CompanyTestProfile;
 public class FlightSizeCalculatorTest 
 {
     @Mock private FlightInformation flightInformation;
-    @Mock private Company squadron;
+    @Mock private Company company;
     private Campaign campaign;
     private List<Country> countries = Arrays.asList(Country.GERMANY, Country.RUSSIA);
 
@@ -47,7 +47,7 @@ public class FlightSizeCalculatorTest
 	@Test
 	public void calcPlanesInFlightTest() throws PWCGException
 	{
-	    Mockito.when(squadron.determineCompanyPrimaryRoleCategory(Mockito.any())).thenReturn(PwcgRoleCategory.ATTACK);
+	    Mockito.when(company.determineCompanyPrimaryRoleCategory(Mockito.any())).thenReturn(PwcgRoleCategory.ATTACK);
 
 	    for (Country country : countries)
 	    {
@@ -60,7 +60,7 @@ public class FlightSizeCalculatorTest
     @Test
     public void calcPlanesInFlightBombTest() throws PWCGException
     {
-        Mockito.when(squadron.determineCompanyPrimaryRoleCategory(Mockito.any())).thenReturn(PwcgRoleCategory.BOMBER);
+        Mockito.when(company.determineCompanyPrimaryRoleCategory(Mockito.any())).thenReturn(PwcgRoleCategory.BOMBER);
 
         for (Country country : countries)
         {
@@ -81,7 +81,7 @@ public class FlightSizeCalculatorTest
     @Test
     public void calcPlanesInFlightFighterTest() throws PWCGException
     {
-        Mockito.when(squadron.determineCompanyPrimaryRoleCategory(Mockito.any())).thenReturn(PwcgRoleCategory.FIGHTER);
+        Mockito.when(company.determineCompanyPrimaryRoleCategory(Mockito.any())).thenReturn(PwcgRoleCategory.FIGHTER);
 
         for (Country country : countries)
         {
@@ -139,12 +139,12 @@ public class FlightSizeCalculatorTest
 	private int calcPlanesInFlight(FlightTypes flightType, Country flightCountry) throws PWCGException
 	{
         ICountry country = CountryFactory.makeCountryByCountry(flightCountry);
-        Mockito.when(squadron.getCountry()).thenReturn(country);
+        Mockito.when(company.getCountry()).thenReturn(country);
 
         Mockito.when(flightInformation.getCampaign()).thenReturn(campaign);
         Mockito.when(flightInformation.getFlightType()).thenReturn(flightType);
-        Mockito.when(flightInformation.getCompany()).thenReturn(squadron);
-        Mockito.when(squadron.getCountry()).thenReturn(country);
+        Mockito.when(flightInformation.getCompany()).thenReturn(company);
+        Mockito.when(company.getCountry()).thenReturn(country);
         
 		FlightSizeCalculator flightSizeCalculator = new FlightSizeCalculator(flightInformation);
 		int planesInFlight = flightSizeCalculator.calcPlanesInFlight();

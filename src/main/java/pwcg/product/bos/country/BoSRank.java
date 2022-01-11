@@ -207,7 +207,7 @@ public class BoSRank implements IRankHelper
     }
 
     @Override
-    public int getNumCrewMembersInSquadron()
+    public int getNumCrewMembersInCompany()
     {
         return 12;
     }

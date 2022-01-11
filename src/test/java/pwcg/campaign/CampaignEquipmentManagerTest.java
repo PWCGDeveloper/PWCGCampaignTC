@@ -31,7 +31,7 @@ public class CampaignEquipmentManagerTest
     }
     
     @Test
-    public void makeAircraftForSquadronTest () throws PWCGException
+    public void makeAircraftForCompanyTest () throws PWCGException
     {
         Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
         Equipment equipment = campaign.getEquipmentManager().getEquipmentForCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
@@ -62,10 +62,10 @@ public class CampaignEquipmentManagerTest
             ++count;
         }
         
-        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
         TankTypeFactory tankTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
         TankType tankType = tankTypeFactory.getTankById(TankAttributeMapping.PANTHER_D.getTankType());
-        campaign.getEquipmentManager().actOnEquipmentRequest(squadron, tanksToReplace, tankType.getDisplayName());
+        campaign.getEquipmentManager().actOnEquipmentRequest(company, tanksToReplace, tankType.getDisplayName());
         
         int pantherCount = 0;
         for (EquippedTank tank : equipment.getActiveEquippedTanks().values())

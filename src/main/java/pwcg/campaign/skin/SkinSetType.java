@@ -3,7 +3,7 @@ package pwcg.campaign.skin;
 public enum SkinSetType
 {
     SKIN_CONFIGURED("Configured"),
-    SKIN_SQUADRON("Squadron"),
+    SKIN_Company("Company"),
     SKIN_ACE("Ace"),
     SKIN_USER_ASSIGNED("UserAssigned"),
     SKIN_LOOSE("Loose"),

@@ -1,7 +1,7 @@
 {
   "missionHeader": {
     "missionFileName": "Patrik Schorner 1916-08-05",
-    "squadron": "Jasta 16b",
+    "company": "Jasta 16b",
     "date": "19160805",
     "time": "11:0:00",
     "aircraftType": "AircraftType \u003d Halberstadt D.I",
@@ -10,11 +10,11 @@
     "duty": "PATROL",
     "altitude": 1797
   },
-  "missionDescription": "Mission:\nAircraft  Halberstadt D.II\nSquadron  Jasta 16b\nAirbase  Balatre,E Roye\nDate  1916-08-05\n\nWeather Report\nMedium cloud cover, medium altitude.\nCloud layer is 1636 meters.\nWind speed is 2 M/S.\nWind direction is 188.\n\nPrimary Objective\nPatrol airspace  near Rosieres-en-Santerre.  Engage any enemy aircraft that you encounter.\n\n\n",
+  "missionDescription": "Mission:\nAircraft  Halberstadt D.II\nCompany  Jasta 16b\nAirbase  Balatre,E Roye\nDate  1916-08-05\n\nWeather Report\nMedium cloud cover, medium altitude.\nCloud layer is 1636 meters.\nWind speed is 2 M/S.\nWind direction is 188.\n\nPrimary Objective\nPatrol airspace  near Rosieres-en-Santerre.  Engage any enemy aircraft that you encounter.\n\n\n",
   "missionPlanes": [
     {
       "aircraftType": "halberstadtd2",
-      "squadronName": "Jasta 16b",
+      "companyName": "Jasta 16b",
       "crew": {
         "pilot": "Patrik Schorner",
         "observer": "",
@@ -24,7 +24,7 @@
     },
     {
       "aircraftType": "halberstadtd2",
-      "squadronName": "Jasta 16b",
+      "companyName": "Jasta 16b",
       "crew": {
         "pilot": "Kristof Bahr",
         "observer": "",
@@ -34,7 +34,7 @@
     },
     {
       "aircraftType": "halberstadtd2",
-      "squadronName": "Jasta 16b",
+      "companyName": "Jasta 16b",
       "crew": {
         "pilot": "Detlef Schwarzer",
         "observer": "",
@@ -44,7 +44,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 7",
+      "companyName": "FA 7",
       "crew": {
         "pilot": "Stefan Kupferblum",
         "observer": "Wilhelm Strasburger",
@@ -54,7 +54,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 7",
+      "companyName": "FA 7",
       "crew": {
         "pilot": "Gunther Scheu",
         "observer": "Christian Blumberg",
@@ -64,7 +64,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 18",
+      "companyName": "FA 18",
       "crew": {
         "pilot": "Adolf Teyber",
         "observer": "Sigwalt Schild",
@@ -74,7 +74,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 18",
+      "companyName": "FA 18",
       "crew": {
         "pilot": "Dietrich Schirlitz",
         "observer": "Berthold Welser",
@@ -84,7 +84,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 18",
+      "companyName": "FA 18",
       "crew": {
         "pilot": "Nikolaus Wuttke",
         "observer": "Christof Osswald",
@@ -94,7 +94,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 16",
+      "companyName": "FA 16",
       "crew": {
         "pilot": "Johann Ackner",
         "observer": "Engelbert Hess",
@@ -104,7 +104,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 16",
+      "companyName": "FA 16",
       "crew": {
         "pilot": "Engelbert Schwarzer",
         "observer": "Till Schmetterling",
@@ -114,7 +114,7 @@
     },
     {
       "aircraftType": "sopstr",
-      "squadronName": "No 70 Squadron RFC",
+      "companyName": "No 70 Company RFC",
       "crew": {
         "pilot": "Aldis Radley",
         "observer": "Coleman Balam",
@@ -124,7 +124,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 45",
+      "companyName": "Esc 45",
       "crew": {
         "pilot": "Vincent Lacabanne",
         "observer": "Jean-Marie Morales",
@@ -134,7 +134,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 13",
+      "companyName": "Esc 13",
       "crew": {
         "pilot": "Victor Justet",
         "observer": "Alexis Chevenement",
@@ -144,7 +144,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 9",
+      "companyName": "Esc 9",
       "crew": {
         "pilot": "Leonard Bretons",
         "observer": "Aime Ratoin",

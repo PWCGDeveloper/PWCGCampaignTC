@@ -12,7 +12,7 @@ public class EquippedTank extends TankType
 {
     protected int serialNumber = SerialNumber.NO_SERIAL_NUMBER;
     protected int planeStatus = TankStatus.NO_STATUS;
-    protected int squadronId;
+    protected int companyId;
     protected Date dateRemovedFromService;
     protected String aircraftIdCode;
     protected boolean isEquipmentRequest = false;
@@ -22,12 +22,12 @@ public class EquippedTank extends TankType
         super();
     }
 
-    public EquippedTank(TankType planeType, int serialNumber, int squadronId, int planeStatus)
+    public EquippedTank(TankType planeType, int serialNumber, int companyId, int planeStatus)
     {
         super();
         planeType.copyTemplate(this);
         this.serialNumber = serialNumber;
-        this.squadronId = squadronId;
+        this.companyId = companyId;
         this.planeStatus = planeStatus;
     }
 
@@ -35,7 +35,7 @@ public class EquippedTank extends TankType
     {
         super.copyTemplate(equippedPlane);
         equippedPlane.serialNumber = this.serialNumber;
-        equippedPlane.squadronId = this.squadronId;
+        equippedPlane.companyId = this.companyId;
         equippedPlane.dateRemovedFromService = this.dateRemovedFromService;
         equippedPlane.planeStatus = this.planeStatus;
         equippedPlane.aircraftIdCode = this.aircraftIdCode;
@@ -94,14 +94,14 @@ public class EquippedTank extends TankType
         this.dateRemovedFromService = dateRemovedFromService;
     }
 
-    public int getSquadronId()
+    public int getCompanyId()
     {
-        return squadronId;
+        return companyId;
     }
 
-    public void setSquadronId(int squadronId)
+    public void setCompanyId(int companyId)
     {
-        this.squadronId = squadronId;
+        this.companyId = companyId;
     }
 
     public String getAircraftIdCode()

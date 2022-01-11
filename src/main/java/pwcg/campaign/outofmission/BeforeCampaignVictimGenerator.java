@@ -22,38 +22,38 @@ public class BeforeCampaignVictimGenerator implements IVictimGenerator
     private CrewMember victimCrewMember;
 
     private Campaign campaign;
-    private Company victimSquadron;
+    private Company victimCompany;
     private Date date;
 
-    public BeforeCampaignVictimGenerator (Campaign campaign, Company squadron, Date date)
+    public BeforeCampaignVictimGenerator (Campaign campaign, Company company, Date date)
     {
         this.campaign = campaign;
-        this.victimSquadron = squadron;
+        this.victimCompany = company;
         this.date = date;
     }
 
     @Override
     public EquippedTank generateVictimPlane() throws PWCGException
     {
-        EquippedTank equippedPlane = TankEquipmentFactory.makePlaneForBeforeCampaign(campaign, victimSquadron.determineSide(), date);
+        EquippedTank equippedPlane = TankEquipmentFactory.makePlaneForBeforeCampaign(campaign, victimCompany.determineSide(), date);
         return equippedPlane;
     }
 
     @Override
     public CrewMember generateVictimAiCrew() throws PWCGException 
     {        
-        List<CrewMember> allCrewMembers = generateAICrewMembers(victimSquadron, date);
+        List<CrewMember> allCrewMembers = generateAICrewMembers(victimCompany, date);
         victimCrewMember = selectVictim(allCrewMembers);
         return victimCrewMember;
     }
 
-    private CrewMember selectVictim(List<CrewMember> squadronMembers) throws PWCGException 
+    private CrewMember selectVictim(List<CrewMember> crewMembers) throws PWCGException 
     {
-        int index = RandomNumberGenerator.getRandom(squadronMembers.size());
-        return squadronMembers.get(index);
+        int index = RandomNumberGenerator.getRandom(crewMembers.size());
+        return crewMembers.get(index);
     }
 
-    private List<CrewMember> generateAICrewMembers(Company squadron, Date campaignDate) throws PWCGException 
+    private List<CrewMember> generateAICrewMembers(Company company, Date campaignDate) throws PWCGException 
     {
         Map<Integer, Integer> numAtRank = new HashMap<Integer, Integer>();
         numAtRank.put(0, 1);
@@ -62,18 +62,18 @@ public class BeforeCampaignVictimGenerator implements IVictimGenerator
         numAtRank.put(3, 3);
         numAtRank.put(4, 3);
                 
-        return generateAISquadMembers(squadron, campaignDate, numAtRank);
+        return generateAISquadMembers(company, campaignDate, numAtRank);
     }
 
     private List<CrewMember> generateAISquadMembers(
-                    Company squadron, 
+                    Company company, 
                     Date campaignDate, 
                     Map<Integer, Integer> numAtRank)
                     throws PWCGException
     {
         // Add the AI crewMembers
         IRankHelper rankLists = RankFactory.createRankHelper();
-        List<String> ranks = rankLists.getRanksByService(squadron.determineServiceForCompany(campaignDate));
+        List<String> ranks = rankLists.getRanksByService(company.determineServiceForCompany(campaignDate));
         
         List<CrewMember> squadMembers = new ArrayList<CrewMember>();
         
@@ -91,9 +91,9 @@ public class BeforeCampaignVictimGenerator implements IVictimGenerator
             {
                 CrewMember aiCrewMember = new CrewMember();
 
-                String squaddieName = CrewMemberNames.getInstance().getName(squadron.determineServiceForCompany(campaignDate), new HashMap<>());
+                String squaddieName = CrewMemberNames.getInstance().getName(company.determineServiceForCompany(campaignDate), new HashMap<>());
                 aiCrewMember.setName(squaddieName);
-                aiCrewMember.setRank(rankLists.getRankByService(rankPos, squadron.determineServiceForCompany(campaignDate)));
+                aiCrewMember.setRank(rankLists.getRankByService(rankPos, company.determineServiceForCompany(campaignDate)));
 
                 squadMembers.add(aiCrewMember);
             }

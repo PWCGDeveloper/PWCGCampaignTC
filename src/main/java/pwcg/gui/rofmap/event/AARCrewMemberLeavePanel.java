@@ -80,7 +80,7 @@ public class AARCrewMemberLeavePanel extends AARDocumentPanel
         List<AceLeaveEvent> aceLeaveEvents = aarCoordinator.getAarContext().getUiDebriefData().getAceLeavePanelData().getAcesOnLeaveDuringElapsedTime();
         for (AceLeaveEvent aceLeaveEvent : aceLeaveEvents)
 		{
-            if (aceLeaveEvent.getSquadronId() == campaign.findReferencePlayer().getCompanyId())
+            if (aceLeaveEvent.getCompanyId() == campaign.findReferencePlayer().getCompanyId())
             {
                 CampaignReportAceLeaveGUI leaveGui = new CampaignReportAceLeaveGUI(aceLeaveEvent, campaign);
                 String tabName = "Leave: " + aceLeaveEvent.getCrewMemberName();

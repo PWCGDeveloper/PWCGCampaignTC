@@ -63,14 +63,14 @@ public class AARCoordinatorLossAndReplacementAnalyzer
             AAROutOfMissionStepper stepper = AARFactory.makeAAROutOfMissionStepper(campaign, aarContext);
             stepper.oneStep();
 
-	    	int viableSquadrons = PWCGContext.getInstance().getCompanyManager().getViableCompanies(campaign).size();
+	    	int viableCompanys = PWCGContext.getInstance().getCompanyManager().getViableCompanies(campaign).size();
             int airVictories = aarContext.getPersonnelAcheivements().getTotalAirToAirVictories();
             int groundVictories = aarContext.getPersonnelAcheivements().getTotalAirToGroundVictories();
 	    	int losses = aarContext.getPersonnelLosses().getSquadMembersLostAndInjured().size();
 	    	int replacements = campaign.getPersonnelManager().getReplacementCount();
 	    	int medalsAwarded = aarContext.getPersonnelAwards().getMedalsAwarded().size();
             int promotionsAwarded = aarContext.getPersonnelAwards().getPromotions().size();
-            int transfers = aarContext.getResupplyData().getSquadronTransferData().getCrewMembersTransferred().size();
+            int transfers = aarContext.getResupplyData().getCompanyTransferData().getCrewMembersTransferred().size();
             
             Map<Integer, CrewMember> allCampaignMembers = campaign.getPersonnelManager().getAllCampaignMembers();  
             CrewMembers activeAiCampaignMembers = CrewMemberFilter.filterActiveAI(allCampaignMembers, campaign.getDate());
@@ -118,7 +118,7 @@ public class AARCoordinatorLossAndReplacementAnalyzer
             }
             
             
-            printShortHandedSquadrons();
+            printShortHandedCompanys();
             
             System.out.println("=====================================================");
             System.out.println("Cycle: " + cycleNum);
@@ -132,7 +132,7 @@ public class AARCoordinatorLossAndReplacementAnalyzer
             System.out.println("  Axis Equipment: " + axisEquipmentLosses);
             System.out.println("  Equipment Replacements Available: " + campaign.getEquipmentManager().getReplacementCount());
             System.out.println("Replacement: " + replacements);
-            System.out.println("Squadrons: " + viableSquadrons);
+            System.out.println("Companys: " + viableCompanys);
             System.out.println("Medals: " + medalsAwarded);
             System.out.println("Promotions: " + promotionsAwarded);
             System.out.println("Transfers: " + transfers);
@@ -172,15 +172,15 @@ public class AARCoordinatorLossAndReplacementAnalyzer
 
     }
 
-    private void printShortHandedSquadrons() throws PWCGException
+    private void printShortHandedCompanys() throws PWCGException
     {
         System.out.println("=====================================================");
-        for (CompanyPersonnel squadronPersonnel : campaign.getPersonnelManager().getAllCompanyPersonnel())
+        for (CompanyPersonnel companyPersonnel : campaign.getPersonnelManager().getAllCompanyPersonnel())
         {
-            System.out.println(squadronPersonnel.getCompany().determineDisplayName(campaign.getDate()));
-            System.out.println(" Personnel size is " + squadronPersonnel.getCrewMembersWithAces().getActiveCount(campaign.getDate()));
+            System.out.println(companyPersonnel.getCompany().determineDisplayName(campaign.getDate()));
+            System.out.println(" Personnel size is " + companyPersonnel.getCrewMembersWithAces().getActiveCount(campaign.getDate()));
             
-            Equipment equipment = campaign.getEquipmentManager().getEquipmentForCompany(squadronPersonnel.getCompany().getCompanyId());
+            Equipment equipment = campaign.getEquipmentManager().getEquipmentForCompany(companyPersonnel.getCompany().getCompanyId());
             System.out.println(" Equipment size is " + equipment.getActiveEquippedTanks().size());
         }
     }

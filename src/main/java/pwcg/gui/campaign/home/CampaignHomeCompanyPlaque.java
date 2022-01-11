@@ -42,7 +42,7 @@ public class CampaignHomeCompanyPlaque extends JPanel
 
     public void makeDescPanel(int companyId) throws PWCGException 
     {
-        String imagePath = UiImageResolver.getImage(ScreenIdentifier.CampaignHomeSquadronPlaque);
+        String imagePath = UiImageResolver.getImage(ScreenIdentifier.CampaignHomeCompanyPlaque);
         ImageResizingPanel plaquePanel = ImageResizingPanelBuilder.makeImageResizingPanel(imagePath);
         plaquePanel.setLayout(new BorderLayout());
         plaquePanel.setBorder(PwcgBorderFactory.createPlaqueBackgroundBorder());

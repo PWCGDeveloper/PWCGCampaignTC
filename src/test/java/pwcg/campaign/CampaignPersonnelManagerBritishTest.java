@@ -32,14 +32,14 @@ public class CampaignPersonnelManagerBritishTest
     {            	    
         Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.SEVENTH_DIVISION_PROFILE);
 
-        CompanyPersonnel squadronPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(CompanyTestProfile.SEVENTH_DIVISION_PROFILE.getCompanyId());
-        CrewMembers squadronMembersNoPlayerNoAces = CrewMemberFilter.filterActiveAI(squadronPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());        
-    	Assertions.assertTrue (squadronMembersNoPlayerNoAces.getCrewMemberList().size() == (Company.COMPANY_STAFF_SIZE - 1));
+        CompanyPersonnel companyPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(CompanyTestProfile.SEVENTH_DIVISION_PROFILE.getCompanyId());
+        CrewMembers crewMembersNoPlayerNoAces = CrewMemberFilter.filterActiveAI(companyPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());        
+    	Assertions.assertTrue (crewMembersNoPlayerNoAces.getCrewMemberList().size() == (Company.COMPANY_STAFF_SIZE - 1));
         
-        CrewMembers squadronMembersNoPlayerWithAces = CrewMemberFilter.filterActiveAIAndAces(squadronPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());        
-        Assertions.assertTrue (squadronMembersNoPlayerWithAces.getCrewMemberList().size() == (Company.COMPANY_STAFF_SIZE - 1));
+        CrewMembers crewMembersNoPlayerWithAces = CrewMemberFilter.filterActiveAIAndAces(companyPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());        
+        Assertions.assertTrue (crewMembersNoPlayerWithAces.getCrewMemberList().size() == (Company.COMPANY_STAFF_SIZE - 1));
 
-        CrewMembers squadronMembersWithPlayerWithAces = CrewMemberFilter.filterActiveAIAndPlayerAndAces(squadronPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());        
-        Assertions.assertTrue (squadronMembersWithPlayerWithAces.getCrewMemberList().size() == Company.COMPANY_STAFF_SIZE);
+        CrewMembers crewMembersWithPlayerWithAces = CrewMemberFilter.filterActiveAIAndPlayerAndAces(companyPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());        
+        Assertions.assertTrue (crewMembersWithPlayerWithAces.getCrewMemberList().size() == Company.COMPANY_STAFF_SIZE);
     }
 }

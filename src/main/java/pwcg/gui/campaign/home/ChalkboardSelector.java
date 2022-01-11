@@ -50,7 +50,7 @@ public class ChalkboardSelector extends JPanel implements ActionListener
         JPanel selectorPanel = new JPanel(new GridLayout(0, 3));
         selectorPanel.setOpaque(false);
 
-        JRadioButton crewMembersButton = makeRadioButton("CrewMembers", "CampCrewMembers", "Show squadron crewMember chalk board");
+        JRadioButton crewMembersButton = makeRadioButton("CrewMembers", "CampCrewMembers", "Show company crewMember chalk board");
         selectorPanel.add(crewMembersButton);
 
         JRadioButton playerCrewMembersButton = makeRadioButton("Player CrewMembers", "CampPlayerCrewMembers", "Show player crewMembers chalk board");
@@ -108,7 +108,7 @@ public class ChalkboardSelector extends JPanel implements ActionListener
 
             if (action.equalsIgnoreCase("CampCrewMembers"))
             {
-                createPlayerSquadronContext();
+                createPlayerCompanyContext();
             }            
             else if (action.equalsIgnoreCase("CampPlayerCrewMembers"))
             {
@@ -156,22 +156,22 @@ public class ChalkboardSelector extends JPanel implements ActionListener
         CampaignEquipmentChalkBoardPanelSet equipmentChalkboardDisplay = new CampaignEquipmentChalkBoardPanelSet(campaignHome.getChalkboardSelector());
         equipmentChalkboardDisplay.makeEquipmentPanel(campaignHome.getCampaign());
         
-        List<CrewMember> squadronMembers = makeCrewMemberList();
+        List<CrewMember> crewMembers = makeCrewMemberList();
         CrewMember referencePlayer = campaign.findReferencePlayer();
-        JPanel squadronPanel = CampaignHomeRightPanelFactory.makeCampaignHomeSquadronRightPanel(campaignHome.getCampaign(), campaignHome, squadronMembers, referencePlayer.getCompanyId());
+        JPanel companyPanel = CampaignHomeRightPanelFactory.makeCampaignHomeCompanyRightPanel(campaignHome.getCampaign(), campaignHome, crewMembers, referencePlayer.getCompanyId());
 
-        campaignHome.createNewContext(equipmentChalkboardDisplay, squadronPanel);
+        campaignHome.createNewContext(equipmentChalkboardDisplay, companyPanel);
     }    
 
-    public void createPlayerSquadronContext() throws PWCGException 
+    public void createPlayerCompanyContext() throws PWCGException 
     {
-        List<CrewMember> squadronMembers = makeCrewMemberList();
-        JPanel chalkboardPanel =  CampaignHomeCenterPanelFactory.makeCampaignHomeCenterPanel(campaignHome, squadronMembers);
+        List<CrewMember> crewMembers = makeCrewMemberList();
+        JPanel chalkboardPanel =  CampaignHomeCenterPanelFactory.makeCampaignHomeCenterPanel(campaignHome, crewMembers);
         
         CrewMember referencePlayer = campaign.findReferencePlayer();
-        JPanel squadronPanel = CampaignHomeRightPanelFactory.makeCampaignHomeSquadronRightPanel(campaignHome.getCampaign(), campaignHome, squadronMembers, referencePlayer.getCompanyId());
+        JPanel companyPanel = CampaignHomeRightPanelFactory.makeCampaignHomeCompanyRightPanel(campaignHome.getCampaign(), campaignHome, crewMembers, referencePlayer.getCompanyId());
 
-        campaignHome.createNewContext(chalkboardPanel, squadronPanel);
+        campaignHome.createNewContext(chalkboardPanel, companyPanel);
     }
 
     public void createPlayerCrewMembersContext() throws PWCGException 
@@ -187,9 +187,9 @@ public class ChalkboardSelector extends JPanel implements ActionListener
     private List<CrewMember> makeCrewMemberList() throws PWCGException 
     {
         CrewMember referencePlayer = campaign.findReferencePlayer();
-        CompanyPersonnel squadronPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(referencePlayer.getCompanyId());
-        CrewMembers squadronMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(squadronPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
-        return squadronMembers.sortCrewMembers(campaign.getDate());
+        CompanyPersonnel companyPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(referencePlayer.getCompanyId());
+        CrewMembers crewMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(companyPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
+        return crewMembers.sortCrewMembers(campaign.getDate());
     }
 
     private void createTopAceContext(TopAcesListType topAcesListType) throws PWCGException 

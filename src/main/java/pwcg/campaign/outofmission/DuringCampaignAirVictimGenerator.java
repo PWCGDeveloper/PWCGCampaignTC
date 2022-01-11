@@ -21,17 +21,17 @@ import pwcg.core.utils.RandomNumberGenerator;
 public class DuringCampaignAirVictimGenerator implements IVictimGenerator
 {    
     private Campaign campaign;
-    private Company victimSquadron;
+    private Company victimCompany;
 
     private Map<Integer, CrewMember> lowRanks = new HashMap<>();
     private Map<Integer, CrewMember> medRanks = new HashMap<>();
     private Map<Integer, CrewMember> highRanks = new HashMap<>();
     private Map<Integer, CrewMember> all = new HashMap<>();
 
-    public DuringCampaignAirVictimGenerator (Campaign campaign, Company victimSquadron) throws PWCGException
+    public DuringCampaignAirVictimGenerator (Campaign campaign, Company victimCompany) throws PWCGException
     {
         this.campaign = campaign;
-        this.victimSquadron = victimSquadron;
+        this.victimCompany = victimCompany;
     }
 
     public CrewMember generateVictimAiCrew() throws PWCGException 
@@ -54,10 +54,10 @@ public class DuringCampaignAirVictimGenerator implements IVictimGenerator
         for (CrewMember crewMember : possibleVictims.values())
         {
             IRankHelper rankObj = RankFactory.createRankHelper();
-            Company possibleVictimSquadron = crewMember.determineSquadron();
-            if (possibleVictimSquadron != null)
+            Company possibleVictimCompany = crewMember.determineCompany();
+            if (possibleVictimCompany != null)
             {
-                ArmedService victimService = possibleVictimSquadron.determineServiceForCompany(campaign.getDate());
+                ArmedService victimService = possibleVictimCompany.determineServiceForCompany(campaign.getDate());
                 int rankPos = rankObj.getRankPosByService(crewMember.getRank(), victimService);
                 if (rankPos == 0)
                 {
@@ -84,9 +84,9 @@ public class DuringCampaignAirVictimGenerator implements IVictimGenerator
     private Map<Integer, CrewMember> getPossibleVictims() throws PWCGException 
     {
         Map<Integer, CrewMember> possibleVictims = new HashMap<>();
-        CompanyPersonnel squadronPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(victimSquadron.getCompanyId());
-        CrewMembers squadronMembers = CrewMemberFilter.filterActiveAINoWounded(squadronPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
-        for (CrewMember crewMember : squadronMembers.getCrewMemberList())
+        CompanyPersonnel companyPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(victimCompany.getCompanyId());
+        CrewMembers crewMembers = CrewMemberFilter.filterActiveAINoWounded(companyPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
+        for (CrewMember crewMember : crewMembers.getCrewMemberList())
         {
             possibleVictims.put(crewMember.getSerialNumber(), crewMember);
         }
@@ -136,7 +136,7 @@ public class DuringCampaignAirVictimGenerator implements IVictimGenerator
 
     public EquippedTank generateVictimPlane() throws PWCGException 
     {        
-        EquippedTank victimPlane = campaign.getEquipmentManager().getAnyActiveTankFromCompany(victimSquadron.getCompanyId());
+        EquippedTank victimPlane = campaign.getEquipmentManager().getAnyActiveTankFromCompany(victimCompany.getCompanyId());
         return victimPlane;
     }
 

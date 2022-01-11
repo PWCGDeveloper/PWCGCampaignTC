@@ -53,27 +53,27 @@ public class EquipmentReplacementHandlerTest
     public void testTransfersInForLostCampaignMembers() throws PWCGException
     {
         ResupplyNeedBuilder equipmentNeedBuilder = new ResupplyNeedBuilder(campaign, armedService);
-        EquipmentReplacementHandler squadronTransferHandler = new EquipmentReplacementHandler(campaign, equipmentNeedBuilder);
+        EquipmentReplacementHandler companyTransferHandler = new EquipmentReplacementHandler(campaign, equipmentNeedBuilder);
         
         deactivateCampaignEquipment();
       
-        EquipmentResupplyData equipmentTransferData = squadronTransferHandler.resupplyForLosses(armedService);
+        EquipmentResupplyData equipmentTransferData = companyTransferHandler.resupplyForLosses(armedService);
         Assertions.assertTrue (equipmentTransferData.getTransferCount() == 3);
     }
 
     private void deactivateCampaignEquipment() throws PWCGException
     {
         Date inactiveDate = DateUtils.removeTimeDays(campaign.getDate(), 10);
-        Company playerSquadron = campaign.determinePlayerCompanies().get(0);
+        Company playerCompany = campaign.determinePlayerCompanies().get(0);
         int numInactivated = 0;
         for (Equipment equipment: campaign.getEquipmentManager().getEquipmentAllCompanies().values())
         {
             for (EquippedTank equippedPlane : equipment.getActiveEquippedTanks().values())
             {
-                Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(equippedPlane.getCompanyId());
-                if (squadron.getService() == armedService.getServiceId())
+                Company company = PWCGContext.getInstance().getCompanyManager().getCompany(equippedPlane.getCompanyId());
+                if (company.getService() == armedService.getServiceId())
                 {
-                    if (playerSquadron.getCompanyId() != equippedPlane.getCompanyId())
+                    if (playerCompany.getCompanyId() != equippedPlane.getCompanyId())
                     {
                         equippedPlane.setTankStatus(TankStatus.STATUS_DESTROYED);
                         equippedPlane.setDateRemovedFromService(inactiveDate);
@@ -95,25 +95,25 @@ public class EquipmentReplacementHandlerTest
     public void testTransfersInForLostCrewMembers() throws PWCGException
     {
         ResupplyNeedBuilder equipmentNeedBuilder = new ResupplyNeedBuilder(campaign, armedService);
-        EquipmentReplacementHandler squadronTransferHandler = new EquipmentReplacementHandler(campaign, equipmentNeedBuilder);
+        EquipmentReplacementHandler companyTransferHandler = new EquipmentReplacementHandler(campaign, equipmentNeedBuilder);
         
-        deactivateSquadronEquipment();
+        deactivateCompanyEquipment();
       
-        EquipmentResupplyData equipmentTransferData = squadronTransferHandler.resupplyForLosses(armedService);
+        EquipmentResupplyData equipmentTransferData = companyTransferHandler.resupplyForLosses(armedService);
         Assertions.assertTrue (equipmentTransferData.getTransferCount() == 3);
     }
 
-    private void deactivateSquadronEquipment() throws PWCGException
+    private void deactivateCompanyEquipment() throws PWCGException
     {
         Date inactiveDate = DateUtils.removeTimeDays(campaign.getDate(), 10);
 
         int numInactivated = 0;
-        Company playerSquadron = campaign.determinePlayerCompanies().get(0);
-        Equipment equipment = campaign.getEquipmentManager().getEquipmentForCompany(playerSquadron.getCompanyId());
+        Company playerCompany = campaign.determinePlayerCompanies().get(0);
+        Equipment equipment = campaign.getEquipmentManager().getEquipmentForCompany(playerCompany.getCompanyId());
         for (EquippedTank equippedPlane : equipment.getActiveEquippedTanks().values())
         {
-            Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(playerSquadron.getCompanyId());
-            if (squadron.getCompanyId() == equippedPlane.getCompanyId())
+            Company company = PWCGContext.getInstance().getCompanyManager().getCompany(playerCompany.getCompanyId());
+            if (company.getCompanyId() == equippedPlane.getCompanyId())
             {                
                 equippedPlane.setTankStatus(TankStatus.STATUS_DESTROYED);
                 equippedPlane.setDateRemovedFromService(inactiveDate);

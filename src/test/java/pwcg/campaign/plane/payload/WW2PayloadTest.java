@@ -36,7 +36,7 @@ public class WW2PayloadTest
     @Mock
     Campaign campaign;
     @Mock
-    Company squadron;
+    Company company;
     @Mock
     ICountry country;
 
@@ -49,8 +49,8 @@ public class WW2PayloadTest
         
 
         Mockito.when(flight.getTargetDefinition()).thenReturn(targetDefinition);
-        Mockito.when(flight.getCompany()).thenReturn(squadron);
-        Mockito.when(squadron.getCountry()).thenReturn(country);
+        Mockito.when(flight.getCompany()).thenReturn(company);
+        Mockito.when(company.getCountry()).thenReturn(country);
         Mockito.when(country.getCountry()).thenReturn(Country.RUSSIA);
 
         Mockito.when(flight.getCampaign()).thenReturn(campaign);

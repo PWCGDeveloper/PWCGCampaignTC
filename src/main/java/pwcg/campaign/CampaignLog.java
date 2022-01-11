@@ -24,11 +24,11 @@ public class CampaignLog
 		return logs;
 	}
 
-	public void addLog(String logEntryText, int squadronId)
+	public void addLog(String logEntryText, int companyId)
 	{
 	    CampaignLogEntry logEntry = new CampaignLogEntry();
 	    logEntry.setLog(logEntryText);
-	    logEntry.setSquadronId(squadronId);
+	    logEntry.setCompanyId(companyId);
         logs.add(logEntry);
 	}
 

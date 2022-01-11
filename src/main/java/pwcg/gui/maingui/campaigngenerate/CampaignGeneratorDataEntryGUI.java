@@ -137,7 +137,7 @@ public class CampaignGeneratorDataEntryGUI extends JPanel implements ActionListe
 			rowCount = createRankWidget(labelConstraints, dataConstraints, campaignGeneratePanel, rowCount);
 
             rowCount =  spacerFullRow(labelConstraints, dataConstraints, campaignGeneratePanel, rowCount);
-			rowCount = createSquadronWidget(labelConstraints, dataConstraints, campaignGeneratePanel, rowCount);
+			rowCount = createCompanyWidget(labelConstraints, dataConstraints, campaignGeneratePanel, rowCount);
 
             rowCount =  spacerFullRow(labelConstraints, dataConstraints, campaignGeneratePanel, rowCount);
             rowCount =  spacerFullRow(labelConstraints, dataConstraints, campaignGeneratePanel, rowCount);
@@ -148,7 +148,7 @@ public class CampaignGeneratorDataEntryGUI extends JPanel implements ActionListe
 			
 			this.add(campaignGeneratePanel, BorderLayout.NORTH);
 	          
-            JPanel companyPanel = createSquadronInfoPanel ();
+            JPanel companyPanel = createCompanyInfoPanel ();
             this.add(companyPanel, BorderLayout.SOUTH);
             
             evaluateUI();
@@ -160,12 +160,12 @@ public class CampaignGeneratorDataEntryGUI extends JPanel implements ActionListe
 		}
 	}
 
-    private int createSquadronWidget(GridBagConstraints labelConstraints, GridBagConstraints dataConstraints,
+    private int createCompanyWidget(GridBagConstraints labelConstraints, GridBagConstraints dataConstraints,
                     JPanel campaignGeneratePanel, int rowCount) throws PWCGException
     {
         spacerColumn (campaignGeneratePanel, 0, rowCount);
         
-        lCompany = createCampaignGenMenuLabel("Squadron", labelConstraints, campaignGeneratePanel, rowCount);
+        lCompany = createCampaignGenMenuLabel("Company", labelConstraints, campaignGeneratePanel, rowCount);
         campaignGeneratePanel.add(lCompany, labelConstraints);
 
         cbCompany = new JComboBox<String>();
@@ -513,7 +513,7 @@ public class CampaignGeneratorDataEntryGUI extends JPanel implements ActionListe
         return rowCount;
 	}
 
-    private JPanel createSquadronInfoPanel () throws PWCGException
+    private JPanel createCompanyInfoPanel () throws PWCGException
     {
         Color bgColor = ColorMap.PAPER_BACKGROUND;
         Color fgColor = ColorMap.CHALK_FOREGROUND;
@@ -523,7 +523,7 @@ public class CampaignGeneratorDataEntryGUI extends JPanel implements ActionListe
 
         companyPanel.add(PWCGLabelFactory.makeDummyLabel());
         
-        // Squadron info
+        // Company info
         companyTextBox = new JTextArea();
         companyTextBox.setBackground(bgColor);
         companyTextBox.setForeground(fgColor);
@@ -603,7 +603,7 @@ public class CampaignGeneratorDataEntryGUI extends JPanel implements ActionListe
             cbRank.setEnabled(true);
 	    }
 
-        else if (parent.getCampaignGeneratorState().getCurrentStep() == CampaignGeneratorWorkflow.CHOOSE_SQUADRON)
+        else if (parent.getCampaignGeneratorState().getCurrentStep() == CampaignGeneratorWorkflow.CHOOSE_Company)
 	    {
 	        lCompany.setForeground(labelColorSelected);
 	        
@@ -614,7 +614,7 @@ public class CampaignGeneratorDataEntryGUI extends JPanel implements ActionListe
 	        makeCompanyChoices(campaignDate, dateCorrectedService);
 
 	        String companyName = (String)cbCompany.getSelectedItem();
-	        String companyInfo = getSquadronInfo(campaignDate, companyName);
+	        String companyInfo = getCompanyInfo(campaignDate, companyName);
 	        this.companyTextBox.setText(companyInfo);
 
             cbCompany.setEnabled(true);
@@ -645,7 +645,7 @@ public class CampaignGeneratorDataEntryGUI extends JPanel implements ActionListe
         lCompany.setForeground(labelColorNotSelected);
     }
 
-    private String getSquadronInfo(Date campaignDate, String companyName) throws PWCGException 
+    private String getCompanyInfo(Date campaignDate, String companyName) throws PWCGException 
     {
         if (companyName == null)
         {
@@ -653,7 +653,7 @@ public class CampaignGeneratorDataEntryGUI extends JPanel implements ActionListe
         }
 
         Company company = PWCGContext.getInstance().getCompanyManager().getCompanyByName(companyName, campaignDate);
-        return company.determineSquadronInfo(campaignDate);
+        return company.determineCompanyInfo(campaignDate);
     }
 
 	private void makeRankChoices(ArmedService dateCorrectedService) 
@@ -748,7 +748,7 @@ public class CampaignGeneratorDataEntryGUI extends JPanel implements ActionListe
     		cbCompany.removeAllItems();
             CampaignGeneratorCompanyFilter companyFilter = new CampaignGeneratorCompanyFilter();
 	        String selectedRole = (String)cbRole.getSelectedItem();
-            List<String> companyNames = companyFilter.makeSquadronChoices(
+            List<String> companyNames = companyFilter.makeCompanyChoices(
                     campaignDate, dateCorrectedService, parent.getCampaignGeneratorDO().getFrontMap(), selectedRole, parent.getCampaignGeneratorDO().isCommandRank());
             
             for (String companyName : companyNames)
@@ -811,7 +811,7 @@ public class CampaignGeneratorDataEntryGUI extends JPanel implements ActionListe
                 if (companyName != null)
                 {
                     parent.getCampaignGeneratorDO().setSquadName(companyName);
-                    String companyInfo = getSquadronInfo(parent.getCampaignGeneratorDO().getStartDate(), companyName);
+                    String companyInfo = getCompanyInfo(parent.getCampaignGeneratorDO().getStartDate(), companyName);
                     this.companyTextBox.setText(companyInfo);
                 }
             }

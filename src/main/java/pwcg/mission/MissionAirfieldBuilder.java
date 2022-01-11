@@ -60,8 +60,8 @@ public class MissionAirfieldBuilder
     {
         for (CrewMember player : mission.getParticipatingPlayers().getAllParticipatingPlayers())
         {
-            Company squadron = player.determineSquadron();
-            Airfield playerField = squadron.determineCurrentAirfieldAnyMap(mission.getCampaign().getDate());
+            Company company = player.determineCompany();
+            Airfield playerField = company.determineCurrentAirfieldAnyMap(mission.getCampaign().getDate());
             fieldSet.put(playerField.getName(), playerField);
         }
     }
@@ -86,11 +86,11 @@ public class MissionAirfieldBuilder
             return airfieldCountry;
         }
         
-        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
-        Company squadronForField = squadronManager.getAnyActiveCompanyForAirfield(airfield, campaign.getDate());
-        if (squadronForField != null)
+        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+        Company companyForField = companyManager.getAnyActiveCompanyForAirfield(airfield, campaign.getDate());
+        if (companyForField != null)
         {
-            return squadronForField.getCountry();
+            return companyForField.getCountry();
         }
 
         return CountryFactory.makeCountryByCountry(Country.NEUTRAL);

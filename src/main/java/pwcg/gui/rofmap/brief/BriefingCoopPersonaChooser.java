@@ -228,10 +228,10 @@ public class BriefingCoopPersonaChooser extends ImageResizingPanel implements Ac
 
     private void generateMission() throws PWCGException
     {
-        Map<Integer, PwcgRole> squadronRoleOverride = new HashMap<>();
+        Map<Integer, PwcgRole> companyRoleOverride = new HashMap<>();
         List<CrewMember> selectedCoopPersonas = coopPersonaAccept.getAcceptedCrewMembers();
         participatingPlayers.addCrewMembers(selectedCoopPersonas);            	
-        MissionGeneratorHelper.showBriefingMap(campaign, campaignHomeGuiBriefingWrapper, participatingPlayers, squadronRoleOverride);
+        MissionGeneratorHelper.showBriefingMap(campaign, campaignHomeGuiBriefingWrapper, participatingPlayers, companyRoleOverride);
     }
 
 

@@ -32,27 +32,27 @@ public class CampaignReportTransferPanel extends AARDocumentIconPanel
 
     protected String getBodyText() throws PWCGException
     {
-        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
-        Company fromSquadron = squadronManager.getCompany(transferEvent.getTransferFrom());
-        Company toSquadron = squadronManager.getCompany(transferEvent.getTransferTo());
+        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+        Company fromCompany = companyManager.getCompany(transferEvent.getTransferFrom());
+        Company toCompany = companyManager.getCompany(transferEvent.getTransferTo());
 
         String transferMessage = transferEvent.getCrewMemberName() + " has been transferred" + "\n";
                         
-        if (fromSquadron != null && toSquadron != null)
+        if (fromCompany != null && toCompany != null)
         {
             transferMessage = transferEvent.getCrewMemberName() + " has been transferred from\n" + 
-                            fromSquadron.determineDisplayName(campaign.getDate()) + 
-                            " to " + toSquadron.determineDisplayName(campaign.getDate())+ "\n";
+                            fromCompany.determineDisplayName(campaign.getDate()) + 
+                            " to " + toCompany.determineDisplayName(campaign.getDate())+ "\n";
         }
-        else if (toSquadron != null)
+        else if (toCompany != null)
         {
             transferMessage = transferEvent.getCrewMemberName() + 
-                            " has been transferred to " + toSquadron.determineDisplayName(campaign.getDate()) + "\n";
+                            " has been transferred to " + toCompany.determineDisplayName(campaign.getDate()) + "\n";
         }
-        else if (fromSquadron != null)
+        else if (fromCompany != null)
         {
             transferMessage = transferEvent.getCrewMemberName() + 
-                            " has been transferred from " + fromSquadron.determineDisplayName(campaign.getDate()) + "\n";
+                            " has been transferred from " + fromCompany.determineDisplayName(campaign.getDate()) + "\n";
         }
         
         transferMessage += "Date: " + DateUtils.getDateStringPretty(transferEvent.getDate())+ "\n";

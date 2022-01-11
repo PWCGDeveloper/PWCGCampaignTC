@@ -29,13 +29,13 @@ import pwcg.mission.unit.ITankUnit;
 
 public class BriefingMapCompanySelector implements ActionListener
 {
-    private static final int NO_SQUADRONS = -2;
-    private static final int ALL_SQUADRONS = -1;
+    private static final int NO_CompanyS = -2;
+    private static final int ALL_CompanyS = -1;
 
     private Mission mission;
     private IBriefingCompanySelectedCallback companysSelectedCallback;
     private Map<Integer, JCheckBox> companyCheckBoxes = new HashMap<>();
-    private Map<Integer, String> selectedSquadrons = new HashMap<>();
+    private Map<Integer, String> selectedCompanys = new HashMap<>();
     private BriefingData briefingContext;
 
     public BriefingMapCompanySelector(Mission mission, IBriefingCompanySelectedCallback companysSelected,BriefingData briefingContext)
@@ -64,10 +64,10 @@ public class BriefingMapCompanySelector implements ActionListener
         ITankUnit selectedFlight = briefingContext.getSelectedUnit();
         Side selectedFlightSide = selectedFlight.getCompany().determineSide();
 
-        JButton checkBoxAll = PWCGButtonFactory.makeTranslucentMenuButton("All Squadrons", "" + ALL_SQUADRONS, "Show unit path for all companys", this);
+        JButton checkBoxAll = PWCGButtonFactory.makeTranslucentMenuButton("All Companys", "" + ALL_CompanyS, "Show unit path for all companys", this);
         companySelectorGrid.add(checkBoxAll);
 
-        JButton checkBoxNone = PWCGButtonFactory.makeTranslucentMenuButton("No Squadrons", "" + NO_SQUADRONS, "Show unit path for only your company", this);
+        JButton checkBoxNone = PWCGButtonFactory.makeTranslucentMenuButton("No Companys", "" + NO_CompanyS, "Show unit path for only your company", this);
         companySelectorGrid.add(checkBoxNone);
 
         for (ITankUnit aiunit : mission.getUnits().getAiUnits())
@@ -75,7 +75,7 @@ public class BriefingMapCompanySelector implements ActionListener
             Company company = aiunit.getCompany();
             Side companySide = company.getCountry().getSide();
 
-            if (includeSquadron(selectedFlightSide, companySide))
+            if (includeCompany(selectedFlightSide, companySide))
             {
                 JCheckBox checkBox = makeCheckBox(company.determineDisplayName(mission.getCampaign().getDate()), "" + company.getCompanyId());
                 companyCheckBoxes.put(company.getCompanyId(), checkBox);
@@ -84,7 +84,7 @@ public class BriefingMapCompanySelector implements ActionListener
         }
     }
 
-    private boolean includeSquadron(Side playerFlightSide, Side companySide) throws PWCGException
+    private boolean includeCompany(Side playerFlightSide, Side companySide) throws PWCGException
     {
         ConfigManagerCampaign configManager = mission.getCampaign().getCampaignConfigManager();
         int showAllUnitsInBreifing = configManager.getIntConfigParam(ConfigItemKeys.ShowAllUnitsInBreifingKey);
@@ -115,46 +115,46 @@ public class BriefingMapCompanySelector implements ActionListener
         try
         {
             int companyId = Integer.parseInt(ae.getActionCommand());
-            if (companyId == ALL_SQUADRONS)
+            if (companyId == ALL_CompanyS)
             {
                 for (JCheckBox checkBox : companyCheckBoxes.values())
                 {
                     checkBox.setSelected(true);
                 }
 
-                selectedSquadrons.clear();
+                selectedCompanys.clear();
                 for (int companyIdFromCheckBox : companyCheckBoxes.keySet())
                 {
-                    addSquadronToSelected(companyIdFromCheckBox);
+                    addCompanyToSelected(companyIdFromCheckBox);
                 }
             }
-            else if (companyId == NO_SQUADRONS)
+            else if (companyId == NO_CompanyS)
             {
-                selectedSquadrons.clear();
+                selectedCompanys.clear();
                 for (JCheckBox checkBox : companyCheckBoxes.values())
                 {
                     checkBox.setSelected(false);
                 }
             }
-            else if (selectedSquadrons.containsKey(companyId))
+            else if (selectedCompanys.containsKey(companyId))
             {
-                selectedSquadrons.remove(companyId);
+                selectedCompanys.remove(companyId);
             }
             else
             {
-                addSquadronToSelected(companyId);
+                addCompanyToSelected(companyId);
             }
-            companysSelectedCallback.companiesSelectedChanged(selectedSquadrons);
+            companysSelectedCallback.companiesSelectedChanged(selectedCompanys);
         }
         catch (PWCGException e)
         {
         }
     }
 
-    private void addSquadronToSelected(int companyId) throws PWCGException
+    private void addCompanyToSelected(int companyId) throws PWCGException
     {
         ITankUnit unit = mission.getUnits().getPlayerUnitForCompany(companyId);
         Company company = unit.getCompany();
-        selectedSquadrons.put(companyId, company.determineDisplayName(mission.getCampaign().getDate()));
+        selectedCompanys.put(companyId, company.determineDisplayName(mission.getCampaign().getDate()));
     }
 }

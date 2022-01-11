@@ -1,7 +1,7 @@
 {
   "missionHeader": {
     "missionFileName": "Patrik Schorner 1916-09-02",
-    "squadron": "Jasta 16b",
+    "company": "Jasta 16b",
     "date": "19160902",
     "time": "15:0:00",
     "aircraftType": "AircraftType \u003d Halberstadt D.I",
@@ -10,11 +10,11 @@
     "duty": "INTERCEPT",
     "altitude": 2200
   },
-  "missionDescription": "Mission:\nAircraft  Halberstadt D.II\nSquadron  Jasta 16b\nAirbase  Balatre,E Roye\nDate  1916-09-02\n\nWeather Report\nHeavy cloud cover, medium altitude.\nCloud layer is 2553 meters.\nWind speed is 1 M/S.\nWind direction is 15.\n\nPrimary Objective\nIntercept enemy aircraft near Ham.\n\n\n",
+  "missionDescription": "Mission:\nAircraft  Halberstadt D.II\nCompany  Jasta 16b\nAirbase  Balatre,E Roye\nDate  1916-09-02\n\nWeather Report\nHeavy cloud cover, medium altitude.\nCloud layer is 2553 meters.\nWind speed is 1 M/S.\nWind direction is 15.\n\nPrimary Objective\nIntercept enemy aircraft near Ham.\n\n\n",
   "missionPlanes": [
     {
       "aircraftType": "halberstadtd2",
-      "squadronName": "Jasta 16b",
+      "companyName": "Jasta 16b",
       "crew": {
         "pilot": "Patrik Schorner",
         "observer": "",
@@ -24,7 +24,7 @@
     },
     {
       "aircraftType": "halberstadtd2",
-      "squadronName": "Jasta 16b",
+      "companyName": "Jasta 16b",
       "crew": {
         "pilot": "Ruprecht Hess",
         "observer": "",
@@ -34,7 +34,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "No 2 Squadron RFC",
+      "companyName": "No 2 Company RFC",
       "crew": {
         "pilot": "Alston Stokerton",
         "observer": "Darcy Lenton",
@@ -44,7 +44,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "No 2 Squadron RFC",
+      "companyName": "No 2 Company RFC",
       "crew": {
         "pilot": "Barnaby Westlake",
         "observer": "Theodore Bailey",
@@ -54,7 +54,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "No 2 Squadron RFC",
+      "companyName": "No 2 Company RFC",
       "crew": {
         "pilot": "Elton Sherbourne",
         "observer": "Broderick Veldon",
@@ -64,7 +64,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "No 2 Squadron RFC",
+      "companyName": "No 2 Company RFC",
       "crew": {
         "pilot": "Brian Shiveley",
         "observer": "Quenby Foliot",
@@ -74,7 +74,7 @@
     },
     {
       "aircraftType": "halberstadtd2",
-      "squadronName": "Jasta 7",
+      "companyName": "Jasta 7",
       "crew": {
         "pilot": "Horst Maibaum",
         "observer": "",
@@ -84,7 +84,7 @@
     },
     {
       "aircraftType": "halberstadtd2",
-      "squadronName": "Jasta 7",
+      "companyName": "Jasta 7",
       "crew": {
         "pilot": "Rupert Scherrer",
         "observer": "",
@@ -94,7 +94,7 @@
     },
     {
       "aircraftType": "halberstadtd2",
-      "squadronName": "Jasta 7",
+      "companyName": "Jasta 7",
       "crew": {
         "pilot": "Helge Parler",
         "observer": "",
@@ -104,7 +104,7 @@
     },
     {
       "aircraftType": "halberstadtd2",
-      "squadronName": "Jasta 7",
+      "companyName": "Jasta 7",
       "crew": {
         "pilot": "Hans Sattler",
         "observer": "",
@@ -114,7 +114,7 @@
     },
     {
       "aircraftType": "sopstr",
-      "squadronName": "No 5 Squadron RNAS",
+      "companyName": "No 5 Company RNAS",
       "crew": {
         "pilot": "Brooke Greenway",
         "observer": "Barry Heron",
@@ -124,7 +124,7 @@
     },
     {
       "aircraftType": "sopstr",
-      "squadronName": "No 5 Squadron RNAS",
+      "companyName": "No 5 Company RNAS",
       "crew": {
         "pilot": "Fletcher Carter",
         "observer": "Sigmund Dawne",
@@ -134,7 +134,7 @@
     },
     {
       "aircraftType": "sopstr",
-      "squadronName": "No 5 Squadron RNAS",
+      "companyName": "No 5 Company RNAS",
       "crew": {
         "pilot": "Miles Garret",
         "observer": "Fergus Cunningham",
@@ -144,7 +144,7 @@
     },
     {
       "aircraftType": "sopstr",
-      "squadronName": "No 5 Squadron RNAS",
+      "companyName": "No 5 Company RNAS",
       "crew": {
         "pilot": "Riley Trenowyth",
         "observer": "Herman Yornold",
@@ -154,7 +154,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 70",
+      "companyName": "Esc 70",
       "crew": {
         "pilot": "Julien Azema",
         "observer": "Alfred Lenoir",
@@ -164,7 +164,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 70",
+      "companyName": "Esc 70",
       "crew": {
         "pilot": "Thierry Lacroix",
         "observer": "Ferdinand Lafond",
@@ -174,7 +174,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 107",
+      "companyName": "Esc 107",
       "crew": {
         "pilot": "Charles-Etienne Vidal",
         "observer": "Jerome Salomon",
@@ -184,7 +184,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 107",
+      "companyName": "Esc 107",
       "crew": {
         "pilot": "Andre Heilgenstein",
         "observer": "Honore Clermont",
@@ -194,7 +194,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 107",
+      "companyName": "Esc 107",
       "crew": {
         "pilot": "Firmin Demoulin",
         "observer": "Gilbert Buge",
@@ -204,7 +204,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 107",
+      "companyName": "Esc 107",
       "crew": {
         "pilot": "Marius Daucourt",
         "observer": "Robert Gayrau",
@@ -214,7 +214,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 13",
+      "companyName": "Esc 13",
       "crew": {
         "pilot": "Bruno Chapelant",
         "observer": "Jacob Villard",

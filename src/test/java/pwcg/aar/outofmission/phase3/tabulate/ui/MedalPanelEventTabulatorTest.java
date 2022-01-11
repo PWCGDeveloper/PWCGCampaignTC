@@ -30,10 +30,10 @@ import pwcg.testutils.CompanyTestProfile;
 public class MedalPanelEventTabulatorTest extends AARTestSetup
 {
     @Mock
-    private Company squadron1;
+    private Company company1;
     
     @Mock
-    private Company squadron2;
+    private Company company2;
 
     @Mock 
     private ICountry country;
@@ -47,8 +47,8 @@ public class MedalPanelEventTabulatorTest extends AARTestSetup
     {
         setupAARMocks();
 
-        Mockito.when(squadron1.determineDisplayName(Mockito.any())).thenReturn("Esc 103");
-        Mockito.when(squadron2.determineDisplayName(Mockito.any())).thenReturn("Esc 3");
+        Mockito.when(company1.determineDisplayName(Mockito.any())).thenReturn("Esc 103");
+        Mockito.when(company2.determineDisplayName(Mockito.any())).thenReturn("Esc 3");
         
         Mockito.when(country.isCountry(Country.FRANCE)).thenReturn(true);
         medalManager = MedalManagerFactory.createMedalManager(country, campaign);
@@ -61,8 +61,8 @@ public class MedalPanelEventTabulatorTest extends AARTestSetup
     {
         Mockito.when(crewMember1.getCompanyId()).thenReturn(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
         Mockito.when(crewMember2.getCompanyId()).thenReturn(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
-        Mockito.when(crewMember1.determineSquadron()).thenReturn(squadron1);
-        Mockito.when(crewMember2.determineSquadron()).thenReturn(squadron1);
+        Mockito.when(crewMember1.determineCompany()).thenReturn(company1);
+        Mockito.when(crewMember2.determineCompany()).thenReturn(company1);
 
         medalsAwarded.put(crewMember1.getSerialNumber(), new HashMap<String, Medal>());
         medalsAwarded.put(crewMember2.getSerialNumber(), new HashMap<String, Medal>());
@@ -87,8 +87,8 @@ public class MedalPanelEventTabulatorTest extends AARTestSetup
     {
         Mockito.when(crewMember1.getCompanyId()).thenReturn(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
         Mockito.when(crewMember2.getCompanyId()).thenReturn(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
-        Mockito.when(crewMember1.determineSquadron()).thenReturn(squadron1);
-        Mockito.when(crewMember2.determineSquadron()).thenReturn(squadron1);
+        Mockito.when(crewMember1.determineCompany()).thenReturn(company1);
+        Mockito.when(crewMember2.determineCompany()).thenReturn(company1);
 
         medalsAwarded.put(crewMember1.getSerialNumber(), new HashMap<String, Medal>());
         medalsAwarded.put(crewMember2.getSerialNumber(), new HashMap<String, Medal>());
@@ -109,12 +109,12 @@ public class MedalPanelEventTabulatorTest extends AARTestSetup
     }
 
     @Test
-    public void testMedalsAwardedButOneIsNotInSquadron() throws PWCGException 
+    public void testMedalsAwardedButOneIsNotInCompany() throws PWCGException 
     {
         Mockito.when(crewMember1.getCompanyId()).thenReturn(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
         Mockito.when(crewMember2.getCompanyId()).thenReturn(CompanyTestProfile.ESC_3_PROFILE.getCompanyId());
-        Mockito.when(crewMember1.determineSquadron()).thenReturn(squadron1);
-        Mockito.when(crewMember2.determineSquadron()).thenReturn(squadron2);
+        Mockito.when(crewMember1.determineCompany()).thenReturn(company1);
+        Mockito.when(crewMember2.determineCompany()).thenReturn(company2);
 
         medalsAwarded.put(crewMember1.getSerialNumber(), new HashMap<String, Medal>());
         medalsAwarded.put(crewMember2.getSerialNumber(), new HashMap<String, Medal>());

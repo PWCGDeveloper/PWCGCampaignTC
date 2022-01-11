@@ -12,7 +12,7 @@ import pwcg.mission.playerunit.crew.CrewTankPayloadPairing;
 
 public class BriefingCrewMemberAssignmentData
 {
-	private Company squadron;
+	private Company company;
     private List<CrewTankPayloadPairing> assignedCrewPlanes = new ArrayList<>();
     private Map<Integer, CrewMember> unAssignedCrewMembers = new HashMap<>();
     private Map<Integer, EquippedTank> unAssignedPlanes = new HashMap<>();
@@ -86,12 +86,12 @@ public class BriefingCrewMemberAssignmentData
 
 	public Company getCompany() 
 	{
-		return squadron;
+		return company;
 	}
 
-	public void setSquadron(Company squadron) 
+	public void setCompany(Company company) 
 	{
-		this.squadron = squadron;
+		this.company = company;
 	}
 
     public CrewTankPayloadPairing findAssignedCrewPairingByCrewMember(int crewMemberSerialNumber)

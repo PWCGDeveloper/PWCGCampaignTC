@@ -60,14 +60,14 @@ public class AiDeclarationResolver  extends PlayerVictoryResolver
         if (resultVictory.getVictor() instanceof LogTank)
         {
             LogTank victorPlanePlane = (LogTank)resultVictory.getVictor();
-            CrewMember squadronMemberVictor = campaign.getPersonnelManager().getAnyCampaignMember(victorPlanePlane.getCrewMemberSerialNumber());
-            if (squadronMemberVictor != null)
+            CrewMember companyMemberVictor = campaign.getPersonnelManager().getAnyCampaignMember(victorPlanePlane.getCrewMemberSerialNumber());
+            if (companyMemberVictor != null)
             {
-                if (!PlayerVictoryResolver.isPlayerVictory(squadronMemberVictor, resultVictory.getVictor()))
+                if (!PlayerVictoryResolver.isPlayerVictory(companyMemberVictor, resultVictory.getVictor()))
                 {
                     if (!resultVictory.isConfirmed())
                     {
-                        createAiVictory(resultVictory, squadronMemberVictor);
+                        createAiVictory(resultVictory, companyMemberVictor);
                     }
                 }
             }
@@ -111,8 +111,8 @@ public class AiDeclarationResolver  extends PlayerVictoryResolver
     private CrewMember flightMemberForVictory(LogVictory resultVictory) throws PWCGException
     {
         ICountry victimCountry = resultVictory.getVictim().getCountry();
-        CrewMembers squadronMembersInMissionOtherThanPlayer = getAiMissionCrewMembers();
-        for (CrewMember crewMemberVictor: squadronMembersInMissionOtherThanPlayer.getCrewMemberList())
+        CrewMembers crewMembersInMissionOtherThanPlayer = getAiMissionCrewMembers();
+        for (CrewMember crewMemberVictor: crewMembersInMissionOtherThanPlayer.getCrewMemberList())
         {
             if (crewMemberVictor.determineCountry(campaign.getDate()).getSide() != victimCountry.getSide())
             {
@@ -132,14 +132,14 @@ public class AiDeclarationResolver  extends PlayerVictoryResolver
     private CrewMembers getAiMissionCrewMembers() throws PWCGException
     {
         Map<Integer, CrewMember> campaignMembersInMission = aarContext.getPreliminaryData().getCampaignMembersInMission().getCrewMemberCollection();
-        List<Company> playerSquadronsInMission = aarContext.getPreliminaryData().getPlayerSquadronsInMission();
-        CrewMembers squadronMembersInMissionOtherThanPlayer = new CrewMembers();
-        for (Company squadron : playerSquadronsInMission)
+        List<Company> playerCompanysInMission = aarContext.getPreliminaryData().getPlayerCompanysInMission();
+        CrewMembers crewMembersInMissionOtherThanPlayer = new CrewMembers();
+        for (Company company : playerCompanysInMission)
         {
-            CrewMembers squadronMembersForSquadron = CrewMemberFilter.filterActiveAIForSquadron(campaignMembersInMission, campaign.getDate(), squadron.getCompanyId());
-            squadronMembersInMissionOtherThanPlayer.addCrewMembers(squadronMembersForSquadron);
+            CrewMembers crewMembersForCompany = CrewMemberFilter.filterActiveAIForCompany(campaignMembersInMission, campaign.getDate(), company.getCompanyId());
+            crewMembersInMissionOtherThanPlayer.addCrewMembers(crewMembersForCompany);
         }
-        return squadronMembersInMissionOtherThanPlayer;
+        return crewMembersInMissionOtherThanPlayer;
     }
 
     private boolean alreadyhasVictory(Integer serialNumber) throws PWCGException
@@ -162,10 +162,10 @@ public class AiDeclarationResolver  extends PlayerVictoryResolver
     private void createAiVictory(LogVictory resultVictory, CrewMember crewMemberVictor) throws PWCGException
     {
         AARMissionEvaluationData evaluationData = aarContext.getMissionEvaluationData();
-        LogTank squadronMemberPlane = evaluationData.getPlaneInMissionBySerialNumber(crewMemberVictor.getSerialNumber());
-        if (squadronMemberPlane != null)
+        LogTank companyMemberPlane = evaluationData.getPlaneInMissionBySerialNumber(crewMemberVictor.getSerialNumber());
+        if (companyMemberPlane != null)
         {
-            resultVictory.setVictor(squadronMemberPlane);
+            resultVictory.setVictor(companyMemberPlane);
             resultVictory.setConfirmed(true);
                     
             confirmedAiVictories.addVictory(resultVictory);

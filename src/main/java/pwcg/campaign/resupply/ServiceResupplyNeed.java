@@ -11,65 +11,65 @@ public class ServiceResupplyNeed
 {
     private Campaign campaign;
     private int serviceId;
-    private SquadronNeedFactory squadronNeedFactory;
-    private Map<Integer, ISquadronNeed> squadronNeeds = new TreeMap<>();
+    private CompanyNeedFactory companyNeedFactory;
+    private Map<Integer, ICompanyNeed> companyNeeds = new TreeMap<>();
 
-    public ServiceResupplyNeed (Campaign campaign, int serviceId, SquadronNeedFactory squadronNeedFactory)
+    public ServiceResupplyNeed (Campaign campaign, int serviceId, CompanyNeedFactory companyNeedFactory)
     {
         this.campaign = campaign;
         this.serviceId = serviceId;
-        this.squadronNeedFactory = squadronNeedFactory;
+        this.companyNeedFactory = companyNeedFactory;
     }
     
     public void determineResupplyNeed() throws PWCGException
     {
-        for (CompanyPersonnel squadronPersonnel : campaign.getPersonnelManager().getAllCompanyPersonnel())
+        for (CompanyPersonnel companyPersonnel : campaign.getPersonnelManager().getAllCompanyPersonnel())
         {
-            int serviceIdForSquadron = squadronPersonnel.getCompany().determineServiceForCompany(campaign.getDate()).getServiceId();
-            if (serviceId == serviceIdForSquadron)
+            int serviceIdForCompany = companyPersonnel.getCompany().determineServiceForCompany(campaign.getDate()).getServiceId();
+            if (serviceId == serviceIdForCompany)
             {
-                ISquadronNeed squadronResupplyNeed = squadronNeedFactory.buildSquadronNeed(campaign, squadronPersonnel.getCompany());
-                squadronResupplyNeed.determineResupplyNeeded();
+                ICompanyNeed companyResupplyNeed = companyNeedFactory.buildCompanyNeed(campaign, companyPersonnel.getCompany());
+                companyResupplyNeed.determineResupplyNeeded();
                 
-                if (squadronResupplyNeed.needsResupply())
+                if (companyResupplyNeed.needsResupply())
                 {
-                    squadronNeeds.put(squadronResupplyNeed.getSquadronId(), squadronResupplyNeed);
+                    companyNeeds.put(companyResupplyNeed.getCompanyId(), companyResupplyNeed);
                 }
             }
         }
     }
     
-    public boolean hasNeedySquadron()
+    public boolean hasNeedyCompany()
     {
-        if (squadronNeeds.isEmpty())
+        if (companyNeeds.isEmpty())
         {
             return false;
         }
         return true;
     }
 
-    public ISquadronNeed chooseNeedySquadron() throws PWCGException
+    public ICompanyNeed chooseNeedyCompany() throws PWCGException
     {        
-        ResupplySquadronChooser resupplySquadronChooser = new ResupplySquadronChooser(campaign, squadronNeeds);
-        return resupplySquadronChooser.getNeedySquadron();
+        ResupplyCompanyChooser resupplyCompanyChooser = new ResupplyCompanyChooser(campaign, companyNeeds);
+        return resupplyCompanyChooser.getNeedyCompany();
     }
 
-    public void removeNeedySquadron(ISquadronNeed squadronNeed)
+    public void removeNeedyCompany(ICompanyNeed companyNeed)
     {
-        squadronNeeds.remove(squadronNeed.getSquadronId());
+        companyNeeds.remove(companyNeed.getCompanyId());
     }
 
-    public void noteResupply(ISquadronNeed squadronNeed)
+    public void noteResupply(ICompanyNeed companyNeed)
     {
-        squadronNeed.noteResupply();
-        if (!squadronNeed.needsResupply())
+        companyNeed.noteResupply();
+        if (!companyNeed.needsResupply())
         {
-            removeNeedySquadron(squadronNeed);
+            removeNeedyCompany(companyNeed);
         }
     }
 
-    public Map<Integer, ISquadronNeed> getSquadronNeeds()
+    public Map<Integer, ICompanyNeed> getCompanyNeeds()
     {
-        return squadronNeeds;
+        return companyNeeds;
     }
 }

@@ -17,12 +17,12 @@ public class EquipmentResupplyData
         planesResupplied.addAll(source.planesResupplied);
     }
 
-    public List<EquipmentResupplyRecord> getEquipmentResuppliedToSquadron(int squadronId)
+    public List<EquipmentResupplyRecord> getEquipmentResuppliedToCompany(int companyId)
     {
         List<EquipmentResupplyRecord> equipmentResupplyRecords = new ArrayList<>();
         for (EquipmentResupplyRecord equipmentResupply : planesResupplied)
         {
-            if (equipmentResupply.getTransferTo() == squadronId)
+            if (equipmentResupply.getTransferTo() == companyId)
             {
                 equipmentResupplyRecords.add(equipmentResupply);
             }

@@ -25,15 +25,15 @@ import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 
 @ExtendWith(MockitoExtension.class)
-public class EnemySquadronFinderTest
+public class EnemyCompanyFinderTest
 {
-    @Mock private Company squadron;
+    @Mock private Company company;
     @Mock private Campaign campaign;
     @Mock private CampaignPersonnelManager personnelManager;
     @Mock private CampaignEquipmentManager equipmentManager;
     @Mock private Equipment equipment;
-    @Mock private CompanyPersonnel squadronPersonnel;
-    @Mock private Airfield squadronAirfield;
+    @Mock private CompanyPersonnel companyPersonnel;
+    @Mock private Airfield companyAirfield;
     @Mock private ConfigManagerCampaign configManagerCampaign;
     
     @BeforeEach
@@ -42,47 +42,47 @@ public class EnemySquadronFinderTest
         
         PWCGContext.getInstance().setCurrentMap(FrontMapIdentifier.STALINGRAD_MAP);
 
-        ICountry squadronCountry = CountryFactory.makeCountryByCountry(Country.GERMANY);
+        ICountry companyCountry = CountryFactory.makeCountryByCountry(Country.GERMANY);
 
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420801"));
         Mockito.when(campaign.getPersonnelManager()).thenReturn(personnelManager);
         Mockito.when(campaign.getCampaignConfigManager()).thenReturn(configManagerCampaign);
         
-        Mockito.when(configManagerCampaign.getIntConfigParam(ConfigItemKeys.RemoveNonHistoricalSquadronsKey)).thenReturn(0);
+        Mockito.when(configManagerCampaign.getIntConfigParam(ConfigItemKeys.RemoveNonHistoricalCompanysKey)).thenReturn(0);
 
-        Mockito.when(personnelManager.getCompanyPersonnel(Mockito.any())).thenReturn(squadronPersonnel);
-        Mockito.when(squadronPersonnel.isSquadronPersonnelViable()).thenReturn(true);
+        Mockito.when(personnelManager.getCompanyPersonnel(Mockito.any())).thenReturn(companyPersonnel);
+        Mockito.when(companyPersonnel.isCompanyPersonnelViable()).thenReturn(true);
 
         Mockito.when(campaign.getEquipmentManager()).thenReturn(equipmentManager);
         Mockito.when(equipmentManager.getEquipmentForCompany(Mockito.any())).thenReturn(equipment);
         Mockito.when(equipment.isCompanyEquipmentViable()).thenReturn(true);
         
-        Mockito.when(squadron.getCountry()).thenReturn(squadronCountry);
+        Mockito.when(company.getCountry()).thenReturn(companyCountry);
     }
     
 
     
     @Test
-    public void findEnemySquadronFromCorner () throws PWCGException
+    public void findEnemyCompanyFromCorner () throws PWCGException
     {     
-        EnemySquadronFinder enemySquadronFinder = new EnemySquadronFinder(campaign);
-        Company enemySquadron = enemySquadronFinder.getEnemyForOutOfMission(squadron, DateUtils.getDateYYYYMMDD("19421001"));
-        assert(enemySquadron != null);
+        EnemyCompanyFinder enemyCompanyFinder = new EnemyCompanyFinder(campaign);
+        Company enemyCompany = enemyCompanyFinder.getEnemyForOutOfMission(company, DateUtils.getDateYYYYMMDD("19421001"));
+        assert(enemyCompany != null);
     }
 
     @Test
-    public void findEnemySquadronNearby () throws PWCGException
+    public void findEnemyCompanyNearby () throws PWCGException
     {     
-        EnemySquadronFinder enemySquadronFinder = new EnemySquadronFinder(campaign);
-        Company enemySquadron = enemySquadronFinder.getEnemyForOutOfMission(squadron, DateUtils.getDateYYYYMMDD("19421001"));
-        assert(enemySquadron != null);
+        EnemyCompanyFinder enemyCompanyFinder = new EnemyCompanyFinder(campaign);
+        Company enemyCompany = enemyCompanyFinder.getEnemyForOutOfMission(company, DateUtils.getDateYYYYMMDD("19421001"));
+        assert(enemyCompany != null);
     }
 
     @Test
-    public void findEnemySquadronAny () throws PWCGException
+    public void findEnemyCompanyAny () throws PWCGException
     {     
-        EnemySquadronFinder enemySquadronFinder = new EnemySquadronFinder(campaign);
-        Company enemySquadron = enemySquadronFinder.getEnemyForOutOfMission(squadron, DateUtils.getDateYYYYMMDD("19421001"));
-        assert(enemySquadron != null);
+        EnemyCompanyFinder enemyCompanyFinder = new EnemyCompanyFinder(campaign);
+        Company enemyCompany = enemyCompanyFinder.getEnemyForOutOfMission(company, DateUtils.getDateYYYYMMDD("19421001"));
+        assert(enemyCompany != null);
     }
 }

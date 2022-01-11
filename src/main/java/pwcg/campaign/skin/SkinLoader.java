@@ -21,7 +21,7 @@ public class SkinLoader
     {
         initialize();
         readConfiguredAndDoNotUseSkins();
-        loadSquadronSkins();
+        loadCompanySkins();
         loadAceSkins();
         readLooseSkins();
         
@@ -58,12 +58,12 @@ public class SkinLoader
         }
     }
 
-    private void loadSquadronSkins()
+    private void loadCompanySkins()
     {
         try
         {
-            SquadronSkinLoader squadronSkinLoader = new SquadronSkinLoader(skinsForPlanes);
-            squadronSkinLoader.loadSquadronSkins();
+            CompanySkinLoader companySkinLoader = new CompanySkinLoader(skinsForPlanes);
+            companySkinLoader.loadCompanySkins();
         }
         catch (PWCGException e)
         {
@@ -75,8 +75,8 @@ public class SkinLoader
     {
         try
         {
-            AceSkinLoader squadronSkinLoader = new AceSkinLoader(skinsForPlanes);
-            squadronSkinLoader.loadHistoricalAceSkins();;
+            AceSkinLoader companySkinLoader = new AceSkinLoader(skinsForPlanes);
+            companySkinLoader.loadHistoricalAceSkins();;
         }
         catch (PWCGException e)
         {

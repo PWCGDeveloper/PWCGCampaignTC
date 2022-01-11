@@ -18,21 +18,21 @@ import pwcg.mission.ground.vehicle.IVehicle;
 public class CrewMemberGroundInitialVictoryBuilder
 {
     private Campaign campaign;
-    private Company victorSquadron;
+    private Company victorCompany;
     private int minVictories;
     private int maxVictories;
 
-    public CrewMemberGroundInitialVictoryBuilder(Campaign campaign, Company squadron)
+    public CrewMemberGroundInitialVictoryBuilder(Campaign campaign, Company company)
     {
         this.campaign = campaign;
-        this.victorSquadron = squadron;
+        this.victorCompany = company;
     }
     
     public void createCrewMemberVictories(CrewMember newCrewMember, int rankPos) throws PWCGException
     {
         initializeVictoriesFromRank(rankPos);
         factorServiceQuality(rankPos);
-        factorSquadronQuality(rankPos);
+        factorCompanyQuality(rankPos);
         resetForEarlyWWI(rankPos);
 
         int victories = calcNumberOfVictories(minVictories, maxVictories);
@@ -65,7 +65,7 @@ public class CrewMemberGroundInitialVictoryBuilder
 
     private void factorServiceQuality(int rankPos) throws PWCGException
     {
-        ArmedService service = victorSquadron.determineServiceForCompany(campaign.getDate());
+        ArmedService service = victorCompany.determineServiceForCompany(campaign.getDate());
         int serviceQuality = service.getServiceQuality().getQuality(campaign.getDate()).getQualityValue();
 
         int minAdjustment = 0;
@@ -90,26 +90,26 @@ public class CrewMemberGroundInitialVictoryBuilder
         maxVictories += maxAdjustment;
     }
 
-    private void factorSquadronQuality(int rankPos) throws PWCGException
+    private void factorCompanyQuality(int rankPos) throws PWCGException
     {
-        int squadronQuality = victorSquadron.determineSquadronSkill(campaign.getDate());
+        int companyQuality = victorCompany.determineCompanySkill(campaign.getDate());
         
         int minAdjustment = 0;
         int maxAdjustment = 0;
         if (rankPos == 2)
         {
-            minAdjustment = (squadronQuality / 10) - 10;
-            maxAdjustment = (squadronQuality / 10) - 6;
+            minAdjustment = (companyQuality / 10) - 10;
+            maxAdjustment = (companyQuality / 10) - 6;
         }
         else if (rankPos == 1)
         {
-            minAdjustment = (squadronQuality / 10) - 8;
-            maxAdjustment = (squadronQuality / 10) - 5;
+            minAdjustment = (companyQuality / 10) - 8;
+            maxAdjustment = (companyQuality / 10) - 5;
         }
         else if (rankPos == 0)
         {
-            minAdjustment = (squadronQuality / 10) - 6;
-            maxAdjustment = (squadronQuality / 10) - 4;
+            minAdjustment = (companyQuality / 10) - 6;
+            maxAdjustment = (companyQuality / 10) - 4;
         }
 
         minVictories += minAdjustment;

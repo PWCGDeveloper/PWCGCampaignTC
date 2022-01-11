@@ -21,7 +21,7 @@ import pwcg.testutils.CampaignCache;
 import pwcg.testutils.CompanyTestProfile;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class CampaignUpdateNewSquadronStafferTest
+public class CampaignUpdateNewCompanyStafferTest
 {
     private Campaign campaign;
 
@@ -33,25 +33,25 @@ public class CampaignUpdateNewSquadronStafferTest
     }
 
     @Test
-    public void testSquadronAdded() throws PWCGException
+    public void testCompanyAdded() throws PWCGException
     {
         Date newDate = DateUtils.getDateYYYYMMDD("19420801");
         campaign.setDate(newDate);
         
-        CampaignUpdateNewCompanyStaffer newSquadronStaffer = new CampaignUpdateNewCompanyStaffer(campaign);
-        List<Integer> squadronsAdded = newSquadronStaffer.staffNewCompanies();
-        assert(squadronsAdded.size() > 0);
-        for (int squadronId : squadronsAdded)
+        CampaignUpdateNewCompanyStaffer newCompanyStaffer = new CampaignUpdateNewCompanyStaffer(campaign);
+        List<Integer> companysAdded = newCompanyStaffer.staffNewCompanies();
+        assert(companysAdded.size() > 0);
+        for (int companyId : companysAdded)
         {
-            Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(squadronId);
-            assert(CompanyViability.isCompanyActive(squadron, campaign.getDate()));
+            Company company = PWCGContext.getInstance().getCompanyManager().getCompany(companyId);
+            assert(CompanyViability.isCompanyActive(company, campaign.getDate()));
             
-            CompanyPersonnel squadronPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(squadronId);
-            assert(squadronPersonnel != null);
+            CompanyPersonnel companyPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(companyId);
+            assert(companyPersonnel != null);
 
-            CrewMembers squadronMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(squadronPersonnel.getCrewMembersWithAces().getCrewMemberCollection(),campaign.getDate());
-            assert(squadronMembers != null);
-            assert(squadronMembers.getActiveCount(campaign.getDate()) >= Company.COMPANY_STAFF_SIZE);
+            CrewMembers crewMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(companyPersonnel.getCrewMembersWithAces().getCrewMemberCollection(),campaign.getDate());
+            assert(crewMembers != null);
+            assert(crewMembers.getActiveCount(campaign.getDate()) >= Company.COMPANY_STAFF_SIZE);
         }
     }
 }

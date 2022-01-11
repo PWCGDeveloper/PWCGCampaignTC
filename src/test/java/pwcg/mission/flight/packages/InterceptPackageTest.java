@@ -15,7 +15,7 @@ import pwcg.mission.MissionBorderBuilder;
 import pwcg.mission.MissionFlights;
 import pwcg.mission.MissionHumanParticipants;
 import pwcg.mission.MissionProfile;
-import pwcg.mission.MissionSquadronFlightTypes;
+import pwcg.mission.MissionCompanyFlightTypes;
 import pwcg.mission.flight.FlightTypes;
 import pwcg.mission.flight.IFlight;
 import pwcg.mission.flight.NecessaryFlightType;
@@ -49,8 +49,8 @@ public class InterceptPackageTest extends PwcgTestBase
     {
         MissionHumanParticipants participatingPlayers = TestMissionBuilderUtility.buildTestParticipatingHumans(campaign);
 
-        Company playerSquadron = participatingPlayers.getAllParticipatingPlayers().get(0).determineSquadron();
-        MissionSquadronFlightTypes playerFlightTypes = MissionSquadronFlightTypes.buildPlayerFlightType(FlightTypes.INTERCEPT, playerSquadron);
+        Company playerCompany = participatingPlayers.getAllParticipatingPlayers().get(0).determineCompany();
+        MissionCompanyFlightTypes playerFlightTypes = MissionCompanyFlightTypes.buildPlayerFlightType(FlightTypes.INTERCEPT, playerCompany);
 
         MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(campaign, participatingPlayers, null, playerFlightTypes);
         CoordinateBox missionBorders = missionBorderBuilder.buildCoordinateBox();

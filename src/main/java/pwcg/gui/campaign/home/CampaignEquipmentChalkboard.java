@@ -48,15 +48,15 @@ public class CampaignEquipmentChalkboard extends ImageResizingPanel
         this.setBorder(PwcgBorderFactory.createCampaignHomeChalkboardBoxBorder());        
 
         CrewMember referencePlayer = campaign.findReferencePlayer();            
-        Map<Integer, EquippedTank> planesForSquadron = campaign.getEquipmentManager().getEquipmentForCompany(referencePlayer.getCompanyId()).getActiveEquippedTanks();
+        Map<Integer, EquippedTank> planesForCompany = campaign.getEquipmentManager().getEquipmentForCompany(referencePlayer.getCompanyId()).getActiveEquippedTanks();
         
-        JPanel equipmentPanel = createEquipmentListPanel(campaign, planesForSquadron);
+        JPanel equipmentPanel = createEquipmentListPanel(campaign, planesForCompany);
         this.add(equipmentPanel, BorderLayout.CENTER);
     }
 
-    private JPanel createEquipmentListPanel(Campaign campaign, Map<Integer, EquippedTank> planesForSquadron) throws PWCGException
+    private JPanel createEquipmentListPanel(Campaign campaign, Map<Integer, EquippedTank> planesForCompany) throws PWCGException
     {
-        List<EquippedTank> sortedAircraftOnInventory = TankSorter.sortEquippedTanksByGoodness(new ArrayList<EquippedTank>(planesForSquadron.values()));
+        List<EquippedTank> sortedAircraftOnInventory = TankSorter.sortEquippedTanksByGoodness(new ArrayList<EquippedTank>(planesForCompany.values()));
 
         Font font = PWCGMonitorFonts.getChalkboardFont();
 

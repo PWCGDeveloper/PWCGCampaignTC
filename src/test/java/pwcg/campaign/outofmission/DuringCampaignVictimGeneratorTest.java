@@ -12,7 +12,7 @@ import pwcg.campaign.company.Company;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.crewmember.CrewMember;
-import pwcg.campaign.personnel.EnemySquadronFinder;
+import pwcg.campaign.personnel.EnemyCompanyFinder;
 import pwcg.core.exception.PWCGException;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.CompanyTestProfile;
@@ -33,27 +33,27 @@ public class DuringCampaignVictimGeneratorTest
     @Test
     public void testVictimGeneration () throws PWCGException
     {               
-        Company victorSquadron = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());        
-        EnemySquadronFinder enemySquadronFinder = new EnemySquadronFinder(campaign);
-        Company victimSquadron = enemySquadronFinder.getEnemyForOutOfMission(victorSquadron, campaign.getDate());
+        Company victorCompany = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());        
+        EnemyCompanyFinder enemyCompanyFinder = new EnemyCompanyFinder(campaign);
+        Company victimCompany = enemyCompanyFinder.getEnemyForOutOfMission(victorCompany, campaign.getDate());
 
-        DuringCampaignAirVictimGenerator  victimGenerator = new DuringCampaignAirVictimGenerator(campaign, victimSquadron);
-        Side victorSide = victorSquadron.determineCompanyCountry(campaign.getDate()).getSide();
+        DuringCampaignAirVictimGenerator  victimGenerator = new DuringCampaignAirVictimGenerator(campaign, victimCompany);
+        Side victorSide = victorCompany.determineCompanyCountry(campaign.getDate()).getSide();
 
         CrewMember victim = victimGenerator.generateVictimAiCrew();
-        Company victimSquadronFromVictim = victim.determineSquadron();
-        Side victimSide = victimSquadron.determineCompanyCountry(campaign.getDate()).getSide();
+        Company victimCompanyFromVictim = victim.determineCompany();
+        Side victimSide = victimCompany.determineCompanyCountry(campaign.getDate()).getSide();
         
         assert(victimSide != victorSide);
-        assert(victimSquadron.getCompanyId() == victimSquadronFromVictim.getCompanyId());
+        assert(victimCompany.getCompanyId() == victimCompanyFromVictim.getCompanyId());
 
     }
 
     @Test
-    public void testNotFromPlayerSquadron () throws PWCGException
+    public void testNotFromPlayerCompany () throws PWCGException
     {               
-        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
-        DuringCampaignAirVictimGenerator  victimGenerator = new DuringCampaignAirVictimGenerator(campaign, squadron);
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
+        DuringCampaignAirVictimGenerator  victimGenerator = new DuringCampaignAirVictimGenerator(campaign, company);
         CrewMember victim = victimGenerator.generateVictimAiCrew();
         assert(victim != null);
     }

@@ -18,7 +18,7 @@ import pwcg.core.exception.PWCGException;
 public class CampaignPersonnelManager 
 {
 	private Campaign campaign = null;
-    private Map<Integer, CompanyPersonnel> companyPersonnelAllSquadrons = new HashMap<>();
+    private Map<Integer, CompanyPersonnel> companyPersonnelAllCompanys = new HashMap<>();
     private Map<Integer, PersonnelReplacementsService> personnelReplacementsServices = new HashMap<>();
 	private CampaignAces campaignAces = new CampaignAces();
 
@@ -29,17 +29,17 @@ public class CampaignPersonnelManager
 
 	public Map<Integer, CompanyPersonnel> getCampaignPersonnel()
 	{
-		return new HashMap<Integer, CompanyPersonnel>(companyPersonnelAllSquadrons);
+		return new HashMap<Integer, CompanyPersonnel>(companyPersonnelAllCompanys);
 	}
 
-    public CompanyPersonnel getCompanyPersonnel(Integer squadronId)
+    public CompanyPersonnel getCompanyPersonnel(Integer companyId)
     {
-        return companyPersonnelAllSquadrons.get(squadronId);
+        return companyPersonnelAllCompanys.get(companyId);
     }
 
 	public void addPersonnelForCompany(CompanyPersonnel campaignPersonnel)
 	{
-	    companyPersonnelAllSquadrons.put(campaignPersonnel.getCompany().getCompanyId(), campaignPersonnel);
+	    companyPersonnelAllCompanys.put(campaignPersonnel.getCompany().getCompanyId(), campaignPersonnel);
 	}
 
 	public CampaignAces getCampaignAces()
@@ -59,7 +59,7 @@ public class CampaignPersonnelManager
 
     public List<CompanyPersonnel> getAllCompanyPersonnel()
     {
-        return new ArrayList<CompanyPersonnel>(companyPersonnelAllSquadrons.values());
+        return new ArrayList<CompanyPersonnel>(companyPersonnelAllCompanys.values());
     }    
 
     public Map<Integer, CrewMember> getAllCampaignMembers() throws PWCGException
@@ -84,10 +84,10 @@ public class CampaignPersonnelManager
     public CrewMembers getAllPlayers() throws PWCGException
     {
         CrewMembers allPlayers =  new CrewMembers();
-        for (CompanyPersonnel squadronPersonnel : campaign.getPersonnelManager().getAllCompanyPersonnel())
+        for (CompanyPersonnel companyPersonnel : campaign.getPersonnelManager().getAllCompanyPersonnel())
         {
-            CrewMembers playersInSquadron = squadronPersonnel.getPlayers();
-            allPlayers.addCrewMembers(playersInSquadron);
+            CrewMembers playersInCompany = companyPersonnel.getPlayers();
+            allPlayers.addCrewMembers(playersInCompany);
         }
         return allPlayers;
     }
@@ -110,20 +110,20 @@ public class CampaignPersonnelManager
     private CrewMembers getPlayersForStatus(int status) throws PWCGException
     {
     	CrewMembers allPlayers =  new CrewMembers();
-        for (CompanyPersonnel squadronPersonnel : campaign.getPersonnelManager().getAllCompanyPersonnel())
+        for (CompanyPersonnel companyPersonnel : campaign.getPersonnelManager().getAllCompanyPersonnel())
         {
-        	CrewMembers playersInSquadron = squadronPersonnel.getPlayersByStatus(status);
-        	allPlayers.addCrewMembers(playersInSquadron);
+        	CrewMembers playersInCompany = companyPersonnel.getPlayersByStatus(status);
+        	allPlayers.addCrewMembers(playersInCompany);
         }
         return allPlayers;
     }
     
-    public boolean companyHasActivePlayers(int squadronId) throws PWCGException
+    public boolean companyHasActivePlayers(int companyId) throws PWCGException
     {
         CrewMembers allActivePlayers = getPlayersForStatus(CrewMemberStatus.STATUS_ACTIVE);
         for (CrewMember player : allActivePlayers.getCrewMemberList())
         {
-            if (player.getCompanyId() == squadronId)
+            if (player.getCompanyId() == companyId)
             {
                 return true;
             }
@@ -134,10 +134,10 @@ public class CampaignPersonnelManager
     public Map<Integer, CrewMember> getAllActiveNonAceCampaignMembers() throws PWCGException
     {
         Map<Integer, CrewMember> allNonAceCampaignMembers =  new HashMap<>();
-        for (CompanyPersonnel squadronPersonnel : campaign.getPersonnelManager().getAllCompanyPersonnel())
+        for (CompanyPersonnel companyPersonnel : campaign.getPersonnelManager().getAllCompanyPersonnel())
         {
-            allNonAceCampaignMembers.putAll(squadronPersonnel.getActiveCrewMembers().getCrewMemberCollection());
-            allNonAceCampaignMembers.putAll(squadronPersonnel.getPlayersByStatus(CrewMemberStatus.STATUS_ACTIVE).getCrewMemberCollection());
+            allNonAceCampaignMembers.putAll(companyPersonnel.getActiveCrewMembers().getCrewMemberCollection());
+            allNonAceCampaignMembers.putAll(companyPersonnel.getPlayersByStatus(CrewMemberStatus.STATUS_ACTIVE).getCrewMemberCollection());
         }
         return allNonAceCampaignMembers;
     }    
@@ -145,9 +145,9 @@ public class CampaignPersonnelManager
     public Map<Integer, CrewMember> getAllNonAceCampaignMembers() throws PWCGException
     {
         Map<Integer, CrewMember> allNonAceCampaignMembers =  new HashMap<>();
-        for (CompanyPersonnel squadronPersonnel : campaign.getPersonnelManager().getAllCompanyPersonnel())
+        for (CompanyPersonnel companyPersonnel : campaign.getPersonnelManager().getAllCompanyPersonnel())
         {
-            allNonAceCampaignMembers.putAll(squadronPersonnel.getCrewMembers().getCrewMemberCollection());
+            allNonAceCampaignMembers.putAll(companyPersonnel.getCrewMembers().getCrewMemberCollection());
         }
         return allNonAceCampaignMembers;
     }    
@@ -166,9 +166,9 @@ public class CampaignPersonnelManager
             return crewMember;
         }        
 
-        for (CompanyPersonnel squadronPersonnel : companyPersonnelAllSquadrons.values())
+        for (CompanyPersonnel companyPersonnel : companyPersonnelAllCompanys.values())
         {
-            crewMember = squadronPersonnel.getCrewMember(serialNumber);
+            crewMember = companyPersonnel.getCrewMember(serialNumber);
             if (crewMember != null)
             {
                 return crewMember;
@@ -184,7 +184,7 @@ public class CampaignPersonnelManager
             }        
         }
         
-        throw new PWCGException ("Unable to locate squadron member for serial number " + serialNumber);
+        throw new PWCGException ("Unable to locate company member for serial number " + serialNumber);
     }
 
     public List<PersonnelReplacementsService> getAllPersonnelReplacementsServices()
@@ -231,10 +231,10 @@ public class CampaignPersonnelManager
     public void createPersonnelReplacements(ArmedService armedService) throws PWCGException
     {
         InitialReplacementStaffer initialReplacementStaffer = new InitialReplacementStaffer(campaign, armedService);
-        CrewMembers squadronMembers = initialReplacementStaffer.staffReplacementsForService();
+        CrewMembers crewMembers = initialReplacementStaffer.staffReplacementsForService();
         
         PersonnelReplacementsService replacementsForService = new PersonnelReplacementsService();
-        replacementsForService.setReplacements(squadronMembers);
+        replacementsForService.setReplacements(crewMembers);
         replacementsForService.setServiceId(armedService.getServiceId());
         replacementsForService.setDailyReplacementRate(armedService.getDailyPersonnelReplacementRate(campaign.getDate()));
         replacementsForService.setLastReplacementDate(campaign.getDate());

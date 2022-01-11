@@ -82,7 +82,7 @@ public class AARMedalPanel extends AARDocumentPanel
         for (MedalEvent medalEvent : medalsAwarded)
         {
             CrewMember referencePlayer = campaign.findReferencePlayer();
-            if (medalEvent.getSquadronId() == referencePlayer.getCompanyId())
+            if (medalEvent.getCompanyId() == referencePlayer.getCompanyId())
             {
                 if (medalEvent.isNewsWorthy())
                 {

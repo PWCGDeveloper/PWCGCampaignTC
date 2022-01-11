@@ -32,34 +32,34 @@ public class SkinSessionManager
     private CrewMember crewMember = null;
     private Map <Integer, CrewMemberSkinInfo> crewMemberSkinSets = new HashMap <>();
     
-    private boolean squadronSkinsSelected = false;
-    private boolean nonSquadronSkinsSelected = false;
+    private boolean companySkinsSelected = false;
+    private boolean nonCompanySkinsSelected = false;
     private boolean looseSkinsSelected = false;
 
     public SkinSessionManager()
     {
     }
 
-    public List<Skin> getSquadronSkins(String selectedPlane) throws PWCGException
+    public List<Skin> getCompanySkins(String selectedPlane) throws PWCGException
     {
         List<Skin> skinNames = new ArrayList<>();
 
         Campaign campaign = PWCGContext.getInstance().getCampaign();
-        Company company = crewMember.determineSquadron();
+        Company company = crewMember.determineCompany();
 
-        List<Skin> squadronSkins = PWCGContext.getInstance().getSkinManager().getSkinsBySquadronPlaneDate(selectedPlane, company.getCompanyId(), campaign.getDate());
-        skinNames = getConfiguredSkins(squadronSkins);
+        List<Skin> companySkins = PWCGContext.getInstance().getSkinManager().getSkinsByCompanyPlaneDate(selectedPlane, company.getCompanyId(), campaign.getDate());
+        skinNames = getConfiguredSkins(companySkins);
 
         return skinNames;
     }
 
-    public List<Skin> getNonSquadronSkins(String selectedPlane) throws PWCGException
+    public List<Skin> getNonCompanySkins(String selectedPlane) throws PWCGException
     {
         List<Skin> skinNames = new ArrayList<>();
         
         Campaign campaign = PWCGContext.getInstance().getCampaign();
 
-        List<Skin> unaffiliatedSkins = PWCGContext.getInstance().getSkinManager().getSkinsBySquadronPlaneDate(selectedPlane, Skin.PERSONAL_SKIN, campaign.getDate());
+        List<Skin> unaffiliatedSkins = PWCGContext.getInstance().getSkinManager().getSkinsByCompanyPlaneDate(selectedPlane, Skin.PERSONAL_SKIN, campaign.getDate());
 
         skinNames = getConfiguredSkins(unaffiliatedSkins);
 
@@ -70,15 +70,15 @@ public class SkinSessionManager
     {
         List<Skin> looseSkins = new ArrayList<>();
 
-        // Get what we already have for the squadron or as nonSquadron
-        List<Skin> squadronSkins = getSquadronSkins(selectedPlane);
-        List<Skin> nonSquadronSkins = getNonSquadronSkins(selectedPlane);
+        // Get what we already have for the company or as nonCompany
+        List<Skin> companySkins = getCompanySkins(selectedPlane);
+        List<Skin> nonCompanySkins = getNonCompanySkins(selectedPlane);
         
         List<Skin> knownSkinsForPlane = new ArrayList<>();
-        knownSkinsForPlane.addAll(squadronSkins);
-        knownSkinsForPlane.addAll(nonSquadronSkins);
+        knownSkinsForPlane.addAll(companySkins);
+        knownSkinsForPlane.addAll(nonCompanySkins);
 
-        // Exclude known squadron and nonSquadrons
+        // Exclude known company and nonCompanys
         List<Skin> allLooseSkins = PWCGContext.getInstance().getSkinManager().getLooseSkinByPlane(selectedPlane);
         for (Skin looseSkin : allLooseSkins)
         {
@@ -134,9 +134,9 @@ public class SkinSessionManager
     private boolean isSkinInUseByAnotherCrewMember(Skin skinToCheck) throws PWCGException
     {
         Campaign campaign = PWCGContext.getInstance().getCampaign();
-        CompanyPersonnel squadronPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(crewMember.getCompanyId());
-        CrewMembers squadronMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(squadronPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
-        for (CrewMember squadMember : squadronMembers.getCrewMemberList())
+        CompanyPersonnel companyPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(crewMember.getCompanyId());
+        CrewMembers crewMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(companyPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
+        for (CrewMember squadMember : crewMembers.getCrewMemberList())
         {
             if (!(squadMember.getSerialNumber() == crewMember.getSerialNumber()))
             {
@@ -238,24 +238,24 @@ public class SkinSessionManager
          return crewMemberSkinSets.get(crewMember.getSerialNumber());
      }
 
-    public boolean isSquadronSkinsSelected()
+    public boolean isCompanySkinsSelected()
     {
-        return squadronSkinsSelected;
+        return companySkinsSelected;
     }
 
-    public void setSquadronSkinsSelected(boolean squadronSkinsSelected)
+    public void setCompanySkinsSelected(boolean companySkinsSelected)
     {
-        this.squadronSkinsSelected = squadronSkinsSelected;
+        this.companySkinsSelected = companySkinsSelected;
     }
 
-    public boolean isNonSquadronSkinsSelected()
+    public boolean isNonCompanySkinsSelected()
     {
-        return nonSquadronSkinsSelected;
+        return nonCompanySkinsSelected;
     }
 
-    public void setNonSquadronSkinsSelected(boolean nonSquadronSkinsSelected)
+    public void setNonCompanySkinsSelected(boolean nonCompanySkinsSelected)
     {
-        this.nonSquadronSkinsSelected = nonSquadronSkinsSelected;
+        this.nonCompanySkinsSelected = nonCompanySkinsSelected;
     }
 
     public boolean isLooseSkinsSelected()
@@ -272,8 +272,8 @@ public class SkinSessionManager
     public void clearSkinCategorySelectedFlags()
     {
         this.looseSkinsSelected = false;
-        this.squadronSkinsSelected = false;
-        this.nonSquadronSkinsSelected = false;
+        this.companySkinsSelected = false;
+        this.nonCompanySkinsSelected = false;
     }
 
     

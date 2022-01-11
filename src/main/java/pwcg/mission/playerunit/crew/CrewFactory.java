@@ -15,31 +15,31 @@ import pwcg.mission.unit.UnitInformation;
 public class CrewFactory
 {
     private Campaign campaign;
-    private Company squadron;
+    private Company company;
     private MissionHumanParticipants participatingPlayers;
-    private Map <Integer, CrewMember> crewsForSquadron = new HashMap <>();
+    private Map <Integer, CrewMember> crewsForCompany = new HashMap <>();
     
 	public CrewFactory(UnitInformation unitInformation)
 	{
         this.campaign = unitInformation.getCampaign();
-        this.squadron = unitInformation.getCompany();
+        this.company = unitInformation.getCompany();
         this.participatingPlayers = unitInformation.getMission().getParticipatingPlayers();
 	}
 
     public Map <Integer, CrewMember> createCrews() throws PWCGException 
     {
-        createCrewsForSquadron();
+        createCrewsForCompany();
         ensurePlayerIsAssigned();
-        return crewsForSquadron;
+        return crewsForCompany;
     }
 
-    private void createCrewsForSquadron() throws PWCGException
+    private void createCrewsForCompany() throws PWCGException
     {
         CrewMembers companyMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAcesNoWounded(
-                campaign.getPersonnelManager().getCompanyPersonnel(squadron.getCompanyId()).getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
+                campaign.getPersonnelManager().getCompanyPersonnel(company.getCompanyId()).getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
         for (CrewMember crewMember : companyMembers.getCrewMemberList())
         {
-            crewsForSquadron.put(crewMember.getSerialNumber(), crewMember);
+            crewsForCompany.put(crewMember.getSerialNumber(), crewMember);
         }
     }
 
@@ -53,22 +53,22 @@ public class CrewFactory
 
     private void addPlayerToMissionIfNeeded(CrewMember player)
     {
-        if (player.getCompanyId() != squadron.getCompanyId())
+        if (player.getCompanyId() != company.getCompanyId())
         {
             return;
         }
          
-        if (crewsForSquadron.containsKey(player.getSerialNumber()))
+        if (crewsForCompany.containsKey(player.getSerialNumber()))
         {
             return;
         }
          
-        for (CrewMember squadronMemberToBeReplaced : crewsForSquadron.values())
+        for (CrewMember companyMemberToBeReplaced : crewsForCompany.values())
         {
-            if (!squadronMemberToBeReplaced.isPlayer())
+            if (!companyMemberToBeReplaced.isPlayer())
             {
-                crewsForSquadron.put(player.getSerialNumber(), player);
-                crewsForSquadron.remove(squadronMemberToBeReplaced.getSerialNumber());
+                crewsForCompany.put(player.getSerialNumber(), player);
+                crewsForCompany.remove(companyMemberToBeReplaced.getSerialNumber());
                 break;
             }
         }

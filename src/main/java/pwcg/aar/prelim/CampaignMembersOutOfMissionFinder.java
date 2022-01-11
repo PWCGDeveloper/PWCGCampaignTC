@@ -18,8 +18,8 @@ public class CampaignMembersOutOfMissionFinder
         CrewMembers campaignMembersOutOfMission = new CrewMembers();
         for (CrewMember crewMember : allCampaignMembers.values())
         {
-            Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(crewMember.getCompanyId());
-            if (CompanyViability.isCompanyViable(squadron, campaign))
+            Company company = PWCGContext.getInstance().getCompanyManager().getCompany(crewMember.getCompanyId());
+            if (CompanyViability.isCompanyViable(company, campaign))
             {
                 if (!campaignMembersInMission.getCrewMemberCollection().containsKey(crewMember.getSerialNumber()))
                 {

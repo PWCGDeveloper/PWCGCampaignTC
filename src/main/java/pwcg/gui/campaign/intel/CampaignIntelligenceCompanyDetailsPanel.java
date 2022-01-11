@@ -33,9 +33,9 @@ public class CampaignIntelligenceCompanyDetailsPanel extends JPanel
     private static final long serialVersionUID = 1L;
 
     private Campaign campaign;
-    private JTextArea squadronIntelHeaderText;
-    private JTextArea squadronIntelPersonnelText;
-    private JTextArea squadronIntelEquipmentText;
+    private JTextArea companyIntelHeaderText;
+    private JTextArea companyIntelPersonnelText;
+    private JTextArea companyIntelEquipmentText;
 
     public CampaignIntelligenceCompanyDetailsPanel(Campaign campaign)
     {
@@ -48,73 +48,73 @@ public class CampaignIntelligenceCompanyDetailsPanel extends JPanel
         this.setLayout(new BorderLayout());
         this.setBorder(PwcgBorderFactory.createStandardDocumentBorder());
 
-        JPanel squadronDetailsPanel = makeSquadronDetailsPanel();
-        this.add(squadronDetailsPanel, BorderLayout.CENTER);
+        JPanel companyDetailsPanel = makeCompanyDetailsPanel();
+        this.add(companyDetailsPanel, BorderLayout.CENTER);
 
         ImageToDisplaySizer.setDocumentSize(this);
     }
 
-    public void setSquadronIntelText(int squadronId) throws PWCGException
+    public void setCompanyIntelText(int companyId) throws PWCGException
     {
-        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(squadronId);
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(companyId);
         
-        String squadronIntelHeaderDesc = formSquadronHeaderDesc(squadron);
-        squadronIntelHeaderText.setText(squadronIntelHeaderDesc);
+        String companyIntelHeaderDesc = formCompanyHeaderDesc(company);
+        companyIntelHeaderText.setText(companyIntelHeaderDesc);
         
-        String squadronPersonnelDesc = formSquadronPersonnelDesc(squadron);
-        squadronIntelPersonnelText.setText(squadronPersonnelDesc);
+        String companyPersonnelDesc = formCompanyPersonnelDesc(company);
+        companyIntelPersonnelText.setText(companyPersonnelDesc);
 
-        String squadronEquipmentDesc = formSquadronEquipmentDesc(squadron);
-        squadronIntelEquipmentText.setText(squadronEquipmentDesc);
+        String companyEquipmentDesc = formCompanyEquipmentDesc(company);
+        companyIntelEquipmentText.setText(companyEquipmentDesc);
     }
 
-    private JPanel makeSquadronDetailsPanel() throws PWCGException
+    private JPanel makeCompanyDetailsPanel() throws PWCGException
     {
-        ImageResizingPanel squadronDetailsPanel = new ImageResizingPanel("");
-        squadronDetailsPanel.setOpaque(false);
-        squadronDetailsPanel.setLayout(new BorderLayout());
+        ImageResizingPanel companyDetailsPanel = new ImageResizingPanel("");
+        companyDetailsPanel.setOpaque(false);
+        companyDetailsPanel.setLayout(new BorderLayout());
         String imagePath = UiImageResolver.getImage(ScreenIdentifier.Document);
-        squadronDetailsPanel.setImageFromName(imagePath);
-        squadronDetailsPanel.setBorder(PwcgBorderFactory.createStandardDocumentBorder());
+        companyDetailsPanel.setImageFromName(imagePath);
+        companyDetailsPanel.setBorder(PwcgBorderFactory.createStandardDocumentBorder());
 
-        JPanel squadronDetailsHeaderPanel = formSquadronIntelHeader();
-        squadronDetailsPanel.add(squadronDetailsHeaderPanel,BorderLayout.NORTH);
+        JPanel companyDetailsHeaderPanel = formCompanyIntelHeader();
+        companyDetailsPanel.add(companyDetailsHeaderPanel,BorderLayout.NORTH);
 
-        JPanel squadronDetailsInfoPanel = formSquadronDetails();
-        squadronDetailsPanel.add(squadronDetailsInfoPanel,BorderLayout.CENTER);
+        JPanel companyDetailsInfoPanel = formCompanyDetails();
+        companyDetailsPanel.add(companyDetailsInfoPanel,BorderLayout.CENTER);
 
-        return squadronDetailsPanel;
+        return companyDetailsPanel;
     }
 
-    private JPanel formSquadronDetails() throws PWCGException
+    private JPanel formCompanyDetails() throws PWCGException
     {
-        JPanel squadronDetailsPanel = new JPanel(new GridLayout(0, 2));
-        squadronDetailsPanel.setOpaque(false);
+        JPanel companyDetailsPanel = new JPanel(new GridLayout(0, 2));
+        companyDetailsPanel.setOpaque(false);
 
-        JPanel squadronPersonnelDetails = formSquadronIntelPersonnel();
-        squadronDetailsPanel.add(squadronPersonnelDetails);
+        JPanel companyPersonnelDetails = formCompanyIntelPersonnel();
+        companyDetailsPanel.add(companyPersonnelDetails);
 
-        JPanel squadronEquipmentDetails = formSquadronIntelEquipment();
-        squadronDetailsPanel.add(squadronEquipmentDetails);
-        return squadronDetailsPanel;
+        JPanel companyEquipmentDetails = formCompanyIntelEquipment();
+        companyDetailsPanel.add(companyEquipmentDetails);
+        return companyDetailsPanel;
     }
 
-    private JPanel formSquadronIntelPersonnel() throws PWCGException
+    private JPanel formCompanyIntelPersonnel() throws PWCGException
     {
-        squadronIntelPersonnelText = makeSquadronInfoTextArea();
-        return WrapTextArea(squadronIntelPersonnelText);
-    }
-    
-    private JPanel formSquadronIntelEquipment() throws PWCGException
-    {
-        squadronIntelEquipmentText = makeSquadronInfoTextArea();
-        return WrapTextArea(squadronIntelEquipmentText);
+        companyIntelPersonnelText = makeCompanyInfoTextArea();
+        return WrapTextArea(companyIntelPersonnelText);
     }
     
-    private JPanel formSquadronIntelHeader() throws PWCGException
+    private JPanel formCompanyIntelEquipment() throws PWCGException
     {
-        squadronIntelHeaderText = makeSquadronInfoTextArea();
-        return WrapTextArea(squadronIntelHeaderText);
+        companyIntelEquipmentText = makeCompanyInfoTextArea();
+        return WrapTextArea(companyIntelEquipmentText);
+    }
+    
+    private JPanel formCompanyIntelHeader() throws PWCGException
+    {
+        companyIntelHeaderText = makeCompanyInfoTextArea();
+        return WrapTextArea(companyIntelHeaderText);
     }
 
     private JPanel WrapTextArea(JTextArea textArea)
@@ -125,61 +125,61 @@ public class CampaignIntelligenceCompanyDetailsPanel extends JPanel
         return intelTextPanel;
     }
 
-    private JTextArea makeSquadronInfoTextArea() throws PWCGException
+    private JTextArea makeCompanyInfoTextArea() throws PWCGException
     {
-        JTextArea squadronIntelText;
+        JTextArea companyIntelText;
         
         Font font = PWCGMonitorFonts.getTypewriterFont();
-        squadronIntelText = new JTextArea();
-        squadronIntelText.setFont(font);
-        squadronIntelText.setOpaque(false);
-        squadronIntelText.setLineWrap(false);
-        squadronIntelText.setWrapStyleWord(true);
-        squadronIntelText.setText("");
+        companyIntelText = new JTextArea();
+        companyIntelText.setFont(font);
+        companyIntelText.setOpaque(false);
+        companyIntelText.setLineWrap(false);
+        companyIntelText.setWrapStyleWord(true);
+        companyIntelText.setText("");
         
-        return squadronIntelText;
+        return companyIntelText;
     }
 
-    private String formSquadronHeaderDesc(Company squadron) throws PWCGException
+    private String formCompanyHeaderDesc(Company company) throws PWCGException
     {
         String stationedAtText = InternationalizationManager.getTranslation("Stationed At");
         String callSignText = InternationalizationManager.getTranslation("Call Sign");
 
         StringBuffer intelBuffer = new StringBuffer("");
         intelBuffer.append("\n");
-        intelBuffer.append("        "  + squadron.determineDisplayName(campaign.getDate()));          
+        intelBuffer.append("        "  + company.determineDisplayName(campaign.getDate()));          
         intelBuffer.append("\n");
-        intelBuffer.append("        " + stationedAtText + ": " + squadron.determineCurrentAirfieldName(campaign.getDate()));          
+        intelBuffer.append("        " + stationedAtText + ": " + company.determineCurrentAirfieldName(campaign.getDate()));          
         intelBuffer.append("\n");
-        intelBuffer.append("        " + callSignText + ": " + squadron.determineCurrentCallsign(campaign.getDate()));
+        intelBuffer.append("        " + callSignText + ": " + company.determineCurrentCallsign(campaign.getDate()));
         intelBuffer.append("\n");
         return intelBuffer.toString();
     }
 
-    private String formSquadronPersonnelDesc(Company squadron) throws PWCGException
+    private String formCompanyPersonnelDesc(Company company) throws PWCGException
     {
         StringBuffer intelBuffer = new StringBuffer("");
-        formPersonnel(squadron.getCompanyId(), intelBuffer);
+        formPersonnel(company.getCompanyId(), intelBuffer);
         return intelBuffer.toString();
     }
 
-    private String formSquadronEquipmentDesc(Company squadron) throws PWCGException
+    private String formCompanyEquipmentDesc(Company company) throws PWCGException
     {
         StringBuffer intelBuffer = new StringBuffer("");
-        formAircraftInventory(squadron, intelBuffer);
+        formAircraftInventory(company, intelBuffer);
         intelBuffer.append("\n");
         return intelBuffer.toString();
     }
     
-    private void formPersonnel(int squadronId, StringBuffer intelBuffer) throws PWCGException
+    private void formPersonnel(int companyId, StringBuffer intelBuffer) throws PWCGException
     {
         String personnelText = InternationalizationManager.getTranslation("Personnel");
 
         intelBuffer.append("\n        " + personnelText + "\n");        
         intelBuffer.append("        ----------------------------------------\n");          
 
-        CompanyPersonnel squadronPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(squadronId);
-        CrewMembers activeCrewMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(squadronPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
+        CompanyPersonnel companyPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(companyId);
+        CrewMembers activeCrewMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(companyPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
         List<CrewMember> sortedCrewMembers = activeCrewMembers.sortCrewMembers(campaign.getDate());
         for (CrewMember crewMember : sortedCrewMembers)
         {
@@ -193,13 +193,13 @@ public class CampaignIntelligenceCompanyDetailsPanel extends JPanel
         }
     }
 
-    private void formAircraftInventory(Company squadron, StringBuffer intelBuffer) throws PWCGException
+    private void formAircraftInventory(Company company, StringBuffer intelBuffer) throws PWCGException
     {
         String aircraftInventoryText = InternationalizationManager.getTranslation("Aircraft On Inventory");
 
         intelBuffer.append("\n        " + aircraftInventoryText + "\n");        
         intelBuffer.append("        ----------------------------------------\n");          
-        Map<Integer, EquippedTank> aircraftOnInventory = campaign.getEquipmentManager().getEquipmentForCompany(squadron.getCompanyId()).getActiveEquippedTanks();
+        Map<Integer, EquippedTank> aircraftOnInventory = campaign.getEquipmentManager().getEquipmentForCompany(company.getCompanyId()).getActiveEquippedTanks();
         List<EquippedTank> sortedAircraftOnInventory = TankSorter.sortEquippedTanksByGoodness(new ArrayList<EquippedTank>(aircraftOnInventory.values()));
         for (int i = 0; i < sortedAircraftOnInventory.size(); ++i)
         {

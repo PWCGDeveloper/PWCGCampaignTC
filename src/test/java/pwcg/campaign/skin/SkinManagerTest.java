@@ -34,16 +34,16 @@ public class SkinManagerTest
         testSkins = skinManager.getPersonalSkinsByPlaneCountryDateInUse(planeType, iCountry.getCountryName(), DateUtils.getDateYYYYMMDD("19420401"));
         Assertions.assertTrue (testSkins.size() > 0);
         
-        testSkins = skinManager.getSkinsByPlaneSquadron(planeType, 20111051);
+        testSkins = skinManager.getSkinsByPlaneCompany(planeType, 20111051);
         Assertions.assertTrue (testSkins.size() == 0);
         
-        testSkins = skinManager.getSkinsByPlaneSquadron(planeType, 20111052);
+        testSkins = skinManager.getSkinsByPlaneCompany(planeType, 20111052);
         Assertions.assertTrue (testSkins.size() > 0);
         
         testSkins = skinManager.getSkinsByPlaneCountry(planeType, iCountry.getCountryName());
         Assertions.assertTrue (testSkins.size() > 0);
         
-        testSkins = skinManager.getSkinsByPlaneSquadronDateInUse(planeType, 20111052, DateUtils.getDateYYYYMMDD("19420401"));
+        testSkins = skinManager.getSkinsByPlaneCompanyDateInUse(planeType, 20111052, DateUtils.getDateYYYYMMDD("19420401"));
         Assertions.assertTrue (testSkins.size() > 0);
     }
 

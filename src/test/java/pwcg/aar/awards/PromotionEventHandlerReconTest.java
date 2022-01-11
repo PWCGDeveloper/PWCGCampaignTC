@@ -34,9 +34,9 @@ public class PromotionEventHandlerReconTest
     private Campaign campaign;
     
     @Mock private ArmedService service;
-    @Mock private Company squadron;
+    @Mock private Company company;
     @Mock private CrewMember crewMember;
-    @Mock private CrewMemberVictories squadronMemberVictories;
+    @Mock private CrewMemberVictories companyMemberVictories;
 
     @BeforeAll
     public void setupSuite() throws PWCGException
@@ -48,10 +48,10 @@ public class PromotionEventHandlerReconTest
     @BeforeEach
     public void setupTest() throws PWCGException
     {        
-        Mockito.when(crewMember.determineSquadron()).thenReturn(squadron);
-        Mockito.when(squadron.determineCompanyPrimaryRoleCategory(Mockito.any())).thenReturn(PwcgRoleCategory.RECON);
-        Mockito.when(crewMember.getCrewMemberVictories()).thenReturn(squadronMemberVictories);
-        Mockito.when(squadronMemberVictories.getGroundVictoryPointTotal()).thenReturn(0);
+        Mockito.when(crewMember.determineCompany()).thenReturn(company);
+        Mockito.when(company.determineCompanyPrimaryRoleCategory(Mockito.any())).thenReturn(PwcgRoleCategory.RECON);
+        Mockito.when(crewMember.getCrewMemberVictories()).thenReturn(companyMemberVictories);
+        Mockito.when(companyMemberVictories.getGroundVictoryPointTotal()).thenReturn(0);
     }
 
     @Test

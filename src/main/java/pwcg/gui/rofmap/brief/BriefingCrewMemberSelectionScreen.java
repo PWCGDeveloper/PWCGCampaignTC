@@ -75,7 +75,7 @@ public class BriefingCrewMemberSelectionScreen extends ImageResizingPanel implem
             this.setImageFromName(imagePath);
 
             briefingFlightChooser = new BriefingCompanyChooser(mission, this);
-            briefingFlightChooser.createBriefingSquadronSelectPanel();
+            briefingFlightChooser.createBriefingCompanySelectPanel();
 
             this.add(BorderLayout.WEST, makeLeftPanel());
             this.add(BorderLayout.CENTER, createCenterPanel());

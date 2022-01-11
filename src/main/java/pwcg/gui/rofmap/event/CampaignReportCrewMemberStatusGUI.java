@@ -42,7 +42,7 @@ public class CampaignReportCrewMemberStatusGUI extends AARDocumentIconPanel
 
     protected String getBodyText() throws PWCGException
     {
-        String crewMemberLostText = "Squadron: " + crewMemberLostEvent.getSquadronName() + "\n";
+        String crewMemberLostText = "Company: " + crewMemberLostEvent.getCompanyName() + "\n";
         crewMemberLostText += "Date: " + DateUtils.getDateStringPretty(crewMemberLostEvent.getDate()) + "\n";
         crewMemberLostText += getCrewMemberLostString();   
         

@@ -55,9 +55,9 @@ public class PlaneFactoryTest
     public void testPlayerPlaneGeneration() throws PWCGException
     {
 
-        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
 
-        FlightBuildInformation flightBuildInformation = new FlightBuildInformation(mission, squadron, NecessaryFlightType.PLAYER_FLIGHT);
+        FlightBuildInformation flightBuildInformation = new FlightBuildInformation(mission, company, NecessaryFlightType.PLAYER_FLIGHT);
 
         FlightInformation flightInformation = FlightInformationFactory.buildFlightInformation(flightBuildInformation, FlightTypes.BOMB);
 
@@ -65,11 +65,11 @@ public class PlaneFactoryTest
         List<PlaneMcu> assignedPlanes = planeFactory.createPlanesForFlight(4);
 
         boolean playerFound = false;
-        CompanyPersonnel squadronPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
+        CompanyPersonnel companyPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
         int callnum = 1;
         for (PlaneMcu plane : assignedPlanes)
         {
-            Assertions.assertTrue (squadronPersonnel.isActiveCrewMember(plane.getTankCommander().getSerialNumber()));
+            Assertions.assertTrue (companyPersonnel.isActiveCrewMember(plane.getTankCommander().getSerialNumber()));
             Assertions.assertTrue (plane.getCallsign() == Callsign.SEAGULL);
             Assertions.assertTrue (plane.getCallnum() == callnum++);
             List<CrewMember> players = campaign.getPersonnelManager().getAllActivePlayers().getCrewMemberList();
@@ -89,9 +89,9 @@ public class PlaneFactoryTest
     public void testAiPlaneGeneration() throws PWCGException
     {
 
-        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(20111052);
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(20111052);
 
-        FlightBuildInformation flightBuildInformation = new FlightBuildInformation(mission, squadron, NecessaryFlightType.PLAYER_FLIGHT);
+        FlightBuildInformation flightBuildInformation = new FlightBuildInformation(mission, company, NecessaryFlightType.PLAYER_FLIGHT);
 
         FlightInformation flightInformation = FlightInformationFactory.buildFlightInformation(flightBuildInformation, FlightTypes.BOMB);
 
@@ -100,11 +100,11 @@ public class PlaneFactoryTest
 
         List<CrewMember> players = campaign.getPersonnelManager().getAllActivePlayers().getCrewMemberList();
         boolean playerFound = false;
-        CompanyPersonnel squadronPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(squadron.getCompanyId());
+        CompanyPersonnel companyPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(company.getCompanyId());
         int callnum = 1;
         for (PlaneMcu plane : assignedPlanes)
         {
-            Assertions.assertTrue (squadronPersonnel.isActiveCrewMember(plane.getTankCommander().getSerialNumber()));
+            Assertions.assertTrue (companyPersonnel.isActiveCrewMember(plane.getTankCommander().getSerialNumber()));
             Assertions.assertTrue (plane.getCallsign() == Callsign.ROOK);
             Assertions.assertTrue (plane.getCallnum() == callnum++);
             if (plane.getTankCommander().getSerialNumber() == players.get(0).getSerialNumber())

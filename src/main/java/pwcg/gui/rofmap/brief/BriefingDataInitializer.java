@@ -25,7 +25,7 @@ public class BriefingDataInitializer
 	public BriefingCrewMemberAssignmentData initializeFromMission(Company company) throws PWCGException
 	{	    
 	    BriefingCrewMemberAssignmentData briefingAssignmentData = new BriefingCrewMemberAssignmentData();
-	    briefingAssignmentData.setSquadron(company);
+	    briefingAssignmentData.setCompany(company);
         
 	    CompanyPersonnel playerPersonnel = mission.getCampaign().getPersonnelManager().getCompanyPersonnel(company.getCompanyId());
         CrewMembers companyMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAcesNoWounded(

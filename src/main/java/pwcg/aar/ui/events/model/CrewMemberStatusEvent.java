@@ -9,9 +9,9 @@ public class CrewMemberStatusEvent  extends AARCrewMemberEvent
 {
 	private int status = CrewMemberStatus.STATUS_ACTIVE;
 
-    public CrewMemberStatusEvent(Campaign campaign, int status, int squadronId, int crewMemberSerialNumber, Date date, boolean isNewsWorthy)
+    public CrewMemberStatusEvent(Campaign campaign, int status, int companyId, int crewMemberSerialNumber, Date date, boolean isNewsWorthy)
     {
-        super(campaign, squadronId, crewMemberSerialNumber, date, isNewsWorthy);
+        super(campaign, companyId, crewMemberSerialNumber, date, isNewsWorthy);
         this.status = status;
     }
 

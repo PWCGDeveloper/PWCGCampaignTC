@@ -6,14 +6,14 @@ import java.util.List;
 public class CompanyRolePeriod
 {
     private Date startDate;
-    private List<SquadronRoleWeight> weightedRoles;
+    private List<CompanyRoleWeight> weightedRoles;
 
-    public List<SquadronRoleWeight> getWeightedRoles()
+    public List<CompanyRoleWeight> getWeightedRoles()
     {
         return weightedRoles;
     }
 
-    public void setWeightedRoles(List<SquadronRoleWeight> weightedRoles)
+    public void setWeightedRoles(List<CompanyRoleWeight> weightedRoles)
     {
         this.weightedRoles = weightedRoles;
     }

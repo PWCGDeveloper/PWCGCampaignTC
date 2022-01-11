@@ -33,26 +33,26 @@ public class EquipmentDepotReplenisher
 
     private void replenishReplacementDepotForService(ArmedService service) throws PWCGException
     {
-        List<Company> squadronsForService = getSquadronsForService(service);
-        if (squadronsForService.size() > 0)
+        List<Company> companysForService = getCompanysForService(service);
+        if (companysForService.size() > 0)
         {
             EquipmentDepot depo = campaign.getEquipmentManager().getEquipmentDepotForService(service.getServiceId());
-            addReplacementPlanesForService(service, squadronsForService, depo);
+            addReplacementPlanesForService(service, companysForService, depo);
         }
     }
 
-    private List<Company> getSquadronsForService(ArmedService service) throws PWCGException 
+    private List<Company> getCompanysForService(ArmedService service) throws PWCGException 
     {
-        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
-        return squadronManager.getActiveCompaniesForService(campaign.getDate(), service);
+        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+        return companyManager.getActiveCompaniesForService(campaign.getDate(), service);
     }
 
     private void addReplacementPlanesForService(
             ArmedService service, 
-            List<Company> squadronsForService, 
+            List<Company> companysForService, 
             EquipmentDepot depot) throws PWCGException
     {
-        replacePlanesInDepot(squadronsForService, depot);        
+        replacePlanesInDepot(companysForService, depot);        
         updatePlaneReplacementPoints(service, depot);
     }
 
@@ -64,10 +64,10 @@ public class EquipmentDepotReplenisher
         depot.setEquipmentPoints(updatedEquipmentPoints);
     }
 
-    private void replacePlanesInDepot(List<Company> squadronsForService, EquipmentDepot equipmentDepot) throws PWCGException
+    private void replacePlanesInDepot(List<Company> companysForService, EquipmentDepot equipmentDepot) throws PWCGException
     {
         EquipmentReplacementCalculator equipmentReplacementCalculator = new EquipmentReplacementCalculator(campaign);
-        equipmentReplacementCalculator.createArchTypeForReplacementPlane(squadronsForService);
+        equipmentReplacementCalculator.createArchTypeForReplacementPlane(companysForService);
 
         int numPlanes = equipmentDepot.getEquipmentPoints() / EquipmentDepot.NUM_POINTS_PER_PLANE;
         for (int i = 0; i < numPlanes; ++i)

@@ -23,18 +23,18 @@ public class BriefingUnit
     private double selectedFuel = 1.0;
     private Mission mission;
 
-    public BriefingUnit(Mission mission, BriefingUnitParameters briefingUnitParameters, int squadronId)
+    public BriefingUnit(Mission mission, BriefingUnitParameters briefingUnitParameters, int companyId)
     {
         this.mission = mission;
-        this.companyId = squadronId;
+        this.companyId = companyId;
         this.briefingUnitParameters = briefingUnitParameters;
         briefingAssignmentData = new BriefingCrewMemberAssignmentData();
     }
     
-    public void initializeFromMission(Company squadron) throws PWCGException
+    public void initializeFromMission(Company company) throws PWCGException
     {
         BriefingDataInitializer crewMemberHelper = new BriefingDataInitializer(mission);
-        briefingAssignmentData = crewMemberHelper.initializeFromMission(squadron);
+        briefingAssignmentData = crewMemberHelper.initializeFromMission(company);
 
         BriefingPayloadHelper payloadHelper = new BriefingPayloadHelper(mission, briefingAssignmentData);
         payloadHelper.initializePayloadsFromMission();

@@ -40,7 +40,7 @@ import pwcg.testutils.CompanyTestProfile;
 
 @ExtendWith(MockitoExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class CampaignSquadronPersonnelUpdaterTest
+public class CampaignCompanyPersonnelUpdaterTest
 {
     private Map<Integer, CrewMember> squadMembersKilled = new HashMap<>();
     private Map<Integer, CrewMember> squadMembersCaptured = new HashMap<>();
@@ -99,8 +99,8 @@ public class CampaignSquadronPersonnelUpdaterTest
         PersonnelUpdater personellUpdater = new PersonnelUpdater(campaign, campaignUpdateData);
         personellUpdater.personnelUpdates();
 
-        CrewMember squadronMemberAfterUpdate = campaign.getPersonnelManager().getAnyCampaignMember(deadCrewMember.getSerialNumber());
-        Assertions.assertTrue(squadronMemberAfterUpdate.getCrewMemberActiveStatus() == CrewMemberStatus.STATUS_KIA);
+        CrewMember companyMemberAfterUpdate = campaign.getPersonnelManager().getAnyCampaignMember(deadCrewMember.getSerialNumber());
+        Assertions.assertTrue(companyMemberAfterUpdate.getCrewMemberActiveStatus() == CrewMemberStatus.STATUS_KIA);
     }
 
     @Test
@@ -121,8 +121,8 @@ public class CampaignSquadronPersonnelUpdaterTest
         PersonnelUpdater personellUpdater = new PersonnelUpdater(campaign, campaignUpdateData);
         personellUpdater.personnelUpdates();
 
-        CrewMember squadronMemberAfterUpdate = campaign.getPersonnelManager().getAnyCampaignMember(capturedCrewMember.getSerialNumber());
-        Assertions.assertTrue(squadronMemberAfterUpdate.getCrewMemberActiveStatus() == CrewMemberStatus.STATUS_CAPTURED);
+        CrewMember companyMemberAfterUpdate = campaign.getPersonnelManager().getAnyCampaignMember(capturedCrewMember.getSerialNumber());
+        Assertions.assertTrue(companyMemberAfterUpdate.getCrewMemberActiveStatus() == CrewMemberStatus.STATUS_CAPTURED);
     }
 
     @Test
@@ -144,8 +144,8 @@ public class CampaignSquadronPersonnelUpdaterTest
         PersonnelUpdater personellUpdater = new PersonnelUpdater(campaign, campaignUpdateData);
         personellUpdater.personnelUpdates();
 
-        CrewMember squadronMemberAfterUpdate = campaign.getPersonnelManager().getAnyCampaignMember(maimedCrewMember.getSerialNumber());
-        Assertions.assertTrue (squadronMemberAfterUpdate.getCrewMemberActiveStatus() == CrewMemberStatus.STATUS_SERIOUSLY_WOUNDED);
+        CrewMember companyMemberAfterUpdate = campaign.getPersonnelManager().getAnyCampaignMember(maimedCrewMember.getSerialNumber());
+        Assertions.assertTrue (companyMemberAfterUpdate.getCrewMemberActiveStatus() == CrewMemberStatus.STATUS_SERIOUSLY_WOUNDED);
     }
 
     @Test
@@ -165,8 +165,8 @@ public class CampaignSquadronPersonnelUpdaterTest
         PersonnelUpdater personellUpdater = new PersonnelUpdater(campaign, campaignUpdateData);
         personellUpdater.personnelUpdates();
 
-        CrewMember squadronMemberAfterUpdate = campaign.getPersonnelManager().getAnyCampaignMember(maimedPlayer.getSerialNumber());
-        Assertions.assertTrue (squadronMemberAfterUpdate.getCrewMemberActiveStatus() == CrewMemberStatus.STATUS_SERIOUSLY_WOUNDED);
+        CrewMember companyMemberAfterUpdate = campaign.getPersonnelManager().getAnyCampaignMember(maimedPlayer.getSerialNumber());
+        Assertions.assertTrue (companyMemberAfterUpdate.getCrewMemberActiveStatus() == CrewMemberStatus.STATUS_SERIOUSLY_WOUNDED);
         Assertions.assertTrue (maimedPlayer.getRecoveryDate().after(campaign.getDate()));
     }
 
@@ -209,9 +209,9 @@ public class CampaignSquadronPersonnelUpdaterTest
     private CrewMember getAiCommander() throws PWCGException
     {
         CrewMember commander = null;
-        CompanyPersonnel squadronMembers = campaign.getPersonnelManager().getCompanyPersonnel(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
+        CompanyPersonnel crewMembers = campaign.getPersonnelManager().getCompanyPersonnel(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
         CrewMembers activeCrewMembers = CrewMemberFilter
-                .filterActiveAIAndPlayerAndAces(squadronMembers.getCrewMembers().getCrewMemberCollection(), campaign.getDate());
+                .filterActiveAIAndPlayerAndAces(crewMembers.getCrewMembers().getCrewMemberCollection(), campaign.getDate());
         for (CrewMember crewMember : activeCrewMembers.getCrewMemberList())
         {
             if (crewMember.determineIsCrewMemberCommander() && !crewMember.isPlayer())
@@ -239,8 +239,8 @@ public class CampaignSquadronPersonnelUpdaterTest
         PersonnelUpdater personellUpdater = new PersonnelUpdater(campaign, campaignUpdateData);
         personellUpdater.personnelUpdates();
 
-        CrewMember squadronMemberAfterUpdate = campaign.getPersonnelManager().getAnyCampaignMember(woundedCrewMember.getSerialNumber());
-        Assertions.assertTrue (squadronMemberAfterUpdate.getCrewMemberActiveStatus() == CrewMemberStatus.STATUS_WOUNDED);
+        CrewMember companyMemberAfterUpdate = campaign.getPersonnelManager().getAnyCampaignMember(woundedCrewMember.getSerialNumber());
+        Assertions.assertTrue (companyMemberAfterUpdate.getCrewMemberActiveStatus() == CrewMemberStatus.STATUS_WOUNDED);
         Assertions.assertTrue (woundedCrewMember.getRecoveryDate().after(campaign.getDate()));
     }
 
@@ -258,19 +258,19 @@ public class CampaignSquadronPersonnelUpdaterTest
         AARCampaignUpdateTabulator campaignUpdateTabulator = new AARCampaignUpdateTabulator(campaign, aarContext);
         CampaignUpdateData campaignUpdateData = campaignUpdateTabulator.tabulateAARForCampaignUpdate();
 
-        campaignUpdateData.getResupplyData().getSquadronTransferData().addTransferRecord(transferRecord);
+        campaignUpdateData.getResupplyData().getCompanyTransferData().addTransferRecord(transferRecord);
 
         PersonnelUpdater personellUpdater = new PersonnelUpdater(campaign, campaignUpdateData);
         personellUpdater.personnelUpdates();
 
-        CrewMember squadronMemberAfterUpdate = campaign.getPersonnelManager().getAnyCampaignMember(transferredCrewMember.getSerialNumber());
-        Assertions.assertTrue(squadronMemberAfterUpdate.getCrewMemberActiveStatus() == CrewMemberStatus.STATUS_ACTIVE);
+        CrewMember companyMemberAfterUpdate = campaign.getPersonnelManager().getAnyCampaignMember(transferredCrewMember.getSerialNumber());
+        Assertions.assertTrue(companyMemberAfterUpdate.getCrewMemberActiveStatus() == CrewMemberStatus.STATUS_ACTIVE);
 
-        Assertions.assertTrue(squadronMemberAfterUpdate.getCompanyId() != CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
+        Assertions.assertTrue(companyMemberAfterUpdate.getCompanyId() != CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
     }
 
     @Test
-    public void testSquadronAceKilled() throws PWCGException
+    public void testCompanyAceKilled() throws PWCGException
     {
         TankAce guynemerInCampaign = campaign.getPersonnelManager().getCampaignAces().retrieveAceBySerialNumber(101064);
         acesKilled.put(101064, guynemerInCampaign);
@@ -291,7 +291,7 @@ public class CampaignSquadronPersonnelUpdaterTest
     }
 
     @Test
-    public void testNonSquadronAceKilled() throws PWCGException
+    public void testNonCompanyAceKilled() throws PWCGException
     {
         TankAce vossInCampaign = campaign.getPersonnelManager().getCampaignAces().retrieveAceBySerialNumber(101175);
         acesKilled.put(101175, vossInCampaign);

@@ -41,11 +41,11 @@ public class EquipmentReplacementWeightUsageTest
     public void testGermanReplacementArchTypes() throws PWCGException
     {
         ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(20101);
-        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
-        List<Company> squadronsForService = squadronManager.getActiveCompaniesForService(earlyCampaign.getDate(), service);
+        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+        List<Company> companysForService = companyManager.getActiveCompaniesForService(earlyCampaign.getDate(), service);
         
         EquipmentReplacementWeightUsage equipmentReplacementWeightUsage = new EquipmentReplacementWeightUsage(earlyCampaign.getDate());
-        Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftUsageByArchType(squadronsForService);
+        Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftUsageByArchType(companysForService);
 
         assert(aircraftUsageByArchType.containsKey("bf109"));
         assert(aircraftUsageByArchType.containsKey("bf110"));
@@ -70,11 +70,11 @@ public class EquipmentReplacementWeightUsageTest
     public void testRussianReplacementArchTypes() throws PWCGException
     {
         ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(10101);
-        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
-        List<Company> squadronsForService = squadronManager.getActiveCompaniesForService(earlyCampaign.getDate(), service);
+        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+        List<Company> companysForService = companyManager.getActiveCompaniesForService(earlyCampaign.getDate(), service);
         
         EquipmentReplacementWeightUsage equipmentReplacementWeightUsage = new EquipmentReplacementWeightUsage(earlyCampaign.getDate());
-        Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftUsageByArchType(squadronsForService);
+        Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftUsageByArchType(companysForService);
 
         assert(aircraftUsageByArchType.containsKey("il2"));
         assert(aircraftUsageByArchType.containsKey("i16"));
@@ -95,11 +95,11 @@ public class EquipmentReplacementWeightUsageTest
     public void testItalianReplacementArchTypes() throws PWCGException
     {
         ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(20202);
-        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
-        List<Company> squadronsForService = squadronManager.getActiveCompaniesForService(earlyCampaign.getDate(), service);
+        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+        List<Company> companysForService = companyManager.getActiveCompaniesForService(earlyCampaign.getDate(), service);
         
         EquipmentReplacementWeightUsage equipmentReplacementWeightUsage = new EquipmentReplacementWeightUsage(earlyCampaign.getDate());
-        Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftUsageByArchType(squadronsForService);
+        Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftUsageByArchType(companysForService);
 
         assert(aircraftUsageByArchType.containsKey("mc200"));
         assert(aircraftUsageByArchType.size() == 1);
@@ -109,11 +109,11 @@ public class EquipmentReplacementWeightUsageTest
     public void testGermanLateReplacementArchTypes() throws PWCGException
     {
         ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(20101);
-        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
-        List<Company> squadronsForService = squadronManager.getActiveCompaniesForService(lateCampaign.getDate(), service);
+        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+        List<Company> companysForService = companyManager.getActiveCompaniesForService(lateCampaign.getDate(), service);
         
         EquipmentReplacementWeightUsage equipmentReplacementWeightUsage = new EquipmentReplacementWeightUsage(lateCampaign.getDate());
-        Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftUsageByArchType(squadronsForService);
+        Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftUsageByArchType(companysForService);
 
         assert(aircraftUsageByArchType.containsKey("bf109"));
         assert(aircraftUsageByArchType.containsKey("ju88"));
@@ -138,11 +138,11 @@ public class EquipmentReplacementWeightUsageTest
     public void testAmericanReplacementArchTypes() throws PWCGException
     {
         ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(TCServiceManager.USAAF);
-        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
-        List<Company> squadronsForService = squadronManager.getActiveCompaniesForService(lateCampaign.getDate(), service);
+        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+        List<Company> companysForService = companyManager.getActiveCompaniesForService(lateCampaign.getDate(), service);
         
         EquipmentReplacementWeightUsage equipmentReplacementWeightUsage = new EquipmentReplacementWeightUsage(lateCampaign.getDate());
-        Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftUsageByArchType(squadronsForService);
+        Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftUsageByArchType(companysForService);
 
         assert(aircraftUsageByArchType.containsKey("p47"));
     }
@@ -151,11 +151,11 @@ public class EquipmentReplacementWeightUsageTest
     public void testBritishReplacementArchTypes() throws PWCGException
     {
         ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(TCServiceManager.RAF);
-        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
-        List<Company> squadronsForService = squadronManager.getActiveCompaniesForService(lateCampaign.getDate(), service);
+        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+        List<Company> companysForService = companyManager.getActiveCompaniesForService(lateCampaign.getDate(), service);
         
         EquipmentReplacementWeightUsage equipmentReplacementWeightUsage = new EquipmentReplacementWeightUsage(lateCampaign.getDate());
-        Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftUsageByArchType(squadronsForService);
+        Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftUsageByArchType(companysForService);
 
         assert(aircraftUsageByArchType.containsKey("spitfire"));
     }

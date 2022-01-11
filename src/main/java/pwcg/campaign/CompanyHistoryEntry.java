@@ -2,11 +2,11 @@ package pwcg.campaign;
 
 public class CompanyHistoryEntry
 {
-    public static final int NO_SQUADRON_SKILL_CHANGE = -1;
+    public static final int NO_Company_SKILL_CHANGE = -1;
     private String date = "";
     private String squadName = "";
 	private String armedServiceName = "";
-	private int skill = NO_SQUADRON_SKILL_CHANGE;
+	private int skill = NO_Company_SKILL_CHANGE;
 	private String unitIdCode;
 	private String subUnitIdCode;
     

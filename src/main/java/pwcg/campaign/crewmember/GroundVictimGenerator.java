@@ -51,9 +51,9 @@ public class GroundVictimGenerator
         return victimType;
     }
     
-    public static boolean shouldUse(PwcgRoleCategory squadronPrimaryRoleCategory)
+    public static boolean shouldUse(PwcgRoleCategory companyPrimaryRoleCategory)
     {
-        if (squadronPrimaryRoleCategory == PwcgRoleCategory.ATTACK)
+        if (companyPrimaryRoleCategory == PwcgRoleCategory.ATTACK)
         {
             return true;
         }

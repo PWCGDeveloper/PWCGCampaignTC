@@ -60,9 +60,9 @@ public class SkirmishFlightTypeFactoryTest
         List<Skirmish> skirmishesForDate = skirmishManager.getSkirmishesForDate(campaign, TestMissionBuilderUtility.buildTestParticipatingHumans(campaign));
 
         SkirmishFlightTypeFactory skirmishFlightTypeFactory = new SkirmishFlightTypeFactory(campaign, skirmishesForDate.get(0), null);
-        Company c47Squadron = PWCGContext.getInstance().getCompanyManager().getCompany(102012437);
+        Company c47Company = PWCGContext.getInstance().getCompanyManager().getCompany(102012437);
         boolean isPlayerFlight = false;
-        FlightTypes flightType = skirmishFlightTypeFactory.getFlightType(c47Squadron, isPlayerFlight, PwcgRole.ROLE_TRANSPORT);
+        FlightTypes flightType = skirmishFlightTypeFactory.getFlightType(c47Company, isPlayerFlight, PwcgRole.ROLE_TRANSPORT);
         assert(flightType == FlightTypes.PARATROOP_DROP);
     }
 
@@ -76,9 +76,9 @@ public class SkirmishFlightTypeFactoryTest
         List<Skirmish> skirmishesForDate = skirmishManager.getSkirmishesForDate(campaign, TestMissionBuilderUtility.buildTestParticipatingHumans(campaign));
 
         SkirmishFlightTypeFactory skirmishFlightTypeFactory = new SkirmishFlightTypeFactory(campaign, skirmishesForDate.get(0), null);
-        Company c47Squadron = PWCGContext.getInstance().getCompanyManager().getCompany(102012437);
+        Company c47Company = PWCGContext.getInstance().getCompanyManager().getCompany(102012437);
         boolean isPlayerFlight = false;
-        FlightTypes flightType = skirmishFlightTypeFactory.getFlightType(c47Squadron, isPlayerFlight, PwcgRole.ROLE_TRANSPORT);
+        FlightTypes flightType = skirmishFlightTypeFactory.getFlightType(c47Company, isPlayerFlight, PwcgRole.ROLE_TRANSPORT);
         assert(flightType == FlightTypes.CARGO_DROP);
     }
 }

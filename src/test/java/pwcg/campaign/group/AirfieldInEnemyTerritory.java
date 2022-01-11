@@ -35,7 +35,7 @@ public class AirfieldInEnemyTerritory
                 determineProperPlacementForDate(mapId, startDate);
                 startDate = DateUtils.advanceTimeDays(startDate, 1);
             }            
-            printBadSquadrons();
+            printBadCompanys();
             
             assert(badAirfields.size() == 0);
         }
@@ -47,50 +47,50 @@ public class AirfieldInEnemyTerritory
 
 	private void determineProperPlacementForDate(FrontMapIdentifier mapId, Date startDate) throws PWCGException
 	{
-		CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
-		for (Company squadron : squadronManager.getActiveCompanies(startDate))
+		CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+		for (Company company : companyManager.getActiveCompanies(startDate))
 		{
-		    determineSquadronIsOnCorrectSide(mapId, startDate, squadron);
+		    determineCompanyIsOnCorrectSide(mapId, startDate, company);
 		}
 	}
 
-	private void determineSquadronIsOnCorrectSide(FrontMapIdentifier mapId, Date startDate, Company squadron) throws PWCGException
+	private void determineCompanyIsOnCorrectSide(FrontMapIdentifier mapId, Date startDate, Company company) throws PWCGException
 	{
-		Airfield squadronField = squadron.determineCurrentAirfieldCurrentMap(startDate);
-		if (squadronField != null)
+		Airfield companyField = company.determineCurrentAirfieldCurrentMap(startDate);
+		if (companyField != null)
 		{
-		    List<FrontMapIdentifier> mapsForAirfield = AirfieldManager.getMapIdForAirfield(squadronField.getName());
+		    List<FrontMapIdentifier> mapsForAirfield = AirfieldManager.getMapIdForAirfield(companyField.getName());
 		    for (FrontMapIdentifier mapForAirfield : mapsForAirfield)
 		    {
 		        if (mapForAirfield == mapId)
 		        {
-		            noteBadlyPlacedSquadron(startDate, squadron, squadronField, mapForAirfield);
+		            noteBadlyPlacedCompany(startDate, company, companyField, mapForAirfield);
 		        }
 		    }
 		}
 	}
 
-	private void noteBadlyPlacedSquadron(Date startDate, Company squadron, Airfield squadronField,
+	private void noteBadlyPlacedCompany(Date startDate, Company company, Airfield companyField,
 	        FrontMapIdentifier mapForAirfield) throws PWCGException
 	{
-		ICountry squadronCountry = squadron.determineCompanyCountry(startDate);
-		ICountry airfieldCountry = squadronField.determineCountryOnDate(startDate);
-		if (isBadlyPlaced(squadronCountry, airfieldCountry))
+		ICountry companyCountry = company.determineCompanyCountry(startDate);
+		ICountry airfieldCountry = companyField.determineCountryOnDate(startDate);
+		if (isBadlyPlaced(companyCountry, airfieldCountry))
 		{
-			String key = formKey(squadron, squadronField);
+			String key = formKey(company, companyField);
 			String message = 
-					"Badly placed squadron " + squadron.determineDisplayName(startDate) + 
-					"\n   	field " + squadronField.getName() + 
+					"Badly placed company " + company.determineDisplayName(startDate) + 
+					"\n   	field " + companyField.getName() + 
 					"\n     map " + mapForAirfield + 
 					"\n     date " + DateUtils.getDateStringDashDelimitedYYYYMMDD(startDate) + 
-					"\n     side " + squadronField.determineCountryOnDate(startDate).getCountryName();
+					"\n     side " + companyField.determineCountryOnDate(startDate).getCountryName();
 			badAirfields.put(key, message);
 		}
 	}
 
-	private boolean isBadlyPlaced(ICountry squadronCountry, ICountry airfieldCountry)
+	private boolean isBadlyPlaced(ICountry companyCountry, ICountry airfieldCountry)
 	{
-		if (squadronCountry.isSameSide(airfieldCountry))
+		if (companyCountry.isSameSide(airfieldCountry))
 		{
 			return false;
 		}
@@ -106,7 +106,7 @@ public class AirfieldInEnemyTerritory
 		return true;
 	}
 	
-	private void printBadSquadrons()
+	private void printBadCompanys()
 	{
 		for (String message : badAirfields.values())
 		{
@@ -114,8 +114,8 @@ public class AirfieldInEnemyTerritory
 		}
 	}
 	
-	private String formKey (Company squadron, Airfield squadronField)
+	private String formKey (Company company, Airfield companyField)
 	{
-    	return squadron.getCompanyId() + " at " + squadronField.getName();
+    	return company.getCompanyId() + " at " + companyField.getName();
 	}
 }

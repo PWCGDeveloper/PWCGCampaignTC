@@ -16,9 +16,9 @@ public class UnitTankTypeBuilder
     private int numTanks;
     private Equipment equipmentForCompany;
     
-    public UnitTankTypeBuilder(Equipment equipmentForSquadron, int numTanks)
+    public UnitTankTypeBuilder(Equipment equipmentForCompany, int numTanks)
     {
-        this.equipmentForCompany = equipmentForSquadron;
+        this.equipmentForCompany = equipmentForCompany;
         this.numTanks = numTanks;
     }
     

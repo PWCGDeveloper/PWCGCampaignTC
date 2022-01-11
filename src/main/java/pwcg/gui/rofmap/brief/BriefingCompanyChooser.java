@@ -39,7 +39,7 @@ public class BriefingCompanyChooser implements ActionListener
         this.flightChanged = flightChanged;
     }
     
-    public void createBriefingSquadronSelectPanel() throws PWCGException
+    public void createBriefingCompanySelectPanel() throws PWCGException
     {        
         JPanel flightChooserButtonPanelGrid = new JPanel(new GridLayout(0,1));
         flightChooserButtonPanelGrid.setOpaque(false);
@@ -53,26 +53,26 @@ public class BriefingCompanyChooser implements ActionListener
         JLabel spacerLabel3 = PWCGLabelFactory.makeDummyLabel();        
         flightChooserButtonPanelGrid.add(spacerLabel3);
 
-        Map<Integer, Company> playerSquadronsInMission = new HashMap<>();
+        Map<Integer, Company> playerCompanysInMission = new HashMap<>();
         for (ITankUnit playerUnit : mission.getUnits().getPlayerUnits())
         {
-            Company squadron = playerUnit.getCompany();
-            playerSquadronsInMission.put(squadron.getCompanyId(), squadron);
+            Company company = playerUnit.getCompany();
+            playerCompanysInMission.put(company.getCompanyId(), company);
         }
 
-        for (Company squadron : playerSquadronsInMission.values())
+        for (Company company : playerCompanysInMission.values())
         {
             JRadioButton airLowDensity = PWCGButtonFactory.makeRadioButton(
-                    squadron.determineDisplayName(mission.getCampaign().getDate()), 
-                    "FlightChanged:" + squadron.getCompanyId(),
-                    "Select squadron to change context", 
+                    company.determineDisplayName(mission.getCampaign().getDate()), 
+                    "FlightChanged:" + company.getCompanyId(),
+                    "Select company to change context", 
                     null, 
                     ColorMap.CHALK_FOREGROUND,
                     false, this);       
             flightChooserButtonPanelGrid.add(airLowDensity);
             ButtonModel model = airLowDensity.getModel();
             flightChooserButtonGroup.add(airLowDensity);
-            flightChooserButtonModels.put(squadron.getCompanyId(), model);
+            flightChooserButtonModels.put(company.getCompanyId(), model);
         }
 
         flightChooserPanel = new JPanel(new BorderLayout());
@@ -86,9 +86,9 @@ public class BriefingCompanyChooser implements ActionListener
         flightChooserPanel.add(shapePanel, BorderLayout.CENTER);
     }
 
-    public void setSelectedButton(int squadronId)
+    public void setSelectedButton(int companyId)
     {
-        ButtonModel model = flightChooserButtonModels.get(squadronId);
+        ButtonModel model = flightChooserButtonModels.get(companyId);
         flightChooserButtonGroup.setSelected(model, true);
     }
 
@@ -104,13 +104,13 @@ public class BriefingCompanyChooser implements ActionListener
         {
             String action = ae.getActionCommand();
             int index = action.indexOf(":");
-            String selectedSquadronId = action.substring(index + 1);
-            int squadronId = Integer.valueOf(selectedSquadronId);
-            Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(squadronId);
+            String selectedCompanyId = action.substring(index + 1);
+            int companyId = Integer.valueOf(selectedCompanyId);
+            Company company = PWCGContext.getInstance().getCompanyManager().getCompany(companyId);
             
-            setSelectedButton(squadronId);
+            setSelectedButton(companyId);
 
-            flightChanged.unitChanged(squadron);
+            flightChanged.unitChanged(company);
         }
         catch (Exception e)
         {

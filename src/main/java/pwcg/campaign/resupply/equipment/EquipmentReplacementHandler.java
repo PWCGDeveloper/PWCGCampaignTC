@@ -6,10 +6,10 @@ import pwcg.campaign.ArmedService;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.company.Company;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.resupply.ISquadronNeed;
+import pwcg.campaign.resupply.CompanyNeedFactory.CompanyNeedType;
+import pwcg.campaign.resupply.ICompanyNeed;
 import pwcg.campaign.resupply.ResupplyNeedBuilder;
 import pwcg.campaign.resupply.ServiceResupplyNeed;
-import pwcg.campaign.resupply.SquadronNeedFactory.SquadronNeedType;
 import pwcg.campaign.resupply.depot.EquipmentDepot;
 import pwcg.campaign.tank.EquippedTank;
 import pwcg.core.exception.PWCGException;
@@ -29,7 +29,7 @@ public class EquipmentReplacementHandler
     
     public EquipmentResupplyData resupplyForLosses(ArmedService armedService) throws PWCGException
     {
-        ServiceResupplyNeed serviceResupplyNeed = equipmentNeedBuilder.determineNeedForService(SquadronNeedType.EQUIPMENT);
+        ServiceResupplyNeed serviceResupplyNeed = equipmentNeedBuilder.determineNeedForService(CompanyNeedType.EQUIPMENT);
         EquipmentDepot equipmentDepo =  campaign.getEquipmentManager().getEquipmentDepotForService(armedService.getServiceId());
         replaceForService(serviceResupplyNeed, equipmentDepo);
         return equipmentResupplyData;
@@ -38,27 +38,27 @@ public class EquipmentReplacementHandler
 
     private void replaceForService(ServiceResupplyNeed serviceResupplyNeed, EquipmentDepot equipmentDepo) throws PWCGException
     {
-        while (serviceResupplyNeed.hasNeedySquadron())
+        while (serviceResupplyNeed.hasNeedyCompany())
         {
-            ISquadronNeed selectedSquadronNeed = serviceResupplyNeed.chooseNeedySquadron();
-            if (selectedSquadronNeed == null)
+            ICompanyNeed selectedCompanyNeed = serviceResupplyNeed.chooseNeedyCompany();
+            if (selectedCompanyNeed == null)
             {
                 break;
             }
 
-            Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(selectedSquadronNeed.getSquadronId());
-            List<String> activeArchTypes = squadron.getActiveArchTypes(campaign.getDate());
+            Company company = PWCGContext.getInstance().getCompanyManager().getCompany(selectedCompanyNeed.getCompanyId());
+            List<String> activeArchTypes = company.getActiveArchTypes(campaign.getDate());
             
             EquippedTank replacement = equipmentDepo.removeBestPlaneFromDepot(activeArchTypes);        
             if (replacement != null)
             {
-                EquipmentResupplyRecord equipmentResupplyRecord = new EquipmentResupplyRecord(replacement, selectedSquadronNeed.getSquadronId());
+                EquipmentResupplyRecord equipmentResupplyRecord = new EquipmentResupplyRecord(replacement, selectedCompanyNeed.getCompanyId());
                 equipmentResupplyData.addEquipmentResupplyRecord(equipmentResupplyRecord);
-                serviceResupplyNeed.noteResupply(selectedSquadronNeed);
+                serviceResupplyNeed.noteResupply(selectedCompanyNeed);
             }
             else
             {
-                serviceResupplyNeed.removeNeedySquadron(selectedSquadronNeed);
+                serviceResupplyNeed.removeNeedyCompany(selectedCompanyNeed);
             }
         }        
     }

@@ -17,9 +17,9 @@ import pwcg.dev.utils.AirfieldDistanceOrganizer.AirfieldSet;
 
 public class AirfieldBestMMatchFinder
 {
-    public static Airfield recommendBestMatch(Company squadron, Date date) throws PWCGException
+    public static Airfield recommendBestMatch(Company company, Date date) throws PWCGException
     {        
-        Airfield squadronField = squadron.determineCurrentAirfieldAnyMap(date);
+        Airfield companyField = company.determineCurrentAirfieldAnyMap(date);
 
         double closest = 100000000.0;
         Airfield bestField = null;
@@ -28,21 +28,21 @@ public class AirfieldBestMMatchFinder
         airfieldDistanceOrganizer.process(date, FrontMapIdentifier.MOSCOW_MAP);
         
         AirfieldSet airfieldSet = airfieldDistanceOrganizer.axisAirfieldSet;
-        if (squadron.determineCompanyCountry(date).getSide() == Side.ALLIED)
+        if (company.determineCompanyCountry(date).getSide() == Side.ALLIED)
         {
             airfieldSet = airfieldDistanceOrganizer.alliedAirfieldSet;
         }
         
         List<Airfield> relativeFields = new ArrayList<Airfield>(airfieldSet.getBomberFields().values());
-        PwcgRoleCategory squadronRoleCategory = squadron.determineCompanyPrimaryRoleCategory(date);
-        if (squadronRoleCategory == PwcgRoleCategory.FIGHTER)
+        PwcgRoleCategory companyRoleCategory = company.determineCompanyPrimaryRoleCategory(date);
+        if (companyRoleCategory == PwcgRoleCategory.FIGHTER)
         {
             relativeFields = new ArrayList<Airfield>(airfieldSet.getFighterFields().values());
         }
         
         for (Airfield field: relativeFields)
         {
-            double distanceToOtherField = MathUtils.calcDist(squadronField.getPosition(), field.getPosition());
+            double distanceToOtherField = MathUtils.calcDist(companyField.getPosition(), field.getPosition());
             if (distanceToOtherField < closest)
             {
                 closest = distanceToOtherField;

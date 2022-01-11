@@ -36,8 +36,8 @@ public class CampaignPersonnelTestHelper
     {
         CrewMember selectedAiSquadMember = null;
         
-        CrewMembers squadronMembers = CrewMemberFilter.filterActiveAI(campaign.getPersonnelManager().getAllCampaignMembers(), campaign.getDate());
-        for (CrewMember aiSquadMember : squadronMembers.getCrewMemberList())
+        CrewMembers crewMembers = CrewMemberFilter.filterActiveAI(campaign.getPersonnelManager().getAllCampaignMembers(), campaign.getDate());
+        for (CrewMember aiSquadMember : crewMembers.getCrewMemberList())
         {
             System.out.println("Nanme: " + aiSquadMember.getNameAndRank() + "  from " + aiSquadMember.getCompanyId());
             if (aiSquadMember.getRank().equals(rank))

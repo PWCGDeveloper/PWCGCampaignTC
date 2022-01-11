@@ -107,8 +107,8 @@ public class CampaignPlayerAdminCrewMemberPanel extends ImageResizingPanel imple
             String crewMemberStatusText = "     " + CrewMemberStatus.crewMemberStatusToStatusDescription(coopDisplayRecord.getCrewMemberStatus());
             JLabel crewMemberStatusLabel = PWCGLabelFactory.makeTransparentLabel(
                     crewMemberStatusText, ColorMap.PAPER_FOREGROUND, PWCGMonitorFonts.getPrimaryFont(), SwingConstants.LEFT);
-            JLabel squadronNameLabel = PWCGLabelFactory.makeTransparentLabel(
-                    "     " + coopDisplayRecord.getSquadronName(), ColorMap.PAPER_FOREGROUND, PWCGMonitorFonts.getPrimaryFont(), SwingConstants.LEFT);
+            JLabel companyNameLabel = PWCGLabelFactory.makeTransparentLabel(
+                    "     " + coopDisplayRecord.getCompanyName(), ColorMap.PAPER_FOREGROUND, PWCGMonitorFonts.getPrimaryFont(), SwingConstants.LEFT);
 
             crewMemberButtonModels.put(coopDisplayRecord.getCrewMemberSerialNumber(), crewMemberSelector.getModel());
             userSelectors.put(coopDisplayRecord.getCrewMemberSerialNumber(), userSelector);
@@ -139,7 +139,7 @@ public class CampaignPlayerAdminCrewMemberPanel extends ImageResizingPanel imple
             constraints.gridx = 4;
             constraints.gridy = rowNumber;
             constraints.gridheight = 1;
-            recordListPanel.add(squadronNameLabel, constraints);
+            recordListPanel.add(companyNameLabel, constraints);
             
             if (campaign.isCoop())
             {

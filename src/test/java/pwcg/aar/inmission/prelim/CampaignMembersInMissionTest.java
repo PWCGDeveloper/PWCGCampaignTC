@@ -56,11 +56,11 @@ public class CampaignMembersInMissionTest
         Mockito.when(pwcgMissionData.getMissionPlanes()).thenReturn(missionPlanes);
         
         CampaignMembersInMissionFinder campaignMembersInMissionHandler = new CampaignMembersInMissionFinder();
-        CrewMembers squadronMembersInMission = campaignMembersInMissionHandler.determineCampaignMembersInMission(campaign, pwcgMissionData);
+        CrewMembers crewMembersInMission = campaignMembersInMissionHandler.determineCampaignMembersInMission(campaign, pwcgMissionData);
 
-        assert(squadronMembersInMission.getActiveCount(campaign.getDate()) == 50);
+        assert(crewMembersInMission.getActiveCount(campaign.getDate()) == 50);
         
-        for (CrewMember crewMember : squadronMembersInMission.getCrewMemberCollection().values())
+        for (CrewMember crewMember : crewMembersInMission.getCrewMemberCollection().values())
         {
             assert((crewMember.getSerialNumber() % 2) == 1);
             assert(crewMember.getSerialNumber() > SerialNumber.AI_STARTING_SERIAL_NUMBER);

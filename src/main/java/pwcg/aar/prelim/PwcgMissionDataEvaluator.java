@@ -41,8 +41,8 @@ public class PwcgMissionDataEvaluator
 
         for (PwcgGeneratedMissionVehicleData missionPlane : aarPreliminarytData.getPwcgMissionData().getMissionPlanes().values())
         {
-            Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(missionPlane.getCompanyId());            
-            if (squadron.determineCompanyCountry(campaign.getDate()).getSide() == side)
+            Company company = PWCGContext.getInstance().getCompanyManager().getCompany(missionPlane.getCompanyId());            
+            if (company.determineCompanyCountry(campaign.getDate()).getSide() == side)
             {
                 uniquePlanesForSide.add(missionPlane.getVehicleType());
             }

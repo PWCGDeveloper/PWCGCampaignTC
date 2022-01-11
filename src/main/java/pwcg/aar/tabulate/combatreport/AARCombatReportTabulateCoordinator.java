@@ -30,13 +30,13 @@ public class AARCombatReportTabulateCoordinator
 
     private void tabulateCombatReport() throws PWCGException
     {
-        List<Company> playerSquadronsInMission = aarContext.getPreliminaryData().getPlayerSquadronsInMission();
-        for (Company playerSquadron : playerSquadronsInMission)
+        List<Company> playerCompanysInMission = aarContext.getPreliminaryData().getPlayerCompanysInMission();
+        for (Company playerCompany : playerCompanysInMission)
         {
-            AARCombatReportTabulator combatReportTabulator = new AARCombatReportTabulator(campaign, playerSquadron, aarContext);
+            AARCombatReportTabulator combatReportTabulator = new AARCombatReportTabulator(campaign, playerCompany, aarContext);
             AARCombatReportPanelData combatReportPanelData = combatReportTabulator.tabulateForAARCombatReportPanel();
             
-            UICombatReportData combatReportUiData = new UICombatReportData(playerSquadron.getCompanyId());
+            UICombatReportData combatReportUiData = new UICombatReportData(playerCompany.getCompanyId());
             combatReportUiData.setCombatReportPanelData(combatReportPanelData);
 
             AARCombatReportMapData combatReportMapData = tabulateCombatReportMap();

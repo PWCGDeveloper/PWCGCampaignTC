@@ -22,7 +22,7 @@ import pwcg.core.exception.PWCGException;
 public class AARCombatReportTabulator 
 {
     private Campaign campaign;
-    private Company squadron;
+    private Company company;
     private AARContext aarContext;
     
     private CrewMemberStatusEventGenerator crewMemberStatusEventGenerator;
@@ -30,11 +30,11 @@ public class AARCombatReportTabulator
     private VictoryEventGenerator victoryEventGenerator;
     private AARCombatReportPanelData combatReportPanelData = new AARCombatReportPanelData();
     
-    public AARCombatReportTabulator (Campaign campaign, Company squadron, AARContext aarContext)
+    public AARCombatReportTabulator (Campaign campaign, Company company, AARContext aarContext)
     {
         this.aarContext = aarContext;
         this.campaign = campaign;
-        this.squadron = squadron;
+        this.company = company;
         
         crewMemberStatusEventGenerator = new CrewMemberStatusEventGenerator(campaign);
         planeStatusEventGenerator = new PlaneStatusEventGenerator(campaign);
@@ -60,8 +60,8 @@ public class AARCombatReportTabulator
     private void createCrewsInMission() throws PWCGException
     {
         Map<Integer, CrewMember> campaignMembersInMission = aarContext.getPreliminaryData().getCampaignMembersInMission().getCrewMemberCollection();
-        CrewMembers squadronMembersInMission = CrewMemberFilter.filterActiveAIAndPlayerAndAcesForSquadron(campaignMembersInMission, campaign.getDate(), squadron.getCompanyId());
-        combatReportPanelData.addCrewMembersInMission(squadronMembersInMission);
+        CrewMembers crewMembersInMission = CrewMemberFilter.filterActiveAIAndPlayerAndAcesForCompany(campaignMembersInMission, campaign.getDate(), company.getCompanyId());
+        combatReportPanelData.addCrewMembersInMission(crewMembersInMission);
     }
 
     private void extractMissionHeader()
@@ -74,7 +74,7 @@ public class AARCombatReportTabulator
         Map<Integer, CrewMemberStatusEvent> crewMembersLostInMission = crewMemberStatusEventGenerator.createCrewMemberLossEvents(aarContext.getPersonnelLosses());
         for (CrewMemberStatusEvent crewMemberLostEvent : crewMembersLostInMission.values())
         {
-            if (isIncludeInCombatReport(crewMemberLostEvent.getSquadronId(), crewMemberLostEvent.getCrewMemberSerialNumber()))
+            if (isIncludeInCombatReport(crewMemberLostEvent.getCompanyId(), crewMemberLostEvent.getCrewMemberSerialNumber()))
             {
                 combatReportPanelData.addCrewMemberLostInMission(crewMemberLostEvent);
             }
@@ -86,7 +86,7 @@ public class AARCombatReportTabulator
         Map<Integer, PlaneStatusEvent> planesLostInMission = planeStatusEventGenerator.createPlaneLossEvents(aarContext.getEquipmentLosses());
         for (PlaneStatusEvent planeLostEvent : planesLostInMission.values())
         {
-            if (isIncludeInCombatReport(planeLostEvent.getSquadronId(), planeLostEvent.getCrewMemberSerialNumber()))
+            if (isIncludeInCombatReport(planeLostEvent.getCompanyId(), planeLostEvent.getCrewMemberSerialNumber()))
             {
                 combatReportPanelData.addPlaneLostInMission(planeLostEvent);
             }
@@ -99,16 +99,16 @@ public class AARCombatReportTabulator
         List<VictoryEvent> victoriesInMission = victoryEventGenerator.createCrewMemberVictoryEvents(victoryAwardByCrewMember);
         for (VictoryEvent victoryEvent : victoriesInMission)
         {
-            if (isIncludeInCombatReport(victoryEvent.getSquadronId(), victoryEvent.getCrewMemberSerialNumber()))
+            if (isIncludeInCombatReport(victoryEvent.getCompanyId(), victoryEvent.getCrewMemberSerialNumber()))
             {
                 combatReportPanelData.addVictoryForCrewMembers(victoryEvent);
             }
         }
     }
     
-    boolean isIncludeInCombatReport(int squadronId, int serialNumber) throws PWCGException
+    boolean isIncludeInCombatReport(int companyId, int serialNumber) throws PWCGException
     {
-        if (squadronId == squadron.getCompanyId())
+        if (companyId == company.getCompanyId())
         {
             if (aarContext.getMissionEvaluationData().wasCrewMemberInMission(serialNumber))
             {

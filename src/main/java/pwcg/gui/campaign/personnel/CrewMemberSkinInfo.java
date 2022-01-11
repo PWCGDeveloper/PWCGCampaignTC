@@ -21,7 +21,7 @@ public class CrewMemberSkinInfo
 
 	/**
 	 * @param crewMember
-	 * @param squadron
+	 * @param company
 	 */
 	public CrewMemberSkinInfo(CrewMember crewMember)
 	{
@@ -36,12 +36,12 @@ public class CrewMemberSkinInfo
     {
         Campaign campaign = PWCGContext.getInstance().getCampaign();
         CrewMember referencePlayer = campaign.findReferencePlayer();
-        Company squadron = referencePlayer.determineSquadron();
+        Company company = referencePlayer.determineCompany();
         
         // Make an entry for each plane initialized to "No Skin"
-        List<TankType> squadronPlanes = squadron.determineCurrentAircraftList(campaign.getDate());
-        List<TankType> squadronPlanesByBest = TankSorter.sortTanksByGoodness(squadronPlanes);
-        for (TankType plane : squadronPlanesByBest)
+        List<TankType> companyPlanes = company.determineCurrentAircraftList(campaign.getDate());
+        List<TankType> companyPlanesByBest = TankSorter.sortTanksByGoodness(companyPlanes);
+        for (TankType plane : companyPlanesByBest)
         {
             updateSkinForPlane(plane.getType(), null);
         }        

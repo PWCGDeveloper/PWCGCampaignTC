@@ -1,38 +1,38 @@
 package pwcg.aar.outofmission.phase3.resupply;
 
 import pwcg.campaign.resupply.equipment.EquipmentResupplyData;
-import pwcg.campaign.resupply.personnel.SquadronTransferData;
+import pwcg.campaign.resupply.personnel.CompanyTransferData;
 
 public class AARResupplyData
 {
-    private SquadronTransferData acesTransferred = new SquadronTransferData();
-    private SquadronTransferData squadronTransferData = new SquadronTransferData();
+    private CompanyTransferData acesTransferred = new CompanyTransferData();
+    private CompanyTransferData companyTransferData = new CompanyTransferData();
     private EquipmentResupplyData equipmentResupplyData = new EquipmentResupplyData();
 
-    public SquadronTransferData getAcesTransferred()
+    public CompanyTransferData getAcesTransferred()
     {
         return acesTransferred;
     }
 
-    public void setAcesTransferred(SquadronTransferData acesTransferred)
+    public void setAcesTransferred(CompanyTransferData acesTransferred)
     {
         this.acesTransferred = acesTransferred;
     }
 
-    public SquadronTransferData getSquadronTransferData()
+    public CompanyTransferData getCompanyTransferData()
     {
-        return squadronTransferData;
+        return companyTransferData;
     }
 
-    public void setSquadronTransferData(SquadronTransferData squadronTransferData)
+    public void setCompanyTransferData(CompanyTransferData companyTransferData)
     {
-        this.squadronTransferData = squadronTransferData;
+        this.companyTransferData = companyTransferData;
     }
 
     public void merge(AARResupplyData transferData)
     {
         acesTransferred.merge(transferData.getAcesTransferred());
-        squadronTransferData.merge(transferData.getSquadronTransferData());        
+        companyTransferData.merge(transferData.getCompanyTransferData());        
         equipmentResupplyData.merge(transferData.getEquipmentResupplyData());        
     }
 

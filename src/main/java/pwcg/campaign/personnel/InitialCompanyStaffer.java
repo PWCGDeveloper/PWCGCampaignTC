@@ -16,36 +16,36 @@ import pwcg.core.exception.PWCGException;
 public class InitialCompanyStaffer 
 {
     private Campaign campaign;
-    private Company squadron;
-    private CrewMemberFactory squadronMemberFactory;
-    private CompanyPersonnel squadronPersonnel;
+    private Company company;
+    private CrewMemberFactory companyMemberFactory;
+    private CompanyPersonnel companyPersonnel;
     
-	public InitialCompanyStaffer(Campaign campaign, Company squadron) 
+	public InitialCompanyStaffer(Campaign campaign, Company company) 
 	{
         this.campaign = campaign;
-        this.squadron = squadron;
+        this.company = company;
         
-        squadronPersonnel = new CompanyPersonnel(campaign, squadron);
-        squadronMemberFactory = new CrewMemberFactory(campaign, squadron, squadronPersonnel);
+        companyPersonnel = new CompanyPersonnel(campaign, company);
+        companyMemberFactory = new CrewMemberFactory(campaign, company, companyPersonnel);
 	}
 
     public CompanyPersonnel generatePersonnel() throws PWCGException 
     {
         generateAICrewMembers();        
-        return squadronPersonnel;
+        return companyPersonnel;
     }
     
     public void addPlayerToCampaign(CampaignGeneratorModel generatorModel) throws PWCGException
     {
-        CrewMember player =  squadronMemberFactory.createPlayer(generatorModel);
+        CrewMember player =  companyMemberFactory.createPlayer(generatorModel);
         addCrewMember(player);
     }
 
     private void addCrewMember(CrewMember crewMember) throws PWCGException
     {
-        if ((squadronPersonnel.getCrewMembersWithAces().getCrewMemberList().size()) < Company.COMPANY_STAFF_SIZE)
+        if ((companyPersonnel.getCrewMembersWithAces().getCrewMemberList().size()) < Company.COMPANY_STAFF_SIZE)
         {
-            squadronPersonnel.addCrewMember(crewMember);
+            companyPersonnel.addCrewMember(crewMember);
         }
     }
 
@@ -59,7 +59,7 @@ public class InitialCompanyStaffer
     private void addAiCrewMembers() throws PWCGException
     {
         IRankHelper rankObj = RankFactory.createRankHelper();
-        List<String> ranks = rankObj.getRanksByService(squadron.determineServiceForCompany(campaign.getDate()));
+        List<String> ranks = rankObj.getRanksByService(company.determineServiceForCompany(campaign.getDate()));
         
         addNumAiCrewMembersAtRank(1, 0);
         
@@ -87,23 +87,23 @@ public class InitialCompanyStaffer
         int refinedNumCrewMembers = refineNumCrewMembersAtRank(initialNumCrewMembers, rankPos);
         
         IRankHelper rankObj = RankFactory.createRankHelper();
-        List<String> ranks = rankObj.getRanksByService(squadron.determineServiceForCompany(campaign.getDate()));
+        List<String> ranks = rankObj.getRanksByService(company.determineServiceForCompany(campaign.getDate()));
 
         for (int i = 0; i < refinedNumCrewMembers; ++i)
         {
-            CrewMember crewMember =  squadronMemberFactory.createInitialAICrewMember (ranks.get(rankPos));
+            CrewMember crewMember =  companyMemberFactory.createInitialAICrewMember (ranks.get(rankPos));
             addCrewMember(crewMember);
         }
     }
 
     private int refineNumCrewMembersAtRank(int numCrewMembers, int rankPos) throws PWCGException
     {
-        CrewMembers squadronMembersAlreadyWithSquadron = CrewMemberFilter.filterActiveAIAndPlayerAndAces(squadronPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
-        for (CrewMember crewMember : squadronMembersAlreadyWithSquadron.getCrewMemberCollection().values())
+        CrewMembers crewMembersAlreadyWithCompany = CrewMemberFilter.filterActiveAIAndPlayerAndAces(companyPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
+        for (CrewMember crewMember : crewMembersAlreadyWithCompany.getCrewMemberCollection().values())
         {
             IRankHelper rankObj = RankFactory.createRankHelper();
-            int squadronMemberRankPos = rankObj.getRankPosByService(crewMember.getRank(), squadron.determineServiceForCompany(campaign.getDate()));
-            if (rankPos == squadronMemberRankPos)
+            int companyMemberRankPos = rankObj.getRankPosByService(crewMember.getRank(), company.determineServiceForCompany(campaign.getDate()));
+            if (rankPos == companyMemberRankPos)
             {
                 --numCrewMembers;
             }
@@ -119,8 +119,8 @@ public class InitialCompanyStaffer
 
     private void validateMissionsFlownForInitialCrewMembers() throws PWCGException
     {
-        CrewMembers squadronMembers = CrewMemberFilter.filterActiveAINoWounded(squadronPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
-        for (CrewMember crewMember : squadronMembers.getCrewMemberList())
+        CrewMembers crewMembers = CrewMemberFilter.filterActiveAINoWounded(companyPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
+        for (CrewMember crewMember : crewMembers.getCrewMemberList())
         {
             int minimumMissions = 1 + (crewMember.getCrewMemberVictories().getAirToAirVictoryCount() * 3);
             if (!crewMember.isPlayer())
@@ -135,11 +135,11 @@ public class InitialCompanyStaffer
 
     private void setAiSkillLevel() throws PWCGException
     {
-        CrewMembers squadronMembers = CrewMemberFilter.filterActiveAINoWounded(squadronPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
-        for (CrewMember crewMember : squadronMembers.getCrewMemberList())
+        CrewMembers crewMembers = CrewMemberFilter.filterActiveAINoWounded(companyPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
+        for (CrewMember crewMember : crewMembers.getCrewMemberList())
         {
             AiCrewMemberSkillGenerator aiCrewMemberSkillGenerator = new AiCrewMemberSkillGenerator();
-            AiSkillLevel aiSkillLevel = aiCrewMemberSkillGenerator.calculateCrewMemberQualityByRankAndService(campaign, squadron, crewMember.getRank());
+            AiSkillLevel aiSkillLevel = aiCrewMemberSkillGenerator.calculateCrewMemberQualityByRankAndService(campaign, company, crewMember.getRank());
             crewMember.setAiSkillLevel(aiSkillLevel);
         }
     }

@@ -180,29 +180,29 @@ public class PwcgSkinConfigurationAnalysisDisplayScreen extends ImageResizingPan
             JLabel reportBodyEndDateLabel = PWCGLabelFactory.makePaperLabelMedium(DateUtils.getDateStringPretty(skin.getEndDate()));
             reportBodyPanel.add(reportBodyEndDateLabel);
             
-            String squadronName = "Not Defined";
+            String companyName = "Not Defined";
             if (skin.getSquadId() == Skin.FACTORY_GENERIC)
             {
-                squadronName = "Factory";
+                companyName = "Factory";
             }
             else if (skin.getSquadId() == Skin.PERSONAL_SKIN)
             {
-                squadronName = "Unassociated Personal";
+                companyName = "Unassociated Personal";
             }
             else
             {
-                Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(skin.getSquadId());
-                if (squadron != null)
+                Company company = PWCGContext.getInstance().getCompanyManager().getCompany(skin.getSquadId());
+                if (company != null)
                 {
-                    squadronName = "" + squadron.getCompanyId();
+                    companyName = "" + company.getCompanyId();
                 }
                 else
                 {
-                    squadronName = "Not Defined";
+                    companyName = "Not Defined";
                 }
             }
-            JLabel reportBodySquadronLabel = PWCGLabelFactory.makePaperLabelMedium(squadronName);
-            reportBodyPanel.add(reportBodySquadronLabel);
+            JLabel reportBodyCompanyLabel = PWCGLabelFactory.makePaperLabelMedium(companyName);
+            reportBodyPanel.add(reportBodyCompanyLabel);
         }
     }
 

@@ -49,7 +49,7 @@ public class TankAce extends CrewMember
         }
 
         TankAce historicalAceNow = historicalAce.getAtDate(campaign.getDate());
-        setSquadronId(historicalAceNow.getCompanyId());
+        setCompanyId(historicalAceNow.getCompanyId());
         getSkins().addAll(historicalAceNow.getSkins());
         setCountry(historicalAce.getCountry());
         setRank(historicalAceNow.getRank());

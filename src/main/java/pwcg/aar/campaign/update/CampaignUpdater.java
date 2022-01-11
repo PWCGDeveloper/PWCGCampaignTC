@@ -37,8 +37,8 @@ public class CampaignUpdater
         PersonnelUpdater personnelUpdater = new PersonnelUpdater(campaign, campaignUpdateData);
         personnelUpdater.personnelUpdates();
         
-        EquipmentUpdater squadronEquipmentUpdater = new EquipmentUpdater(campaign, campaignUpdateData);
-        squadronEquipmentUpdater.equipmentUpdatesForSquadrons();
+        EquipmentUpdater companyEquipmentUpdater = new EquipmentUpdater(campaign, campaignUpdateData);
+        companyEquipmentUpdater.equipmentUpdatesForCompanys();
 
         ServiceChangeHandler serviceChangeHandler = new ServiceChangeHandler(campaign);
         serviceChangeHandler.handleChangeOfService(aarContext.getNewDate());
@@ -68,7 +68,7 @@ public class CampaignUpdater
         campaign.getCampaignLogs().parseEventsToCampaignLogs(campaign, campaignUpdateData.getLogEvents().getCampaignLogEvents());
         campaign.setDate(newDate);
         
-        InitialCompanyBuilder initialSquadronBuilder = new InitialCompanyBuilder();
-        initialSquadronBuilder.buildNewCompanies(campaign);
+        InitialCompanyBuilder initialCompanyBuilder = new InitialCompanyBuilder();
+        initialCompanyBuilder.buildNewCompanies(campaign);
     }
  }

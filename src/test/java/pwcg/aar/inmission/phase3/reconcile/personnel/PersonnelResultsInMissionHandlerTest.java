@@ -67,19 +67,19 @@ public class PersonnelResultsInMissionHandlerTest
     private void createCrewMembersInMission() throws PWCGException
     {
         CrewMember playerInFlight = campaign.findReferencePlayer();
-        addSquadronCrewMember(playerInFlight.getSerialNumber(), CrewMemberStatus.STATUS_WOUNDED);
+        addCompanyCrewMember(playerInFlight.getSerialNumber(), CrewMemberStatus.STATUS_WOUNDED);
 
         CrewMember sergentInFlight = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "Sergent");
-        addSquadronCrewMember(sergentInFlight.getSerialNumber(), CrewMemberStatus.STATUS_WOUNDED);
+        addCompanyCrewMember(sergentInFlight.getSerialNumber(), CrewMemberStatus.STATUS_WOUNDED);
 
         CrewMember corporalInFlight = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "Corporal");
-        addSquadronCrewMember(corporalInFlight.getSerialNumber(), CrewMemberStatus.STATUS_SERIOUSLY_WOUNDED);
+        addCompanyCrewMember(corporalInFlight.getSerialNumber(), CrewMemberStatus.STATUS_SERIOUSLY_WOUNDED);
         
         CrewMember sltInFlight = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "Sous Lieutenant");
-        addSquadronCrewMember(sltInFlight.getSerialNumber(), CrewMemberStatus.STATUS_KIA);
+        addCompanyCrewMember(sltInFlight.getSerialNumber(), CrewMemberStatus.STATUS_KIA);
         
         CrewMember ltInFlight = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "Lieutenant");
-        addSquadronCrewMember(ltInFlight.getSerialNumber(), CrewMemberStatus.STATUS_CAPTURED);
+        addCompanyCrewMember(ltInFlight.getSerialNumber(), CrewMemberStatus.STATUS_CAPTURED);
     }
     
     private void createAcesInMission() throws PWCGException
@@ -96,11 +96,11 @@ public class PersonnelResultsInMissionHandlerTest
         crewMemberStatusList.add(georgesGuynemer);
     }
     
-    private void addSquadronCrewMember(int serialNumber, int status)
+    private void addCompanyCrewMember(int serialNumber, int status)
     {
-        LogCrewMember squadronCrewMember = new LogCrewMember();
-        squadronCrewMember.setSerialNumber(serialNumber);
-        squadronCrewMember.setStatus(status);
-        crewMemberStatusList.add(squadronCrewMember);
+        LogCrewMember companyCrewMember = new LogCrewMember();
+        companyCrewMember.setSerialNumber(serialNumber);
+        companyCrewMember.setStatus(status);
+        crewMemberStatusList.add(companyCrewMember);
     }
 }

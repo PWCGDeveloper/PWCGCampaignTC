@@ -35,8 +35,8 @@ public class TransferPanelEventTabulator
         TransferEventGenerator transferEventGenerator = new TransferEventGenerator(campaign);
         List<TransferEvent> allTransferInEvents = new ArrayList<>();
 
-        List<TransferEvent> transferEventsForSquadronAces = transferAces(transferEventGenerator);
-        allTransferInEvents.addAll(transferEventsForSquadronAces);
+        List<TransferEvent> transferEventsForCompanyAces = transferAces(transferEventGenerator);
+        allTransferInEvents.addAll(transferEventsForCompanyAces);
         
         List<TransferEvent> transferEventsForCrewMembers = transferCrewMembers(transferEventGenerator);
         allTransferInEvents.addAll(transferEventsForCrewMembers);
@@ -53,8 +53,8 @@ public class TransferPanelEventTabulator
 
     private List<TransferEvent> transferCrewMembers(TransferEventGenerator transferEventGenerator) throws PWCGException
     {
-        List <TransferRecord> squadronMembersTransferredIn = aarContext.getResupplyData().getSquadronTransferData().getCrewMembersTransferred();
-        List<TransferEvent> transferEventsForCrewMembers = transferEventGenerator.createCrewMemberTransferEvents(squadronMembersTransferredIn);
+        List <TransferRecord> crewMembersTransferredIn = aarContext.getResupplyData().getCompanyTransferData().getCrewMembersTransferred();
+        List<TransferEvent> transferEventsForCrewMembers = transferEventGenerator.createCrewMemberTransferEvents(crewMembersTransferredIn);
         return transferEventsForCrewMembers;
     }
 }

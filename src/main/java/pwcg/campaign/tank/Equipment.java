@@ -75,7 +75,7 @@ public class Equipment
         }
     }
 
-    public void addEquippedTankToCompany(Campaign campaign, int squadronId, EquippedTank equippedTank) throws PWCGException
+    public void addEquippedTankToCompany(Campaign campaign, int companyId, EquippedTank equippedTank) throws PWCGException
     {
         equippedTanks.put(equippedTank.getSerialNumber(), equippedTank);
     }

@@ -76,37 +76,37 @@ public class AARMissionVictoryPanel extends AARDocumentPanel
 
 	private HashMap<String, CampaignReportVictoryGUI> createCrewMemberLostSubTabs() throws PWCGException 
 	{
-	    HashMap<String, List<VictoryEvent>> victoriesByCrewMembersInMySquadron = collateVictoriesByCrewMemberInMySquadron();
-        HashMap<String, CampaignReportVictoryGUI> crewMemberVictoryPanelData = createVictoryTabs(victoriesByCrewMembersInMySquadron);
+	    HashMap<String, List<VictoryEvent>> victoriesByCrewMembersInMyCompany = collateVictoriesByCrewMemberInMyCompany();
+        HashMap<String, CampaignReportVictoryGUI> crewMemberVictoryPanelData = createVictoryTabs(victoriesByCrewMembersInMyCompany);
         return crewMemberVictoryPanelData;
 	}
 
-    private HashMap<String, List<VictoryEvent>> collateVictoriesByCrewMemberInMySquadron() throws PWCGException
+    private HashMap<String, List<VictoryEvent>> collateVictoriesByCrewMemberInMyCompany() throws PWCGException
     {
-        HashMap<String, List<VictoryEvent>> victoriesByCrewMembersInMySquadron = new HashMap<>();
+        HashMap<String, List<VictoryEvent>> victoriesByCrewMembersInMyCompany = new HashMap<>();
         List<VictoryEvent>  outOfMissionVictories = aarCoordinator.getAarContext().getUiDebriefData().getOutOfMissionVictoryPanelData().getOutOfMissionVictoryEvents();
         for (VictoryEvent victoryEvent : outOfMissionVictories)
 		{
-            if (victoryEvent.getSquadronId() == campaign.findReferencePlayer().getCompanyId())
+            if (victoryEvent.getCompanyId() == campaign.findReferencePlayer().getCompanyId())
             {
-                if (!victoriesByCrewMembersInMySquadron.containsKey(victoryEvent.getCrewMemberName()))
+                if (!victoriesByCrewMembersInMyCompany.containsKey(victoryEvent.getCrewMemberName()))
                 {
                     List<VictoryEvent> victoriesForCrewMember = new ArrayList<>();
-                    victoriesByCrewMembersInMySquadron.put(victoryEvent.getCrewMemberName(), victoriesForCrewMember);
+                    victoriesByCrewMembersInMyCompany.put(victoryEvent.getCrewMemberName(), victoriesForCrewMember);
                 }
-                List<VictoryEvent> victoriesForCrewMember = victoriesByCrewMembersInMySquadron.get(victoryEvent.getCrewMemberName());
+                List<VictoryEvent> victoriesForCrewMember = victoriesByCrewMembersInMyCompany.get(victoryEvent.getCrewMemberName());
                 victoriesForCrewMember.add(victoryEvent);
             }
 		}
-        return victoriesByCrewMembersInMySquadron;
+        return victoriesByCrewMembersInMyCompany;
     }
 
-    private HashMap<String, CampaignReportVictoryGUI> createVictoryTabs(HashMap<String, List<VictoryEvent>> victoriesByCrewMembersInMySquadron) throws PWCGException
+    private HashMap<String, CampaignReportVictoryGUI> createVictoryTabs(HashMap<String, List<VictoryEvent>> victoriesByCrewMembersInMyCompany) throws PWCGException
     {
         HashMap<String, CampaignReportVictoryGUI> crewMemberVictoryPanelData = new HashMap<>();
-        for (String crewMemberName : victoriesByCrewMembersInMySquadron.keySet())
+        for (String crewMemberName : victoriesByCrewMembersInMyCompany.keySet())
         {
-            List<VictoryEvent> victoriesForCrewMember = victoriesByCrewMembersInMySquadron.get(crewMemberName);
+            List<VictoryEvent> victoriesForCrewMember = victoriesByCrewMembersInMyCompany.get(crewMemberName);
             CampaignReportVictoryGUI victoryGUI = new CampaignReportVictoryGUI(campaign, victoriesForCrewMember);
             String tabName = "Notification of Victory: " + crewMemberName;
             crewMemberVictoryPanelData.put(tabName, victoryGUI);

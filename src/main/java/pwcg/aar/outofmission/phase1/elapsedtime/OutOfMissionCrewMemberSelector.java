@@ -29,7 +29,7 @@ public class OutOfMissionCrewMemberSelector
             return false;
         }
         
-        if (!isSquadronViable(campaign, crewMember))
+        if (!isCompanyViable(campaign, crewMember))
         {
             return false;
         }
@@ -37,10 +37,10 @@ public class OutOfMissionCrewMemberSelector
         return true; 
     }
 
-    private static boolean isSquadronViable(Campaign campaign, CrewMember crewMember) throws PWCGException
+    private static boolean isCompanyViable(Campaign campaign, CrewMember crewMember) throws PWCGException
     {
-        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(crewMember.getCompanyId());
-        return CompanyViability.isCompanyViable(squadron, campaign);
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(crewMember.getCompanyId());
+        return CompanyViability.isCompanyViable(company, campaign);
     }
 
 }

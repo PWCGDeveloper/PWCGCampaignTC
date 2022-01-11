@@ -18,95 +18,95 @@ import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 
 @ExtendWith(MockitoExtension.class)
-public class SquadronIOJsonTest
+public class CompanyIOJsonTest
 {
     @Test
-    public void readJsonRoFSquadronsTest() throws PWCGException
+    public void readJsonRoFCompanysTest() throws PWCGException
     {
         
-        List<Company> squadrons = CompanyIOJson.readJson();
-        Assertions.assertTrue (squadrons.size() > 0);
+        List<Company> companys = CompanyIOJson.readJson();
+        Assertions.assertTrue (companys.size() > 0);
 
-        for (Company squadron : squadrons)
+        for (Company company : companys)
         {
-            Assertions.assertTrue (squadron.getSquadronRoles().getSquadronRolePeriods().size() > 0);
-            Assertions.assertTrue (squadron.getService() > 0);
+            Assertions.assertTrue (company.getCompanyRoles().getCompanyRolePeriods().size() > 0);
+            Assertions.assertTrue (company.getService() > 0);
             
-            verifyLafayetteEsc(squadron);
-            verifyRFCToRAF(squadron);
-            verifyRNASToRAF(squadron);
+            verifyLafayetteEsc(company);
+            verifyRFCToRAF(company);
+            verifyRNASToRAF(company);
         }
     }
 
-    private void verifyLafayetteEsc(Company squadron) throws PWCGException
+    private void verifyLafayetteEsc(Company company) throws PWCGException
     {
-        if (squadron.getCompanyId() == 101124)
+        if (company.getCompanyId() == 101124)
         {
-            CompanyHistory squadronHistory = squadron.getSquadHistory();
-            Assertions.assertTrue (squadronHistory != null);
+            CompanyHistory companyHistory = company.getSquadHistory();
+            Assertions.assertTrue (companyHistory != null);
             
-            CompanyHistoryEntry  squadHistoryEntry = squadronHistory.getSquadHistoryEntry(DateUtils.getDateYYYYMMDD("19180219"));
+            CompanyHistoryEntry  squadHistoryEntry = companyHistory.getSquadHistoryEntry(DateUtils.getDateYYYYMMDD("19180219"));
             Assertions.assertTrue (squadHistoryEntry != null);
             Assertions.assertTrue (squadHistoryEntry.getArmedServiceName().equals("United States Air Service"));
-            Assertions.assertTrue (squadHistoryEntry.getSkill() == CompanyHistoryEntry.NO_SQUADRON_SKILL_CHANGE);
+            Assertions.assertTrue (squadHistoryEntry.getSkill() == CompanyHistoryEntry.NO_Company_SKILL_CHANGE);
         }
     }
 
-    private void verifyRFCToRAF(Company squadron) throws PWCGException
+    private void verifyRFCToRAF(Company company) throws PWCGException
     {
-        if (squadron.getCompanyId() == 102020)
+        if (company.getCompanyId() == 102020)
         {
-            CompanyHistory squadronHistory = squadron.getSquadHistory();
-            Assertions.assertTrue (squadronHistory != null);
+            CompanyHistory companyHistory = company.getSquadHistory();
+            Assertions.assertTrue (companyHistory != null);
             
-            CompanyHistoryEntry  squadHistoryEntry = squadronHistory.getSquadHistoryEntry(DateUtils.getDateYYYYMMDD("19180401"));
+            CompanyHistoryEntry  squadHistoryEntry = companyHistory.getSquadHistoryEntry(DateUtils.getDateYYYYMMDD("19180401"));
             Assertions.assertTrue (squadHistoryEntry != null);
             Assertions.assertTrue (squadHistoryEntry.getArmedServiceName().equals("Royal Air Force"));
-            Assertions.assertTrue (squadHistoryEntry.getSquadName().equals("No 20 Squadron RAF"));
-            Assertions.assertTrue (squadHistoryEntry.getSkill() == CompanyHistoryEntry.NO_SQUADRON_SKILL_CHANGE);
+            Assertions.assertTrue (squadHistoryEntry.getSquadName().equals("No 20 Company RAF"));
+            Assertions.assertTrue (squadHistoryEntry.getSkill() == CompanyHistoryEntry.NO_Company_SKILL_CHANGE);
         }
     }
 
-    private void verifyRNASToRAF(Company squadron) throws PWCGException
+    private void verifyRNASToRAF(Company company) throws PWCGException
     {
-        if (squadron.getCompanyId() == 102209)
+        if (company.getCompanyId() == 102209)
         {
-            CompanyHistory squadronHistory = squadron.getSquadHistory();
-            Assertions.assertTrue (squadronHistory != null);
+            CompanyHistory companyHistory = company.getSquadHistory();
+            Assertions.assertTrue (companyHistory != null);
             
-            CompanyHistoryEntry  squadHistoryEntry = squadronHistory.getSquadHistoryEntry(DateUtils.getDateYYYYMMDD("19180401"));
+            CompanyHistoryEntry  squadHistoryEntry = companyHistory.getSquadHistoryEntry(DateUtils.getDateYYYYMMDD("19180401"));
             Assertions.assertTrue (squadHistoryEntry != null);
             Assertions.assertTrue (squadHistoryEntry.getArmedServiceName().equals("Royal Air Force"));
-            Assertions.assertTrue (squadHistoryEntry.getSquadName().equals("No 209 Squadron RAF"));
-            Assertions.assertTrue (squadHistoryEntry.getSkill() == CompanyHistoryEntry.NO_SQUADRON_SKILL_CHANGE);
+            Assertions.assertTrue (squadHistoryEntry.getSquadName().equals("No 209 Company RAF"));
+            Assertions.assertTrue (squadHistoryEntry.getSkill() == CompanyHistoryEntry.NO_Company_SKILL_CHANGE);
         }
     }
 
     @Test
-    public void readJsonBoSSquadronsTest() throws PWCGException
+    public void readJsonBoSCompanysTest() throws PWCGException
     {
         
-        List<Company> squadrons = CompanyIOJson.readJson();
-        Assertions.assertTrue (squadrons.size() > 0);
+        List<Company> companys = CompanyIOJson.readJson();
+        Assertions.assertTrue (companys.size() > 0);
         
         boolean success = true;
-        for (Company squadron : squadrons)
+        for (Company company : companys)
         {
-            Assertions.assertTrue (squadron.getSquadronRoles().getSquadronRolePeriods().size() > 0);
-            Assertions.assertTrue (squadron.getService() > 0);
+            Assertions.assertTrue (company.getCompanyRoles().getCompanyRolePeriods().size() > 0);
+            Assertions.assertTrue (company.getService() > 0);
         }
         
         assert(success);
     }
 
     @Test
-    public void writeJsonBoSSquadronsTest() throws PWCGException
+    public void writeJsonBoSCompanysTest() throws PWCGException
     {
         
-        List<Company> squadrons = CompanyIOJson.readJson();
+        List<Company> companys = CompanyIOJson.readJson();
         
         PwcgJsonWriter<Company> jsonWriter = new PwcgJsonWriter<>();
-        String squadronDir = PWCGContext.getInstance().getDirectoryManager().getPwcgCompanyDir();
-        jsonWriter.writeAsJson(squadrons.get(0), squadronDir, "TestSquadron");
+        String companyDir = PWCGContext.getInstance().getDirectoryManager().getPwcgCompanyDir();
+        jsonWriter.writeAsJson(companys.get(0), companyDir, "TestCompany");
     }
 }

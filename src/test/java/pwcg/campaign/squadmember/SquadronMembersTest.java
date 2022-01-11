@@ -26,18 +26,18 @@ public class CrewMembersTest
     private Campaign campaign;
     
     @Mock
-    private CrewMember squadronMember1;
+    private CrewMember companyMember1;
     
     @Mock
-    private CrewMember squadronMember2;
+    private CrewMember companyMember2;
     
     @Mock
-    private CrewMember squadronMember3;
+    private CrewMember companyMember3;
     
     @Mock
-    private CrewMember squadronMember4;
+    private CrewMember companyMember4;
     
-    private  CrewMembers squadronMembers;
+    private  CrewMembers crewMembers;
     
     @BeforeEach
     public void setupTest() throws PWCGException 
@@ -46,54 +46,54 @@ public class CrewMembersTest
         
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420801"));
 
-        Mockito.when(squadronMember1.getSerialNumber()).thenReturn(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1);
-        Mockito.when(squadronMember2.getSerialNumber()).thenReturn(SerialNumber.AI_STARTING_SERIAL_NUMBER + 2);
-        Mockito.when(squadronMember3.getSerialNumber()).thenReturn(SerialNumber.AI_STARTING_SERIAL_NUMBER + 3);
-        Mockito.when(squadronMember4.getSerialNumber()).thenReturn(SerialNumber.AI_STARTING_SERIAL_NUMBER + 4);
+        Mockito.when(companyMember1.getSerialNumber()).thenReturn(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1);
+        Mockito.when(companyMember2.getSerialNumber()).thenReturn(SerialNumber.AI_STARTING_SERIAL_NUMBER + 2);
+        Mockito.when(companyMember3.getSerialNumber()).thenReturn(SerialNumber.AI_STARTING_SERIAL_NUMBER + 3);
+        Mockito.when(companyMember4.getSerialNumber()).thenReturn(SerialNumber.AI_STARTING_SERIAL_NUMBER + 4);
         
-        Mockito.when(squadronMember1.getName()).thenReturn("John Bonham");
-        Mockito.when(squadronMember3.getName()).thenReturn("Jimmy Page");
-        Mockito.when(squadronMember4.getName()).thenReturn("Robert Plant");
+        Mockito.when(companyMember1.getName()).thenReturn("John Bonham");
+        Mockito.when(companyMember3.getName()).thenReturn("Jimmy Page");
+        Mockito.when(companyMember4.getName()).thenReturn("Robert Plant");
 
-        squadronMembers = new CrewMembers();
-        squadronMembers.addToCrewMemberCollection(squadronMember1);
-        squadronMembers.addToCrewMemberCollection(squadronMember2);
+        crewMembers = new CrewMembers();
+        crewMembers.addToCrewMemberCollection(companyMember1);
+        crewMembers.addToCrewMemberCollection(companyMember2);
     }
 
     @Test
     public void addCrewMember() throws PWCGException 
     {
-        squadronMembers.addToCrewMemberCollection(squadronMember3);
-        assert(squadronMembers.getActiveCount(campaign.getDate()) == 3);
+        crewMembers.addToCrewMemberCollection(companyMember3);
+        assert(crewMembers.getActiveCount(campaign.getDate()) == 3);
     }
 
     @Test
     public void removeAnyCrewMember() throws PWCGException 
     {
-        squadronMembers.addToCrewMemberCollection(squadronMember3);
-        squadronMembers.addToCrewMemberCollection(squadronMember4);
-        CrewMember crewMember = squadronMembers.findCrewMember();
-        squadronMembers.removeCrewMember(crewMember.getSerialNumber());
-        assert(squadronMembers.getActiveCount(campaign.getDate()) == 3);
+        crewMembers.addToCrewMemberCollection(companyMember3);
+        crewMembers.addToCrewMemberCollection(companyMember4);
+        CrewMember crewMember = crewMembers.findCrewMember();
+        crewMembers.removeCrewMember(crewMember.getSerialNumber());
+        assert(crewMembers.getActiveCount(campaign.getDate()) == 3);
     }
 
     @Test
     public void removeCrewMember() throws PWCGException 
     {
-        squadronMembers.addToCrewMemberCollection(squadronMember3);
-        squadronMembers.addToCrewMemberCollection(squadronMember4);
-        CrewMember crewMember = squadronMembers.removeCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER + 3);
-        assert(squadronMembers.getActiveCount(campaign.getDate()) == 3);
+        crewMembers.addToCrewMemberCollection(companyMember3);
+        crewMembers.addToCrewMemberCollection(companyMember4);
+        CrewMember crewMember = crewMembers.removeCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER + 3);
+        assert(crewMembers.getActiveCount(campaign.getDate()) == 3);
         assert(crewMember.getSerialNumber() == (SerialNumber.AI_STARTING_SERIAL_NUMBER + 3));
     }
 
     @Test
     public void getCrewMemberByName() throws PWCGException 
     {
-        squadronMembers.addToCrewMemberCollection(squadronMember3);
-        squadronMembers.addToCrewMemberCollection(squadronMember4);
-        CrewMember crewMember = squadronMembers.getCrewMemberByName("Jimmy Page");
-        assert(squadronMembers.getActiveCount(campaign.getDate()) == 4);
+        crewMembers.addToCrewMemberCollection(companyMember3);
+        crewMembers.addToCrewMemberCollection(companyMember4);
+        CrewMember crewMember = crewMembers.getCrewMemberByName("Jimmy Page");
+        assert(crewMembers.getActiveCount(campaign.getDate()) == 4);
         assert(crewMember.getSerialNumber() == (SerialNumber.AI_STARTING_SERIAL_NUMBER + 3));
     }
 

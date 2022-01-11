@@ -22,11 +22,11 @@ public class BriefingTankPicker
 
     public Integer pickPlane(Integer crewMemberSerialNumber) throws PWCGException
     {       
-        List<EquippedTank> squadronPlanes = missionEditHandler.getSortedUnassignedTanks();
-        Object[] possibilities = new Object[squadronPlanes.size()];
-        for (int i = 0; i < squadronPlanes.size(); ++i)
+        List<EquippedTank> companyPlanes = missionEditHandler.getSortedUnassignedTanks();
+        Object[] possibilities = new Object[companyPlanes.size()];
+        for (int i = 0; i < companyPlanes.size(); ++i)
         {
-            EquippedTank plane = squadronPlanes.get(i);
+            EquippedTank plane = companyPlanes.get(i);
             PickerEntry entry = new PickerEntry();
             entry.description = plane.getDisplayName();
             entry.plane = plane;

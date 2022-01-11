@@ -9,9 +9,9 @@ import pwcg.core.exception.PWCGException;
 
 public abstract class ServiceColor implements IServiceColorMap
 {
-    public Color getColorForSquadron(Company squadron, Date date) throws PWCGException
+    public Color getColorForCompany(Company company, Date date) throws PWCGException
     {
-        PwcgRoleCategory primaryRole = squadron.determineCompanyPrimaryRoleCategory(date);
+        PwcgRoleCategory primaryRole = company.determineCompanyPrimaryRoleCategory(date);
 
         return getColorForRole(primaryRole);
     }

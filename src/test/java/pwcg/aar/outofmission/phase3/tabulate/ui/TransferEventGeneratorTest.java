@@ -33,10 +33,10 @@ public class TransferEventGeneratorTest extends AARTestSetup
     public void testTransferInEvent() throws PWCGException 
     {
         List<TransferRecord> transferRecords = new ArrayList<>();
-        TransferRecord squadronMemberTransfer1 = new TransferRecord(crewMember1, CompanyTestProfile.ESC_3_PROFILE.getCompanyId(), CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
-        transferRecords.add(squadronMemberTransfer1);        
-        TransferRecord squadronMemberTransfer2 = new TransferRecord(crewMember2, CompanyTestProfile.ESC_3_PROFILE.getCompanyId(), CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
-        transferRecords.add(squadronMemberTransfer2);        
+        TransferRecord companyMemberTransfer1 = new TransferRecord(crewMember1, CompanyTestProfile.ESC_3_PROFILE.getCompanyId(), CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
+        transferRecords.add(companyMemberTransfer1);        
+        TransferRecord companyMemberTransfer2 = new TransferRecord(crewMember2, CompanyTestProfile.ESC_3_PROFILE.getCompanyId(), CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
+        transferRecords.add(companyMemberTransfer2);        
 
         TransferEventGenerator transferEventGenerator = new TransferEventGenerator(campaign);
         List<TransferEvent> transferEvents = transferEventGenerator.createCrewMemberTransferEvents(transferRecords);
@@ -50,13 +50,13 @@ public class TransferEventGeneratorTest extends AARTestSetup
     
     
     @Test
-    public void testInSquadronAceUpdate() throws PWCGException 
+    public void testInCompanyAceUpdate() throws PWCGException 
     {
         List<TransferRecord> transferRecords = new ArrayList<>();
-        TransferRecord squadronMemberTransfer1 = new TransferRecord(crewMember1, CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId(), CompanyTestProfile.ESC_3_PROFILE.getCompanyId());
-        transferRecords.add(squadronMemberTransfer1);        
-        TransferRecord squadronMemberTransfer2 = new TransferRecord(crewMember2, CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId(), CompanyTestProfile.ESC_3_PROFILE.getCompanyId());
-        transferRecords.add(squadronMemberTransfer2);        
+        TransferRecord companyMemberTransfer1 = new TransferRecord(crewMember1, CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId(), CompanyTestProfile.ESC_3_PROFILE.getCompanyId());
+        transferRecords.add(companyMemberTransfer1);        
+        TransferRecord companyMemberTransfer2 = new TransferRecord(crewMember2, CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId(), CompanyTestProfile.ESC_3_PROFILE.getCompanyId());
+        transferRecords.add(companyMemberTransfer2);        
 
         TransferEventGenerator transferEventGenerator = new TransferEventGenerator(campaign);
         List<TransferEvent> transferEvents = transferEventGenerator.createCrewMemberTransferEvents(transferRecords);

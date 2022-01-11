@@ -33,14 +33,14 @@ public class MissionObjectiveGroup
     public void createSuccessMissionObjective(Campaign campaign, Mission mission) throws PWCGException 
     {
         ITankUnit playerUnit = mission.getUnits().getReferencePlayerUnit();
-        Coordinate squadronLocation = playerUnit.getCompany().determineCurrentPosition(campaign.getDate());
-        missionBeginUnit = new MissionBeginUnit(squadronLocation.copy());            
+        Coordinate companyLocation = playerUnit.getCompany().determineCurrentPosition(campaign.getDate());
+        missionBeginUnit = new MissionBeginUnit(companyLocation.copy());            
                 
         missionObjective.setCoalition(playerUnit.getCompany().getCountry());
         missionObjective.setSuccess(1);
-        missionObjective.setPosition(squadronLocation);
+        missionObjective.setPosition(companyLocation);
 
-        missionObjectiveTimer.setPosition(squadronLocation);
+        missionObjectiveTimer.setPosition(companyLocation);
         missionBeginUnit.linkToMissionBegin(missionObjectiveTimer.getIndex());
         missionObjectiveTimer.setTarget(missionObjective.getIndex());
     }
@@ -48,11 +48,11 @@ public class MissionObjectiveGroup
     public void createFailureMissionObjective(Campaign campaign, Mission mission) throws PWCGException 
     {
         ITankUnit playerUnit = mission.getUnits().getReferencePlayerUnit();
-        Coordinate squadronLocation = playerUnit.getCompany().determineCurrentPosition(campaign.getDate());
-        missionBeginUnit = new MissionBeginUnit(squadronLocation.copy());            
+        Coordinate companyLocation = playerUnit.getCompany().determineCurrentPosition(campaign.getDate());
+        missionBeginUnit = new MissionBeginUnit(companyLocation.copy());            
 
         missionObjective.setCoalition(playerUnit.getCompany().getCountry());
-        missionObjective.setPosition(squadronLocation);
+        missionObjective.setPosition(companyLocation);
         missionObjective.setSuccess(0);
 
         TankMcu referenceVehicle = mission.getUnits().getReferencePlayerUnit().getTanks().get(0);
@@ -62,7 +62,7 @@ public class MissionObjectiveGroup
                         missionObjectiveTimer.getIndex());
         
         missionObjectiveTimer.setTarget(missionObjective.getIndex());
-        missionObjectiveTimer.setPosition(squadronLocation);
+        missionObjectiveTimer.setPosition(companyLocation);
 
         McuEvent planeDamagedEvent = new McuEvent(McuEvent.ONPLANECRASHED, missionObjectiveTimer.getIndex());
         referenceVehicle.addEvent(planeDamagedEvent);

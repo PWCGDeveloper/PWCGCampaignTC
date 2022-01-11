@@ -17,10 +17,10 @@ public class TransferEventGenerator
         this.campaign = campaign;
     }
 
-    public List<TransferEvent> createCrewMemberTransferEvents(List<TransferRecord> squadronMembersTransferred) throws PWCGException
+    public List<TransferEvent> createCrewMemberTransferEvents(List<TransferRecord> crewMembersTransferred) throws PWCGException
     {
         List<TransferEvent>  transferEvents = new ArrayList<>();
-        for (TransferRecord transferred : squadronMembersTransferred)
+        for (TransferRecord transferred : crewMembersTransferred)
         {
             TransferEvent transferEvent = makeTransferEvent(transferred);
             transferEvents.add(transferEvent);

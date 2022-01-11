@@ -69,8 +69,8 @@ public class AARDebriefTabulator
 
     private void createVictoryEvents() throws PWCGException
     {
-        VictoryPanelEventTabulator squadronOutOfMissionVictoryPanelEventTabulator = new VictoryPanelEventTabulator(campaign, aarContext);
-        VictoryEvents victoryPanelData = squadronOutOfMissionVictoryPanelEventTabulator.createVictoryEvents();
+        VictoryPanelEventTabulator companyOutOfMissionVictoryPanelEventTabulator = new VictoryPanelEventTabulator(campaign, aarContext);
+        VictoryEvents victoryPanelData = companyOutOfMissionVictoryPanelEventTabulator.createVictoryEvents();
         uiDebriefData.addVictoryPanelData(victoryPanelData);        
     }
     

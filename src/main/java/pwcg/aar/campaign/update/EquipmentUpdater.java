@@ -19,7 +19,7 @@ public class EquipmentUpdater
         this.campaignUpdateData = campaignUpdateData;
 	}
 	
-    public void equipmentUpdatesForSquadrons() throws PWCGException 
+    public void equipmentUpdatesForCompanys() throws PWCGException 
     {
         equipmentRemovals();
         equipmentAdditions();
@@ -41,7 +41,7 @@ public class EquipmentUpdater
         {
             Equipment equipment = campaign.getEquipmentManager().getEquipmentForCompany(equipmentResupplyRecord.getTransferTo());
             EquippedTank replacementPlane = equipmentResupplyRecord.getEquippedPlane();
-            replacementPlane.setSquadronId(equipmentResupplyRecord.getTransferTo());
+            replacementPlane.setCompanyId(equipmentResupplyRecord.getTransferTo());
             replacementPlane.setPlaneStatus(TankStatus.STATUS_DEPLOYED);
             equipment.addEquippedTankToCompany(campaign, equipmentResupplyRecord.getTransferTo(), replacementPlane);
         }

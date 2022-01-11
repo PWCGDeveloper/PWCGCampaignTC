@@ -25,7 +25,7 @@ import pwcg.testutils.CompanyTestProfile;
 
 @ExtendWith(MockitoExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class PersonnelSquadronLossHandlerTest
+public class PersonnelCompanyLossHandlerTest
 {
     private Campaign campaign;
     private List<LogCrewMember> crewMemberStatusList;
@@ -45,10 +45,10 @@ public class PersonnelSquadronLossHandlerTest
 
     private void addCrewMember(Integer serialNumber, int status)
     {
-        LogCrewMember squadronCrewMember = new LogCrewMember();
-        squadronCrewMember.setSerialNumber(serialNumber);
-        squadronCrewMember.setStatus(status);
-        crewMemberStatusList.add(squadronCrewMember);
+        LogCrewMember companyCrewMember = new LogCrewMember();
+        companyCrewMember.setSerialNumber(serialNumber);
+        companyCrewMember.setStatus(status);
+        crewMemberStatusList.add(companyCrewMember);
     }
 
     @Test

@@ -1,7 +1,7 @@
 {
   "missionHeader": {
     "missionFileName": "Patrik Schorner 1916-10-01",
-    "squadron": "Jasta 16b",
+    "company": "Jasta 16b",
     "date": "19161001",
     "time": "9:0:00",
     "aircraftType": "AircraftType \u003d Halberstadt D.I",
@@ -10,11 +10,11 @@
     "duty": "BALLOON_BUST",
     "altitude": 2271
   },
-  "missionDescription": "Mission:\nAircraft  Halberstadt D.II\nSquadron  Jasta 16b\nAirbase  Balatre,E Roye\nDate  1916-10-01\n\nWeather Report\nMedium cloud cover, high altitude.\nCloud layer is 3112 meters.\nWind speed is 0 M/S.\nWind direction is 317.\n\nPrimary Objective\nDestroy the enemy balloon near Ferrieres.\n\n\n",
+  "missionDescription": "Mission:\nAircraft  Halberstadt D.II\nCompany  Jasta 16b\nAirbase  Balatre,E Roye\nDate  1916-10-01\n\nWeather Report\nMedium cloud cover, high altitude.\nCloud layer is 3112 meters.\nWind speed is 0 M/S.\nWind direction is 317.\n\nPrimary Objective\nDestroy the enemy balloon near Ferrieres.\n\n\n",
   "missionPlanes": [
     {
       "aircraftType": "halberstadtd2",
-      "squadronName": "Jasta 16b",
+      "companyName": "Jasta 16b",
       "crew": {
         "pilot": "Patrik Schorner",
         "observer": "",
@@ -24,7 +24,7 @@
     },
     {
       "aircraftType": "halberstadtd2",
-      "squadronName": "Jasta 16b",
+      "companyName": "Jasta 16b",
       "crew": {
         "pilot": "Augustus Kass",
         "observer": "",
@@ -34,7 +34,7 @@
     },
     {
       "aircraftType": "halberstadtd2",
-      "squadronName": "Jasta 16b",
+      "companyName": "Jasta 16b",
       "crew": {
         "pilot": "Gebhard Schonbaum",
         "observer": "",
@@ -44,7 +44,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 8",
+      "companyName": "Esc 8",
       "crew": {
         "pilot": "Alcide Jobard",
         "observer": "Edouard Quillet",
@@ -54,7 +54,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 8",
+      "companyName": "Esc 8",
       "crew": {
         "pilot": "Emile Lacourly",
         "observer": "Ernest Mauvais",
@@ -64,7 +64,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 8",
+      "companyName": "Esc 8",
       "crew": {
         "pilot": "Honore Maire",
         "observer": "Andre Mourrut",
@@ -74,7 +74,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 8",
+      "companyName": "Esc 8",
       "crew": {
         "pilot": "Antoine Baux",
         "observer": "Victor Justet",
@@ -84,7 +84,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 8",
+      "companyName": "Esc 8",
       "crew": {
         "pilot": "Robert Bouvier",
         "observer": "Simon Lachaud",
@@ -94,7 +94,7 @@
     },
     {
       "aircraftType": "rolc2a",
-      "squadronName": "Schlasta 18",
+      "companyName": "Schlasta 18",
       "crew": {
         "pilot": "Heinrich Heiner",
         "observer": "Johann Stauffer",
@@ -104,7 +104,7 @@
     },
     {
       "aircraftType": "rolc2a",
-      "squadronName": "Schlasta 18",
+      "companyName": "Schlasta 18",
       "crew": {
         "pilot": "Dietrich Kranefuss",
         "observer": "Frederich Tauber",
@@ -114,7 +114,7 @@
     },
     {
       "aircraftType": "rolc2a",
-      "squadronName": "Schlasta 18",
+      "companyName": "Schlasta 18",
       "crew": {
         "pilot": "Elias Abicht",
         "observer": "Arnulf Neumann",
@@ -124,7 +124,7 @@
     },
     {
       "aircraftType": "rolc2a",
-      "squadronName": "Schlasta 18",
+      "companyName": "Schlasta 18",
       "crew": {
         "pilot": "Hugbert Speckmann",
         "observer": "Franz Kantner",
@@ -134,7 +134,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 58",
+      "companyName": "Esc 58",
       "crew": {
         "pilot": "Victor Scozzaro",
         "observer": "Leandre Segalen",
@@ -144,7 +144,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "No 8 Squadron RFC",
+      "companyName": "No 8 Company RFC",
       "crew": {
         "pilot": "Oliver Leventhorpe",
         "observer": "Adrian Morris",
@@ -154,7 +154,7 @@
     },
     {
       "aircraftType": "nieuport17brit",
-      "squadronName": "Esc 31",
+      "companyName": "Esc 31",
       "crew": {
         "pilot": "Denis Hoguet",
         "observer": "",
@@ -164,7 +164,7 @@
     },
     {
       "aircraftType": "nieuport17brit",
-      "squadronName": "Esc 31",
+      "companyName": "Esc 31",
       "crew": {
         "pilot": "Joseph Antier",
         "observer": "",
@@ -174,7 +174,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 9",
+      "companyName": "Esc 9",
       "crew": {
         "pilot": "Anton Lamor",
         "observer": "Gustave Lacorne",
@@ -184,7 +184,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 9",
+      "companyName": "Esc 9",
       "crew": {
         "pilot": "Luc Lacloche",
         "observer": "Fernand Vidal",
@@ -194,7 +194,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 9",
+      "companyName": "Esc 9",
       "crew": {
         "pilot": "Ferdinand Vertadier",
         "observer": "Gustave Leclercq",
@@ -204,7 +204,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "No 16 Squadron RFC",
+      "companyName": "No 16 Company RFC",
       "crew": {
         "pilot": "Otis Fitzgeoffrey",
         "observer": "Frederick Crugg",
@@ -214,7 +214,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "No 16 Squadron RFC",
+      "companyName": "No 16 Company RFC",
       "crew": {
         "pilot": "Darell Trenowyth",
         "observer": "Elton Gorst",
@@ -224,7 +224,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "No 16 Squadron RFC",
+      "companyName": "No 16 Company RFC",
       "crew": {
         "pilot": "Farley Maudit",
         "observer": "Sigmund Rowe",
@@ -234,7 +234,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "No 16 Squadron RFC",
+      "companyName": "No 16 Company RFC",
       "crew": {
         "pilot": "Igor Herleston",
         "observer": "Alastair Boville",

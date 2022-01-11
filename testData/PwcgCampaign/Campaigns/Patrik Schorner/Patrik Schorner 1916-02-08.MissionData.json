@@ -1,7 +1,7 @@
 {
   "missionHeader": {
     "missionFileName": "Patrik Schorner 1916-02-08",
-    "squadron": "FA 293b",
+    "company": "FA 293b",
     "date": "19160208",
     "time": "90:00",
     "aircraftType": "AircraftType \u003d DFW C.",
@@ -10,11 +10,11 @@
     "duty": "BOMB",
     "altitude": 3509
   },
-  "missionDescription": "Mission:\nAircraft  DFW C.V\nSquadron  FA 293b\nAirbase  Bellevue Ferme\nDate  1916-02-08\n\nWeather Report\nMedium cloud cover, high altitude.\nCloud layer is 4921 meters.\nWind speed is 1 M/S.\nWind direction is 77.\n\nPrimary Objective\nAttack the transport and road facilities  near Forges-sur-Meuse\n\n\n",
+  "missionDescription": "Mission:\nAircraft  DFW C.V\nCompany  FA 293b\nAirbase  Bellevue Ferme\nDate  1916-02-08\n\nWeather Report\nMedium cloud cover, high altitude.\nCloud layer is 4921 meters.\nWind speed is 1 M/S.\nWind direction is 77.\n\nPrimary Objective\nAttack the transport and road facilities  near Forges-sur-Meuse\n\n\n",
   "missionPlanes": [
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 293b",
+      "companyName": "FA 293b",
       "crew": {
         "pilot": "Patrik Schorner",
         "observer": "Herbert Klemm",
@@ -24,7 +24,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 293b",
+      "companyName": "FA 293b",
       "crew": {
         "pilot": "Waldemar Ganz",
         "observer": "Bernd Lewysohn",
@@ -34,7 +34,7 @@
     },
     {
       "aircraftType": "fokkere3",
-      "squadronName": "Jasta 5",
+      "companyName": "Jasta 5",
       "crew": {
         "pilot": "Oskar Drache",
         "observer": "",
@@ -44,7 +44,7 @@
     },
     {
       "aircraftType": "fokkere3",
-      "squadronName": "Jasta 5",
+      "companyName": "Jasta 5",
       "crew": {
         "pilot": "Emil Schneiderman",
         "observer": "",
@@ -54,7 +54,7 @@
     },
     {
       "aircraftType": "rolc2a",
-      "squadronName": "Schlasta 12",
+      "companyName": "Schlasta 12",
       "crew": {
         "pilot": "Ralf Faulhaber",
         "observer": "Simon Hohmann",
@@ -64,7 +64,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 44",
+      "companyName": "FA 44",
       "crew": {
         "pilot": "Nils Frankenburg",
         "observer": "Bernd Sehlman",
@@ -74,7 +74,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 44",
+      "companyName": "FA 44",
       "crew": {
         "pilot": "Harald Stromberg",
         "observer": "Helmut Teichmuller",
@@ -84,7 +84,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 44",
+      "companyName": "FA 44",
       "crew": {
         "pilot": "Adolf Kissling",
         "observer": "Carsten Wohler",
@@ -94,7 +94,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 44",
+      "companyName": "FA 44",
       "crew": {
         "pilot": "Thomas Behr",
         "observer": "Emmerich Mummert",
@@ -104,7 +104,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 7",
+      "companyName": "Esc 7",
       "crew": {
         "pilot": "Rene Hoguet",
         "observer": "Vincent Brindejonc",
@@ -114,7 +114,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 7",
+      "companyName": "Esc 7",
       "crew": {
         "pilot": "Antonin Lacoste",
         "observer": "Celestin Pelatan",
@@ -124,7 +124,7 @@
     },
     {
       "aircraftType": "nieuport11",
-      "squadronName": "Esc 31",
+      "companyName": "Esc 31",
       "crew": {
         "pilot": "Hippolyte Perrin",
         "observer": "",
@@ -134,7 +134,7 @@
     },
     {
       "aircraftType": "nieuport11",
-      "squadronName": "Esc 31",
+      "companyName": "Esc 31",
       "crew": {
         "pilot": "Marcel Morizot",
         "observer": "",
@@ -144,7 +144,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 40",
+      "companyName": "Esc 40",
       "crew": {
         "pilot": "Marcel Benard",
         "observer": "Auguste Honore",

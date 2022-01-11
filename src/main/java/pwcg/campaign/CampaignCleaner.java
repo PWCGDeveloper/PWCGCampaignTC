@@ -35,32 +35,32 @@ public class CampaignCleaner
     public void cleanDataFiles() throws PWCGException
     {
         generateMissingDepos();
-        removeUnwantedSquadronFiles();
+        removeUnwantedCompanyFiles();
         removeDuplicateCrewMembers();
         checkDuplicateCrewMembers();
         checkCrewMemberKeys();
         cleanMedals();
     }
 
-    private void removeUnwantedSquadronFiles() throws PWCGException
+    private void removeUnwantedCompanyFiles() throws PWCGException
     {
-        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
-        List<Company> squadronsToStaff = squadronManager.getActiveCompanies(campaign.getDate());
-        for (Company squadron : squadronsToStaff)
+        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+        List<Company> companysToStaff = companyManager.getActiveCompanies(campaign.getDate());
+        for (Company company : companysToStaff)
         {
-            if (!CompanyViability.isCompanyActive(squadron, campaign.getDate()))
+            if (!CompanyViability.isCompanyActive(company, campaign.getDate()))
             {
-                if (campaign.getPersonnelManager().getCompanyPersonnel(squadron.getCompanyId()) == null)
+                if (campaign.getPersonnelManager().getCompanyPersonnel(company.getCompanyId()) == null)
                 {
                     String campaignPersonnelDir = PWCGDirectoryUserManager.getInstance().getPwcgCampaignsDir() + campaign.getCampaignData().getName() + "\\Personnel\\";
-                    File squadronPersonnelFile = new File(campaignPersonnelDir + squadron.getCompanyId() + ".json");
-                    if (squadronPersonnelFile.exists())
+                    File companyPersonnelFile = new File(campaignPersonnelDir + company.getCompanyId() + ".json");
+                    if (companyPersonnelFile.exists())
                     {
-                        squadronPersonnelFile.delete();
+                        companyPersonnelFile.delete();
                     }
                     
                     String campaignEquipmentDir = PWCGDirectoryUserManager.getInstance().getPwcgCampaignsDir() + campaign.getCampaignData().getName() + "\\Equipment\\";
-                    File campaignEquipmentFile = new File(campaignEquipmentDir + squadron.getCompanyId() + ".json");
+                    File campaignEquipmentFile = new File(campaignEquipmentDir + company.getCompanyId() + ".json");
                     if (campaignEquipmentFile.exists())
                     {
                         campaignEquipmentFile.delete();
@@ -116,8 +116,8 @@ public class CampaignCleaner
                     {
                         crewMemberSerialNumbers.put(crewMember.getSerialNumber(), new ArrayList<Integer>());
                     }
-                    List<Integer> squadronsForSerialNumber = crewMemberSerialNumbers.get(crewMember.getSerialNumber());
-                    squadronsForSerialNumber.add(personnel.getCompany().getCompanyId());
+                    List<Integer> companysForSerialNumber = crewMemberSerialNumbers.get(crewMember.getSerialNumber());
+                    companysForSerialNumber.add(personnel.getCompany().getCompanyId());
                 }
             }
         }
@@ -125,22 +125,22 @@ public class CampaignCleaner
         boolean changesMade = false;
         for (Integer serialNumber : crewMemberSerialNumbers.keySet())
         {
-            List<Integer> squadronsForSerialNumber = crewMemberSerialNumbers.get(serialNumber);
-            if (squadronsForSerialNumber.size() > 1)
+            List<Integer> companysForSerialNumber = crewMemberSerialNumbers.get(serialNumber);
+            if (companysForSerialNumber.size() > 1)
             {
                 boolean firstTime = true;
-                for (Integer squadronId : squadronsForSerialNumber)
+                for (Integer companyId : companysForSerialNumber)
                 {
-                    CompanyPersonnel campaignPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(squadronId);
+                    CompanyPersonnel campaignPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(companyId);
                     CrewMember  crewMember = campaignPersonnel.getCrewMember(serialNumber);
-                    PWCGLogger.log(LogLevel.DEBUG, "Replace " + crewMember.getName() + " squadron member : " + serialNumber + " flying for " + squadronId);
+                    PWCGLogger.log(LogLevel.DEBUG, "Replace " + crewMember.getName() + " company member : " + serialNumber + " flying for " + companyId);
                     
                     if (!firstTime)
                     {
                         crewMember.setSerialNumber(campaign.getCampaignData().getSerialNumber().getNextCrewMemberSerialNumber());
                         
-                        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(crewMember.getCompanyId());
-                        String squaddieName = CrewMemberNames.getInstance().getName(squadron.determineServiceForCompany(campaign.getDate()), new HashMap<>());
+                        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(crewMember.getCompanyId());
+                        String squaddieName = CrewMemberNames.getInstance().getName(company.determineServiceForCompany(campaign.getDate()), new HashMap<>());
                         crewMember.setName(squaddieName);
                     }
                     
@@ -172,20 +172,20 @@ public class CampaignCleaner
                     {
                         crewMemberSerialNumbers.put(crewMember.getSerialNumber(), new ArrayList<Integer>());
                     }
-                    List<Integer> squadronsForSerialNumber = crewMemberSerialNumbers.get(crewMember.getSerialNumber());
-                    squadronsForSerialNumber.add(personnel.getCompany().getCompanyId());
+                    List<Integer> companysForSerialNumber = crewMemberSerialNumbers.get(crewMember.getSerialNumber());
+                    companysForSerialNumber.add(personnel.getCompany().getCompanyId());
                 }
             }
         }
         
         for (Integer serialNumber : crewMemberSerialNumbers.keySet())
         {
-            List<Integer> squadronsForSerialNumber = crewMemberSerialNumbers.get(serialNumber);
-            if (squadronsForSerialNumber.size() > 1)
+            List<Integer> companysForSerialNumber = crewMemberSerialNumbers.get(serialNumber);
+            if (companysForSerialNumber.size() > 1)
             {
-                for (Integer squadronId : squadronsForSerialNumber)
+                for (Integer companyId : companysForSerialNumber)
                 {
-                    PWCGLogger.log(LogLevel.DEBUG, "Duplicate squadron member : " + serialNumber + " flying for " + squadronId);
+                    PWCGLogger.log(LogLevel.DEBUG, "Duplicate company member : " + serialNumber + " flying for " + companyId);
                 }
             }
         }

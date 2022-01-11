@@ -61,7 +61,7 @@ public class BriefingDescriptionScreen extends ImageResizingPanel implements Act
             this.setImageFromName(imagePath);
 
             briefingFlightChooser = new BriefingCompanyChooser(mission, this);
-            briefingFlightChooser.createBriefingSquadronSelectPanel();
+            briefingFlightChooser.createBriefingCompanySelectPanel();
 
 			this.removeAll();
 			this.add(BorderLayout.WEST, makeLeftPanel());
@@ -161,9 +161,9 @@ public class BriefingDescriptionScreen extends ImageResizingPanel implements Act
     }
 
     @Override
-    public void unitChanged(Company squadron) throws PWCGException
+    public void unitChanged(Company company) throws PWCGException
     {
-        briefingData.changeSelectedUnit(squadron.getCompanyId());
+        briefingData.changeSelectedUnit(company.getCompanyId());
         briefingChalkboard.setMissionText();
     }
 

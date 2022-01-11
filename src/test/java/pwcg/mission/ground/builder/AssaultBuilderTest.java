@@ -41,7 +41,7 @@ public class AssaultBuilderTest
 {
     @Mock private Campaign campaign;
     @Mock private Mission mission;
-    @Mock private Company squadron;
+    @Mock private Company company;
     @Mock private ConfigManagerCampaign configManager;
     @Mock private MissionFlights missionFlightBuilder;
     @Mock private IFlight playerFlight;
@@ -64,8 +64,8 @@ public class AssaultBuilderTest
         Mockito.when(mission.getCampaign()).thenReturn(campaign);
         Mockito.when(mission.getFlights()).thenReturn(missionFlightBuilder);
         Mockito.when(missionFlightBuilder.getUnits()).thenReturn(playerFlights);
-        Mockito.when(squadron.getCountry()).thenReturn(country);
-        Mockito.when(playerFlight.getCompany()).thenReturn(squadron);
+        Mockito.when(company.getCountry()).thenReturn(country);
+        Mockito.when(playerFlight.getCompany()).thenReturn(company);
         Mockito.when(country.getSide()).thenReturn(Side.AXIS);
         Mockito.when(playerFlight.getFlightPlanes()).thenReturn(flightPlanes);
         Mockito.when(flightPlanes.getPlanes()).thenReturn(playerFlightPlanes);

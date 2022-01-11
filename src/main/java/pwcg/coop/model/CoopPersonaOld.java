@@ -7,7 +7,7 @@ public class CoopPersonaOld
     private String crewMemberName;
     private String crewMemberRank;
     private int serialNumber;
-    private int squadronId;
+    private int companyId;
     private boolean approved;
     private String note;
 
@@ -61,14 +61,14 @@ public class CoopPersonaOld
         this.serialNumber = serialNumber;
     }
 
-    public int getSquadronId()
+    public int getCompanyId()
     {
-        return squadronId;
+        return companyId;
     }
 
-    public void setSquadronId(int squadronId)
+    public void setCompanyId(int companyId)
     {
-        this.squadronId = squadronId;
+        this.companyId = companyId;
     }
 
     public boolean isApproved()

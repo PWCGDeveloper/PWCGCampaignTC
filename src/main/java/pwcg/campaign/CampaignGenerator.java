@@ -49,11 +49,11 @@ public class CampaignGenerator
 
     private void staffCompanies() throws PWCGException
     {
-        List<Company> activeSquadronsOnCampaignStartDate = PWCGContext.getInstance().getCompanyManager().getActiveCompanies(generatorModel.getCampaignDate());
-        for (Company company : activeSquadronsOnCampaignStartDate)
+        List<Company> activeCompanysOnCampaignStartDate = PWCGContext.getInstance().getCompanyManager().getActiveCompanies(generatorModel.getCampaignDate());
+        for (Company company : activeCompanysOnCampaignStartDate)
         {
             CampaignCompanyGenerator companyGenerator = new CampaignCompanyGenerator(campaign, company);
-            companyGenerator.createSquadron(generatorModel);
+            companyGenerator.createCompany(generatorModel);
         }
         
         useCampaignPlayerToSetReferencePlayer();
@@ -87,7 +87,7 @@ public class CampaignGenerator
 
     private void setMapForNewCampaign() throws PWCGException
     {
-        Company company = PWCGContext.getInstance().getCompanyManager().getCompanyByName(generatorModel.getSquadronName(), generatorModel.getCampaignDate());
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompanyByName(generatorModel.getCompanyName(), generatorModel.getCampaignDate());
         Airfield airfield = company.determineCurrentAirfieldAnyMap(generatorModel.getCampaignDate());
         List<FrontMapIdentifier> airfieldMaps = MapForAirfieldFinder.getMapForAirfield(airfield.getName());
         FrontMapIdentifier initialAirfieldMap = airfieldMaps.get(0);

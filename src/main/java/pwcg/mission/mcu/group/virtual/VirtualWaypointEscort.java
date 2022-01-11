@@ -22,7 +22,7 @@ public class VirtualWaypointEscort
     private VirtualWaypointPlanes vwpPlanes;
     private VirtualWayPointCoordinate vwpCoordinate;
     private VirtualWaypointTriggered vwpActivate;
-    private Company escortSquadron;
+    private Company escortCompany;
 
     private McuTimer activateEscortTimer = new McuTimer();
     private McuActivate activateEscort = new McuActivate();
@@ -31,10 +31,10 @@ public class VirtualWaypointEscort
     private List<PlaneMcu> escortPlanes = new ArrayList<>();
     private int index = IndexGenerator.getInstance().getNextIndex();
 
-    public VirtualWaypointEscort(VirtualWayPointCoordinate vwpCoordinate, Company escortSquadron, VirtualWaypointPlanes vwpPlanes, VirtualWaypointTriggered vwpActivate)
+    public VirtualWaypointEscort(VirtualWayPointCoordinate vwpCoordinate, Company escortCompany, VirtualWaypointPlanes vwpPlanes, VirtualWaypointTriggered vwpActivate)
     {
         this.vwpCoordinate = vwpCoordinate;
-        this.escortSquadron = escortSquadron;
+        this.escortCompany = escortCompany;
         this.vwpPlanes = vwpPlanes;
         this.vwpActivate = vwpActivate;
     }
@@ -147,9 +147,9 @@ public class VirtualWaypointEscort
         vwpActivate.linkToEscort(activateEscortTimer.getIndex());
     }
 
-    public Company getEscortSquadron()
+    public Company getEscortCompany()
     {
-        return escortSquadron;
+        return escortCompany;
     }
 
     public List<PlaneMcu> getEscortPlanes()

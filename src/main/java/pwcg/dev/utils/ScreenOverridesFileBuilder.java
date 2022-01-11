@@ -55,7 +55,7 @@ public class ScreenOverridesFileBuilder
 //        addDefaultOverride(ScreenIdentifier.CampaignReferenceCrewMemberSelectorScreen);
 //        addDefaultOverride(ScreenIdentifier.CampaignIntelligenceReportScreen);
 //        addDefaultOverride(ScreenIdentifier.CampaignJournalScreen);
-//        addDefaultOverride(ScreenIdentifier.CampaignSquadronLogScreen);
+//        addDefaultOverride(ScreenIdentifier.CampaignCompanyLogScreen);
 //        addDefaultOverride(ScreenIdentifier.CampaignMedalScreen);
 //        addDefaultOverride(ScreenIdentifier.CampaignCrewMemberLogScreen);
 //        addDefaultOverride(ScreenIdentifier.CampaignSkinConfigurationScreen);
@@ -69,12 +69,12 @@ public class ScreenOverridesFileBuilder
 //        addDefaultOverride(ScreenIdentifier.CampaignCrewMemberChalkboard);
 //        addDefaultOverride(ScreenIdentifier.CampaignEquipmentChalkboard);
 //        addDefaultOverride(ScreenIdentifier.PlaqueBronzeBackground);
-//        addDefaultOverride(ScreenIdentifier.CampaignHomeSquadronPlaque);
+//        addDefaultOverride(ScreenIdentifier.CampaignHomeCompanyPlaque);
 //        addDefaultOverride(ScreenIdentifier.Document);
 //        addDefaultOverride(ScreenIdentifier.OpenMedalBox);
 //        addDefaultOverride(ScreenIdentifier.OpenCrewMemberLog);
 //        addDefaultOverride(ScreenIdentifier.OpenJournal);
-//        addDefaultOverride(ScreenIdentifier.OpenSquadronLog);
+//        addDefaultOverride(ScreenIdentifier.OpenCompanyLog);
 
         screenIdentifierOverrideManager.writeScreenIdentifierOverrides();
     }

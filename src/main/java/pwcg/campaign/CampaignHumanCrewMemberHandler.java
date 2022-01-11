@@ -16,36 +16,36 @@ public class CampaignHumanCrewMemberHandler
         this.campaign = campaign;
     }
 
-    public int addNewCrewMember(String humanCrewMemberName, String humanCrewMemberRank, int crewMemberToReplaceSerialNumber, int squadronId) throws PWCGException
+    public int addNewCrewMember(String humanCrewMemberName, String humanCrewMemberRank, int crewMemberToReplaceSerialNumber, int companyId) throws PWCGException
     {
-        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(squadronId);
-        CompanyPersonnel squadronSquadronPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(squadronId);
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(companyId);
+        CompanyPersonnel companyCompanyPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(companyId);
 
-        CrewMember newPlayer = addHumanCrewMember(humanCrewMemberName, humanCrewMemberRank, squadron, squadronSquadronPersonnel);
-        removeAiCrewMember(crewMemberToReplaceSerialNumber, squadronSquadronPersonnel);
+        CrewMember newPlayer = addHumanCrewMember(humanCrewMemberName, humanCrewMemberRank, company, companyCompanyPersonnel);
+        removeAiCrewMember(crewMemberToReplaceSerialNumber, companyCompanyPersonnel);
         
         return newPlayer.getSerialNumber();
     }
 
-    private CrewMember addHumanCrewMember(String humanCrewMemberName, String humanCrewMemberRank, Company squadron, CompanyPersonnel playerSquadronPersonnel) throws PWCGException
+    private CrewMember addHumanCrewMember(String humanCrewMemberName, String humanCrewMemberRank, Company company, CompanyPersonnel playerCompanyPersonnel) throws PWCGException
     {
         CampaignGeneratorModel generatorModel = new CampaignGeneratorModel();
         generatorModel.setPlayerRank(humanCrewMemberRank);
         generatorModel.setPlayerName(humanCrewMemberName);
-        generatorModel.setService(squadron.determineServiceForCompany(campaign.getDate()));
+        generatorModel.setService(company.determineServiceForCompany(campaign.getDate()));
 
-        CrewMemberFactory squadronMemberFactory = new CrewMemberFactory(campaign, squadron, playerSquadronPersonnel);
-        CrewMember newPlayer = squadronMemberFactory.createPlayer(generatorModel);
-        playerSquadronPersonnel.addCrewMember(newPlayer);
+        CrewMemberFactory companyMemberFactory = new CrewMemberFactory(campaign, company, playerCompanyPersonnel);
+        CrewMember newPlayer = companyMemberFactory.createPlayer(generatorModel);
+        playerCompanyPersonnel.addCrewMember(newPlayer);
         return newPlayer;
     }
 
-    private void removeAiCrewMember(int crewMemberToReplaceSerialNumber, CompanyPersonnel playerSquadronPersonnel) throws PWCGException
+    private void removeAiCrewMember(int crewMemberToReplaceSerialNumber, CompanyPersonnel playerCompanyPersonnel) throws PWCGException
     {
-        CrewMember aiToRemove = playerSquadronPersonnel.getCrewMember(crewMemberToReplaceSerialNumber);
+        CrewMember aiToRemove = playerCompanyPersonnel.getCrewMember(crewMemberToReplaceSerialNumber);
         if (aiToRemove != null)
         {
-            playerSquadronPersonnel.removeCrewMember(aiToRemove);
+            playerCompanyPersonnel.removeCrewMember(aiToRemove);
         }
     }
 }

@@ -59,11 +59,11 @@ public class ElapsedTimeEventGeneratorTest
         List<CrewMember> players = new ArrayList<>();
         players.add(player);
         Mockito.when(playerMembers.getCrewMemberList()).thenReturn(players);   
-        Mockito.when(player.determineSquadron()).thenReturn(company);   
+        Mockito.when(player.determineCompany()).thenReturn(company);   
     }
 
     @Test
-    public void noSquadronMoveOrEndOfWar () throws PWCGException
+    public void noCompanyMoveOrEndOfWar () throws PWCGException
     {             
         newDate = DateUtils.getDateYYYYMMDD("19420902");
         Mockito.when(aarContext.getNewDate()).thenReturn(newDate);
@@ -74,12 +74,12 @@ public class ElapsedTimeEventGeneratorTest
         ElapsedTimeEventGenerator elapsedTimeEventGenerator = new ElapsedTimeEventGenerator(campaign, aarContext);
         ElapsedTimeEvents elapsedTimeEvents = elapsedTimeEventGenerator.createElapsedTimeEvents();
         Assertions.assertTrue (elapsedTimeEvents.getEndOfWarEvent() == null);
-        Assertions.assertTrue (elapsedTimeEvents.getSquadronMoveEvents().size() == 0);
+        Assertions.assertTrue (elapsedTimeEvents.getCompanyMoveEvents().size() == 0);
         
     }
 
     @Test
-    public void squadronMove () throws PWCGException
+    public void companyMove () throws PWCGException
     {             
         campaignDate = DateUtils.getDateYYYYMMDD("19420901");
         newDate = DateUtils.getDateYYYYMMDD("19420909");
@@ -92,7 +92,7 @@ public class ElapsedTimeEventGeneratorTest
         ElapsedTimeEventGenerator elapsedTimeEventGenerator = new ElapsedTimeEventGenerator(campaign, aarContext);
         ElapsedTimeEvents elapsedTimeEvents = elapsedTimeEventGenerator.createElapsedTimeEvents();
         Assertions.assertTrue (elapsedTimeEvents.getEndOfWarEvent() == null);
-        Assertions.assertTrue (elapsedTimeEvents.getSquadronMoveEvents().size() > 0);
+        Assertions.assertTrue (elapsedTimeEvents.getCompanyMoveEvents().size() > 0);
         
     }
 
@@ -107,7 +107,7 @@ public class ElapsedTimeEventGeneratorTest
         ElapsedTimeEventGenerator elapsedTimeEventGenerator = new ElapsedTimeEventGenerator(campaign, aarContext);
         ElapsedTimeEvents elapsedTimeEvents = elapsedTimeEventGenerator.createElapsedTimeEvents();
         Assertions.assertTrue (elapsedTimeEvents.getEndOfWarEvent() != null);
-        Assertions.assertTrue (elapsedTimeEvents.getSquadronMoveEvents().size() == 0);
+        Assertions.assertTrue (elapsedTimeEvents.getCompanyMoveEvents().size() == 0);
         
     }
 

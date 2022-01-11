@@ -19,52 +19,52 @@ public class CrewMemberReplacer  implements ICrewMemberReplacer
         this.campaign = campaign;
     }
 	
-    public CrewMember createPersona(String playerCrewMemberName, String rank, String squadronName, String coopUser) throws PWCGUserException, Exception
+    public CrewMember createPersona(String playerCrewMemberName, String rank, String companyName, String coopUser) throws PWCGUserException, Exception
     {        
-        Company newPlayerSquadron = getNewPlayerSquadron(squadronName);
-    	CompanyPersonnel newPlayerSquadronPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(newPlayerSquadron.getCompanyId());
+        Company newPlayerCompany = getNewPlayerCompany(companyName);
+    	CompanyPersonnel newPlayerCompanyPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(newPlayerCompany.getCompanyId());
 
-        CrewMember newSquadronMewmber = addnewCrewMemberToCampaign(playerCrewMemberName, rank, newPlayerSquadron, newPlayerSquadronPersonnel);        
-        removeAiCrewMember(rank, newPlayerSquadron, newPlayerSquadronPersonnel);
+        CrewMember newCompanyMewmber = addnewCrewMemberToCampaign(playerCrewMemberName, rank, newPlayerCompany, newPlayerCompanyPersonnel);        
+        removeAiCrewMember(rank, newPlayerCompany, newPlayerCompanyPersonnel);
         
         if (campaign.isCoop())
         {
-            CoopUserManager.getIntance().createCoopPersona(campaign.getName(), newSquadronMewmber, coopUser);
+            CoopUserManager.getIntance().createCoopPersona(campaign.getName(), newCompanyMewmber, coopUser);
         }
         
-        return newSquadronMewmber;
+        return newCompanyMewmber;
     }
 
-	private Company getNewPlayerSquadron(String squadronName) throws PWCGException 
+	private Company getNewPlayerCompany(String companyName) throws PWCGException 
 	{
-		CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
-        Company newPlayerSquadron = squadronManager.getCompanyByName(squadronName, campaign.getDate());
-		return newPlayerSquadron;
+		CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+        Company newPlayerCompany = companyManager.getCompanyByName(companyName, campaign.getDate());
+		return newPlayerCompany;
 	}
 
-	private CrewMember addnewCrewMemberToCampaign(String playerCrewMemberName, String rank, Company newPlayerSquadron,
-			CompanyPersonnel newPlayerSquadronPersonnel) throws PWCGException 
+	private CrewMember addnewCrewMemberToCampaign(String playerCrewMemberName, String rank, Company newPlayerCompany,
+			CompanyPersonnel newPlayerCompanyPersonnel) throws PWCGException 
 	{
 		CampaignGeneratorModel generatorModel = new CampaignGeneratorModel();
         generatorModel.setPlayerRank(rank);
         generatorModel.setPlayerName(playerCrewMemberName);
-        generatorModel.setService(newPlayerSquadron.determineServiceForCompany(campaign.getDate()));
+        generatorModel.setService(newPlayerCompany.determineServiceForCompany(campaign.getDate()));
         generatorModel.setCampaignName(campaign.getCampaignData().getName());
         generatorModel.setCampaignDate(campaign.getDate());
-        generatorModel.setSquadronName(newPlayerSquadron.determineDisplayName(campaign.getDate()));
+        generatorModel.setCompanyName(newPlayerCompany.determineDisplayName(campaign.getDate()));
         generatorModel.validateCampaignInputs();
         
-        CrewMemberFactory squadronMemberFactory = new CrewMemberFactory(campaign, newPlayerSquadron, newPlayerSquadronPersonnel);
-        CrewMember newPlayer = squadronMemberFactory.createPlayer(generatorModel);
+        CrewMemberFactory companyMemberFactory = new CrewMemberFactory(campaign, newPlayerCompany, newPlayerCompanyPersonnel);
+        CrewMember newPlayer = companyMemberFactory.createPlayer(generatorModel);
 
-        newPlayerSquadronPersonnel.addCrewMember(newPlayer);
+        newPlayerCompanyPersonnel.addCrewMember(newPlayer);
 		return newPlayer;
 	}
 
-	private void removeAiCrewMember(String rank, Company newPlayerSquadron, CompanyPersonnel newPlayerSquadronPersonnel) throws PWCGException 
+	private void removeAiCrewMember(String rank, Company newPlayerCompany, CompanyPersonnel newPlayerCompanyPersonnel) throws PWCGException 
 	{
 		AiCrewMemberRemovalChooser crewMemberRemovalChooser = new AiCrewMemberRemovalChooser(campaign);
-        CrewMember squadronMemberToReplace = crewMemberRemovalChooser.findAiCrewMemberToRemove(rank, newPlayerSquadron.getCompanyId());
-        newPlayerSquadronPersonnel.removeCrewMember(squadronMemberToReplace);
+        CrewMember companyMemberToReplace = crewMemberRemovalChooser.findAiCrewMemberToRemove(rank, newPlayerCompany.getCompanyId());
+        newPlayerCompanyPersonnel.removeCrewMember(companyMemberToReplace);
 	}
 }

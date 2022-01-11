@@ -121,7 +121,7 @@ public class LogTank extends LogAIEntity
         return false;
     }
 
-    public boolean isLogPlaneFromPlayerSquadron(Campaign campaign) throws PWCGException
+    public boolean isLogPlaneFromPlayerCompany(Campaign campaign) throws PWCGException
     {
         CrewMember crewMember = campaign.getPersonnelManager().getAnyCampaignMember(crewMemberSerialNumber);
         if (crewMember != null)

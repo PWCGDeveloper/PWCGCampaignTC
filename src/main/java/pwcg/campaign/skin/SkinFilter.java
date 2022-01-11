@@ -15,13 +15,13 @@ import pwcg.mission.options.MapSeasonalParameters.Season;
 public class SkinFilter
 {
 
-    static public List<Skin> skinFilterSquadron (List<Skin> skins, int squadronId)
+    static public List<Skin> skinFilterCompany (List<Skin> skins, int companyId)
     {
         List<Skin> filteredSkins = new ArrayList<Skin>();
         
         for (Skin skin : skins)
         {
-            if (skin.getSquadId() == squadronId)
+            if (skin.getSquadId() == companyId)
             {
                 filteredSkins.add(skin);
             }

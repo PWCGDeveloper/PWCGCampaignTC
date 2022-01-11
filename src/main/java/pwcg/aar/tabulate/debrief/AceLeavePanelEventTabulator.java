@@ -39,9 +39,9 @@ public class AceLeavePanelEventTabulator
     private AceLeaveEvent makeLeaveEvent(TransferRecord aceTransferRecord) throws PWCGException
     {
         int aceSerialNumber = aceTransferRecord.getCrewMember().getSerialNumber();
-        int aceSquadronId = aceTransferRecord.getCrewMember().getCompanyId();
+        int aceCompanyId = aceTransferRecord.getCrewMember().getCompanyId();
         boolean isNewsworthy = false;
-        AceLeaveEvent aceLeaveEvent = new AceLeaveEvent(campaign, CrewMemberStatus.ON_LEAVE_STATUS, aceSquadronId, aceSerialNumber, campaign.getDate(), isNewsworthy);
+        AceLeaveEvent aceLeaveEvent = new AceLeaveEvent(campaign, CrewMemberStatus.ON_LEAVE_STATUS, aceCompanyId, aceSerialNumber, campaign.getDate(), isNewsworthy);
 
         return aceLeaveEvent;
     }

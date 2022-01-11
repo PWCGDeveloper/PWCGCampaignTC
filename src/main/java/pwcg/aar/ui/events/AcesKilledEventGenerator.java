@@ -32,7 +32,7 @@ public class AcesKilledEventGenerator
                 continue;
             }
             
-            Company aceSquad =  ace.determineSquadron();
+            Company aceSquad =  ace.determineCompany();
             if (aceSquad != null)
             {
                 AceKilledEvent aceKilledEvent = makeAceKilledEvent(ace, aceSquad);
@@ -46,7 +46,7 @@ public class AcesKilledEventGenerator
         return aceKilledEvents;
     }
     
-    private AceKilledEvent makeAceKilledEvent(CrewMember ace, Company aceSquadron) throws PWCGException
+    private AceKilledEvent makeAceKilledEvent(CrewMember ace, Company aceCompany) throws PWCGException
     {
         AceKilledEvent aceKilledEvent = null;
         
@@ -55,9 +55,9 @@ public class AcesKilledEventGenerator
             String status = CrewMemberStatus.crewMemberStatusToStatusDescription(ace.getCrewMemberActiveStatus());
     
             int aceSerialNumber = ace.getSerialNumber();
-            int aceSquadronId = aceSquadron.getCompanyId();
+            int aceCompanyId = aceCompany.getCompanyId();
             boolean isNewsworthy = true;
-            aceKilledEvent = new AceKilledEvent(campaign, status, aceSquadronId, aceSerialNumber, campaign.getDate(), isNewsworthy);
+            aceKilledEvent = new AceKilledEvent(campaign, status, aceCompanyId, aceSerialNumber, campaign.getDate(), isNewsworthy);
         }
         
         return aceKilledEvent;

@@ -92,13 +92,13 @@ public class MissionDescriptionSinglePlayer implements IMissionDescription
     {
         Campaign campaign =     PWCGContext.getInstance().getCampaign();
         
-        String squadron = unit.getCompany().determineDisplayName(campaign.getDate());
+        String company = unit.getCompany().determineDisplayName(campaign.getDate());
         String vehicle = unit.getLeadVehicle().getDesc();
         ICountry vehicleCountry = unit.getUnitInformation().getCountry();
         
         if (country.isSameSide(vehicleCountry))
         {
-            String friendlyInt = "    " + squadron + " flying " + vehicle;
+            String friendlyInt = "    " + company + " flying " + vehicle;
             friendlyIntList.add(friendlyInt + "\n");
             
             String friendlyInthtml = "<br>    " + friendlyInt;
@@ -106,7 +106,7 @@ public class MissionDescriptionSinglePlayer implements IMissionDescription
         }
         else
         {
-            String enemyInt = "    " + squadron + " flying " + vehicle;
+            String enemyInt = "    " + company + " flying " + vehicle;
             enemyIntList.add(enemyInt + "\n");
             
             String enemyInthtml = "<br>    " + enemyInt;

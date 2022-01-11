@@ -146,12 +146,12 @@ public class CampaignHomeCrewMemberPanel extends ImageResizingPanel
         Color fgColor = ColorMap.PLAQUE_GOLD;
         Font font = PWCGMonitorFonts.getPrimaryFontLarge();
 
-        JLabel squadronPanelLabel = PWCGLabelFactory.makeTransparentLabel(
+        JLabel companyPanelLabel = PWCGLabelFactory.makeTransparentLabel(
                 "     " + description,  fgColor, font, SwingConstants.LEFT);
-        squadronPanelLabel.setHorizontalAlignment(JLabel.LEFT);
-        squadronPanelLabel.setVerticalAlignment(JLabel.CENTER);
+        companyPanelLabel.setHorizontalAlignment(JLabel.LEFT);
+        companyPanelLabel.setVerticalAlignment(JLabel.CENTER);
         
-        headerPlaquePanel.add(squadronPanelLabel, BorderLayout.CENTER);
+        headerPlaquePanel.add(companyPanelLabel, BorderLayout.CENTER);
          
         return headerPlaquePanel;
     }

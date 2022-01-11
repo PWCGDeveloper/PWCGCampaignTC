@@ -22,7 +22,7 @@ public class GuiMissionInitiator
 		this.participatingPlayers = participatingPlayers;
 	}
 
-	public Mission makeMission(Map<Integer, PwcgRole> squadronRoleOverride) throws PWCGException 
+	public Mission makeMission(Map<Integer, PwcgRole> companyRoleOverride) throws PWCGException 
     {
         Mission mission = null;
 
@@ -35,7 +35,7 @@ public class GuiMissionInitiator
             if (campaign.getCurrentMission() == null)
             {
                 MissionGenerator missionGenerator = new MissionGenerator(campaign);
-                mission = missionGenerator.makeMission(participatingPlayers, squadronRoleOverride);                    
+                mission = missionGenerator.makeMission(participatingPlayers, companyRoleOverride);                    
             }
             else
             {

@@ -20,10 +20,10 @@ public enum CompanyTestProfile
    private boolean competitive = false;
    private FrontMapIdentifier mapidentifier = FrontMapIdentifier.NO_MAP;
     
-   private CompanyTestProfile(String key, int squadronId, String dateString, CampaignMode campaignMode, FrontMapIdentifier mapidentifier, boolean iscompetitive)
+   private CompanyTestProfile(String key, int companyId, String dateString, CampaignMode campaignMode, FrontMapIdentifier mapidentifier, boolean iscompetitive)
    {
        this.key = key;
-       this.companyId = squadronId;
+       this.companyId = companyId;
        this.dateString = dateString;
        this.campaignMode = campaignMode;
        this.competitive = iscompetitive;

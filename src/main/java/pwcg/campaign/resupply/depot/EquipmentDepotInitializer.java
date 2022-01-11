@@ -26,24 +26,24 @@ public class EquipmentDepotInitializer
 
     public Equipment createReplacementPoolForService() throws PWCGException
     {
-        List<Company> activeSquadronsForService = PWCGContext.getInstance().getCompanyManager().getActiveCompaniesForService(campaign.getDate(), service);
-        for (Company squadron : activeSquadronsForService)
+        List<Company> activeCompanysForService = PWCGContext.getInstance().getCompanyManager().getActiveCompaniesForService(campaign.getDate(), service);
+        for (Company company : activeCompanysForService)
         {
-            EquipmentWeightCalculator equipmentWeightCalculator = createPlaneCalculator(squadron);            
-            makeReplacementPlanesForSquadron(equipmentWeightCalculator);
+            EquipmentWeightCalculator equipmentWeightCalculator = createPlaneCalculator(company);            
+            makeReplacementPlanesForCompany(equipmentWeightCalculator);
         }
         return equipment;
     }
 
-    private EquipmentWeightCalculator createPlaneCalculator(Company squadron) throws PWCGException
+    private EquipmentWeightCalculator createPlaneCalculator(Company company) throws PWCGException
     {
-        List<TankType> planeTypesForSquadron = squadron.determineCurrentAircraftList(campaign.getDate());
+        List<TankType> planeTypesForCompany = company.determineCurrentAircraftList(campaign.getDate());
         EquipmentWeightCalculator equipmentWeightCalculator = new EquipmentWeightCalculator(campaign.getDate());
-        equipmentWeightCalculator.determinePlaneWeightsForPlanes(planeTypesForSquadron);
+        equipmentWeightCalculator.determinePlaneWeightsForPlanes(planeTypesForCompany);
         return equipmentWeightCalculator;
     }
 
-    private void makeReplacementPlanesForSquadron(EquipmentWeightCalculator equipmentWeightCalculator) throws PWCGException
+    private void makeReplacementPlanesForCompany(EquipmentWeightCalculator equipmentWeightCalculator) throws PWCGException
     {
         int numPlanes = service.getDailyEquipmentReplacementRate(campaign.getDate()) / EquipmentDepot.NUM_POINTS_PER_PLANE;
         if (numPlanes < 1)

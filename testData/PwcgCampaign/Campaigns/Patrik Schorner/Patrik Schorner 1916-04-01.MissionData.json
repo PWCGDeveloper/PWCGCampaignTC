@@ -1,7 +1,7 @@
 {
   "missionHeader": {
     "missionFileName": "Patrik Schorner 1916-04-01",
-    "squadron": "FA 15",
+    "company": "FA 15",
     "date": "19160401",
     "time": "160:00",
     "aircraftType": "AircraftType \u003d Roland C.II",
@@ -10,11 +10,11 @@
     "duty": "BOMB",
     "altitude": 1200
   },
-  "missionDescription": "Mission:\nAircraft  Roland C.IIa\nSquadron  FA 15\nAirbase  Pukov\nDate  1916-04-01\n\nWeather Report\nMedium cloud cover, high altitude.\nCloud layer is 6737 meters.\nWind speed is 0 M/S.\nWind direction is 225.\n\nPrimary Objective\nAttack the trains and rail facilities  near Factory\n\n\n",
+  "missionDescription": "Mission:\nAircraft  Roland C.IIa\nCompany  FA 15\nAirbase  Pukov\nDate  1916-04-01\n\nWeather Report\nMedium cloud cover, high altitude.\nCloud layer is 6737 meters.\nWind speed is 0 M/S.\nWind direction is 225.\n\nPrimary Objective\nAttack the trains and rail facilities  near Factory\n\n\n",
   "missionPlanes": [
     {
       "aircraftType": "rolc2a",
-      "squadronName": "FA 15",
+      "companyName": "FA 15",
       "crew": {
         "pilot": "Friedrich Beethoven",
         "observer": "Rudiger Hoelscher",
@@ -24,7 +24,7 @@
     },
     {
       "aircraftType": "rolc2a",
-      "squadronName": "FA 15",
+      "companyName": "FA 15",
       "crew": {
         "pilot": "Patrik Schorner",
         "observer": "Veit Traub",
@@ -34,7 +34,7 @@
     },
     {
       "aircraftType": "rolc2a",
-      "squadronName": "FA 15",
+      "companyName": "FA 15",
       "crew": {
         "pilot": "Ulrich Holler",
         "observer": "Florian Lohmuller",
@@ -44,7 +44,7 @@
     },
     {
       "aircraftType": "rolc2a",
-      "squadronName": "FA 15",
+      "companyName": "FA 15",
       "crew": {
         "pilot": "Christian Welser",
         "observer": "Erhard Kesselring",
@@ -54,7 +54,7 @@
     },
     {
       "aircraftType": "fokkere3",
-      "squadronName": "FliK 7",
+      "companyName": "FliK 7",
       "crew": {
         "pilot": "Benjamin Bauer",
         "observer": "",
@@ -64,7 +64,7 @@
     },
     {
       "aircraftType": "fokkere3",
-      "squadronName": "FliK 7",
+      "companyName": "FliK 7",
       "crew": {
         "pilot": "Steffen Sternberger",
         "observer": "",
@@ -74,7 +74,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FliK 25",
+      "companyName": "FliK 25",
       "crew": {
         "pilot": "Arnulf Aumann",
         "observer": "Antal Belko",
@@ -84,7 +84,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FliK 25",
+      "companyName": "FliK 25",
       "crew": {
         "pilot": "Domos Damiani",
         "observer": "Dagobert Gellner",
@@ -94,7 +94,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FliK 25",
+      "companyName": "FliK 25",
       "crew": {
         "pilot": "Helmut Steinhaeusser",
         "observer": "Ferdinand Neszler",
@@ -104,7 +104,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FliK 25",
+      "companyName": "FliK 25",
       "crew": {
         "pilot": "Fritz Nothnagel",
         "observer": "Franz Ehrenpreiss",
@@ -114,7 +114,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FliK 18",
+      "companyName": "FliK 18",
       "crew": {
         "pilot": "Balint Bitto",
         "observer": "Helmut Ulm",
@@ -124,7 +124,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FliK 18",
+      "companyName": "FliK 18",
       "crew": {
         "pilot": "Knut Weinberg",
         "observer": "Heinrich Hirsch",
@@ -134,7 +134,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FliK 18",
+      "companyName": "FliK 18",
       "crew": {
         "pilot": "Janos Fejes",
         "observer": "Vencel Bernat",
@@ -144,7 +144,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FliK 18",
+      "companyName": "FliK 18",
       "crew": {
         "pilot": "Gunther Fleming",
         "observer": "Iliasz Boris",
@@ -154,7 +154,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "8th KAO",
+      "companyName": "8th KAO",
       "crew": {
         "pilot": "Yefrem Senotrusov",
         "observer": "Jasha Kislukhin",
@@ -164,7 +164,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "8th KAO",
+      "companyName": "8th KAO",
       "crew": {
         "pilot": "Sacha Inshov",
         "observer": "Boryenka Chebotaryov",

@@ -1,7 +1,7 @@
 {
   "missionHeader": {
     "missionFileName": "Patrik Schorner 1916-03-31",
-    "squadron": "FA 15",
+    "company": "FA 15",
     "date": "19160331",
     "time": "1530:00",
     "aircraftType": "AircraftType \u003d Roland C.II",
@@ -10,11 +10,11 @@
     "duty": "BOMB",
     "altitude": 700
   },
-  "missionDescription": "Mission:\nAircraft  Roland C.IIa\nSquadron  FA 15\nAirbase  Pukov\nDate  1916-03-31\n\nWeather Report\nLight cloud cover, high altitude.\nCloud layer is 5985 meters.\nWind speed is 2 M/S.\nWind direction is 304.\n\nPrimary Objective\nAttack assaulting enemy troops  near Factory\n\n\n",
+  "missionDescription": "Mission:\nAircraft  Roland C.IIa\nCompany  FA 15\nAirbase  Pukov\nDate  1916-03-31\n\nWeather Report\nLight cloud cover, high altitude.\nCloud layer is 5985 meters.\nWind speed is 2 M/S.\nWind direction is 304.\n\nPrimary Objective\nAttack assaulting enemy troops  near Factory\n\n\n",
   "missionPlanes": [
     {
       "aircraftType": "rolc2a",
-      "squadronName": "FA 15",
+      "companyName": "FA 15",
       "crew": {
         "pilot": "Patrik Schorner",
         "observer": "Veit Traub",
@@ -24,7 +24,7 @@
     },
     {
       "aircraftType": "rolc2a",
-      "squadronName": "FA 15",
+      "companyName": "FA 15",
       "crew": {
         "pilot": "Ulrich Holler",
         "observer": "Florian Lohmuller",
@@ -34,7 +34,7 @@
     },
     {
       "aircraftType": "rolc2a",
-      "squadronName": "FA 15",
+      "companyName": "FA 15",
       "crew": {
         "pilot": "Christian Welser",
         "observer": "Erhard Kesselring",
@@ -44,7 +44,7 @@
     },
     {
       "aircraftType": "rolc2a",
-      "squadronName": "FA 15",
+      "companyName": "FA 15",
       "crew": {
         "pilot": "Kaspar Aschner",
         "observer": "Bernd Treich",
@@ -54,7 +54,7 @@
     },
     {
       "aircraftType": "rolc2a",
-      "squadronName": "FA 15",
+      "companyName": "FA 15",
       "crew": {
         "pilot": "Erich Zehrt",
         "observer": "Bruno Ohlenlaeger",
@@ -64,7 +64,7 @@
     },
     {
       "aircraftType": "rolc2a",
-      "squadronName": "FA 15",
+      "companyName": "FA 15",
       "crew": {
         "pilot": "Martin Baumhauer",
         "observer": "Jakob Wirt",
@@ -74,7 +74,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FliK 10",
+      "companyName": "FliK 10",
       "crew": {
         "pilot": "Laurenz Maurer",
         "observer": "Artur Barak",
@@ -84,7 +84,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FliK 10",
+      "companyName": "FliK 10",
       "crew": {
         "pilot": "Lorinc Gergely",
         "observer": "Georg Weidenbaum",
@@ -94,7 +94,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FliK 10",
+      "companyName": "FliK 10",
       "crew": {
         "pilot": "Marko Schult",
         "observer": "Ferdinand Strauch",
@@ -104,7 +104,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FliK 25",
+      "companyName": "FliK 25",
       "crew": {
         "pilot": "Marius Fellgiebel",
         "observer": "Adolar Sala",
@@ -114,7 +114,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FliK 25",
+      "companyName": "FliK 25",
       "crew": {
         "pilot": "Bernad Kover",
         "observer": "Bodor Lodi",
@@ -124,7 +124,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "3rd KAO",
+      "companyName": "3rd KAO",
       "crew": {
         "pilot": "Uriah Shchegolev",
         "observer": "Matvey Poleski",
@@ -134,7 +134,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "3rd KAO",
+      "companyName": "3rd KAO",
       "crew": {
         "pilot": "Anton Bessonov",
         "observer": "Feliks Golovanov",
@@ -144,7 +144,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "3rd KAO",
+      "companyName": "3rd KAO",
       "crew": {
         "pilot": "Laurente Syukosev",
         "observer": "Andrusha Avdeyev",
@@ -154,7 +154,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "3rd KAO",
+      "companyName": "3rd KAO",
       "crew": {
         "pilot": "Stefan Volvakov",
         "observer": "Vyacheslav Shigayev",

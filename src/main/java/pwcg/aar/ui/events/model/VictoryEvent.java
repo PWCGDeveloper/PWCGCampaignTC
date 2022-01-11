@@ -10,9 +10,9 @@ public class VictoryEvent extends AARCrewMemberEvent
 {
     private Victory victory;
 
-    public VictoryEvent(Campaign campaign, Victory victory, int squadronId, int crewMemberSerialNumber, Date date, boolean isNewsWorthy)
+    public VictoryEvent(Campaign campaign, Victory victory, int companyId, int crewMemberSerialNumber, Date date, boolean isNewsWorthy)
     {
-        super(campaign, squadronId, crewMemberSerialNumber, date, isNewsWorthy);
+        super(campaign, companyId, crewMemberSerialNumber, date, isNewsWorthy);
         this.victory = victory;
     }
 

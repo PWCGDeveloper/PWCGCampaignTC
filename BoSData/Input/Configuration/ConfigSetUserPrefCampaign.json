@@ -21,10 +21,10 @@
 			"label": "Show all flights in briefing",
 			"help": "Intended for debugging.  Would be a cheat in the game"
 		},
-		"RemoveNonHistoricalSquadrons": {
+		"RemoveNonHistoricalCompanys": {
 			"value": "0",
-			"label": "Remove non historical squadrons",
-			"help": "Non historical squadrons will not be included in missions"
+			"label": "Remove non historical companys",
+			"help": "Non historical companys will not be included in missions"
 		},
 		"SaveStupidAi": {
 			"value": "0",

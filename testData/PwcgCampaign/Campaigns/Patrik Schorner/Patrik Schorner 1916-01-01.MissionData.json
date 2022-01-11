@@ -1,7 +1,7 @@
 {
   "missionHeader": {
     "missionFileName": "Patrik Schorner 1916-01-01",
-    "squadron": "FA 46b",
+    "company": "FA 46b",
     "date": "19160101",
     "time": "80:00",
     "aircraftType": "AircraftType \u003d DFW C.",
@@ -10,11 +10,11 @@
     "duty": "BOMB",
     "altitude": 3243
   },
-  "missionDescription": "Mission:\nAircraft  DFW C.V\nSquadron  FA 46b\nAirbase  Lagnicourt\nDate  1916-01-01\n\nWeather Report\nMostly clear, some high altitude clouds.\nCloud layer is 4958 meters.\nWind speed is 0 M/S.\nWind direction is 345.\n\nPrimary Objective\nAttack the transport and road facilities  near Doullens\n\n\n",
+  "missionDescription": "Mission:\nAircraft  DFW C.V\nCompany  FA 46b\nAirbase  Lagnicourt\nDate  1916-01-01\n\nWeather Report\nMostly clear, some high altitude clouds.\nCloud layer is 4958 meters.\nWind speed is 0 M/S.\nWind direction is 345.\n\nPrimary Objective\nAttack the transport and road facilities  near Doullens\n\n\n",
   "missionPlanes": [
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 46b",
+      "companyName": "FA 46b",
       "crew": {
         "pilot": "Carsten Olbrich",
         "observer": "Viktor Schiller",
@@ -24,7 +24,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 46b",
+      "companyName": "FA 46b",
       "crew": {
         "pilot": "Fabian Spener",
         "observer": "Tobias Klemme",
@@ -34,7 +34,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 46b",
+      "companyName": "FA 46b",
       "crew": {
         "pilot": "Konrad Herxheimer",
         "observer": "Patrik Schorner",
@@ -44,7 +44,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 46b",
+      "companyName": "FA 46b",
       "crew": {
         "pilot": "Urs Kehlmann",
         "observer": "Ewald Stock",
@@ -54,7 +54,7 @@
     },
     {
       "aircraftType": "fokkere3",
-      "squadronName": "Jasta 5",
+      "companyName": "Jasta 5",
       "crew": {
         "pilot": "Maxim Gerstner",
         "observer": "",
@@ -64,7 +64,7 @@
     },
     {
       "aircraftType": "fokkere3",
-      "squadronName": "Jasta 5",
+      "companyName": "Jasta 5",
       "crew": {
         "pilot": "Georg Krommer",
         "observer": "",
@@ -74,7 +74,7 @@
     },
     {
       "aircraftType": "fokkere3",
-      "squadronName": "Jasta 5",
+      "companyName": "Jasta 5",
       "crew": {
         "pilot": "Gerhard Dummler",
         "observer": "",
@@ -84,7 +84,7 @@
     },
     {
       "aircraftType": "fokkere3",
-      "squadronName": "Jasta 5",
+      "companyName": "Jasta 5",
       "crew": {
         "pilot": "Klaus Heinemann",
         "observer": "",
@@ -94,7 +94,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 281",
+      "companyName": "FA 281",
       "crew": {
         "pilot": "Andreas Waghalter",
         "observer": "Hans Schneider",
@@ -104,7 +104,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 281",
+      "companyName": "FA 281",
       "crew": {
         "pilot": "Jan Rosenstock",
         "observer": "Walfred Buchtel",
@@ -114,7 +114,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 281",
+      "companyName": "FA 281",
       "crew": {
         "pilot": "Rudiger Weinstein",
         "observer": "Holger Pfefferkorn",
@@ -124,7 +124,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 281",
+      "companyName": "FA 281",
       "crew": {
         "pilot": "Sven Krausser",
         "observer": "Jurgen Neufeld",
@@ -134,7 +134,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 261",
+      "companyName": "FA 261",
       "crew": {
         "pilot": "Dietrich Schoenbohm",
         "observer": "Wolfe Leupold",
@@ -144,7 +144,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 261",
+      "companyName": "FA 261",
       "crew": {
         "pilot": "Torsten Schmadel",
         "observer": "Egon Auermann",
@@ -154,7 +154,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 261",
+      "companyName": "FA 261",
       "crew": {
         "pilot": "Rainer Reich",
         "observer": "Michael Kuhne",
@@ -164,7 +164,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 261",
+      "companyName": "FA 261",
       "crew": {
         "pilot": "Gregor Ehrenfels",
         "observer": "Dierck Weingand",
@@ -174,7 +174,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 210",
+      "companyName": "FA 210",
       "crew": {
         "pilot": "Harald Schett",
         "observer": "Ferdinand Feuermann",
@@ -184,7 +184,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 210",
+      "companyName": "FA 210",
       "crew": {
         "pilot": "Jakob Schimmel",
         "observer": "Engelbert Weidenmann",
@@ -194,7 +194,7 @@
     },
     {
       "aircraftType": "nieuport11",
-      "squadronName": "Esc 57",
+      "companyName": "Esc 57",
       "crew": {
         "pilot": "Dominique Mouillard",
         "observer": "",
@@ -204,7 +204,7 @@
     },
     {
       "aircraftType": "nieuport11",
-      "squadronName": "Esc 57",
+      "companyName": "Esc 57",
       "crew": {
         "pilot": "Florentin Dubois",
         "observer": "",
@@ -214,7 +214,7 @@
     },
     {
       "aircraftType": "nieuport11",
-      "squadronName": "Esc 57",
+      "companyName": "Esc 57",
       "crew": {
         "pilot": "Adolphe Kalandoff",
         "observer": "",
@@ -224,7 +224,7 @@
     },
     {
       "aircraftType": "nieuport11",
-      "squadronName": "Esc 57",
+      "companyName": "Esc 57",
       "crew": {
         "pilot": "Louis de La Cruz",
         "observer": "",
@@ -234,7 +234,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 107",
+      "companyName": "Esc 107",
       "crew": {
         "pilot": "Jerome Motte",
         "observer": "Etienne Canere",
@@ -244,7 +244,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 107",
+      "companyName": "Esc 107",
       "crew": {
         "pilot": "Serge Buge",
         "observer": "Ignace Lezot",

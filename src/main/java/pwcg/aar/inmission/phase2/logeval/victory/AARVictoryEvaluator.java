@@ -12,7 +12,7 @@ import pwcg.core.exception.PWCGException;
  * The rules:
  * 1. If it was definitely shot down by a known entity, credit that entity
  * 2. If the victor is unknown but the player damaged it, credit the player.
- * 3. If the victor is unknown, if the entity was destroyed near the squadrons route,
+ * 3. If the victor is unknown, if the entity was destroyed near the companys route,
  * mark it for random assignment.
  * 
  * @author Patrick Wilson

@@ -21,17 +21,17 @@ import pwcg.core.utils.MathUtils;
 public class CompanyReducer
 {
 
-    public static List<Company> reduceToAIOnly(List<Company> selectedSquadrons, Campaign campaign) throws PWCGException
+    public static List<Company> reduceToAIOnly(List<Company> selectedCompanys, Campaign campaign) throws PWCGException
     {
-        List<Company> selectedSquadronsNoPlayer = new ArrayList<>();
-        for (Company company : selectedSquadrons)
+        List<Company> selectedCompanysNoPlayer = new ArrayList<>();
+        for (Company company : selectedCompanys)
         {
             if (!campaign.getPersonnelManager().companyHasActivePlayers(company.getCompanyId()))
             {
-                selectedSquadronsNoPlayer.add(company);
+                selectedCompanysNoPlayer.add(company);
             }
         }
-        return selectedSquadronsNoPlayer;
+        return selectedCompanysNoPlayer;
     }
     
     public static List<Company> reduceToSide(List<Company> companies, Side side) throws PWCGException
@@ -97,7 +97,7 @@ public class CompanyReducer
         {
             for (PwcgRole acceptableRole : acceptableRoles)
             {
-                if (company.isSquadronThisRole(date, acceptableRole))
+                if (company.isCompanyThisRole(date, acceptableRole))
                 {
                     companiesWithRole.put(company.getCompanyId(), company);
                 }

@@ -24,10 +24,10 @@ public abstract class MedalManagerTestBase
 {
     @Mock protected Campaign campaign;
     @Mock protected CrewMember player;
-    @Mock protected Company squadron;
+    @Mock protected Company company;
     @Mock protected ICountry country;
-    @Mock protected CrewMemberVictories squadronMemberVictories;
-    @Mock protected CompanyRoleSet squadronRoleSet;
+    @Mock protected CrewMemberVictories companyMemberVictories;
+    @Mock protected CompanyRoleSet companyRoleSet;
     
     protected List<CrewMember> players = new ArrayList<>();
     protected List<Victory> victories = new ArrayList<>();
@@ -41,10 +41,10 @@ public abstract class MedalManagerTestBase
         players.add(player);
         
         Mockito.when(player.getMedals()).thenReturn(medals);
-        Mockito.when(player.getCrewMemberVictories()).thenReturn(squadronMemberVictories);
-        Mockito.when(squadronMemberVictories.getAirToAirVictoryCount()).thenReturn(victories.size());
-        Mockito.when(squadron.getSquadronRoles()).thenReturn(squadronRoleSet);
-        Mockito.when(squadronRoleSet.isCompanyThisRole(ArgumentMatchers.<Date>any(), ArgumentMatchers.<PwcgRole>any())).thenReturn(true);
+        Mockito.when(player.getCrewMemberVictories()).thenReturn(companyMemberVictories);
+        Mockito.when(companyMemberVictories.getAirToAirVictoryCount()).thenReturn(victories.size());
+        Mockito.when(company.getCompanyRoles()).thenReturn(companyRoleSet);
+        Mockito.when(companyRoleSet.isCompanyThisRole(ArgumentMatchers.<Date>any(), ArgumentMatchers.<PwcgRole>any())).thenReturn(true);
     }
 
     protected void awardMedal(int medalId, int numVictoriesNeededForMedal, int victoriesThisMission) throws PWCGException
@@ -65,7 +65,7 @@ public abstract class MedalManagerTestBase
 
     protected void makeVictories(int numVictories)
     {
-        Mockito.when(squadronMemberVictories.getAirToAirVictoryCount()).thenReturn(numVictories);
+        Mockito.when(companyMemberVictories.getAirToAirVictoryCount()).thenReturn(numVictories);
     }
 
 }

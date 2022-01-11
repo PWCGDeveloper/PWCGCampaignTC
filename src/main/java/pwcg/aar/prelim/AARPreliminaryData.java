@@ -61,24 +61,24 @@ public class AARPreliminaryData
         this.campaignMembersInMission = campaignMembersInMission;
     }
     
-    public  List<Company>getPlayerSquadronsInMission() throws PWCGException
+    public  List<Company>getPlayerCompanysInMission() throws PWCGException
     {
-        Set<Integer> uniqueSquadronsInMission = new HashSet<>();
+        Set<Integer> uniqueCompanysInMission = new HashSet<>();
         for (CrewMember campaignMemberInMission : campaignMembersInMission.getCrewMemberList())
         {
             if (campaignMemberInMission.isPlayer())
             {
-                uniqueSquadronsInMission.add(campaignMemberInMission.getCompanyId());
+                uniqueCompanysInMission.add(campaignMemberInMission.getCompanyId());
             }
         }
         
-        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
-        List<Company> playerSquadronsInMission = new ArrayList<>();
-        for (Integer squadronId : uniqueSquadronsInMission)
+        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+        List<Company> playerCompanysInMission = new ArrayList<>();
+        for (Integer companyId : uniqueCompanysInMission)
         {
-            Company squadron = squadronManager.getCompany(squadronId);
-            playerSquadronsInMission.add(squadron);
+            Company company = companyManager.getCompany(companyId);
+            playerCompanysInMission.add(company);
         }
-        return playerSquadronsInMission;
+        return playerCompanysInMission;
     }
 }

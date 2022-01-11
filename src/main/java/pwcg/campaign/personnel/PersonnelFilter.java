@@ -114,21 +114,21 @@ public class PersonnelFilter
     }
 
     
-    public Map<Integer, CrewMember> applySquadronFilter(Map<Integer, CrewMember> input, int squadronId) 
+    public Map<Integer, CrewMember> applyCompanyFilter(Map<Integer, CrewMember> input, int companyId) 
     {
         Map<Integer, CrewMember> returnCrewMembers = new HashMap<>();
         for (CrewMember crewMember : input.values())
         {
             if (!invertFilter)
             {
-                if (crewMember.getCompanyId() == squadronId)
+                if (crewMember.getCompanyId() == companyId)
                 {
                     returnCrewMembers.put(crewMember.getSerialNumber(), crewMember);
                 }
             }
             else
             {
-                if (crewMember.getCompanyId() != squadronId)
+                if (crewMember.getCompanyId() != companyId)
                 {
                     returnCrewMembers.put(crewMember.getSerialNumber(), crewMember);
                 }

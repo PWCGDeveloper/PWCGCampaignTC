@@ -32,7 +32,7 @@ public class WithdrawnEquipmentReplacerTest
     private Campaign campaign;
     
     @Mock
-    private Company squadron;
+    private Company company;
     
     private Equipment equipment = new Equipment();
     private SerialNumber serialNumber = new SerialNumber();
@@ -41,7 +41,7 @@ public class WithdrawnEquipmentReplacerTest
     public void setupTest() throws PWCGException
     {        
         
-        Mockito.when(squadron.getCompanyId()).thenReturn(20111051);
+        Mockito.when(company.getCompanyId()).thenReturn(20111051);
         Mockito.when(campaign.getSerialNumber()).thenReturn(serialNumber);
         equipment = new Equipment();
     }
@@ -55,17 +55,17 @@ public class WithdrawnEquipmentReplacerTest
 
         for (int i = 0; i < 6; ++i)
         {
-            EquippedTank equippedPlane  = TankEquipmentFactory.makeTankForSquadron(campaign, "bf109f2", 20111051);
+            EquippedTank equippedPlane  = TankEquipmentFactory.makeTankForCompany(campaign, "bf109f2", 20111051);
             equipment.addEquippedTankToCompany(campaign, 20111051, equippedPlane);
         }
         
         for (int i = 0; i < 8; ++i)
         {
-            EquippedTank equippedPlane  = TankEquipmentFactory.makeTankForSquadron(campaign, "bf109f4", 20111051);
+            EquippedTank equippedPlane  = TankEquipmentFactory.makeTankForCompany(campaign, "bf109f4", 20111051);
             equipment.addEquippedTankToCompany(campaign, 20111051, equippedPlane);
         }
 
-        WithdrawnEquipmentReplacer withdrawnEquipmentReplacer = new WithdrawnEquipmentReplacer(campaign, equipment, squadron);
+        WithdrawnEquipmentReplacer withdrawnEquipmentReplacer = new WithdrawnEquipmentReplacer(campaign, equipment, company);
         int numAdded = withdrawnEquipmentReplacer.replaceWithdrawnEquipment();
         assert(numAdded == 6);
         assert(equipment.getActiveEquippedTanks().size() == 14);
@@ -84,17 +84,17 @@ public class WithdrawnEquipmentReplacerTest
 
         for (int i = 0; i < 6; ++i)
         {
-            EquippedTank equippedPlane  = TankEquipmentFactory.makeTankForSquadron(campaign, "bf109f2", 20111051);
+            EquippedTank equippedPlane  = TankEquipmentFactory.makeTankForCompany(campaign, "bf109f2", 20111051);
             equipment.addEquippedTankToCompany(campaign, 20111051, equippedPlane);
         }
         
         for (int i = 0; i < 8; ++i)
         {
-            EquippedTank equippedPlane  = TankEquipmentFactory.makeTankForSquadron(campaign, "bf109f4", 20111051);
+            EquippedTank equippedPlane  = TankEquipmentFactory.makeTankForCompany(campaign, "bf109f4", 20111051);
             equipment.addEquippedTankToCompany(campaign, 20111051, equippedPlane);
         }
 
-        WithdrawnEquipmentReplacer withdrawnEquipmentReplacer = new WithdrawnEquipmentReplacer(campaign, equipment, squadron);
+        WithdrawnEquipmentReplacer withdrawnEquipmentReplacer = new WithdrawnEquipmentReplacer(campaign, equipment, company);
         int numAdded = withdrawnEquipmentReplacer.replaceWithdrawnEquipment();
         assert(numAdded == 0);
         assert(equipment.getActiveEquippedTanks().size() == 14);
@@ -118,19 +118,19 @@ public class WithdrawnEquipmentReplacerTest
 
         for (int i = 0; i < 3; ++i)
         {
-            EquippedTank equippedPlane  = TankEquipmentFactory.makeTankForSquadron(campaign, "bf109f2", 20111051);
+            EquippedTank equippedPlane  = TankEquipmentFactory.makeTankForCompany(campaign, "bf109f2", 20111051);
             equipment.addEquippedTankToCompany(campaign, 20111051, equippedPlane);
         }
         
         for (int i = 0; i < 8; ++i)
         {
-            EquippedTank equippedPlane  = TankEquipmentFactory.makeTankForSquadron(campaign, "bf109f4", 20111051);
+            EquippedTank equippedPlane  = TankEquipmentFactory.makeTankForCompany(campaign, "bf109f4", 20111051);
             equipment.addEquippedTankToCompany(campaign, 20111051, equippedPlane);
         }
 
         assert(equipment.getActiveEquippedTanks().size() == 11);
 
-        WithdrawnEquipmentReplacer withdrawnEquipmentReplacer = new WithdrawnEquipmentReplacer(campaign, equipment, squadron);
+        WithdrawnEquipmentReplacer withdrawnEquipmentReplacer = new WithdrawnEquipmentReplacer(campaign, equipment, company);
         int numAdded = withdrawnEquipmentReplacer.replaceWithdrawnEquipment();
         assert(numAdded == 3);
         assert(equipment.getActiveEquippedTanks().size() == 11);
@@ -154,20 +154,20 @@ public class WithdrawnEquipmentReplacerTest
 
         for (int i = 0; i < 3; ++i)
         {
-            EquippedTank equippedPlane  = TankEquipmentFactory.makeTankForSquadron(campaign, "bf109f2", 20111051);
+            EquippedTank equippedPlane  = TankEquipmentFactory.makeTankForCompany(campaign, "bf109f2", 20111051);
             equippedPlane.setEquipmentRequest(true);
             equipment.addEquippedTankToCompany(campaign, 20111051, equippedPlane);
         }
         
         for (int i = 0; i < 8; ++i)
         {
-            EquippedTank equippedPlane  = TankEquipmentFactory.makeTankForSquadron(campaign, "bf109f4", 20111051);
+            EquippedTank equippedPlane  = TankEquipmentFactory.makeTankForCompany(campaign, "bf109f4", 20111051);
             equipment.addEquippedTankToCompany(campaign, 20111051, equippedPlane);
         }
 
         assert(equipment.getActiveEquippedTanks().size() == 11);
 
-        WithdrawnEquipmentReplacer withdrawnEquipmentReplacer = new WithdrawnEquipmentReplacer(campaign, equipment, squadron);
+        WithdrawnEquipmentReplacer withdrawnEquipmentReplacer = new WithdrawnEquipmentReplacer(campaign, equipment, company);
         int numAdded = withdrawnEquipmentReplacer.replaceWithdrawnEquipment();
         assert(numAdded == 0);
         assert(equipment.getActiveEquippedTanks().size() == 11);
@@ -193,17 +193,17 @@ public class WithdrawnEquipmentReplacerTest
 
         for (int i = 0; i < 3; ++i)
         {
-            EquippedTank equippedPlane  = TankEquipmentFactory.makeTankForSquadron(campaign, "bf109f2", 20111051);
+            EquippedTank equippedPlane  = TankEquipmentFactory.makeTankForCompany(campaign, "bf109f2", 20111051);
             equipment.addEquippedTankToCompany(campaign, 20111051, equippedPlane);
         }
         
         for (int i = 0; i < 3; ++i)
         {
-            EquippedTank equippedPlane  = TankEquipmentFactory.makeTankForSquadron(campaign, "bf109f4", 20111051);
+            EquippedTank equippedPlane  = TankEquipmentFactory.makeTankForCompany(campaign, "bf109f4", 20111051);
             equipment.addEquippedTankToCompany(campaign, 20111051, equippedPlane);
         }
 
-        WithdrawnEquipmentReplacer withdrawnEquipmentReplacer = new WithdrawnEquipmentReplacer(campaign, equipment, squadron);
+        WithdrawnEquipmentReplacer withdrawnEquipmentReplacer = new WithdrawnEquipmentReplacer(campaign, equipment, company);
         int numAdded = withdrawnEquipmentReplacer.replaceWithdrawnEquipment();
         assert(numAdded == 7);
         assert(equipment.getActiveEquippedTanks().size() == 10);

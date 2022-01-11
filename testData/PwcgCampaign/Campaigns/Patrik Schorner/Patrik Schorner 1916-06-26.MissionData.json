@@ -1,7 +1,7 @@
 {
   "missionHeader": {
     "missionFileName": "Patrik Schorner 1916-06-26",
-    "squadron": "Jasta 4",
+    "company": "Jasta 4",
     "date": "19160626",
     "time": "4:30:00",
     "aircraftType": "AircraftType \u003d Fokker E.II",
@@ -10,11 +10,11 @@
     "duty": "PATROL",
     "altitude": 3468
   },
-  "missionDescription": "Mission:\nAircraft  Fokker E.III\nSquadron  Jasta 4\nAirbase  Bonneuil Ferme\nDate  1916-06-26\n\nWeather Report\nLight cloud cover, medium altitude.\nCloud layer is 2410 meters.\nWind speed is 2 M/S.\nWind direction is 190.\n\nPrimary Objective\nPatrol airspace  near Caumont.  Engage any enemy aircraft that you encounter.\n\n\n",
+  "missionDescription": "Mission:\nAircraft  Fokker E.III\nCompany  Jasta 4\nAirbase  Bonneuil Ferme\nDate  1916-06-26\n\nWeather Report\nLight cloud cover, medium altitude.\nCloud layer is 2410 meters.\nWind speed is 2 M/S.\nWind direction is 190.\n\nPrimary Objective\nPatrol airspace  near Caumont.  Engage any enemy aircraft that you encounter.\n\n\n",
   "missionPlanes": [
     {
       "aircraftType": "fokkere3",
-      "squadronName": "Jasta 4",
+      "companyName": "Jasta 4",
       "crew": {
         "pilot": "Lambrecht Steinberg",
         "observer": "",
@@ -24,7 +24,7 @@
     },
     {
       "aircraftType": "fokkere3",
-      "squadronName": "Jasta 4",
+      "companyName": "Jasta 4",
       "crew": {
         "pilot": "Patrik Schorner",
         "observer": "",
@@ -34,7 +34,7 @@
     },
     {
       "aircraftType": "fokkere3",
-      "squadronName": "Jasta 4",
+      "companyName": "Jasta 4",
       "crew": {
         "pilot": "Kurt Wintgens",
         "observer": "",
@@ -44,7 +44,7 @@
     },
     {
       "aircraftType": "fokkere3",
-      "squadronName": "Jasta 4",
+      "companyName": "Jasta 4",
       "crew": {
         "pilot": "Dietrich Holweck",
         "observer": "",
@@ -54,7 +54,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 16",
+      "companyName": "FA 16",
       "crew": {
         "pilot": "Carsten Riegel",
         "observer": "Arndt Ulrici",
@@ -64,7 +64,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 16",
+      "companyName": "FA 16",
       "crew": {
         "pilot": "Engelbert Romberg",
         "observer": "Gebhard Felgenhauer",
@@ -74,7 +74,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 105",
+      "companyName": "Esc 105",
       "crew": {
         "pilot": "Denis Lapegue",
         "observer": "Henri Labbe",
@@ -84,7 +84,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 105",
+      "companyName": "Esc 105",
       "crew": {
         "pilot": "Marceau Lacaze",
         "observer": "Jerome Goarnigou",
@@ -94,7 +94,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "No 5 Squadron RNAS",
+      "companyName": "No 5 Company RNAS",
       "crew": {
         "pilot": "Philbert Downer",
         "observer": "Willard Pennebrygg",

@@ -12,7 +12,7 @@ public class SkinsForPlane
     private SkinSet doNotUse = new SkinSet(SkinSetType.SKIN_DO_NOT_USE);
     private SkinSet aceSkins = new SkinSet(SkinSetType.SKIN_ACE);
     private SkinSet looseSkins = new SkinSet(SkinSetType.SKIN_LOOSE);
-    private SkinSet squadronSkins = new SkinSet(SkinSetType.SKIN_SQUADRON);
+    private SkinSet companySkins = new SkinSet(SkinSetType.SKIN_Company);
 
 
 	public SkinsForPlane()
@@ -29,9 +29,9 @@ public class SkinsForPlane
 		this.planeType = planeTpe;
 	}
 
-	public void addSquadronSkin(Skin skin)
+	public void addCompanySkin(Skin skin)
 	{
-	    addSkin (squadronSkins, skin);
+	    addSkin (companySkins, skin);
 	}
 
 	public void addAceSkin(Skin skin)
@@ -62,8 +62,8 @@ public class SkinsForPlane
 		// If it's a configured skin then it's not a loose skin
 		if (!configuredSkins.hasSkin(skin))
 		{
-			// If it's a squadron skin then it's not a loose skin
-			if (!squadronSkins.hasSkin(skin))
+			// If it's a company skin then it's not a loose skin
+			if (!companySkins.hasSkin(skin))
 			{
 				// If it's a ace skin then it's not a loose skin
 				if (!aceSkins.hasSkin(skin))
@@ -78,7 +78,7 @@ public class SkinsForPlane
 	public List<Skin> getAllUsedByPWCG()
 	{
 		List<Skin> allConfiguredSkins = new ArrayList<Skin>();
-		allConfiguredSkins.addAll(squadronSkins.getSkins().values());
+		allConfiguredSkins.addAll(companySkins.getSkins().values());
 		allConfiguredSkins.addAll(aceSkins.getSkins().values());
 		allConfiguredSkins.addAll(configuredSkins.getSkins().values());
 
@@ -109,7 +109,7 @@ public class SkinsForPlane
 			{
 				if (skin.getSquadId() > 0)
 				{
-					return "Squadron";
+					return "Company";
 				}
 				else
 				{
@@ -156,9 +156,9 @@ public class SkinsForPlane
 		return looseSkins;
 	}
 
-	public SkinSet getSquadronSkins() 
+	public SkinSet getCompanySkins() 
 	{
-		return squadronSkins;
+		return companySkins;
 	}
 
 	public void setConfiguredSkins(SkinSet configuredSkins) 

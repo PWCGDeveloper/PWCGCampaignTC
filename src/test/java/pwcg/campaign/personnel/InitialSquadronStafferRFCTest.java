@@ -14,7 +14,7 @@ import pwcg.testutils.CampaignCache;
 import pwcg.testutils.CompanyTestProfile;
 
 @ExtendWith(MockitoExtension.class)
-public class InitialSquadronStafferRFCTest
+public class InitialCompanyStafferRFCTest
 {
     @Test
     public void generateReconPersonnelTest() throws PWCGException
@@ -22,12 +22,12 @@ public class InitialSquadronStafferRFCTest
         
         Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.RFC_2_PROFILE);
 
-        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.RFC_2_PROFILE.getCompanyId());
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.RFC_2_PROFILE.getCompanyId());
         
-        InitialCompanyStaffer initialSquadronStaffer = new InitialCompanyStaffer(campaign, squadron);
-        CompanyPersonnel squadronPersonnel = initialSquadronStaffer.generatePersonnel();        
-        CrewMembers squadronMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(squadronPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());        
+        InitialCompanyStaffer initialCompanyStaffer = new InitialCompanyStaffer(campaign, company);
+        CompanyPersonnel companyPersonnel = initialCompanyStaffer.generatePersonnel();        
+        CrewMembers crewMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(companyPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());        
         
-        assert(squadronMembers.getCrewMemberList().size() == Company.COMPANY_STAFF_SIZE);
+        assert(crewMembers.getCrewMemberList().size() == Company.COMPANY_STAFF_SIZE);
     }
 }

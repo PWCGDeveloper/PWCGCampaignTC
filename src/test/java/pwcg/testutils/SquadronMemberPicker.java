@@ -13,29 +13,29 @@ import pwcg.core.utils.RandomNumberGenerator;
 
 public class CrewMemberPicker
 {
-    public static CrewMember pickNonAceCampaignMember (Campaign campaign, int squadronId) throws PWCGException
+    public static CrewMember pickNonAceCampaignMember (Campaign campaign, int companyId) throws PWCGException
     {
-        Map<Integer, CrewMember> squadronAllCampaignMembers = campaign.getPersonnelManager().getAllCampaignMembers();        
-        CrewMembers squadronMembers = CrewMemberFilter.filterActiveAINoWounded(squadronAllCampaignMembers, campaign.getDate());        
-        List<CrewMember> allHealthyCampaignMembers = squadronMembers.getCrewMemberList();
+        Map<Integer, CrewMember> companyAllCampaignMembers = campaign.getPersonnelManager().getAllCampaignMembers();        
+        CrewMembers crewMembers = CrewMemberFilter.filterActiveAINoWounded(companyAllCampaignMembers, campaign.getDate());        
+        List<CrewMember> allHealthyCampaignMembers = crewMembers.getCrewMemberList();
         int index = RandomNumberGenerator.getRandom(allHealthyCampaignMembers.size());
         return allHealthyCampaignMembers.get(index);
     }
     
-    public static CrewMember pickNonAceCrewMember (Campaign campaign, int squadronId) throws PWCGException
+    public static CrewMember pickNonAceCrewMember (Campaign campaign, int companyId) throws PWCGException
     {
-        CompanyPersonnel squadronPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(squadronId);        
-        CrewMembers squadronMembers = CrewMemberFilter.filterActiveAINoWounded(squadronPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());        
-        List<CrewMember> allHealthyCrewMembers = squadronMembers.getCrewMemberList();
+        CompanyPersonnel companyPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(companyId);        
+        CrewMembers crewMembers = CrewMemberFilter.filterActiveAINoWounded(companyPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());        
+        List<CrewMember> allHealthyCrewMembers = crewMembers.getCrewMemberList();
         int index = RandomNumberGenerator.getRandom(allHealthyCrewMembers.size());
         return allHealthyCrewMembers.get(index);
     }
     
-    public static CrewMember pickPlayerCrewMember (Campaign campaign, int squadronId) throws PWCGException
+    public static CrewMember pickPlayerCrewMember (Campaign campaign, int companyId) throws PWCGException
     {
-        CompanyPersonnel squadronPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(squadronId);        
-        CrewMembers squadronMembers = CrewMemberFilter.filterActivePlayers(squadronPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());        
-        List<CrewMember> allHealthyPlayers = squadronMembers.getCrewMemberList();
+        CompanyPersonnel companyPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(companyId);        
+        CrewMembers crewMembers = CrewMemberFilter.filterActivePlayers(companyPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());        
+        List<CrewMember> allHealthyPlayers = crewMembers.getCrewMemberList();
         int index = RandomNumberGenerator.getRandom(allHealthyPlayers.size());
         return allHealthyPlayers.get(index);
     }

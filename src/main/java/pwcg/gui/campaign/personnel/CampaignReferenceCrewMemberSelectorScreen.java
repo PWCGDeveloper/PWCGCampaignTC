@@ -39,7 +39,7 @@ import pwcg.gui.utils.PwcgBorderFactory;
 public class CampaignReferenceCrewMemberSelectorScreen extends ImageResizingPanel implements ActionListener
 {
     private static final long serialVersionUID = 1L;
-    private JComboBox<String> squadronMemberSelector;
+    private JComboBox<String> crewMemberselector;
     private CampaignHomeScreen campaignHomeGui;
     private Campaign campaign;
     private Map<String, CrewMember> coopCrewMembersInCampaign = new HashMap<>();
@@ -83,10 +83,10 @@ public class CampaignReferenceCrewMemberSelectorScreen extends ImageResizingPane
     private JPanel makeReferenceCrewMemberSelectorPanel() throws PWCGException
     {
         Font font = PWCGMonitorFonts.getPrimaryFontLarge();
-        squadronMemberSelector = new JComboBox<String>();
-        squadronMemberSelector.setOpaque(false);
-        squadronMemberSelector.setBackground(ColorMap.PAPER_BACKGROUND);
-        squadronMemberSelector.setFont(font);
+        crewMemberselector = new JComboBox<String>();
+        crewMemberselector.setOpaque(false);
+        crewMemberselector.setBackground(ColorMap.PAPER_BACKGROUND);
+        crewMemberselector.setFont(font);
         
         CrewMembers players = campaign.getPersonnelManager().getAllActivePlayers();
         for (CrewMember player : players.getCrewMemberList())
@@ -94,14 +94,14 @@ public class CampaignReferenceCrewMemberSelectorScreen extends ImageResizingPane
             if (player.getCrewMemberActiveStatus() >= CrewMemberStatus.STATUS_CAPTURED)
             {
                 String selectiontext = player.getNameAndRank();
-                squadronMemberSelector.addItem(selectiontext);
+                crewMemberselector.addItem(selectiontext);
                 coopCrewMembersInCampaign.put(selectiontext, player);
             }
         }
 
-        if (squadronMemberSelector.getItemCount() > 0)
+        if (crewMemberselector.getItemCount() > 0)
         {
-            squadronMemberSelector.setSelectedIndex(0);
+            crewMemberselector.setSelectedIndex(0);
         }
         
         JPanel gridPanel = new JPanel(new GridLayout(0,3));
@@ -115,7 +115,7 @@ public class CampaignReferenceCrewMemberSelectorScreen extends ImageResizingPane
         }
 
         gridPanel.add(PWCGLabelFactory.makeDummyLabel());
-        gridPanel.add(squadronMemberSelector);
+        gridPanel.add(crewMemberselector);
         gridPanel.add(PWCGLabelFactory.makeDummyLabel());
 
         String imagePath = UiImageResolver.getImage(ScreenIdentifier.Document);
@@ -157,7 +157,7 @@ public class CampaignReferenceCrewMemberSelectorScreen extends ImageResizingPane
             String action = ae.getActionCommand();
             if (action.equalsIgnoreCase("AcceptReferenceCrewMember"))
             {
-                CrewMember referencePlayer = coopCrewMembersInCampaign.get(squadronMemberSelector.getSelectedItem());
+                CrewMember referencePlayer = coopCrewMembersInCampaign.get(crewMemberselector.getSelectedItem());
                 if (referencePlayer != null)
                 {
                     campaign.getCampaignData().setReferencePlayerSerialNumber(referencePlayer.getSerialNumber());

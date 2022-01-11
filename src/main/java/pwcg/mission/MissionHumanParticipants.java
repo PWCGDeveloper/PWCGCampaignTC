@@ -28,22 +28,22 @@ public class MissionHumanParticipants
 	{
 		if (!participatingPlayers.containsKey(participatingPlayer.getCompanyId()))
 		{
-			List<CrewMember> participatingPlayersForSquadron = new ArrayList<>();
-			participatingPlayers.put(participatingPlayer.getCompanyId(), participatingPlayersForSquadron);
+			List<CrewMember> participatingPlayersForCompany = new ArrayList<>();
+			participatingPlayers.put(participatingPlayer.getCompanyId(), participatingPlayersForCompany);
 		}
 		
-		List<CrewMember> participatingPlayersForSquadron = participatingPlayers.get(participatingPlayer.getCompanyId());
-		participatingPlayersForSquadron.add(participatingPlayer);
+		List<CrewMember> participatingPlayersForCompany = participatingPlayers.get(participatingPlayer.getCompanyId());
+		participatingPlayersForCompany.add(participatingPlayer);
 	}
 	
-	public List<CrewMember> getParticipatingPlayersForCompany (int squadronId)
+	public List<CrewMember> getParticipatingPlayersForCompany (int companyId)
 	{
-		List<CrewMember> participatingPlayersForSquadron = participatingPlayers.get(squadronId);
-		if (participatingPlayersForSquadron == null)
+		List<CrewMember> participatingPlayersForCompany = participatingPlayers.get(companyId);
+		if (participatingPlayersForCompany == null)
 		{
 			return new ArrayList<>();
 		}
-		return participatingPlayersForSquadron;
+		return participatingPlayersForCompany;
 	}
 	
 	public List<Integer> getParticipatingCompanyIds ()
@@ -51,17 +51,17 @@ public class MissionHumanParticipants
 		return new ArrayList<Integer>(participatingPlayers.keySet());
 	}
 	
-	public boolean isSquadronInMission(Company squadron)
+	public boolean isCompanyInMission(Company company)
 	{
-	       return participatingPlayers.containsKey(squadron.getCompanyId());
+	       return participatingPlayers.containsKey(company.getCompanyId());
 	}
 	
-	public boolean isPlayerInMission(Company squadron, CrewMember player)
+	public boolean isPlayerInMission(Company company, CrewMember player)
 	{
-		List<CrewMember> playersForSquadron =  getParticipatingPlayersForCompany(squadron.getCompanyId());
-		for (CrewMember playerForSquadron : playersForSquadron)
+		List<CrewMember> playersForCompany =  getParticipatingPlayersForCompany(company.getCompanyId());
+		for (CrewMember playerForCompany : playersForCompany)
 		{
-			if (playerForSquadron.getSerialNumber() == player.getSerialNumber())
+			if (playerForCompany.getSerialNumber() == player.getSerialNumber())
 			{
 				return true;
 			}
@@ -73,9 +73,9 @@ public class MissionHumanParticipants
     public List<CrewMember> getAllParticipatingPlayers()
     {
         List<CrewMember> allParticipatingPlayers = new ArrayList<>();
-        for (List<CrewMember> playersForSquadron : participatingPlayers.values())
+        for (List<CrewMember> playersForCompany : participatingPlayers.values())
         {
-            allParticipatingPlayers.addAll(playersForSquadron);
+            allParticipatingPlayers.addAll(playersForCompany);
         }
         
         return allParticipatingPlayers;
@@ -84,36 +84,36 @@ public class MissionHumanParticipants
     public double getPlayerDistanceToTarget(Mission mission) throws PWCGException
     {
         double totalPlayerDistanceToTarget = 0.0;
-        for (int playersSquadronId : participatingPlayers.keySet())
+        for (int playersCompanyId : participatingPlayers.keySet())
         {
-            Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(playersSquadronId);
-            totalPlayerDistanceToTarget += MathUtils.calcDist(squadron.determineCurrentPosition(mission.getCampaign().getDate()), mission.getMissionBorders().getCenter());
+            Company company = PWCGContext.getInstance().getCompanyManager().getCompany(playersCompanyId);
+            totalPlayerDistanceToTarget += MathUtils.calcDist(company.determineCurrentPosition(mission.getCampaign().getDate()), mission.getMissionBorders().getCenter());
         }
         
         double averagePlayerDistanceToTarget = totalPlayerDistanceToTarget / participatingPlayers.size();
         return averagePlayerDistanceToTarget;
     }
 
-    public List<Company> getMissionPlayerSquadrons() throws PWCGException
+    public List<Company> getMissionPlayerCompanys() throws PWCGException
     {
-        Map<Integer, Company> playerSquadronsMap = new HashMap<>();
-        for (int playersSquadronId : participatingPlayers.keySet())
+        Map<Integer, Company> playerCompanysMap = new HashMap<>();
+        for (int playersCompanyId : participatingPlayers.keySet())
         {
-            Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(playersSquadronId);
-            playerSquadronsMap.put(playersSquadronId, squadron);
+            Company company = PWCGContext.getInstance().getCompanyManager().getCompany(playersCompanyId);
+            playerCompanysMap.put(playersCompanyId, company);
         }
         
-        List<Company> squadrons = new ArrayList<>(playerSquadronsMap.values());
-        return squadrons;
+        List<Company> companys = new ArrayList<>(playerCompanysMap.values());
+        return companys;
     }
 
     public List<Side> getMissionPlayerSides() throws PWCGException
     {
         Map<Side, Side> playerSideMap = new HashMap<>();
-        for (int playersSquadronId : participatingPlayers.keySet())
+        for (int playersCompanyId : participatingPlayers.keySet())
         {
-            Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(playersSquadronId);
-            playerSideMap.put(squadron.determineSide(), squadron.determineSide());
+            Company company = PWCGContext.getInstance().getCompanyManager().getCompany(playersCompanyId);
+            playerSideMap.put(company.determineSide(), company.determineSide());
         }
         
         List<Side> playerSides = new ArrayList<>(playerSideMap.values());

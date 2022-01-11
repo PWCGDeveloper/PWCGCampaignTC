@@ -29,9 +29,9 @@ public abstract class VictoryDescriptionBuilderBase
         {
             victorDesc = victory.getVictor().getCrewMemberName();
         }
-        if (victory.getVictor().getSquadronName() != null && !(victory.getVictor().getSquadronName().isEmpty()))
+        if (victory.getVictor().getCompanyName() != null && !(victory.getVictor().getCompanyName().isEmpty()))
         {
-            victorDesc += " of " + victory.getVictor().getSquadronName();
+            victorDesc += " of " + victory.getVictor().getCompanyName();
         }
         return victorDesc;
     }

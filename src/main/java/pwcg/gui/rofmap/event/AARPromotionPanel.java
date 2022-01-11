@@ -80,7 +80,7 @@ public class AARPromotionPanel extends AARDocumentPanel
         List<PromotionEvent> promotionEvents = aarCoordinator.getAarContext().getUiDebriefData().getPromotionPanelData().getPromotionEventsDuringElapsedTime();
         for (PromotionEvent promotionEvent : promotionEvents)
 		{
-            if (promotionEvent.getSquadronId() == campaign.findReferencePlayer().getCompanyId())
+            if (promotionEvent.getCompanyId() == campaign.findReferencePlayer().getCompanyId())
             {
                 CampaignReportPromotionGUI promotionGui = new CampaignReportPromotionGUI(campaign, promotionEvent);
                 String tabName = "Promotion Awarded: " + promotionEvent.getNewRank() + " " + promotionEvent.getCrewMemberName();

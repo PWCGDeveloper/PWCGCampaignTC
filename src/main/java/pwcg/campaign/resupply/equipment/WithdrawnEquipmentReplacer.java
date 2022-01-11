@@ -20,13 +20,13 @@ public class WithdrawnEquipmentReplacer
 {
     private Campaign campaign;
     private Equipment equipment;
-    private Company squadron;
+    private Company company;
     
-    public WithdrawnEquipmentReplacer(Campaign campaign, Equipment equipment, Company squadron)
+    public WithdrawnEquipmentReplacer(Campaign campaign, Equipment equipment, Company company)
     {
         this.campaign = campaign;
         this.equipment = equipment;
-        this.squadron = squadron;
+        this.company = company;
     }
     
     public int replaceWithdrawnEquipment() throws PWCGException
@@ -74,7 +74,7 @@ public class WithdrawnEquipmentReplacer
             String planeTypeName = determineTankType();
             if (!planeTypeName.isEmpty())
             {
-                addPlaneToSquadron(planeTypeName);
+                addPlaneToCompany(planeTypeName);
             }
         }
         
@@ -95,7 +95,7 @@ public class WithdrawnEquipmentReplacer
 
     private String determineTankType() throws PWCGException
     {
-        String planeArchTypeName = chooseArchTypeForSquadron();
+        String planeArchTypeName = chooseArchTypeForCompany();
         if (!planeArchTypeName.isEmpty())
         {
             TankArchType planeArchType = PWCGContext.getInstance().getTankTypeFactory().getTankArchType(planeArchTypeName);
@@ -108,7 +108,7 @@ public class WithdrawnEquipmentReplacer
         }
     }
     
-    private String chooseArchTypeForSquadron() throws PWCGException
+    private String chooseArchTypeForCompany() throws PWCGException
     {
         List<String> archTypes = determineAvailableArchTypes();
         if (archTypes.size() > 0)
@@ -141,9 +141,9 @@ public class WithdrawnEquipmentReplacer
         return availableArchTypes;
     }
 
-    private void addPlaneToSquadron(String planeTypeName) throws PWCGException
+    private void addPlaneToCompany(String planeTypeName) throws PWCGException
     {
-        EquippedTank equippedPlane = TankEquipmentFactory.makeTankForSquadron(campaign, planeTypeName, squadron.getCompanyId());
-        equipment.addEquippedTankToCompany(campaign, squadron.getCompanyId(), equippedPlane);
+        EquippedTank equippedPlane = TankEquipmentFactory.makeTankForCompany(campaign, planeTypeName, company.getCompanyId());
+        equipment.addEquippedTankToCompany(campaign, company.getCompanyId(), equippedPlane);
     }
 }

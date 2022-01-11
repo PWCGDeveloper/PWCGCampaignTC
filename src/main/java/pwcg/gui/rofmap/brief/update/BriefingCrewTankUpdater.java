@@ -104,8 +104,8 @@ public class BriefingCrewTankUpdater
     private void configureTankForCrew(TankMcu tank, CrewTankPayloadPairing crewTank) throws PWCGException
     {
         AiSkillLevel aiLevel = crewTank.getCrewMember().getAiSkillLevel();
-        CompanyPersonnel squadronPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(playerUnit.getCompany().getCompanyId());
-        CrewMember crewMember = squadronPersonnel.getCrewMember(crewTank.getCrewMember().getSerialNumber());
+        CompanyPersonnel companyPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(playerUnit.getCompany().getCompanyId());
+        CrewMember crewMember = companyPersonnel.getCrewMember(crewTank.getCrewMember().getSerialNumber());
         if (crewMember == null)
         {
             crewMember = campaign.getPersonnelManager().getCampaignAce(crewTank.getCrewMember().getSerialNumber());

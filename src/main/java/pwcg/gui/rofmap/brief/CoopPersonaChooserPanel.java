@@ -109,7 +109,7 @@ public class CoopPersonaChooserPanel extends ImageResizingPanel implements ISele
                 "User: " + coopUser.getUsername() + 
                 ".  Campaign: "  + campaign.getCampaignData().getName() + 
                 ".  CrewMember Name: "  + crewMember.getNameAndRank() + 
-                ".  Squadron: "  + crewMember.getCompanyId());
+                ".  Company: "  + crewMember.getCompanyId());
         return selectData;
     }
 

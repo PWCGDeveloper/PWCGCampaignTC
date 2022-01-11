@@ -17,16 +17,16 @@ public class MissionHeaderGenerator
         // Even for Coop flights we have to set the header.  Doesn't really matter which flight 
         // as long as it is a player flight
         ITankUnit myUnit = mission.getUnits().getReferencePlayerUnit();
-        Company mySquadron = myUnit.getCompany();
+        Company myCompany = myUnit.getCompany();
         
         MissionHeader missionHeader = new MissionHeader();
         
         String missionFileName = MissionFileNameBuilder.buildMissionFileName(campaign) ;
         missionHeader.setMissionFileName(missionFileName);
         
-        missionHeader.setBase(mySquadron.determineCurrentAirfieldName(campaign.getDate()));
+        missionHeader.setBase(myCompany.determineCurrentAirfieldName(campaign.getDate()));
         missionHeader.setDate(DateUtils.getDateStringYYYYMMDD(campaign.getDate()));
-        missionHeader.setSquadron(mySquadron.determineDisplayName(campaign.getDate()));
+        missionHeader.setCompany(myCompany.determineDisplayName(campaign.getDate()));
         missionHeader.setVehicleType(myUnit.getLeadVehicle().getDisplayName());
 
         

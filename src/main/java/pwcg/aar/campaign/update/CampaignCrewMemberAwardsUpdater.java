@@ -101,8 +101,8 @@ public class CampaignCrewMemberAwardsUpdater
     
     private void adjustCrewMemberSkill() throws PWCGException
     {
-        CrewMembers squadronMembers = CrewMemberFilter.filterActiveAINoWounded(campaign.getPersonnelManager().getActiveCampaignMembers(), campaign.getDate());
-        for (CrewMember crewMember : squadronMembers.getCrewMemberCollection().values())
+        CrewMembers crewMembers = CrewMemberFilter.filterActiveAINoWounded(campaign.getPersonnelManager().getActiveCampaignMembers(), campaign.getDate());
+        for (CrewMember crewMember : crewMembers.getCrewMemberCollection().values())
         {
             if (!crewMember.isHistoricalAce())
             {

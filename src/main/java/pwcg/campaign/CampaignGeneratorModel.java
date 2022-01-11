@@ -16,7 +16,7 @@ public class CampaignGeneratorModel
     private String playerName;
     private String userName;
     private String playerRank;
-    private String squadronName;
+    private String companyName;
     private Date campaignDate;
     private String playerRegion;
     private CampaignMode campaignMode = CampaignMode.CAMPAIGN_MODE_NONE;
@@ -71,14 +71,14 @@ public class CampaignGeneratorModel
         this.playerRank = playerRank;
     }
 
-    public String getSquadronName()
+    public String getCompanyName()
     {
-        return squadronName;
+        return companyName;
     }
 
-    public void setSquadronName(String squadronName)
+    public void setCompanyName(String companyName)
     {
-        this.squadronName = squadronName;
+        this.companyName = companyName;
     }
 
     public Date getCampaignDate()
@@ -113,9 +113,9 @@ public class CampaignGeneratorModel
 
     public Company getCampaignCompany() throws PWCGException
     {
-    	CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
-        Company playerSquadron = squadronManager.getCompanyByName(squadronName, campaignDate);
-        return playerSquadron;
+    	CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+        Company playerCompany = companyManager.getCompanyByName(companyName, campaignDate);
+        return playerCompany;
     }
     
 
@@ -150,9 +150,9 @@ public class CampaignGeneratorModel
             throw new PWCGUserException ("Invalid rank - no rank provided");
         }
 
-        if (getSquadronName() == null || getSquadronName().length() == 0)
+        if (getCompanyName() == null || getCompanyName().length() == 0)
         {
-            throw new PWCGUserException ("Invalid squaron - no squadron provided");
+            throw new PWCGUserException ("Invalid squaron - no company provided");
         }
         
         if (getPlayerRegion() == null)

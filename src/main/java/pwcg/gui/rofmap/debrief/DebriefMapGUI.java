@@ -98,7 +98,7 @@ public class DebriefMapGUI  extends MapGUI implements ActionListener
     {
         CrewMember referencePlayer = campaign.findReferencePlayer();
         AARCombatReportPanelData combatPanelData = aarCoordinator.getAarContext().
-                        findUiCombatReportDataForSquadron(referencePlayer.getCompanyId()).getCombatReportPanelData();
+                        findUiCombatReportDataForCompany(referencePlayer.getCompanyId()).getCombatReportPanelData();
         CampaignMissionWin missionWin = new CampaignMissionWin(combatPanelData);
         MusicManager.playMissionStatusTheme(missionWin.isMissionAWin());
     }
@@ -130,7 +130,7 @@ public class DebriefMapGUI  extends MapGUI implements ActionListener
     {
         CrewMember referencePlayer = campaign.findReferencePlayer();
         List<LogBase> logEvents = aarCoordinator.getAarContext().
-                findUiCombatReportDataForSquadron(referencePlayer.getCompanyId()).getCombatReportMapData().getChronologicalEvents();
+                findUiCombatReportDataForCompany(referencePlayer.getCompanyId()).getCombatReportMapData().getChronologicalEvents();
 
         for (LogBase event : logEvents)
         {
@@ -154,7 +154,7 @@ public class DebriefMapGUI  extends MapGUI implements ActionListener
 	{
         CrewMember referencePlayer = campaign.findReferencePlayer();
         List<LogBase> logEvents = aarCoordinator.getAarContext().
-                        findUiCombatReportDataForSquadron(referencePlayer.getCompanyId()).getCombatReportMapData().getChronologicalEvents();
+                        findUiCombatReportDataForCompany(referencePlayer.getCompanyId()).getCombatReportMapData().getChronologicalEvents();
 
         DebriefMapPanel mapPanel = (DebriefMapPanel)mapScroll.getMapPanel();
         mapPanel.createMapEvents(logEvents);
@@ -254,7 +254,7 @@ public class DebriefMapGUI  extends MapGUI implements ActionListener
     {        
         CrewMember referencePlayer = campaign.findReferencePlayer();
         List<LogBase> logEvents = aarCoordinator.getAarContext().
-                        findUiCombatReportDataForSquadron(referencePlayer.getCompanyId()).getCombatReportMapData().getChronologicalEvents();
+                        findUiCombatReportDataForCompany(referencePlayer.getCompanyId()).getCombatReportMapData().getChronologicalEvents();
 
         if (!logEvents.isEmpty())
         {

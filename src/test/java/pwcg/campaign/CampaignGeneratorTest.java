@@ -38,16 +38,16 @@ public class CampaignGeneratorTest
     	Campaign campaign = generateCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId(), DateUtils.getDateYYYYMMDD("19420801"));
     	assert(campaign.getPersonnelManager().getAllActivePlayers().getCrewMemberList().size() == 1);
         CrewMember player = campaign.findReferencePlayer();
-        Assertions.assertTrue (player.determineSquadron().getCompanyId() == CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
-        Assertions.assertTrue (player.determineSquadron().determineCompanyCountry(campaign.getDate()).getCountry() == Country.GERMANY);
+        Assertions.assertTrue (player.determineCompany().getCompanyId() == CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
+        Assertions.assertTrue (player.determineCompany().determineCompanyCountry(campaign.getDate()).getCountry() == Country.GERMANY);
         Assertions.assertTrue (campaign.getCampaignData().getName().equals(CampaignCacheBase.TEST_CAMPAIGN_NAME));
         assert(campaign.getPersonnelManager().getAllCompanyPersonnel().size() > 6);
         assert(campaign.getEquipmentManager().getEquipmentAllCompanies().size() > 6);
         
-        for (CompanyPersonnel squadronPersonnel : campaign.getPersonnelManager().getAllCompanyPersonnel())
+        for (CompanyPersonnel companyPersonnel : campaign.getPersonnelManager().getAllCompanyPersonnel())
         {
-            CrewMembers squadronMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(squadronPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
-            assert(squadronMembers.getCrewMemberList().size() == Company.COMPANY_STAFF_SIZE);
+            CrewMembers crewMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(companyPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
+            assert(crewMembers.getCrewMemberList().size() == Company.COMPANY_STAFF_SIZE);
         }
         
         
@@ -58,15 +58,15 @@ public class CampaignGeneratorTest
     }
 
     public Campaign generateCampaign(
-                    int squadronId,
+                    int companyId,
                     Date campaignDate) throws PWCGException 
     {
-        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
+        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
         
-        Company squadron = squadronManager.getCompany(squadronId);
+        Company company = companyManager.getCompany(companyId);
         
-        ArmedService service = squadron.determineServiceForCompany(campaignDate);
-        String squadronName = squadron.determineDisplayName(campaignDate);
+        ArmedService service = company.determineServiceForCompany(campaignDate);
+        String companyName = company.determineDisplayName(campaignDate);
         
         IRankHelper rank = RankFactory.createRankHelper();
         String rankName = rank.getRankByService(2, service);
@@ -78,7 +78,7 @@ public class CampaignGeneratorTest
         generatorModel.setPlayerRank(rankName);
         generatorModel.setPlayerRegion("");
         generatorModel.setService(service);
-        generatorModel.setSquadronName(squadronName);
+        generatorModel.setCompanyName(companyName);
         
         CampaignGenerator generator = new CampaignGenerator(generatorModel);
         Campaign campaign = generator.generate();          

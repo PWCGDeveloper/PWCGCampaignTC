@@ -130,12 +130,12 @@ public class TCServiceManager extends ArmedServiceManager implements IArmedServi
     }
 
     @Override
-    public ArmedService determineServiceByParsingSquadronId(int squadronId, Date date) throws PWCGException
+    public ArmedService determineServiceByParsingCompanyId(int companyId, Date date) throws PWCGException
     {
-        String squadronIdString = "" + squadronId;
-        if (squadronIdString.length() >= 3)
+        String companyIdString = "" + companyId;
+        if (companyIdString.length() >= 3)
         {
-            String countryCodeString = squadronIdString.substring(0,3);
+            String countryCodeString = companyIdString.substring(0,3);
             Integer countryCode = Integer.valueOf(countryCodeString);
             ICountry country = CountryFactory.makeCountryByCode(countryCode);
     

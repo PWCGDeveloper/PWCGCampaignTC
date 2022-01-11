@@ -30,10 +30,10 @@ public class AAREquipmentStatusEvaluator
             IAType3 destroyedEventForPlane = logEventData.getDestroyedEvent(logPlane.getId());
             if (destroyedEventForPlane != null)
             {
-                Airfield playerSquadronField = PWCGContext.getInstance().getCompanyManager().getCompany(logPlane.getCompanyId()).determineCurrentAirfieldAnyMap(campaign.getDate());
-                if (playerSquadronField != null)
+                Airfield playerCompanyField = PWCGContext.getInstance().getCompanyManager().getCompany(logPlane.getCompanyId()).determineCurrentAirfieldAnyMap(campaign.getDate());
+                if (playerCompanyField != null)
                 {
-                    EquipmentSurvivalCalculator equipmentSurvivalCalculator = new EquipmentSurvivalCalculator(destroyedEventForPlane.getLocation(), playerSquadronField);
+                    EquipmentSurvivalCalculator equipmentSurvivalCalculator = new EquipmentSurvivalCalculator(destroyedEventForPlane.getLocation(), playerCompanyField);
                     if (equipmentSurvivalCalculator.isPlaneDestroyed())
                     {
                         logPlane.setTankStatus(TankStatus.STATUS_DESTROYED);

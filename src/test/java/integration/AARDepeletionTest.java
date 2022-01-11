@@ -42,30 +42,30 @@ public class AARDepeletionTest
 
             aarCoordinator.reset(campaign);
             aarCoordinator.submitLeave(campaign, 1);
-            int numDepeletedSquadrons = 0;
-            for (Company squadron : PWCGContext.getInstance().getCompanyManager().getActiveCompanies(campaign.getDate()))
+            int numDepeletedCompanys = 0;
+            for (Company company : PWCGContext.getInstance().getCompanyManager().getActiveCompanies(campaign.getDate()))
             {
-                if (!CompanyViability.isCompanyViable(squadron, campaign))
+                if (!CompanyViability.isCompanyViable(company, campaign))
                 {
-                    CompanyPersonnel squadronpersonnel = campaign.getPersonnelManager().getCompanyPersonnel(squadron.getCompanyId());
-                    int numActiveCrewMembers = squadronpersonnel.getCrewMembers().getActiveCount(campaign.getDate());
+                    CompanyPersonnel companypersonnel = campaign.getPersonnelManager().getCompanyPersonnel(company.getCompanyId());
+                    int numActiveCrewMembers = companypersonnel.getCrewMembers().getActiveCount(campaign.getDate());
                     
-                    Equipment squadronEquipment = campaign.getEquipmentManager().getEquipmentForCompany(squadron.getCompanyId());
-                    int numActivePlanes = squadronEquipment.getActiveEquippedTanks().size();
+                    Equipment companyEquipment = campaign.getEquipmentManager().getEquipmentForCompany(company.getCompanyId());
+                    int numActivePlanes = companyEquipment.getActiveEquippedTanks().size();
                     
-                    printIterationResults(squadron, numActiveCrewMembers, numActivePlanes);
+                    printIterationResults(company, numActiveCrewMembers, numActivePlanes);
                     
-                    ++numDepeletedSquadrons;
+                    ++numDepeletedCompanys;
                 }
             }
             
-            assert(numDepeletedSquadrons < 15);
+            assert(numDepeletedCompanys < 15);
         }
     }
 
-    private void printIterationResults(Company squadron, int numActiveCrewMembers, int numActivePlanes) throws PWCGException
+    private void printIterationResults(Company company, int numActiveCrewMembers, int numActivePlanes) throws PWCGException
     {
-        System.out.println("    " + squadron.getCompanyId() + " " + squadron.determineDisplayName(campaign.getDate()));
+        System.out.println("    " + company.getCompanyId() + " " + company.determineDisplayName(campaign.getDate()));
         System.out.println("        CrewMembers: " + numActiveCrewMembers);
         System.out.println("        Planes: " + numActivePlanes);
     } 

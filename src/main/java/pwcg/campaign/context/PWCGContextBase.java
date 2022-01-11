@@ -25,7 +25,7 @@ public abstract class PWCGContextBase
     protected FrontMapIdentifier currentMap = null;
     protected Campaign campaign = null;
     protected AceManager aceManager = new AceManager();
-    protected CompanyManager squadronManager = new CompanyManager();
+    protected CompanyManager companyManager = new CompanyManager();
     protected NewspaperManager newspaperManager = new NewspaperManager();
     protected SkinManager skinManager = new SkinManager();
     protected SkirmishProfileManager skirmishProfileManager = new SkirmishProfileManager();
@@ -46,7 +46,7 @@ public abstract class PWCGContextBase
             map.configure();
         }
 
-        squadronManager.initialize();
+        companyManager.initialize();
         newspaperManager.initialize();
     }
 
@@ -57,7 +57,7 @@ public abstract class PWCGContextBase
         planeTypeFactory.initialize();
         tankTypeFactory.initialize();
         aceManager.configure();
-        squadronManager.initialize();
+        companyManager.initialize();
         skirmishProfileManager.initialize();
         skinManager.initialize();
         vehicleDefinitionManager.initialize();
@@ -204,7 +204,7 @@ public abstract class PWCGContextBase
 
     public CompanyManager getCompanyManager()
     {
-        return squadronManager;
+        return companyManager;
     }
 
 

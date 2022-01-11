@@ -65,8 +65,8 @@ public class CampaignNewsStandScreen extends ImageResizingPanel implements Actio
 
     private JPanel makeNewsLeftPanel() throws PWCGException  
     {
-        JPanel squadronLogPanel = new JPanel(new BorderLayout());
-        squadronLogPanel.setOpaque(false);
+        JPanel companyLogPanel = new JPanel(new BorderLayout());
+        companyLogPanel.setOpaque(false);
 
         JPanel buttonPanel = new JPanel(new GridLayout(0,1));
         buttonPanel.setOpaque(false);
@@ -74,9 +74,9 @@ public class CampaignNewsStandScreen extends ImageResizingPanel implements Actio
         JButton finishedButton = PWCGButtonFactory.makeTranslucentMenuButton("Finished Reading", "Finished", "Leave News Rack", this);
         buttonPanel.add(finishedButton);
 
-        squadronLogPanel.add(buttonPanel, BorderLayout.NORTH);
+        companyLogPanel.add(buttonPanel, BorderLayout.NORTH);
         
-        return squadronLogPanel;
+        return companyLogPanel;
     }
 
     public JPanel makeBlankCenterPanel()  

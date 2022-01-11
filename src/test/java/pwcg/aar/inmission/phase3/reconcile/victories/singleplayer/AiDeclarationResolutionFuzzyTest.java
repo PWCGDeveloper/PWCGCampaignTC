@@ -44,7 +44,7 @@ public class AiDeclarationResolutionFuzzyTest
     @Mock private AARMissionEvaluationData evaluationData;
     @Mock private Campaign campaign;
     @Mock private CampaignData campaignData;
-    @Mock private Company squadron;
+    @Mock private Company company;
     @Mock private CampaignPersonnelManager personnelManager;
     @Mock private AARContext aarContext;
     @Mock private AARPreliminaryData preliminaryData;
@@ -106,17 +106,17 @@ public class AiDeclarationResolutionFuzzyTest
         Mockito.when(aiSquadMember2.determineCountry(ArgumentMatchers.<Date>any())).thenReturn(CountryFactory.makeCountryByCountry(Country.GERMANY));
         Mockito.when(evaluationData.getPlaneInMissionBySerialNumber(SerialNumber.AI_STARTING_SERIAL_NUMBER + 2)).thenReturn(aiVictorTwo);
         
-        List<Company> playerSquadronsInMission = new ArrayList<>();
-        playerSquadronsInMission.add(squadron);
-        Mockito.when(preliminaryData.getPlayerSquadronsInMission()).thenReturn(playerSquadronsInMission);
+        List<Company> playerCompanysInMission = new ArrayList<>();
+        playerCompanysInMission.add(company);
+        Mockito.when(preliminaryData.getPlayerCompanysInMission()).thenReturn(playerCompanysInMission);
 
-        int squadronId = CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId();
-        playerVictor.setCompanyId(squadronId);
-        aiVictorOne.setCompanyId(squadronId);
-        aiVictorTwo.setCompanyId(squadronId);
-        Mockito.when(aiSquadMember1.getCompanyId()).thenReturn(squadronId);
-        Mockito.when(aiSquadMember2.getCompanyId()).thenReturn(squadronId);
-        Mockito.when(squadron.getCompanyId()).thenReturn(squadronId);
+        int companyId = CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId();
+        playerVictor.setCompanyId(companyId);
+        aiVictorOne.setCompanyId(companyId);
+        aiVictorTwo.setCompanyId(companyId);
+        Mockito.when(aiSquadMember1.getCompanyId()).thenReturn(companyId);
+        Mockito.when(aiSquadMember2.getCompanyId()).thenReturn(companyId);
+        Mockito.when(company.getCompanyId()).thenReturn(companyId);
     }
 
     private void createVictory(Integer victimSerialNumber) throws PWCGException

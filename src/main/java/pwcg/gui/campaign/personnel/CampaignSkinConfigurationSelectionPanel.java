@@ -85,8 +85,8 @@ public class CampaignSkinConfigurationSelectionPanel extends ImageResizingPanel 
 
         List<String> skinNames = new ArrayList<String>();
         addNoSkinListToSelection(skinNames);
-        addSquadronSkinsToSelection(skinNames);
-        addNonSquadronSkinsToSelection(skinNames);
+        addCompanySkinsToSelection(skinNames);
+        addNonCompanySkinsToSelection(skinNames);
         addLooseSkinsToSelection(skinNames);
         
         skinButtonGroup = new ButtonGroup();
@@ -123,25 +123,25 @@ public class CampaignSkinConfigurationSelectionPanel extends ImageResizingPanel 
         skinNames.addAll(noSkinList);
     }
 
-    private void addSquadronSkinsToSelection(List<String> skinNames) throws PWCGException
+    private void addCompanySkinsToSelection(List<String> skinNames) throws PWCGException
     {
         SkinSessionManager skinSessionManager = parent.getSkinSessionManager();
-        if (skinSessionManager.isSquadronSkinsSelected())
+        if (skinSessionManager.isCompanySkinsSelected())
         {
-            List<Skin> squadronSkins = skinSessionManager.getSquadronSkins(selectedPlane);
-            List<String> squadronSkinNames = getStringNamesFromSkins(squadronSkins);
-            skinNames.addAll(squadronSkinNames);
+            List<Skin> companySkins = skinSessionManager.getCompanySkins(selectedPlane);
+            List<String> companySkinNames = getStringNamesFromSkins(companySkins);
+            skinNames.addAll(companySkinNames);
         }
     }
 
-    private void addNonSquadronSkinsToSelection(List<String> skinNames) throws PWCGException
+    private void addNonCompanySkinsToSelection(List<String> skinNames) throws PWCGException
     {
         SkinSessionManager skinSessionManager = parent.getSkinSessionManager();
-        if (skinSessionManager.isNonSquadronSkinsSelected())
+        if (skinSessionManager.isNonCompanySkinsSelected())
         {
-            List<Skin> nonSquadronSkins = skinSessionManager.getNonSquadronSkins(selectedPlane);
-            List<String> nonSquadronSkinNames = getStringNamesFromSkins(nonSquadronSkins);
-            skinNames.addAll(nonSquadronSkinNames);
+            List<Skin> nonCompanySkins = skinSessionManager.getNonCompanySkins(selectedPlane);
+            List<String> nonCompanySkinNames = getStringNamesFromSkins(nonCompanySkins);
+            skinNames.addAll(nonCompanySkinNames);
         }
     }
 

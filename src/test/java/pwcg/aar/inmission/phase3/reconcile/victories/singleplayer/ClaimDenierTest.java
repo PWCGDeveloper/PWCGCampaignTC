@@ -37,7 +37,7 @@ public class ClaimDenierTest
     @Mock private CrewMembers playerMembers;
     @Mock private CrewMember player;
     @Mock private CrewMember crewMember;
-    @Mock private Company squadron;
+    @Mock private Company company;
     @Mock private TankTypeFactory planeFactory;
     @Mock private TankType planeType;
    

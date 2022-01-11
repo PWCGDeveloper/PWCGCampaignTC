@@ -61,26 +61,26 @@ public class CampaignTransferScreen extends ImageResizingPanel implements Action
 {
     private static final long serialVersionUID = 1L;
 
-    private CrewMember squadronMemberToTransfer = null; 
+    private CrewMember companyMemberToTransfer = null; 
     private IRefreshableParentUI parentScreen = null;
     private Campaign campaign = null;   
     private boolean passTime = false;   
     
 	private JComboBox<String> cbService;
-	private JComboBox<String> cbSquadron;
+	private JComboBox<String> cbCompany;
     private JComboBox<String> cbRole;
-    private JTextArea tSquadronInfo;
+    private JTextArea tCompanyInfo;
 	private JButton acceptButton = null;
     private ArmedService service = null;
 
-	public CampaignTransferScreen  (Campaign campaign, CrewMember squadronMemberToTransfer, IRefreshableParentUI parentScreen, boolean passTime)
+	public CampaignTransferScreen  (Campaign campaign, CrewMember companyMemberToTransfer, IRefreshableParentUI parentScreen, boolean passTime)
 	{
         super("");
         this.setLayout(new GridBagLayout());
         this.setOpaque(false);
 
 		this.parentScreen = parentScreen;
-        this.squadronMemberToTransfer = squadronMemberToTransfer;
+        this.companyMemberToTransfer = companyMemberToTransfer;
         this.campaign = campaign;
         this.passTime = passTime;
 	}
@@ -90,7 +90,7 @@ public class CampaignTransferScreen extends ImageResizingPanel implements Action
         String imagePath = UiImageResolver.getImage(ScreenIdentifier.CampaignTransferScreen);
         this.setImageFromName(imagePath);
 
-        service = this.squadronMemberToTransfer.determineService(campaign.getDate());
+        service = this.companyMemberToTransfer.determineService(campaign.getDate());
 
         GridBagConstraints constraints = initializeGridbagConstraints();
 
@@ -164,7 +164,7 @@ public class CampaignTransferScreen extends ImageResizingPanel implements Action
         List<Component> components = new ArrayList<Component>();
         int rowNum = 0;
 
-        JLabel lName = PWCGLabelFactory.makeTransparentLabel(squadronMemberToTransfer.getNameAndRank(), ColorMap.PAPER_FOREGROUND, font, SwingConstants.LEFT);
+        JLabel lName = PWCGLabelFactory.makeTransparentLabel(companyMemberToTransfer.getNameAndRank(), ColorMap.PAPER_FOREGROUND, font, SwingConstants.LEFT);
         
         components.clear();
         components.add(lName);
@@ -186,8 +186,8 @@ public class CampaignTransferScreen extends ImageResizingPanel implements Action
         transferCenterPanel.add(transferPanel, BorderLayout.NORTH);
         
            
-        JPanel squadronPanel = createSquadronInfoPanel ();
-        transferCenterPanel.add(squadronPanel, BorderLayout.SOUTH);
+        JPanel companyPanel = createCompanyInfoPanel ();
+        transferCenterPanel.add(companyPanel, BorderLayout.SOUTH);
 
         evaluate();
         
@@ -198,20 +198,20 @@ public class CampaignTransferScreen extends ImageResizingPanel implements Action
 
     private void initializeValues() throws PWCGException 
     {
-        ArmedService playerService = squadronMemberToTransfer.determineService(campaign.getDate());
+        ArmedService playerService = companyMemberToTransfer.determineService(campaign.getDate());
         cbService.setSelectedItem(playerService.getName());
 
-        Company playerSquadron = squadronMemberToTransfer.determineSquadron();        
+        Company playerCompany = companyMemberToTransfer.determineCompany();        
 
-        if (playerSquadron.isSquadronThisRole(campaign.getDate(), PwcgRole.ROLE_SELF_PROPELLED_AAA))
+        if (playerCompany.isCompanyThisRole(campaign.getDate(), PwcgRole.ROLE_SELF_PROPELLED_AAA))
         {
             cbRole.setSelectedItem(PwcgRole.ROLE_SELF_PROPELLED_AAA);
         }
-        else if (playerSquadron.isSquadronThisRole(campaign.getDate(), PwcgRole.ROLE_TANK_DESTROYER))
+        else if (playerCompany.isCompanyThisRole(campaign.getDate(), PwcgRole.ROLE_TANK_DESTROYER))
         {
             cbRole.setSelectedItem(PwcgRole.ROLE_TANK_DESTROYER);
         }
-        else if (playerSquadron.isSquadronThisRole(campaign.getDate(), PwcgRole.ROLE_SELF_PROPELLED_GUN))
+        else if (playerCompany.isCompanyThisRole(campaign.getDate(), PwcgRole.ROLE_SELF_PROPELLED_GUN))
         {
             cbRole.setSelectedItem(PwcgRole.ROLE_SELF_PROPELLED_GUN);
         }
@@ -261,13 +261,13 @@ public class CampaignTransferScreen extends ImageResizingPanel implements Action
         transferText += ": ";
         JLabel lTransfer = PWCGLabelFactory.makeTransparentLabel(transferText, ColorMap.PAPER_FOREGROUND, font,SwingConstants.LEFT);
 
-        cbSquadron = new JComboBox<String>();
-        cbSquadron.setBackground(buttonBG);
-        cbSquadron.setActionCommand("SquadronChanged");
-        cbSquadron.addActionListener(this);
+        cbCompany = new JComboBox<String>();
+        cbCompany.setBackground(buttonBG);
+        cbCompany.setActionCommand("CompanyChanged");
+        cbCompany.addActionListener(this);
         components.clear();
         components.add(lTransfer);
-        components.add(cbSquadron);
+        components.add(cbCompany);
         rowNum = addRow(transferPanel, components, rowNum);
         return rowNum;
     }
@@ -282,7 +282,7 @@ public class CampaignTransferScreen extends ImageResizingPanel implements Action
         cbService = new JComboBox<String>();
         
         List<ArmedService> services = null;
-        if (squadronMemberToTransfer.determineCountry(campaign.getDate()).getSideNoNeutral() == Side.ALLIED)
+        if (companyMemberToTransfer.determineCountry(campaign.getDate()).getSideNoNeutral() == Side.ALLIED)
         {
             services = ArmedServiceFactory.createServiceManager().getAlliedServices(campaign.getDate());
         }
@@ -313,32 +313,32 @@ public class CampaignTransferScreen extends ImageResizingPanel implements Action
         cbService.addItem(service.getName());
 	}
 
-    private JPanel createSquadronInfoPanel () throws PWCGException 
+    private JPanel createCompanyInfoPanel () throws PWCGException 
     {
         Font font = PWCGMonitorFonts.getTypewriterFont();
         Color bgColor = ColorMap.PAPER_BACKGROUND;
         Color fgColor = ColorMap.PAPER_FOREGROUND;
         
-        JPanel squadronPanel = new JPanel(new GridLayout(0,3));
-        squadronPanel.setOpaque(false);
+        JPanel companyPanel = new JPanel(new GridLayout(0,3));
+        companyPanel.setOpaque(false);
 
-        squadronPanel.add(PWCGLabelFactory.makeDummyLabel());
+        companyPanel.add(PWCGLabelFactory.makeDummyLabel());
         
-        // Squadron info
-        tSquadronInfo = new JTextArea();
-        tSquadronInfo.setBackground(bgColor);
-        tSquadronInfo.setForeground(fgColor);
-        tSquadronInfo.setFont(font);
-        tSquadronInfo.setEditable(false);
-        tSquadronInfo.setLineWrap(true);
-        tSquadronInfo.setWrapStyleWord(true);
-        tSquadronInfo.setText("");
-        tSquadronInfo.setOpaque(false);
-        squadronPanel.add(tSquadronInfo);
+        // Company info
+        tCompanyInfo = new JTextArea();
+        tCompanyInfo.setBackground(bgColor);
+        tCompanyInfo.setForeground(fgColor);
+        tCompanyInfo.setFont(font);
+        tCompanyInfo.setEditable(false);
+        tCompanyInfo.setLineWrap(true);
+        tCompanyInfo.setWrapStyleWord(true);
+        tCompanyInfo.setText("");
+        tCompanyInfo.setOpaque(false);
+        companyPanel.add(tCompanyInfo);
 
-        squadronPanel.add(PWCGLabelFactory.makeDummyLabel());
+        companyPanel.add(PWCGLabelFactory.makeDummyLabel());
         
-        return squadronPanel;
+        return companyPanel;
     }
 
 	private int addRow(JPanel panel, List<Component> components, int rowNum)
@@ -389,37 +389,37 @@ public class CampaignTransferScreen extends ImageResizingPanel implements Action
 
 	private void evaluate() throws PWCGException 
 	{		
-		cbSquadron.removeAllItems();
+		cbCompany.removeAllItems();
 		CompanyManager squadManager = PWCGContext.getInstance().getCompanyManager();
 				
-		List<Company> squadronList = squadManager.getPlayerCompaniesByService(service, campaign.getDate());
+		List<Company> companyList = squadManager.getPlayerCompaniesByService(service, campaign.getDate());
 		
         String roleDesc = (String)cbRole.getSelectedItem();
         PwcgRole role = PwcgRole.getRoleFromDescription(roleDesc);
         
-		for (int i = 0; i < squadronList.size(); ++i)
+		for (int i = 0; i < companyList.size(); ++i)
 		{
-			Company company = squadronList.get(i);
+			Company company = companyList.get(i);
 			Date campaignDate = campaign.getDate();
-			if(company.getCompanyId() != squadronMemberToTransfer.getCompanyId())
+			if(company.getCompanyId() != companyMemberToTransfer.getCompanyId())
 			{
 			    if (company.determineCompanyPrimaryRoleCategory(campaignDate) == role.getRoleCategory())
 			    {
 			        String display = company.determineDisplayName(campaign.getDate());
 			        CampaignAces aces =  PWCGContext.getInstance().getAceManager().loadFromHistoricalAces(campaignDate);
-			        List<TankAce> squadronAces =  PWCGContext.getInstance().getAceManager().getActiveAcesForSquadron(aces, campaignDate, company.getCompanyId());
-			        if (!squadronMemberToTransfer.isCommander(campaignDate) || !company.isCommandedByAce(squadronAces, campaignDate))
+			        List<TankAce> companyAces =  PWCGContext.getInstance().getAceManager().getActiveAcesForCompany(aces, campaignDate, company.getCompanyId());
+			        if (!companyMemberToTransfer.isCommander(campaignDate) || !company.isCommandedByAce(companyAces, campaignDate))
 			        {
-			            cbSquadron.addItem(display);
+			            cbCompany.addItem(display);
 			        }
 			    }
 			}
 		}
 		
-        String squadronName = (String)cbSquadron.getSelectedItem();
-		setSquadronInfo(squadronName);
+        String companyName = (String)cbCompany.getSelectedItem();
+		setCompanyInfo(companyName);
 		
-		if (cbSquadron.getItemCount() == 0)
+		if (cbCompany.getItemCount() == 0)
 		{
 			acceptButton.setEnabled(false);
 		}
@@ -429,20 +429,20 @@ public class CampaignTransferScreen extends ImageResizingPanel implements Action
 		}
 	}
 
-    private void setSquadronInfo(String squadronName) throws PWCGException 
+    private void setCompanyInfo(String companyName) throws PWCGException 
     {
-        String squadronInfo = "";
-        if (squadronName != null)
+        String companyInfo = "";
+        if (companyName != null)
         {
-            Company company = PWCGContext.getInstance().getCompanyManager().getCompanyByName(squadronName, campaign.getDate());
-            squadronInfo = company.determineSquadronInfo(campaign.getDate());
+            Company company = PWCGContext.getInstance().getCompanyManager().getCompanyByName(companyName, campaign.getDate());
+            companyInfo = company.determineCompanyInfo(campaign.getDate());
         }
-        tSquadronInfo.setText(squadronInfo);
+        tCompanyInfo.setText(companyInfo);
     }
 
 	public String getSelectedSquad()
 	{
-		String squadName = (String)cbSquadron.getSelectedItem();
+		String squadName = (String)cbCompany.getSelectedItem();
 		return squadName;
 	}
 
@@ -467,10 +467,10 @@ public class CampaignTransferScreen extends ImageResizingPanel implements Action
                 evaluate();
                 return;
             }
-            else if (action.equalsIgnoreCase("SquadronChanged"))
+            else if (action.equalsIgnoreCase("CompanyChanged"))
             {
-                String squadronName = (String)cbSquadron.getSelectedItem();
-                setSquadronInfo(squadronName);
+                String companyName = (String)cbCompany.getSelectedItem();
+                setCompanyInfo(companyName);
             }
             else if (action.equalsIgnoreCase("Accept Transfer"))
             {
@@ -520,9 +520,9 @@ public class CampaignTransferScreen extends ImageResizingPanel implements Action
     private TransferEvent transferPlayer() throws PWCGException
     {
         String newSquadName = getSelectedSquad();
-        TransferHandler transferHandler = new TransferHandler(campaign, squadronMemberToTransfer);
-        Company newSquadron = PWCGContext.getInstance().getCompanyManager().getCompanyByName(newSquadName, campaign.getDate());
-        TransferEvent transferEvent = transferHandler.transferPlayer(squadronMemberToTransfer.determineSquadron(), newSquadron);
+        TransferHandler transferHandler = new TransferHandler(campaign, companyMemberToTransfer);
+        Company newCompany = PWCGContext.getInstance().getCompanyManager().getCompanyByName(newSquadName, campaign.getDate());
+        TransferEvent transferEvent = transferHandler.transferPlayer(companyMemberToTransfer.determineCompany(), newCompany);
         return transferEvent;
     }
 }

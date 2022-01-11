@@ -41,8 +41,8 @@ public class CrewMemberReplacementFactoryTest
 
         ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(20101);
 
-        CrewMemberReplacementFactory squadronMemberFactory = new  CrewMemberReplacementFactory (campaign, service);
-        CrewMember replacement = squadronMemberFactory.createAIReplacementCrewMember();
+        CrewMemberReplacementFactory companyMemberFactory = new  CrewMemberReplacementFactory (campaign, service);
+        CrewMember replacement = companyMemberFactory.createAIReplacementCrewMember();
         
         assert(replacement.isPlayer() == false);
         assert(replacement.getSerialNumber() >= SerialNumber.AI_STARTING_SERIAL_NUMBER);
@@ -58,8 +58,8 @@ public class CrewMemberReplacementFactoryTest
 
         ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(20101);
 
-        CrewMemberReplacementFactory squadronMemberFactory = new  CrewMemberReplacementFactory (campaign, service);
-        CrewMember replacement = squadronMemberFactory.createAIReplacementCrewMember();
+        CrewMemberReplacementFactory companyMemberFactory = new  CrewMemberReplacementFactory (campaign, service);
+        CrewMember replacement = companyMemberFactory.createAIReplacementCrewMember();
         
         assert(replacement.isPlayer() == false);
         assert(replacement.getSerialNumber() >= SerialNumber.AI_STARTING_SERIAL_NUMBER);

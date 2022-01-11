@@ -23,7 +23,7 @@ import pwcg.mission.flight.plane.PlaneMcu;
 public class MissionSkinInitializerTest
 {
     @Mock private Campaign campaign;
-    @Mock private Company squadron;
+    @Mock private Company company;
     @Mock private IFlight flight;
     @Mock private IFlightPlanes flightPlanes;
     @Mock private ICountry country;
@@ -42,8 +42,8 @@ public class MissionSkinInitializerTest
         Mockito.when(flight.getFlightPlanes()).thenReturn(flightPlanes);
         Mockito.when(flightPlanes.getPlanes()).thenReturn(planes);
         
-        Mockito.when(flight.getCompany()).thenReturn(squadron);
-        Mockito.when(squadron.determineCompanyCountry(Mockito.any())).thenReturn(country);
+        Mockito.when(flight.getCompany()).thenReturn(company);
+        Mockito.when(company.determineCompanyCountry(Mockito.any())).thenReturn(country);
         
         planes.clear();
         planes.add(plane1);
@@ -54,7 +54,7 @@ public class MissionSkinInitializerTest
     @Test
     public void buildMissionSkinSetForSummer() throws Exception
     {
-        Mockito.when(squadron.getCompanyId()).thenReturn(20111003);
+        Mockito.when(company.getCompanyId()).thenReturn(20111003);
         Mockito.when(country.getCountryName()).thenReturn("Germany");
 
         plane1.setType("bf109f4");
@@ -64,9 +64,9 @@ public class MissionSkinInitializerTest
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420501"));
 
         MissionSkinSet missionSkinSet = MissionSkinSetBuilder.buildSummerMissionSkinSet(flight);
-        MissionSkinInitializer.intitializeSkin(missionSkinSet, squadron, plane1, DateUtils.getDateYYYYMMDD("19420501"));
-        MissionSkinInitializer.intitializeSkin(missionSkinSet, squadron, plane2, DateUtils.getDateYYYYMMDD("19420501"));
-        MissionSkinInitializer.intitializeSkin(missionSkinSet, squadron, plane3, DateUtils.getDateYYYYMMDD("19420501"));
+        MissionSkinInitializer.intitializeSkin(missionSkinSet, company, plane1, DateUtils.getDateYYYYMMDD("19420501"));
+        MissionSkinInitializer.intitializeSkin(missionSkinSet, company, plane2, DateUtils.getDateYYYYMMDD("19420501"));
+        MissionSkinInitializer.intitializeSkin(missionSkinSet, company, plane3, DateUtils.getDateYYYYMMDD("19420501"));
         
         assert(plane1.getSkin().getSkinName().length() > 0);
         assert(plane2.getSkin().getSkinName().length() > 0);
@@ -76,7 +76,7 @@ public class MissionSkinInitializerTest
     @Test
     public void buildMissionSkinSetForWinter() throws PWCGException
     {
-        Mockito.when(squadron.getCompanyId()).thenReturn(10111011);
+        Mockito.when(company.getCompanyId()).thenReturn(10111011);
         Mockito.when(country.getCountryName()).thenReturn("Russia");
 
         plane1.setType("lagg3s29");
@@ -86,9 +86,9 @@ public class MissionSkinInitializerTest
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420101"));
 
         MissionSkinSet missionSkinSet = MissionSkinSetBuilder.buildWinterMissionSkinSet(flight);
-        MissionSkinInitializer.intitializeSkin(missionSkinSet, squadron, plane1, DateUtils.getDateYYYYMMDD("19420501"));
-        MissionSkinInitializer.intitializeSkin(missionSkinSet, squadron, plane2, DateUtils.getDateYYYYMMDD("19420501"));
-        MissionSkinInitializer.intitializeSkin(missionSkinSet, squadron, plane3, DateUtils.getDateYYYYMMDD("19420501"));
+        MissionSkinInitializer.intitializeSkin(missionSkinSet, company, plane1, DateUtils.getDateYYYYMMDD("19420501"));
+        MissionSkinInitializer.intitializeSkin(missionSkinSet, company, plane2, DateUtils.getDateYYYYMMDD("19420501"));
+        MissionSkinInitializer.intitializeSkin(missionSkinSet, company, plane3, DateUtils.getDateYYYYMMDD("19420501"));
 
         assert(plane1.getSkin().getSkinName().length() > 0);
         assert(plane2.getSkin().getSkinName().length() > 0);
@@ -98,7 +98,7 @@ public class MissionSkinInitializerTest
     @Test
     public void buildMissionSkinSetForDiffentTankTypesInFlight() throws PWCGException
     {
-        Mockito.when(squadron.getCompanyId()).thenReturn(20111003);
+        Mockito.when(company.getCompanyId()).thenReturn(20111003);
         Mockito.when(country.getCountryName()).thenReturn("Germany");
 
         plane1.setType("bf109f4");
@@ -108,9 +108,9 @@ public class MissionSkinInitializerTest
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420501"));
 
         MissionSkinSet missionSkinSet = MissionSkinSetBuilder.buildSummerMissionSkinSet(flight);
-        MissionSkinInitializer.intitializeSkin(missionSkinSet, squadron, plane1, DateUtils.getDateYYYYMMDD("19420501"));
-        MissionSkinInitializer.intitializeSkin(missionSkinSet, squadron, plane2, DateUtils.getDateYYYYMMDD("19420501"));
-        MissionSkinInitializer.intitializeSkin(missionSkinSet, squadron, plane3, DateUtils.getDateYYYYMMDD("19420501"));
+        MissionSkinInitializer.intitializeSkin(missionSkinSet, company, plane1, DateUtils.getDateYYYYMMDD("19420501"));
+        MissionSkinInitializer.intitializeSkin(missionSkinSet, company, plane2, DateUtils.getDateYYYYMMDD("19420501"));
+        MissionSkinInitializer.intitializeSkin(missionSkinSet, company, plane3, DateUtils.getDateYYYYMMDD("19420501"));
 
         assert(plane1.getSkin().getSkinName().length() > 0);
         assert(plane2.getSkin().getSkinName().length() > 0);

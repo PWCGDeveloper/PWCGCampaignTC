@@ -26,9 +26,9 @@ public class PwcgMissionDataEvaluatorTest
     CampaignPersonnelManager personnelManager;
 
     @Mock
-    Company squadron;
+    Company company;
     
-    static int thisSquadronId = 20111052; // JG52
+    static int thisCompanyId = 20111052; // JG52
 
     public PwcgMissionDataEvaluatorTest() throws PWCGException
     {
@@ -47,7 +47,7 @@ public class PwcgMissionDataEvaluatorTest
     }
     
     @Test
-    public void determineCrewsInMissionFromPlayerSquadronTest () throws PWCGException
+    public void determineCrewsInMissionFromPlayerCompanyTest () throws PWCGException
     {             
     }
     

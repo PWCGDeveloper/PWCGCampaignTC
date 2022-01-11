@@ -19,20 +19,20 @@ import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 
 @ExtendWith(MockitoExtension.class)
-public class SquadronHistoryValidationTest
+public class CompanyHistoryValidationTest
 {
     @Test
-    public void readJsonBoSSquadronsTest() throws PWCGException
+    public void readJsonBoSCompanysTest() throws PWCGException
     {
         
-        List<Company> squadrons = CompanyIOJson.readJson();
-        Assertions.assertTrue (squadrons.size() > 0);
+        List<Company> companys = CompanyIOJson.readJson();
+        Assertions.assertTrue (companys.size() > 0);
         
         boolean success = true;
-        for (Company squadron : squadrons)
+        for (Company company : companys)
         {
-            verifyVVSTransition(squadron);
-            if (!verifyBoSTransitionDates(squadron))
+            verifyVVSTransition(company);
+            if (!verifyBoSTransitionDates(company))
             {
                 success = false;
             }
@@ -41,36 +41,36 @@ public class SquadronHistoryValidationTest
         assert(success);
     }
     
-    private void verifyVVSTransition(Company squadron) throws PWCGException
+    private void verifyVVSTransition(Company company) throws PWCGException
     {
-        if (squadron.getCompanyId() == 10131136)
+        if (company.getCompanyId() == 10131136)
         {
-            CompanyHistory squadronHistory = squadron.getSquadHistory();
-            Assertions.assertTrue (squadronHistory != null);
+            CompanyHistory companyHistory = company.getSquadHistory();
+            Assertions.assertTrue (companyHistory != null);
             
-            CompanyHistoryEntry  squadHistoryEntry = squadronHistory.getSquadHistoryEntry(DateUtils.getDateYYYYMMDD("19420301"));
+            CompanyHistoryEntry  squadHistoryEntry = companyHistory.getSquadHistoryEntry(DateUtils.getDateYYYYMMDD("19420301"));
             Assertions.assertTrue (squadHistoryEntry != null);
             Assertions.assertTrue (squadHistoryEntry.getArmedServiceName().equals("Voyenno-Vozdushnye Sily"));
             Assertions.assertTrue (squadHistoryEntry.getSquadName().equals("45th Bomber Air Regiment"));
             Assertions.assertTrue (squadHistoryEntry.getSkill() == 40);
             
-            assert(squadron.determineSquadronSkill(DateUtils.getDateYYYYMMDD("19420228")) == 30);
-            assert(squadron.determineDisplayName(DateUtils.getDateYYYYMMDD("19420228")).equals("136th Bomber Air Regiment"));
+            assert(company.determineCompanySkill(DateUtils.getDateYYYYMMDD("19420228")) == 30);
+            assert(company.determineDisplayName(DateUtils.getDateYYYYMMDD("19420228")).equals("136th Bomber Air Regiment"));
 
-            assert(squadron.determineSquadronSkill(DateUtils.getDateYYYYMMDD("19420301")) == 40);
-            assert(squadron.determineDisplayName(DateUtils.getDateYYYYMMDD("19420301")).equals("45th Bomber Air Regiment"));
+            assert(company.determineCompanySkill(DateUtils.getDateYYYYMMDD("19420301")) == 40);
+            assert(company.determineDisplayName(DateUtils.getDateYYYYMMDD("19420301")).equals("45th Bomber Air Regiment"));
         }
     }
     
-    private boolean verifyBoSTransitionDates(Company squadron) throws PWCGException
+    private boolean verifyBoSTransitionDates(Company company) throws PWCGException
     {
-        CompanyHistory squadronHistory = squadron.getSquadHistory();
+        CompanyHistory companyHistory = company.getSquadHistory();
         boolean success = true;
         try 
         {
-            if (squadronHistory != null)
+            if (companyHistory != null)
             {
-                validateBoSSquadHistoryEntries(squadronHistory);
+                validateBoSSquadHistoryEntries(companyHistory);
             }
         }
         catch (PWCGException e)
@@ -82,16 +82,16 @@ public class SquadronHistoryValidationTest
         return success;
     }
 
-    private void validateBoSSquadHistoryEntries(CompanyHistory squadronHistory) throws PWCGException
+    private void validateBoSSquadHistoryEntries(CompanyHistory companyHistory) throws PWCGException
     {
-        validateNoDuplicateEntries(squadronHistory);
-        validateNoOutOfOrderEntries(squadronHistory);
+        validateNoDuplicateEntries(companyHistory);
+        validateNoOutOfOrderEntries(companyHistory);
     }
     
-    private void validateNoDuplicateEntries(CompanyHistory squadronHistory) throws PWCGException
+    private void validateNoDuplicateEntries(CompanyHistory companyHistory) throws PWCGException
     {
         List<CompanyHistoryEntry> validatedEntries = new ArrayList<>();
-        for (CompanyHistoryEntry  squadHistoryEntry : squadronHistory.getSquadHistoryEntries())
+        for (CompanyHistoryEntry  squadHistoryEntry : companyHistory.getSquadHistoryEntries())
         {
             for (CompanyHistoryEntry validatedSquadHistoryEntry : validatedEntries)
             {
@@ -106,10 +106,10 @@ public class SquadronHistoryValidationTest
         }
     }
     
-    private void validateNoOutOfOrderEntries(CompanyHistory squadronHistory) throws PWCGException
+    private void validateNoOutOfOrderEntries(CompanyHistory companyHistory) throws PWCGException
     {
         CompanyHistoryEntry lastEntry = null;
-        for (CompanyHistoryEntry  squadHistoryEntry : squadronHistory.getSquadHistoryEntries())
+        for (CompanyHistoryEntry  squadHistoryEntry : companyHistory.getSquadHistoryEntries())
         {
             if (lastEntry != null)
             {

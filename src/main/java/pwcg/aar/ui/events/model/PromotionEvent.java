@@ -10,9 +10,9 @@ public class PromotionEvent extends AARCrewMemberEvent
     private String newRank = "";
     private String promotingGeneral = "";
 
-    public PromotionEvent(Campaign campaign, String oldRank, String newRank, String promotingGeneral, int squadronId, int crewMemberSerialNumber, Date date, boolean isNewsWorthy)
+    public PromotionEvent(Campaign campaign, String oldRank, String newRank, String promotingGeneral, int companyId, int crewMemberSerialNumber, Date date, boolean isNewsWorthy)
     {
-        super(campaign, squadronId, crewMemberSerialNumber, date, isNewsWorthy);
+        super(campaign, companyId, crewMemberSerialNumber, date, isNewsWorthy);
         this.oldRank = oldRank;
         this.newRank = newRank;
         this.promotingGeneral = promotingGeneral;

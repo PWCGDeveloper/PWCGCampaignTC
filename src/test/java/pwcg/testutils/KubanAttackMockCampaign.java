@@ -39,9 +39,9 @@ public class KubanAttackMockCampaign
     @Mock protected MissionFlights missionFlightBuilder;
     @Mock protected ConfigManagerCampaign configManager;
     @Mock protected CampaignPersonnelManager personnelManager;
-    @Mock protected CompanyPersonnel squadronPersonnel;
+    @Mock protected CompanyPersonnel companyPersonnel;
     @Mock protected CampaignEquipmentManager equipmentManager;
-    @Mock protected Equipment squadronEquipment;
+    @Mock protected Equipment companyEquipment;
     @Mock protected CrewMember player;
     @Mock protected FlightInformation flightInformation;
     @Mock protected MissionHumanParticipants humanParticipants;
@@ -52,7 +52,7 @@ public class KubanAttackMockCampaign
     
     protected Date date;
     protected MissionGroundUnitResourceManager missionGroundUnitResourceManager = new MissionGroundUnitResourceManager();
-    protected Company squadron;
+    protected Company company;
 
     public void mockCampaignSetup() throws PWCGException
     {
@@ -61,18 +61,18 @@ public class KubanAttackMockCampaign
 
         date = DateUtils.getDateYYYYMMDD("19430401");
         
-        squadron = PWCGContext.getInstance().getCompanyManager().getCompany(20121002); // I./St.G.2
+        company = PWCGContext.getInstance().getCompanyManager().getCompany(20121002); // I./St.G.2
 
         Mockito.when(campaign.getCampaignConfigManager()).thenReturn(configManager);
         Mockito.when(campaign.getDate()).thenReturn(date);
 
         Mockito.when(campaign.getPersonnelManager()).thenReturn(personnelManager);
-        Mockito.when(personnelManager.getCompanyPersonnel(Mockito.any())).thenReturn(squadronPersonnel);
-        Mockito.when(squadronPersonnel.isSquadronPersonnelViable()).thenReturn(true);
+        Mockito.when(personnelManager.getCompanyPersonnel(Mockito.any())).thenReturn(companyPersonnel);
+        Mockito.when(companyPersonnel.isCompanyPersonnelViable()).thenReturn(true);
         
         Mockito.when(campaign.getEquipmentManager()).thenReturn(equipmentManager);
-        Mockito.when(equipmentManager.getEquipmentForCompany(Mockito.any())).thenReturn(squadronEquipment);
-        Mockito.when(squadronEquipment.isCompanyEquipmentViable()).thenReturn(true);
+        Mockito.when(equipmentManager.getEquipmentForCompany(Mockito.any())).thenReturn(companyEquipment);
+        Mockito.when(companyEquipment.isCompanyEquipmentViable()).thenReturn(true);
 
         Mockito.when(configManager.getStringConfigParam(ConfigItemKeys.SimpleConfigGroundKey)).thenReturn(ConfigSimple.CONFIG_LEVEL_MED);
         Mockito.when(mission.getMissionGroundUnitManager()).thenReturn(missionGroundUnitResourceManager);
@@ -89,7 +89,7 @@ public class KubanAttackMockCampaign
     {
         Mockito.when(flightInformation.getCampaign()).thenReturn(campaign);
         Mockito.when(flightInformation.getMission()).thenReturn(mission);
-        Mockito.when(flightInformation.getCompany()).thenReturn(squadron);
+        Mockito.when(flightInformation.getCompany()).thenReturn(company);
         Mockito.when(flightInformation.getFlightType()).thenReturn(FlightTypes.DIVE_BOMB);
     }
 

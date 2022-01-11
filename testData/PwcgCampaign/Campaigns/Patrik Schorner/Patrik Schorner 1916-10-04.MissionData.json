@@ -1,7 +1,7 @@
 {
   "missionHeader": {
     "missionFileName": "Patrik Schorner 1916-10-04",
-    "squadron": "Jasta 16b",
+    "company": "Jasta 16b",
     "date": "19161004",
     "time": "15:30:00",
     "aircraftType": "AircraftType \u003d Albatros D.I",
@@ -10,11 +10,11 @@
     "duty": "PATROL",
     "altitude": 2352
   },
-  "missionDescription": "Mission:\nAircraft  Albatros D.II\nSquadron  Jasta 16b\nAirbase  Balatre,E Roye\nDate  1916-10-04\n\nWeather Report\nMedium cloud cover, medium altitude.\nCloud layer is 2521 meters.\nWind speed is 2 M/S.\nWind direction is 313.\n\nPrimary Objective\nPatrol airspace  near Ecuvilly.  Engage any enemy aircraft that you encounter.\n\n\n",
+  "missionDescription": "Mission:\nAircraft  Albatros D.II\nCompany  Jasta 16b\nAirbase  Balatre,E Roye\nDate  1916-10-04\n\nWeather Report\nMedium cloud cover, medium altitude.\nCloud layer is 2521 meters.\nWind speed is 2 M/S.\nWind direction is 313.\n\nPrimary Objective\nPatrol airspace  near Ecuvilly.  Engage any enemy aircraft that you encounter.\n\n\n",
   "missionPlanes": [
     {
       "aircraftType": "albatrosd2",
-      "squadronName": "Jasta 16b",
+      "companyName": "Jasta 16b",
       "crew": {
         "pilot": "Patrik Schorner",
         "observer": "",
@@ -24,7 +24,7 @@
     },
     {
       "aircraftType": "albatrosd2",
-      "squadronName": "Jasta 16b",
+      "companyName": "Jasta 16b",
       "crew": {
         "pilot": "Otto Kissenberth",
         "observer": "",
@@ -34,7 +34,7 @@
     },
     {
       "aircraftType": "albatrosd2",
-      "squadronName": "Jasta 16b",
+      "companyName": "Jasta 16b",
       "crew": {
         "pilot": "Gebhard Schonbaum",
         "observer": "",
@@ -44,7 +44,7 @@
     },
     {
       "aircraftType": "halberstadtd2",
-      "squadronName": "Jasta 16b",
+      "companyName": "Jasta 16b",
       "crew": {
         "pilot": "Ingemar Beckermann",
         "observer": "",
@@ -54,7 +54,7 @@
     },
     {
       "aircraftType": "halberstadtd2",
-      "squadronName": "Jasta 3",
+      "companyName": "Jasta 3",
       "crew": {
         "pilot": "Ernst Oberlander",
         "observer": "",
@@ -64,7 +64,7 @@
     },
     {
       "aircraftType": "halberstadtd2",
-      "squadronName": "Jasta 3",
+      "companyName": "Jasta 3",
       "crew": {
         "pilot": "Walfred Turnau",
         "observer": "",
@@ -74,7 +74,7 @@
     },
     {
       "aircraftType": "rolc2a",
-      "squadronName": "Schlasta 13",
+      "companyName": "Schlasta 13",
       "crew": {
         "pilot": "Gustav Schett",
         "observer": "Hubert Raupach",
@@ -84,7 +84,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 17",
+      "companyName": "Esc 17",
       "crew": {
         "pilot": "Leo Kriegel",
         "observer": "Stephane Betirac",
@@ -94,7 +94,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 17",
+      "companyName": "Esc 17",
       "crew": {
         "pilot": "Gustave Jean",
         "observer": "Jules Coquard",
@@ -104,7 +104,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "No 8 Squadron RFC",
+      "companyName": "No 8 Company RFC",
       "crew": {
         "pilot": "Fitzgerald Waldeley",
         "observer": "Gavin Motesfont",
@@ -114,7 +114,7 @@
     },
     {
       "aircraftType": "nieuport11",
-      "squadronName": "Esc 68",
+      "companyName": "Esc 68",
       "crew": {
         "pilot": "Adolphe Labauge",
         "observer": "",
@@ -124,7 +124,7 @@
     },
     {
       "aircraftType": "nieuport11",
-      "squadronName": "Esc 68",
+      "companyName": "Esc 68",
       "crew": {
         "pilot": "Ignace Schlegel",
         "observer": "",
@@ -134,7 +134,7 @@
     },
     {
       "aircraftType": "nieuport11",
-      "squadronName": "Esc 68",
+      "companyName": "Esc 68",
       "crew": {
         "pilot": "Jacob Neyrat",
         "observer": "",
@@ -144,7 +144,7 @@
     },
     {
       "aircraftType": "nieuport11",
-      "squadronName": "Esc 68",
+      "companyName": "Esc 68",
       "crew": {
         "pilot": "Auguste Vallat",
         "observer": "",
@@ -154,7 +154,7 @@
     },
     {
       "aircraftType": "nieuport11",
-      "squadronName": "Esc 12",
+      "companyName": "Esc 12",
       "crew": {
         "pilot": "Anton Gallet",
         "observer": "",
@@ -164,7 +164,7 @@
     },
     {
       "aircraftType": "nieuport11",
-      "squadronName": "Esc 12",
+      "companyName": "Esc 12",
       "crew": {
         "pilot": "Zephirin Fournier",
         "observer": "",

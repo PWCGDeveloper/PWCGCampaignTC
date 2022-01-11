@@ -1,7 +1,7 @@
 {
   "missionHeader": {
     "missionFileName": "Patrik Schorner 1916-09-01",
-    "squadron": "Jasta 16b",
+    "company": "Jasta 16b",
     "date": "19160901",
     "time": "9:0:00",
     "aircraftType": "AircraftType \u003d Halberstadt D.I",
@@ -10,11 +10,11 @@
     "duty": "BALLOON_DEFENSE",
     "altitude": 2000
   },
-  "missionDescription": "Mission:\nAircraft  Halberstadt D.II\nSquadron  Jasta 16b\nAirbase  Balatre,E Roye\nDate  1916-09-01\n\nWeather Report\nLight cloud cover, high altitude.\nCloud layer is 4451 meters.\nWind speed is 1 M/S.\nWind direction is 222.\n\nPrimary Objective\nDefend our balloon near Ecuvilly.\n\n\n",
+  "missionDescription": "Mission:\nAircraft  Halberstadt D.II\nCompany  Jasta 16b\nAirbase  Balatre,E Roye\nDate  1916-09-01\n\nWeather Report\nLight cloud cover, high altitude.\nCloud layer is 4451 meters.\nWind speed is 1 M/S.\nWind direction is 222.\n\nPrimary Objective\nDefend our balloon near Ecuvilly.\n\n\n",
   "missionPlanes": [
     {
       "aircraftType": "halberstadtd2",
-      "squadronName": "Jasta 16b",
+      "companyName": "Jasta 16b",
       "crew": {
         "pilot": "Patrik Schorner",
         "observer": "",
@@ -24,7 +24,7 @@
     },
     {
       "aircraftType": "halberstadtd2",
-      "squadronName": "Jasta 16b",
+      "companyName": "Jasta 16b",
       "crew": {
         "pilot": "Oswald Fromm",
         "observer": "",
@@ -34,7 +34,7 @@
     },
     {
       "aircraftType": "halberstadtd2",
-      "squadronName": "Jasta 16b",
+      "companyName": "Jasta 16b",
       "crew": {
         "pilot": "Gebhard Schonbaum",
         "observer": "",
@@ -44,7 +44,7 @@
     },
     {
       "aircraftType": "halberstadtd2",
-      "squadronName": "Jasta 16b",
+      "companyName": "Jasta 16b",
       "crew": {
         "pilot": "Ruprecht Hess",
         "observer": "",
@@ -54,7 +54,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 45",
+      "companyName": "Esc 45",
       "crew": {
         "pilot": "Corentin Lezot",
         "observer": "Michel Richard",
@@ -64,7 +64,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 45",
+      "companyName": "Esc 45",
       "crew": {
         "pilot": "Adolphe Vertadier",
         "observer": "Anton Brossier",
@@ -74,7 +74,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 23",
+      "companyName": "FA 23",
       "crew": {
         "pilot": "Maximillian Herzl",
         "observer": "Wenzel Hefter",
@@ -84,7 +84,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 23",
+      "companyName": "FA 23",
       "crew": {
         "pilot": "Jurgen Danneberg",
         "observer": "Lukas Friesinger",
@@ -94,7 +94,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 21",
+      "companyName": "Esc 21",
       "crew": {
         "pilot": "Edmond Canere",
         "observer": "Ignace Breidenstein",
@@ -104,7 +104,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 21",
+      "companyName": "Esc 21",
       "crew": {
         "pilot": "Jean-Marie Labordes",
         "observer": "Jean-Baptiste Hocquinghen",
@@ -114,7 +114,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "No 23 Squadron RFC",
+      "companyName": "No 23 Company RFC",
       "crew": {
         "pilot": "Culver Bedell",
         "observer": "Mark Cook",
@@ -124,7 +124,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "No 23 Squadron RFC",
+      "companyName": "No 23 Company RFC",
       "crew": {
         "pilot": "Tristan Botteler",
         "observer": "Harrison Fayneman",

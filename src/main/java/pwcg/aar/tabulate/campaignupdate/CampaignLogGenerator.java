@@ -8,9 +8,9 @@ import pwcg.aar.data.ui.UIDebriefData;
 import pwcg.aar.outofmission.phase4.ElapsedTIme.ElapsedTimeEventGenerator;
 import pwcg.aar.outofmission.phase4.ElapsedTIme.ElapsedTimeEvents;
 import pwcg.aar.ui.display.model.CampaignUpdateEvents;
+import pwcg.aar.ui.events.model.CompanyMoveEvent;
 import pwcg.aar.ui.events.model.CrewMemberStatusEvent;
 import pwcg.aar.ui.events.model.PlaneStatusEvent;
-import pwcg.aar.ui.events.model.SquadronMoveEvent;
 import pwcg.campaign.Campaign;
 import pwcg.core.exception.PWCGException;
 
@@ -81,9 +81,9 @@ public class CampaignLogGenerator
         {
             ElapsedTimeEventGenerator elapsedTimeEventGenerator = new ElapsedTimeEventGenerator(campaign, aarContext);  
             ElapsedTimeEvents elapsedTimeEvents = elapsedTimeEventGenerator.createElapsedTimeEvents();
-            for (SquadronMoveEvent squadronMoveEvent : elapsedTimeEvents.getSquadronMoveEvents())
+            for (CompanyMoveEvent companyMoveEvent : elapsedTimeEvents.getCompanyMoveEvents())
             {
-                campaignLogEvents.addEvent(squadronMoveEvent);
+                campaignLogEvents.addEvent(companyMoveEvent);
             }
 
             if (elapsedTimeEvents.getEndOfWarEvent() != null)

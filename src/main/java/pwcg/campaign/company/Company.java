@@ -47,7 +47,7 @@ public class Company
 {
     public static final Integer HOME_ASSIGNMENT = -2;
     public static final Integer REPLACEMENT = -1;
-    public static final Integer SQUADRON_ID_ANY = -1;
+    public static final Integer Company_ID_ANY = -1;
     public static final Integer COMPANY_STAFF_SIZE = 16;
     public static final Integer COMPANY_EQUIPMENT_SIZE = 16;
     public static final Integer MIN_REEQUIPMENT_SIZE = 10;
@@ -132,7 +132,7 @@ public class Company
     }
 
 
-    public boolean isPlaneInActiveSquadronArchTypes(Date date, EquippedTank plane) throws PWCGException
+    public boolean isPlaneInActiveCompanyArchTypes(Date date, EquippedTank plane) throws PWCGException
     {
         boolean isActiveArchType = false;
         for (TankArchType archType : determineCurrentAircraftArchTypes(date))
@@ -298,11 +298,11 @@ public class Company
         return null;
 	}
 
-	public String determineSquadronDescription(Date date) throws PWCGException 
+	public String determineCompanyDescription(Date date) throws PWCGException 
 	{
 		String companyDescription = "";
 		
-		companyDescription += "\nSquadron: " + determineDisplayName(date) + "\n\n";
+		companyDescription += "\nCompany: " + determineDisplayName(date) + "\n\n";
 		
         String status = determineSkillDescription();
         if (status != null && status.length() > 0)
@@ -329,7 +329,7 @@ public class Company
 
 		Campaign campaign =     PWCGContext.getInstance().getCampaign();
 		List<TankAce> aces =  PWCGContext.getInstance().getAceManager().
-		                getActiveAcesForSquadron(campaign.getPersonnelManager().getCampaignAces(), campaign.getDate(), getCompanyId());
+		                getActiveAcesForCompany(campaign.getPersonnelManager().getCampaignAces(), campaign.getDate(), getCompanyId());
 
 		companyDescription += "\nAces on staff:\n";
 		for (TankAce ace : aces)
@@ -340,19 +340,19 @@ public class Company
 		return companyDescription;
 	}
 
-	public List<Date> determineDatesSquadronAtField(Airfield field)
+	public List<Date> determineDatesCompanyAtField(Airfield field)
 	{
-		List<Date> datesSquadronAtField = new ArrayList<Date>();
+		List<Date> datesCompanyAtField = new ArrayList<Date>();
 		
 		for (String airfieldName : bases.values())
 		{
 			if (airfieldName.equals(field.getName()))
 			{
-				datesSquadronAtField.add(field.getStartDate());
+				datesCompanyAtField.add(field.getStartDate());
 			}
 		}
 		
-		return datesSquadronAtField;
+		return datesCompanyAtField;
 	}
 
     public ICountry determineEnemyCountry(Date date) throws PWCGException
@@ -478,7 +478,7 @@ public class Company
         return planes.get(0);
     }
 
-    public String determineSquadronInfo(Date campaignDate) throws PWCGException 
+    public String determineCompanyInfo(Date campaignDate) throws PWCGException 
     {
         StringBuffer companyInfo = new StringBuffer("");
         
@@ -577,12 +577,12 @@ public class Company
 		return companyId;
 	}
 
-	public void setSquadronId(int id) 
+	public void setCompanyId(int id) 
 	{
 		this.companyId = id;
 	}
 
-	public int determineSquadronSkill(Date date) throws PWCGException 
+	public int determineCompanySkill(Date date) throws PWCGException 
 	{
 	    int skillNow = skill;
         CompanyHistoryEntry companyHistoryEntry = getCompanyHistoryEntryForDate(date);
@@ -591,7 +591,7 @@ public class Company
             if (companyHistoryEntry != null)
             {
                 int skillAtDate = companyHistoryEntry.getSkill();
-                if (skillAtDate != CompanyHistoryEntry.NO_SQUADRON_SKILL_CHANGE && skillAtDate > 20)
+                if (skillAtDate != CompanyHistoryEntry.NO_Company_SKILL_CHANGE && skillAtDate > 20)
                 {
                     skillNow = skillAtDate;
                 }
@@ -722,7 +722,7 @@ public class Company
         this.skins = skins;
     }
 
-    public CompanyRoleSet getSquadronRoles()
+    public CompanyRoleSet getCompanyRoles()
     {
         return companyRoles;
     }
@@ -778,7 +778,7 @@ public class Company
         return code;
     }
 
-    public boolean isSquadronThisRole (Date date, PwcgRole requestedRole) throws PWCGException 
+    public boolean isCompanyThisRole (Date date, PwcgRole requestedRole) throws PWCGException 
     {
         return companyRoles.isCompanyThisRole(date, requestedRole);
     }

@@ -49,8 +49,8 @@ public class PromotionArbitrator implements IPromotionEventHandler
             } 
             else if (rankPosBeforePromotion == 1)
             {
-                boolean squadronHasCommander = determineSquadronhasCommander(campaign, crewMember);
-                if (crewMember.isPlayer() || !squadronHasCommander)
+                boolean companyHasCommander = determineCompanyhasCommander(campaign, crewMember);
+                if (crewMember.isPlayer() || !companyHasCommander)
                 {
                     promotion = rankObj.getRankByService(0, service);
                 }
@@ -62,7 +62,7 @@ public class PromotionArbitrator implements IPromotionEventHandler
 
     private int getCrewMemberVictories(Campaign campaign, CrewMember crewMember) throws PWCGException
     {
-        PwcgRoleCategory roleCategory = crewMember.determineSquadron().determineCompanyPrimaryRoleCategory(campaign.getDate());
+        PwcgRoleCategory roleCategory = crewMember.determineCompany().determineCompanyPrimaryRoleCategory(campaign.getDate());
         CrewMemberVictories victories = crewMember.getCrewMemberVictories();
         if (roleCategory == PwcgRoleCategory.FIGHTER)
         {
@@ -74,19 +74,19 @@ public class PromotionArbitrator implements IPromotionEventHandler
         }
     }
 
-    private boolean determineSquadronhasCommander(Campaign campaign, CrewMember referenceCrewMember) throws PWCGException
+    private boolean determineCompanyhasCommander(Campaign campaign, CrewMember referenceCrewMember) throws PWCGException
     {
-        boolean squadronHasCommander = false;
+        boolean companyHasCommander = false;
         CompanyPersonnel playerPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(referenceCrewMember.getCompanyId());
         CrewMembers activePersonnel = CrewMemberFilter.filterActiveAIAndPlayerAndAces(playerPersonnel.getCrewMembers().getCrewMemberCollection(), campaign.getDate());
         for (CrewMember crewMember : activePersonnel.getCrewMemberList())
         {
-            if (crewMember.determineIsCrewMemberCommander())
+            if (crewMember.determineIsCrewMemberCommander(campaign))
             {
-                squadronHasCommander = true;
+                companyHasCommander = true;
             }
         }
-        return squadronHasCommander;
+        return companyHasCommander;
     }
 
     private int getRankPositionForCrewMember(Campaign campaign, CrewMember crewMember) throws PWCGException

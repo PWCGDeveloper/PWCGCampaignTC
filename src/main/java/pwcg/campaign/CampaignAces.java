@@ -42,9 +42,9 @@ public class CampaignAces
     }
 
 
-    public List<TankAce> getActiveCampaignAcesBySquadron(int squadronId) throws PWCGException
+    public List<TankAce> getActiveCampaignAcesByCompany(int companyId) throws PWCGException
     {
-        List<TankAce> acesForSquadron = new ArrayList<>();
+        List<TankAce> acesForCompany = new ArrayList<>();
         for (TankAce ace : acesInCampaign.values())
         {
             if (ace.getCrewMemberActiveStatus() != CrewMemberStatus.STATUS_ACTIVE)
@@ -52,17 +52,17 @@ public class CampaignAces
                 continue;
             }
             
-            Company aceSquadron = ace.determineSquadron();
-            if (aceSquadron != null)
+            Company aceCompany = ace.determineCompany();
+            if (aceCompany != null)
             {
-                if (aceSquadron.getCompanyId() == squadronId)
+                if (aceCompany.getCompanyId() == companyId)
                 {
-                    acesForSquadron.add(ace);
+                    acesForCompany.add(ace);
                 }
             }
         }
         
-        return acesForSquadron;
+        return acesForCompany;
     }
 
 	public void setCampaignAces(Map<Integer, TankAce> acesInCampaign)

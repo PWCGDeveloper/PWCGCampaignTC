@@ -101,15 +101,15 @@ public class CampaignAwardsGeneratorTest
     {            
         CrewMembers nonPlayerCrewMembers = CrewMemberFilter.filterActiveAINoWounded(campaign.getPersonnelManager().getAllCampaignMembers(), campaign.getDate());
 
-        Map<Integer, CrewMember> squadronMembersInjured = new HashMap<>();
-        squadronMembersInjured.put(nonPlayerCrewMembers.getCrewMemberList().get(1).getSerialNumber(), nonPlayerCrewMembers.getCrewMemberList().get(1));
-        squadronMembersInjured.put(nonPlayerCrewMembers.getCrewMemberList().get(2).getSerialNumber(), nonPlayerCrewMembers.getCrewMemberList().get(2));
-        squadronMembersInjured.put(nonPlayerCrewMembers.getCrewMemberList().get(3).getSerialNumber(), nonPlayerCrewMembers.getCrewMemberList().get(3));
+        Map<Integer, CrewMember> crewMembersInjured = new HashMap<>();
+        crewMembersInjured.put(nonPlayerCrewMembers.getCrewMemberList().get(1).getSerialNumber(), nonPlayerCrewMembers.getCrewMemberList().get(1));
+        crewMembersInjured.put(nonPlayerCrewMembers.getCrewMemberList().get(2).getSerialNumber(), nonPlayerCrewMembers.getCrewMemberList().get(2));
+        crewMembersInjured.put(nonPlayerCrewMembers.getCrewMemberList().get(3).getSerialNumber(), nonPlayerCrewMembers.getCrewMemberList().get(3));
         
         Mockito.when(personnelLosses.crewMemberisWoundedToday(nonPlayerCrewMembers.getCrewMemberList().get(2))).thenReturn(true);
          
         CampaignAwardsGenerator awardsGenerator = new CampaignAwardsGenerator(campaign, aarContext);
-        AARPersonnelAwards campaignMemberAwards = awardsGenerator.createCampaignMemberAwards(new ArrayList<>(squadronMembersInjured.values()));
+        AARPersonnelAwards campaignMemberAwards = awardsGenerator.createCampaignMemberAwards(new ArrayList<>(crewMembersInjured.values()));
         
         Assertions.assertTrue (campaignMemberAwards.getCampaignMemberMedals().size() == 1);
         Assertions.assertTrue (!campaignMemberAwards.getCampaignMemberMedals().containsKey(nonPlayerCrewMembers.getCrewMemberList().get(1).getSerialNumber()));
@@ -123,17 +123,17 @@ public class CampaignAwardsGeneratorTest
     {     
         CrewMembers nonPlayerCrewMembers = CrewMemberFilter.filterActiveAINoWounded(campaign.getPersonnelManager().getAllCampaignMembers(), campaign.getDate());
 
-        Map<Integer, CrewMember> squadronMembersInjured = new HashMap<>();
-        squadronMembersInjured.put(nonPlayerCrewMembers.getCrewMemberList().get(1).getSerialNumber(), nonPlayerCrewMembers.getCrewMemberList().get(1));
-        squadronMembersInjured.put(nonPlayerCrewMembers.getCrewMemberList().get(2).getSerialNumber(), nonPlayerCrewMembers.getCrewMemberList().get(2));
-        squadronMembersInjured.put(nonPlayerCrewMembers.getCrewMemberList().get(3).getSerialNumber(), nonPlayerCrewMembers.getCrewMemberList().get(3));
+        Map<Integer, CrewMember> crewMembersInjured = new HashMap<>();
+        crewMembersInjured.put(nonPlayerCrewMembers.getCrewMemberList().get(1).getSerialNumber(), nonPlayerCrewMembers.getCrewMemberList().get(1));
+        crewMembersInjured.put(nonPlayerCrewMembers.getCrewMemberList().get(2).getSerialNumber(), nonPlayerCrewMembers.getCrewMemberList().get(2));
+        crewMembersInjured.put(nonPlayerCrewMembers.getCrewMemberList().get(3).getSerialNumber(), nonPlayerCrewMembers.getCrewMemberList().get(3));
         
         CampaignPersonnelTestHelper.addVictories(nonPlayerCrewMembers.getCrewMemberList().get(3), campaign.getDate(), 20);
         nonPlayerCrewMembers.getCrewMemberList().get(3).setRank("Leutnant");
         nonPlayerCrewMembers.getCrewMemberList().get(3).setBattlesFought(150);
 
         CampaignAwardsGenerator awardsGenerator = new CampaignAwardsGenerator(campaign, aarContext);
-        AARPersonnelAwards campaignMemberAwards = awardsGenerator.createCampaignMemberAwards(new ArrayList<>(squadronMembersInjured.values()));
+        AARPersonnelAwards campaignMemberAwards = awardsGenerator.createCampaignMemberAwards(new ArrayList<>(crewMembersInjured.values()));
                 
         Assertions.assertTrue (campaignMemberAwards.getPromotions().size() == 1);
         Assertions.assertTrue (campaignMemberAwards.getPromotions().containsKey(nonPlayerCrewMembers.getCrewMemberList().get(3).getSerialNumber()));

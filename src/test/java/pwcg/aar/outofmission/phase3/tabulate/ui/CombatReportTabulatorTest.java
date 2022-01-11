@@ -92,16 +92,16 @@ public class CombatReportTabulatorTest extends AARTestSetup
         List<VictoryEvent> victories = new ArrayList<>();
         VictoryEvent victoryEvent = new VictoryEvent(campaign, victory, CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId(), crewMember1.getSerialNumber(), campaign.getDate(), isNewsWorthy);        
         victories.add(victoryEvent);
-        VictoryEvent victoryEventNotFromSquadron = new VictoryEvent(campaign, victory, CompanyTestProfile.ESC_3_PROFILE.getCompanyId(), crewMember2.getSerialNumber(), campaign.getDate(), isNewsWorthy);        
-        victories.add(victoryEventNotFromSquadron);
+        VictoryEvent victoryEventNotFromCompany = new VictoryEvent(campaign, victory, CompanyTestProfile.ESC_3_PROFILE.getCompanyId(), crewMember2.getSerialNumber(), campaign.getDate(), isNewsWorthy);        
+        victories.add(victoryEventNotFromCompany);
         Mockito.when(victoryEventGenerator.createCrewMemberVictoryEvents(ArgumentMatchers.<Map<Integer, List<Victory>>>any())).thenReturn(victories);
                 
         isNewsWorthy = true;
         CrewMemberStatusEvent crewMemberStatusEvent = new CrewMemberStatusEvent(campaign, CrewMemberStatus.STATUS_KIA, CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId(), crewMember1.getSerialNumber(), campaign.getDate(), isNewsWorthy);
-        CrewMemberStatusEvent crewMemberStatusEventNotFromSquadron = new CrewMemberStatusEvent(campaign, CrewMemberStatus.STATUS_KIA, CompanyTestProfile.ESC_3_PROFILE.getCompanyId(), crewMember2.getSerialNumber(), campaign.getDate(), isNewsWorthy);
+        CrewMemberStatusEvent crewMemberStatusEventNotFromCompany = new CrewMemberStatusEvent(campaign, CrewMemberStatus.STATUS_KIA, CompanyTestProfile.ESC_3_PROFILE.getCompanyId(), crewMember2.getSerialNumber(), campaign.getDate(), isNewsWorthy);
         Map<Integer, CrewMemberStatusEvent> crewMembersLost = new HashMap<>();
         crewMembersLost.put(crewMember1.getSerialNumber(), crewMemberStatusEvent);
-        crewMembersLost.put(crewMember2.getSerialNumber(), crewMemberStatusEventNotFromSquadron);
+        crewMembersLost.put(crewMember2.getSerialNumber(), crewMemberStatusEventNotFromCompany);
         Mockito.when(crewMemberStatusEventGenerator.createCrewMemberLossEvents(ArgumentMatchers.<AARPersonnelLosses>any())).thenReturn(crewMembersLost);
 
         boolean isNewsworthy = true;
@@ -109,17 +109,17 @@ public class CombatReportTabulatorTest extends AARTestSetup
         logPlane.initializeFromOutOfMission(campaign, plane1, crewMember1);
         PlaneStatusEvent planeStatusEvent = new PlaneStatusEvent(campaign, logPlane, TankStatus.STATUS_DESTROYED, isNewsworthy);
 
-        LogTank logPlaneNotFromSquadron = new LogTank(AARContextEventSequence.getNextOutOfMissionEventSequenceNumber());
-        logPlaneNotFromSquadron.initializeFromOutOfMission(campaign, plane2, crewMember2);
-        PlaneStatusEvent planeStatusEventNotFromSquadron = new PlaneStatusEvent(campaign, logPlane, TankStatus.STATUS_DESTROYED, isNewsworthy);
+        LogTank logPlaneNotFromCompany = new LogTank(AARContextEventSequence.getNextOutOfMissionEventSequenceNumber());
+        logPlaneNotFromCompany.initializeFromOutOfMission(campaign, plane2, crewMember2);
+        PlaneStatusEvent planeStatusEventNotFromCompany = new PlaneStatusEvent(campaign, logPlane, TankStatus.STATUS_DESTROYED, isNewsworthy);
 
         Map<Integer, PlaneStatusEvent> planesLost = new HashMap<>();
         planesLost.put(plane1.getSerialNumber(), planeStatusEvent);
-        planesLost.put(plane2.getSerialNumber(), planeStatusEventNotFromSquadron);
+        planesLost.put(plane2.getSerialNumber(), planeStatusEventNotFromCompany);
         Mockito.when(planeStatusEventGenerator.createPlaneLossEvents(ArgumentMatchers.<AAREquipmentLosses>any())).thenReturn(planesLost);
 
-        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
-        AARCombatReportTabulator combatReportPanelEventTabulator = new AARCombatReportTabulator(campaign, squadron, aarContext);
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
+        AARCombatReportTabulator combatReportPanelEventTabulator = new AARCombatReportTabulator(campaign, company, aarContext);
         combatReportPanelEventTabulator.setCrewMemberStatusEventGenerator(crewMemberStatusEventGenerator);
         combatReportPanelEventTabulator.setPlaneStatusEventGenerator(planeStatusEventGenerator);
         combatReportPanelEventTabulator.setVictoryEventGenerator(victoryEventGenerator);
@@ -129,7 +129,7 @@ public class CombatReportTabulatorTest extends AARTestSetup
         Assertions.assertTrue (combatReportPanelData.getCrewsInMission().size() == 1);
         Assertions.assertTrue (combatReportPanelData.getMissionHeader().getMissionFileName().equals("MissionFileName"));
         Assertions.assertTrue (combatReportPanelData.getCrewMembersLostInMission().size() == 1);
-        Assertions.assertTrue (combatReportPanelData.getSquadronPlanesLostInMission().size() == 1);
+        Assertions.assertTrue (combatReportPanelData.getCompanyPlanesLostInMission().size() == 1);
         Assertions.assertTrue (combatReportPanelData.getVictoriesForCrewMembersInMission().size() == 1);
 
     }

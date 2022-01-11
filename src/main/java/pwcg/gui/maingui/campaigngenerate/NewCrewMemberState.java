@@ -23,7 +23,7 @@ public class NewCrewMemberState
         CHOOSE_REGION,
         CHOOSE_ROLE,
         CHOOSE_RANK,
-        CHOOSE_SQUADRON,
+        CHOOSE_Company,
         COMPLETE
     }
     
@@ -44,7 +44,7 @@ public class NewCrewMemberState
 
         stateStack.add(CrewMemberGeneratorWorkflow.CHOOSE_ROLE);
         stateStack.add(CrewMemberGeneratorWorkflow.CHOOSE_RANK);
-        stateStack.add(CrewMemberGeneratorWorkflow.CHOOSE_SQUADRON);
+        stateStack.add(CrewMemberGeneratorWorkflow.CHOOSE_Company);
         stateStack.add(CrewMemberGeneratorWorkflow.COMPLETE);
     }
 

@@ -40,7 +40,7 @@ public class AARAceLeavePanelEventTabulatorTest extends AARTestSetup
     {
         setupAARMocks();
         
-        Mockito.when(ace.determineSquadron()).thenReturn(squadronEsc103);
+        Mockito.when(ace.determineCompany()).thenReturn(companyEsc103);
 
         Mockito.when(acesTransferred.getCrewMembersTransferred()).thenReturn(transferRecords);
         

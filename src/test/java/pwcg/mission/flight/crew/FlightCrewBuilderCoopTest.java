@@ -20,7 +20,7 @@ import pwcg.mission.Mission;
 import pwcg.mission.MissionGenerator;
 import pwcg.mission.MissionHumanParticipants;
 import pwcg.mission.MissionProfile;
-import pwcg.mission.MissionSquadronFlightTypes;
+import pwcg.mission.MissionCompanyFlightTypes;
 import pwcg.mission.flight.FlightInformation;
 import pwcg.mission.flight.FlightTypes;
 import pwcg.mission.flight.NecessaryFlightType;
@@ -48,35 +48,35 @@ public class FlightCrewBuilderCoopTest
         MissionHumanParticipants participatingPlayers = new MissionHumanParticipants();
     	for (CrewMember player : coopCampaign.getPersonnelManager().getAllActivePlayers().getCrewMemberList())
     	{
-    		if (player.getName().contentEquals("Squadron Mate"))
+    		if (player.getName().contentEquals("Company Mate"))
     		{
     			participatingPlayers.addCrewMember(player);
     		}
     	}
     	
-        MissionSquadronFlightTypes playerFlightTypes = new MissionSquadronFlightTypes();
+        MissionCompanyFlightTypes playerFlightTypes = new MissionCompanyFlightTypes();
     	for (CrewMember player : participatingPlayers.getAllParticipatingPlayers())
     	{
-    	    playerFlightTypes.add(player.determineSquadron(), FlightTypes.GROUND_ATTACK);
+    	    playerFlightTypes.add(player.determineCompany(), FlightTypes.GROUND_ATTACK);
     	}
     	
         MissionGenerator missionGenerator = new MissionGenerator(coopCampaign);
         Mission mission = missionGenerator.makeTestCoopMissionFromFlightType(participatingPlayers, playerFlightTypes, MissionProfile.DAY_TACTICAL_MISSION);
         
         FlightInformation flightInformation = new FlightInformation(mission, NecessaryFlightType.PLAYER_FLIGHT);
-        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.COOP_COMPETITIVE_PROFILE.getCompanyId());
-        flightInformation.setCompany(squadron);
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.COOP_COMPETITIVE_PROFILE.getCompanyId());
+        flightInformation.setCompany(company);
         
         UnitCrewBuilder flightCrewBuilder = new UnitCrewBuilder(flightInformation);
         List<CrewMember> assignedCrewMap = flightCrewBuilder.createCrewAssignmentsForFlight(4);
         
         boolean playerFound = false;
         boolean playerShouldNotBeFound = true;
-        CompanyPersonnel squadronPersonnel = coopCampaign.getPersonnelManager().getCompanyPersonnel(CompanyTestProfile.COOP_COMPETITIVE_PROFILE.getCompanyId());        
+        CompanyPersonnel companyPersonnel = coopCampaign.getPersonnelManager().getCompanyPersonnel(CompanyTestProfile.COOP_COMPETITIVE_PROFILE.getCompanyId());        
         for (CrewMember crew : assignedCrewMap)
         {
-            assert(squadronPersonnel.isActiveCrewMember(crew.getSerialNumber()));
-            if (crew.getName().equals("Squadron Mate"))
+            assert(companyPersonnel.isActiveCrewMember(crew.getSerialNumber()));
+            if (crew.getName().equals("Company Mate"))
             {
             	playerFound = true;
             }
@@ -102,29 +102,29 @@ public class FlightCrewBuilderCoopTest
     	}
         
         List<FlightTypes> playerFlightTypeList = makeFlightTypes(participatingPlayers);
-        MissionSquadronFlightTypes playerFlightTypes = new MissionSquadronFlightTypes();
+        MissionCompanyFlightTypes playerFlightTypes = new MissionCompanyFlightTypes();
         for (int i = 0; i < participatingPlayers.getParticipatingCompanyIds().size(); ++i)
         {
-            Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(participatingPlayers.getParticipatingCompanyIds().get(i));
-            playerFlightTypes.add(squadron, playerFlightTypeList.get(i));
+            Company company = PWCGContext.getInstance().getCompanyManager().getCompany(participatingPlayers.getParticipatingCompanyIds().get(i));
+            playerFlightTypes.add(company, playerFlightTypeList.get(i));
         }
 
         MissionGenerator missionGenerator = new MissionGenerator(coopCampaign);
         Mission mission = missionGenerator.makeTestCoopMissionFromFlightType(participatingPlayers, playerFlightTypes, MissionProfile.DAY_TACTICAL_MISSION);
 
         FlightInformation flightInformation = new FlightInformation(mission, NecessaryFlightType.PLAYER_FLIGHT);
-        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.COOP_COMPETITIVE_PROFILE.getCompanyId());
-        flightInformation.setCompany(squadron);
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.COOP_COMPETITIVE_PROFILE.getCompanyId());
+        flightInformation.setCompany(company);
         
         UnitCrewBuilder flightCrewBuilder = new UnitCrewBuilder(flightInformation);
         List<CrewMember> assignedCrewMap = flightCrewBuilder.createCrewAssignmentsForFlight(4);
         
         boolean player1Found = false;
         boolean player2Found = false;
-        CompanyPersonnel squadronPersonnel = coopCampaign.getPersonnelManager().getCompanyPersonnel(CompanyTestProfile.COOP_COMPETITIVE_PROFILE.getCompanyId());        
+        CompanyPersonnel companyPersonnel = coopCampaign.getPersonnelManager().getCompanyPersonnel(CompanyTestProfile.COOP_COMPETITIVE_PROFILE.getCompanyId());        
         for (CrewMember crew : assignedCrewMap)
         {
-            assert(squadronPersonnel.isActiveCrewMember(crew.getSerialNumber()));
+            assert(companyPersonnel.isActiveCrewMember(crew.getSerialNumber()));
             if (crew.getSerialNumber() == participatingPlayers.getAllParticipatingPlayers().get(0).getSerialNumber())
             {
                 player1Found = true;
@@ -150,7 +150,7 @@ public class FlightCrewBuilderCoopTest
     
 
     @Test
-    public void testTwoPlayerEnemySquadronFlightGeneration() throws PWCGException
+    public void testTwoPlayerEnemyCompanyFlightGeneration() throws PWCGException
     {
         MissionHumanParticipants participatingPlayers = new MissionHumanParticipants();
     	for (CrewMember player : coopCampaign.getPersonnelManager().getAllActivePlayers().getCrewMemberList())
@@ -162,29 +162,29 @@ public class FlightCrewBuilderCoopTest
     	}
         
         List<FlightTypes> playerFlightTypeList = makeFlightTypes(participatingPlayers);
-        MissionSquadronFlightTypes playerFlightTypes = new MissionSquadronFlightTypes();
+        MissionCompanyFlightTypes playerFlightTypes = new MissionCompanyFlightTypes();
         for (int i = 0; i < participatingPlayers.getParticipatingCompanyIds().size(); ++i)
         {
-            Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(participatingPlayers.getParticipatingCompanyIds().get(i));
-            playerFlightTypes.add(squadron, playerFlightTypeList.get(i));
+            Company company = PWCGContext.getInstance().getCompanyManager().getCompany(participatingPlayers.getParticipatingCompanyIds().get(i));
+            playerFlightTypes.add(company, playerFlightTypeList.get(i));
         }
 
         MissionGenerator missionGenerator = new MissionGenerator(coopCampaign);
         Mission mission = missionGenerator.makeTestCoopMissionFromFlightType(participatingPlayers, playerFlightTypes, MissionProfile.DAY_TACTICAL_MISSION);
 
         FlightInformation flightInformation = new FlightInformation(mission, NecessaryFlightType.PLAYER_FLIGHT);
-        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(10131132);
-        flightInformation.setCompany(squadron);
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(10131132);
+        flightInformation.setCompany(company);
         
         UnitCrewBuilder flightCrewBuilder = new UnitCrewBuilder(flightInformation);
         List<CrewMember> assignedCrewMap = flightCrewBuilder.createCrewAssignmentsForFlight(4);
         
         boolean player1Found = false;
         boolean player2Found = false;
-        CompanyPersonnel squadronPersonnel = coopCampaign.getPersonnelManager().getCompanyPersonnel(10131132);        
+        CompanyPersonnel companyPersonnel = coopCampaign.getPersonnelManager().getCompanyPersonnel(10131132);        
         for (CrewMember crew : assignedCrewMap)
         {
-            assert(squadronPersonnel.isActiveCrewMember(crew.getSerialNumber()));
+            assert(companyPersonnel.isActiveCrewMember(crew.getSerialNumber()));
             if (crew.getSerialNumber() == participatingPlayers.getAllParticipatingPlayers().get(0).getSerialNumber())
             {
                 player1Found = true;

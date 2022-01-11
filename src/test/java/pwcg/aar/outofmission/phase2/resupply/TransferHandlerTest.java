@@ -22,7 +22,7 @@ import pwcg.campaign.crewmember.CrewMemberStatus;
 import pwcg.campaign.crewmember.CrewMembers;
 import pwcg.campaign.personnel.CrewMemberFilter;
 import pwcg.campaign.resupply.ResupplyNeedBuilder;
-import pwcg.campaign.resupply.personnel.SquadronTransferData;
+import pwcg.campaign.resupply.personnel.CompanyTransferData;
 import pwcg.campaign.resupply.personnel.TransferHandler;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
@@ -55,12 +55,12 @@ public class TransferHandlerTest
     public void testTransfersInForLostCampaignMembers() throws PWCGException
     {
         ResupplyNeedBuilder transferNeedBuilder = new ResupplyNeedBuilder(campaign, armedService);
-        TransferHandler squadronTransferHandler = new TransferHandler(campaign, transferNeedBuilder);
+        TransferHandler companyTransferHandler = new TransferHandler(campaign, transferNeedBuilder);
         
         deactivateCampaignPersonnel();
       
-        SquadronTransferData squadronTransferData = squadronTransferHandler.determineCrewMemberTransfers(armedService);
-        Assertions.assertTrue (squadronTransferData.getTransferCount() == 3);
+        CompanyTransferData companyTransferData = companyTransferHandler.determineCrewMemberTransfers(armedService);
+        Assertions.assertTrue (companyTransferData.getTransferCount() == 3);
     }
 
     private void deactivateCampaignPersonnel() throws PWCGException
@@ -69,8 +69,8 @@ public class TransferHandlerTest
         CrewMembers allActiveCampaignMembers = CrewMemberFilter.filterActiveAI(campaign.getPersonnelManager().getAllCampaignMembers(), campaign.getDate());
         for (CrewMember crewMember : allActiveCampaignMembers.getCrewMemberList())
         {
-            Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(crewMember.getCompanyId());
-            if (!crewMember.isPlayer() && squadron.getService() == armedService.getServiceId())
+            Company company = PWCGContext.getInstance().getCompanyManager().getCompany(crewMember.getCompanyId());
+            if (!crewMember.isPlayer() && company.getService() == armedService.getServiceId())
             {
                 Date inactiveDate = DateUtils.removeTimeDays(campaign.getDate(), 10);
                 crewMember.setCrewMemberActiveStatus(CrewMemberStatus.STATUS_KIA, inactiveDate, null);
@@ -89,22 +89,22 @@ public class TransferHandlerTest
     public void testTransfersInForLostCrewMembers() throws PWCGException
     {
         ResupplyNeedBuilder transferNeedBuilder = new ResupplyNeedBuilder(campaign, armedService);
-        TransferHandler squadronTransferHandler = new TransferHandler(campaign, transferNeedBuilder);
+        TransferHandler companyTransferHandler = new TransferHandler(campaign, transferNeedBuilder);
         
-        deactivateSquadronPersonnel();
+        deactivateCompanyPersonnel();
       
-        SquadronTransferData squadronTransferData = squadronTransferHandler.determineCrewMemberTransfers(armedService);
-        Assertions.assertTrue (squadronTransferData.getTransferCount() == 3);
+        CompanyTransferData companyTransferData = companyTransferHandler.determineCrewMemberTransfers(armedService);
+        Assertions.assertTrue (companyTransferData.getTransferCount() == 3);
     }
 
-    private void deactivateSquadronPersonnel() throws PWCGException
+    private void deactivateCompanyPersonnel() throws PWCGException
     {
         int numInactivated = 0;
         CrewMembers allActiveCampaignMembers = CrewMemberFilter.filterActiveAI(campaign.getPersonnelManager().getAllCampaignMembers(), campaign.getDate());
         for (CrewMember crewMember : allActiveCampaignMembers.getCrewMemberList())
         {
-            Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(crewMember.getCompanyId());
-            if (!crewMember.isPlayer() && squadron.getCompanyId() == CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId())
+            Company company = PWCGContext.getInstance().getCompanyManager().getCompany(crewMember.getCompanyId());
+            if (!crewMember.isPlayer() && company.getCompanyId() == CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId())
             {
                 Date inactiveDate = DateUtils.removeTimeDays(campaign.getDate(), 10);
                 crewMember.setCrewMemberActiveStatus(CrewMemberStatus.STATUS_KIA, inactiveDate, null);

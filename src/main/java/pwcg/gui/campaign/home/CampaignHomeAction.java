@@ -95,11 +95,11 @@ public class CampaignHomeAction
         CrewMember crewMember = UIUtils.getCrewMemberFromAction(campaign, action);
         if (crewMember != null)
         {
-            Company company = crewMember.determineSquadron();
+            Company company = crewMember.determineCompany();
             if (crewMember instanceof TankAce)
             {
                 TankAce ace = (TankAce)crewMember;
-                company =  ace.determineSquadron();;
+                company =  ace.determineCompany();;
             }
             CampaignCrewMemberScreen crewMemberPanel = new CampaignCrewMemberScreen(campaign, company, crewMember, campaignHome);
             crewMemberPanel.makePanels();

@@ -11,17 +11,17 @@ public class SkinsForPlaneOld
 	private Map<String, Skin> doNotUse = new TreeMap<>();
 	private Map<String, Skin> aceSkins = new TreeMap<>();
 	private Map<String, String> looseSkins = new TreeMap<>();
-    private Map<String, Skin> squadronSkins = new TreeMap<>();
+    private Map<String, Skin> companySkins = new TreeMap<>();
 	private List<String> skinsInUse = new ArrayList<String>();
 
 	public SkinsForPlaneOld()
 	{
 	}
 
-	public void addSquadronSkin(Skin skin)
+	public void addCompanySkin(Skin skin)
 	{
-		skin.setCategory("Squadron");
-		squadronSkins.put(skin.getSkinName(), skin);
+		skin.setCategory("Company");
+		companySkins.put(skin.getSkinName(), skin);
 
 		removeLooseSkin(skin.getSkinName());
 	}
@@ -65,8 +65,8 @@ public class SkinsForPlaneOld
 		// If it's a configured skin then it's not a loose skin
 		if (!configuredSkins.containsKey(skinNameUpper))
 		{
-			// If it's a squadron skin then it's not a loose skin
-			if (!squadronSkins.containsKey(skinNameUpper))
+			// If it's a company skin then it's not a loose skin
+			if (!companySkins.containsKey(skinNameUpper))
 			{
 				// If it's a ace skin then it's not a loose skin
 				if (!aceSkins.containsKey(skinNameUpper))
@@ -113,7 +113,7 @@ public class SkinsForPlaneOld
 	public List<Skin> getAllUsedByPWCG()
 	{
 		List<Skin> allConfiguredSkins = new ArrayList<Skin>();
-		allConfiguredSkins.addAll(squadronSkins.values());
+		allConfiguredSkins.addAll(companySkins.values());
 		allConfiguredSkins.addAll(aceSkins.values());
 		allConfiguredSkins.addAll(configuredSkins.values());
 
@@ -144,7 +144,7 @@ public class SkinsForPlaneOld
 			{
 				if (skin.getSquadId() > 0)
 				{
-					return "Squadron";
+					return "Company";
 				}
 				else
 				{

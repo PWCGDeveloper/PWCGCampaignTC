@@ -1,7 +1,7 @@
 {
   "missionHeader": {
     "missionFileName": "Patrik Schorner 1916-05-17",
-    "squadron": "Jasta 4",
+    "company": "Jasta 4",
     "date": "19160517",
     "time": "12:0:00",
     "aircraftType": "AircraftType \u003d Fokker E.II",
@@ -10,11 +10,11 @@
     "duty": "PATROL",
     "altitude": 3069
   },
-  "missionDescription": "Mission:\nAircraft  Fokker E.III\nSquadron  Jasta 4\nAirbase  Bonneuil Ferme\nDate  1916-05-17\n\nWeather Report\nMostly clear, some high altitude clouds.\nCloud layer is 6153 meters.\nWind speed is 1 M/S.\nWind direction is 348.\n\nPrimary Objective\nPatrol airspace  near Caumont.  Engage any enemy aircraft that you encounter.\n\n\n",
+  "missionDescription": "Mission:\nAircraft  Fokker E.III\nCompany  Jasta 4\nAirbase  Bonneuil Ferme\nDate  1916-05-17\n\nWeather Report\nMostly clear, some high altitude clouds.\nCloud layer is 6153 meters.\nWind speed is 1 M/S.\nWind direction is 348.\n\nPrimary Objective\nPatrol airspace  near Caumont.  Engage any enemy aircraft that you encounter.\n\n\n",
   "missionPlanes": [
     {
       "aircraftType": "fokkere3",
-      "squadronName": "Jasta 4",
+      "companyName": "Jasta 4",
       "crew": {
         "pilot": "Lambrecht Steinberg",
         "observer": "",
@@ -24,7 +24,7 @@
     },
     {
       "aircraftType": "fokkere3",
-      "squadronName": "Jasta 4",
+      "companyName": "Jasta 4",
       "crew": {
         "pilot": "Patrik Schorner",
         "observer": "",
@@ -34,7 +34,7 @@
     },
     {
       "aircraftType": "fokkere3",
-      "squadronName": "Jasta 4",
+      "companyName": "Jasta 4",
       "crew": {
         "pilot": "Gottlieb Grunebaum",
         "observer": "",
@@ -44,7 +44,7 @@
     },
     {
       "aircraftType": "fokkere3",
-      "squadronName": "Jasta 4",
+      "companyName": "Jasta 4",
       "crew": {
         "pilot": "Ralf Schulz",
         "observer": "",
@@ -54,7 +54,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 281",
+      "companyName": "FA 281",
       "crew": {
         "pilot": "Bernd Landmann",
         "observer": "Wilhelm Dorman",
@@ -64,7 +64,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 281",
+      "companyName": "FA 281",
       "crew": {
         "pilot": "Gustav Schoenherr",
         "observer": "Albrecht Parler",
@@ -74,7 +74,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 18",
+      "companyName": "FA 18",
       "crew": {
         "pilot": "Ruprecht Joachim",
         "observer": "Felix Haber",
@@ -84,7 +84,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 18",
+      "companyName": "FA 18",
       "crew": {
         "pilot": "Theodor Stosch",
         "observer": "Tristan Masur",
@@ -94,7 +94,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 276",
+      "companyName": "FA 276",
       "crew": {
         "pilot": "Erwin Wohlermann",
         "observer": "Emil Beck",
@@ -104,7 +104,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 2",
+      "companyName": "Esc 2",
       "crew": {
         "pilot": "Ferdinand Hereau",
         "observer": "Antoine Lacombrade",
@@ -114,7 +114,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 2",
+      "companyName": "Esc 2",
       "crew": {
         "pilot": "Alfred Lacour",
         "observer": "Anton Riot",
@@ -124,7 +124,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "No 2 Squadron RFC",
+      "companyName": "No 2 Company RFC",
       "crew": {
         "pilot": "Chester Yate",
         "observer": "Ferris Ford",
@@ -134,7 +134,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "No 2 Squadron RFC",
+      "companyName": "No 2 Company RFC",
       "crew": {
         "pilot": "Connor Annesley",
         "observer": "Edan Brown",
@@ -144,7 +144,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "No 2 Squadron RFC",
+      "companyName": "No 2 Company RFC",
       "crew": {
         "pilot": "Shamus Gonson",
         "observer": "Alfred Chatwyn",
@@ -154,7 +154,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "No 2 Squadron RFC",
+      "companyName": "No 2 Company RFC",
       "crew": {
         "pilot": "Hunter Gold",
         "observer": "Mark Walford",

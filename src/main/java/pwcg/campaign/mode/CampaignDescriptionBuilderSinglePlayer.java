@@ -25,9 +25,9 @@ public class CampaignDescriptionBuilderSinglePlayer implements ICampaignDescript
         campaignDescription += referencePlayer.getNameAndRank();
         campaignDescription += "     " + DateUtils.getDateString(campaign.getDate());
         
-        Company squadron =  PWCGContext.getInstance().getCompanyManager().getCompany(referencePlayer.getCompanyId());
-        campaignDescription += "     " + squadron.determineDisplayName(campaign.getDate());
-        campaignDescription += "     " + squadron.determineCurrentAirfieldName(campaign.getDate());
+        Company company =  PWCGContext.getInstance().getCompanyManager().getCompany(referencePlayer.getCompanyId());
+        campaignDescription += "     " + company.determineDisplayName(campaign.getDate());
+        campaignDescription += "     " + company.determineCurrentAirfieldName(campaign.getDate());
 
         return campaignDescription;
     }

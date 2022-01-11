@@ -126,12 +126,12 @@ public class CoopPlayerInclusionTest
     private void createHumanCrewMember(CampaignGeneratorDO campaignGeneratorDO) throws Exception
     {
         String playerName = campaignGeneratorDO.getPlayerCrewMemberName();
-        String squadronName = campaignGeneratorDO.getSquadName();
+        String companyName = campaignGeneratorDO.getSquadName();
         String rank = campaignGeneratorDO.getRank();
         String coopuser = campaignGeneratorDO.getCoopUser();
 
-        CrewMemberReplacer squadronMemberReplacer = new CrewMemberReplacer(coopCampaign);
-        squadronMemberReplacer.createPersona(playerName, rank, squadronName, coopuser);
+        CrewMemberReplacer companyMemberReplacer = new CrewMemberReplacer(coopCampaign);
+        companyMemberReplacer.createPersona(playerName, rank, companyName, coopuser);
     }
     
     private CrewMember getCrewMemberByName(String crewMemberName) throws PWCGException
@@ -202,7 +202,7 @@ public class CoopPlayerInclusionTest
     
 
     @Test
-    public void coopMultiPlayerWithSameSquadronTest() throws PWCGException
+    public void coopMultiPlayerWithSameCompanyTest() throws PWCGException
     {
         MissionHumanParticipants participatingPlayers = new MissionHumanParticipants();
         participatingPlayers.addCrewMember(getCrewMemberByName("German Fighter"));

@@ -62,10 +62,10 @@ public class NewCrewMemberDataEntryGUI extends JPanel implements ActionListener
     private JTextField playerCrewMemberNameTextBox;
     private JTextField coopUserNameTextBox;
     
-    private JTextArea squadronTextBox;
+    private JTextArea companyTextBox;
 	private JComboBox<String> cbRole;
 	private JComboBox<String> cbRank;
-	private JComboBox<String> cbSquadron;
+	private JComboBox<String> cbCompany;
 	private JComboBox<String> cbCoopUser;
     
     private JLabel lSquad;
@@ -128,7 +128,7 @@ public class NewCrewMemberDataEntryGUI extends JPanel implements ActionListener
 			rowCount = createRankWidget(labelConstraints, dataConstraints, campaignGeneratePanel, rowCount);
 
             rowCount =  spacerFullRow(labelConstraints, dataConstraints, campaignGeneratePanel, rowCount);
-			rowCount = createSquadronWidget(labelConstraints, dataConstraints, campaignGeneratePanel, rowCount);
+			rowCount = createCompanyWidget(labelConstraints, dataConstraints, campaignGeneratePanel, rowCount);
 
             rowCount =  spacerFullRow(labelConstraints, dataConstraints, campaignGeneratePanel, rowCount);
             rowCount =  spacerFullRow(labelConstraints, dataConstraints, campaignGeneratePanel, rowCount);
@@ -139,8 +139,8 @@ public class NewCrewMemberDataEntryGUI extends JPanel implements ActionListener
 			
 			this.add(campaignGeneratePanel, BorderLayout.NORTH);
 	          
-            JPanel squadronPanel = createSquadronInfoPanel ();
-            this.add(squadronPanel, BorderLayout.SOUTH);
+            JPanel companyPanel = createCompanyInfoPanel ();
+            this.add(companyPanel, BorderLayout.SOUTH);
             
             evaluateUI();
 		}
@@ -151,24 +151,24 @@ public class NewCrewMemberDataEntryGUI extends JPanel implements ActionListener
 		}
 	}
 
-    private int createSquadronWidget(GridBagConstraints labelConstraints, GridBagConstraints dataConstraints,
+    private int createCompanyWidget(GridBagConstraints labelConstraints, GridBagConstraints dataConstraints,
                     JPanel campaignGeneratePanel, int rowCount) throws PWCGException
     {
         spacerColumn (campaignGeneratePanel, 0, rowCount);
         
-        lSquad = createCampaignGenMenuLabel("Squadron", labelConstraints, campaignGeneratePanel, rowCount);
+        lSquad = createCampaignGenMenuLabel("Company", labelConstraints, campaignGeneratePanel, rowCount);
         campaignGeneratePanel.add(lSquad, labelConstraints);
 
-        cbSquadron = new JComboBox<String>();
-        cbSquadron.setOpaque(false);
-        cbSquadron.setBackground(jComboBoxBackgroundColor);
-        cbSquadron.setActionCommand("SquadronChanged");
-        cbSquadron.addActionListener(this);
-        cbSquadron.setFont(font);
+        cbCompany = new JComboBox<String>();
+        cbCompany.setOpaque(false);
+        cbCompany.setBackground(jComboBoxBackgroundColor);
+        cbCompany.setActionCommand("CompanyChanged");
+        cbCompany.addActionListener(this);
+        cbCompany.setFont(font);
 
         dataConstraints.gridx = 2;
         dataConstraints.gridy = rowCount;
-        campaignGeneratePanel.add(cbSquadron, dataConstraints);
+        campaignGeneratePanel.add(cbCompany, dataConstraints);
         
         spacerColumn (campaignGeneratePanel, 3, rowCount);
         ++rowCount;
@@ -376,12 +376,12 @@ public class NewCrewMemberDataEntryGUI extends JPanel implements ActionListener
         Map<String, PwcgRoleCategory> rolesSorted = new TreeMap<>();
         
         Date date = campaign.getDate();
-        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
-        List<Company> squadronsForService = squadronManager.getPlayerCompaniesByService(parent.getNewCrewMemberGeneratorDO().getService(), date);
+        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+        List<Company> companysForService = companyManager.getPlayerCompaniesByService(parent.getNewCrewMemberGeneratorDO().getService(), date);
         
-        for (Company squadron : squadronsForService)
+        for (Company company : companysForService)
         {            
-            PwcgRoleCategory primaryRoleCategory = squadron.determineCompanyPrimaryRoleCategory(date);
+            PwcgRoleCategory primaryRoleCategory = company.determineCompanyPrimaryRoleCategory(date);
 
             rolesSorted.put(primaryRoleCategory.getRoleCategoryDescription(), primaryRoleCategory);
         }
@@ -440,31 +440,31 @@ public class NewCrewMemberDataEntryGUI extends JPanel implements ActionListener
         return rowCount;
 	}
 
-    private JPanel createSquadronInfoPanel () throws PWCGException
+    private JPanel createCompanyInfoPanel () throws PWCGException
     {
         Color bgColor = ColorMap.PAPER_BACKGROUND;
         Color fgColor = ColorMap.CHALK_FOREGROUND;
         
-        JPanel squadronPanel = new JPanel(new GridLayout(0,3));
-        squadronPanel.setOpaque(false);
+        JPanel companyPanel = new JPanel(new GridLayout(0,3));
+        companyPanel.setOpaque(false);
 
-        squadronPanel.add(PWCGLabelFactory.makeDummyLabel());
+        companyPanel.add(PWCGLabelFactory.makeDummyLabel());
         
-        // Squadron info
-        squadronTextBox = new JTextArea();
-        squadronTextBox.setBackground(bgColor);
-        squadronTextBox.setForeground(fgColor);
-        squadronTextBox.setFont(font);
-        squadronTextBox.setEditable(false);
-        squadronTextBox.setLineWrap(true);
-        squadronTextBox.setWrapStyleWord(true);
-        squadronTextBox.setText("");
-        squadronTextBox.setOpaque(false);
-        squadronPanel.add(squadronTextBox);
+        // Company info
+        companyTextBox = new JTextArea();
+        companyTextBox.setBackground(bgColor);
+        companyTextBox.setForeground(fgColor);
+        companyTextBox.setFont(font);
+        companyTextBox.setEditable(false);
+        companyTextBox.setLineWrap(true);
+        companyTextBox.setWrapStyleWord(true);
+        companyTextBox.setText("");
+        companyTextBox.setOpaque(false);
+        companyPanel.add(companyTextBox);
 
-        squadronPanel.add(PWCGLabelFactory.makeDummyLabel());
+        companyPanel.add(PWCGLabelFactory.makeDummyLabel());
         
-        return squadronPanel;
+        return companyPanel;
     }
 
 	private void spacerColumn (JPanel panel, int column, int row)
@@ -517,20 +517,20 @@ public class NewCrewMemberDataEntryGUI extends JPanel implements ActionListener
             cbRank.setEnabled(true);
 	    }
 
-	    if (parent.getNewCrewMemberState().getCurrentStep() == CrewMemberGeneratorWorkflow.CHOOSE_SQUADRON)
+	    if (parent.getNewCrewMemberState().getCurrentStep() == CrewMemberGeneratorWorkflow.CHOOSE_Company)
 	    {
 	        lSquad.setForeground(labelColorSelected);
 	        
             int serviceId = parent.getNewCrewMemberGeneratorDO().getService().getServiceId();
             ArmedService dateCorrectedService = ArmedServiceFactory.createServiceManager().getArmedServiceById(serviceId, campaign.getDate());
             
-	        makeSquadronChoices(dateCorrectedService);
+	        makeCompanyChoices(dateCorrectedService);
 
-	        String squadronName = (String)cbSquadron.getSelectedItem();
-	        String squadronInfo = getSquadronInfo(campaign.getDate(), squadronName);
-	        this.squadronTextBox.setText(squadronInfo);
+	        String companyName = (String)cbCompany.getSelectedItem();
+	        String companyInfo = getCompanyInfo(campaign.getDate(), companyName);
+	        this.companyTextBox.setText(companyInfo);
 
-            cbSquadron.setEnabled(true);
+            cbCompany.setEnabled(true);
 	    }
 	    
 	    if (parent.getNewCrewMemberState().isComplete())
@@ -553,7 +553,7 @@ public class NewCrewMemberDataEntryGUI extends JPanel implements ActionListener
 	    playerCrewMemberNameTextBox.setEnabled(false);
 	    cbRole.setEnabled(false);
         cbRank.setEnabled(false);
-        cbSquadron.setEnabled(false);
+        cbCompany.setEnabled(false);
         
         lPlayerName.setForeground(labelColorNotSelected);
 
@@ -562,15 +562,15 @@ public class NewCrewMemberDataEntryGUI extends JPanel implements ActionListener
         lSquad.setForeground(labelColorNotSelected);
     }
 
-    private String getSquadronInfo(Date campaignDate, String squadronName) throws PWCGException 
+    private String getCompanyInfo(Date campaignDate, String companyName) throws PWCGException 
     {
-        if (squadronName == null)
+        if (companyName == null)
         {
             return "";
         }
 
-        Company company = PWCGContext.getInstance().getCompanyManager().getCompanyByName(squadronName, campaignDate);
-        return company.determineSquadronInfo(campaignDate);
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompanyByName(companyName, campaignDate);
+        return company.determineCompanyInfo(campaignDate);
     }
 
 	private void makeRankChoices(ArmedService dateCorrectedService) 
@@ -589,20 +589,20 @@ public class NewCrewMemberDataEntryGUI extends JPanel implements ActionListener
 		cbRank.addActionListener(this);
 	}
 
-	private void makeSquadronChoices(ArmedService dateCorrectedService) throws PWCGException 
+	private void makeCompanyChoices(ArmedService dateCorrectedService) throws PWCGException 
 	{
 	    try
 	    {
-    		cbSquadron.removeAllItems();
-            CampaignGeneratorCompanyFilter squadronFilter = new CampaignGeneratorCompanyFilter();
+    		cbCompany.removeAllItems();
+            CampaignGeneratorCompanyFilter companyFilter = new CampaignGeneratorCompanyFilter();
 	        String selectedRole = (String)cbRole.getSelectedItem();
 	        
 	        FrontMapIdentifier campaignMap = PWCGContext.getInstance().getCurrentMap().getMapIdentifier();
-            List<String> squadronNames = squadronFilter.makeSquadronChoices(campaign.getDate(), dateCorrectedService, campaignMap, selectedRole, parent.getNewCrewMemberGeneratorDO().isCommandRank());
+            List<String> companyNames = companyFilter.makeCompanyChoices(campaign.getDate(), dateCorrectedService, campaignMap, selectedRole, parent.getNewCrewMemberGeneratorDO().isCommandRank());
             
-            for (String squadronName : squadronNames)
+            for (String companyName : companyNames)
             {
-				cbSquadron.addItem(squadronName);
+				cbCompany.addItem(companyName);
     		}
 	    }
 	    catch (Exception exp)
@@ -635,14 +635,14 @@ public class NewCrewMemberDataEntryGUI extends JPanel implements ActionListener
                 coopUserNameTextBox.setText(coopUserFromDropDown);
 		        parent.getNewCrewMemberGeneratorDO().setCoopUser(coopUserFromDropDown);
 			}
-            else if (ae.getActionCommand().equalsIgnoreCase("SquadronChanged"))
+            else if (ae.getActionCommand().equalsIgnoreCase("CompanyChanged"))
             {
-                String squadronName = (String)cbSquadron.getSelectedItem();
-                if (squadronName != null)
+                String companyName = (String)cbCompany.getSelectedItem();
+                if (companyName != null)
                 {
-                    parent.getNewCrewMemberGeneratorDO().setSquadName(squadronName);
-                    String squadronInfo = getSquadronInfo(campaign.getDate(), squadronName);
-                    this.squadronTextBox.setText(squadronInfo);
+                    parent.getNewCrewMemberGeneratorDO().setSquadName(companyName);
+                    String companyInfo = getCompanyInfo(campaign.getDate(), companyName);
+                    this.companyTextBox.setText(companyInfo);
                 }
             }
             else if (ae.getActionCommand().equalsIgnoreCase("NextStep"))

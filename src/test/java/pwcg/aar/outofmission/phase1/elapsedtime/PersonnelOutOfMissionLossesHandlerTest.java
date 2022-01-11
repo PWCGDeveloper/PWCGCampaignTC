@@ -40,7 +40,7 @@ public class PersonnelOutOfMissionLossesHandlerTest
     @Mock private AARContext aarContext;
     @Mock private CampaignUpdateData campaignUpdateData;
     @Mock private AARPreliminaryData preliminaryData;
-    @Mock private CrewMembers squadronMembers;
+    @Mock private CrewMembers crewMembers;
 
     
     @BeforeAll
@@ -62,8 +62,8 @@ public class PersonnelOutOfMissionLossesHandlerTest
     {     
         try (MockedStatic<CampaignMembersOutOfMissionFinder> mocked = Mockito.mockStatic(CampaignMembersOutOfMissionFinder.class)) 
         {
-            mocked.when(() -> CampaignMembersOutOfMissionFinder.getAllCampaignMembersNotInMission(Mockito.any(), Mockito.any())).thenReturn(squadronMembers);
-            mocked.when(() -> CampaignMembersOutOfMissionFinder.getActiveCampaignMembersNotInMission(Mockito.any(), Mockito.any())).thenReturn(squadronMembers);
+            mocked.when(() -> CampaignMembersOutOfMissionFinder.getAllCampaignMembersNotInMission(Mockito.any(), Mockito.any())).thenReturn(crewMembers);
+            mocked.when(() -> CampaignMembersOutOfMissionFinder.getActiveCampaignMembersNotInMission(Mockito.any(), Mockito.any())).thenReturn(crewMembers);
 
             OutOfMissionLossHandler outOfMissionLossesHandler = new OutOfMissionLossHandler(campaign, aarContext);
             outOfMissionLossesHandler.lossesOutOfMission(new HashMap<Integer, CrewMember>(), new HashMap<Integer, LogTank>());
@@ -77,8 +77,8 @@ public class PersonnelOutOfMissionLossesHandlerTest
     {     
         try (MockedStatic<CampaignMembersOutOfMissionFinder> mocked = Mockito.mockStatic(CampaignMembersOutOfMissionFinder.class)) 
         {
-            mocked.when(() -> CampaignMembersOutOfMissionFinder.getAllCampaignMembersNotInMission(Mockito.any(), Mockito.any())).thenReturn(squadronMembers);
-            mocked.when(() -> CampaignMembersOutOfMissionFinder.getActiveCampaignMembersNotInMission(Mockito.any(), Mockito.any())).thenReturn(squadronMembers);
+            mocked.when(() -> CampaignMembersOutOfMissionFinder.getAllCampaignMembersNotInMission(Mockito.any(), Mockito.any())).thenReturn(crewMembers);
+            mocked.when(() -> CampaignMembersOutOfMissionFinder.getActiveCampaignMembersNotInMission(Mockito.any(), Mockito.any())).thenReturn(crewMembers);
 
             Map<Integer, CrewMember> aiKilled = new HashMap<>();
             Map<Integer, CrewMember> aiMaimed = new HashMap<>();

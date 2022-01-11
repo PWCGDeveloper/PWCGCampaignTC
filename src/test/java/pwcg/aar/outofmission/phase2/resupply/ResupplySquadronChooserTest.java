@@ -12,15 +12,15 @@ import pwcg.campaign.company.Company;
 import pwcg.campaign.company.CompanyManager;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGProduct;
-import pwcg.campaign.resupply.ISquadronNeed;
-import pwcg.campaign.resupply.ResupplySquadronChooser;
-import pwcg.campaign.resupply.equipment.SquadronEquipmentNeed;
+import pwcg.campaign.resupply.ICompanyNeed;
+import pwcg.campaign.resupply.ResupplyCompanyChooser;
+import pwcg.campaign.resupply.equipment.CompanyEquipmentNeed;
 import pwcg.core.exception.PWCGException;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.CompanyTestProfile;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class ResupplySquadronChooserTest
+public class ResupplyCompanyChooserTest
 {
     private Campaign campaign;
     
@@ -32,60 +32,60 @@ public class ResupplySquadronChooserTest
     }
 
     @Test
-    public void testChoosePlayerSquadronWhenDepleted() throws PWCGException
+    public void testChoosePlayerCompanyWhenDepleted() throws PWCGException
     {
-        Map<Integer, ISquadronNeed> needs = getSquadronNeeds(7, 9, 2);
-        ResupplySquadronChooser resupplySquadronChooser = new ResupplySquadronChooser(campaign, needs);
+        Map<Integer, ICompanyNeed> needs = getCompanyNeeds(7, 9, 2);
+        ResupplyCompanyChooser resupplyCompanyChooser = new ResupplyCompanyChooser(campaign, needs);
         for (int i = 0; i < 3; ++i)
         {
-            ISquadronNeed selectedSquadronNeed = resupplySquadronChooser.getNeedySquadron();
-            selectedSquadronNeed.noteResupply();
-            assert(selectedSquadronNeed.getSquadronId() == 20111051);
+            ICompanyNeed selectedCompanyNeed = resupplyCompanyChooser.getNeedyCompany();
+            selectedCompanyNeed.noteResupply();
+            assert(selectedCompanyNeed.getCompanyId() == 20111051);
         }
     }
 
     @Test
-    public void testChoosePlayerSquadronUntilDepletedNotTrue() throws PWCGException
+    public void testChoosePlayerCompanyUntilDepletedNotTrue() throws PWCGException
     {
-        Map<Integer, ISquadronNeed> needs = getSquadronNeeds(6, 9, 2);
-        ResupplySquadronChooser resupplySquadronChooser = new ResupplySquadronChooser(campaign, needs);
+        Map<Integer, ICompanyNeed> needs = getCompanyNeeds(6, 9, 2);
+        ResupplyCompanyChooser resupplyCompanyChooser = new ResupplyCompanyChooser(campaign, needs);
         for (int i = 0; i < 3; ++i)
         {
-            ISquadronNeed selectedSquadronNeed = resupplySquadronChooser.getNeedySquadron();
-            selectedSquadronNeed.noteResupply();
+            ICompanyNeed selectedCompanyNeed = resupplyCompanyChooser.getNeedyCompany();
+            selectedCompanyNeed.noteResupply();
             if (i < 2)
             {
-                assert(selectedSquadronNeed.getSquadronId() == 20111051);
+                assert(selectedCompanyNeed.getCompanyId() == 20111051);
             }
             else
             {
-                assert(selectedSquadronNeed.getSquadronId() == 20111052);
+                assert(selectedCompanyNeed.getCompanyId() == 20111052);
             }
         }
     }
 
     @Test
-    public void testChooseSquadronsUntilNoMoreReplacementsNeeded() throws PWCGException
+    public void testChooseCompanysUntilNoMoreReplacementsNeeded() throws PWCGException
     {
-        Map<Integer, ISquadronNeed> needs = getSquadronNeeds(3, 2, 1);
-        ResupplySquadronChooser resupplySquadronChooser = new ResupplySquadronChooser(campaign, needs);
+        Map<Integer, ICompanyNeed> needs = getCompanyNeeds(3, 2, 1);
+        ResupplyCompanyChooser resupplyCompanyChooser = new ResupplyCompanyChooser(campaign, needs);
         
         int i_jg51Count = 0;
         int i_jg52Count = 0;
         int ii_jg52Count = 0;
         for (int i = 0; i < 6; ++i)
         {
-            ISquadronNeed selectedSquadronNeed = resupplySquadronChooser.getNeedySquadron();
-            selectedSquadronNeed.noteResupply();
-            if (selectedSquadronNeed.getSquadronId() == 20111051)
+            ICompanyNeed selectedCompanyNeed = resupplyCompanyChooser.getNeedyCompany();
+            selectedCompanyNeed.noteResupply();
+            if (selectedCompanyNeed.getCompanyId() == 20111051)
             {
                 ++i_jg51Count;
             }
-            else if (selectedSquadronNeed.getSquadronId() == 20111052)
+            else if (selectedCompanyNeed.getCompanyId() == 20111052)
             {
                 ++i_jg52Count;
             }
-            else if (selectedSquadronNeed.getSquadronId() == 20112052)
+            else if (selectedCompanyNeed.getCompanyId() == 20112052)
             {
                 ++ii_jg52Count;
             }
@@ -95,27 +95,27 @@ public class ResupplySquadronChooserTest
         assert(i_jg52Count == 2);
         assert(ii_jg52Count == 1);
         
-        ISquadronNeed selectedSquadronNeed = resupplySquadronChooser.getNeedySquadron();
-        assert(selectedSquadronNeed == null);        
+        ICompanyNeed selectedCompanyNeed = resupplyCompanyChooser.getNeedyCompany();
+        assert(selectedCompanyNeed == null);        
     }
 
-    private Map<Integer, ISquadronNeed> getSquadronNeeds(int playerPlanesNeeded, int i_jg52PlanesNeeded, int ii_jg52PlanesNeeded) throws PWCGException
+    private Map<Integer, ICompanyNeed> getCompanyNeeds(int playerPlanesNeeded, int i_jg52PlanesNeeded, int ii_jg52PlanesNeeded) throws PWCGException
     {
-        Map<Integer, ISquadronNeed> needs = new HashMap<>();
-        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
+        Map<Integer, ICompanyNeed> needs = new HashMap<>();
+        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
         
-        Company playerSquadron = squadronManager.getCompany(20111051);
-        SquadronEquipmentNeed playerSquadronEquipmentNeed = new SquadronEquipmentNeed(campaign, playerSquadron);
-        playerSquadronEquipmentNeed.setPlanesNeeded(playerPlanesNeeded);
-        needs.put(playerSquadron.getCompanyId(), playerSquadronEquipmentNeed);
+        Company playerCompany = companyManager.getCompany(20111051);
+        CompanyEquipmentNeed playerCompanyEquipmentNeed = new CompanyEquipmentNeed(campaign, playerCompany);
+        playerCompanyEquipmentNeed.setPlanesNeeded(playerPlanesNeeded);
+        needs.put(playerCompany.getCompanyId(), playerCompanyEquipmentNeed);
         
-        Company i_jg52 = squadronManager.getCompany(20111052);
-        SquadronEquipmentNeed i_jg52EquipmentNeed = new SquadronEquipmentNeed(campaign, i_jg52);
+        Company i_jg52 = companyManager.getCompany(20111052);
+        CompanyEquipmentNeed i_jg52EquipmentNeed = new CompanyEquipmentNeed(campaign, i_jg52);
         i_jg52EquipmentNeed.setPlanesNeeded(i_jg52PlanesNeeded);
         needs.put(i_jg52.getCompanyId(), i_jg52EquipmentNeed);        
         
-        Company ii_jg52 = squadronManager.getCompany(20112052);
-        SquadronEquipmentNeed ii_jg52EquipmentNeed = new SquadronEquipmentNeed(campaign, ii_jg52);
+        Company ii_jg52 = companyManager.getCompany(20112052);
+        CompanyEquipmentNeed ii_jg52EquipmentNeed = new CompanyEquipmentNeed(campaign, ii_jg52);
         ii_jg52EquipmentNeed.setPlanesNeeded(ii_jg52PlanesNeeded);
         needs.put(ii_jg52.getCompanyId(), ii_jg52EquipmentNeed);        
         

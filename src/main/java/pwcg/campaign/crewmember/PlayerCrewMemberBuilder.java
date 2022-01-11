@@ -18,10 +18,10 @@ public class PlayerCrewMemberBuilder
         this.campaign = campaign;
     }
     
-    public void buildPlayerCrewMember(String playerName, String squadronName, String rank, String coopUser) throws PWCGUserException, Exception, PWCGException
+    public void buildPlayerCrewMember(String playerName, String companyName, String rank, String coopUser) throws PWCGUserException, Exception, PWCGException
     {
-        ICrewMemberReplacer squadronMemberReplacer = CampaignModeFactory.makeCrewMemberReplacer(campaign);
-        CrewMember newCrewMember = squadronMemberReplacer.createPersona(playerName, rank, squadronName, coopUser);
+        ICrewMemberReplacer companyMemberReplacer = CampaignModeFactory.makeCrewMemberReplacer(campaign);
+        CrewMember newCrewMember = companyMemberReplacer.createPersona(playerName, rank, companyName, coopUser);
         
         persistCampaignAndCoopUser(coopUser, newCrewMember);
         setReferenceCrewMemberIfOnlyActivePlayerCrewMember();

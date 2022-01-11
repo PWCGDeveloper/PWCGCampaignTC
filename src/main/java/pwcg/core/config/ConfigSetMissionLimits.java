@@ -18,8 +18,8 @@ public class ConfigSetMissionLimits
         configSet.addConfigItem(ConfigItemKeys.AiFighterFlightsForFighterCampaignMaxKey, new ConfigItem("3"));        
 		
 		configSet.addConfigItem(ConfigItemKeys.OddsOfAceFlyingKey, new ConfigItem("40"));		
-		configSet.addConfigItem(ConfigItemKeys.InitialSquadronSearchRadiusKey, new ConfigItem("50000"));
-		configSet.addConfigItem(ConfigItemKeys.MaxSquadronSearchRadiusKey, new ConfigItem("120000"));
+		configSet.addConfigItem(ConfigItemKeys.InitialCompanySearchRadiusKey, new ConfigItem("50000"));
+		configSet.addConfigItem(ConfigItemKeys.MaxCompanySearchRadiusKey, new ConfigItem("120000"));
 		
         configSet.addConfigItem(ConfigItemKeys.AllowAirStartsKey, new ConfigItem("0"));
         configSet.addConfigItem(ConfigItemKeys.GenerateClimbWPKey, new ConfigItem("1"));

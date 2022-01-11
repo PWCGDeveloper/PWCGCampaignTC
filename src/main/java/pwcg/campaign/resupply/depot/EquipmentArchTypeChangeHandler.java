@@ -21,7 +21,7 @@ public class EquipmentArchTypeChangeHandler
 {
     private Campaign campaign;
     private Date newDate;
-    private Set<Company> squadronsToEquip = new HashSet<>();
+    private Set<Company> companysToEquip = new HashSet<>();
 	
 	public EquipmentArchTypeChangeHandler(Campaign campaign, Date newDate)
 	{
@@ -37,26 +37,26 @@ public class EquipmentArchTypeChangeHandler
 
     private void removeOutdatedArchTypes() throws PWCGException
     {
-        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
-        for (Company squadron : squadronManager.getActiveCompanies(campaign.getDate()))
+        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+        for (Company company : companyManager.getActiveCompanies(campaign.getDate()))
         {
-            Equipment squadronEquipment = campaign.getEquipmentManager().getEquipmentForCompany(squadron.getCompanyId());
-            if (squadronEquipment != null)
+            Equipment companyEquipment = campaign.getEquipmentManager().getEquipmentForCompany(company.getCompanyId());
+            if (companyEquipment != null)
             {
                 Set<Integer> planesToRemove = new HashSet<>();
-                for (EquippedTank plane : squadronEquipment.getActiveEquippedTanks().values())
+                for (EquippedTank plane : companyEquipment.getActiveEquippedTanks().values())
                 {
-                    boolean isActiveArchType = squadron.isPlaneInActiveSquadronArchTypes(newDate, plane);
+                    boolean isActiveArchType = company.isPlaneInActiveCompanyArchTypes(newDate, plane);
                     if (!isActiveArchType)
                     {
                         planesToRemove.add(plane.getSerialNumber());
-                        squadronsToEquip.add(squadron);
+                        companysToEquip.add(company);
                     }
                 }
 
                 for (Integer planeSerialNumber : planesToRemove)
                 {
-                    squadronEquipment.deactivateEquippedTankFromCompany(planeSerialNumber, campaign.getDate());
+                    companyEquipment.deactivateEquippedTankFromCompany(planeSerialNumber, campaign.getDate());
                 }
             }            
         }
@@ -64,31 +64,31 @@ public class EquipmentArchTypeChangeHandler
 
     private void addNewArchTypes() throws PWCGException
     {
-        for (Company squadron : squadronsToEquip)
+        for (Company company : companysToEquip)
         {
-            Equipment squadronEquipment = campaign.getEquipmentManager().getEquipmentForCompany(squadron.getCompanyId());
-            int numPlanesNeeded = Company.COMPANY_EQUIPMENT_SIZE - squadronEquipment.getActiveEquippedTanks().size();
+            Equipment companyEquipment = campaign.getEquipmentManager().getEquipmentForCompany(company.getCompanyId());
+            int numPlanesNeeded = Company.COMPANY_EQUIPMENT_SIZE - companyEquipment.getActiveEquippedTanks().size();
 
-            TankType bestTankType = getBestTankTypeForSquadron(squadron);
+            TankType bestTankType = getBestTankTypeForCompany(company);
             for (int i = 0; i < numPlanesNeeded; ++i)
             {
-                EquippedTank replacementPlane = TankEquipmentFactory.makeTankForSquadron(campaign, bestTankType.getType(), squadron.getCompanyId());
-                squadronEquipment.addEquippedTankToCompany(campaign, squadron.getCompanyId(), replacementPlane);
+                EquippedTank replacementPlane = TankEquipmentFactory.makeTankForCompany(campaign, bestTankType.getType(), company.getCompanyId());
+                companyEquipment.addEquippedTankToCompany(campaign, company.getCompanyId(), replacementPlane);
             }
         }
     }
     
-    private TankType getBestTankTypeForSquadron(Company squadron) throws PWCGException
+    private TankType getBestTankTypeForCompany(Company company) throws PWCGException
     {
-        List<TankType> planeTypesForSquadron = new ArrayList<>();
-        for (TankArchType archType : squadron.determineCurrentAircraftArchTypes(newDate))
+        List<TankType> planeTypesForCompany = new ArrayList<>();
+        for (TankArchType archType : company.determineCurrentAircraftArchTypes(newDate))
         {
             List<TankType> planeTypesForArchType = archType.getActiveMemberTankTypes(newDate);
-            planeTypesForSquadron.addAll(planeTypesForArchType);
+            planeTypesForCompany.addAll(planeTypesForArchType);
         }
         
-        TankType bestTankType = planeTypesForSquadron.get(0);
-        for (TankType planeType : planeTypesForSquadron)
+        TankType bestTankType = planeTypesForCompany.get(0);
+        for (TankType planeType : planeTypesForCompany)
         {
             if (planeType.getGoodness() > bestTankType.getGoodness())
             {

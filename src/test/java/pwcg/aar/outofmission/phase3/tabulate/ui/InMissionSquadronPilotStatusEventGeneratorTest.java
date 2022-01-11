@@ -26,22 +26,22 @@ import pwcg.testutils.MissionEntityBuilder;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
-public class InMissionSquadronCrewMemberStatusEventGeneratorTest extends AARTestSetup
+public class InMissionCompanyCrewMemberStatusEventGeneratorTest extends AARTestSetup
 {	
-    private Map<Integer, CrewMember> squadronMembersKilledInMission = new HashMap<>();
-    private Map<Integer, CrewMember> squadronMembersCapturedInMission = new HashMap<>();
-    private Map<Integer, CrewMember> squadronMembersMaimedInMission = new HashMap<>();
-    private Map<Integer, CrewMember> squadronMembersWoundedInMission = new HashMap<>();
-    private Map<Integer, CrewMember> acesKilledMissionSquadronInMission = new HashMap<>();
+    private Map<Integer, CrewMember> crewMembersKilledInMission = new HashMap<>();
+    private Map<Integer, CrewMember> crewMembersCapturedInMission = new HashMap<>();
+    private Map<Integer, CrewMember> crewMembersMaimedInMission = new HashMap<>();
+    private Map<Integer, CrewMember> crewMembersWoundedInMission = new HashMap<>();
+    private Map<Integer, CrewMember> acesKilledMissionCompanyInMission = new HashMap<>();
 	
     @BeforeEach
     public void setupTest() throws PWCGException
     {
-        squadronMembersKilledInMission = new HashMap<>();
-        squadronMembersCapturedInMission = new HashMap<>();
-        squadronMembersMaimedInMission = new HashMap<>();
-        squadronMembersWoundedInMission = new HashMap<>();
-        acesKilledMissionSquadronInMission = new HashMap<>();
+        crewMembersKilledInMission = new HashMap<>();
+        crewMembersCapturedInMission = new HashMap<>();
+        crewMembersMaimedInMission = new HashMap<>();
+        crewMembersWoundedInMission = new HashMap<>();
+        acesKilledMissionCompanyInMission = new HashMap<>();
 
         setupAARMocks();
         
@@ -52,29 +52,29 @@ public class InMissionSquadronCrewMemberStatusEventGeneratorTest extends AARTest
         Date returnDate = DateUtils.advanceTimeDays(campaign.getDate(), 90);
         CrewMember squaddie4 = MissionEntityBuilder.makeCrewMemberWithStatus("Squaddie D", SerialNumber.AI_STARTING_SERIAL_NUMBER+4, CrewMemberStatus.STATUS_SERIOUSLY_WOUNDED, campaign.getDate(), returnDate);
 
-        squadronMembersKilledInMission.put(squaddie1.getSerialNumber(), squaddie1);
-        squadronMembersKilledInMission.put(squaddie2.getSerialNumber(), squaddie2);
-        squadronMembersCapturedInMission.put(squaddie3.getSerialNumber(), squaddie3);
-        squadronMembersMaimedInMission.put(squaddie4.getSerialNumber(), squaddie4);
+        crewMembersKilledInMission.put(squaddie1.getSerialNumber(), squaddie1);
+        crewMembersKilledInMission.put(squaddie2.getSerialNumber(), squaddie2);
+        crewMembersCapturedInMission.put(squaddie3.getSerialNumber(), squaddie3);
+        crewMembersMaimedInMission.put(squaddie4.getSerialNumber(), squaddie4);
 
         TankAce ace1 = MissionEntityBuilder.makeDeadAceWithVictories("Ace A", SerialNumber.ACE_STARTING_SERIAL_NUMBER+1, AcesKilledEventGenerator.NUM_VICTORIES_FOR_ACE_TO_BE_NEWSWORTHY, campaign.getDate());
-        squadronMembersCapturedInMission.put(ace1.getSerialNumber(), ace1);
+        crewMembersCapturedInMission.put(ace1.getSerialNumber(), ace1);
         
-        Mockito.when(personnelLosses.getPersonnelKilled()).thenReturn(squadronMembersKilledInMission);
-        Mockito.when(personnelLosses.getPersonnelCaptured()).thenReturn(squadronMembersCapturedInMission);
-        Mockito.when(personnelLosses.getPersonnelMaimed()).thenReturn(squadronMembersMaimedInMission);
-        Mockito.when(personnelLosses.getPersonnelWounded()).thenReturn(squadronMembersWoundedInMission);
-        Mockito.when(personnelLosses.getAcesKilled(campaign)).thenReturn(acesKilledMissionSquadronInMission);
+        Mockito.when(personnelLosses.getPersonnelKilled()).thenReturn(crewMembersKilledInMission);
+        Mockito.when(personnelLosses.getPersonnelCaptured()).thenReturn(crewMembersCapturedInMission);
+        Mockito.when(personnelLosses.getPersonnelMaimed()).thenReturn(crewMembersMaimedInMission);
+        Mockito.when(personnelLosses.getPersonnelWounded()).thenReturn(crewMembersWoundedInMission);
+        Mockito.when(personnelLosses.getAcesKilled(campaign)).thenReturn(acesKilledMissionCompanyInMission);
     }
     
 	@Test
 	public void testCrewMemberAndPlayerKilled() throws PWCGException
 	{
         CrewMember player = MissionEntityBuilder.makeCrewMemberWithStatus("PLayer CrewMember", SerialNumber.PLAYER_STARTING_SERIAL_NUMBER+1, CrewMemberStatus.STATUS_KIA, campaign.getDate(), null);
-        squadronMembersKilledInMission.put(player.getSerialNumber(), player);
+        crewMembersKilledInMission.put(player.getSerialNumber(), player);
 
-        CrewMemberStatusEventGenerator inMissionSquadronCrewMemberStatusEventGenerator = new CrewMemberStatusEventGenerator(campaign);
-        Map<Integer, CrewMemberStatusEvent> crewMembersLostInMission = inMissionSquadronCrewMemberStatusEventGenerator.createCrewMemberLossEvents(personnelLosses);
+        CrewMemberStatusEventGenerator inMissionCompanyCrewMemberStatusEventGenerator = new CrewMemberStatusEventGenerator(campaign);
+        Map<Integer, CrewMemberStatusEvent> crewMembersLostInMission = inMissionCompanyCrewMemberStatusEventGenerator.createCrewMemberLossEvents(personnelLosses);
         
         assert(crewMembersLostInMission.size() == 6);
 	}
@@ -84,10 +84,10 @@ public class InMissionSquadronCrewMemberStatusEventGeneratorTest extends AARTest
     {
         Date returnDate = DateUtils.advanceTimeDays(campaign.getDate(), 90);
         CrewMember player = MissionEntityBuilder.makeCrewMemberWithStatus("PLayer CrewMember", SerialNumber.PLAYER_STARTING_SERIAL_NUMBER+1, CrewMemberStatus.STATUS_SERIOUSLY_WOUNDED, campaign.getDate(), returnDate);
-        squadronMembersMaimedInMission.put(player.getSerialNumber(), player);
+        crewMembersMaimedInMission.put(player.getSerialNumber(), player);
 
-        CrewMemberStatusEventGenerator inMissionSquadronCrewMemberStatusEventGenerator = new CrewMemberStatusEventGenerator(campaign);
-        Map<Integer, CrewMemberStatusEvent> crewMembersLostInMission = inMissionSquadronCrewMemberStatusEventGenerator.createCrewMemberLossEvents(personnelLosses);
+        CrewMemberStatusEventGenerator inMissionCompanyCrewMemberStatusEventGenerator = new CrewMemberStatusEventGenerator(campaign);
+        Map<Integer, CrewMemberStatusEvent> crewMembersLostInMission = inMissionCompanyCrewMemberStatusEventGenerator.createCrewMemberLossEvents(personnelLosses);
         
         assert(crewMembersLostInMission.size() == 6);
     }
@@ -97,10 +97,10 @@ public class InMissionSquadronCrewMemberStatusEventGeneratorTest extends AARTest
     {
         Date returnDate = DateUtils.advanceTimeDays(campaign.getDate(), 14);
         CrewMember player = MissionEntityBuilder.makeCrewMemberWithStatus("PLayer CrewMember", SerialNumber.PLAYER_STARTING_SERIAL_NUMBER+1, CrewMemberStatus.STATUS_WOUNDED, campaign.getDate(), returnDate);
-        squadronMembersWoundedInMission.put(player.getSerialNumber(), player);
+        crewMembersWoundedInMission.put(player.getSerialNumber(), player);
 
-        CrewMemberStatusEventGenerator inMissionSquadronCrewMemberStatusEventGenerator = new CrewMemberStatusEventGenerator(campaign);
-        Map<Integer, CrewMemberStatusEvent> crewMembersLostInMission = inMissionSquadronCrewMemberStatusEventGenerator.createCrewMemberLossEvents(personnelLosses);
+        CrewMemberStatusEventGenerator inMissionCompanyCrewMemberStatusEventGenerator = new CrewMemberStatusEventGenerator(campaign);
+        Map<Integer, CrewMemberStatusEvent> crewMembersLostInMission = inMissionCompanyCrewMemberStatusEventGenerator.createCrewMemberLossEvents(personnelLosses);
         
         assert(crewMembersLostInMission.size() == 5);
     }
@@ -108,8 +108,8 @@ public class InMissionSquadronCrewMemberStatusEventGeneratorTest extends AARTest
 	@Test
 	public void testCrewMemberAndPlayerOK() throws PWCGException
 	{
-        CrewMemberStatusEventGenerator inMissionSquadronCrewMemberStatusEventGenerator = new CrewMemberStatusEventGenerator(campaign);
-        Map<Integer, CrewMemberStatusEvent> crewMembersLostInMission = inMissionSquadronCrewMemberStatusEventGenerator.createCrewMemberLossEvents(personnelLosses);
+        CrewMemberStatusEventGenerator inMissionCompanyCrewMemberStatusEventGenerator = new CrewMemberStatusEventGenerator(campaign);
+        Map<Integer, CrewMemberStatusEvent> crewMembersLostInMission = inMissionCompanyCrewMemberStatusEventGenerator.createCrewMemberLossEvents(personnelLosses);
         
         assert(crewMembersLostInMission.size() == 5);
 	}

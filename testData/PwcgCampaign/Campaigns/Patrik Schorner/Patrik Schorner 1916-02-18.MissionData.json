@@ -1,7 +1,7 @@
 {
   "missionHeader": {
     "missionFileName": "Patrik Schorner 1916-02-18",
-    "squadron": "FA 293b",
+    "company": "FA 293b",
     "date": "19160218",
     "time": "150:00",
     "aircraftType": "AircraftType \u003d DFW C.",
@@ -10,11 +10,11 @@
     "duty": "ARTILLERY_SPOT",
     "altitude": 800
   },
-  "missionDescription": "Mission:\nAircraft  DFW C.V\nSquadron  FA 293b\nAirbase  Bellevue Ferme\nDate  1916-02-18\n\nWeather Report\nMedium cloud cover, high altitude.\nCloud layer is 4288 meters.\nWind speed is 2 M/S.\nWind direction is 193.\n\nPrimary Objective\nSpot artillery against the artillery battery  near Dieue\n\n\n",
+  "missionDescription": "Mission:\nAircraft  DFW C.V\nCompany  FA 293b\nAirbase  Bellevue Ferme\nDate  1916-02-18\n\nWeather Report\nMedium cloud cover, high altitude.\nCloud layer is 4288 meters.\nWind speed is 2 M/S.\nWind direction is 193.\n\nPrimary Objective\nSpot artillery against the artillery battery  near Dieue\n\n\n",
   "missionPlanes": [
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 293b",
+      "companyName": "FA 293b",
       "crew": {
         "pilot": "Patrik Schorner",
         "observer": "Herbert Klemm",
@@ -24,7 +24,7 @@
     },
     {
       "aircraftType": "fokkere3",
-      "squadronName": "Jasta 6",
+      "companyName": "Jasta 6",
       "crew": {
         "pilot": "Martin Kosel",
         "observer": "",
@@ -34,7 +34,7 @@
     },
     {
       "aircraftType": "fokkere3",
-      "squadronName": "Jasta 6",
+      "companyName": "Jasta 6",
       "crew": {
         "pilot": "Klemens Setzer",
         "observer": "",
@@ -44,7 +44,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 19",
+      "companyName": "FA 19",
       "crew": {
         "pilot": "Ludwig Wurffel",
         "observer": "Lars Degener",
@@ -54,7 +54,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 278s",
+      "companyName": "FA 278s",
       "crew": {
         "pilot": "Jakob Baar",
         "observer": "Heinrich Weinstock",
@@ -64,7 +64,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 278s",
+      "companyName": "FA 278s",
       "crew": {
         "pilot": "Oskar Krantz",
         "observer": "Gerhard Schreck",
@@ -74,7 +74,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 278s",
+      "companyName": "FA 278s",
       "crew": {
         "pilot": "Leon Koenigswald",
         "observer": "Timm Scherzinger",
@@ -84,7 +84,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 278s",
+      "companyName": "FA 278s",
       "crew": {
         "pilot": "Ralf Reinhart",
         "observer": "Johann Denzinger",
@@ -94,7 +94,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 2",
+      "companyName": "Esc 2",
       "crew": {
         "pilot": "Vincent Vasse",
         "observer": "Gaspard Lacave",
@@ -104,7 +104,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 2",
+      "companyName": "Esc 2",
       "crew": {
         "pilot": "Ferdinand Brindejonc",
         "observer": "Nicolas Lagarde",
@@ -114,7 +114,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 2",
+      "companyName": "Esc 2",
       "crew": {
         "pilot": "Guillaume Saulnier",
         "observer": "Francois Petit",
@@ -124,7 +124,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 2",
+      "companyName": "Esc 2",
       "crew": {
         "pilot": "Justin Decraissain",
         "observer": "Adrien Bourgeois",
@@ -134,7 +134,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 40",
+      "companyName": "Esc 40",
       "crew": {
         "pilot": "Samuel Justet",
         "observer": "Edouard Michau",
@@ -144,7 +144,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 40",
+      "companyName": "Esc 40",
       "crew": {
         "pilot": "Florent Patrouilleau",
         "observer": "Julien Bolard",
@@ -154,7 +154,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 40",
+      "companyName": "Esc 40",
       "crew": {
         "pilot": "Emilien Pecheux",
         "observer": "Alain Gisquet",
@@ -164,7 +164,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 40",
+      "companyName": "Esc 40",
       "crew": {
         "pilot": "Gilbert Levaique",
         "observer": "Jacques Levaique",
@@ -174,7 +174,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 66",
+      "companyName": "Esc 66",
       "crew": {
         "pilot": "Andre Brunet",
         "observer": "Jean-Marie Tournaire",
@@ -184,7 +184,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 66",
+      "companyName": "Esc 66",
       "crew": {
         "pilot": "Raymond Kalandyk",
         "observer": "Jehan Robert",

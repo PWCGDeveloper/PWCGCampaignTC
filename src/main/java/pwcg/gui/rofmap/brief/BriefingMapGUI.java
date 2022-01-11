@@ -56,7 +56,7 @@ public class BriefingMapGUI extends MapGUI implements ActionListener, IUnitChang
 		try
 		{
             briefingFlightChooser = new BriefingCompanyChooser(mission, this);
-            briefingFlightChooser.createBriefingSquadronSelectPanel();
+            briefingFlightChooser.createBriefingCompanySelectPanel();
 
 			Color bg = ColorMap.MAP_BACKGROUND;
 			setOpaque(false);
@@ -152,9 +152,9 @@ public class BriefingMapGUI extends MapGUI implements ActionListener, IUnitChang
 
 		buttonPanel.add(buttonGrid, BorderLayout.NORTH);
 		
-        BriefingMapCompanySelector squadronSelector = new BriefingMapCompanySelector(mission, this, briefingData);
-        JPanel friendlySquadronSelectorPanel = squadronSelector.makeComboBox();
-		buttonPanel.add(friendlySquadronSelectorPanel, BorderLayout.CENTER);
+        BriefingMapCompanySelector companySelector = new BriefingMapCompanySelector(mission, this, briefingData);
+        JPanel friendlyCompanySelectorPanel = companySelector.makeComboBox();
+		buttonPanel.add(friendlyCompanySelectorPanel, BorderLayout.CENTER);
 		
 		return buttonPanel;
 	}
@@ -215,14 +215,14 @@ public class BriefingMapGUI extends MapGUI implements ActionListener, IUnitChang
     }
 
     @Override
-    public void unitChanged(Company squadron) throws PWCGException
+    public void unitChanged(Company company) throws PWCGException
     {
-        if (!isChangedSquadronSameSide(briefingData.getSelectedUnit().getCompany(), squadron))
+        if (!isChangedCompanySameSide(briefingData.getSelectedUnit().getCompany(), company))
         {
             briefingData.clearAiFlightsToDisplay();
         }
         
-        briefingData.changeSelectedUnit(squadron.getCompanyId());
+        briefingData.changeSelectedUnit(company.getCompanyId());
         refreshAllPanels();           
 
     }
@@ -233,7 +233,7 @@ public class BriefingMapGUI extends MapGUI implements ActionListener, IUnitChang
         this.add(BorderLayout.WEST, makeNavPanel());
     }
     
-    private boolean isChangedSquadronSameSide(Company before, Company after) throws PWCGException
+    private boolean isChangedCompanySameSide(Company before, Company after) throws PWCGException
     {
         if (before.determineSide() == after.determineSide())
         {

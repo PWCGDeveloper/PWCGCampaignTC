@@ -21,16 +21,16 @@ import pwcg.core.utils.PWCGLogger;
 public class OutOfMissionAirVictoryBuilder
 {
     private Campaign campaign;
-    private Company victimSquadron;
+    private Company victimCompany;
     private IVictimGenerator victimGenerator;
     private CrewMember victorCrewMember;
     private CrewMember victimCrewMember;
     private EquippedTank victimPlane;
 
-    public OutOfMissionAirVictoryBuilder (Campaign campaign, Company victimSquadron, IVictimGenerator victimGenerator, CrewMember victorCrewMember)
+    public OutOfMissionAirVictoryBuilder (Campaign campaign, Company victimCompany, IVictimGenerator victimGenerator, CrewMember victorCrewMember)
     {
         this.campaign = campaign;
-        this.victimSquadron = victimSquadron;
+        this.victimCompany = victimCompany;
         this.victimGenerator = victimGenerator;
         this.victorCrewMember = victorCrewMember;
     }
@@ -40,7 +40,7 @@ public class OutOfMissionAirVictoryBuilder
         Victory victory = null;
         try
         {
-            if (victimSquadron != null)
+            if (victimCompany != null)
             {
                 victory = createVictory(date);
             }
@@ -64,7 +64,7 @@ public class OutOfMissionAirVictoryBuilder
         if (victim != null && victor != null)
         {
 	        victory = new Victory();
-	        createVictoryHeader(date, victory, victimSquadron.determineCompanyCountry(date).getSide());
+	        createVictoryHeader(date, victory, victimCompany.determineCompanyCountry(date).getSide());
 	
 	        victory.setVictim(victim);
 	        victory.setVictor(victor);
@@ -87,14 +87,14 @@ public class OutOfMissionAirVictoryBuilder
     {
         VictoryEntity victor = new VictoryEntity();
         
-        Company squadron = victorCrewMember.determineSquadron();
+        Company company = victorCrewMember.determineCompany();
 
-        TankType victorTankType = squadron.determineBestPlane(campaign.getDate());
+        TankType victorTankType = company.determineBestPlane(campaign.getDate());
 
         victor.setAirOrGround(Victory.AIRCRAFT);
         victor.setType(victorTankType.getDisplayName());
         victor.setName(victorTankType.getDisplayName());
-        victor.setSquadronName(squadron.determineDisplayName(date));
+        victor.setCompanyName(company.determineDisplayName(date));
         victor.setCrewMemberName(victorCrewMember.getRank() + " " + victorCrewMember.getName());
         victor.setCrewMemberSerialNumber(victorCrewMember.getSerialNumber());
         victor.setCrewMemberStatus(CrewMemberStatus.STATUS_ACTIVE);
@@ -112,7 +112,7 @@ public class OutOfMissionAirVictoryBuilder
             victim.setAirOrGround(Victory.AIRCRAFT);
             victim.setType(victimPlane.getType());
             victim.setName(victimPlane.getDisplayName());
-            victim.setSquadronName(victimSquadron.determineDisplayName(date));
+            victim.setCompanyName(victimCompany.determineDisplayName(date));
             victim.setCrewMemberSerialNumber(victimCrewMember.getSerialNumber());
             victim.setCrewMemberStatus(CrewMemberStatus.STATUS_KIA);
             return victim;
@@ -124,11 +124,11 @@ public class OutOfMissionAirVictoryBuilder
     {
         String eventLocationDescription = "";
         
-        Coordinate squadronPosition = victorCrewMember.determineSquadron().determineCurrentPosition(date);
-        if (squadronPosition != null)
+        Coordinate companyPosition = victorCrewMember.determineCompany().determineCurrentPosition(date);
+        if (companyPosition != null)
         {
             FrontLinesForMap frontLines = PWCGContext.getInstance().getCurrentMap().getFrontLinesForMap(date);
-            FrontLinePoint eventPosition = frontLines.findCloseFrontPositionForSide(squadronPosition, 100000, enemySide);
+            FrontLinePoint eventPosition = frontLines.findCloseFrontPositionForSide(companyPosition, 100000, enemySide);
     
             eventLocationDescription =  PWCGContext.getInstance().getCurrentMap().getGroupManager().getTownFinder().findClosestTown(eventPosition.getPosition()).getName();
             if (eventLocationDescription == null || eventLocationDescription.isEmpty())

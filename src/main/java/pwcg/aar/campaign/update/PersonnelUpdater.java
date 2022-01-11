@@ -60,15 +60,15 @@ public class PersonnelUpdater
 
     private void personnelCrewMemberLosses() throws PWCGException 
     {        
-        squadronMembersKilled();
-        squadronMembersCaptured();
-        squadronMembersMaimed();
-        squadronMembersWounded();
-        squadronMembersTransferredHome();
-        squadronMembersTransfers();
+        crewMembersKilled();
+        crewMembersCaptured();
+        crewMembersMaimed();
+        crewMembersWounded();
+        crewMembersTransferredHome();
+        crewMembersTransfers();
     }
 
-    private void squadronMembersKilled()
+    private void crewMembersKilled()
     {
         for (CrewMember crewMember : campaignUpdateData.getPersonnelLosses().getPersonnelKilled().values())
         {
@@ -76,7 +76,7 @@ public class PersonnelUpdater
         }
     }
 
-    private void squadronMembersCaptured()
+    private void crewMembersCaptured()
     {
         for (CrewMember crewMember : campaignUpdateData.getPersonnelLosses().getPersonnelCaptured().values())
         {
@@ -84,7 +84,7 @@ public class PersonnelUpdater
         }
     }
 
-    private void squadronMembersWounded() throws PWCGException
+    private void crewMembersWounded() throws PWCGException
     {
         for (CrewMember crewMember : campaignUpdateData.getPersonnelLosses().getPersonnelWounded().values())
         {
@@ -93,7 +93,7 @@ public class PersonnelUpdater
         }
     }
 
-    private void squadronMembersMaimed() throws PWCGException
+    private void crewMembersMaimed() throws PWCGException
     {
         for (CrewMember crewMember : campaignUpdateData.getPersonnelLosses().getPersonnelMaimed().values())
         {
@@ -102,7 +102,7 @@ public class PersonnelUpdater
         }
     }
 
-    private void squadronMembersTransferredHome() throws PWCGException
+    private void crewMembersTransferredHome() throws PWCGException
     {
         for (CrewMember crewMember : campaignUpdateData.getPersonnelLosses().getPersonnelTransferredHome().values())
         {
@@ -110,26 +110,26 @@ public class PersonnelUpdater
         }
     }
 
-    private void squadronMembersTransfers() throws PWCGException
+    private void crewMembersTransfers() throws PWCGException
     {
-        for (TransferRecord transferRecord : campaignUpdateData.getResupplyData().getSquadronTransferData().getCrewMembersTransferred())
+        for (TransferRecord transferRecord : campaignUpdateData.getResupplyData().getCompanyTransferData().getCrewMembersTransferred())
         {
-            addCrewMemberToSquadron(transferRecord);
+            addCrewMemberToCompany(transferRecord);
             removeFromReplacementPool(transferRecord);
         }
     }
 
-    private void addCrewMemberToSquadron(TransferRecord transferRecord) throws PWCGException
+    private void addCrewMemberToCompany(TransferRecord transferRecord) throws PWCGException
     {
-        CompanyPersonnel squadronPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(transferRecord.getTransferTo());
-        transferRecord.getCrewMember().setSquadronId(transferRecord.getTransferTo());
-        squadronPersonnel.addCrewMember(transferRecord.getCrewMember());
+        CompanyPersonnel companyPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(transferRecord.getTransferTo());
+        transferRecord.getCrewMember().setCompanyId(transferRecord.getTransferTo());
+        companyPersonnel.addCrewMember(transferRecord.getCrewMember());
     }
 
     private void removeFromReplacementPool(TransferRecord transferRecord) throws PWCGException
     {
-        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(transferRecord.getTransferTo());
-        ArmedService service = squadron.determineServiceForCompany(campaign.getDate());
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(transferRecord.getTransferTo());
+        ArmedService service = company.determineServiceForCompany(campaign.getDate());
         PersonnelReplacementsService replacementService = campaign.getPersonnelManager().getPersonnelReplacementsService(service.getServiceId());
         replacementService.transferFromReservesToActive(transferRecord.getCrewMember().getSerialNumber());
     }
@@ -138,7 +138,7 @@ public class PersonnelUpdater
     {
         for (TransferRecord transferRecord : campaignUpdateData.getResupplyData().getAcesTransferred().getCrewMembersTransferred())
         {
-            transferRecord.getCrewMember().setSquadronId(transferRecord.getTransferTo());
+            transferRecord.getCrewMember().setCompanyId(transferRecord.getTransferTo());
         }
     }
     

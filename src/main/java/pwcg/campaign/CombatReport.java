@@ -9,7 +9,7 @@ public class CombatReport
     private List<String> flightCrewMembers = new ArrayList<>();
     private Integer crewMemberSerialNumber = 0;
     private String reportCrewMemberName = "";
-	private String squadron = "";
+	private String company = "";
 	private Date date;
 	private String time = "";
 	private String type = "";
@@ -42,14 +42,14 @@ public class CombatReport
 		return flightCrewMembers;
 	}
 
-	public String getSquadron()
+	public String getCompany()
 	{
-		return squadron;
+		return company;
 	}
 
-	public void setSquadron(String squadron)
+	public void setCompany(String company)
 	{
-		this.squadron = squadron;
+		this.company = company;
 	}
 
 	public String getReportCrewMemberName() 

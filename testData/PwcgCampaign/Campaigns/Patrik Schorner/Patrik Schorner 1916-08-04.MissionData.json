@@ -1,7 +1,7 @@
 {
   "missionHeader": {
     "missionFileName": "Patrik Schorner 1916-08-04",
-    "squadron": "Jasta 16b",
+    "company": "Jasta 16b",
     "date": "19160804",
     "time": "6:30:00",
     "aircraftType": "AircraftType \u003d Halberstadt D.I",
@@ -10,11 +10,11 @@
     "duty": "INTERCEPT",
     "altitude": 2284
   },
-  "missionDescription": "Mission:\nAircraft  Halberstadt D.II\nSquadron  Jasta 16b\nAirbase  Balatre,E Roye\nDate  1916-08-04\n\nWeather Report\nLight cloud cover, medium altitude.\nCloud layer is 2988 meters.\nWind speed is 0 M/S.\nWind direction is 181.\n\nPrimary Objective\nIntercept enemy aircraft near Hombleux.\n\n\n",
+  "missionDescription": "Mission:\nAircraft  Halberstadt D.II\nCompany  Jasta 16b\nAirbase  Balatre,E Roye\nDate  1916-08-04\n\nWeather Report\nLight cloud cover, medium altitude.\nCloud layer is 2988 meters.\nWind speed is 0 M/S.\nWind direction is 181.\n\nPrimary Objective\nIntercept enemy aircraft near Hombleux.\n\n\n",
   "missionPlanes": [
     {
       "aircraftType": "halberstadtd2",
-      "squadronName": "Jasta 16b",
+      "companyName": "Jasta 16b",
       "crew": {
         "pilot": "Patrik Schorner",
         "observer": "",
@@ -24,7 +24,7 @@
     },
     {
       "aircraftType": "halberstadtd2",
-      "squadronName": "Jasta 16b",
+      "companyName": "Jasta 16b",
       "crew": {
         "pilot": "Gebhard Schonbaum",
         "observer": "",
@@ -34,7 +34,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "No 27 Squadron RFC",
+      "companyName": "No 27 Company RFC",
       "crew": {
         "pilot": "Michael Blacknall",
         "observer": "Carney Markeley",
@@ -44,7 +44,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "No 27 Squadron RFC",
+      "companyName": "No 27 Company RFC",
       "crew": {
         "pilot": "Wayne White",
         "observer": "Casper Willardsey",
@@ -54,7 +54,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "Schlasta 10",
+      "companyName": "Schlasta 10",
       "crew": {
         "pilot": "Ralf Wetterhahn",
         "observer": "Leon Baer",
@@ -64,7 +64,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "Schlasta 10",
+      "companyName": "Schlasta 10",
       "crew": {
         "pilot": "Klaus Wirt",
         "observer": "Nils Denker",
@@ -74,7 +74,7 @@
     },
     {
       "aircraftType": "rolc2a",
-      "squadronName": "Schlasta 12",
+      "companyName": "Schlasta 12",
       "crew": {
         "pilot": "Konrad Frohlich",
         "observer": "Frederich Seck",
@@ -84,7 +84,7 @@
     },
     {
       "aircraftType": "rolc2a",
-      "squadronName": "Schlasta 12",
+      "companyName": "Schlasta 12",
       "crew": {
         "pilot": "Reinhard Kruger",
         "observer": "Jorg Buchman",
@@ -94,7 +94,7 @@
     },
     {
       "aircraftType": "rolc2a",
-      "squadronName": "Schlasta 12",
+      "companyName": "Schlasta 12",
       "crew": {
         "pilot": "Theodor Furtwaengler",
         "observer": "Hildebrand Kornheiser",
@@ -104,7 +104,7 @@
     },
     {
       "aircraftType": "rolc2a",
-      "squadronName": "Schlasta 12",
+      "companyName": "Schlasta 12",
       "crew": {
         "pilot": "Reinhard Krauszer",
         "observer": "Markus Weinstock",
@@ -114,7 +114,7 @@
     },
     {
       "aircraftType": "nieuport11",
-      "squadronName": "Esc 102",
+      "companyName": "Esc 102",
       "crew": {
         "pilot": "Richard Lafon",
         "observer": "",
@@ -124,7 +124,7 @@
     },
     {
       "aircraftType": "nieuport11",
-      "squadronName": "Esc 102",
+      "companyName": "Esc 102",
       "crew": {
         "pilot": "Leonard Ducourant",
         "observer": "",
@@ -134,7 +134,7 @@
     },
     {
       "aircraftType": "nieuport11",
-      "squadronName": "Esc 102",
+      "companyName": "Esc 102",
       "crew": {
         "pilot": "Christophe Bernardi",
         "observer": "",
@@ -144,7 +144,7 @@
     },
     {
       "aircraftType": "nieuport11",
-      "squadronName": "Esc 102",
+      "companyName": "Esc 102",
       "crew": {
         "pilot": "Alexis Nigri",
         "observer": "",
@@ -154,7 +154,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "No 27 Squadron RFC",
+      "companyName": "No 27 Company RFC",
       "crew": {
         "pilot": "Harold Whyting",
         "observer": "Melvin Chudderley",

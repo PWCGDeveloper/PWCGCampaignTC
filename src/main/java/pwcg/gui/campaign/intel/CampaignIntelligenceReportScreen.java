@@ -26,7 +26,7 @@ public class CampaignIntelligenceReportScreen extends ImageResizingPanel impleme
     private static final long serialVersionUID = 1L;
 
 	private Campaign campaign;
-	private CampaignIntelligenceCompanyDetailsPanel squadronDetailsRightPanel;
+	private CampaignIntelligenceCompanyDetailsPanel companyDetailsRightPanel;
 	private Side side;
 	private JPanel contentPanel;
 	
@@ -90,11 +90,11 @@ public class CampaignIntelligenceReportScreen extends ImageResizingPanel impleme
     {
         contentPanel.removeAll();
         
-        JPanel squadronListPanel = makeCenterPanel();
-        contentPanel.add(squadronListPanel);
+        JPanel companyListPanel = makeCenterPanel();
+        contentPanel.add(companyListPanel);
 
-        JPanel squadronDetailsPanel = makeRightPanel();
-        contentPanel.add(squadronDetailsPanel);
+        JPanel companyDetailsPanel = makeRightPanel();
+        contentPanel.add(companyDetailsPanel);
         
         this.revalidate();
         this.repaint();
@@ -102,16 +102,16 @@ public class CampaignIntelligenceReportScreen extends ImageResizingPanel impleme
 
     private JPanel makeCenterPanel() throws PWCGException  
     {
-        CampaignIntelligenceCompanyListPanel squadronSelectionCenterPanel = new CampaignIntelligenceCompanyListPanel(campaign, this,side);
-        squadronSelectionCenterPanel.makePanel();
-        return squadronSelectionCenterPanel;
+        CampaignIntelligenceCompanyListPanel companySelectionCenterPanel = new CampaignIntelligenceCompanyListPanel(campaign, this,side);
+        companySelectionCenterPanel.makePanel();
+        return companySelectionCenterPanel;
     }
 
     private JPanel makeRightPanel() throws PWCGException  
     {
-        squadronDetailsRightPanel = new CampaignIntelligenceCompanyDetailsPanel(campaign);
-        squadronDetailsRightPanel.makePanel();
-        return squadronDetailsRightPanel;
+        companyDetailsRightPanel = new CampaignIntelligenceCompanyDetailsPanel(campaign);
+        companyDetailsRightPanel.makePanel();
+        return companyDetailsRightPanel;
     }
 
     public void actionPerformed(ActionEvent ae)
@@ -125,13 +125,13 @@ public class CampaignIntelligenceReportScreen extends ImageResizingPanel impleme
                 campaign.write();                
                 CampaignGuiContextManager.getInstance().popFromContextStack();
             }
-            else if (action.contains("SquadronSelected"))
+            else if (action.contains("CompanySelected"))
             {
                 int beginIndex = action.indexOf(":");
                 ++beginIndex;
-                String squadronIdString = action.substring(beginIndex).trim();
-                int squadronId = Integer.valueOf(squadronIdString).intValue();
-                squadronDetailsRightPanel.setSquadronIntelText(squadronId);
+                String companyIdString = action.substring(beginIndex).trim();
+                int companyId = Integer.valueOf(companyIdString).intValue();
+                companyDetailsRightPanel.setCompanyIntelText(companyId);
             }
             else if (action.contains("Friendly"))
             {

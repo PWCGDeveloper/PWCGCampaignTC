@@ -32,7 +32,7 @@ public class OutOfMissionVictoryEventHandler
         {
             if (OutOfMissionCrewMemberSelector.shouldCrewMemberBeEvaluated(campaign, crewMember)) 
             {
-                PwcgRole missionRole = crewMember.determineSquadron().getSquadronRoles().selectRoleForMission(campaign.getDate());
+                PwcgRole missionRole = crewMember.determineCompany().getCompanyRoles().selectRoleForMission(campaign.getDate());
                 if (GroundVictimGenerator.shouldUse(missionRole.getRoleCategory()))
                 {
                     OutOfMissionGroundVictoryEventGenerator groundVictoryEventGenerator = new OutOfMissionGroundVictoryEventGenerator(campaign, crewMember);

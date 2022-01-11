@@ -5,10 +5,10 @@ import pwcg.campaign.Campaign;
 import pwcg.campaign.company.Company;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.personnel.PersonnelReplacementsService;
-import pwcg.campaign.resupply.ISquadronNeed;
+import pwcg.campaign.resupply.CompanyNeedFactory.CompanyNeedType;
+import pwcg.campaign.resupply.ICompanyNeed;
 import pwcg.campaign.resupply.ResupplyNeedBuilder;
 import pwcg.campaign.resupply.ServiceResupplyNeed;
-import pwcg.campaign.resupply.SquadronNeedFactory.SquadronNeedType;
 import pwcg.core.exception.PWCGException;
 
 public class TransferHandler
@@ -16,7 +16,7 @@ public class TransferHandler
     private Campaign campaign;
     private ResupplyNeedBuilder transferNeedBuilder;
 
-    private SquadronTransferData squadronTransferData = new SquadronTransferData();
+    private CompanyTransferData companyTransferData = new CompanyTransferData();
     
     public TransferHandler(Campaign campaign, ResupplyNeedBuilder transferNeedBuilder)
     {
@@ -24,25 +24,25 @@ public class TransferHandler
         this.transferNeedBuilder = transferNeedBuilder;
     }
     
-    public SquadronTransferData determineCrewMemberTransfers(ArmedService armedService) throws PWCGException
+    public CompanyTransferData determineCrewMemberTransfers(ArmedService armedService) throws PWCGException
     {
-        ServiceResupplyNeed serviceTransferNeed = transferNeedBuilder.determineNeedForService(SquadronNeedType.PERSONNEL);
+        ServiceResupplyNeed serviceTransferNeed = transferNeedBuilder.determineNeedForService(CompanyNeedType.PERSONNEL);
         PersonnelReplacementsService serviceReplacements =  campaign.getPersonnelManager().getPersonnelReplacementsService(armedService.getServiceId());
         replaceForService(serviceTransferNeed, serviceReplacements);
-        return squadronTransferData;
+        return companyTransferData;
     }
 
     private void replaceForService(ServiceResupplyNeed serviceTransferNeed, PersonnelReplacementsService serviceReplacements) throws PWCGException
     {
-        while (serviceTransferNeed.hasNeedySquadron())
+        while (serviceTransferNeed.hasNeedyCompany())
         {
-            ISquadronNeed selectedSquadronNeed = serviceTransferNeed.chooseNeedySquadron();
+            ICompanyNeed selectedCompanyNeed = serviceTransferNeed.chooseNeedyCompany();
             if (serviceReplacements.hasReplacements())
             {
                 CrewMember replacement = serviceReplacements.findReplacement();        
-                TransferRecord transferRecord = new TransferRecord(replacement, Company.REPLACEMENT, selectedSquadronNeed.getSquadronId());
-                squadronTransferData.addTransferRecord(transferRecord);
-                serviceTransferNeed.noteResupply(selectedSquadronNeed);
+                TransferRecord transferRecord = new TransferRecord(replacement, Company.REPLACEMENT, selectedCompanyNeed.getCompanyId());
+                companyTransferData.addTransferRecord(transferRecord);
+                serviceTransferNeed.noteResupply(selectedCompanyNeed);
             }
             else
             {

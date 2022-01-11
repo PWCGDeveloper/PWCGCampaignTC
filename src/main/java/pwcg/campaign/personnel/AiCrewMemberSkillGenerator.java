@@ -10,52 +10,52 @@ import pwcg.core.exception.PWCGException;
 
 public class AiCrewMemberSkillGenerator
 {
-	public AiSkillLevel calculateCrewMemberQualityByRankAndService(Campaign campaign, Company squadron, String rank) throws PWCGException
+	public AiSkillLevel calculateCrewMemberQualityByRankAndService(Campaign campaign, Company company, String rank) throws PWCGException
 	{
-        ArmedService service = squadron.determineServiceForCompany(campaign.getDate());
+        ArmedService service = company.determineServiceForCompany(campaign.getDate());
 
         IRankHelper rankObj = RankFactory.createRankHelper();
         int rankPos = rankObj.getRankPosByService(rank, service);
 
-        int squadronQuality = squadron.determineSquadronSkill(campaign.getDate());
+        int companyQuality = company.determineCompanySkill(campaign.getDate());
         int serviceQuality = service.getServiceQuality().getQuality(campaign.getDate()).getQualityValue();
 
     	AiSkillLevel crewMemberQuality = AiSkillLevel.NOVICE;
 		if (rankPos == 4)
 		{
-			crewMemberQuality = getJuniorCrewMemberQuality(serviceQuality, squadronQuality);
+			crewMemberQuality = getJuniorCrewMemberQuality(serviceQuality, companyQuality);
 		}
 		if (rankPos == 3)
 		{
-			crewMemberQuality = getJuniorOfficerCrewMemberQuality(serviceQuality, squadronQuality);
+			crewMemberQuality = getJuniorOfficerCrewMemberQuality(serviceQuality, companyQuality);
 		}
 		if (rankPos == 2)
 		{
-			crewMemberQuality = getOfficerCrewMemberQuality(serviceQuality, squadronQuality);
+			crewMemberQuality = getOfficerCrewMemberQuality(serviceQuality, companyQuality);
 		}
 		if (rankPos == 1)
 		{
-			crewMemberQuality = getExecutiveOfficerCrewMemberQuality(serviceQuality, squadronQuality);
+			crewMemberQuality = getExecutiveOfficerCrewMemberQuality(serviceQuality, companyQuality);
 		}
 		if (rankPos == 0)
 		{
-			crewMemberQuality = getCommanderCrewMemberQuality(serviceQuality, squadronQuality);
+			crewMemberQuality = getCommanderCrewMemberQuality(serviceQuality, companyQuality);
 		}
 		
 		return crewMemberQuality;
 	}
 
-	private AiSkillLevel getCommanderCrewMemberQuality(int serviceQualityValue, int squadronQualityValue)
+	private AiSkillLevel getCommanderCrewMemberQuality(int serviceQualityValue, int companyQualityValue)
 	{
 		AiSkillLevel crewMemberQuality = AiSkillLevel.COMMON;
-		if (squadronQualityValue > 30)
+		if (companyQualityValue > 30)
 		{
 			if (serviceQualityValue > 25)
 			{
 				crewMemberQuality = AiSkillLevel.VETERAN;
 			}
 		}
-		if (squadronQualityValue > 60)
+		if (companyQualityValue > 60)
 		{
 			if (serviceQualityValue > 55)
 			{
@@ -65,10 +65,10 @@ public class AiCrewMemberSkillGenerator
 		return crewMemberQuality;
 	}
 
-	private AiSkillLevel getExecutiveOfficerCrewMemberQuality(int serviceQualityValue, int squadronQualityValue)
+	private AiSkillLevel getExecutiveOfficerCrewMemberQuality(int serviceQualityValue, int companyQualityValue)
 	{
 		AiSkillLevel crewMemberQuality = AiSkillLevel.NOVICE;
-		if (squadronQualityValue > 30)
+		if (companyQualityValue > 30)
 		{
 			if (serviceQualityValue > 25)
 			{
@@ -76,7 +76,7 @@ public class AiCrewMemberSkillGenerator
 			}
 		}
 		
-		if (squadronQualityValue > 50)
+		if (companyQualityValue > 50)
 		{
 			if (serviceQualityValue > 55)
 			{
@@ -87,10 +87,10 @@ public class AiCrewMemberSkillGenerator
 		return crewMemberQuality;
 	}
 
-	private AiSkillLevel getOfficerCrewMemberQuality(int serviceQualityValue, int squadronQualityValue)
+	private AiSkillLevel getOfficerCrewMemberQuality(int serviceQualityValue, int companyQualityValue)
 	{
 		AiSkillLevel crewMemberQuality = AiSkillLevel.NOVICE;
-		if (squadronQualityValue > 40)
+		if (companyQualityValue > 40)
 		{
 			if (serviceQualityValue > 35)
 			{
@@ -98,7 +98,7 @@ public class AiCrewMemberSkillGenerator
 			}
 		}
 		
-		if (squadronQualityValue > 60)
+		if (companyQualityValue > 60)
 		{
             if (serviceQualityValue > 78)
 			{
@@ -108,10 +108,10 @@ public class AiCrewMemberSkillGenerator
 		return crewMemberQuality;
 	}
 
-	private AiSkillLevel getJuniorOfficerCrewMemberQuality(int serviceQualityValue, int squadronQualityValue)
+	private AiSkillLevel getJuniorOfficerCrewMemberQuality(int serviceQualityValue, int companyQualityValue)
 	{
 		AiSkillLevel crewMemberQuality = AiSkillLevel.NOVICE;
-		if (squadronQualityValue > 60)
+		if (companyQualityValue > 60)
 		{
 			if (serviceQualityValue > 60)
 			{
@@ -121,10 +121,10 @@ public class AiCrewMemberSkillGenerator
 		return crewMemberQuality;
 	}
 
-	private AiSkillLevel getJuniorCrewMemberQuality(int serviceQualityValue, int squadronQualityValue)
+	private AiSkillLevel getJuniorCrewMemberQuality(int serviceQualityValue, int companyQualityValue)
 	{
 		AiSkillLevel crewMemberQuality = AiSkillLevel.NOVICE;
-		if (squadronQualityValue > 70)
+		if (companyQualityValue > 70)
 		{
 			if (serviceQualityValue > 75)
 			{

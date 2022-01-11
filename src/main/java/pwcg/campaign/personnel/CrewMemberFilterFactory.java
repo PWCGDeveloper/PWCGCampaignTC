@@ -15,7 +15,7 @@ public class CrewMemberFilterFactory
         filterSpecification.setIncludeWounded(true);
         filterSpecification.setIncludeActive(true);
         filterSpecification.setIncludeInactive(false);
-        filterSpecification.setSpecifySquadron(CrewMemberFilterSpecification.NO_SQUADRON_FILTER);
+        filterSpecification.setSpecifyCompany(CrewMemberFilterSpecification.NO_Company_FILTER);
         return filterSpecification;
     }
 
@@ -29,7 +29,7 @@ public class CrewMemberFilterFactory
         filterSpecification.setIncludeWounded(true);
         filterSpecification.setIncludeActive(true);
         filterSpecification.setIncludeInactive(false);
-        filterSpecification.setSpecifySquadron(CrewMemberFilterSpecification.NO_SQUADRON_FILTER);
+        filterSpecification.setSpecifyCompany(CrewMemberFilterSpecification.NO_Company_FILTER);
         return filterSpecification;
     }
 
@@ -43,7 +43,7 @@ public class CrewMemberFilterFactory
         filterSpecification.setIncludeWounded(true);
         filterSpecification.setIncludeActive(true);
         filterSpecification.setIncludeInactive(false);
-        filterSpecification.setSpecifySquadron(CrewMemberFilterSpecification.NO_SQUADRON_FILTER);
+        filterSpecification.setSpecifyCompany(CrewMemberFilterSpecification.NO_Company_FILTER);
         return filterSpecification;
     }
 
@@ -57,7 +57,7 @@ public class CrewMemberFilterFactory
         filterSpecification.setIncludeWounded(true);
         filterSpecification.setIncludeActive(true);
         filterSpecification.setIncludeInactive(false);
-        filterSpecification.setSpecifySquadron(CrewMemberFilterSpecification.NO_SQUADRON_FILTER);
+        filterSpecification.setSpecifyCompany(CrewMemberFilterSpecification.NO_Company_FILTER);
         return filterSpecification;
     }
     
@@ -71,7 +71,7 @@ public class CrewMemberFilterFactory
         filterSpecification.setIncludeWounded(true);
         filterSpecification.setIncludeActive(false);
         filterSpecification.setIncludeInactive(true);
-        filterSpecification.setSpecifySquadron(CrewMemberFilterSpecification.NO_SQUADRON_FILTER);
+        filterSpecification.setSpecifyCompany(CrewMemberFilterSpecification.NO_Company_FILTER);
         return filterSpecification;
     }
 
@@ -85,11 +85,11 @@ public class CrewMemberFilterFactory
         filterSpecification.setIncludeWounded(true);
         filterSpecification.setIncludeActive(false);
         filterSpecification.setIncludeInactive(false);
-        filterSpecification.setSpecifySquadron(CrewMemberFilterSpecification.NO_SQUADRON_FILTER);
+        filterSpecification.setSpecifyCompany(CrewMemberFilterSpecification.NO_Company_FILTER);
         return filterSpecification;
     }
 
-    public static CrewMemberFilterSpecification buildActiveAIByForSquadronFilter(Date date, int squadronId)
+    public static CrewMemberFilterSpecification buildActiveAIByForCompanyFilter(Date date, int companyId)
     {
         CrewMemberFilterSpecification filterSpecification = new CrewMemberFilterSpecification();
         filterSpecification.setDate(date);
@@ -99,11 +99,11 @@ public class CrewMemberFilterFactory
         filterSpecification.setIncludeWounded(true);
         filterSpecification.setIncludeActive(true);
         filterSpecification.setIncludeInactive(false);
-        filterSpecification.setSpecifySquadron(squadronId);
+        filterSpecification.setSpecifyCompany(companyId);
         return filterSpecification;
     }
 
-    public static CrewMemberFilterSpecification buildActiveAIAndPlayerForSquadronFilter(Date date, int squadronId)
+    public static CrewMemberFilterSpecification buildActiveAIAndPlayerForCompanyFilter(Date date, int companyId)
     {
         CrewMemberFilterSpecification filterSpecification = new CrewMemberFilterSpecification();
         filterSpecification.setDate(date);
@@ -113,11 +113,11 @@ public class CrewMemberFilterFactory
         filterSpecification.setIncludeWounded(true);
         filterSpecification.setIncludeActive(true);
         filterSpecification.setIncludeInactive(false);
-        filterSpecification.setSpecifySquadron(squadronId);
+        filterSpecification.setSpecifyCompany(companyId);
         return filterSpecification;
     }
     
-    public static CrewMemberFilterSpecification buildActiveAIAndPlayerAndAcesForSquadronFilter(Date date, int squadronId)
+    public static CrewMemberFilterSpecification buildActiveAIAndPlayerAndAcesForCompanyFilter(Date date, int companyId)
     {
         CrewMemberFilterSpecification filterSpecification = new CrewMemberFilterSpecification();
         filterSpecification.setDate(date);
@@ -127,7 +127,7 @@ public class CrewMemberFilterFactory
         filterSpecification.setIncludeWounded(true);
         filterSpecification.setIncludeActive(true);
         filterSpecification.setIncludeInactive(false);
-        filterSpecification.setSpecifySquadron(squadronId);
+        filterSpecification.setSpecifyCompany(companyId);
         return filterSpecification;
     }
 
@@ -141,7 +141,7 @@ public class CrewMemberFilterFactory
         filterSpecification.setIncludeWounded(false);
         filterSpecification.setIncludeActive(true);
         filterSpecification.setIncludeInactive(false);
-        filterSpecification.setSpecifySquadron(CrewMemberFilterSpecification.NO_SQUADRON_FILTER);
+        filterSpecification.setSpecifyCompany(CrewMemberFilterSpecification.NO_Company_FILTER);
         return filterSpecification;
     }
 
@@ -155,7 +155,7 @@ public class CrewMemberFilterFactory
         filterSpecification.setIncludeWounded(false);
         filterSpecification.setIncludeActive(true);
         filterSpecification.setIncludeInactive(false);
-        filterSpecification.setSpecifySquadron(CrewMemberFilterSpecification.NO_SQUADRON_FILTER);
+        filterSpecification.setSpecifyCompany(CrewMemberFilterSpecification.NO_Company_FILTER);
         return filterSpecification;
     }
 
@@ -169,7 +169,7 @@ public class CrewMemberFilterFactory
         filterSpecification.setIncludeWounded(false);
         filterSpecification.setIncludeActive(true);
         filterSpecification.setIncludeInactive(false);
-        filterSpecification.setSpecifySquadron(CrewMemberFilterSpecification.NO_SQUADRON_FILTER);
+        filterSpecification.setSpecifyCompany(CrewMemberFilterSpecification.NO_Company_FILTER);
         return filterSpecification;
     }
 

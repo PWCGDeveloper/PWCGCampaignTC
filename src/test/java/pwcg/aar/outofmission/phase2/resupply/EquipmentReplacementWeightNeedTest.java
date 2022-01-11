@@ -20,9 +20,9 @@ import pwcg.campaign.factory.ArmedServiceFactory;
 import pwcg.campaign.plane.Equipment;
 import pwcg.campaign.plane.EquippedPlane;
 import pwcg.campaign.plane.PlaneStatus;
-import pwcg.campaign.resupply.SquadronNeedFactory;
-import pwcg.campaign.resupply.SquadronNeedFactory.SquadronNeedType;
-import pwcg.campaign.resupply.depot.EquipmentNeedForSquadronsCalculator;
+import pwcg.campaign.resupply.CompanyNeedFactory;
+import pwcg.campaign.resupply.CompanyNeedFactory.CompanyNeedType;
+import pwcg.campaign.resupply.depot.EquipmentNeedForCompanysCalculator;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.testutils.CampaignCache;
@@ -52,12 +52,12 @@ public class EquipmentReplacementWeightNeedTest
     public void testGermanEquipmentNeed() throws PWCGException
     {
         ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(20101);
-        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
-        List<Company> squadronsForService = squadronManager.getActiveCompaniesForService(campaign.getDate(), service);
+        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+        List<Company> companysForService = companyManager.getActiveCompaniesForService(campaign.getDate(), service);
         
-        SquadronNeedFactory squadronNeedFactory = new SquadronNeedFactory(SquadronNeedType.EQUIPMENT);
-        EquipmentNeedForSquadronsCalculator equipmentReplacementWeightNeed = new EquipmentNeedForSquadronsCalculator(campaign, squadronNeedFactory);
-        Map<String, Integer> aircraftNeedByArchType = equipmentReplacementWeightNeed.getAircraftNeedByArchType(squadronsForService);
+        CompanyNeedFactory companyNeedFactory = new CompanyNeedFactory(CompanyNeedType.EQUIPMENT);
+        EquipmentNeedForCompanysCalculator equipmentReplacementWeightNeed = new EquipmentNeedForCompanysCalculator(campaign, companyNeedFactory);
+        Map<String, Integer> aircraftNeedByArchType = equipmentReplacementWeightNeed.getAircraftNeedByArchType(companysForService);
 
         assert(aircraftNeedByArchType.containsKey("bf109"));
         assert(aircraftNeedByArchType.containsKey("fw190"));
@@ -85,12 +85,12 @@ public class EquipmentReplacementWeightNeedTest
     public void testRussianEquipmentNeed() throws PWCGException
     {
         ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(10101);
-        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
-        List<Company> squadronsForService = squadronManager.getActiveCompaniesForService(campaign.getDate(), service);
+        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+        List<Company> companysForService = companyManager.getActiveCompaniesForService(campaign.getDate(), service);
         
-        SquadronNeedFactory squadronNeedFactory = new SquadronNeedFactory(SquadronNeedType.EQUIPMENT);
-        EquipmentNeedForSquadronsCalculator equipmentReplacementWeightNeed = new EquipmentNeedForSquadronsCalculator(campaign, squadronNeedFactory);
-        Map<String, Integer> aircraftNeedByArchType = equipmentReplacementWeightNeed.getAircraftNeedByArchType(squadronsForService);
+        CompanyNeedFactory companyNeedFactory = new CompanyNeedFactory(CompanyNeedType.EQUIPMENT);
+        EquipmentNeedForCompanysCalculator equipmentReplacementWeightNeed = new EquipmentNeedForCompanysCalculator(campaign, companyNeedFactory);
+        Map<String, Integer> aircraftNeedByArchType = equipmentReplacementWeightNeed.getAircraftNeedByArchType(companysForService);
 
         assert(aircraftNeedByArchType.containsKey("il2"));
         
@@ -110,12 +110,12 @@ public class EquipmentReplacementWeightNeedTest
     public void testItalianEquipmentNeed() throws PWCGException
     {
         ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(20202);
-        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
-        List<Company> squadronsForService = squadronManager.getActiveCompaniesForService(campaign.getDate(), service);
+        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+        List<Company> companysForService = companyManager.getActiveCompaniesForService(campaign.getDate(), service);
         
-        SquadronNeedFactory squadronNeedFactory = new SquadronNeedFactory(SquadronNeedType.EQUIPMENT);
-        EquipmentNeedForSquadronsCalculator equipmentReplacementWeightNeed = new EquipmentNeedForSquadronsCalculator(campaign, squadronNeedFactory);
-        Map<String, Integer> aircraftNeedByArchType = equipmentReplacementWeightNeed.getAircraftNeedByArchType(squadronsForService);
+        CompanyNeedFactory companyNeedFactory = new CompanyNeedFactory(CompanyNeedType.EQUIPMENT);
+        EquipmentNeedForCompanysCalculator equipmentReplacementWeightNeed = new EquipmentNeedForCompanysCalculator(campaign, companyNeedFactory);
+        Map<String, Integer> aircraftNeedByArchType = equipmentReplacementWeightNeed.getAircraftNeedByArchType(companysForService);
 
         assert(aircraftNeedByArchType.containsKey("mc200"));
         
@@ -126,29 +126,29 @@ public class EquipmentReplacementWeightNeedTest
     private void deactivateAircraft() throws PWCGException
     {
         Equipment gruppo21 = campaign.getEquipmentManager().getEquipmentForCompany(20115021);
-        destroyPlanesInSquadron(gruppo21, 3);
+        destroyPlanesInCompany(gruppo21, 3);
 
         Equipment i_jg51 = campaign.getEquipmentManager().getEquipmentForCompany(20111051);
-        destroyPlanesInSquadron(i_jg51, 2);
+        destroyPlanesInCompany(i_jg51, 2);
 
         Equipment ii_jg52 = campaign.getEquipmentManager().getEquipmentForCompany(20112052);
-        destroyPlanesInSquadron(ii_jg52, 1);
+        destroyPlanesInCompany(ii_jg52, 1);
 
         Equipment i_kg53 = campaign.getEquipmentManager().getEquipmentForCompany(20131053);
-        destroyPlanesInSquadron(i_kg53, 5);
+        destroyPlanesInCompany(i_kg53, 5);
 
         Equipment vvs_312Reg = campaign.getEquipmentManager().getEquipmentForCompany(10121312);
-        destroyPlanesInSquadron(vvs_312Reg, 4);
+        destroyPlanesInCompany(vvs_312Reg, 4);
 
         Equipment vvs_175Reg = campaign.getEquipmentManager().getEquipmentForCompany(10121175);
-        destroyPlanesInSquadron(vvs_175Reg, 2);
+        destroyPlanesInCompany(vvs_175Reg, 2);
     }
 
 
-    private void destroyPlanesInSquadron(Equipment squadronEquipment, int numToDestroy) throws PWCGException
+    private void destroyPlanesInCompany(Equipment companyEquipment, int numToDestroy) throws PWCGException
     {
         int numDestroyed = 0;
-        for (EquippedTank equippedPlane : squadronEquipment.getActiveEquippedTanks().values())
+        for (EquippedTank equippedPlane : companyEquipment.getActiveEquippedTanks().values())
         {
             equippedPlane.setTankStatus(TankStatus.STATUS_DESTROYED);
             Date dateDestroyed = DateUtils.removeTimeDays(campaign.getDate(), 10);

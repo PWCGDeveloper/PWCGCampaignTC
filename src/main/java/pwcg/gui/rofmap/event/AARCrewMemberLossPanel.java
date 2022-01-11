@@ -79,12 +79,12 @@ public class AARCrewMemberLossPanel extends AARDocumentPanel
 	{
 	    CrewMember referencePlayer = campaign.findReferencePlayer();
         AARCombatReportPanelData combatReportData = aarCoordinator.getAarContext()
-                        .findUiCombatReportDataForSquadron(referencePlayer.getCompanyId()).getCombatReportPanelData();
+                        .findUiCombatReportDataForCompany(referencePlayer.getCompanyId()).getCombatReportPanelData();
 
         HashMap<String, CampaignReportCrewMemberStatusGUI> crewMemberLostGuiList = new HashMap<>();
         for (CrewMemberStatusEvent crewMemberStatusEvent : combatReportData.getCrewMembersLostInMission().values())
         {
-            if (crewMemberStatusEvent.getSquadronId() == referencePlayer.getCompanyId())
+            if (crewMemberStatusEvent.getCompanyId() == referencePlayer.getCompanyId())
             {
                 CampaignReportCrewMemberStatusGUI crewMemberLostGui = new CampaignReportCrewMemberStatusGUI(crewMemberStatusEvent);
                 String tabName = "CrewMember Lost: " + crewMemberStatusEvent.getCrewMemberName();
@@ -95,7 +95,7 @@ public class AARCrewMemberLossPanel extends AARDocumentPanel
         Map<Integer, CrewMemberStatusEvent> crewMembersLostOutOfMission = aarCoordinator.getAarContext().getUiDebriefData().getCrewMemberLossPanelData().getSquadMembersLost();
         for (CrewMemberStatusEvent crewMemberStatusEvent : crewMembersLostOutOfMission.values())
         {
-            if (crewMemberStatusEvent.getSquadronId() == referencePlayer.getCompanyId())
+            if (crewMemberStatusEvent.getCompanyId() == referencePlayer.getCompanyId())
             {
                 CampaignReportCrewMemberStatusGUI crewMemberLostGui = new CampaignReportCrewMemberStatusGUI(crewMemberStatusEvent);
                 String tabName = "CrewMember Lost: " + crewMemberStatusEvent.getCrewMemberName();

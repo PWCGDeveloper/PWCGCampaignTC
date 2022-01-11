@@ -32,10 +32,10 @@ public class InitialReplacementStafferTest
         for (ArmedService service : armedServices)
         {
             InitialReplacementStaffer initialReplacementStaffer = new InitialReplacementStaffer(campaign, service);
-            CrewMembers squadronMembers = initialReplacementStaffer.staffReplacementsForService();
+            CrewMembers crewMembers = initialReplacementStaffer.staffReplacementsForService();
             
-            assert(squadronMembers.getCrewMemberCollection().size() == InitialReplacementStaffer.NUM_INITIAL_REPLACEMENTS);
-            for (CrewMember replacement : squadronMembers.getCrewMemberCollection().values())
+            assert(crewMembers.getCrewMemberCollection().size() == InitialReplacementStaffer.NUM_INITIAL_REPLACEMENTS);
+            for (CrewMember replacement : crewMembers.getCrewMemberCollection().values())
             {
                 assert(replacement.getCompanyId() == Company.REPLACEMENT);
             }

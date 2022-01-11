@@ -129,12 +129,12 @@ public class CampaignNewCrewMemberScreen extends ImageResizingPanel implements A
     private void createCrewMember() throws PWCGUserException, Exception
     {
         String playerName = newCrewMemberGeneratorDO.getPlayerCrewMemberName();
-        String squadronName = newCrewMemberGeneratorDO.getSquadName();
+        String companyName = newCrewMemberGeneratorDO.getSquadName();
         String rank = newCrewMemberGeneratorDO.getRank();
         String coopuser = newCrewMemberGeneratorDO.getCoopUser();
 
         PlayerCrewMemberBuilder playerCrewMemberBuilder = new PlayerCrewMemberBuilder(campaign);
-        playerCrewMemberBuilder.buildPlayerCrewMember(playerName, squadronName, rank, coopuser);
+        playerCrewMemberBuilder.buildPlayerCrewMember(playerName, companyName, rank, coopuser);
     }
 
     public void changeService(ArmedService service) throws PWCGException

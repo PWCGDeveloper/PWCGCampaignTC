@@ -89,10 +89,10 @@ public class OutOfMissionStructureVictoryEventGeneratorTest
         
         assert(victoryData.getVictoryAwardsByCrewMember().size() > 0);
         
-        List<Victory> squadronMemberVictories = victoryData.getVictoryAwardsByCrewMember().get(crewMember.getSerialNumber());
-        assert(squadronMemberVictories.size() > 0);
+        List<Victory> companyMemberVictories = victoryData.getVictoryAwardsByCrewMember().get(crewMember.getSerialNumber());
+        assert(companyMemberVictories.size() > 0);
         
-        Victory victory = squadronMemberVictories.get(0);
+        Victory victory = companyMemberVictories.get(0);
         assert(victory.getVictor().getCrewMemberSerialNumber() == crewMember.getSerialNumber());
         assert(victory.getVictim().getCrewMemberSerialNumber() == SerialNumber.NO_SERIAL_NUMBER);
     }

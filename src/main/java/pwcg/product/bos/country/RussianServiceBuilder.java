@@ -35,8 +35,8 @@ public class RussianServiceBuilder
         svv.setEndDate(DateUtils.getEndOfWar());
         svv.setServiceColorMap(new VVSColorMap());
         svv.setGeneralRankForService("General-lieutenant");
-        svv.setDailyPersonnelReplacementRatePerSquadron(2.2);
-        svv.setDailyEquipmentReplacementRatePerSquadron(3.0);
+        svv.setDailyPersonnelReplacementRatePerCompany(2.2);
+        svv.setDailyEquipmentReplacementRatePerCompany(3.0);
 
         List<String> irasPics = new ArrayList<String>();
         irasPics.add("Russian");

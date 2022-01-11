@@ -84,8 +84,8 @@ public class MapFinderForCampaign
     {
         FrontMapIdentifier mapIdentifier = FrontMapIdentifier.NO_MAP;
 
-        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(player.getCompanyId());
-        List<FrontMapIdentifier> mapIdentifiers = MapForAirfieldFinder.getMapForAirfield(squadron.determineCurrentAirfieldName(campaign.getDate()));
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(player.getCompanyId());
+        List<FrontMapIdentifier> mapIdentifiers = MapForAirfieldFinder.getMapForAirfield(company.determineCurrentAirfieldName(campaign.getDate()));
         if (mapIdentifiers.size() > 0)
         {
             mapIdentifier = mapIdentifiers.get(0);

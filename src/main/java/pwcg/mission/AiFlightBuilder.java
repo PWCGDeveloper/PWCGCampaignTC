@@ -31,7 +31,7 @@ public class AiFlightBuilder
             return missionFlights;
         }
         
-        // TODO TC change by squadron to a limited number of AI flights
+        // TODO TC change by company to a limited number of AI flights
         List<FlightBuildInformation> flightBuildInformationForMission = AIFlightPlanner.createFlightBuildInformationForMission(mission);
 
         for (FlightBuildInformation flightBuildInformation : flightBuildInformationForMission)

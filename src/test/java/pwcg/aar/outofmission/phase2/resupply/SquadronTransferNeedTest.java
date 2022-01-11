@@ -23,18 +23,18 @@ import pwcg.campaign.crewmember.CrewMemberStatus;
 import pwcg.campaign.crewmember.CrewMembers;
 import pwcg.campaign.crewmember.SerialNumber;
 import pwcg.campaign.personnel.CompanyPersonnel;
-import pwcg.campaign.resupply.personnel.SquadronPersonnelNeed;
+import pwcg.campaign.resupply.personnel.CompanyPersonnelNeed;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 
 @ExtendWith(MockitoExtension.class)
-public class SquadronTransferNeedTest
+public class CompanyTransferNeedTest
 {
     @Mock private Campaign campaign;
-    @Mock private Company squadron;
+    @Mock private Company company;
     @Mock private CampaignPersonnelManager campaignPersonnelManager;
     @Mock private AARPersonnelLosses lossesInMissionData;
-    @Mock private CompanyPersonnel squadronPersonnel;
+    @Mock private CompanyPersonnel companyPersonnel;
     @Mock private CrewMembers activeCrewMembers;
     @Mock private CrewMembers inactiveCrewMembers;
 
@@ -52,27 +52,27 @@ public class SquadronTransferNeedTest
         
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19170430"));
         Mockito.when(campaign.getPersonnelManager()).thenReturn(campaignPersonnelManager);
-        Mockito.when(campaignPersonnelManager.getCompanyPersonnel(ArgumentMatchers.<Integer>any())).thenReturn(squadronPersonnel);
-        Mockito.when(squadronPersonnel.getCrewMembersWithAces()).thenReturn(activeCrewMembers);
-        Mockito.when(squadronPersonnel.getRecentlyInactiveCrewMembers()).thenReturn(inactiveCrewMembers);
+        Mockito.when(campaignPersonnelManager.getCompanyPersonnel(ArgumentMatchers.<Integer>any())).thenReturn(companyPersonnel);
+        Mockito.when(companyPersonnel.getCrewMembersWithAces()).thenReturn(activeCrewMembers);
+        Mockito.when(companyPersonnel.getRecentlyInactiveCrewMembers()).thenReturn(inactiveCrewMembers);
         Mockito.when(activeCrewMembers.getCrewMemberCollection()).thenReturn(activeCrewMemberCollection);
      }
 
     @Test
     public void testResupplyWithNoCrewMembers() throws PWCGException
     {
-        SquadronPersonnelNeed squadronTransferNeed = new SquadronPersonnelNeed(campaign, squadron);
-        squadronTransferNeed.determineResupplyNeeded();
-        Assertions.assertTrue (squadronTransferNeed.needsResupply() == true);
+        CompanyPersonnelNeed companyTransferNeed = new CompanyPersonnelNeed(campaign, company);
+        companyTransferNeed.determineResupplyNeeded();
+        Assertions.assertTrue (companyTransferNeed.needsResupply() == true);
         
         for (int i = 0; i < Company.COMPANY_STAFF_SIZE - 1; ++i)
         {
-            squadronTransferNeed.noteResupply();
-            Assertions.assertTrue (squadronTransferNeed.needsResupply() == true);
+            companyTransferNeed.noteResupply();
+            Assertions.assertTrue (companyTransferNeed.needsResupply() == true);
         }
 
-        squadronTransferNeed.noteResupply();
-        Assertions.assertTrue (squadronTransferNeed.needsResupply() == false);
+        companyTransferNeed.noteResupply();
+        Assertions.assertTrue (companyTransferNeed.needsResupply() == false);
     }
     
 
@@ -87,18 +87,18 @@ public class SquadronTransferNeedTest
             activeCrewMemberCollection.put(crewMember.getSerialNumber(), crewMember);
         }
                 
-        SquadronPersonnelNeed squadronResupplyNeed = new SquadronPersonnelNeed(campaign, squadron);
-        squadronResupplyNeed.determineResupplyNeeded();
-        Assertions.assertTrue (squadronResupplyNeed.needsResupply() == true);
+        CompanyPersonnelNeed companyResupplyNeed = new CompanyPersonnelNeed(campaign, company);
+        companyResupplyNeed.determineResupplyNeeded();
+        Assertions.assertTrue (companyResupplyNeed.needsResupply() == true);
         
         for (int i = 0; i < 2; ++i)
         {
-            squadronResupplyNeed.noteResupply();
-            Assertions.assertTrue (squadronResupplyNeed.needsResupply() == true);
+            companyResupplyNeed.noteResupply();
+            Assertions.assertTrue (companyResupplyNeed.needsResupply() == true);
         }
 
-        squadronResupplyNeed.noteResupply();
-        Assertions.assertTrue (squadronResupplyNeed.needsResupply() == false);
+        companyResupplyNeed.noteResupply();
+        Assertions.assertTrue (companyResupplyNeed.needsResupply() == false);
     }
     
 
@@ -123,18 +123,18 @@ public class SquadronTransferNeedTest
         
         Mockito.when(inactiveCrewMembers.getActiveCount(campaign.getDate())).thenReturn(2);
 
-        SquadronPersonnelNeed squadronResupplyNeed = new SquadronPersonnelNeed(campaign, squadron);
-        squadronResupplyNeed.determineResupplyNeeded();
-        Assertions.assertTrue (squadronResupplyNeed.needsResupply() == true);
+        CompanyPersonnelNeed companyResupplyNeed = new CompanyPersonnelNeed(campaign, company);
+        companyResupplyNeed.determineResupplyNeeded();
+        Assertions.assertTrue (companyResupplyNeed.needsResupply() == true);
         
         for (int i = 0; i < 2; ++i)
         {
-            squadronResupplyNeed.noteResupply();
-            Assertions.assertTrue (squadronResupplyNeed.needsResupply() == true);
+            companyResupplyNeed.noteResupply();
+            Assertions.assertTrue (companyResupplyNeed.needsResupply() == true);
         }
 
-        squadronResupplyNeed.noteResupply();
-        Assertions.assertTrue (squadronResupplyNeed.needsResupply() == false);
+        companyResupplyNeed.noteResupply();
+        Assertions.assertTrue (companyResupplyNeed.needsResupply() == false);
     }
 
     @Test
@@ -158,9 +158,9 @@ public class SquadronTransferNeedTest
         
         Mockito.when(inactiveCrewMembers.getActiveCount(campaign.getDate())).thenReturn(2);
 
-        SquadronPersonnelNeed squadronResupplyNeed = new SquadronPersonnelNeed(campaign, squadron);
-        squadronResupplyNeed.determineResupplyNeeded();
-        Assertions.assertTrue (squadronResupplyNeed.needsResupply() == false);
+        CompanyPersonnelNeed companyResupplyNeed = new CompanyPersonnelNeed(campaign, company);
+        companyResupplyNeed.determineResupplyNeeded();
+        Assertions.assertTrue (companyResupplyNeed.needsResupply() == false);
     }
 
 }

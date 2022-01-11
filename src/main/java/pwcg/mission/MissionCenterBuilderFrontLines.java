@@ -94,7 +94,7 @@ public class MissionCenterBuilderFrontLines implements IMissionCenterBuilder
     private List<FrontLinePoint> findFrontLinePointsForMissionCenterByRange(int missionCenterMaxDistanceForMission,
             Side frontSide) throws PWCGException
     {
-        List<Coordinate> companyPositions = determineSquadronCoordinates();
+        List<Coordinate> companyPositions = determineCompanyCoordinates();
         FrontLinesForMap frontLinesForMap = PWCGContext.getInstance().getCurrentMap().getFrontLinesForMap(campaign.getDate());
         List<FrontLinePoint> frontPoints = frontLinesForMap.findAllFrontLinesForSide(frontSide);
         List<FrontLinePoint> selectedFrontPoints = new ArrayList<>();
@@ -120,8 +120,8 @@ public class MissionCenterBuilderFrontLines implements IMissionCenterBuilder
         {
             for (Coordinate companyPosition : companyPositions)
             {
-                double distanceFromSquadron = MathUtils.calcDist(companyPosition, frontLinePoint.getPosition());
-                if (distanceFromSquadron > missionCenterMinDistanceFromBase)
+                double distanceFromCompany = MathUtils.calcDist(companyPosition, frontLinePoint.getPosition());
+                if (distanceFromCompany > missionCenterMinDistanceFromBase)
                 {
                     hasFrontPointsFarEnough = true;
                     return hasFrontPointsFarEnough;
@@ -142,8 +142,8 @@ public class MissionCenterBuilderFrontLines implements IMissionCenterBuilder
         {
             for (Coordinate companyPosition : companyPositions)
             {
-                double distanceFromSquadron = MathUtils.calcDist(companyPosition, frontLinePoint.getPosition());
-                if (distanceFromSquadron < missionCenterMaxDistanceForMission)
+                double distanceFromCompany = MathUtils.calcDist(companyPosition, frontLinePoint.getPosition());
+                if (distanceFromCompany < missionCenterMaxDistanceForMission)
                 {
                     selectedFrontPoints.add(frontLinePoint);
                 }
@@ -152,16 +152,16 @@ public class MissionCenterBuilderFrontLines implements IMissionCenterBuilder
         return selectedFrontPoints;
     }
 
-    private List<Coordinate> determineSquadronCoordinates() throws PWCGException
+    private List<Coordinate> determineCompanyCoordinates() throws PWCGException
     {
-        List<Coordinate> playerSquadronCoordinates = new ArrayList<>();
-        for (int playerSquadronId : participatingPlayers.getParticipatingCompanyIds())
+        List<Coordinate> playerCompanyCoordinates = new ArrayList<>();
+        for (int playerCompanyId : participatingPlayers.getParticipatingCompanyIds())
         {
-            Company playerSquadron = PWCGContext.getInstance().getCompanyManager().getCompany(playerSquadronId);
-            Coordinate playerSquadronCoordinate = playerSquadron.determineCurrentPosition(campaign.getDate());
-            playerSquadronCoordinates.add(playerSquadronCoordinate);
+            Company playerCompany = PWCGContext.getInstance().getCompanyManager().getCompany(playerCompanyId);
+            Coordinate playerCompanyCoordinate = playerCompany.determineCurrentPosition(campaign.getDate());
+            playerCompanyCoordinates.add(playerCompanyCoordinate);
         }
-        return playerSquadronCoordinates;
+        return playerCompanyCoordinates;
     }
 
     private Coordinate findAlliedCoordinateNearAxisCoordinate(Coordinate axisCoordinate) throws PWCGException

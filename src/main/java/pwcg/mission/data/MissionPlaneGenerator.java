@@ -37,13 +37,13 @@ public class MissionPlaneGenerator
         }
     }
 
-    private void makeMissionPlaneEntry(Company squadron, TankMcu vehicle)
+    private void makeMissionPlaneEntry(Company company, TankMcu vehicle)
     {
         PwcgGeneratedMissionVehicleData missionPlaneData = new PwcgGeneratedMissionVehicleData();
         missionPlaneData.setCrewMemberName(vehicle.getTankCommander().getNameAndRank());
         missionPlaneData.setCrewMemberSerialNumber(vehicle.getTankCommander().getSerialNumber());
         missionPlaneData.setVehicleSerialNumber(vehicle.getSerialNumber());
-        missionPlaneData.setCompanyId(squadron.getCompanyId());
+        missionPlaneData.setCompanyId(company.getCompanyId());
         missionPlaneData.setVehicleType(vehicle.getType());
         
         missionPlanes.add(missionPlaneData);

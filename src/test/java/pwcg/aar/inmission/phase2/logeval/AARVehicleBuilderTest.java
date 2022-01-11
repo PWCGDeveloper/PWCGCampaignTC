@@ -50,7 +50,7 @@ public class AARVehicleBuilderTest
     private PwcgMissionDataEvaluator pwcgMissionDataEvaluator;
     
     @Mock
-    private CompanyPersonnel squadronPersonnel;
+    private CompanyPersonnel companyPersonnel;
 
     private TestMissionEntityGenerator testMissionEntityGenerator;
 
@@ -88,8 +88,8 @@ public class AARVehicleBuilderTest
     {
         Mockito.when(campaign.getPersonnelManager()).thenReturn(campaignPersonnelManager);
         Mockito.when(campaignPersonnelManager.getAnyCampaignMember(ArgumentMatchers.<Integer>any())).thenReturn(crewMember);        
-        Mockito.when(campaignPersonnelManager.getCompanyPersonnel(ArgumentMatchers.<Integer>any())).thenReturn(squadronPersonnel);
-        Mockito.when(squadronPersonnel.getCrewMember(ArgumentMatchers.<Integer>any())).thenReturn(crewMember);
+        Mockito.when(campaignPersonnelManager.getCompanyPersonnel(ArgumentMatchers.<Integer>any())).thenReturn(companyPersonnel);
+        Mockito.when(companyPersonnel.getCrewMember(ArgumentMatchers.<Integer>any())).thenReturn(crewMember);
         
         Mockito.when(crewMember.isPlayer()).thenReturn(false);
 

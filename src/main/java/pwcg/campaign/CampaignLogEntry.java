@@ -3,7 +3,7 @@ package pwcg.campaign;
 public class CampaignLogEntry
 {
     String log = "";
-    int squadronId = 0;
+    int companyId = 0;
 
     public String getLog()
     {
@@ -15,14 +15,14 @@ public class CampaignLogEntry
         this.log = log;
     }
 
-    public int getSquadronId()
+    public int getCompanyId()
     {
-        return squadronId;
+        return companyId;
     }
 
-    public void setSquadronId(int squadronId)
+    public void setCompanyId(int companyId)
     {
-        this.squadronId = squadronId;
+        this.companyId = companyId;
     }
 
 }

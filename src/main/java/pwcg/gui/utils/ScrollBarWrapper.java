@@ -41,7 +41,7 @@ public class ScrollBarWrapper
  
 
     /**
-     * @param skinButtonGridPanelSquadron
+     * @param skinButtonGridPanelCompany
      * @return
      */
     public static JScrollPane makeScrollPane(JComponent innerComponent)   
@@ -59,7 +59,7 @@ public class ScrollBarWrapper
 
 
     /**
-     * @param skinButtonGridPanelSquadron
+     * @param skinButtonGridPanelCompany
      * @return
      */
     public static JScrollPane makeScrollPaneForWrappingText(JComponent innerComponent)   

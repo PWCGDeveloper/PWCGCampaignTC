@@ -30,10 +30,10 @@ import pwcg.testutils.MissionEntityBuilder;
 @MockitoSettings(strictness = Strictness.LENIENT)
 public class AARCrewMemberLossPanelEventTabulatorTest extends AARTestSetup
 {
-    private Map<Integer, CrewMember> squadronMembersKilled = new HashMap<>();
-    private Map<Integer, CrewMember> squadronMembersCaptured = new HashMap<>();
-    private Map<Integer, CrewMember> squadronMembersMaimed = new HashMap<>();
-    private Map<Integer, CrewMember> acesKilledMissionSquadron = new HashMap<>();
+    private Map<Integer, CrewMember> crewMembersKilled = new HashMap<>();
+    private Map<Integer, CrewMember> crewMembersCaptured = new HashMap<>();
+    private Map<Integer, CrewMember> crewMembersMaimed = new HashMap<>();
+    private Map<Integer, CrewMember> acesKilledMissionCompany = new HashMap<>();
     
     @Mock
     private AARContext aarContext;
@@ -43,15 +43,15 @@ public class AARCrewMemberLossPanelEventTabulatorTest extends AARTestSetup
     {
         setupAARMocks();
         
-        squadronMembersKilled.clear();
-        squadronMembersCaptured.clear();
-        squadronMembersMaimed.clear();
-        acesKilledMissionSquadron.clear();
+        crewMembersKilled.clear();
+        crewMembersCaptured.clear();
+        crewMembersMaimed.clear();
+        acesKilledMissionCompany.clear();
  
-        Mockito.when(personnelLosses.getPersonnelKilled()).thenReturn(squadronMembersKilled);
-        Mockito.when(personnelLosses.getPersonnelCaptured()).thenReturn(squadronMembersCaptured);
-        Mockito.when(personnelLosses.getPersonnelMaimed()).thenReturn(squadronMembersMaimed);
-        Mockito.when(personnelLosses.getAcesKilled(campaign)).thenReturn(acesKilledMissionSquadron);
+        Mockito.when(personnelLosses.getPersonnelKilled()).thenReturn(crewMembersKilled);
+        Mockito.when(personnelLosses.getPersonnelCaptured()).thenReturn(crewMembersCaptured);
+        Mockito.when(personnelLosses.getPersonnelMaimed()).thenReturn(crewMembersMaimed);
+        Mockito.when(personnelLosses.getAcesKilled(campaign)).thenReturn(acesKilledMissionCompany);
         
         Mockito.when(aarContext.getPersonnelLosses()).thenReturn(personnelLosses);
     }
@@ -66,20 +66,20 @@ public class AARCrewMemberLossPanelEventTabulatorTest extends AARTestSetup
         CrewMember squaddie3 = MissionEntityBuilder.makeCrewMemberWithStatus("Squaddie C", SerialNumber.AI_STARTING_SERIAL_NUMBER+3, CrewMemberStatus.STATUS_SERIOUSLY_WOUNDED, campaign.getDate(), returnDate);
         TankAce ace1 = MissionEntityBuilder.makeDeadAceWithVictories("Ace A", SerialNumber.ACE_STARTING_SERIAL_NUMBER+1, AcesKilledEventGenerator.NUM_VICTORIES_FOR_ACE_TO_BE_NEWSWORTHY, campaign.getDate());
 
-        squadronMembersKilled.put(squaddie1.getSerialNumber(), squaddie1);
-        squadronMembersCaptured.put(squaddie2.getSerialNumber(), squaddie2);
-        squadronMembersMaimed.put(squaddie3.getSerialNumber(), squaddie3);
-        acesKilledMissionSquadron.put(ace1.getSerialNumber(), ace1);
+        crewMembersKilled.put(squaddie1.getSerialNumber(), squaddie1);
+        crewMembersCaptured.put(squaddie2.getSerialNumber(), squaddie2);
+        crewMembersMaimed.put(squaddie3.getSerialNumber(), squaddie3);
+        acesKilledMissionCompany.put(ace1.getSerialNumber(), ace1);
 
         CrewMember squaddie4 = MissionEntityBuilder.makeCrewMemberWithStatus("Squaddie D", SerialNumber.AI_STARTING_SERIAL_NUMBER+4, CrewMemberStatus.STATUS_KIA, campaign.getDate(), null);
         CrewMember squaddie5 = MissionEntityBuilder.makeCrewMemberWithStatus("Squaddie E", SerialNumber.AI_STARTING_SERIAL_NUMBER+5, CrewMemberStatus.STATUS_CAPTURED, campaign.getDate(), null);        
         CrewMember squaddie6 = MissionEntityBuilder.makeCrewMemberWithStatus("Squaddie F", SerialNumber.AI_STARTING_SERIAL_NUMBER+6, CrewMemberStatus.STATUS_SERIOUSLY_WOUNDED, campaign.getDate(), returnDate);
         TankAce ace2 = MissionEntityBuilder.makeDeadAceWithVictories("Ace B", SerialNumber.ACE_STARTING_SERIAL_NUMBER+2, AcesKilledEventGenerator.NUM_VICTORIES_FOR_ACE_TO_BE_NEWSWORTHY, campaign.getDate());
 
-        squadronMembersKilled.put(squaddie4.getSerialNumber(), squaddie4);
-        squadronMembersCaptured.put(squaddie5.getSerialNumber(), squaddie5);
-        squadronMembersMaimed.put(squaddie6.getSerialNumber(), squaddie6);
-        acesKilledMissionSquadron.put(ace2.getSerialNumber(), ace2);
+        crewMembersKilled.put(squaddie4.getSerialNumber(), squaddie4);
+        crewMembersCaptured.put(squaddie5.getSerialNumber(), squaddie5);
+        crewMembersMaimed.put(squaddie6.getSerialNumber(), squaddie6);
+        acesKilledMissionCompany.put(ace2.getSerialNumber(), ace2);
         
         CrewMemberLossPanelEventTabulator crewMemberLossPanelEventTabulator = new CrewMemberLossPanelEventTabulator(campaign, aarContext);
         AARCrewMemberLossPanelData crewMemberLossPanelData = crewMemberLossPanelEventTabulator.tabulateForAARCrewMemberLossPanel();

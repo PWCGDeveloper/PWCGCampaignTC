@@ -46,7 +46,7 @@ public class CompanyPersonnel
         companyMembers.removeCrewMember(crewMember.getSerialNumber());
     }
 
-    public boolean isSquadronPersonnelViable() throws PWCGException
+    public boolean isCompanyPersonnelViable() throws PWCGException
     {
         int vialbleCrewMembers = companyMembers.getActiveCount(campaign.getDate());
         if (vialbleCrewMembers > (Company.COMPANY_STAFF_SIZE / 2))
@@ -128,7 +128,7 @@ public class CompanyPersonnel
             activeCrewMembersAndAces.addToCrewMemberCollection(crewMember);
         }
 
-        List<TankAce> aces = campaign.getPersonnelManager().getCampaignAces().getActiveCampaignAcesBySquadron(company.getCompanyId());
+        List<TankAce> aces = campaign.getPersonnelManager().getCampaignAces().getActiveCampaignAcesByCompany(company.getCompanyId());
         for (CrewMember ace : aces)
         {
             activeCrewMembersAndAces.addToCrewMemberCollection(ace);

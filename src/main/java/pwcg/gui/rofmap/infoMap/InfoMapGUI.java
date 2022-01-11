@@ -44,10 +44,10 @@ public class InfoMapGUI extends MapGUI implements ActionListener
     private JComboBox<String> cbDate = new JComboBox<String>();
     private ButtonGroup mapButtonGroup = new ButtonGroup();
 
-    private JCheckBox displayFighterSquadrons = null;
-    private JCheckBox displayAttackSquadrons = null;
-    private JCheckBox displayBomberSquadrons = null;
-    private JCheckBox displayReconSquadrons = null;
+    private JCheckBox displayFighterCompanys = null;
+    private JCheckBox displayAttackCompanys = null;
+    private JCheckBox displayBomberCompanys = null;
+    private JCheckBox displayReconCompanys = null;
     private JCheckBox displayAirfields = null;
     private JCheckBox displayTowns = null;
     private JCheckBox displayRailroadStations = null;
@@ -135,8 +135,8 @@ public class InfoMapGUI extends MapGUI implements ActionListener
         JPanel buttonPanelGrid = makeMapCheckBoxes();
         selectionPanel.add(buttonPanelGrid);
 
-        JPanel squadronButtonPanel = makeSquadronTypeCheckBoxes();
-        selectionPanel.add(squadronButtonPanel);
+        JPanel companyButtonPanel = makeCompanyTypeCheckBoxes();
+        selectionPanel.add(companyButtonPanel);
         
         JPanel groupButtonPanel = makeGroundStructureCheckBoxes();
         selectionPanel.add(groupButtonPanel);
@@ -243,7 +243,7 @@ public class InfoMapGUI extends MapGUI implements ActionListener
         return groundStructurePanel;
     }
 
-    private JPanel makeSquadronTypeCheckBoxes() throws PWCGException
+    private JPanel makeCompanyTypeCheckBoxes() throws PWCGException
     {
         JPanel rolePanel = new JPanel(new BorderLayout());
         rolePanel.setOpaque(false);
@@ -259,17 +259,17 @@ public class InfoMapGUI extends MapGUI implements ActionListener
         JLabel roleLabel = PWCGLabelFactory.makeMenuLabelLarge("Choose Aircraft Role");
         roleGrid.add(roleLabel);
 
-        displayFighterSquadrons = makeCheckBoxButton("Fighter", "Fighter");
-        roleGrid.add(displayFighterSquadrons);
+        displayFighterCompanys = makeCheckBoxButton("Fighter", "Fighter");
+        roleGrid.add(displayFighterCompanys);
 
-        displayAttackSquadrons = makeCheckBoxButton("Attack", "Attack");
-        roleGrid.add(displayAttackSquadrons);
+        displayAttackCompanys = makeCheckBoxButton("Attack", "Attack");
+        roleGrid.add(displayAttackCompanys);
 
-        displayBomberSquadrons = makeCheckBoxButton("Bomber", "Bomber");
-        roleGrid.add(displayBomberSquadrons);
+        displayBomberCompanys = makeCheckBoxButton("Bomber", "Bomber");
+        roleGrid.add(displayBomberCompanys);
 
-        displayReconSquadrons = makeCheckBoxButton("Recon", "Recon");
-        roleGrid.add(displayReconSquadrons);
+        displayReconCompanys = makeCheckBoxButton("Recon", "Recon");
+        roleGrid.add(displayReconCompanys);
 
         JLabel spaceLabel2 = PWCGLabelFactory.makePaperLabelMedium(" ");
         roleGrid.add(spaceLabel2);
@@ -331,10 +331,10 @@ public class InfoMapGUI extends MapGUI implements ActionListener
             infoMapPanel.setWhatToDisplay(InfoMapPanel.DISPLAY_RAILROADS, displayRailroadStations.isSelected());
             infoMapPanel.setWhatToDisplay(InfoMapPanel.DISPLAY_BRIDGES, displayBridges.isSelected());
             
-            infoMapPanel.setWhatToDisplay(InfoMapPanel.DISPLAY_FIGHTER, displayFighterSquadrons.isSelected());
-            infoMapPanel.setWhatToDisplay(InfoMapPanel.DISPLAY_ATTACK, displayAttackSquadrons.isSelected());
-            infoMapPanel.setWhatToDisplay(InfoMapPanel.DISPLAY_BOMBER, displayBomberSquadrons.isSelected());
-            infoMapPanel.setWhatToDisplay(InfoMapPanel.DISPLAY_RECON, displayReconSquadrons.isSelected());
+            infoMapPanel.setWhatToDisplay(InfoMapPanel.DISPLAY_FIGHTER, displayFighterCompanys.isSelected());
+            infoMapPanel.setWhatToDisplay(InfoMapPanel.DISPLAY_ATTACK, displayAttackCompanys.isSelected());
+            infoMapPanel.setWhatToDisplay(InfoMapPanel.DISPLAY_BOMBER, displayBomberCompanys.isSelected());
+            infoMapPanel.setWhatToDisplay(InfoMapPanel.DISPLAY_RECON, displayReconCompanys.isSelected());
         }
         catch (Exception e)
         {
@@ -351,10 +351,10 @@ public class InfoMapGUI extends MapGUI implements ActionListener
         }
     }
 
-    public void refreshSquadronPlacement() throws PWCGException
+    public void refreshCompanyPlacement() throws PWCGException
     {
-        CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
-        squadronManager.initialize();
+        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+        companyManager.initialize();
         infoMapPanel.setData();
     }
 }

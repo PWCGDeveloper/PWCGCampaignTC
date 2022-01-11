@@ -26,9 +26,9 @@ public class CampaignReportLeaveGUI extends AARDocumentIconPanel
 
     protected String getBodyText() throws PWCGException
     {
-        Company squadron =  PWCGContext.getInstance().getCompanyManager().getCompany(campaign.findReferencePlayer().getCompanyId());
+        Company company =  PWCGContext.getInstance().getCompanyManager().getCompany(campaign.findReferencePlayer().getCompanyId());
                 
-        String leaveText = "Squadron: " + squadron.determineDisplayName(campaign.getDate()) + "\n";
+        String leaveText = "Company: " + company.determineDisplayName(campaign.getDate()) + "\n";
         leaveText += "Date: " + campaign.getDate() + "\n";        
         return leaveText;
     }

@@ -1,7 +1,7 @@
 {
   "missionHeader": {
     "missionFileName": "Patrik Schorner 1916-09-07",
-    "squadron": "Jasta 16b",
+    "company": "Jasta 16b",
     "date": "19160907",
     "time": "9:30:00",
     "aircraftType": "AircraftType \u003d Halberstadt D.I",
@@ -10,11 +10,11 @@
     "duty": "PATROL",
     "altitude": 2919
   },
-  "missionDescription": "Mission:\nAircraft  Halberstadt D.II\nSquadron  Jasta 16b\nAirbase  Balatre,E Roye\nDate  1916-09-07\n\nWeather Report\nHeavy cloud cover, medium altitude.\nCloud layer is 2155 meters.\nWind speed is 1 M/S.\nWind direction is 223.\n\nPrimary Objective\nPatrol airspace  near Ecuvilly.  Engage any enemy aircraft that you encounter.\n\n\n",
+  "missionDescription": "Mission:\nAircraft  Halberstadt D.II\nCompany  Jasta 16b\nAirbase  Balatre,E Roye\nDate  1916-09-07\n\nWeather Report\nHeavy cloud cover, medium altitude.\nCloud layer is 2155 meters.\nWind speed is 1 M/S.\nWind direction is 223.\n\nPrimary Objective\nPatrol airspace  near Ecuvilly.  Engage any enemy aircraft that you encounter.\n\n\n",
   "missionPlanes": [
     {
       "aircraftType": "halberstadtd2",
-      "squadronName": "Jasta 16b",
+      "companyName": "Jasta 16b",
       "crew": {
         "pilot": "Patrik Schorner",
         "observer": "",
@@ -24,7 +24,7 @@
     },
     {
       "aircraftType": "halberstadtd2",
-      "squadronName": "Jasta 16b",
+      "companyName": "Jasta 16b",
       "crew": {
         "pilot": "Augustus Kass",
         "observer": "",
@@ -34,7 +34,7 @@
     },
     {
       "aircraftType": "halberstadtd2",
-      "squadronName": "Jasta 16b",
+      "companyName": "Jasta 16b",
       "crew": {
         "pilot": "Detlef Schwarzer",
         "observer": "",
@@ -44,7 +44,7 @@
     },
     {
       "aircraftType": "halberstadtd2",
-      "squadronName": "Jasta 16b",
+      "companyName": "Jasta 16b",
       "crew": {
         "pilot": "Ruprecht Hess",
         "observer": "",
@@ -54,7 +54,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 44",
+      "companyName": "FA 44",
       "crew": {
         "pilot": "Herbert Kuechler",
         "observer": "Arnold Seiler",
@@ -64,7 +64,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 44",
+      "companyName": "FA 44",
       "crew": {
         "pilot": "Gerhard Weininger",
         "observer": "Till Steinhaeusser",
@@ -74,7 +74,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 44",
+      "companyName": "FA 44",
       "crew": {
         "pilot": "Hartwig Wulf",
         "observer": "Ulf Peltzer",
@@ -84,7 +84,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 44",
+      "companyName": "FA 44",
       "crew": {
         "pilot": "Sigfried Arneth",
         "observer": "Erik Taubenschlag",
@@ -94,7 +94,7 @@
     },
     {
       "aircraftType": "rolc2a",
-      "squadronName": "Schlasta 13",
+      "companyName": "Schlasta 13",
       "crew": {
         "pilot": "Helge Stockert",
         "observer": "Tobias Hoehmann",
@@ -104,7 +104,7 @@
     },
     {
       "aircraftType": "rolc2a",
-      "squadronName": "Schlasta 13",
+      "companyName": "Schlasta 13",
       "crew": {
         "pilot": "Friedhelm Neuer",
         "observer": "Erik Hertz",
@@ -114,7 +114,7 @@
     },
     {
       "aircraftType": "rolc2a",
-      "squadronName": "Schlasta 13",
+      "companyName": "Schlasta 13",
       "crew": {
         "pilot": "Heinrich Sauerbrunn",
         "observer": "Hermann Schottel",
@@ -124,7 +124,7 @@
     },
     {
       "aircraftType": "rolc2a",
-      "squadronName": "Schlasta 13",
+      "companyName": "Schlasta 13",
       "crew": {
         "pilot": "Manfred Henschel",
         "observer": "Gunther Huber",
@@ -134,7 +134,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 45",
+      "companyName": "Esc 45",
       "crew": {
         "pilot": "Justin Ferrouillat",
         "observer": "Camille Marchau",
@@ -144,7 +144,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "No 27 Squadron RFC",
+      "companyName": "No 27 Company RFC",
       "crew": {
         "pilot": "Charles Makepiece",
         "observer": "Ferguson Longton",
@@ -154,7 +154,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "No 27 Squadron RFC",
+      "companyName": "No 27 Company RFC",
       "crew": {
         "pilot": "James Barnes",
         "observer": "Conrad Churmond",
@@ -164,7 +164,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "No 27 Squadron RFC",
+      "companyName": "No 27 Company RFC",
       "crew": {
         "pilot": "Braden Callthorpe",
         "observer": "Conrad Warren",
@@ -174,7 +174,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "No 27 Squadron RFC",
+      "companyName": "No 27 Company RFC",
       "crew": {
         "pilot": "Victor Freen",
         "observer": "Earl Branwhaite",
@@ -184,7 +184,7 @@
     },
     {
       "aircraftType": "nieuport17brit",
-      "squadronName": "Esc 31",
+      "companyName": "Esc 31",
       "crew": {
         "pilot": "Vincent Ferrouillat",
         "observer": "",
@@ -194,7 +194,7 @@
     },
     {
       "aircraftType": "nieuport17brit",
-      "squadronName": "Esc 31",
+      "companyName": "Esc 31",
       "crew": {
         "pilot": "Celestin Benhamou",
         "observer": "",
@@ -204,7 +204,7 @@
     },
     {
       "aircraftType": "nieuport17brit",
-      "squadronName": "Esc 31",
+      "companyName": "Esc 31",
       "crew": {
         "pilot": "Jean Riou",
         "observer": "",
@@ -214,7 +214,7 @@
     },
     {
       "aircraftType": "nieuport17brit",
-      "squadronName": "Esc 31",
+      "companyName": "Esc 31",
       "crew": {
         "pilot": "Thierry Lacabanne",
         "observer": "",
@@ -224,7 +224,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 40",
+      "companyName": "Esc 40",
       "crew": {
         "pilot": "Ferdinand Chapelain",
         "observer": "Laurent Labrette",
@@ -234,7 +234,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 40",
+      "companyName": "Esc 40",
       "crew": {
         "pilot": "Emilien Coquard",
         "observer": "Jean-Francois Mouillard",

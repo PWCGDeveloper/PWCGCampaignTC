@@ -57,10 +57,10 @@ public class CountryFactory
     public static ICountry makeAssaultProximityCountry(Side side, Coordinate assaultPosition, Date date) throws PWCGException
     {
         ICountry country = null;
-        List<Company> squadrons = PWCGContext.getInstance().getCompanyManager().getActiveCompaniesBySideAndProximity(side, date, assaultPosition, 10000);
-        if (squadrons.size() > 0)
+        List<Company> companys = PWCGContext.getInstance().getCompanyManager().getActiveCompaniesBySideAndProximity(side, date, assaultPosition, 10000);
+        if (companys.size() > 0)
         {
-            country = squadrons.get(0).getCountry();
+            country = companys.get(0).getCountry();
         }
         
         if (country == null)

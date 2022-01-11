@@ -45,7 +45,7 @@ public class CoopPersonaDataBuilder
         coopDisplayRecord.setUsername(coopUsername);
         coopDisplayRecord.setPilorNameAndRank(crewMember.getNameAndRank());
         coopDisplayRecord.setCampaignName(campaign.getCampaignData().getName());
-        coopDisplayRecord.setSquadronName(crewMember.determineSquadron().determineDisplayName(campaign.getDate()));
+        coopDisplayRecord.setCompanyName(crewMember.determineCompany().determineDisplayName(campaign.getDate()));
         coopDisplayRecord.setCrewMemberStatus(crewMember.getCrewMemberActiveStatus());
         coopDisplayRecord.setCrewMemberSerialNumber(crewMember.getSerialNumber());
 

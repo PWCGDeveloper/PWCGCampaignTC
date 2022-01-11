@@ -24,16 +24,16 @@ public class OutOfMissionAAAOddsCalculator
 
     public int oddsShotDownByAAA(CrewMember crewMember) throws PWCGException
     {
-        int shotDownOdds = intitialOddsBasedOnSquadronRole(crewMember);
-        shotDownOdds = squadronMemberDeathOdds(crewMember, shotDownOdds);
+        int shotDownOdds = intitialOddsBasedOnCompanyRole(crewMember);
+        shotDownOdds = companyMemberDeathOdds(crewMember, shotDownOdds);
         return shotDownOdds;
     }
     
-    private int intitialOddsBasedOnSquadronRole(CrewMember crewMember) throws PWCGException
+    private int intitialOddsBasedOnCompanyRole(CrewMember crewMember) throws PWCGException
     {
-        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(crewMember.getCompanyId());
-        CompanyRoleSet squadronRoles = squadron.getSquadronRoles();
-        PwcgRole roleThisMission = squadronRoles.selectRoleForMission(campaign.getDate());
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(crewMember.getCompanyId());
+        CompanyRoleSet companyRoles = company.getCompanyRoles();
+        PwcgRole roleThisMission = companyRoles.selectRoleForMission(campaign.getDate());
         
         int shotDownOdds = 5;
         if (roleThisMission.isRoleCategory(PwcgRoleCategory.ATTACK))
@@ -60,7 +60,7 @@ public class OutOfMissionAAAOddsCalculator
         return shotDownOdds;
     }
     
-    private int squadronMemberDeathOdds(CrewMember crewMember, int shotDownOdds) throws PWCGException
+    private int companyMemberDeathOdds(CrewMember crewMember, int shotDownOdds) throws PWCGException
     {
         if (crewMember.getAiSkillLevel() == AiSkillLevel.NOVICE)
         {

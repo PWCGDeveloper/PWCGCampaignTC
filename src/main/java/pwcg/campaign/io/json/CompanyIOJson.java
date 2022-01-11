@@ -12,27 +12,27 @@ import pwcg.core.utils.FileUtils;
 public class CompanyIOJson 
 {
 
-    public static void writeJson(Company squadron) throws PWCGException
+    public static void writeJson(Company company) throws PWCGException
     {
         PwcgJsonWriter<Company> jsonWriter = new PwcgJsonWriter<>();
-        String squadronDir = PWCGContext.getInstance().getDirectoryManager().getPwcgCompanyDir();
-        jsonWriter.writeAsJson(squadron, squadronDir, squadron.getFileName());
+        String companyDir = PWCGContext.getInstance().getDirectoryManager().getPwcgCompanyDir();
+        jsonWriter.writeAsJson(company, companyDir, company.getFileName());
     }
 
 	public static List<Company> readJson() throws PWCGException
 	{
-	    List<Company> squadrons = new ArrayList<>();
+	    List<Company> companys = new ArrayList<>();
 	    
 		List<File> jsonFiles = FileUtils.getFilesWithFilter(PWCGContext.getInstance().getDirectoryManager().getPwcgCompanyDir(), ".json");
 
 		for (File jsonFile : jsonFiles)
 		{
 			JsonObjectReader<Company> jsonReader = new JsonObjectReader<>(Company.class);
-			Company squadron = jsonReader.readJsonFile(PWCGContext.getInstance().getDirectoryManager().getPwcgCompanyDir(), jsonFile.getName()); 
-			squadron.setFileName(jsonFile.getName());			
-			squadrons.add(squadron);
+			Company company = jsonReader.readJsonFile(PWCGContext.getInstance().getDirectoryManager().getPwcgCompanyDir(), jsonFile.getName()); 
+			company.setFileName(jsonFile.getName());			
+			companys.add(company);
 		}
 
-		return squadrons;
+		return companys;
 	}
 }

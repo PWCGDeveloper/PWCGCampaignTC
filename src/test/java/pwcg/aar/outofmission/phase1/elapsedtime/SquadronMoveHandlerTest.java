@@ -10,8 +10,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import pwcg.aar.outofmission.phase4.ElapsedTIme.SquadronMoveHandler;
-import pwcg.aar.ui.events.model.SquadronMoveEvent;
+import pwcg.aar.outofmission.phase4.ElapsedTIme.CompanyMoveHandler;
+import pwcg.aar.ui.events.model.CompanyMoveEvent;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.company.Company;
 import pwcg.campaign.context.FrontMapIdentifier;
@@ -22,10 +22,10 @@ import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 
 @ExtendWith(MockitoExtension.class)
-public class SquadronMoveHandlerTest
+public class CompanyMoveHandlerTest
 {
     @Mock private Campaign campaign;
-    @Mock Company squadron;
+    @Mock Company company;
     @Mock Airfield currentAirfield;
     @Mock Airfield newAirfield;
 
@@ -44,51 +44,51 @@ public class SquadronMoveHandlerTest
     }
 
     @Test
-    public void noSquadronMove () throws PWCGException
+    public void noCompanyMove () throws PWCGException
     {             
-        Mockito.when(squadron.determineCurrentAirfieldName(campaignDate)).thenReturn("Ivanskoe");
-        Mockito.when(squadron.determineCurrentAirfieldName(newDate)).thenReturn("Ivanskoe");
+        Mockito.when(company.determineCurrentAirfieldName(campaignDate)).thenReturn("Ivanskoe");
+        Mockito.when(company.determineCurrentAirfieldName(newDate)).thenReturn("Ivanskoe");
 
-        SquadronMoveHandler squadronMoveHandler = new SquadronMoveHandler(campaign);
-        SquadronMoveEvent squadronMoveEvent = squadronMoveHandler.squadronMoves(newDate, squadron);
-        Assertions.assertTrue (squadronMoveEvent == null);
+        CompanyMoveHandler companyMoveHandler = new CompanyMoveHandler(campaign);
+        CompanyMoveEvent companyMoveEvent = companyMoveHandler.companyMoves(newDate, company);
+        Assertions.assertTrue (companyMoveEvent == null);
         
     }
 
     @Test
-    public void squadronMoveNoFerryBecuaseSameMap () throws PWCGException
+    public void companyMoveNoFerryBecuaseSameMap () throws PWCGException
     {             
-        Mockito.when(squadron.determineCurrentAirfieldAnyMap(newDate)).thenReturn(newAirfield);
-        Mockito.when(squadron.determineCurrentAirfieldAnyMap(campaignDate)).thenReturn(currentAirfield);
-        Mockito.when(squadron.determineCurrentAirfieldName(campaignDate)).thenReturn("Ivanskoe");
-        Mockito.when(squadron.determineCurrentAirfieldName(newDate)).thenReturn("Mozhaysk");
+        Mockito.when(company.determineCurrentAirfieldAnyMap(newDate)).thenReturn(newAirfield);
+        Mockito.when(company.determineCurrentAirfieldAnyMap(campaignDate)).thenReturn(currentAirfield);
+        Mockito.when(company.determineCurrentAirfieldName(campaignDate)).thenReturn("Ivanskoe");
+        Mockito.when(company.determineCurrentAirfieldName(newDate)).thenReturn("Mozhaysk");
         Mockito.when(currentAirfield.getName()).thenReturn("Ivanskoe");
         Mockito.when(newAirfield.getName()).thenReturn("Mozhaysk");
 
-        SquadronMoveHandler squadronMoveHandler = new SquadronMoveHandler(campaign);
-        SquadronMoveEvent squadronMoveEvent = squadronMoveHandler.squadronMoves(newDate, squadron);
-        Assertions.assertTrue (squadronMoveEvent.getLastAirfield().equals("Ivanskoe"));
-        Assertions.assertTrue (squadronMoveEvent.getNewAirfield().equals("Mozhaysk"));
-        Assertions.assertTrue (squadronMoveEvent.getDate().equals(newDate));
-        Assertions.assertTrue (squadronMoveEvent.isNeedsFerryMission() == true);
+        CompanyMoveHandler companyMoveHandler = new CompanyMoveHandler(campaign);
+        CompanyMoveEvent companyMoveEvent = companyMoveHandler.companyMoves(newDate, company);
+        Assertions.assertTrue (companyMoveEvent.getLastAirfield().equals("Ivanskoe"));
+        Assertions.assertTrue (companyMoveEvent.getNewAirfield().equals("Mozhaysk"));
+        Assertions.assertTrue (companyMoveEvent.getDate().equals(newDate));
+        Assertions.assertTrue (companyMoveEvent.isNeedsFerryMission() == true);
         
     }
 
     @Test
-    public void squadronMoveNoFerryBecuaseDifferentMap () throws PWCGException
+    public void companyMoveNoFerryBecuaseDifferentMap () throws PWCGException
     {             
-        Mockito.when(squadron.determineCurrentAirfieldAnyMap(newDate)).thenReturn(newAirfield);
-        Mockito.when(squadron.determineCurrentAirfieldAnyMap(campaignDate)).thenReturn(currentAirfield);
-        Mockito.when(squadron.determineCurrentAirfieldName(campaignDate)).thenReturn("Ivanskoe");
-        Mockito.when(squadron.determineCurrentAirfieldName(newDate)).thenReturn("Surovikino");
+        Mockito.when(company.determineCurrentAirfieldAnyMap(newDate)).thenReturn(newAirfield);
+        Mockito.when(company.determineCurrentAirfieldAnyMap(campaignDate)).thenReturn(currentAirfield);
+        Mockito.when(company.determineCurrentAirfieldName(campaignDate)).thenReturn("Ivanskoe");
+        Mockito.when(company.determineCurrentAirfieldName(newDate)).thenReturn("Surovikino");
         Mockito.when(currentAirfield.getName()).thenReturn("Ivanskoe");
         Mockito.when(newAirfield.getName()).thenReturn("Surovikino");
 
-        SquadronMoveHandler squadronMoveHandler = new SquadronMoveHandler(campaign);
-        SquadronMoveEvent squadronMoveEvent = squadronMoveHandler.squadronMoves(newDate, squadron);
-        Assertions.assertTrue (squadronMoveEvent.getLastAirfield().equals("Ivanskoe"));
-        Assertions.assertTrue (squadronMoveEvent.getNewAirfield().equals("Surovikino"));
-        Assertions.assertTrue (squadronMoveEvent.getDate().equals(newDate));
-        Assertions.assertTrue (squadronMoveEvent.isNeedsFerryMission() == false);
+        CompanyMoveHandler companyMoveHandler = new CompanyMoveHandler(campaign);
+        CompanyMoveEvent companyMoveEvent = companyMoveHandler.companyMoves(newDate, company);
+        Assertions.assertTrue (companyMoveEvent.getLastAirfield().equals("Ivanskoe"));
+        Assertions.assertTrue (companyMoveEvent.getNewAirfield().equals("Surovikino"));
+        Assertions.assertTrue (companyMoveEvent.getDate().equals(newDate));
+        Assertions.assertTrue (companyMoveEvent.isNeedsFerryMission() == false);
     }
 }

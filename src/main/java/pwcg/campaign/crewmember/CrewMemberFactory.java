@@ -45,7 +45,7 @@ public class CrewMemberFactory
         player.setCountry(country.getCountry());
         player.setAiSkillLevel(AiSkillLevel.PLAYER);
         player.setCrewMemberActiveStatus(CrewMemberStatus.STATUS_ACTIVE, null, null);
-        player.setSquadronId(company.getCompanyId());
+        player.setCompanyId(company.getCompanyId());
         player.setSerialNumber(campaign.getSerialNumber().getLastPlayerSerialNumber());
         player.setInactiveDate(DateUtils.getEndOfWar());
         
@@ -69,7 +69,7 @@ public class CrewMemberFactory
         newCrewMember.setName(squaddieName);
         newCrewMember.setRank(rank);
         newCrewMember.setCountry(company.getCountry().getCountry());
-        newCrewMember.setSquadronId(company.getCompanyId());
+        newCrewMember.setCompanyId(company.getCompanyId());
         newCrewMember.setSerialNumber(campaign.getSerialNumber().getNextCrewMemberSerialNumber());
         newCrewMember.setInactiveDate(DateUtils.getEndOfWar());
 

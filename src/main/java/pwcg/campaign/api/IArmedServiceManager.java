@@ -24,7 +24,7 @@ public interface IArmedServiceManager
 
     List<ArmedService> getAxisServices(Date date) throws PWCGException;
     
-    ArmedService determineServiceByParsingSquadronId(int squadronId, Date date) throws PWCGException;
+    ArmedService determineServiceByParsingCompanyId(int companyId, Date date) throws PWCGException;
 
     public abstract ArmedService getPrimaryServiceForNation(Country country, Date date) throws PWCGException;
 

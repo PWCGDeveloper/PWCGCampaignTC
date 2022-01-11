@@ -25,12 +25,12 @@ public class AARPersonnelLosses
     
     public Map<Integer, CrewMember> getSquadMembersLostAndInjured()
     {
-        Map<Integer, CrewMember> squadronMembersLost = new HashMap<>();
-        squadronMembersLost.putAll(personnelKilled);
-        squadronMembersLost.putAll(personnelCaptured);
-        squadronMembersLost.putAll(personnelMaimed);
-        squadronMembersLost.putAll(personnelTransferredHome);
-        return squadronMembersLost;
+        Map<Integer, CrewMember> crewMembersLost = new HashMap<>();
+        crewMembersLost.putAll(personnelKilled);
+        crewMembersLost.putAll(personnelCaptured);
+        crewMembersLost.putAll(personnelMaimed);
+        crewMembersLost.putAll(personnelTransferredHome);
+        return crewMembersLost;
     }
 
     public void merge(AARPersonnelLosses personnelEvents)
@@ -57,10 +57,10 @@ public class AARPersonnelLosses
     
     private List<CrewMember> getSquadMembersLost()
     {
-        Map<Integer, CrewMember> squadronMembersLost = new HashMap<>();
-        squadronMembersLost.putAll(personnelKilled);
-        squadronMembersLost.putAll(personnelCaptured);
-        return new ArrayList<>(squadronMembersLost.values());
+        Map<Integer, CrewMember> crewMembersLost = new HashMap<>();
+        crewMembersLost.putAll(personnelKilled);
+        crewMembersLost.putAll(personnelCaptured);
+        return new ArrayList<>(crewMembersLost.values());
     }
 
     public Map<Integer, CrewMember> getPersonnelKilled()

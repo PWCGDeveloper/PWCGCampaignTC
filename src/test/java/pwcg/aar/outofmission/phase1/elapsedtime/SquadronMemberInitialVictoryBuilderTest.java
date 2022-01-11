@@ -38,13 +38,13 @@ public class CrewMemberInitialVictoryBuilderTest
     @Test
     public void testInitialVictoriesGermanFighter () throws PWCGException
     {
-        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(20112052);
-        ArmedService service = squadron.determineServiceForCompany(germanCampaign.getDate());
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(20112052);
+        ArmedService service = company.determineServiceForCompany(germanCampaign.getDate());
         IRankHelper rankHelper = RankFactory.createRankHelper();
         CompanyPersonnel jg52Personnel = germanCampaign.getPersonnelManager().getCompanyPersonnel(20112052);
 
-        CrewMembers squadronMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(jg52Personnel.getCrewMembersWithAces().getCrewMemberCollection(), germanCampaign.getDate());
-        for (CrewMember crewMember : squadronMembers.getCrewMemberCollection().values())
+        CrewMembers crewMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(jg52Personnel.getCrewMembersWithAces().getCrewMemberCollection(), germanCampaign.getDate());
+        for (CrewMember crewMember : crewMembers.getCrewMemberCollection().values())
         {
             int rankPos = rankHelper.getRankPosByService(crewMember.getRank(), service);
             if (rankPos == 0)
@@ -70,13 +70,13 @@ public class CrewMemberInitialVictoryBuilderTest
     @Test
     public void testInitialVictoriesRussianFighter () throws PWCGException
     {
-        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(10111126);
-        ArmedService service = squadron.determineServiceForCompany(germanCampaign.getDate());
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(10111126);
+        ArmedService service = company.determineServiceForCompany(germanCampaign.getDate());
         IRankHelper rankHelper = RankFactory.createRankHelper();
         
-        CrewMembers squadronMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(germanCampaign.getPersonnelManager().
+        CrewMembers crewMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(germanCampaign.getPersonnelManager().
                         getCompanyPersonnel(10111126).getCrewMembersWithAces().getCrewMemberCollection(), germanCampaign.getDate());
-        for (CrewMember crewMember : squadronMembers.getCrewMemberCollection().values())
+        for (CrewMember crewMember : crewMembers.getCrewMemberCollection().values())
         {
             int rankPos = rankHelper.getRankPosByService(crewMember.getRank(), service);
             if (rankPos == 0)
@@ -101,13 +101,13 @@ public class CrewMemberInitialVictoryBuilderTest
     @Test
     public void testInitialVictoriesGermanFighterWest () throws PWCGException
     {
-        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(20112052);
-        ArmedService service = squadron.determineServiceForCompany(germanCampaign.getDate());
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(20112052);
+        ArmedService service = company.determineServiceForCompany(germanCampaign.getDate());
         IRankHelper rankHelper = RankFactory.createRankHelper();
         CompanyPersonnel jg52Personnel = germanCampaign.getPersonnelManager().getCompanyPersonnel(20112052);
 
-        CrewMembers squadronMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(jg52Personnel.getCrewMembersWithAces().getCrewMemberCollection(), germanCampaign.getDate());
-        for (CrewMember crewMember : squadronMembers.getCrewMemberCollection().values())
+        CrewMembers crewMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(jg52Personnel.getCrewMembersWithAces().getCrewMemberCollection(), germanCampaign.getDate());
+        for (CrewMember crewMember : crewMembers.getCrewMemberCollection().values())
         {
             int rankPos = rankHelper.getRankPosByService(crewMember.getRank(), service);
             if (rankPos == 0)
@@ -134,13 +134,13 @@ public class CrewMemberInitialVictoryBuilderTest
     public void testInitialVictoriesAmericanFighterWest () throws PWCGException
     {
 
-        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(102362377);
-        ArmedService service = squadron.determineServiceForCompany(americanCampaign.getDate());
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(102362377);
+        ArmedService service = company.determineServiceForCompany(americanCampaign.getDate());
         IRankHelper rankHelper = RankFactory.createRankHelper();
         CompanyPersonnel fg362Personnel = americanCampaign.getPersonnelManager().getCompanyPersonnel(102362377);
 
-        CrewMembers squadronMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(fg362Personnel.getCrewMembersWithAces().getCrewMemberCollection(), americanCampaign.getDate());
-        for (CrewMember crewMember : squadronMembers.getCrewMemberCollection().values())
+        CrewMembers crewMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(fg362Personnel.getCrewMembersWithAces().getCrewMemberCollection(), americanCampaign.getDate());
+        for (CrewMember crewMember : crewMembers.getCrewMemberCollection().values())
         {
             int rankPos = rankHelper.getRankPosByService(crewMember.getRank(), service);
             if (rankPos == 0)

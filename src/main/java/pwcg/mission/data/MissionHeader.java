@@ -11,14 +11,14 @@ public class MissionHeader
     private String base = "";
     private String duty = "";
 
-    public String getSquadron()
+    public String getCompany()
     {
         return company;
     }
 
-    public void setSquadron(String squadron)
+    public void setCompany(String company)
     {
-        this.company = squadron;
+        this.company = company;
     }
 
     public String getDate()

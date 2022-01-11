@@ -39,8 +39,8 @@ public class CrewMemberFactoryTest
     @Mock private CampaignAces campaignAces;
     
     private Date campaignDate;
-    private CompanyPersonnel squadronPersonnel;
-    private Company squadron;
+    private CompanyPersonnel companyPersonnel;
+    private Company company;
     private SerialNumber serialNumber = new SerialNumber();
     
     @BeforeEach
@@ -53,17 +53,17 @@ public class CrewMemberFactoryTest
         Mockito.when(campaign.getPersonnelManager()).thenReturn(campaignPersonnelManager);
         Mockito.when(campaignPersonnelManager.getCampaignAces()).thenReturn(campaignAces);
         List<TankAce> aces = new ArrayList<>();
-        Mockito.when(campaignAces.getActiveCampaignAcesBySquadron(Mockito.anyInt())).thenReturn(aces);
+        Mockito.when(campaignAces.getActiveCampaignAcesByCompany(Mockito.anyInt())).thenReturn(aces);
         
-        squadron = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.ESC_3_PROFILE.getCompanyId()); 
-        squadronPersonnel = new CompanyPersonnel(campaign, squadron);
+        company = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.ESC_3_PROFILE.getCompanyId()); 
+        companyPersonnel = new CompanyPersonnel(campaign, company);
     }
 
     @Test
     public void testCreatePlayer() throws PWCGException
     {                
-        ArmedService service = squadron.determineServiceForCompany(campaignDate);
-        String squadronName = squadron.determineDisplayName(campaignDate);
+        ArmedService service = company.determineServiceForCompany(campaignDate);
+        String companyName = company.determineDisplayName(campaignDate);
         
         IRankHelper rank = RankFactory.createRankHelper();
         String rankName = rank.getRankByService(2, service);
@@ -75,10 +75,10 @@ public class CrewMemberFactoryTest
         generatorModel.setPlayerRank(rankName);
         generatorModel.setPlayerRegion("");
         generatorModel.setService(service);
-        generatorModel.setSquadronName(squadronName);
+        generatorModel.setCompanyName(companyName);
 
-        CrewMemberFactory squadronMemberFactory = new  CrewMemberFactory (campaign, squadron, squadronPersonnel);
-        CrewMember player = squadronMemberFactory.createPlayer(generatorModel);
+        CrewMemberFactory companyMemberFactory = new  CrewMemberFactory (campaign, company, companyPersonnel);
+        CrewMember player = companyMemberFactory.createPlayer(generatorModel);
         
         assert(player.isPlayer() == true);
         assert(player.getSerialNumber() >= SerialNumber.PLAYER_STARTING_SERIAL_NUMBER && player.getSerialNumber() < SerialNumber.AI_STARTING_SERIAL_NUMBER);
@@ -92,8 +92,8 @@ public class CrewMemberFactoryTest
     @Test
     public void testCreateAiCrewMember() throws PWCGException
     {
-        CrewMemberFactory squadronMemberFactory = new  CrewMemberFactory (campaign, squadron, squadronPersonnel);
-        CrewMember crewMember = squadronMemberFactory.createInitialAICrewMember("Sergent");
+        CrewMemberFactory companyMemberFactory = new  CrewMemberFactory (campaign, company, companyPersonnel);
+        CrewMember crewMember = companyMemberFactory.createInitialAICrewMember("Sergent");
         
         assert(crewMember.isPlayer() == false);
         assert(crewMember.getSerialNumber() > SerialNumber.AI_STARTING_SERIAL_NUMBER);

@@ -1,7 +1,7 @@
 {
   "missionHeader": {
     "missionFileName": "Patrik Schorner 1916-04-10",
-    "squadron": "FA 15",
+    "company": "FA 15",
     "date": "19160410",
     "time": "140:00",
     "aircraftType": "AircraftType \u003d Roland C.II",
@@ -10,11 +10,11 @@
     "duty": "OFFENSIVE",
     "altitude": 2500
   },
-  "missionDescription": "Mission:\nAircraft  Roland C.IIa\nSquadron  FA 15\nAirbase  Pukov\nDate  1916-04-10\n\nWeather Report\nMostly clear, some high altitude clouds.\nCloud layer is 4334 meters.\nWind speed is 2 M/S.\nWind direction is 280.\n\nPrimary Objective\nPenetrate enemy airspace at the specified transport hubs near Factory.  Engage any enemy aircraft that you encounter.\n\n\n",
+  "missionDescription": "Mission:\nAircraft  Roland C.IIa\nCompany  FA 15\nAirbase  Pukov\nDate  1916-04-10\n\nWeather Report\nMostly clear, some high altitude clouds.\nCloud layer is 4334 meters.\nWind speed is 2 M/S.\nWind direction is 280.\n\nPrimary Objective\nPenetrate enemy airspace at the specified transport hubs near Factory.  Engage any enemy aircraft that you encounter.\n\n\n",
   "missionPlanes": [
     {
       "aircraftType": "rolc2a",
-      "squadronName": "FA 15",
+      "companyName": "FA 15",
       "crew": {
         "pilot": "Friedrich Beethoven",
         "observer": "Friedhelm Scherchen",
@@ -24,7 +24,7 @@
     },
     {
       "aircraftType": "rolc2a",
-      "squadronName": "FA 15",
+      "companyName": "FA 15",
       "crew": {
         "pilot": "Patrik Schorner",
         "observer": "Lukas Heffter",
@@ -34,7 +34,7 @@
     },
     {
       "aircraftType": "rolc2a",
-      "squadronName": "FA 15",
+      "companyName": "FA 15",
       "crew": {
         "pilot": "Lukas Westerman",
         "observer": "Erhard Kesselring",
@@ -44,7 +44,7 @@
     },
     {
       "aircraftType": "rolc2a",
-      "squadronName": "FA 15",
+      "companyName": "FA 15",
       "crew": {
         "pilot": "Nikolaus Fechter",
         "observer": "Sepp Homberg",
@@ -54,7 +54,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FliK 25",
+      "companyName": "FliK 25",
       "crew": {
         "pilot": "Hans Hengst",
         "observer": "Leon Freudenberger",
@@ -64,7 +64,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FliK 25",
+      "companyName": "FliK 25",
       "crew": {
         "pilot": "Erwin Himmelfarb",
         "observer": "Izsak Bobo",
@@ -74,7 +74,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FliK 25",
+      "companyName": "FliK 25",
       "crew": {
         "pilot": "Conrad Fuchs",
         "observer": "Frigyes Meszaros",
@@ -84,7 +84,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FliK 25",
+      "companyName": "FliK 25",
       "crew": {
         "pilot": "Kurt Helfgot",
         "observer": "Joachim Wechsler",
@@ -94,7 +94,7 @@
     },
     {
       "aircraftType": "s22",
-      "squadronName": "Escadra Vozdushnykh Korabley",
+      "companyName": "Escadra Vozdushnykh Korabley",
       "crew": {
         "pilot": "Kirill Lytkin",
         "observer": "Tusya Buzinsky",
@@ -104,7 +104,7 @@
     },
     {
       "aircraftType": "s22",
-      "squadronName": "Escadra Vozdushnykh Korabley",
+      "companyName": "Escadra Vozdushnykh Korabley",
       "crew": {
         "pilot": "Maksim Popov",
         "observer": "Bolodenka Kravchuk",
@@ -114,7 +114,7 @@
     },
     {
       "aircraftType": "s22",
-      "squadronName": "Escadra Vozdushnykh Korabley",
+      "companyName": "Escadra Vozdushnykh Korabley",
       "crew": {
         "pilot": "Akim Ostrovsky",
         "observer": "Pabiyan Lyubimov",
@@ -124,7 +124,7 @@
     },
     {
       "aircraftType": "s22",
-      "squadronName": "Escadra Vozdushnykh Korabley",
+      "companyName": "Escadra Vozdushnykh Korabley",
       "crew": {
         "pilot": "Rurik Perezhogin",
         "observer": "Stanislov Orlov",
@@ -134,7 +134,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "2nd KAO",
+      "companyName": "2nd KAO",
       "crew": {
         "pilot": "Sanya Brantov",
         "observer": "Evgenii Fedoseyev",

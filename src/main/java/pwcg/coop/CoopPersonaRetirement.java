@@ -25,10 +25,10 @@ class CoopPersonaRetirement
 
     private static void removePersonasFromCampaign(int personaToRetire, Campaign campaign) throws PWCGException
     {
-        CrewMember squadronMemberToRetire = campaign.getPersonnelManager().getAnyCampaignMember(personaToRetire);
-        if (squadronMemberToRetire != null)
+        CrewMember companyMemberToRetire = campaign.getPersonnelManager().getAnyCampaignMember(personaToRetire);
+        if (companyMemberToRetire != null)
         {
-            squadronMemberToRetire.setCrewMemberActiveStatus(CrewMemberStatus.STATUS_RETIRED, campaign.getDate(), null);
+            companyMemberToRetire.setCrewMemberActiveStatus(CrewMemberStatus.STATUS_RETIRED, campaign.getDate(), null);
         }
     }
 }

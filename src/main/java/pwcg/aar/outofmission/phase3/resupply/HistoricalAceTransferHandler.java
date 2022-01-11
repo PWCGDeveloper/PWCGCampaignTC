@@ -9,7 +9,7 @@ import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.crewmember.CrewMemberStatus;
 import pwcg.campaign.crewmember.HistoricalAce;
 import pwcg.campaign.crewmember.TankAce;
-import pwcg.campaign.resupply.personnel.SquadronTransferData;
+import pwcg.campaign.resupply.personnel.CompanyTransferData;
 import pwcg.campaign.resupply.personnel.TransferRecord;
 import pwcg.core.exception.PWCGException;
 
@@ -18,7 +18,7 @@ public class HistoricalAceTransferHandler
     private Campaign campaign;
     private Date newDate;
 
-    private SquadronTransferData acesTransferred = new SquadronTransferData();
+    private CompanyTransferData acesTransferred = new CompanyTransferData();
 
     public HistoricalAceTransferHandler(Campaign campaign, Date newDate)
     {
@@ -26,7 +26,7 @@ public class HistoricalAceTransferHandler
         this.newDate = newDate;
     }
 
-    public SquadronTransferData determineAceTransfers() throws PWCGException
+    public CompanyTransferData determineAceTransfers() throws PWCGException
     {
         CampaignPersonnelManager campaignPersonnelManager = campaign.getPersonnelManager();            
         List<TankAce> acesBefore = PWCGContext.getInstance().getAceManager().getActiveAcesForCampaign(campaignPersonnelManager.getCampaignAces(), campaign.getDate());

@@ -122,10 +122,10 @@ public class CampaignJournalGUI extends JPanel
 
 		headerLeftPanel.add(PWCGLabelFactory.makeDummyLabel());
 
-        String squadronText = InternationalizationManager.getTranslation("Squadron");
-        squadronText += ": " + combatReport.getSquadron();
-        JLabel lSquadron = PWCGLabelFactory.makeTransparentLabel(squadronText, ColorMap.PAPER_FOREGROUND, font, SwingConstants.LEFT);
-        headerLeftPanel.add(lSquadron);
+        String companyText = InternationalizationManager.getTranslation("Company");
+        companyText += ": " + combatReport.getCompany();
+        JLabel lCompany = PWCGLabelFactory.makeTransparentLabel(companyText, ColorMap.PAPER_FOREGROUND, font, SwingConstants.LEFT);
+        headerLeftPanel.add(lCompany);
 
 		JLabel lCrewMember = makeCrewMembersInMissionLabel(font);
 		headerLeftPanel.add(lCrewMember);

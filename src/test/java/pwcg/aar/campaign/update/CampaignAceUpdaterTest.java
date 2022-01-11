@@ -38,7 +38,7 @@ public class CampaignAceUpdaterTest
     }
 
     @Test
-    public void testInSquadronAceUpdate() throws PWCGException 
+    public void testInCompanyAceUpdate() throws PWCGException 
     {
 
         Map<Integer, List<Victory>> aceVictories = new HashMap<>();
@@ -59,7 +59,7 @@ public class CampaignAceUpdaterTest
     
     
     @Test
-    public void testOutOfSquadronAceUpdate() throws PWCGException 
+    public void testOutOfCompanyAceUpdate() throws PWCGException 
     {
         Map<Integer, List<Victory>> aceVictories = new HashMap<>();
         List<Victory> victories = VictoryMaker.makeMultipleCentralVictories(1, campaign.getDate());

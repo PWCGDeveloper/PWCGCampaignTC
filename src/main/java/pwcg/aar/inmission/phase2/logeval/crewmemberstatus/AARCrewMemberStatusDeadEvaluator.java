@@ -47,14 +47,14 @@ public class AARCrewMemberStatusDeadEvaluator
     	{
     	    if (SerialNumber.getSerialNumberClassification(logCrewMember.getSerialNumber()) != SerialNumberClassification.PLAYER)
     	    {
-    	        isCrewMemberDead = didSquadronAiMemberDieAfterSpecialConsiderations();
+    	        isCrewMemberDead = didCompanyAiMemberDieAfterSpecialConsiderations();
     	    }
     	}
         
         return isCrewMemberDead;
     }
 
-    private boolean didSquadronAiMemberDieAfterSpecialConsiderations() throws PWCGException
+    private boolean didCompanyAiMemberDieAfterSpecialConsiderations() throws PWCGException
     {
         boolean isDead = false;
         
@@ -110,7 +110,7 @@ public class AARCrewMemberStatusDeadEvaluator
             if (downAt != null)
             {
             	CrewMember crewMember = campaign.getPersonnelManager().getAnyCampaignMember(logCrewMember.getSerialNumber());
-            	Coordinate fieldPosition = crewMember.determineSquadron().determineCurrentPosition(campaign.getDate());
+            	Coordinate fieldPosition = crewMember.determineCompany().determineCurrentPosition(campaign.getDate());
                 if (fieldPosition != null)
                 {
                     double distanceToHomeField = MathUtils.calcDist(downAt, fieldPosition);

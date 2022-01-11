@@ -4,5 +4,5 @@ import pwcg.core.exception.PWCGUserException;
 
 public interface ICrewMemberReplacer
 {
-    public CrewMember createPersona(String playerCrewMemberName, String rank, String squadronName, String coopUser) throws PWCGUserException, Exception;
+    public CrewMember createPersona(String playerCrewMemberName, String rank, String companyName, String coopUser) throws PWCGUserException, Exception;
 }

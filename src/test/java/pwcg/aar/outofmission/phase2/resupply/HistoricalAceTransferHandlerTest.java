@@ -15,7 +15,7 @@ import pwcg.campaign.CampaignAces;
 import pwcg.campaign.CampaignPersonnelManager;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGProduct;
-import pwcg.campaign.resupply.personnel.SquadronTransferData;
+import pwcg.campaign.resupply.personnel.CompanyTransferData;
 import pwcg.campaign.resupply.personnel.TransferRecord;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
@@ -50,7 +50,7 @@ public class HistoricalAceTransferHandlerTest
     public void testKarlSchaferTransferToJasta28() throws PWCGException
     {
         HistoricalAceTransferHandler historicalAceTransferHandler = new HistoricalAceTransferHandler(campaign, DateUtils.getDateYYYYMMDD("19170503"));
-        SquadronTransferData acesTransferred =  historicalAceTransferHandler.determineAceTransfers();
+        CompanyTransferData acesTransferred =  historicalAceTransferHandler.determineAceTransfers();
         Assertions.assertTrue (acesTransferred.getCrewMembersTransferred().size() > 0);
         
         boolean karlSchaferFound = false;

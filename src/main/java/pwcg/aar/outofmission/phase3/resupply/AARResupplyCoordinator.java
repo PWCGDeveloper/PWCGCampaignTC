@@ -11,7 +11,7 @@ import pwcg.campaign.resupply.equipment.EquipmentReplacementHandler;
 import pwcg.campaign.resupply.equipment.EquipmentResupplyData;
 import pwcg.campaign.resupply.equipment.EquipmentUpgradeHandler;
 import pwcg.campaign.resupply.equipment.WithdrawnEquipmentReplacer;
-import pwcg.campaign.resupply.personnel.SquadronTransferData;
+import pwcg.campaign.resupply.personnel.CompanyTransferData;
 import pwcg.campaign.resupply.personnel.TransferHandler;
 import pwcg.campaign.tank.Equipment;
 import pwcg.core.exception.PWCGException;
@@ -32,7 +32,7 @@ public class AARResupplyCoordinator
     public AARResupplyData handleResupply() throws PWCGException 
     {
         handleAceTransfers();
-        squadronTransfers();
+        companyTransfers();
         equipmentResupply();
         return resupplyData;
     }
@@ -40,19 +40,19 @@ public class AARResupplyCoordinator
     private void handleAceTransfers() throws PWCGException
     {
         HistoricalAceTransferHandler aceTransferHandler = new HistoricalAceTransferHandler(campaign, aarContext.getNewDate());
-        SquadronTransferData acesTransferred =  aceTransferHandler.determineAceTransfers();
+        CompanyTransferData acesTransferred =  aceTransferHandler.determineAceTransfers();
         resupplyData.setAcesTransferred(acesTransferred);
     }
     
-    private void squadronTransfers() throws PWCGException
+    private void companyTransfers() throws PWCGException
     {
         IArmedServiceManager serviceManager = ArmedServiceFactory.createServiceManager();
         for (ArmedService armedService : serviceManager.getAllActiveArmedServices(campaign.getDate()))
         {
             ResupplyNeedBuilder transferNeedBuilder = new ResupplyNeedBuilder(campaign, armedService);
-            TransferHandler squadronTransferHandler = new TransferHandler(campaign, transferNeedBuilder);
-            SquadronTransferData squadronTransferData = squadronTransferHandler.determineCrewMemberTransfers(armedService);
-            resupplyData.getSquadronTransferData().merge(squadronTransferData);
+            TransferHandler companyTransferHandler = new TransferHandler(campaign, transferNeedBuilder);
+            CompanyTransferData companyTransferData = companyTransferHandler.determineCrewMemberTransfers(armedService);
+            resupplyData.getCompanyTransferData().merge(companyTransferData);
         }
     }
 
@@ -69,13 +69,13 @@ public class AARResupplyCoordinator
 
     private void replaceWithdrawnPlanes(ArmedService armedService) throws PWCGException
     {
-        for (CompanyPersonnel squadronPersonnel : campaign.getPersonnelManager().getAllCompanyPersonnel())
+        for (CompanyPersonnel companyPersonnel : campaign.getPersonnelManager().getAllCompanyPersonnel())
         {
-            int serviceIdForSquadron = squadronPersonnel.getCompany().determineServiceForCompany(campaign.getDate()).getServiceId();
-            if (armedService.getServiceId() == serviceIdForSquadron)
+            int serviceIdForCompany = companyPersonnel.getCompany().determineServiceForCompany(campaign.getDate()).getServiceId();
+            if (armedService.getServiceId() == serviceIdForCompany)
             {
-                Equipment equipment = campaign.getEquipmentManager().getEquipmentForCompany(squadronPersonnel.getCompany().getCompanyId());
-                WithdrawnEquipmentReplacer withdrawnEquipmentReplacer = new WithdrawnEquipmentReplacer(campaign, equipment, squadronPersonnel.getCompany());
+                Equipment equipment = campaign.getEquipmentManager().getEquipmentForCompany(companyPersonnel.getCompany().getCompanyId());
+                WithdrawnEquipmentReplacer withdrawnEquipmentReplacer = new WithdrawnEquipmentReplacer(campaign, equipment, companyPersonnel.getCompany());
                 withdrawnEquipmentReplacer.replaceWithdrawnEquipment();
             }
         }        

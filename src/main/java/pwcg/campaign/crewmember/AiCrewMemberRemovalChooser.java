@@ -23,57 +23,57 @@ public class AiCrewMemberRemovalChooser
         this.campaign = campaign;
     }
 
-    public CrewMember findAiCrewMemberToRemove(String humanCrewMemberRank, int squadronId) throws PWCGException
+    public CrewMember findAiCrewMemberToRemove(String humanCrewMemberRank, int companyId) throws PWCGException
     {
 
-        CrewMember squadronMemberToRemove = removeSameRank(humanCrewMemberRank, squadronId);
-        if (squadronMemberToRemove == null)
+        CrewMember companyMemberToRemove = removeSameRank(humanCrewMemberRank, companyId);
+        if (companyMemberToRemove == null)
         {
-            squadronMemberToRemove = removeSimilarRank(humanCrewMemberRank, squadronId);
-            if (squadronMemberToRemove == null)
+            companyMemberToRemove = removeSimilarRank(humanCrewMemberRank, companyId);
+            if (companyMemberToRemove == null)
             {
-                squadronMemberToRemove = removeAnyRank(humanCrewMemberRank, squadronId);
+                companyMemberToRemove = removeAnyRank(humanCrewMemberRank, companyId);
             }
         }
         
-        return squadronMemberToRemove;
+        return companyMemberToRemove;
     }
 
-    private CrewMember removeSameRank(String humanCrewMemberRank, int squadronId) throws PWCGException
+    private CrewMember removeSameRank(String humanCrewMemberRank, int companyId) throws PWCGException
     {
-        CompanyPersonnel squadronPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(squadronId);
+        CompanyPersonnel companyPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(companyId);
 
-        CrewMembers squadronMembers = squadronPersonnel.getCrewMembers();
-        CrewMembers activeCrewMembers = CrewMemberFilter.filterActiveAI(squadronMembers.getCrewMemberCollection(), campaign.getDate());
+        CrewMembers crewMembers = companyPersonnel.getCrewMembers();
+        CrewMembers activeCrewMembers = CrewMemberFilter.filterActiveAI(crewMembers.getCrewMemberCollection(), campaign.getDate());
 
-        List<CrewMember> squadronMembersOfSameRank = new ArrayList<>();
+        List<CrewMember> crewMembersOfSameRank = new ArrayList<>();
         for (CrewMember crewMember : activeCrewMembers.getCrewMemberList())
         {
             if (crewMember.getRank().equals(humanCrewMemberRank))
             {
-                squadronMembersOfSameRank.add(crewMember);
+                crewMembersOfSameRank.add(crewMember);
             }
         }
         
-        if (squadronMembersOfSameRank.size() > 0)
+        if (crewMembersOfSameRank.size() > 0)
         {
-            int index = RandomNumberGenerator.getRandom(squadronMembersOfSameRank.size());
-            return (squadronMembersOfSameRank.get(index));
+            int index = RandomNumberGenerator.getRandom(crewMembersOfSameRank.size());
+            return (crewMembersOfSameRank.get(index));
         }
         
         return null;
     }
 
-    private CrewMember removeSimilarRank(String humanCrewMemberRank, int squadronId) throws PWCGException
+    private CrewMember removeSimilarRank(String humanCrewMemberRank, int companyId) throws PWCGException
     {
-        CompanyPersonnel squadronPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(squadronId);
-        CrewMembers squadronMembers = squadronPersonnel.getCrewMembers();
-        CrewMembers activeCrewMembers = CrewMemberFilter.filterActiveAI(squadronMembers.getCrewMemberCollection(), campaign.getDate());
+        CompanyPersonnel companyPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(companyId);
+        CrewMembers crewMembers = companyPersonnel.getCrewMembers();
+        CrewMembers activeCrewMembers = CrewMemberFilter.filterActiveAI(crewMembers.getCrewMemberCollection(), campaign.getDate());
         
-        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(squadronId);
-        ArmedService service = squadron.determineServiceForCompany(campaign.getDate());
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(companyId);
+        ArmedService service = company.determineServiceForCompany(campaign.getDate());
 
-        List<CrewMember> squadronMembersOfSimilarRank = new ArrayList<>();
+        List<CrewMember> crewMembersOfSimilarRank = new ArrayList<>();
         for (CrewMember crewMember : activeCrewMembers.getCrewMemberList())
         {
             IRankHelper rankObj = RankFactory.createRankHelper();
@@ -84,30 +84,30 @@ public class AiCrewMemberRemovalChooser
             {
                 if (Math.abs(rankPosOfHumanCrewMember - rankPosOfAiCrewMember) < 2)
                 {
-                    squadronMembersOfSimilarRank.add(crewMember);
+                    crewMembersOfSimilarRank.add(crewMember);
                 }
             }
         }
         
-        if (squadronMembersOfSimilarRank.size() > 0)
+        if (crewMembersOfSimilarRank.size() > 0)
         {
-            int index = RandomNumberGenerator.getRandom(squadronMembersOfSimilarRank.size());
-            return (squadronMembersOfSimilarRank.get(index));
+            int index = RandomNumberGenerator.getRandom(crewMembersOfSimilarRank.size());
+            return (crewMembersOfSimilarRank.get(index));
         }
 
         return null;
     }
 
-    private CrewMember removeAnyRank(String humanCrewMemberRank, int squadronId) throws PWCGException
+    private CrewMember removeAnyRank(String humanCrewMemberRank, int companyId) throws PWCGException
     {
-        CompanyPersonnel squadronPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(squadronId);
-        CrewMembers squadronMembers = squadronPersonnel.getCrewMembers();
-        CrewMembers activeCrewMembers = CrewMemberFilter.filterActiveAI(squadronMembers.getCrewMemberCollection(), campaign.getDate());
+        CompanyPersonnel companyPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(companyId);
+        CrewMembers crewMembers = companyPersonnel.getCrewMembers();
+        CrewMembers activeCrewMembers = CrewMemberFilter.filterActiveAI(crewMembers.getCrewMemberCollection(), campaign.getDate());
         
-        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(squadronId);
-        ArmedService service = squadron.determineServiceForCompany(campaign.getDate());
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(companyId);
+        ArmedService service = company.determineServiceForCompany(campaign.getDate());
 
-        List<CrewMember> squadronMembersOfAnyNonCommandRank = new ArrayList<>();
+        List<CrewMember> crewMembersOfAnyNonCommandRank = new ArrayList<>();
         for (CrewMember crewMember : activeCrewMembers.getCrewMemberList())
         {
             IRankHelper rankObj = RankFactory.createRankHelper();
@@ -115,14 +115,14 @@ public class AiCrewMemberRemovalChooser
 
             if (rankPosOfAiCrewMember > IRankHelper.COMMAND_RANK)
             {
-                squadronMembersOfAnyNonCommandRank.add(crewMember);
+                crewMembersOfAnyNonCommandRank.add(crewMember);
             }
         }
         
-        if (squadronMembersOfAnyNonCommandRank.size() > 0)
+        if (crewMembersOfAnyNonCommandRank.size() > 0)
         {
-            int index = RandomNumberGenerator.getRandom(squadronMembersOfAnyNonCommandRank.size());
-            return (squadronMembersOfAnyNonCommandRank.get(index));
+            int index = RandomNumberGenerator.getRandom(crewMembersOfAnyNonCommandRank.size());
+            return (crewMembersOfAnyNonCommandRank.get(index));
         }
 
         return null;

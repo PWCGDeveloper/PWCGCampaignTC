@@ -27,7 +27,7 @@ public class BoSFlightTypeFactory implements IFlightTypeFactory
     }
 
     @Override
-    public FlightTypes getFlightType(Company squadron, boolean isPlayerFlight, PwcgRole missionRole) throws PWCGException
+    public FlightTypes getFlightType(Company company, boolean isPlayerFlight, PwcgRole missionRole) throws PWCGException
     {
         FlightTypes flightType = null;
         if (missionRole == PwcgRole.ROLE_DIVE_BOMB)
@@ -36,32 +36,32 @@ public class BoSFlightTypeFactory implements IFlightTypeFactory
         }
         else if (missionRole == PwcgRole.ROLE_BOMB)
         {
-            flightType = getBomberFlightType(squadron);
+            flightType = getBomberFlightType(company);
         }
         else if (missionRole == PwcgRole.ROLE_FIGHTER)
         {
-            flightType = getFighterFlightType(squadron, isPlayerFlight);
+            flightType = getFighterFlightType(company, isPlayerFlight);
         }
         else if (missionRole == PwcgRole.ROLE_ATTACK)
         {
-            flightType = getAttackFlightType(squadron, isPlayerFlight);
+            flightType = getAttackFlightType(company, isPlayerFlight);
         }
         else if (missionRole == PwcgRole.ROLE_TRANSPORT)
         {
-            flightType = getTransportFlightType(squadron);
+            flightType = getTransportFlightType(company);
         }
         else
         {
-            throw new PWCGMissionGenerationException("No valid role for squadron: " + squadron.determineDisplayName(campaign.getDate()));
+            throw new PWCGMissionGenerationException("No valid role for company: " + company.determineDisplayName(campaign.getDate()));
         }
 
         return flightType;
     }
 
-    private FlightTypes getFighterFlightType(Company squadron, boolean isPlayerFlight) throws PWCGException
+    private FlightTypes getFighterFlightType(Company company, boolean isPlayerFlight) throws PWCGException
     {
         int currentIndex = 0;
-        if (squadron.determineCompanyCountry(campaign.getDate()).getSideNoNeutral() == Side.ALLIED)
+        if (company.determineCompanyCountry(campaign.getDate()).getSideNoNeutral() == Side.ALLIED)
         {
             currentIndex =  addItemToWeightedList(ConfigItemKeys.AlliedLowAltPatrolMissionKey, FlightTypes.LOW_ALT_PATROL, currentIndex);
             currentIndex =  addItemToWeightedList(ConfigItemKeys.AlliedLowAltCapMissionKey, FlightTypes.LOW_ALT_CAP, currentIndex);
@@ -78,10 +78,10 @@ public class BoSFlightTypeFactory implements IFlightTypeFactory
         return flightType;
     }    
     
-    private FlightTypes getTransportFlightType(Company squadron) throws PWCGException
+    private FlightTypes getTransportFlightType(Company company) throws PWCGException
     {
         int currentIndex = 0;
-        if (squadron.determineCompanyCountry(campaign.getDate()).getSideNoNeutral() == Side.ALLIED)
+        if (company.determineCompanyCountry(campaign.getDate()).getSideNoNeutral() == Side.ALLIED)
         {
             currentIndex =  addItemToWeightedList(ConfigItemKeys.AlliedCargoDropKey, FlightTypes.CARGO_DROP, currentIndex);
             currentIndex =  addItemToWeightedList(ConfigItemKeys.AlliedParachuteDropKey, FlightTypes.PARATROOP_DROP, currentIndex);
@@ -98,7 +98,7 @@ public class BoSFlightTypeFactory implements IFlightTypeFactory
         return flightType;
     }
 
-    private FlightTypes getAttackFlightType(Company squadron, boolean isPlayerFlight) throws PWCGException 
+    private FlightTypes getAttackFlightType(Company company, boolean isPlayerFlight) throws PWCGException 
     {
         if (!isPlayerFlight)
         {
@@ -106,7 +106,7 @@ public class BoSFlightTypeFactory implements IFlightTypeFactory
         }
         
         int currentIndex = 0;
-        if (squadron.determineCompanyCountry(campaign.getDate()).getSideNoNeutral() == Side.ALLIED)
+        if (company.determineCompanyCountry(campaign.getDate()).getSideNoNeutral() == Side.ALLIED)
         {
             currentIndex =  addItemToWeightedList(ConfigItemKeys.AlliedGroundAttackKey, FlightTypes.GROUND_ATTACK, currentIndex);
         }
@@ -121,10 +121,10 @@ public class BoSFlightTypeFactory implements IFlightTypeFactory
         return flightType;
     }
     
-    private FlightTypes getBomberFlightType(Company squadron) throws PWCGException 
+    private FlightTypes getBomberFlightType(Company company) throws PWCGException 
     {
         int currentIndex = 0;
-        if (squadron.determineCompanyCountry(campaign.getDate()).getSideNoNeutral() == Side.ALLIED)
+        if (company.determineCompanyCountry(campaign.getDate()).getSideNoNeutral() == Side.ALLIED)
         {
             currentIndex =  addItemToWeightedList(ConfigItemKeys.AlliedLowAltBombingMissionKey, FlightTypes.LOW_ALT_BOMB, currentIndex);
         }

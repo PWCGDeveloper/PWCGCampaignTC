@@ -12,24 +12,24 @@ import pwcg.campaign.company.Company;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.io.json.CompanyIOJson;
-import pwcg.campaign.plane.SquadronPlaneAssignment;
+import pwcg.campaign.plane.CompanyPlaneAssignment;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 
 @ExtendWith(MockitoExtension.class)
-public class SquadronAircraftAssignmentTest
+public class CompanyAircraftAssignmentTest
 {    
     @Test
     public void verifyValidBoSAirfieldMoveDatesTest() throws PWCGException
     {
         
-        List<Company> squadrons = CompanyIOJson.readJson();
-        Assertions.assertTrue (squadrons.size() > 0);
+        List<Company> companys = CompanyIOJson.readJson();
+        Assertions.assertTrue (companys.size() > 0);
         
         boolean success = true;
-        for (Company squadron : squadrons)
+        for (Company company : companys)
         {
-            if (!verifySquadronAircraftTransitions(squadron))
+            if (!verifyCompanyAircraftTransitions(company))
             {
                 success = false;
             }
@@ -38,11 +38,11 @@ public class SquadronAircraftAssignmentTest
         assert(success);
     }
  
-    private boolean verifySquadronAircraftTransitions(Company squadron) throws PWCGException
+    private boolean verifyCompanyAircraftTransitions(Company company) throws PWCGException
     {
         boolean success = true;
         Date lastEndDate = null;
-        List<CompanyTankAssignment> planeAssignments = squadron.getPlaneAssignments();
+        List<CompanyTankAssignment> planeAssignments = company.getPlaneAssignments();
         for (CompanyTankAssignment planeAssignment : planeAssignments)
         {
             if (lastEndDate == null)

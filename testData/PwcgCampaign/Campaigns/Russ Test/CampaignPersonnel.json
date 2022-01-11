@@ -24,7 +24,7 @@
       "playerRegion": "",
       "isPlayer": false,
       "companyId": 10111126,
-      "squadronMemberRole": "PILOT"
+      "companyMemberRole": "PILOT"
     },
     "Emil Zhivenkov": {
       "name": "Emil Zhivenkov",
@@ -46,7 +46,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "fw190a5",
-            "squadronName": "I./JG51",
+            "companyName": "I./JG51",
             "pilot": "Mjr Poldi Hausser",
             "pilotStatus": -6,
             "observer": "",
@@ -55,7 +55,7 @@
           "victor": {
             "airOrGround": 1,
             "type": "p39l1",
-            "squadronName": "16th Guards Fighter Air Regiment",
+            "companyName": "16th Guards Fighter Air Regiment",
             "pilot": "Emil Zhivenkov",
             "pilotStatus": 0,
             "observer": "",
@@ -74,7 +74,7 @@
       "playerRegion": "",
       "isPlayer": false,
       "companyId": 10111126,
-      "squadronMemberRole": "PILOT"
+      "companyMemberRole": "PILOT"
     },
     "Valentin Dubolazov": {
       "name": "Valentin Dubolazov",
@@ -100,7 +100,7 @@
       "playerRegion": "",
       "isPlayer": false,
       "companyId": 10111126,
-      "squadronMemberRole": "PILOT"
+      "companyMemberRole": "PILOT"
     },
     "Russ Test": {
       "name": "Russ Test",
@@ -122,7 +122,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "MC.202 ser.VIII",
-            "squadronName": "21 Gruppo Caccia",
+            "companyName": "21 Gruppo Caccia",
             "pilot": "Nuccio Monti",
             "pilotStatus": 0,
             "observer": "",
@@ -131,7 +131,7 @@
           "victor": {
             "airOrGround": 1,
             "type": "P-39L-1",
-            "squadronName": "16th Guards Fighter Air Regiment",
+            "companyName": "16th Guards Fighter Air Regiment",
             "pilot": "Russ Test",
             "pilotStatus": -4,
             "observer": "",
@@ -155,7 +155,7 @@
       "playerRegion": "",
       "isPlayer": true,
       "companyId": 10111126,
-      "squadronMemberRole": "PILOT"
+      "companyMemberRole": "PILOT"
     },
     "Yan Tsigler": {
       "name": "Yan Tsigler",
@@ -177,7 +177,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "bf109g2",
-            "squadronName": "I./JG52",
+            "companyName": "I./JG52",
             "pilot": "Ltn Uwe Schau",
             "pilotStatus": -6,
             "observer": "",
@@ -186,7 +186,7 @@
           "victor": {
             "airOrGround": 1,
             "type": "p39l1",
-            "squadronName": "16th Guards Fighter Air Regiment",
+            "companyName": "16th Guards Fighter Air Regiment",
             "pilot": "Yan Tsigler",
             "pilotStatus": 0,
             "observer": "",
@@ -200,7 +200,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "bf109g2",
-            "squadronName": "I./JG3",
+            "companyName": "I./JG3",
             "pilot": "Hpt Maximillian Landsteiner",
             "pilotStatus": -6,
             "observer": "",
@@ -209,7 +209,7 @@
           "victor": {
             "airOrGround": 1,
             "type": "p39l1",
-            "squadronName": "16th Guards Fighter Air Regiment",
+            "companyName": "16th Guards Fighter Air Regiment",
             "pilot": "Yan Tsigler",
             "pilotStatus": 0,
             "observer": "",
@@ -223,7 +223,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "ju87d3",
-            "squadronName": "II./St.G.2",
+            "companyName": "II./St.G.2",
             "pilot": "Hpt Gustav Kresge",
             "pilotStatus": -6,
             "observer": "",
@@ -232,7 +232,7 @@
           "victor": {
             "airOrGround": 1,
             "type": "p39l1",
-            "squadronName": "16th Guards Fighter Air Regiment",
+            "companyName": "16th Guards Fighter Air Regiment",
             "pilot": "Yan Tsigler",
             "pilotStatus": 0,
             "observer": "",
@@ -246,7 +246,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "ju88a4",
-            "squadronName": "I./KG76",
+            "companyName": "I./KG76",
             "pilot": "Obltn Frederich Thierse",
             "pilotStatus": -6,
             "observer": "",
@@ -255,7 +255,7 @@
           "victor": {
             "airOrGround": 1,
             "type": "p39l1",
-            "squadronName": "16th Guards Fighter Air Regiment",
+            "companyName": "16th Guards Fighter Air Regiment",
             "pilot": "Yan Tsigler",
             "pilotStatus": 0,
             "observer": "",
@@ -269,7 +269,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "he111h16",
-            "squadronName": "I./KG27",
+            "companyName": "I./KG27",
             "pilot": "Fw Raimund Taubman",
             "pilotStatus": -6,
             "observer": "",
@@ -278,7 +278,7 @@
           "victor": {
             "airOrGround": 1,
             "type": "p39l1",
-            "squadronName": "16th Guards Fighter Air Regiment",
+            "companyName": "16th Guards Fighter Air Regiment",
             "pilot": "Yan Tsigler",
             "pilotStatus": 0,
             "observer": "",
@@ -292,7 +292,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "mc202s8",
-            "squadronName": "21 Gruppo Caccia",
+            "companyName": "21 Gruppo Caccia",
             "pilot": "Tnt Gentile Basile",
             "pilotStatus": -6,
             "observer": "",
@@ -301,7 +301,7 @@
           "victor": {
             "airOrGround": 1,
             "type": "p39l1",
-            "squadronName": "16th Guards Fighter Air Regiment",
+            "companyName": "16th Guards Fighter Air Regiment",
             "pilot": "Yan Tsigler",
             "pilotStatus": 0,
             "observer": "",
@@ -315,7 +315,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "ju87d3",
-            "squadronName": "II./St.G.2",
+            "companyName": "II./St.G.2",
             "pilot": "Obltn Mario Quittner",
             "pilotStatus": -6,
             "observer": "",
@@ -324,7 +324,7 @@
           "victor": {
             "airOrGround": 1,
             "type": "p39l1",
-            "squadronName": "16th Guards Fighter Air Regiment",
+            "companyName": "16th Guards Fighter Air Regiment",
             "pilot": "Yan Tsigler",
             "pilotStatus": 0,
             "observer": "",
@@ -338,7 +338,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "ju87d3",
-            "squadronName": "I./St.G.77",
+            "companyName": "I./St.G.77",
             "pilot": "Fw Wolfram Kielholz",
             "pilotStatus": -6,
             "observer": "",
@@ -347,7 +347,7 @@
           "victor": {
             "airOrGround": 1,
             "type": "p39l1",
-            "squadronName": "16th Guards Fighter Air Regiment",
+            "companyName": "16th Guards Fighter Air Regiment",
             "pilot": "Yan Tsigler",
             "pilotStatus": 0,
             "observer": "",
@@ -361,7 +361,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "bf109g4",
-            "squadronName": "II./JG51",
+            "companyName": "II./JG51",
             "pilot": "Fw Gotthold Berninger",
             "pilotStatus": -6,
             "observer": "",
@@ -370,7 +370,7 @@
           "victor": {
             "airOrGround": 1,
             "type": "p39l1",
-            "squadronName": "16th Guards Fighter Air Regiment",
+            "companyName": "16th Guards Fighter Air Regiment",
             "pilot": "Yan Tsigler",
             "pilotStatus": 0,
             "observer": "",
@@ -384,7 +384,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "mc202s8",
-            "squadronName": "21 Gruppo Caccia",
+            "companyName": "21 Gruppo Caccia",
             "pilot": "STnt Nello Morelli",
             "pilotStatus": -6,
             "observer": "",
@@ -393,7 +393,7 @@
           "victor": {
             "airOrGround": 1,
             "type": "p39l1",
-            "squadronName": "16th Guards Fighter Air Regiment",
+            "companyName": "16th Guards Fighter Air Regiment",
             "pilot": "Yan Tsigler",
             "pilotStatus": 0,
             "observer": "",
@@ -407,7 +407,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "bf109g4",
-            "squadronName": "II./JG52",
+            "companyName": "II./JG52",
             "pilot": "Obltn Volker Zuckermann",
             "pilotStatus": -6,
             "observer": "",
@@ -416,7 +416,7 @@
           "victor": {
             "airOrGround": 1,
             "type": "p39l1",
-            "squadronName": "16th Guards Fighter Air Regiment",
+            "companyName": "16th Guards Fighter Air Regiment",
             "pilot": "Yan Tsigler",
             "pilotStatus": 0,
             "observer": "",
@@ -430,7 +430,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "bf109g4",
-            "squadronName": "II./JG51",
+            "companyName": "II./JG51",
             "pilot": "Obltn Armin Baeumler",
             "pilotStatus": -6,
             "observer": "",
@@ -439,7 +439,7 @@
           "victor": {
             "airOrGround": 1,
             "type": "p39l1",
-            "squadronName": "16th Guards Fighter Air Regiment",
+            "companyName": "16th Guards Fighter Air Regiment",
             "pilot": "Yan Tsigler",
             "pilotStatus": 0,
             "observer": "",
@@ -453,7 +453,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "fw190a5",
-            "squadronName": "I./JG51",
+            "companyName": "I./JG51",
             "pilot": "Hpt Bernd Herzfeld",
             "pilotStatus": -6,
             "observer": "",
@@ -462,7 +462,7 @@
           "victor": {
             "airOrGround": 1,
             "type": "p39l1",
-            "squadronName": "16th Guards Fighter Air Regiment",
+            "companyName": "16th Guards Fighter Air Regiment",
             "pilot": "Yan Tsigler",
             "pilotStatus": 0,
             "observer": "",
@@ -496,7 +496,7 @@
       "playerRegion": "",
       "isPlayer": false,
       "companyId": 10111126,
-      "squadronMemberRole": "PILOT"
+      "companyMemberRole": "PILOT"
     },
     "Artur Pugin": {
       "name": "Artur Pugin",
@@ -518,7 +518,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "MC.202 ser.VIII",
-            "squadronName": "21 Gruppo Caccia",
+            "companyName": "21 Gruppo Caccia",
             "pilot": "Biagio Rossetti",
             "pilotStatus": 0,
             "observer": "",
@@ -527,7 +527,7 @@
           "victor": {
             "airOrGround": 1,
             "type": "P-39L-1",
-            "squadronName": "16th Guards Fighter Air Regiment",
+            "companyName": "16th Guards Fighter Air Regiment",
             "pilot": "Artur Pugin",
             "pilotStatus": 0,
             "observer": "",
@@ -546,7 +546,7 @@
       "playerRegion": "",
       "isPlayer": false,
       "companyId": 10111126,
-      "squadronMemberRole": "PILOT"
+      "companyMemberRole": "PILOT"
     },
     "Iosif Batishchev": {
       "name": "Iosif Batishchev",
@@ -568,7 +568,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "bf109g4",
-            "squadronName": "II./JG51",
+            "companyName": "II./JG51",
             "pilot": "Fw Dirk Grottger",
             "pilotStatus": -6,
             "observer": "",
@@ -577,7 +577,7 @@
           "victor": {
             "airOrGround": 1,
             "type": "p39l1",
-            "squadronName": "16th Guards Fighter Air Regiment",
+            "companyName": "16th Guards Fighter Air Regiment",
             "pilot": "Iosif Batishchev",
             "pilotStatus": 0,
             "observer": "",
@@ -591,7 +591,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "ju87d3",
-            "squadronName": "I./St.G.77",
+            "companyName": "I./St.G.77",
             "pilot": "Ltn Karlheinz Weiskopf",
             "pilotStatus": -6,
             "observer": "",
@@ -600,7 +600,7 @@
           "victor": {
             "airOrGround": 1,
             "type": "p39l1",
-            "squadronName": "16th Guards Fighter Air Regiment",
+            "companyName": "16th Guards Fighter Air Regiment",
             "pilot": "Iosif Batishchev",
             "pilotStatus": 0,
             "observer": "",
@@ -614,7 +614,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "mc202s8",
-            "squadronName": "21 Gruppo Caccia",
+            "companyName": "21 Gruppo Caccia",
             "pilot": "Tnt Duccio Colombo",
             "pilotStatus": -6,
             "observer": "",
@@ -623,7 +623,7 @@
           "victor": {
             "airOrGround": 1,
             "type": "p39l1",
-            "squadronName": "16th Guards Fighter Air Regiment",
+            "companyName": "16th Guards Fighter Air Regiment",
             "pilot": "Iosif Batishchev",
             "pilotStatus": 0,
             "observer": "",
@@ -637,7 +637,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "bf109g2",
-            "squadronName": "I./JG3",
+            "companyName": "I./JG3",
             "pilot": "Ltn Nils Leiningen",
             "pilotStatus": -6,
             "observer": "",
@@ -646,7 +646,7 @@
           "victor": {
             "airOrGround": 1,
             "type": "p39l1",
-            "squadronName": "16th Guards Fighter Air Regiment",
+            "companyName": "16th Guards Fighter Air Regiment",
             "pilot": "Iosif Batishchev",
             "pilotStatus": 0,
             "observer": "",
@@ -670,7 +670,7 @@
       "playerRegion": "",
       "isPlayer": false,
       "companyId": 10111126,
-      "squadronMemberRole": "PILOT"
+      "companyMemberRole": "PILOT"
     },
     "Kirill Pirogov": {
       "name": "Kirill Pirogov",
@@ -696,7 +696,7 @@
       "playerRegion": "",
       "isPlayer": false,
       "companyId": 10111126,
-      "squadronMemberRole": "PILOT"
+      "companyMemberRole": "PILOT"
     },
     "Artur Primakov": {
       "name": "Artur Primakov",
@@ -718,7 +718,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "MC.202 ser.VIII",
-            "squadronName": "21 Gruppo Caccia",
+            "companyName": "21 Gruppo Caccia",
             "pilot": "Bernaba Rossetti",
             "pilotStatus": 0,
             "observer": "",
@@ -727,7 +727,7 @@
           "victor": {
             "airOrGround": 1,
             "type": "P-39L-1",
-            "squadronName": "16th Guards Fighter Air Regiment",
+            "companyName": "16th Guards Fighter Air Regiment",
             "pilot": "Artur Primakov",
             "pilotStatus": 0,
             "observer": "",
@@ -746,7 +746,7 @@
       "playerRegion": "",
       "isPlayer": false,
       "companyId": 10111126,
-      "squadronMemberRole": "PILOT"
+      "companyMemberRole": "PILOT"
     },
     "Vasily Chaplin": {
       "name": "Vasily Chaplin",
@@ -768,7 +768,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "ju87d3",
-            "squadronName": "I./St.G.77",
+            "companyName": "I./St.G.77",
             "pilot": "Fw Konrad Hoelscher",
             "pilotStatus": -6,
             "observer": "",
@@ -777,7 +777,7 @@
           "victor": {
             "airOrGround": 1,
             "type": "p39l1",
-            "squadronName": "16th Guards Fighter Air Regiment",
+            "companyName": "16th Guards Fighter Air Regiment",
             "pilot": "Vasily Chaplin",
             "pilotStatus": 0,
             "observer": "",
@@ -796,7 +796,7 @@
       "playerRegion": "",
       "isPlayer": false,
       "companyId": 10111126,
-      "squadronMemberRole": "PILOT"
+      "companyMemberRole": "PILOT"
     },
     "Eldar Khudovekov": {
       "name": "Eldar Khudovekov",
@@ -827,7 +827,7 @@
       "playerRegion": "",
       "isPlayer": false,
       "companyId": 10111126,
-      "squadronMemberRole": "PILOT"
+      "companyMemberRole": "PILOT"
     },
     "Konstantin Golubov": {
       "name": "Konstantin Golubov",
@@ -853,7 +853,7 @@
       "playerRegion": "",
       "isPlayer": false,
       "companyId": 10111126,
-      "squadronMemberRole": "PILOT"
+      "companyMemberRole": "PILOT"
     },
     "Iosif Yozhov": {
       "name": "Iosif Yozhov",
@@ -879,7 +879,7 @@
       "playerRegion": "",
       "isPlayer": false,
       "companyId": 10111126,
-      "squadronMemberRole": "PILOT"
+      "companyMemberRole": "PILOT"
     },
     "Vadim Zykov": {
       "name": "Vadim Zykov",
@@ -905,7 +905,7 @@
       "playerRegion": "",
       "isPlayer": false,
       "companyId": 10111126,
-      "squadronMemberRole": "PILOT"
+      "companyMemberRole": "PILOT"
     }
   }
 }

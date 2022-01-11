@@ -1,7 +1,7 @@
 {
   "missionHeader": {
     "missionFileName": "Patrik Schorner 1916-02-10",
-    "squadron": "FA 293b",
+    "company": "FA 293b",
     "date": "19160210",
     "time": "1530:00",
     "aircraftType": "AircraftType \u003d DFW C.",
@@ -10,11 +10,11 @@
     "duty": "CONTACT_PATROL",
     "altitude": 548
   },
-  "missionDescription": "Mission:\nAircraft  DFW C.V\nSquadron  FA 293b\nAirbase  Bellevue Ferme\nDate  1916-02-10\n\nWeather Report\nLight cloud cover, high altitude.\nCloud layer is 3417 meters.\nWind speed is 0 M/S.\nWind direction is 238.\n\nPrimary Objective\nPerform reconnaissance near Fresnes.  Make contact with friendly troop concentrations to establish front lines.\n\n\n",
+  "missionDescription": "Mission:\nAircraft  DFW C.V\nCompany  FA 293b\nAirbase  Bellevue Ferme\nDate  1916-02-10\n\nWeather Report\nLight cloud cover, high altitude.\nCloud layer is 3417 meters.\nWind speed is 0 M/S.\nWind direction is 238.\n\nPrimary Objective\nPerform reconnaissance near Fresnes.  Make contact with friendly troop concentrations to establish front lines.\n\n\n",
   "missionPlanes": [
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 293b",
+      "companyName": "FA 293b",
       "crew": {
         "pilot": "Patrik Schorner",
         "observer": "Herbert Klemm",
@@ -24,7 +24,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 278s",
+      "companyName": "FA 278s",
       "crew": {
         "pilot": "Dominik Eulenberg",
         "observer": "Emmerich Loffler",
@@ -34,7 +34,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 19",
+      "companyName": "FA 19",
       "crew": {
         "pilot": "Fritz Conzelmann",
         "observer": "Rudolph Frank",
@@ -44,7 +44,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 19",
+      "companyName": "FA 19",
       "crew": {
         "pilot": "Theodor Kirschenbaum",
         "observer": "Gebhard Kruger",
@@ -54,7 +54,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 19",
+      "companyName": "FA 19",
       "crew": {
         "pilot": "Waldemar Kies",
         "observer": "Dietrich Rehn",
@@ -64,7 +64,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 19",
+      "companyName": "FA 19",
       "crew": {
         "pilot": "Hartwig Hutto",
         "observer": "Armin Luchsinger",
@@ -74,7 +74,7 @@
     },
     {
       "aircraftType": "nieuport11",
-      "squadronName": "Esc 48",
+      "companyName": "Esc 48",
       "crew": {
         "pilot": "Amede Kerblat",
         "observer": "",
@@ -84,7 +84,7 @@
     },
     {
       "aircraftType": "nieuport11",
-      "squadronName": "Esc 48",
+      "companyName": "Esc 48",
       "crew": {
         "pilot": "Vincent Lepetre",
         "observer": "",
@@ -94,7 +94,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 9",
+      "companyName": "Esc 9",
       "crew": {
         "pilot": "Dominique Colaruotolo",
         "observer": "Olivier Fleury",
@@ -104,7 +104,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 9",
+      "companyName": "Esc 9",
       "crew": {
         "pilot": "Louis Berlier",
         "observer": "Alain Dages",
@@ -114,7 +114,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 9",
+      "companyName": "Esc 9",
       "crew": {
         "pilot": "Theophile Deleglise",
         "observer": "Blaise Honore",
@@ -124,7 +124,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 29",
+      "companyName": "Esc 29",
       "crew": {
         "pilot": "Alphonse Breidenstein",
         "observer": "Alexandre Lacloche",
@@ -134,7 +134,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 29",
+      "companyName": "Esc 29",
       "crew": {
         "pilot": "Jehan Levaique",
         "observer": "Ayme Riot",
@@ -144,7 +144,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 29",
+      "companyName": "Esc 29",
       "crew": {
         "pilot": "Jean-Baptiste Laborie",
         "observer": "Gustave Declais",
@@ -154,7 +154,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 29",
+      "companyName": "Esc 29",
       "crew": {
         "pilot": "Celestin Lacomble",
         "observer": "Florent Lapegue",

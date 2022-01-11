@@ -10,26 +10,26 @@ import pwcg.campaign.crewmember.CrewMember;
 
 public class AARCrewMemberEvent extends AAREvent
 {
-    public static final int ALL_SQUADRONS = -1;
+    public static final int ALL_CompanyS = -1;
 
-    private Integer squadronId = ALL_SQUADRONS;
+    private Integer companyId = ALL_CompanyS;
     private int crewMemberSerialNumber = 0;
-    private String squadronName = "";
+    private String companyName = "";
     private String crewMemberName = "";
 
-    public AARCrewMemberEvent(Campaign campaign, int squadronId, int crewMemberSerialNumber, Date date, boolean isNewsWorthy)
+    public AARCrewMemberEvent(Campaign campaign, int companyId, int crewMemberSerialNumber, Date date, boolean isNewsWorthy)
     {
         super(date, isNewsWorthy);
         this.crewMemberSerialNumber = crewMemberSerialNumber;
-        this.squadronId = squadronId;
+        this.companyId = companyId;
         
         try
         {
-            CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
-            Company squadron = squadronManager.getCompany(squadronId);
-            if (squadron != null)
+            CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+            Company company = companyManager.getCompany(companyId);
+            if (company != null)
             {
-                this.squadronName = squadron.determineDisplayName(date);
+                this.companyName = company.determineDisplayName(date);
             }
             
             CrewMember crewMember = campaign.getPersonnelManager().getAnyCampaignMember(crewMemberSerialNumber);
@@ -40,14 +40,14 @@ public class AARCrewMemberEvent extends AAREvent
         }
         catch (Exception e)
         {
-            this.squadronName = "";
+            this.companyName = "";
             e.printStackTrace();
         }
     }
 
-    public Integer getSquadronId()
+    public Integer getCompanyId()
     {
-        return squadronId;
+        return companyId;
     }
 
     public int getCrewMemberSerialNumber()
@@ -55,9 +55,9 @@ public class AARCrewMemberEvent extends AAREvent
         return crewMemberSerialNumber;
     }
 
-    public String getSquadronName()
+    public String getCompanyName()
     {
-        return squadronName;
+        return companyName;
     }
 
     public String getCrewMemberName()

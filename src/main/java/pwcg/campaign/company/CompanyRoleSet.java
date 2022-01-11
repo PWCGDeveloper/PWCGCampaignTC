@@ -33,7 +33,7 @@ public class CompanyRoleSet
     public PwcgRoleCategory selectCompanyPrimaryRoleCategory(Date date) throws PWCGException 
     {
         CompanyRolePeriod companyRoleForDate = selectRoleSetByDate(date);
-        PwcgRoleCategory selectedRoleCategory = SquadronRoleWeightCalculator.calculateHeaviestSquadronRole(companyRoleForDate);
+        PwcgRoleCategory selectedRoleCategory = CompanyRoleWeightCalculator.calculateHeaviestCompanyRole(companyRoleForDate);
         return selectedRoleCategory;
     }
 
@@ -42,14 +42,14 @@ public class CompanyRoleSet
         PwcgRole selectedRole = PwcgRole.ROLE_NONE;
         
         int totalWeight = 0;
-        for (SquadronRoleWeight companyRoleWeight : companyRole.getWeightedRoles())
+        for (CompanyRoleWeight companyRoleWeight : companyRole.getWeightedRoles())
         {
             totalWeight += companyRoleWeight.getWeight();
         }
         
         int evaluatedWeight = 0;
         int roll = RandomNumberGenerator.getRandom(totalWeight);
-        for (SquadronRoleWeight companyRoleWeight : companyRole.getWeightedRoles())
+        for (CompanyRoleWeight companyRoleWeight : companyRole.getWeightedRoles())
         {
             evaluatedWeight += companyRoleWeight.getWeight();
             if (roll <= evaluatedWeight)
@@ -85,7 +85,7 @@ public class CompanyRoleSet
     public boolean isCompanyThisRole (Date date, PwcgRole requestedRole) throws PWCGException 
     {
         CompanyRolePeriod companyRoleForDate = selectRoleSetByDate(date);
-        for (SquadronRoleWeight companyRoleWeight : companyRoleForDate.getWeightedRoles())
+        for (CompanyRoleWeight companyRoleWeight : companyRoleForDate.getWeightedRoles())
         {
             if (companyRoleWeight.getRole() == requestedRole)
             {
@@ -96,7 +96,7 @@ public class CompanyRoleSet
         return false;
     }
 
-    public List<CompanyRolePeriod> getSquadronRolePeriods()
+    public List<CompanyRolePeriod> getCompanyRolePeriods()
     {
         return companyRolePeriods;
     }

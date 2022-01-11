@@ -15,7 +15,7 @@ import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.factory.CountryFactory;
 import pwcg.campaign.plane.TankType;
 import pwcg.campaign.plane.TankTypeFactory;
-import pwcg.campaign.plane.SquadronPlaneAssignment;
+import pwcg.campaign.plane.CompanyPlaneAssignment;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.logfiles.LogEventData;
@@ -32,8 +32,8 @@ public class MissionLogEventsBuilder
     private int nextMissionLogId = 400000;
     private Map<Integer, String> serialNumberToPlaneId = new HashMap<>();
     private List<String> destroyedPlanes = new ArrayList<>();
-    private CrewMember squadronMate;
-    private CrewMember friendlyCrewMemberFromDifferentSquadron;
+    private CrewMember companyMate;
+    private CrewMember friendlyCrewMemberFromDifferentCompany;
     private ExpectedResults expectedResults;
 
     public MissionLogEventsBuilder(Campaign campaign, AARPreliminaryData preliminaryData, ExpectedResults expectedResults)
@@ -51,7 +51,7 @@ public class MissionLogEventsBuilder
         makewaypointEvents();
         makePlayerDestroyedEvents();
         makeOtherDestroyedEvents();
-        makeSquadronMateLostEvents();
+        makeCompanyMateLostEvents();
         makeDamagedEvents();
         makeLandingEvents();
         return logEventData;
@@ -68,15 +68,15 @@ public class MissionLogEventsBuilder
                 Side crewMemberSide = crewMember.determineCountry(campaign.getDate()).getSide();
                 if (playerSide == crewMemberSide)
                 {
-                    friendlyCrewMemberFromDifferentSquadron = crewMember;
-                    expectedResults.setCrewMemberCrewMemberSerialNumber(friendlyCrewMemberFromDifferentSquadron.getSerialNumber());
+                    friendlyCrewMemberFromDifferentCompany = crewMember;
+                    expectedResults.setCrewMemberCrewMemberSerialNumber(friendlyCrewMemberFromDifferentCompany.getSerialNumber());
                 }
             }
             else
             {
                 if (!crewMember.isPlayer())
                 {
-                    squadronMate = crewMember;
+                    companyMate = crewMember;
                 }
             }
         }
@@ -86,11 +86,11 @@ public class MissionLogEventsBuilder
     {
         for (CrewMember crewMember : preliminaryData.getCampaignMembersInMission().getCrewMemberCollection().values())
         {
-            CompanyTankAssignment planeAssignment = AARCoordinatorInMissionTest.getPlaneForSquadron(crewMember.getCompanyId());
+            CompanyTankAssignment planeAssignment = AARCoordinatorInMissionTest.getPlaneForCompany(crewMember.getCompanyId());
             TankTypeFactory planeTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
-            List<TankType> planeTypesForSquadron = planeTypeFactory.createActiveTankTypesForArchType(planeAssignment.getArchType(), campaign.getDate());
-            int index = RandomNumberGenerator.getRandom(planeTypesForSquadron.size());
-            TankType planeType = planeTypesForSquadron.get(index);
+            List<TankType> planeTypesForCompany = planeTypeFactory.createActiveTankTypesForArchType(planeAssignment.getArchType(), campaign.getDate());
+            int index = RandomNumberGenerator.getRandom(planeTypesForCompany.size());
+            TankType planeType = planeTypesForCompany.get(index);
             AType12 planeSpawn = new AType12(
                     makeNextId(),
                     planeType.getDisplayName(),
@@ -171,7 +171,7 @@ public class MissionLogEventsBuilder
     {
         Coordinate crashLocation = new Coordinate(100000, 0, 100000);
 
-        String friendlyCrewMemberPlaneId = serialNumberToPlaneId.get(friendlyCrewMemberFromDifferentSquadron.getSerialNumber());
+        String friendlyCrewMemberPlaneId = serialNumberToPlaneId.get(friendlyCrewMemberFromDifferentCompany.getSerialNumber());
         IAType12 friendlyCrewMemberPlane = logEventData.getVehicle(friendlyCrewMemberPlaneId);
         
         IAType12 enemyPlaneLost = getPlaneVictimByType("Il-2 mod.1941");
@@ -187,17 +187,17 @@ public class MissionLogEventsBuilder
         expectedResults.addCrewMemberGroundVictories();
     }
 
-    private void makeSquadronMateLostEvents() throws PWCGException
+    private void makeCompanyMateLostEvents() throws PWCGException
     {
         Coordinate crashLocation = new Coordinate(100000, 0, 100000);
 
-        String squadronMatePlaneId = serialNumberToPlaneId.get(squadronMate.getSerialNumber());
-        IAType12 squadronMatePlane = logEventData.getVehicle(squadronMatePlaneId);
+        String companyMatePlaneId = serialNumberToPlaneId.get(companyMate.getSerialNumber());
+        IAType12 companyMatePlane = logEventData.getVehicle(companyMatePlaneId);
 
         IAType12 enemyVictoryPlane = getPlaneVictimByType("LaGG-3 ser.29");
-        AType3 squadronMatePlaneDestroyedEvent = new AType3(enemyVictoryPlane.getId(), squadronMatePlane.getId(), crashLocation);
+        AType3 companyMatePlaneDestroyedEvent = new AType3(enemyVictoryPlane.getId(), companyMatePlane.getId(), crashLocation);
 
-        logEventData.addDestroyedEvent(squadronMatePlaneDestroyedEvent);
+        logEventData.addDestroyedEvent(companyMatePlaneDestroyedEvent);
     }
     
     private IAType12 getPlaneVictimByType(String type) throws PWCGException
@@ -264,9 +264,9 @@ public class MissionLogEventsBuilder
         return nextId;
     }
 
-    public CrewMember getCrewMemberFromDifferentSquadron()
+    public CrewMember getCrewMemberFromDifferentCompany()
     {
-        return friendlyCrewMemberFromDifferentSquadron;
+        return friendlyCrewMemberFromDifferentCompany;
     }
     
     

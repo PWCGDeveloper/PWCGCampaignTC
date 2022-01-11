@@ -97,15 +97,15 @@ public class CampaignHomeScreen extends ImageResizingPanel implements ActionList
 
     private JPanel makeDefaultCenterPanel() throws PWCGException
     {
-        List<CrewMember> squadronMembers = makeCrewMemberList();
-        return CampaignHomeCenterPanelFactory.makeCampaignHomeCenterPanel(this, squadronMembers);
+        List<CrewMember> crewMembers = makeCrewMemberList();
+        return CampaignHomeCenterPanelFactory.makeCampaignHomeCenterPanel(this, crewMembers);
     }
 
     private JPanel makeDefaultRightPanel() throws PWCGException
     {
-        List<CrewMember> squadronMembers = makeCrewMemberList();
+        List<CrewMember> crewMembers = makeCrewMemberList();
         CrewMember referencePlayer = campaign.findReferencePlayer();
-        return CampaignHomeRightPanelFactory.makeCampaignHomeSquadronRightPanel(campaign, this, squadronMembers, referencePlayer.getCompanyId());
+        return CampaignHomeRightPanelFactory.makeCampaignHomeCompanyRightPanel(campaign, this, crewMembers, referencePlayer.getCompanyId());
     }
 
     private void createSelectorPanel() throws PWCGException
@@ -117,9 +117,9 @@ public class CampaignHomeScreen extends ImageResizingPanel implements ActionList
     private List<CrewMember> makeCrewMemberList() throws PWCGException 
     {
         CrewMember referencePlayer = campaign.findReferencePlayer();
-        CompanyPersonnel squadronPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(referencePlayer.getCompanyId());
-        CrewMembers squadronMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(squadronPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
-        return squadronMembers.sortCrewMembers(campaign.getDate());
+        CompanyPersonnel companyPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(referencePlayer.getCompanyId());
+        CrewMembers crewMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(companyPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
+        return crewMembers.sortCrewMembers(campaign.getDate());
     }
 
 

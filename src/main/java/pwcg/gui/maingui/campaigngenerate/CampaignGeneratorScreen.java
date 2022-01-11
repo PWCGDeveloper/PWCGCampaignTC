@@ -217,7 +217,7 @@ public class CampaignGeneratorScreen extends ImageResizingPanel implements Actio
         String campaignName = campaignGeneratorDO.getCampaignName();
         String playerName = campaignGeneratorDO.getPlayerCrewMemberName();
         String region = campaignGeneratorDO.getRegion();
-        String squadronName = campaignGeneratorDO.getSquadName();
+        String companyName = campaignGeneratorDO.getSquadName();
         String rank = campaignGeneratorDO.getRank();
         Date startDate = campaignGeneratorDO.getStartDate();
         CampaignMode campaignMode =  campaignGeneratorDO.getCampaignMode();
@@ -230,7 +230,7 @@ public class CampaignGeneratorScreen extends ImageResizingPanel implements Actio
         generatorModel.setPlayerRank(rank);
         generatorModel.setPlayerRegion(region);
         generatorModel.setService(service);
-        generatorModel.setSquadronName(squadronName);
+        generatorModel.setCompanyName(companyName);
 
         CampaignGenerator generator = new CampaignGenerator(generatorModel);
         Campaign campaign = generator.generate();

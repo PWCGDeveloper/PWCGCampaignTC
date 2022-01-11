@@ -20,7 +20,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "albatrosd3",
-            "squadronName": "Jasta 4",
+            "companyName": "Jasta 4",
             "pilot": "Ltn Niklaus Helberg",
             "pilotStatus": -6,
             "observer": "",
@@ -29,7 +29,7 @@
           "victor": {
             "airOrGround": 1,
             "type": "spad13",
-            "squadronName": "Esc SPA.3",
+            "companyName": "Esc SPA.3",
             "pilot": "Eugene Canere",
             "pilotStatus": 0,
             "observer": "",
@@ -43,7 +43,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "dfwc5",
-            "squadronName": "FA 281",
+            "companyName": "FA 281",
             "pilot": "Ltn Meinhard Rabe",
             "pilotStatus": -6,
             "observer": "Ltn Lars Redlich",
@@ -52,7 +52,7 @@
           "victor": {
             "airOrGround": 1,
             "type": "spad13",
-            "squadronName": "Esc SPA.3",
+            "companyName": "Esc SPA.3",
             "pilot": "Eugene Canere",
             "pilotStatus": 0,
             "observer": "",
@@ -66,7 +66,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "dfwc5",
-            "squadronName": "FA 19",
+            "companyName": "FA 19",
             "pilot": "Uffz Holger Gans",
             "pilotStatus": -6,
             "observer": "Ltn Wendall Stabler",
@@ -75,7 +75,7 @@
           "victor": {
             "airOrGround": 1,
             "type": "spad13",
-            "squadronName": "Esc SPA.3",
+            "companyName": "Esc SPA.3",
             "pilot": "Eugene Canere",
             "pilotStatus": 0,
             "observer": "",
@@ -89,7 +89,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "albatrosd3",
-            "squadronName": "Jasta 23b",
+            "companyName": "Jasta 23b",
             "pilot": "Fw Egon Homberg",
             "pilotStatus": -6,
             "observer": "",
@@ -98,7 +98,7 @@
           "victor": {
             "airOrGround": 1,
             "type": "spad13",
-            "squadronName": "Esc SPA.3",
+            "companyName": "Esc SPA.3",
             "pilot": "Eugene Canere",
             "pilotStatus": 0,
             "observer": "",
@@ -127,7 +127,7 @@
       "playerRegion": "",
       "isPlayer": false,
       "companyId": 101003,
-      "squadronMemberRole": "PILOT"
+      "companyMemberRole": "PILOT"
     },
     "Augustin Laforge": {
       "name": "Augustin Laforge",
@@ -153,7 +153,7 @@
       "playerRegion": "",
       "isPlayer": false,
       "companyId": 101003,
-      "squadronMemberRole": "PILOT"
+      "companyMemberRole": "PILOT"
     },
     "Cyprien Quillet": {
       "name": "Cyprien Quillet",
@@ -179,7 +179,7 @@
       "playerRegion": "",
       "isPlayer": false,
       "companyId": 101003,
-      "squadronMemberRole": "PILOT"
+      "companyMemberRole": "PILOT"
     },
     "Test Campaign": {
       "name": "Test Campaign",
@@ -205,7 +205,7 @@
       "playerRegion": "",
       "isPlayer": true,
       "companyId": 101003,
-      "squadronMemberRole": "PILOT"
+      "companyMemberRole": "PILOT"
     },
     "Theophile Poligne": {
       "name": "Theophile Poligne",
@@ -231,7 +231,7 @@
       "playerRegion": "",
       "isPlayer": false,
       "companyId": 101003,
-      "squadronMemberRole": "PILOT"
+      "companyMemberRole": "PILOT"
     },
     "Bernard Adam": {
       "name": "Bernard Adam",
@@ -257,7 +257,7 @@
       "playerRegion": "",
       "isPlayer": false,
       "companyId": 101003,
-      "squadronMemberRole": "PILOT"
+      "companyMemberRole": "PILOT"
     },
     "Marcel Marc": {
       "name": "Marcel Marc",
@@ -279,7 +279,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "dfwc5",
-            "squadronName": "FA 46b",
+            "companyName": "FA 46b",
             "pilot": "Ltn Benjamin Daehnhardt",
             "pilotStatus": -6,
             "observer": "Ltn Oskar Blechmann",
@@ -288,7 +288,7 @@
           "victor": {
             "airOrGround": 1,
             "type": "spad13",
-            "squadronName": "Esc SPA.3",
+            "companyName": "Esc SPA.3",
             "pilot": "Marcel Marc",
             "pilotStatus": 0,
             "observer": "",
@@ -302,7 +302,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "halberstadtcl2",
-            "squadronName": "Schlasta 18",
+            "companyName": "Schlasta 18",
             "pilot": "Fw Uwe Waldheim",
             "pilotStatus": -6,
             "observer": "",
@@ -311,7 +311,7 @@
           "victor": {
             "airOrGround": 1,
             "type": "spad13",
-            "squadronName": "Esc SPA.3",
+            "companyName": "Esc SPA.3",
             "pilot": "Marcel Marc",
             "pilotStatus": 0,
             "observer": "",
@@ -325,7 +325,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "albatrosd3",
-            "squadronName": "Jasta 3",
+            "companyName": "Jasta 3",
             "pilot": "Fw Sigfried Gradl",
             "pilotStatus": -6,
             "observer": "",
@@ -334,7 +334,7 @@
           "victor": {
             "airOrGround": 1,
             "type": "spad13",
-            "squadronName": "Esc SPA.3",
+            "companyName": "Esc SPA.3",
             "pilot": "Marcel Marc",
             "pilotStatus": 0,
             "observer": "",
@@ -363,7 +363,7 @@
       "playerRegion": "",
       "isPlayer": false,
       "companyId": 101003,
-      "squadronMemberRole": "PILOT"
+      "companyMemberRole": "PILOT"
     },
     "Adolphe Mayaud": {
       "name": "Adolphe Mayaud",
@@ -389,7 +389,7 @@
       "playerRegion": "",
       "isPlayer": false,
       "companyId": 101003,
-      "squadronMemberRole": "PILOT"
+      "companyMemberRole": "PILOT"
     },
     "Alfred Lagarrigue": {
       "name": "Alfred Lagarrigue",
@@ -411,7 +411,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "dfwc5",
-            "squadronName": "FA 278s",
+            "companyName": "FA 278s",
             "pilot": "Fw Hubert Rohrmann",
             "pilotStatus": -6,
             "observer": "Obltn Udo Kranz",
@@ -420,7 +420,7 @@
           "victor": {
             "airOrGround": 1,
             "type": "spad13",
-            "squadronName": "Esc SPA.3",
+            "companyName": "Esc SPA.3",
             "pilot": "Alfred Lagarrigue",
             "pilotStatus": 0,
             "observer": "",
@@ -434,7 +434,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "dfwc5",
-            "squadronName": "FA 278s",
+            "companyName": "FA 278s",
             "pilot": "Fw Hermann Schwarzenbacher",
             "pilotStatus": -6,
             "observer": "Ltn Lambrecht eitenauer",
@@ -443,7 +443,7 @@
           "victor": {
             "airOrGround": 1,
             "type": "spad13",
-            "squadronName": "Esc SPA.3",
+            "companyName": "Esc SPA.3",
             "pilot": "Alfred Lagarrigue",
             "pilotStatus": 0,
             "observer": "",
@@ -467,7 +467,7 @@
       "playerRegion": "",
       "isPlayer": false,
       "companyId": 101003,
-      "squadronMemberRole": "PILOT"
+      "companyMemberRole": "PILOT"
     }
   }
 }

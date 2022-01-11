@@ -24,8 +24,8 @@ public class BriefingDataBuilder
 
         BriefingData briefingData = new BriefingData(mission, briefingMissionFlights);
 
-        int initialSquadronId = getInitialSelectedSquadron();
-        briefingData.changeSelectedUnit(initialSquadronId);
+        int initialCompanyId = getInitialSelectedCompany();
+        briefingData.changeSelectedUnit(initialCompanyId);
         
         String missionTIme = getTime();
         briefingData.setMissionTime(missionTIme);
@@ -44,7 +44,7 @@ public class BriefingDataBuilder
         return briefingMissionFlights;
     }
 
-    private int getInitialSelectedSquadron() throws PWCGException
+    private int getInitialSelectedCompany() throws PWCGException
     {
         CrewMember referencePlayer = mission.getCampaign().findReferencePlayer();
         return referencePlayer.getCompanyId();

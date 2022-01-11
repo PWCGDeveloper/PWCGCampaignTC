@@ -15,12 +15,12 @@ import pwcg.gui.utils.ContextSpecificImages;
 public class CrewMemberPictureBuilder
 {
     private ArmedService service;
-    private CrewMembers squadronMembersAlreadyAssigned;
+    private CrewMembers crewMembersAlreadyAssigned;
 
-    public CrewMemberPictureBuilder (ArmedService service, CrewMembers squadronMembersAlreadyAssigned)
+    public CrewMemberPictureBuilder (ArmedService service, CrewMembers crewMembersAlreadyAssigned)
     {
         this.service = service;
-        this.squadronMembersAlreadyAssigned = squadronMembersAlreadyAssigned;
+        this.crewMembersAlreadyAssigned = crewMembersAlreadyAssigned;
     }
     
     public String assignCrewMemberPicture() throws PWCGException 
@@ -57,7 +57,7 @@ public class CrewMemberPictureBuilder
     private HashMap<String, String> getPicturesInUse() throws PWCGException
     {
         HashMap<String, String> picsInUse = new HashMap<String, String>();
-        for (CrewMember crewMember : squadronMembersAlreadyAssigned.getCrewMemberList())
+        for (CrewMember crewMember : crewMembersAlreadyAssigned.getCrewMemberList())
         {
             picsInUse.put(crewMember.getPicName(), crewMember.getPicName());
         }

@@ -16,7 +16,7 @@ public class PlaneStatusEvent extends AARCrewMemberEvent
 {
     private int crewMemberSerialNumber;
     private int planeSerialNumber;
-    private String squadronName;
+    private String companyName;
 	private int planeStatus;
 	
     public PlaneStatusEvent(Campaign campaign, LogTank lostPlane, int planeStatus, boolean isNewsWorthy)
@@ -28,16 +28,16 @@ public class PlaneStatusEvent extends AARCrewMemberEvent
         
         try
         {
-            CompanyManager squadronManager = PWCGContext.getInstance().getCompanyManager();
-            Company squadron = squadronManager.getCompany(super.getSquadronId());
-            if (squadron != null)
+            CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+            Company company = companyManager.getCompany(super.getCompanyId());
+            if (company != null)
             {
-                this.squadronName = squadron.determineDisplayName(campaign.getDate());
+                this.companyName = company.determineDisplayName(campaign.getDate());
             }
         }
         catch (Exception e)
         {
-            this.squadronName = "";
+            this.companyName = "";
             e.printStackTrace();
         }
     }
@@ -103,8 +103,8 @@ public class PlaneStatusEvent extends AARCrewMemberEvent
         return crewMemberSerialNumber;
     }
 
-    public String getSquadronName()
+    public String getCompanyName()
     {
-        return squadronName;
+        return companyName;
     }
 }

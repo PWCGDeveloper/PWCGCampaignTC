@@ -22,7 +22,7 @@ public class CampaignPersonnelFilter
         selectedCrewMembers = filterForAI(filterSpecification, selectedCrewMembers);
         selectedCrewMembers = filterForActive(filterSpecification, selectedCrewMembers);        
         selectedCrewMembers = filterForWounded(filterSpecification, selectedCrewMembers);        
-        selectedCrewMembers = filterForSquadron(filterSpecification, selectedCrewMembers);
+        selectedCrewMembers = filterForCompany(filterSpecification, selectedCrewMembers);
 
         return selectedCrewMembers;
     }
@@ -43,13 +43,13 @@ public class CampaignPersonnelFilter
         return selectedCrewMembers;
     }
 
-    private Map<Integer, CrewMember> filterForSquadron(CrewMemberFilterSpecification filterSpecification, Map<Integer, CrewMember> inputCrewMembers)
+    private Map<Integer, CrewMember> filterForCompany(CrewMemberFilterSpecification filterSpecification, Map<Integer, CrewMember> inputCrewMembers)
     {
         Map<Integer, CrewMember> selectedCrewMembers = new HashMap<>();
-        if (filterSpecification.getSpecifySquadron() > 0)
+        if (filterSpecification.getSpecifyCompany() > 0)
         {
             PersonnelFilter personnelFilter = new PersonnelFilter(false);
-            selectedCrewMembers = personnelFilter.applySquadronFilter(inputCrewMembers, filterSpecification.getSpecifySquadron());
+            selectedCrewMembers = personnelFilter.applyCompanyFilter(inputCrewMembers, filterSpecification.getSpecifyCompany());
         }
         else
         {

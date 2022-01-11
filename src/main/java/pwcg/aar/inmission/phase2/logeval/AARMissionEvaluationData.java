@@ -69,9 +69,9 @@ public class AARMissionEvaluationData
         return crewMembersInMission;
     }
 
-    public void setCrewMembersInMission(List<LogCrewMember> squadronCrewsInMission)
+    public void setCrewMembersInMission(List<LogCrewMember> companyCrewsInMission)
     {
-        this.crewMembersInMission = squadronCrewsInMission;
+        this.crewMembersInMission = companyCrewsInMission;
     }
 
     public List<LogBase> getChronologicalEvents()

@@ -22,7 +22,7 @@ import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.plane.EquippedPlane;
 import pwcg.campaign.plane.TankArchType;
-import pwcg.campaign.plane.SquadronPlaneAssignment;
+import pwcg.campaign.plane.CompanyPlaneAssignment;
 import pwcg.campaign.resupply.depot.EquipmentDepot;
 import pwcg.campaign.resupply.depot.EquipmentDepotReplenisher;
 import pwcg.campaign.resupply.depot.EquipmentReplacementUtils;
@@ -63,10 +63,10 @@ public class EquipmentDepotReplenisherTest
     @Test
     public void testArchTypesInProductionForServiceLife() throws PWCGException
     {
-        CompanyManager squadronmanager = PWCGContext.getInstance().getCompanyManager();
-        for (Company squadron : squadronmanager.getAllCompanies())
+        CompanyManager companymanager = PWCGContext.getInstance().getCompanyManager();
+        for (Company company : companymanager.getAllCompanies())
         {
-            for (CompanyTankAssignment planeAssignment : squadron.getPlaneAssignments())
+            for (CompanyTankAssignment planeAssignment : company.getPlaneAssignments())
             {
                 TankArchType planeArchType = PWCGContext.getInstance().getTankTypeFactory().getTankArchType(planeAssignment.getArchType());
                 String selectedTankType = EquipmentReplacementUtils.getTypeForReplacement(planeAssignment.getCompanyWithdrawal(), planeArchType);

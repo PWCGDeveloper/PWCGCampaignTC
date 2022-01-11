@@ -11,18 +11,18 @@ import pwcg.core.exception.PWCGException;
 
 public class CampaignHomeRightPanelFactory
 {
-    public static JPanel makeCampaignHomeSquadronRightPanel(Campaign campaign, ActionListener actionListener, List<CrewMember> squadronMembers, int squadronId) throws PWCGException
+    public static JPanel makeCampaignHomeCompanyRightPanel(Campaign campaign, ActionListener actionListener, List<CrewMember> crewMembers, int companyId) throws PWCGException
     {
-        CampaignHomeRightSquadronPanel squadronPanel = new CampaignHomeRightSquadronPanel(campaign, actionListener);
-        squadronPanel.makePanel(squadronMembers, squadronId);
-        return squadronPanel;
+        CampaignHomeRightCompanyPanel companyPanel = new CampaignHomeRightCompanyPanel(campaign, actionListener);
+        companyPanel.makePanel(crewMembers, companyId);
+        return companyPanel;
     }
     
-    public static JPanel makeCampaignHomeCrewMembersRightPanel(ActionListener actionListener, List<CrewMember> squadronMembers) throws PWCGException
+    public static JPanel makeCampaignHomeCrewMembersRightPanel(ActionListener actionListener, List<CrewMember> crewMembers) throws PWCGException
     {
-        CampaignHomeRightSquadronNoPlaquePanel squadronPanel = new CampaignHomeRightSquadronNoPlaquePanel(actionListener);
-        squadronPanel.makePanel(squadronMembers);
-        return squadronPanel;
+        CampaignHomeRightCompanyNoPlaquePanel companyPanel = new CampaignHomeRightCompanyNoPlaquePanel(actionListener);
+        companyPanel.makePanel(crewMembers);
+        return companyPanel;
     }
     
     public static JPanel makeCampaignHomeAcesRightPanel(CampaignHomeScreen campaignHome, List<CrewMember> aces) throws PWCGException

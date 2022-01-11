@@ -18,7 +18,7 @@ import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.Victory;
 import pwcg.campaign.outofmission.DuringCampaignAirVictimGenerator;
 import pwcg.campaign.outofmission.OutOfMissionAirVictoryBuilder;
-import pwcg.campaign.personnel.EnemySquadronFinder;
+import pwcg.campaign.personnel.EnemyCompanyFinder;
 import pwcg.core.exception.PWCGException;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.CampaignPersonnelTestHelper;
@@ -44,13 +44,13 @@ public class OutOfMissionAirVictoryBuilderTest
     public void testVictoryAwarded () throws PWCGException
     {     
         CrewMember aiSquadMember = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "Serzhant");        
-        Company squadronMemberSquadron = aiSquadMember.determineSquadron();
+        Company crewMembercompany = aiSquadMember.determineCompany();
 
-        EnemySquadronFinder enemySquadronFinder = new EnemySquadronFinder(campaign);
-        Company victimSquadron = enemySquadronFinder.getEnemyForOutOfMission(squadronMemberSquadron, campaign.getDate());
-        DuringCampaignAirVictimGenerator duringCampaignVictimGenerator = new DuringCampaignAirVictimGenerator(campaign, victimSquadron);
+        EnemyCompanyFinder enemyCompanyFinder = new EnemyCompanyFinder(campaign);
+        Company victimCompany = enemyCompanyFinder.getEnemyForOutOfMission(crewMembercompany, campaign.getDate());
+        DuringCampaignAirVictimGenerator duringCampaignVictimGenerator = new DuringCampaignAirVictimGenerator(campaign, victimCompany);
         
-        OutOfMissionAirVictoryBuilder victoryGenerator = new OutOfMissionAirVictoryBuilder(campaign, victimSquadron, duringCampaignVictimGenerator, aiSquadMember);
+        OutOfMissionAirVictoryBuilder victoryGenerator = new OutOfMissionAirVictoryBuilder(campaign, victimCompany, duringCampaignVictimGenerator, aiSquadMember);
         Victory victory = victoryGenerator.generateOutOfMissionVictory(campaign.getDate());
         
         Assertions.assertTrue (victory.getVictim().getAirOrGround() == Victory.AIRCRAFT);

@@ -52,7 +52,7 @@ public abstract class CampaignCacheBase implements ICampaignCache
 	            List<CrewMember> players = campaign.getPersonnelManager().getAllActivePlayers().getCrewMemberList();
 	            assert(players.size() == 1);
 	            
-	            addMoreCrewMembersForCoop(campaign, "Squadron Mate", "Leutnant", CompanyTestProfile.COOP_COMPETITIVE_PROFILE.getCompanyId());
+	            addMoreCrewMembersForCoop(campaign, "Company Mate", "Leutnant", CompanyTestProfile.COOP_COMPETITIVE_PROFILE.getCompanyId());
 	            players = campaign.getPersonnelManager().getAllActivePlayers().getCrewMemberList();
 	            assert(players.size() == 2);
 	            
@@ -127,7 +127,7 @@ public abstract class CampaignCacheBase implements ICampaignCache
         generatorModel.setPlayerRank(rankName);
         generatorModel.setPlayerRegion("");
         generatorModel.setService(service);
-        generatorModel.setSquadronName(companyName);
+        generatorModel.setCompanyName(companyName);
         generatorModel.setCampaignMode(profile.getCampaignMode());
 
         return generatorModel;

@@ -44,14 +44,14 @@ public class AiDeclarationResolutionRandomTest
     @Mock private List<LogVictory> confirmedAiVictories = new ArrayList<LogVictory>();
     @Mock private AARMissionEvaluationData evaluationData;
     @Mock private Campaign campaign;
-    @Mock private Company squadron;
+    @Mock private Company company;
     @Mock private CampaignPersonnelManager personnelManager;
     @Mock private AARContext aarContext;
     @Mock private AARPreliminaryData preliminaryData;
     @Mock private PwcgMissionDataEvaluator pwcgMissionDataEvaluator;
     @Mock private VictorySorter victorySorter;
     @Mock private CrewMember player;
-    @Mock private Company playerSquadron;
+    @Mock private Company playerCompany;
     @Mock private CrewMember aiSquadMember;
             
     private CrewMembers campaignMembersInmission = new CrewMembers();
@@ -97,15 +97,15 @@ public class AiDeclarationResolutionRandomTest
         Mockito.when(aarContext.getMissionEvaluationData()).thenReturn(evaluationData);
         Mockito.when(aarContext.getPreliminaryData()).thenReturn(preliminaryData);
         Mockito.when(preliminaryData.getCampaignMembersInMission()).thenReturn(campaignMembersInmission);
-        List<Company> playerSquadronsInMission = new ArrayList<>();
-        playerSquadronsInMission.add(playerSquadron);
-        Mockito.when(preliminaryData.getPlayerSquadronsInMission()).thenReturn(playerSquadronsInMission);
+        List<Company> playerCompanysInMission = new ArrayList<>();
+        playerCompanysInMission.add(playerCompany);
+        Mockito.when(preliminaryData.getPlayerCompanysInMission()).thenReturn(playerCompanysInMission);
 
-        int squadronId = CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId();
-        Mockito.when(playerSquadron.getCompanyId()).thenReturn(squadronId);
-        playerVictor.setCompanyId(squadronId);
-        aiVictor.setCompanyId(squadronId);
-        Mockito.when(aiSquadMember.getCompanyId()).thenReturn(squadronId);
+        int companyId = CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId();
+        Mockito.when(playerCompany.getCompanyId()).thenReturn(companyId);
+        playerVictor.setCompanyId(companyId);
+        aiVictor.setCompanyId(companyId);
+        Mockito.when(aiSquadMember.getCompanyId()).thenReturn(companyId);
     }
 
     private void createVictory(Integer victimSerialNumber, UnknownVictoryAssignments unknownVictoryAssignment)

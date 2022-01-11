@@ -8,9 +8,9 @@ public class LeaveEvent extends AARCrewMemberEvent
 {
     private int leaveTime = 0;
 	
-    public LeaveEvent(Campaign campaign, int leaveTime, int squadronId, int crewMemberSerialNumber, Date date, boolean isNewsWorthy)
+    public LeaveEvent(Campaign campaign, int leaveTime, int companyId, int crewMemberSerialNumber, Date date, boolean isNewsWorthy)
     {
-        super(campaign, squadronId, crewMemberSerialNumber, date, isNewsWorthy);
+        super(campaign, companyId, crewMemberSerialNumber, date, isNewsWorthy);
         this.leaveTime = leaveTime;
     }
 

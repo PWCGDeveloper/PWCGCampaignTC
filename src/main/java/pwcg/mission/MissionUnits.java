@@ -6,8 +6,8 @@ import java.util.List;
 import pwcg.campaign.Campaign;
 import pwcg.core.exception.PWCGException;
 import pwcg.mission.unit.ITankUnit;
-import pwcg.mission.unit.TankUnit;
 import pwcg.mission.unit.TankMcu;
+import pwcg.mission.unit.TankUnit;
 
 public class MissionUnits
 {

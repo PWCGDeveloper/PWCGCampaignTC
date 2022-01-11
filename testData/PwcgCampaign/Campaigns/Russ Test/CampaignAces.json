@@ -32,7 +32,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "I-16 Rata",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -41,7 +41,7 @@
           "victor": {
             "airOrGround": 3,
             "type": "",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -55,7 +55,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "I-16 Rata",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -64,7 +64,7 @@
           "victor": {
             "airOrGround": 3,
             "type": "",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -78,7 +78,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "MiG-3",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -87,7 +87,7 @@
           "victor": {
             "airOrGround": 3,
             "type": "",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -101,7 +101,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "DB-3",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -110,7 +110,7 @@
           "victor": {
             "airOrGround": 3,
             "type": "",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -124,7 +124,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "I-16 Rata",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -133,7 +133,7 @@
           "victor": {
             "airOrGround": 3,
             "type": "",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -147,7 +147,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "Yak-1",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -156,7 +156,7 @@
           "victor": {
             "airOrGround": 3,
             "type": "",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -170,7 +170,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "DB-3",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -179,7 +179,7 @@
           "victor": {
             "airOrGround": 3,
             "type": "",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -193,7 +193,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "DB-3",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -202,7 +202,7 @@
           "victor": {
             "airOrGround": 3,
             "type": "",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -216,7 +216,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "Yak-1",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -225,7 +225,7 @@
           "victor": {
             "airOrGround": 3,
             "type": "",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -239,7 +239,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "I-16 Rata",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -248,7 +248,7 @@
           "victor": {
             "airOrGround": 3,
             "type": "",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -262,7 +262,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "SB-2",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -271,7 +271,7 @@
           "victor": {
             "airOrGround": 3,
             "type": "",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -285,7 +285,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "I-153",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -294,7 +294,7 @@
           "victor": {
             "airOrGround": 3,
             "type": "",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -308,7 +308,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "Yak-1",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -317,7 +317,7 @@
           "victor": {
             "airOrGround": 3,
             "type": "",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -331,7 +331,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "Yak-1",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -340,7 +340,7 @@
           "victor": {
             "airOrGround": 3,
             "type": "",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -354,7 +354,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "MiG-1",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -363,7 +363,7 @@
           "victor": {
             "airOrGround": 3,
             "type": "",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -377,7 +377,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "MiG-1",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -386,7 +386,7 @@
           "victor": {
             "airOrGround": 3,
             "type": "",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -399,7 +399,7 @@
       "playerRegion": "",
       "isPlayer": false,
       "companyId": 20113052,
-      "squadronMemberRole": "PILOT"
+      "companyMemberRole": "PILOT"
     },
     "Arkady Fedorovich Kovacevich": {
       "activeStatus": 0,
@@ -453,7 +453,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "Me-109",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -462,7 +462,7 @@
           "victor": {
             "airOrGround": 3,
             "type": "",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -476,7 +476,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "Me-109",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -485,7 +485,7 @@
           "victor": {
             "airOrGround": 3,
             "type": "",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -499,7 +499,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "Ju-87",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -508,7 +508,7 @@
           "victor": {
             "airOrGround": 3,
             "type": "",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -522,7 +522,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "Ju-88",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -531,7 +531,7 @@
           "victor": {
             "airOrGround": 3,
             "type": "",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -545,7 +545,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "Me-110",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -554,7 +554,7 @@
           "victor": {
             "airOrGround": 3,
             "type": "",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -568,7 +568,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "Ju-88",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -577,7 +577,7 @@
           "victor": {
             "airOrGround": 3,
             "type": "",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -591,7 +591,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "Ju-88",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -600,7 +600,7 @@
           "victor": {
             "airOrGround": 3,
             "type": "",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -614,7 +614,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "Ju-88",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -623,7 +623,7 @@
           "victor": {
             "airOrGround": 3,
             "type": "",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -637,7 +637,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "He-111",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -646,7 +646,7 @@
           "victor": {
             "airOrGround": 3,
             "type": "",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -660,7 +660,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "Me-109",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -669,7 +669,7 @@
           "victor": {
             "airOrGround": 3,
             "type": "",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -683,7 +683,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "Me-109",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -692,7 +692,7 @@
           "victor": {
             "airOrGround": 3,
             "type": "",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -706,7 +706,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "Ju-88",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -715,7 +715,7 @@
           "victor": {
             "airOrGround": 3,
             "type": "",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -729,7 +729,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "He-111",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -738,7 +738,7 @@
           "victor": {
             "airOrGround": 3,
             "type": "",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -752,7 +752,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "He-111",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -761,7 +761,7 @@
           "victor": {
             "airOrGround": 3,
             "type": "",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -775,7 +775,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "Ju-87",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -784,7 +784,7 @@
           "victor": {
             "airOrGround": 3,
             "type": "",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -798,7 +798,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "Ju-87",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -807,7 +807,7 @@
           "victor": {
             "airOrGround": 3,
             "type": "",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -821,7 +821,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "Me-109",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -830,7 +830,7 @@
           "victor": {
             "airOrGround": 3,
             "type": "",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -844,7 +844,7 @@
           "victim": {
             "airOrGround": 1,
             "type": "Do-217",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -853,7 +853,7 @@
           "victor": {
             "airOrGround": 3,
             "type": "",
-            "squadronName": "",
+            "companyName": "",
             "pilot": "",
             "pilotStatus": 0,
             "observer": "",
@@ -877,7 +877,7 @@
       "playerRegion": "",
       "isPlayer": false,
       "companyId": 10112009,
-      "squadronMemberRole": "PILOT"
+      "companyMemberRole": "PILOT"
     }
   }
 }

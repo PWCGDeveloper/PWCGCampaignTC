@@ -28,7 +28,7 @@ public enum ScreenIdentifier
     CampaignReferenceCrewMemberSelectorScreen("CampaignReferenceCrewMemberSelectorScreen", "Campaign Reference CrewMember Selector Screen", "TableTop.jpg"),
     CampaignIntelligenceReportScreen("CampaignIntelligenceReportScreen", "Campaign Intelligence Report Screen", "TableTop.jpg"),
     CampaignJournalScreen("CampaignJournalScreen", "Campaign Journal Screen", "TableTop.jpg"),
-    CampaignSquadronLogScreen("CampaignSquadronLogScreen", "Campaign Squadron Log Screen", "TableTop.jpg"),
+    CampaignCompanyLogScreen("CampaignCompanyLogScreen", "Campaign Company Log Screen", "TableTop.jpg"),
     CampaignNewsScreen("CampaignNewsScreen", "Campaign News Screen", "TableTop.jpg"),
     Newspaper("Newspaper", "Newspaper", "Newspaper.jpg"),
     CampaignMedalScreen("CampaignMedalScreen", "Campaign Medal Screen", "TableTop.jpg"),    
@@ -46,7 +46,7 @@ public enum ScreenIdentifier
     CampaignCrewMemberChalkboard("CampaignCrewMemberChalkboard", "Campaign CrewMember Chalkboard", "chalkboard.png"),
     CampaignEquipmentChalkboard("CampaignEquipmentChalkboard", "Campaign Equipment Chalkboard", "chalkboard.png"),
     PlaqueBronzeBackground("PlaqueBronzeBackground", "Campaign Home CrewMember List Plaque", "PlaqueBronzeBackground.png"),
-    CampaignHomeSquadronPlaque("CampaignHomeSquadronPlaque", "Campaign Home Squadron Plaque", "PlaqueBronze.png"),
+    CampaignHomeCompanyPlaque("CampaignHomeCompanyPlaque", "Campaign Home Company Plaque", "PlaqueBronze.png"),
     Document("Document", "Document", "document.png"),
     BlankDocument("BlankDocument", "Blank Document", "BlankDocument.png"),
     DocumentBag("DocumentBag", "DocumentBag", "DocumentBag.png"),
@@ -54,7 +54,7 @@ public enum ScreenIdentifier
     OpenMedalBox("OpenMedalBox", "Open Medal Box", "OpenMedalBox.png"),
     OpenCrewMemberLog("OpenCrewMemberLog", "Open CrewMember Log", "OpenCrewMemberLog.jpg"),
     OpenJournal("OpenJournal", "Open CrewMember Journal", "OpenJournal.png"),
-    OpenSquadronLog("OpenSquadronLog", "Open Squadron Log Book", "OpenJournal.png");
+    OpenCompanyLog("OpenCompanyLog", "Open Company Log Book", "OpenJournal.png");
     
     private String screenKey;
     private String screenDescription;

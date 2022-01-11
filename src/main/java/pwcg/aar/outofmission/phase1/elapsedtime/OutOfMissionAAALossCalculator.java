@@ -38,8 +38,8 @@ public class OutOfMissionAAALossCalculator
                 campaign, aarContext.getPreliminaryData().getCampaignMembersInMission());
         for (CrewMember crewMember : campaignMembersNotInMission.getCrewMemberList())
         {
-            Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(crewMember.getCompanyId());
-            if (CompanyViability.isCompanyViable(squadron, campaign))
+            Company company = PWCGContext.getInstance().getCompanyManager().getCompany(crewMember.getCompanyId());
+            if (CompanyViability.isCompanyViable(company, campaign))
             {
                 calculateCrewMemberShotDownByAAA(crewMember);
             }

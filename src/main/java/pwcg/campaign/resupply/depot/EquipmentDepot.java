@@ -132,9 +132,9 @@ public class EquipmentDepot
         return true;
     }
 
-    private List<EquippedTank> getPlanesForFromDepotBestToWorst(Map<Integer, EquippedTank> planesForSquadron) throws PWCGException
+    private List<EquippedTank> getPlanesForFromDepotBestToWorst(Map<Integer, EquippedTank> planesForCompany) throws PWCGException
     {
-        List<EquippedTank> sortedPlanes = TankSorter.sortEquippedTanksByGoodness(new ArrayList<EquippedTank>(planesForSquadron.values()));
+        List<EquippedTank> sortedPlanes = TankSorter.sortEquippedTanksByGoodness(new ArrayList<EquippedTank>(planesForCompany.values()));
         return sortedPlanes;
     }
 }

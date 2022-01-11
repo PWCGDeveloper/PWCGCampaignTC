@@ -20,11 +20,11 @@ public class CampaignAwardsGenerator
         this.awardsGenerator =  AARFactory.makeCampaignMemberAwardsGenerator(campaign, aarContext);
     }
 
-    public AARPersonnelAwards createCampaignMemberAwards(List<CrewMember> squadronMembersToEvaluate) throws PWCGException
+    public AARPersonnelAwards createCampaignMemberAwards(List<CrewMember> crewMembersToEvaluate) throws PWCGException
     {
         AARPersonnelAwards personnelAwards = AARFactory.makeAARPersonnelAwards();
 
-        for (CrewMember crewMember : squadronMembersToEvaluate)
+        for (CrewMember crewMember : crewMembersToEvaluate)
         {
             if (!crewMember.isHistoricalAce())
             {                

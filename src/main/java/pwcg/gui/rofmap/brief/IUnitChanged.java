@@ -5,5 +5,5 @@ import pwcg.core.exception.PWCGException;
 
 public interface IUnitChanged
 {
-    void unitChanged(Company squadron) throws PWCGException;
+    void unitChanged(Company company) throws PWCGException;
 }

@@ -49,16 +49,16 @@ public class AARContext
         this.dailyData = new AARContextDailyData();
     }
     
-    public UICombatReportData findUiCombatReportDataForSquadron(int squadronId) throws PWCGException
+    public UICombatReportData findUiCombatReportDataForCompany(int companyId) throws PWCGException
     {
-        for (UICombatReportData uiCombatReportDataForSquadron : uiCombatReportData)
+        for (UICombatReportData uiCombatReportDataForCompany : uiCombatReportData)
         {
-            if (uiCombatReportDataForSquadron.getSquadronId() == squadronId)
+            if (uiCombatReportDataForCompany.getCompanyId() == companyId)
             {
-                return uiCombatReportDataForSquadron;
+                return uiCombatReportDataForCompany;
             }
         }
-        return new UICombatReportData(squadronId);
+        return new UICombatReportData(companyId);
     }
 
     public AARPreliminaryData getPreliminaryData()

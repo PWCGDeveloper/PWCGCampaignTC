@@ -17,7 +17,7 @@ public class VictoryEntity
     private int airOrGround = Victory.UNSPECIFIED_VICTORY;
     private String name = "";
     private String type = "";
-    private String squadronName = "";
+    private String companyName = "";
     private Integer crewMemberSerialNumber = SerialNumber.NO_SERIAL_NUMBER;
     private String crewMemberName ="Unknown";
     private int crewMemberStatus = CrewMemberStatus.STATUS_ACTIVE;
@@ -64,7 +64,7 @@ public class VictoryEntity
 
     private void initializeForPlane(Date victoryDate, LogTank logPlane, String crewMemberName) throws PWCGException
     {                    
-        Company squadron = PWCGContext.getInstance().getCompanyManager().getCompany(logPlane.getCompanyId());
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(logPlane.getCompanyId());
         LogCrewMember logCrewMember = logPlane.getLogCrewMember();
 
         airOrGround = Victory.AIRCRAFT;
@@ -72,7 +72,7 @@ public class VictoryEntity
         name = logPlane.getName();
         crewMemberStatus = logCrewMember.getStatus();
         crewMemberSerialNumber = logCrewMember.getSerialNumber();
-        squadronName = squadron.determineDisplayName(victoryDate);
+        companyName = company.determineDisplayName(victoryDate);
         this.crewMemberName = crewMemberName;
     }
 
@@ -136,14 +136,14 @@ public class VictoryEntity
         this.name = name;
     }
 
-    public String getSquadronName()
+    public String getCompanyName()
     {
-        return squadronName;
+        return companyName;
     }
 
-    public void setSquadronName(String squadronName)
+    public void setCompanyName(String companyName)
     {
-        this.squadronName = squadronName;
+        this.companyName = companyName;
     }
 
     public Integer getCrewMemberSerialNumber()

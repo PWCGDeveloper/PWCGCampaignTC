@@ -2,7 +2,7 @@ package pwcg.campaign.resupply;
 
 import pwcg.campaign.ArmedService;
 import pwcg.campaign.Campaign;
-import pwcg.campaign.resupply.SquadronNeedFactory.SquadronNeedType;
+import pwcg.campaign.resupply.CompanyNeedFactory.CompanyNeedType;
 import pwcg.core.exception.PWCGException;
 
 public class ResupplyNeedBuilder
@@ -16,10 +16,10 @@ public class ResupplyNeedBuilder
         this.service = service;
     }
     
-    public ServiceResupplyNeed determineNeedForService(SquadronNeedType need) throws PWCGException
+    public ServiceResupplyNeed determineNeedForService(CompanyNeedType need) throws PWCGException
     {
-        SquadronNeedFactory squadronNeedFactory = new SquadronNeedFactory(need);
-        ServiceResupplyNeed serviceTransferNeed = new ServiceResupplyNeed(campaign, service.getServiceId(), squadronNeedFactory);
+        CompanyNeedFactory companyNeedFactory = new CompanyNeedFactory(need);
+        ServiceResupplyNeed serviceTransferNeed = new ServiceResupplyNeed(campaign, service.getServiceId(), companyNeedFactory);
         serviceTransferNeed.determineResupplyNeed();
         return serviceTransferNeed;
     }

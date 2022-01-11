@@ -20,7 +20,7 @@ import pwcg.mission.Mission;
 import pwcg.mission.MissionGenerator;
 import pwcg.mission.MissionHumanParticipants;
 import pwcg.mission.MissionProfile;
-import pwcg.mission.MissionSquadronFlightTypes;
+import pwcg.mission.MissionCompanyFlightTypes;
 import pwcg.mission.ground.org.GroundUnitCollection;
 import pwcg.mission.target.TargetType;
 import pwcg.mission.utils.MissionFlightValidator;
@@ -51,10 +51,10 @@ public class KubanCargoRouteTest
         DynamicSkirmishBuilder dynamicSkirmishBuilder = new DynamicSkirmishBuilder(campaign, playerParticipants);
         Skirmish cargoRouteSkirmish = dynamicSkirmishBuilder.buildSkirmishForCargoRoute();
                 
-        MissionSquadronFlightTypes playerFlightTypes = new MissionSquadronFlightTypes();
+        MissionCompanyFlightTypes playerFlightTypes = new MissionCompanyFlightTypes();
         for (CrewMember player : playerParticipants.getAllParticipatingPlayers())
         {
-            playerFlightTypes.add(player.determineSquadron(), FlightTypes.DIVE_BOMB);
+            playerFlightTypes.add(player.determineCompany(), FlightTypes.DIVE_BOMB);
         }
 
         MissionGenerator missionGenerator = new MissionGenerator(campaign);

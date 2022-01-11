@@ -32,7 +32,7 @@ public class IntelMapPanel extends MapPanelBase
 {
 	private static final long serialVersionUID = 1L;
 	
-	private Map <String, IntelSquadronMapPoint> squadronPoints = new HashMap<String, IntelSquadronMapPoint>();
+	private Map <String, IntelCompanyMapPoint> companyPoints = new HashMap<String, IntelCompanyMapPoint>();
 	private Map <String, IntelAirfieldMapPoint> airfieldPoints = new HashMap<String, IntelAirfieldMapPoint>();
 
 	private IntelMapGUI parent;
@@ -50,11 +50,11 @@ public class IntelMapPanel extends MapPanelBase
 	{
 	    Date date = campaign.getDate();
 
-		squadronPoints.clear();
-		List<Company> allSquadrons =  PWCGContext.getInstance().getCompanyManager().getActiveCompaniesForCurrentMap(date);
-		for (Company squadron : allSquadrons)
+		companyPoints.clear();
+		List<Company> allCompanys =  PWCGContext.getInstance().getCompanyManager().getActiveCompaniesForCurrentMap(date);
+		for (Company company : allCompanys)
 		{
-			addSquadronPoint(squadron);
+			addCompanyPoint(company);
 		}
 
 		airfieldPoints.clear();
@@ -112,18 +112,18 @@ public class IntelMapPanel extends MapPanelBase
         Graphics2D g2 = (Graphics2D) g;
         g2.setStroke(new BasicStroke(3));
         
-	    for (IntelSquadronMapPoint mapPoint : squadronPoints.values())
+	    for (IntelCompanyMapPoint mapPoint : companyPoints.values())
 	    {
 	        IServiceColorMap serviceColorMap = mapPoint.service.getServiceColorMap();
 	        
 	        // We will always have an active campaign on the intel map
-	        Color color = serviceColorMap.getColorForSquadron(mapPoint.squadron, parent.getMapDate());
+	        Color color = serviceColorMap.getColorForCompany(mapPoint.company, parent.getMapDate());
 	                        
 	        g.setColor(color);
 	    	
 	    	int size = 20;
 	    	
-	    	if (mapPoint.isPlayerSquadron)
+	    	if (mapPoint.isPlayerCompany)
 	    	{
 		    	size = 30;
 	    		g.setColor(Color.MAGENTA);
@@ -140,7 +140,7 @@ public class IntelMapPanel extends MapPanelBase
 
 	public void mouseMovedCallback(int x, int y) 
 	{
-		List<IntelSquadronMapPoint> mapPoints = getSquadronMapPoints(x, y);
+		List<IntelCompanyMapPoint> mapPoints = getCompanyMapPoints(x, y);
 
 		if (mapPoints.size() > 0)
 		{
@@ -155,10 +155,10 @@ public class IntelMapPanel extends MapPanelBase
 	@Override
 	public void leftClickCallback(MouseEvent e) 
 	{		
-		List<IntelSquadronMapPoint> mapPoints = getSquadronMapPoints(e.getX(), e.getY());
+		List<IntelCompanyMapPoint> mapPoints = getCompanyMapPoints(e.getX(), e.getY());
 		if (mapPoints.size() > 0)
 		{
-			SquadronInfoPopup menu = new SquadronInfoPopup(this, mapPoints);
+			CompanyInfoPopup menu = new CompanyInfoPopup(this, mapPoints);
 			menu.show(e.getComponent(), e.getX(), e.getY());
 		}
 		else
@@ -194,11 +194,11 @@ public class IntelMapPanel extends MapPanelBase
 		}
 	}
 
-	private List<IntelSquadronMapPoint> getSquadronMapPoints (int x, int y)
+	private List<IntelCompanyMapPoint> getCompanyMapPoints (int x, int y)
 	{
-		List<IntelSquadronMapPoint> selectedMapPoints = new ArrayList<IntelSquadronMapPoint>();
+		List<IntelCompanyMapPoint> selectedMapPoints = new ArrayList<IntelCompanyMapPoint>();
 		
-		for (IntelSquadronMapPoint mapPoint : squadronPoints.values())
+		for (IntelCompanyMapPoint mapPoint : companyPoints.values())
 		{
 	    	Point point = super.coordinateToPoint(mapPoint.coord);
 
@@ -244,25 +244,25 @@ public class IntelMapPanel extends MapPanelBase
 
 	}
 
-	private void addSquadronPoint(Company squadron) throws PWCGException 
+	private void addCompanyPoint(Company company) throws PWCGException 
 	{
-		String fieldName = squadron.determineCurrentAirfieldName(parent.getMapDate());
+		String fieldName = company.determineCurrentAirfieldName(parent.getMapDate());
 		Airfield field =  PWCGContext.getInstance().getCurrentMap().getAirfieldManager().getAirfield(fieldName);
 
 		if (field != null)
 		{
-            IntelSquadronMapPoint mapPoint = new IntelSquadronMapPoint();
-            mapPoint.desc = squadron.determineDisplayName(parent.getMapDate());
+            IntelCompanyMapPoint mapPoint = new IntelCompanyMapPoint();
+            mapPoint.desc = company.determineDisplayName(parent.getMapDate());
             mapPoint.coord = field.getPosition().copy();
-            mapPoint.service = squadron.determineServiceForCompany(parent.getMapDate());
-            mapPoint.squadron = squadron;
+            mapPoint.service = company.determineServiceForCompany(parent.getMapDate());
+            mapPoint.company = company;
             
-            if (squadron.getCompanyId() == campaign.findReferencePlayer().getCompanyId())
+            if (company.getCompanyId() == campaign.findReferencePlayer().getCompanyId())
             {
-                mapPoint.isPlayerSquadron = true;
+                mapPoint.isPlayerCompany = true;
             }
 
-            squadronPoints.put(mapPoint.desc, mapPoint);
+            companyPoints.put(mapPoint.desc, mapPoint);
 		}
 
 	}
@@ -273,7 +273,7 @@ public class IntelMapPanel extends MapPanelBase
 		
 		upperLeft.x = 10000000;
 		upperLeft.y = 10000000;
-		for (IntelSquadronMapPoint mapPoint: squadronPoints.values())
+		for (IntelCompanyMapPoint mapPoint: companyPoints.values())
 		{
 	    	Point point = super.coordinateToPoint(mapPoint.coord);
 			
@@ -300,13 +300,13 @@ public class IntelMapPanel extends MapPanelBase
 			if (action.equals("Cancel"))
 			{
 			}
-			else if (action.contains("Squadron:"))
+			else if (action.contains("Company:"))
 			{
 				String squadName = action.substring(action.indexOf(":") + 1);
-				IntelSquadronMapPoint mapPoint = squadronPoints.get(squadName);
+				IntelCompanyMapPoint mapPoint = companyPoints.get(squadName);
 				if (mapPoint != null)
 				{
-					parent.updateInfoPanel(mapPoint.squadron.getCompanyId());
+					parent.updateInfoPanel(mapPoint.company.getCompanyId());
 				}
 			}
 		}
@@ -316,8 +316,8 @@ public class IntelMapPanel extends MapPanelBase
 		}
 	}
 
-	public Map<String, IntelSquadronMapPoint> getSquadronPoints() {
-		return squadronPoints;
+	public Map<String, IntelCompanyMapPoint> getCompanyPoints() {
+		return companyPoints;
 	}
 
 	public Map<String, IntelAirfieldMapPoint> getAirfieldPoints() {

@@ -8,9 +8,9 @@ public class MedalEvent extends AARCrewMemberEvent
 {
     private String medal = "";
 
-    public MedalEvent(Campaign campaign, String medal, int squadronId, int crewMemberSerialNumber, Date date, boolean isNewsWorthy)
+    public MedalEvent(Campaign campaign, String medal, int companyId, int crewMemberSerialNumber, Date date, boolean isNewsWorthy)
     {
-        super(campaign, squadronId, crewMemberSerialNumber, date, isNewsWorthy);
+        super(campaign, companyId, crewMemberSerialNumber, date, isNewsWorthy);
         this.medal = medal;
     }
 

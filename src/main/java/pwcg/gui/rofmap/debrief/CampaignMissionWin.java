@@ -18,15 +18,15 @@ public class CampaignMissionWin
     
     public boolean isMissionAWin()
     {
-        Map<Integer, CrewMemberStatusEvent> squadronMembersLost = combatResultsForMission.getCrewMembersLostInMission();
+        Map<Integer, CrewMemberStatusEvent> crewMembersLost = combatResultsForMission.getCrewMembersLostInMission();
         List<VictoryEvent> victoriesScored = combatResultsForMission.getVictoriesForCrewMembersInMission();
         
-        if (squadronMembersLost.size() == 0)
+        if (crewMembersLost.size() == 0)
         {
             return true;
         }
         
-        if (squadronMembersLost.size() > victoriesScored.size())
+        if (crewMembersLost.size() > victoriesScored.size())
         {
             return false;
         }

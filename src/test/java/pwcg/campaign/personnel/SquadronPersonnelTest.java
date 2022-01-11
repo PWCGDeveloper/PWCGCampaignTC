@@ -15,7 +15,7 @@ import pwcg.testutils.CompanyTestProfile;
 
 @ExtendWith(MockitoExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class SquadronPersonnelTest {
+public class CompanyPersonnelTest {
 
     private Campaign campaign;    
     
@@ -27,16 +27,16 @@ public class SquadronPersonnelTest {
     }
 
     @Test
-    public void isHumanSquadronTest() throws PWCGException
+    public void isHumanCompanyTest() throws PWCGException
     {
-        CompanyPersonnel squadronpersonnel = campaign.getPersonnelManager().getCompanyPersonnel(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
-        assert(squadronpersonnel.isPlayerCompany());
+        CompanyPersonnel companypersonnel = campaign.getPersonnelManager().getCompanyPersonnel(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
+        assert(companypersonnel.isPlayerCompany());
     }
 
     @Test
-    public void isNotHumanSquadronTest() throws PWCGException
+    public void isNotHumanCompanyTest() throws PWCGException
     {
-        CompanyPersonnel squadronpersonnel = campaign.getPersonnelManager().getCompanyPersonnel(20111052);
-        assert(squadronpersonnel.isPlayerCompany() == false);
+        CompanyPersonnel companypersonnel = campaign.getPersonnelManager().getCompanyPersonnel(20111052);
+        assert(companypersonnel.isPlayerCompany() == false);
     }
 }

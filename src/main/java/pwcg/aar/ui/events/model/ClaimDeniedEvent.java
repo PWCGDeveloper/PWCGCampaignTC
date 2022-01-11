@@ -8,9 +8,9 @@ public class ClaimDeniedEvent extends AARCrewMemberEvent
 {
 	private String aircraftType = "";
 	
-    public ClaimDeniedEvent(Campaign campaign, String aircraftType, int squadronId, int crewMemberSerialNumber, Date date, boolean isNewsWorthy)
+    public ClaimDeniedEvent(Campaign campaign, String aircraftType, int companyId, int crewMemberSerialNumber, Date date, boolean isNewsWorthy)
     {
-        super(campaign, squadronId, crewMemberSerialNumber, date, isNewsWorthy);
+        super(campaign, companyId, crewMemberSerialNumber, date, isNewsWorthy);
         this.aircraftType = aircraftType;
     }
 

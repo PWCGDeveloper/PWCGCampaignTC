@@ -20,7 +20,7 @@ public class SkinAnalyzer
 	    initMissingSkinMap();
 	    
 		findMissingConfiguredSkins();
-		findMissingSquadronSkins();
+		findMissingCompanySkins();
 		findMissingAceSkins();
 	}
 
@@ -53,17 +53,17 @@ public class SkinAnalyzer
 		}
 	}
 	
-	private void findMissingSquadronSkins() throws PWCGException 
+	private void findMissingCompanySkins() throws PWCGException 
 	{
 		for (TankType plane : PWCGContext.getInstance().getTankTypeFactory().getAllTanks())
 		{
 			SkinsForPlane skinsForPlane = PWCGContext.getInstance().getSkinManager().getSkinsForPlane(plane.getType());
 		
-			for (Skin skin : skinsForPlane.getSquadronSkins().getSkins().values())
+			for (Skin skin : skinsForPlane.getCompanySkins().getSkins().values())
 			{
                 if (isSkinMissing(skin))
 				{		
-                    addMissingSkin(plane, skin.getSkinName(), "Squadron");
+                    addMissingSkin(plane, skin.getSkinName(), "Company");
 				}
 			}
 		}

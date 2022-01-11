@@ -1,7 +1,7 @@
 {
   "missionHeader": {
     "missionFileName": "Patrik Schorner 1916-10-02",
-    "squadron": "Jasta 16b",
+    "company": "Jasta 16b",
     "date": "19161002",
     "time": "15:0:00",
     "aircraftType": "AircraftType \u003d Albatros D.I",
@@ -10,11 +10,11 @@
     "duty": "BALLOON_DEFENSE",
     "altitude": 2289
   },
-  "missionDescription": "Mission:\nAircraft  Albatros D.II\nSquadron  Jasta 16b\nAirbase  Balatre,E Roye\nDate  1916-10-02\n\nWeather Report\nLight cloud cover, medium altitude.\nCloud layer is 2753 meters.\nWind speed is 1 M/S.\nWind direction is 241.\n\nPrimary Objective\nDefend our balloon near Roye.\n\n\n",
+  "missionDescription": "Mission:\nAircraft  Albatros D.II\nCompany  Jasta 16b\nAirbase  Balatre,E Roye\nDate  1916-10-02\n\nWeather Report\nLight cloud cover, medium altitude.\nCloud layer is 2753 meters.\nWind speed is 1 M/S.\nWind direction is 241.\n\nPrimary Objective\nDefend our balloon near Roye.\n\n\n",
   "missionPlanes": [
     {
       "aircraftType": "albatrosd2",
-      "squadronName": "Jasta 16b",
+      "companyName": "Jasta 16b",
       "crew": {
         "pilot": "Patrik Schorner",
         "observer": "",
@@ -24,7 +24,7 @@
     },
     {
       "aircraftType": "albatrosd2",
-      "squadronName": "Jasta 16b",
+      "companyName": "Jasta 16b",
       "crew": {
         "pilot": "Oswald Fromm",
         "observer": "",
@@ -34,7 +34,7 @@
     },
     {
       "aircraftType": "halberstadtd2",
-      "squadronName": "Jasta 16b",
+      "companyName": "Jasta 16b",
       "crew": {
         "pilot": "Gebhard Schonbaum",
         "observer": "",
@@ -44,7 +44,7 @@
     },
     {
       "aircraftType": "halberstadtd2",
-      "squadronName": "Jasta 16b",
+      "companyName": "Jasta 16b",
       "crew": {
         "pilot": "Karl Nostitz",
         "observer": "",
@@ -54,7 +54,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "No 10 Squadron RFC",
+      "companyName": "No 10 Company RFC",
       "crew": {
         "pilot": "Chapman Audlington",
         "observer": "Scott Penhallick",
@@ -64,7 +64,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "No 10 Squadron RFC",
+      "companyName": "No 10 Company RFC",
       "crew": {
         "pilot": "Hal Switt",
         "observer": "Hall Heywood",
@@ -74,7 +74,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "No 10 Squadron RFC",
+      "companyName": "No 10 Company RFC",
       "crew": {
         "pilot": "Peter Slyfield",
         "observer": "Dermot Gilbert",
@@ -84,7 +84,7 @@
     },
     {
       "aircraftType": "rolc2a",
-      "squadronName": "Schlasta 2",
+      "companyName": "Schlasta 2",
       "crew": {
         "pilot": "Philipp Delbruck",
         "observer": "Paul Rosengart",
@@ -94,7 +94,7 @@
     },
     {
       "aircraftType": "rolc2a",
-      "squadronName": "Schlasta 2",
+      "companyName": "Schlasta 2",
       "crew": {
         "pilot": "Erwin Eisenstein",
         "observer": "Wenzel Schlitz",
@@ -104,7 +104,7 @@
     },
     {
       "aircraftType": "rolc2a",
-      "squadronName": "Schlasta 2",
+      "companyName": "Schlasta 2",
       "crew": {
         "pilot": "Gebhard Altenau",
         "observer": "Elias Lange",
@@ -114,7 +114,7 @@
     },
     {
       "aircraftType": "rolc2a",
-      "squadronName": "Schlasta 2",
+      "companyName": "Schlasta 2",
       "crew": {
         "pilot": "Poldi Koler",
         "observer": "Gustav Daehnhardt",
@@ -124,7 +124,7 @@
     },
     {
       "aircraftType": "albatrosd2",
-      "squadronName": "Jasta 5",
+      "companyName": "Jasta 5",
       "crew": {
         "pilot": "Randolf Landsman",
         "observer": "",
@@ -134,7 +134,7 @@
     },
     {
       "aircraftType": "albatrosd2",
-      "squadronName": "Jasta 5",
+      "companyName": "Jasta 5",
       "crew": {
         "pilot": "Karlheinz Faehr",
         "observer": "",
@@ -144,7 +144,7 @@
     },
     {
       "aircraftType": "halberstadtd2",
-      "squadronName": "Jasta 5",
+      "companyName": "Jasta 5",
       "crew": {
         "pilot": "Norbert Wurtz",
         "observer": "",
@@ -154,7 +154,7 @@
     },
     {
       "aircraftType": "halberstadtd2",
-      "squadronName": "Jasta 5",
+      "companyName": "Jasta 5",
       "crew": {
         "pilot": "Wendall Senger",
         "observer": "",
@@ -164,7 +164,7 @@
     },
     {
       "aircraftType": "dfwc5",
-      "squadronName": "FA 278s",
+      "companyName": "FA 278s",
       "crew": {
         "pilot": "Emil Wolff",
         "observer": "Wilhelm Gebauer",
@@ -174,7 +174,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 21",
+      "companyName": "Esc 21",
       "crew": {
         "pilot": "Jules Scala",
         "observer": "Adolphe Bastoux",
@@ -184,7 +184,7 @@
     },
     {
       "aircraftType": "nieuport17",
-      "squadronName": "Esc 112",
+      "companyName": "Esc 112",
       "crew": {
         "pilot": "Corentin Brindejonc",
         "observer": "",
@@ -194,7 +194,7 @@
     },
     {
       "aircraftType": "nieuport17",
-      "squadronName": "Esc 112",
+      "companyName": "Esc 112",
       "crew": {
         "pilot": "Firmin Lamor",
         "observer": "",
@@ -204,7 +204,7 @@
     },
     {
       "aircraftType": "nieuport11",
-      "squadronName": "Esc 112",
+      "companyName": "Esc 112",
       "crew": {
         "pilot": "Valentin Ryckewaert",
         "observer": "",
@@ -214,7 +214,7 @@
     },
     {
       "aircraftType": "nieuport11",
-      "squadronName": "Esc 112",
+      "companyName": "Esc 112",
       "crew": {
         "pilot": "Emile Mourrut",
         "observer": "",
@@ -224,7 +224,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 58",
+      "companyName": "Esc 58",
       "crew": {
         "pilot": "Hippolyte Laferriere",
         "observer": "Bruno Garcin",
@@ -234,7 +234,7 @@
     },
     {
       "aircraftType": "fe2b",
-      "squadronName": "Esc 58",
+      "companyName": "Esc 58",
       "crew": {
         "pilot": "Cyprien Larchant",
         "observer": "Cyprien Fleury",

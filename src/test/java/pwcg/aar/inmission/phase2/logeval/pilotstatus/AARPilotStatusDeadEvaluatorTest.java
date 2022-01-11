@@ -35,7 +35,7 @@ public class AARCrewMemberStatusDeadEvaluatorTest
     @Mock private AARDestroyedStatusEvaluator destroyedStatusEvaluator;
     @Mock private AType3 destroyedEventForPlane;
     @Mock private CrewMember crewMember;
-    @Mock private Company squadron;
+    @Mock private Company company;
     @Mock private CampaignPersonnelManager personnelManager;
     
     
@@ -47,7 +47,7 @@ public class AARCrewMemberStatusDeadEvaluatorTest
         
         Mockito.when(campaign.getPersonnelManager()).thenReturn(personnelManager);
         Mockito.when(personnelManager.getAnyCampaignMember(Mockito.anyInt())).thenReturn(crewMember);
-        Mockito.when(crewMember.determineSquadron()).thenReturn(squadron);
+        Mockito.when(crewMember.determineCompany()).thenReturn(company);
         
     }
 
@@ -153,7 +153,7 @@ public class AARCrewMemberStatusDeadEvaluatorTest
         Coordinate fieldAt = new Coordinate();
         downAt.setXPos(5000.0);
         downAt.setZPos(5000.0);
-        Mockito.when(squadron.determineCurrentPosition(Mockito.any())).thenReturn(fieldAt);
+        Mockito.when(company.determineCurrentPosition(Mockito.any())).thenReturn(fieldAt);
 
         int oddsOfDeathDueToAiStupidity = 100;
         
@@ -227,7 +227,7 @@ public class AARCrewMemberStatusDeadEvaluatorTest
         Coordinate fieldAt = new Coordinate();
         fieldAt.setXPos(100.0);
         fieldAt.setZPos(100.0);
-        Mockito.when(squadron.determineCurrentPosition(Mockito.any())).thenReturn(fieldAt);
+        Mockito.when(company.determineCurrentPosition(Mockito.any())).thenReturn(fieldAt);
 
         int oddsOfDeathDueToAiStupidity = 30;
         
@@ -255,7 +255,7 @@ public class AARCrewMemberStatusDeadEvaluatorTest
         Coordinate fieldAt = new Coordinate();
         fieldAt.setXPos(10000.0);
         fieldAt.setZPos(10000.0);
-        Mockito.when(squadron.determineCurrentPosition(Mockito.any())).thenReturn(fieldAt);
+        Mockito.when(company.determineCurrentPosition(Mockito.any())).thenReturn(fieldAt);
 
         int oddsOfDeathDueToAiStupidity = 50;
         

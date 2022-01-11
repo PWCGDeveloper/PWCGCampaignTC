@@ -28,9 +28,9 @@ public class AveragePlayerLocationFinder
         List<Coordinate> playerLocations = new ArrayList<>();
         for (CrewMember player : participatingPlayers.getAllParticipatingPlayers())
         {
-            Company squadron = player.determineSquadron();
-            Coordinate squadronLocation = squadron.determineCurrentAirfieldAnyMap(campaign.getDate()).getPosition();
-            playerLocations.add(squadronLocation);
+            Company company = player.determineCompany();
+            Coordinate companyLocation = company.determineCurrentAirfieldAnyMap(campaign.getDate()).getPosition();
+            playerLocations.add(companyLocation);
         }
         
         double xSum = 0.0;

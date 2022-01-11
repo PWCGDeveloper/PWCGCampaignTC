@@ -21,7 +21,7 @@ public class VictoryDescriptionBuilderGround extends VictoryDescriptionBuilderBa
     }    
 
     // On <victory victory.getDate()> near <location>.
-    // A <victory.getVictim() ground unit> was destroyed by by <victory.getVictor() name> of <victory.getVictor() squadron name> 
+    // A <victory.getVictim() ground unit> was destroyed by by <victory.getVictor() name> of <victory.getVictor() company name> 
     // <victory.getVictor() crew 1> and <victory.getVictor() crew 1> were flying a <victory.getVictor() plane Name>.
     public String createVictoryDescriptionAirToGround() throws PWCGException
     {
@@ -53,7 +53,7 @@ public class VictoryDescriptionBuilderGround extends VictoryDescriptionBuilderBa
     
 
     // On <victory victory.getDate()> near <location>.
-    // A <victory.getVictim() plane Name> of <victory.getVictim() squadron name> was brought down by a <ground unit name> 
+    // A <victory.getVictim() plane Name> of <victory.getVictim() company name> was brought down by a <ground unit name> 
     // <victory.getVictim() crew 1> was <killed/captured>.  <victory.getVictim() crew 2> was <killed/captured>
     String createVictoryDescriptionGroundToAir() throws PWCGException
     {        
@@ -73,7 +73,7 @@ public class VictoryDescriptionBuilderGround extends VictoryDescriptionBuilderBa
 
             // Line 2
             victoryDesc +=  "\n";
-            victoryDesc +=  "A " + victimTankType + " of " + victory.getVictim().getSquadronName() + " was brought down by a " + getGroundUnitName(victory.getVictor()) + ".";
+            victoryDesc +=  "A " + victimTankType + " of " + victory.getVictim().getCompanyName() + " was brought down by a " + getGroundUnitName(victory.getVictor()) + ".";
 
             // Line 3
             String crewMemberFate = getCrewMemberFate();

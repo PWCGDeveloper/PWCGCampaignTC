@@ -32,17 +32,17 @@ public class MissionCenterBuilderStrategicIntercept implements IMissionCenterBui
 
     private List<PWCGLocation> getTowns(int missionBoxRadius) throws PWCGException
     {
-        Company squadron = participatingPlayers.getAllParticipatingPlayers().get(0).determineSquadron();        
-        Coordinate squadronLocation = squadron.determineCurrentPosition(campaign.getDate());
-        return PWCGContext.getInstance().getCurrentMap().getGroupManager().findTownsForSideWithinRadius(squadron.determineSide(), campaign.getDate(), squadronLocation, missionBoxRadius * 2);
+        Company company = participatingPlayers.getAllParticipatingPlayers().get(0).determineCompany();        
+        Coordinate companyLocation = company.determineCurrentPosition(campaign.getDate());
+        return PWCGContext.getInstance().getCurrentMap().getGroupManager().findTownsForSideWithinRadius(company.determineSide(), campaign.getDate(), companyLocation, missionBoxRadius * 2);
     }
     
     private List<PWCGLocation> getTownsAwayFromFront(List<PWCGLocation> townLocations) throws PWCGException
     {
-        Company squadron = participatingPlayers.getAllParticipatingPlayers().get(0).determineSquadron();        
+        Company company = participatingPlayers.getAllParticipatingPlayers().get(0).determineCompany();        
 
         List<PWCGLocation> townLocationsAwayFromFont = LocationAwayFromFrontFinder.getLocationsAwayFromFront(
-                townLocations, squadron.determineSide(), campaign.getDate());
+                townLocations, company.determineSide(), campaign.getDate());
         return townLocationsAwayFromFont;
     }
 
@@ -55,9 +55,9 @@ public class MissionCenterBuilderStrategicIntercept implements IMissionCenterBui
         }
         else
         {
-            Company squadron = participatingPlayers.getAllParticipatingPlayers().get(0).determineSquadron();        
-            Coordinate squadronLocation = squadron.determineCurrentPosition(campaign.getDate());
-            return squadronLocation;
+            Company company = participatingPlayers.getAllParticipatingPlayers().get(0).determineCompany();        
+            Coordinate companyLocation = company.determineCurrentPosition(campaign.getDate());
+            return companyLocation;
         }
     }
 }

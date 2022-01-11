@@ -16,10 +16,10 @@ import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.CrewMemberStatus;
 import pwcg.campaign.crewmember.CrewMembers;
 import pwcg.campaign.personnel.CrewMemberFilter;
-import pwcg.campaign.resupply.ISquadronNeed;
+import pwcg.campaign.resupply.ICompanyNeed;
 import pwcg.campaign.resupply.ServiceResupplyNeed;
-import pwcg.campaign.resupply.SquadronNeedFactory;
-import pwcg.campaign.resupply.SquadronNeedFactory.SquadronNeedType;
+import pwcg.campaign.resupply.CompanyNeedFactory;
+import pwcg.campaign.resupply.CompanyNeedFactory.CompanyNeedType;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.product.fc.country.TCServiceManager;
@@ -43,19 +43,19 @@ public class ServiceTransferNeedTest
     @Test
     public void testTransfersWithNoCrewMembers() throws PWCGException
     {
-        deactivateSquadronPersonnel();
+        deactivateCompanyPersonnel();
         
-        SquadronNeedFactory squadronNeedFactory = new SquadronNeedFactory(SquadronNeedType.PERSONNEL);
-        ServiceResupplyNeed serviceTransferNeed = new ServiceResupplyNeed(campaign, TCServiceManager.WEHRMACHT, squadronNeedFactory);
+        CompanyNeedFactory companyNeedFactory = new CompanyNeedFactory(CompanyNeedType.PERSONNEL);
+        ServiceResupplyNeed serviceTransferNeed = new ServiceResupplyNeed(campaign, TCServiceManager.WEHRMACHT, companyNeedFactory);
         serviceTransferNeed.determineResupplyNeed();
         
-        Assertions.assertTrue (serviceTransferNeed.hasNeedySquadron() == true);
+        Assertions.assertTrue (serviceTransferNeed.hasNeedyCompany() == true);
         
         boolean jasta16Needs = false;
-        while (serviceTransferNeed.hasNeedySquadron())
+        while (serviceTransferNeed.hasNeedyCompany())
         {
-            ISquadronNeed selectedSquadronNeed = serviceTransferNeed.chooseNeedySquadron();
-            if (selectedSquadronNeed.getSquadronId() == JASTA_16)
+            ICompanyNeed selectedCompanyNeed = serviceTransferNeed.chooseNeedyCompany();
+            if (selectedCompanyNeed.getCompanyId() == JASTA_16)
             {
                 jasta16Needs = true;
                 break;
@@ -65,7 +65,7 @@ public class ServiceTransferNeedTest
     }
     
 
-    private void deactivateSquadronPersonnel() throws PWCGException
+    private void deactivateCompanyPersonnel() throws PWCGException
     {
         CrewMembers jasta16CrewMembers = CrewMemberFilter.filterActiveAI(campaign.getPersonnelManager().getCompanyPersonnel(JASTA_16).getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
         int numInactivated = 0;

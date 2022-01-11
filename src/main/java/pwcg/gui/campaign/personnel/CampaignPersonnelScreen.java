@@ -73,7 +73,7 @@ public class CampaignPersonnelScreen extends ImageResizingPanel implements Actio
 
         if (campaign.isCampaignActive())
         {
-            JButton skinManagementButton = PWCGButtonFactory.makeTranslucentMenuButton("Skin Management", "CampSkinManager", "Manage skins for the squadron", this);
+            JButton skinManagementButton = PWCGButtonFactory.makeTranslucentMenuButton("Skin Management", "CampSkinManager", "Manage skins for the company", this);
             buttonPanel.add(skinManagementButton);
         }
 
