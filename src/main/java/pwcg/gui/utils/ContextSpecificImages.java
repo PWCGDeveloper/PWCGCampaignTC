@@ -83,7 +83,7 @@ public class ContextSpecificImages
 
     public static String imagesPlanes() 
     {
-        String picPath = PWCGContext.getInstance().getDirectoryManager().getPwcgImagesDir() + "Planes\\";
+        String picPath = PWCGContext.getInstance().getDirectoryManager().getPwcgImagesDir() + "Tanks\\";
         
         return picPath;
     }

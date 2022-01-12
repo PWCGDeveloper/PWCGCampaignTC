@@ -122,7 +122,7 @@ public class CampaignCrewMemberScreen extends ImageResizingPanel implements Acti
 		JPanel crewMemberLogPanel = new JPanel(new BorderLayout());
 		crewMemberLogPanel.setOpaque(false);
 
-        String imagePath = ContextSpecificImages.imagesMisc() + "CrewMemberLogBook.png";
+        String imagePath = ContextSpecificImages.imagesMisc() + "CrewLogBook.png";
         ImageScaledPanel crewMemberLogBorderPanel = new ImageScaledPanel(imagePath, 0.75);
 		crewMemberLogBorderPanel.setLayout(new BorderLayout());
 		crewMemberLogBorderPanel.setOpaque(false);

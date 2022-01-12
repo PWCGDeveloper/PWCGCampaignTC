@@ -52,7 +52,7 @@ public enum ScreenIdentifier
     DocumentBag("DocumentBag", "DocumentBag", "DocumentBag.png"),
     DocumentFolder("DocumentFolder", "DocumentFolder", "DocumentFolder.png"),
     OpenMedalBox("OpenMedalBox", "Open Medal Box", "OpenMedalBox.png"),
-    OpenCrewMemberLog("OpenCrewMemberLog", "Open CrewMember Log", "OpenCrewMemberLog.jpg"),
+    OpenCrewMemberLog("OpenCrewMemberLog", "Open Crew Member Log", "OpenCrewLog.jpg"),
     OpenJournal("OpenJournal", "Open CrewMember Journal", "OpenJournal.png"),
     OpenCompanyLog("OpenCompanyLog", "Open Company Log Book", "OpenJournal.png");
     
