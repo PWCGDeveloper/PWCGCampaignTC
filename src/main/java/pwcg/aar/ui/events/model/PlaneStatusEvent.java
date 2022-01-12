@@ -54,7 +54,7 @@ public class PlaneStatusEvent extends AARCrewMemberEvent
         String planeEventText = 
                 "A " + shotDownPlane.getDisplayName() +
                 ",  serial number " + tankSerialNumber + 
-                ",  flown by " + shotDownCrewMember.getNameAndRank() + 
+                ",  operated by " + shotDownCrewMember.getNameAndRank() + 
                 " has been lost in combat on " + prettyDate + ".\n";    ;                
 
         return planeEventText;

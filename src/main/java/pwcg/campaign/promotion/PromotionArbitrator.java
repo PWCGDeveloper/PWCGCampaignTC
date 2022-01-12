@@ -64,9 +64,9 @@ public class PromotionArbitrator implements IPromotionEventHandler
     {
         PwcgRoleCategory roleCategory = crewMember.determineCompany().determineCompanyPrimaryRoleCategory(campaign.getDate());
         CrewMemberVictories victories = crewMember.getCrewMemberVictories();
-        if (roleCategory == PwcgRoleCategory.FIGHTER)
+        if (roleCategory == PwcgRoleCategory.MAIN_BATTLE_TANK)
         {
-            return victories.getAirToAirVictoryCount();
+            return victories.getTankVictoryCount();
         }
         else
         {

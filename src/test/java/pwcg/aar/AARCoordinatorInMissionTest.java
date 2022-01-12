@@ -28,7 +28,7 @@ public class AARCoordinatorInMissionTest
     private Campaign campaign;    
     private static AARCoordinator aarCoordinator;
     private static ExpectedResults expectedResults;
-    private static int playerMissionsFlown = 0;
+    private static int playerMissionsCompleted = 0;
 
     private List<Company> companysInMission = new ArrayList<>();
     private Map<Integer, PlayerDeclarations> playerDeclarations;
@@ -43,7 +43,7 @@ public class AARCoordinatorInMissionTest
         aarCoordinator = AARCoordinator.getInstance();
         aarCoordinator.reset(campaign);
         
-        playerMissionsFlown = campaign.getPersonnelManager().getPlayersInMission().getCrewMemberList().get(0).getBattlesFought();
+        playerMissionsCompleted = campaign.getPersonnelManager().getPlayersInMission().getCrewMemberList().get(0).getBattlesFought();
     }
 
     @Test
@@ -54,7 +54,7 @@ public class AARCoordinatorInMissionTest
         expectedResults.buildExpectedResultsFromAARContext(aarCoordinator.getAarContext());
         
         AARResultValidator resultValidator = new AARResultValidator(expectedResults);
-        resultValidator.validateInMission(playerMissionsFlown, 2);
+        resultValidator.validateInMission(playerMissionsCompleted, 2);
     }
 
     public void createArtifacts () throws PWCGException

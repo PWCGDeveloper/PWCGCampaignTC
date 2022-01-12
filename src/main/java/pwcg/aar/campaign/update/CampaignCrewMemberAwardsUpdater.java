@@ -31,7 +31,7 @@ public class CampaignCrewMemberAwardsUpdater
     
 	public void updatesForMissionEvents() throws PWCGException 
 	{
-        assignMissionsFlown();
+        assignMissionsCompleted();
 
 		assignVictories();
 
@@ -42,13 +42,13 @@ public class CampaignCrewMemberAwardsUpdater
         adjustCrewMemberSkill();
 	}
 
-    private void assignMissionsFlown() throws PWCGException
+    private void assignMissionsCompleted() throws PWCGException
     {
-        for (Integer serialNumber : campaignUpdateData.getPersonnelAcheivements().getMissionsFlown().keySet())
+        for (Integer serialNumber : campaignUpdateData.getPersonnelAcheivements().getMissionsCompleted().keySet())
         {
             CrewMember crewMember = campaign.getPersonnelManager().getAnyCampaignMember(serialNumber);
-            Integer missionFlown = campaignUpdateData.getPersonnelAcheivements().getMissionsFlown().get(serialNumber);
-            crewMember.setBattlesFought(missionFlown);
+            Integer missionCompleted = campaignUpdateData.getPersonnelAcheivements().getMissionsCompleted().get(serialNumber);
+            crewMember.setBattlesFought(missionCompleted);
         }
     }
 

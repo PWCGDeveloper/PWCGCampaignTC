@@ -47,41 +47,30 @@ public class BritishMedalManager extends BoSMedalManager
         return medals.get(WOUND_STRIPE);
     }
 
-    public Medal awardFighter(CrewMember crewMember, ArmedService service, int victoriesThisMission) throws PWCGException
+    public Medal awardTanker(CrewMember crewMember, ArmedService service, int victoriesThisMission) throws PWCGException
     {
-        if (crewMember.getCrewMemberVictories().getAirToAirVictoryCount() >= 5 && !hasMedal(crewMember, medals.get(DFC)))
-        {
-            return medals.get(DFC);
-        }
+        int tankVictories = crewMember.getCrewMemberVictories().getTankVictoryCount();
 
-        if (crewMember.getCrewMemberVictories().getAirToAirVictoryCount() >= 10 && hasMedal(crewMember, medals.get(DFC)) && !hasMedal(crewMember, medals.get(DFC_BAR_1)))
-        {
-            if (victoriesThisMission >= 1)
-            {
-                return medals.get(DFC_BAR_1);
-            }
-        }
-
-        if ((crewMember.getCrewMemberVictories().getAirToAirVictoryCount() >= 15) && !hasMedal(crewMember, medals.get(DSO)))
+        if ((tankVictories >= 10) && !hasMedal(crewMember, medals.get(DSO)))
         {
             return medals.get(DSO);
         }
 
-        if ((crewMember.getCrewMemberVictories().getAirToAirVictoryCount() >= 25) && !hasMedal(crewMember, medals.get(DSO_BAR)))
+        if ((tankVictories >= 15) && !hasMedal(crewMember, medals.get(DSO_BAR)))
         {
             return medals.get(DSO_BAR);            
         }
 
         if (!hasMedal(crewMember, medals.get(VC)))
         {
-            if (crewMember.getCrewMemberVictories().getAirToAirVictoryCount() >= 40)
+            if (tankVictories >= 30)
             {
                 if (victoriesThisMission >= 3)
                 {
                     return medals.get(VC);
                 }
             }
-            if (crewMember.getCrewMemberVictories().getAirToAirVictoryCount() >= 30)
+            if (tankVictories >= 20)
             {
                 if (victoriesThisMission >= 5)
                 {
@@ -93,65 +82,34 @@ public class BritishMedalManager extends BoSMedalManager
         return null;
     }
 
-    public Medal awardBomber(CrewMember crewMember, ArmedService service, int victoriesThisMission) throws PWCGException
+    public Medal awardAAA(CrewMember crewMember, ArmedService service, int victoriesThisMission) throws PWCGException
     {
         int numCrewMemberGroundVictoryPoints = crewMember.getCrewMemberVictories().getGroundVictoryPointTotal();
 
-        if (numCrewMemberGroundVictoryPoints >= 15 && !hasMedal(crewMember, medals.get(DFC)))
-        {
-            if (crewMember.getBattlesFought() >= 30)
-            {
-                if (numCrewMemberGroundVictoryPoints > 50)
-                {
-                    return medals.get(DFC);
-                }
-            }
-        }
-
-        if (numCrewMemberGroundVictoryPoints >= 25 && !hasMedal(crewMember, medals.get(DFC_BAR_1)))
+        if (numCrewMemberGroundVictoryPoints >= 20 && !hasMedal(crewMember, medals.get(DSO)))
         {
             if (crewMember.getBattlesFought() >= 50)
             {
-                if (numCrewMemberGroundVictoryPoints > 70)
-                {
-                    return medals.get(DFC_BAR_1);
-                }
+                return medals.get(DSO);
             }
         }
 
-        if (numCrewMemberGroundVictoryPoints >= 50 && !hasMedal(crewMember, medals.get(DSO)))
+        if (numCrewMemberGroundVictoryPoints >= 50 && !hasMedal(crewMember, medals.get(DSO_BAR)))
         {
             if (crewMember.getBattlesFought() >= 70)
             {
-                if (numCrewMemberGroundVictoryPoints > 90)
-                {
-                    return medals.get(DSO);
-                }
+                return medals.get(DSO_BAR);
             }
         }
 
-        if (numCrewMemberGroundVictoryPoints >= 75 && !hasMedal(crewMember, medals.get(DSO_BAR)))
+        if (numCrewMemberGroundVictoryPoints >= 50 && !hasMedal(crewMember, medals.get(VC)))
         {
             if (crewMember.getBattlesFought() >= 100)
             {
-                if (numCrewMemberGroundVictoryPoints > 120)
-                {
-                    return medals.get(DSO_BAR);
-                }
+                return medals.get(VC);
             }
         }
 
-        if (numCrewMemberGroundVictoryPoints >= 120 && !hasMedal(crewMember, medals.get(VC)))
-        {
-            if (crewMember.getBattlesFought() >= 200)
-            {
-                if (numCrewMemberGroundVictoryPoints > 400)
-                {
-                    return medals.get(VC);
-                }
-            }
-        }
-
-        return awardFighter(crewMember, service, victoriesThisMission);
+        return awardTanker(crewMember, service, victoriesThisMission);
     }
 }

@@ -52,7 +52,7 @@ public class InitialCompanyStaffer
 	private void generateAICrewMembers() throws PWCGException 
 	{	 	
 		addAiCrewMembers();
-		validateMissionsFlownForInitialCrewMembers();
+		validateMissionsCompletedForInitialCrewMembers();
 		setAiSkillLevel();
 	}
 
@@ -117,7 +117,7 @@ public class InitialCompanyStaffer
         return numCrewMembers;
     }
 
-    private void validateMissionsFlownForInitialCrewMembers() throws PWCGException
+    private void validateMissionsCompletedForInitialCrewMembers() throws PWCGException
     {
         CrewMembers crewMembers = CrewMemberFilter.filterActiveAINoWounded(companyPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
         for (CrewMember crewMember : crewMembers.getCrewMemberList())

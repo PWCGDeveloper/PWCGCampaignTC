@@ -38,7 +38,7 @@ public class HistoricalAce extends CrewMember
         determineAceName(aceNow, date);
         determineAcePicture(aceNow);
         determineAceVictories(date, aceNow);
-        determineAceMissionsFlown(aceNow);
+        determineAceMissionsCompleted(aceNow);
         determineAceMedals(date, aceNow);
         Company referenceCompany = determineHistoricalAceCompany(date, aceNow);
         determineAceCountry(date, aceNow, referenceCompany);
@@ -74,11 +74,11 @@ public class HistoricalAce extends CrewMember
         }
     }
 
-    private void determineAceMissionsFlown(TankAce aceNow) throws PWCGException
+    private void determineAceMissionsCompleted(TankAce aceNow) throws PWCGException
     {
-        int missionsFlown = aceNow.getCrewMemberVictories().getAirToAirVictoryCount() * 3;
-        missionsFlown += RandomNumberGenerator.getRandom(20);
-        aceNow.setBattlesFought(missionsFlown);
+        int missionsCompleted = aceNow.getCrewMemberVictories().getAirToAirVictoryCount() * 3;
+        missionsCompleted += RandomNumberGenerator.getRandom(20);
+        aceNow.setBattlesFought(missionsCompleted);
     }
 
     private void determineAceMedals(Date date, TankAce aceNow)

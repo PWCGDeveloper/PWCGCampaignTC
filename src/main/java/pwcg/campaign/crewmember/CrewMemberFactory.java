@@ -78,7 +78,7 @@ public class CrewMemberFactory
         IRankHelper rankObj = RankFactory.createRankHelper();
         int rankPos = rankObj.getRankPosByService(rank, service);
         
-        int numMissions = createMissionsFlown(rankPos);
+        int numMissions = createMissionsCompleted(rankPos);
         newCrewMember.setBattlesFought(numMissions);
         
         PwcgRoleCategory companyPrimaryRoleCategory = company.determineCompanyPrimaryRoleCategory(campaign.getDate());
@@ -108,7 +108,7 @@ public class CrewMemberFactory
         newCrewMember.setPicName(picPath);
     }
 
-    private int createMissionsFlown(int rankPos)
+    private int createMissionsCompleted(int rankPos)
     {
         int missionFactorForRank = rankPos;
         if (missionFactorForRank > 3)

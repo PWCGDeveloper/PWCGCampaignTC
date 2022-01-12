@@ -119,7 +119,7 @@ public class CampaignAwardsGeneratorTest
 
 
     @Test
-    public void testPromotionAwardedForVictoriesAndMissionsFlown () throws PWCGException
+    public void testPromotionAwardedForVictoriesAndMissionsCompleted () throws PWCGException
     {     
         CrewMembers nonPlayerCrewMembers = CrewMemberFilter.filterActiveAINoWounded(campaign.getPersonnelManager().getAllCampaignMembers(), campaign.getDate());
 

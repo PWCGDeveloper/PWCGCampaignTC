@@ -14,7 +14,7 @@ import pwcg.mission.ground.vehicle.VehicleDefinition;
 
 public class CrewMemberVictories
 {
-    private List<Victory>  airToAirVictories = new ArrayList<>();
+    private List<Victory>  airVictories = new ArrayList<>();
     private List<Victory>  tankVictories = new ArrayList<>();
     private List<Victory>  trainVictories = new ArrayList<>();
     private List<Victory>  groundVictories = new ArrayList<>();
@@ -30,7 +30,7 @@ public class CrewMemberVictories
         {
             if (victory.getVictim().getAirOrGround() == Victory.AIRCRAFT || victory.getVictim().getAirOrGround() == Victory.UNSPECIFIED_VICTORY)
             {
-                airToAirVictories.add(victory);
+                airVictories.add(victory);
                 addAirVictoryInType(victory);
                 addAirTypeVictory(victory);
             }
@@ -117,9 +117,9 @@ public class CrewMemberVictories
         return archTypeName;
     }
 
-    public List<Victory> getAirToAirVictories()
+    public List<Victory> getAirVictories()
     {
-        return new ArrayList<>(airToAirVictories);
+        return new ArrayList<>(airVictories);
     }
 
     public List<Victory> getTankVictories()
@@ -139,7 +139,7 @@ public class CrewMemberVictories
 
     public int getAirToAirVictoryCount()
     {
-        return airToAirVictories.size();
+        return airVictories.size();
     }
 
     public int getTankVictoryCount()

@@ -28,8 +28,8 @@ public abstract class MedalManager implements IMedalManager
 
 	protected Map<Integer, Medal> medals = new TreeMap<Integer, Medal>();
 
-	protected abstract Medal awardFighter(CrewMember crewMember, ArmedService service, int victoriesThisMission) throws PWCGException ;
-    protected abstract Medal awardBomber(CrewMember crewMember, ArmedService service, int victoriesThisMission) throws PWCGException ;
+	protected abstract Medal awardTanker(CrewMember crewMember, ArmedService service, int victoriesThisMission) throws PWCGException ;
+    protected abstract Medal awardAAA(CrewMember crewMember, ArmedService service, int victoriesThisMission) throws PWCGException ;
     protected abstract Medal awardWings(CrewMember crewMember)  ;
 
 	@Override
@@ -79,13 +79,13 @@ public abstract class MedalManager implements IMedalManager
         medal = awardWings (crewMember);
         if (medal == null)
         {
-            medal = awardFighter(crewMember, service, victoriesThisMission);
+            medal = awardTanker(crewMember, service, victoriesThisMission);
             if (medal == null)
             {
                 Company company =  crewMember.determineCompany();
-                if (company != null && !company.isCompanyThisRole(campaign.getDate(), PwcgRole.ROLE_FIGHTER))
+                if (company != null && !company.isCompanyThisRole(campaign.getDate(), PwcgRole.ROLE_SELF_PROPELLED_AAA))
                 {
-                    medal = awardBomber(crewMember, service, victoriesThisMission);
+                    medal = awardAAA(crewMember, service, victoriesThisMission);
                 }
             }
         }

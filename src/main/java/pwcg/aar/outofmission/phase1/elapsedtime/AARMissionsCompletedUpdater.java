@@ -1,41 +1,41 @@
 package pwcg.aar.outofmission.phase1.elapsedtime;
 
 import pwcg.aar.data.AARContext;
-import pwcg.aar.outofmission.phase2.awards.MissionsFlownCalculator;
+import pwcg.aar.outofmission.phase2.awards.MissionsCompletedCalculator;
 import pwcg.aar.prelim.CampaignMembersOutOfMissionFinder;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.CrewMembers;
 import pwcg.core.exception.PWCGException;
 
-public class AARMissionsFlownUpdater
+public class AARMissionsCompletedUpdater
 {
     private Campaign campaign;
     private AARContext aarContext;
 
-    public AARMissionsFlownUpdater(Campaign campaign, AARContext aarContext)
+    public AARMissionsCompletedUpdater(Campaign campaign, AARContext aarContext)
     {
         this.campaign = campaign;
         this.aarContext = aarContext;
     }
 
-    public void updateMissionsFlown() throws PWCGException 
+    public void updateMissionsCompleted() throws PWCGException 
     {        
-        missionsFlownInMission();
-        missionsFlownOutOfMission();
+        missionsCompletedInMission();
+        missionsCompletedOutOfMission();
     }
     
-    private void missionsFlownInMission() throws PWCGException
+    private void missionsCompletedInMission() throws PWCGException
     {
         CrewMembers campaignMembersInMission = aarContext.getPreliminaryData().getCampaignMembersInMission();
         for (CrewMember crewMember : campaignMembersInMission.getCrewMemberList())
         {
-            int updatedMissionsFlown = MissionsFlownCalculator.calculateMissionsFlown(campaign, crewMember);
-            aarContext.getPersonnelAcheivements().updateMissionsFlown(crewMember.getSerialNumber(), updatedMissionsFlown);
+            int updatedMissionsCompleted = MissionsCompletedCalculator.calculateMissionsCompleted(campaign, crewMember);
+            aarContext.getPersonnelAcheivements().updateMissionsCompleted(crewMember.getSerialNumber(), updatedMissionsCompleted);
         }
     }
 
-    public void missionsFlownOutOfMission() throws PWCGException 
+    public void missionsCompletedOutOfMission() throws PWCGException 
     {        
         CrewMembers campaignMembersInMission = aarContext.getPreliminaryData().getCampaignMembersInMission();
         CrewMembers campaignMembersNotInMission = CampaignMembersOutOfMissionFinder.getActiveCampaignMembersNotInMission(campaign, campaignMembersInMission);
@@ -44,8 +44,8 @@ public class AARMissionsFlownUpdater
         {
             if (OutOfMissionCrewMemberSelector.shouldCrewMemberBeEvaluated(campaign, crewMember)) 
             {
-                int updatedMissionsFlown = MissionsFlownCalculator.calculateMissionsFlown(campaign, crewMember);
-                aarContext.getPersonnelAcheivements().updateMissionsFlown(crewMember.getSerialNumber(), updatedMissionsFlown);
+                int updatedMissionsCompleted = MissionsCompletedCalculator.calculateMissionsCompleted(campaign, crewMember);
+                aarContext.getPersonnelAcheivements().updateMissionsCompleted(crewMember.getSerialNumber(), updatedMissionsCompleted);
             }
         }
     }

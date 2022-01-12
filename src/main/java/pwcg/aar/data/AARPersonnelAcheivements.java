@@ -10,19 +10,19 @@ import pwcg.campaign.crewmember.Victory;
 
 public class AARPersonnelAcheivements
 {
-    private Map<Integer, Integer> missionsFlown = new HashMap<>();
+    private Map<Integer, Integer> missionsCompleted = new HashMap<>();
     private Map<Integer, List<Victory>> victoryAwardByCrewMember = new HashMap<>();
     private List<ClaimDeniedEvent> playerClaimsDenied = new ArrayList<>();
 
-    public void updateMissionsFlown(Integer serialNumber, Integer newMissionsFlown)
+    public void updateMissionsCompleted(Integer serialNumber, Integer newMissionsCompleted)
     {
-        missionsFlown.put(serialNumber, newMissionsFlown);
+        missionsCompleted.put(serialNumber, newMissionsCompleted);
     }
 
 	public void merge(AARPersonnelAcheivements sourcePersonnelAwards)
 	{
 		mergeVictories(sourcePersonnelAwards.getVictoriesByCrewMember());
-        missionsFlown.putAll(sourcePersonnelAwards.getMissionsFlown());
+        missionsCompleted.putAll(sourcePersonnelAwards.getMissionsCompleted());
 	}
 
 	public void mergeVictories(Map<Integer, List<Victory>> sourceVictoryAwardByCrewMember)
@@ -48,9 +48,9 @@ public class AARPersonnelAcheivements
         victoriesForCrewMember.add(victory);
     }
 
-    public Map<Integer, Integer> getMissionsFlown()
+    public Map<Integer, Integer> getMissionsCompleted()
     {
-        return missionsFlown;
+        return missionsCompleted;
     }
     
     public Map<Integer, List<Victory>> getVictoriesByCrewMember()
@@ -74,7 +74,7 @@ public class AARPersonnelAcheivements
         return numGroundVictoriesForCrewMember;
     }
     
-    public int getAirVictoryCountForCrewMember(int serialNumber)
+    public int getVictoryCountForCrewMember(int serialNumber)
     {
         int numAirVictoriesForCrewMember = 0;
         if (victoryAwardByCrewMember.containsKey(serialNumber))

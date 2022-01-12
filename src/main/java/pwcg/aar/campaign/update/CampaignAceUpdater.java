@@ -24,21 +24,21 @@ public class CampaignAceUpdater
 
 	public void updatesCampaignAces() 
 	{
-		updateAceMissionsFlown();
+		updateAceMissionsCompleted();
 
 		updateHistoricalVictories();
 	}
 
 
-    private void updateAceMissionsFlown()
+    private void updateAceMissionsCompleted()
     {
         for (TankAce ace : campaign.getPersonnelManager().getCampaignAces().getActiveCampaignAces().values())
 		{
 			if (ace.getCrewMemberActiveStatus() == CrewMemberStatus.STATUS_ACTIVE)
 			{
-				int missionFlown = ace.getBattlesFought();
-				missionFlown += 3;
-				ace.setBattlesFought(missionFlown);
+				int missionCompleted = ace.getBattlesFought();
+				missionCompleted += 3;
+				ace.setBattlesFought(missionCompleted);
 			}
 		}
     }

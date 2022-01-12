@@ -77,7 +77,7 @@ public class HistoricalAceAwardsGenerator
 
     private void aceVictories(TankAce aceAtPreviousDate, TankAce aceAtNewDate) throws PWCGException
     {
-        for (Victory victory : aceAtNewDate.getCrewMemberVictories().getAirToAirVictories())
+        for (Victory victory : aceAtNewDate.getCrewMemberVictories().getAirVictories())
         {
             if (victory.getDate().before(newDate) &&
                             (victory.getDate().equals(campaign.getDate()) || victory.getDate().after(campaign.getDate())))

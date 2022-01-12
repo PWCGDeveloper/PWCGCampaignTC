@@ -82,7 +82,7 @@ public class CampaignMemberAwardsGeneratorTest
     }
 
     @Test
-    public void testPromotionAwardedForVictoriesAndMissionsFlown () throws PWCGException
+    public void testPromotionAwardedForVictoriesAndMissionsCompleted () throws PWCGException
     {     
         CrewMember aiSquadMember = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "Corporal");
         CampaignPersonnelTestHelper.addVictories(aiSquadMember, campaign.getDate(), 20);

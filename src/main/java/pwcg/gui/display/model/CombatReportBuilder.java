@@ -11,7 +11,6 @@ import pwcg.aar.ui.events.model.PlaneStatusEvent;
 import pwcg.aar.ui.events.model.VictoryEvent;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.CombatReport;
-import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.CrewMemberStatus;
 import pwcg.campaign.crewmember.CrewMembers;
@@ -98,25 +97,12 @@ public class CombatReportBuilder
     {
         String missionStatement = "";
         missionStatement += createCrewsInMissionReport();
-        missionStatement += createFlownFromReport();
         missionStatement += createClaimStatusReport();
         missionStatement += createCrewMemberLostReport();
         missionStatement += createEquipmentLostReport();
         return missionStatement;
     }
 
-
-    private String createFlownFromReport() throws PWCGException
-    {
-        Campaign campaign = PWCGContext.getInstance().getCampaign();
-        
-        String flownFromStatement = "\n";
-
-        flownFromStatement += " The mission was flown from " + reportCrewMember.determineCompany().determineCurrentAirfieldName(campaign.getDate()) + " aerodrome.\n";
-
-        flownFromStatement += "\n";
-        return flownFromStatement;
-    }
 
     private String createCrewMemberLostReport() throws PWCGException
     {
@@ -135,7 +121,7 @@ public class CombatReportBuilder
         
         if (crewMembersLostAppend.length() > 0)
         {
-            crewMembersLostStatement = "CrewMembers lost: \n" + crewMembersLostAppend;
+            crewMembersLostStatement = "Crew members lost: \n" + crewMembersLostAppend;
         }
 
         return crewMembersLostStatement;
@@ -148,20 +134,20 @@ public class CombatReportBuilder
                     .findUiCombatReportDataForCompany(reportCrewMember.getCompanyId()).
                     getCombatReportPanelData().getCompanyPlanesLostInMission();
 
-        String planesLostStatement = "";
-        String planesLostAppend = "";        
-        for (PlaneStatusEvent planeLostEvent :companyPlanesLostInMission.values())
+        String tanksLostStatement = "";
+        String tanksLostAppend = "";        
+        for (PlaneStatusEvent tankLostEvent :companyPlanesLostInMission.values())
         {
-            EquippedTank lostPlane = campaign.getEquipmentManager().getAnyTankWithPreference(planeLostEvent.getPlaneSerialNumber());
-            planesLostAppend += "    " + lostPlane.getDisplayName() + "\n";
+            EquippedTank lostPlane = campaign.getEquipmentManager().getAnyTankWithPreference(tankLostEvent.getPlaneSerialNumber());
+            tanksLostAppend += "    " + lostPlane.getDisplayName() + "\n";
         }
         
-        if (planesLostAppend.length() > 0)
+        if (tanksLostAppend.length() > 0)
         {
-            planesLostStatement = "Aircraft lost: \n" + planesLostAppend;
+            tanksLostStatement = "Vehicles lost: \n" + tanksLostAppend;
         }
 
-        return planesLostStatement;
+        return tanksLostStatement;
     }
     
     private String createCrewsInMissionReport() throws PWCGException
@@ -170,7 +156,7 @@ public class CombatReportBuilder
                         findUiCombatReportDataForCompany(reportCrewMember.getCompanyId()).getCombatReportPanelData().getCrewsInMission();
 
         String missionStatement;
-        missionStatement = "This mission was flown by:\n";
+        missionStatement = "This mission was undertaken by:\n";
         for (CrewMember crewMemberCrewMember : crewMembersInMission.values())
         {
             if (crewMemberCrewMember != null)

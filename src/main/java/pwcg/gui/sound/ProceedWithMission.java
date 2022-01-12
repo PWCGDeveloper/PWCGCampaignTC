@@ -19,14 +19,14 @@ public class ProceedWithMission
         DirectoryReader directoryReader = new DirectoryReader();
         LogSetFinder logSetFinder = new LogSetFinder(directoryReader);
         LogFileMostRecentDateFinder logFileMostRecentDateFinder = new LogFileMostRecentDateFinder(campaign, logSetFinder);
-        Date lastFlownMissionDate = logFileMostRecentDateFinder.determineMostRecentAARLogFileMissionDataSetForCampaign();
+        Date lastCompletedMissionDate = logFileMostRecentDateFinder.determineMostRecentAARLogFileMissionDataSetForCampaign();
         
-        if (lastFlownMissionDate == null)
+        if (lastCompletedMissionDate == null)
         {
             return true;
         }
         
-        if (lastFlownMissionDate.equals(campaign.getDate()))
+        if (lastCompletedMissionDate.equals(campaign.getDate()))
         {
             int result = ConfirmDialog.areYouSure(text);
             if (result == JOptionPane.YES_OPTION)

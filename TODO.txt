@@ -1,6 +1,5 @@
 TC:
 Campaign creation:
-Tank crew pictures
 
 Mission:
 Tank payloads
@@ -13,7 +12,8 @@ replace existing tank unit
 record AI tank types for AAR
 Do not create tank units as base ground units
  - Add tank units after the fact
-- 
+ - 
+ - 
 
 AAR:
 Add out of mission for tank units

@@ -7,7 +7,7 @@ import java.util.Map;
 import pwcg.aar.data.AARContext;
 import pwcg.aar.data.AARPersonnelAwards;
 import pwcg.aar.data.AARPersonnelLosses;
-import pwcg.aar.outofmission.phase1.elapsedtime.AARMissionsFlownUpdater;
+import pwcg.aar.outofmission.phase1.elapsedtime.AARMissionsCompletedUpdater;
 import pwcg.aar.outofmission.phase1.elapsedtime.AARSimulatedMission;
 import pwcg.aar.outofmission.phase2.awards.CampaignAwardsGenerator;
 import pwcg.aar.outofmission.phase2.awards.HistoricalAceAwards;
@@ -61,7 +61,7 @@ public class AARCoordinatorOutOfMission
     private void eventsForNextCampaignDate() throws PWCGException
     {
         simulateMission();
-        missionsFlown();
+        missionsCompleted();
         aceElapsedTimeEvents();
         outOfMissionAwards();
         changeInCommand();
@@ -75,10 +75,10 @@ public class AARCoordinatorOutOfMission
         simulatedMission.simulateMissionEvents();
     }
 
-    private void missionsFlown() throws PWCGException
+    private void missionsCompleted() throws PWCGException
     {
-        AARMissionsFlownUpdater missionsFlown = new AARMissionsFlownUpdater(campaign, aarContext);
-        missionsFlown.updateMissionsFlown();
+        AARMissionsCompletedUpdater missionsCompleted = new AARMissionsCompletedUpdater(campaign, aarContext);
+        missionsCompleted.updateMissionsCompleted();
     }
 
     private void aceElapsedTimeEvents() throws PWCGException 

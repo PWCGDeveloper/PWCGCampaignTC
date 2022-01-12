@@ -9,10 +9,10 @@ import pwcg.product.bos.country.TCServiceManager;
 
 public class PromotionMinimumCriteria
 {
-    private int crewMemberRankMedMinMissions = 20;
-    private int crewMemberRankHighMinMissions = 50;
-    private int crewMemberRankExecMinMissions = 80;
-    private int crewMemberRankCommandMinMissions = 110;
+    private int crewMemberRankMedMinMissions = 15;
+    private int crewMemberRankHighMinMissions = 30;
+    private int crewMemberRankExecMinMissions = 50;
+    private int crewMemberRankCommandMinMissions = 80;
 
     private int crewMemberRankMedMinVictories = 1;
     private int crewMemberRankHighMinVictories = 3;
@@ -24,18 +24,21 @@ public class PromotionMinimumCriteria
         int serviceId = crewMember.determineCompany().getService();
         PwcgRoleCategory roleCategory = crewMember.determineCompany().determineCompanyPrimaryRoleCategory(date);
 
-        setMissionsFlownForPromotion(serviceId, roleCategory);
+        setMissionsCompletedForPromotion(serviceId, roleCategory);
         setVictoriesForPromotion(serviceId, roleCategory);
     }
 
-    private void setMissionsFlownForPromotion(int serviceId, PwcgRoleCategory roleCategory)
+    private void setMissionsCompletedForPromotion(int serviceId, PwcgRoleCategory roleCategory)
     {
-        if (serviceId == TCServiceManager.WEHRMACHT)
+        if (roleCategory == PwcgRoleCategory.SELF_PROPELLED_AAA)
+        {
+            setMissionsForAAA();
+        }
+        else if (serviceId == TCServiceManager.WEHRMACHT)
         {
             setMissionsForWehrmacht();
         }
-
-        if (serviceId == TCServiceManager.US_ARMY || serviceId == TCServiceManager.BRITISH_ARMY)
+        else if (serviceId == TCServiceManager.US_ARMY || serviceId == TCServiceManager.BRITISH_ARMY)
         {
             setMissionsForUSArmy();
         }
@@ -43,26 +46,47 @@ public class PromotionMinimumCriteria
 
     private void setVictoriesForPromotion(int serviceId, PwcgRoleCategory roleCategory)
     {
-        if (serviceId == TCServiceManager.WEHRMACHT)
+        if (roleCategory == PwcgRoleCategory.SELF_PROPELLED_AAA)
+        {
+            setVictoriesForAAA();
+        }
+        else if (serviceId == TCServiceManager.WEHRMACHT)
         {
             setVictoriesForWehrmacht();
         }
     }
 
+    private void setMissionsForAAA()
+    {
+        crewMemberRankMedMinMissions = 10;
+        crewMemberRankHighMinMissions = 30;
+        crewMemberRankExecMinMissions = 40;
+        crewMemberRankCommandMinMissions = 50;
+    }
+
     private void setMissionsForWehrmacht()
     {
-        crewMemberRankMedMinMissions = 30;
-        crewMemberRankHighMinMissions = 60;
-        crewMemberRankExecMinMissions = 110;
-        crewMemberRankCommandMinMissions = 150;
+        crewMemberRankMedMinMissions = 20;
+        crewMemberRankHighMinMissions = 50;
+        crewMemberRankExecMinMissions = 80;
+        crewMemberRankCommandMinMissions = 100;
     }
 
     private void setMissionsForUSArmy()
     {
-        crewMemberRankMedMinMissions = 20;
-        crewMemberRankHighMinMissions = 40;
-        crewMemberRankExecMinMissions = 80;
-        crewMemberRankCommandMinMissions = 100;
+        crewMemberRankMedMinMissions = 10;
+        crewMemberRankHighMinMissions = 30;
+        crewMemberRankExecMinMissions = 40;
+        crewMemberRankCommandMinMissions = 50;
+    }
+
+    private void setVictoriesForAAA()
+    {
+
+        crewMemberRankMedMinVictories = 1;
+        crewMemberRankHighMinVictories = 2;
+        crewMemberRankExecMinVictories = 3;
+        crewMemberRankCommandMinVictories = 4;
     }
 
     private void setVictoriesForWehrmacht()

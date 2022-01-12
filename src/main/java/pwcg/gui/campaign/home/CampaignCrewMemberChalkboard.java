@@ -146,12 +146,12 @@ public class CampaignCrewMemberChalkboard extends ImageResizingPanel
             constraints.gridy = gridbagRow;
             companyPanel.add(crewMemberLabel, constraints);
 
-            JLabel missionsFlownLabel = PWCGLabelFactory.makeTransparentLabel(
+            JLabel missionsCompletedLabel = PWCGLabelFactory.makeTransparentLabel(
                     "" + crewMember.getBattlesFought(), ColorMap.CHALK_FOREGROUND, font, SwingConstants.RIGHT);
             constraints.weightx = 0.1;
             constraints.gridx = 2;
             constraints.gridy = gridbagRow;
-            companyPanel.add(missionsFlownLabel, constraints);
+            companyPanel.add(missionsCompletedLabel, constraints);
             
             JLabel airToAirVictoryLabel = PWCGLabelFactory.makeTransparentLabel(
                     "" + crewMember.getCrewMemberVictories().getAirToAirVictoryCount(), ColorMap.CHALK_FOREGROUND, font, SwingConstants.RIGHT);

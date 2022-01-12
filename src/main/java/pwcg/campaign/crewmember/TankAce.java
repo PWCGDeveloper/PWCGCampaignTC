@@ -54,10 +54,10 @@ public class TankAce extends CrewMember
         setCountry(historicalAce.getCountry());
         setRank(historicalAceNow.getRank());
 
-        for (Victory historicalVictory : historicalAceNow.getCrewMemberVictories().getAirToAirVictories())
+        for (Victory historicalVictory : historicalAceNow.getCrewMemberVictories().getAirVictories())
         {
             boolean found = false;
-            for (Victory victory : getCrewMemberVictories().getAirToAirVictories())
+            for (Victory victory : getCrewMemberVictories().getAirVictories())
             {
                 if (victory.getDate().equals(historicalVictory.getDate())
                                 && victory.getVictim().getType().equals(historicalVictory.getVictim().getType()))
@@ -71,7 +71,7 @@ public class TankAce extends CrewMember
                 this.addVictory(historicalVictory);
             }
         }
-        Collections.sort(getCrewMemberVictories().getAirToAirVictories());
+        Collections.sort(getCrewMemberVictories().getAirVictories());
 
         for (Medal historicalMedal : historicalAceNow.getMedals())
         {

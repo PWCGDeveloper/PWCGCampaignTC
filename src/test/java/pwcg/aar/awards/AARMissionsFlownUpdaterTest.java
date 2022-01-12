@@ -13,7 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import pwcg.aar.data.AARContext;
 import pwcg.aar.data.AARPersonnelAcheivements;
-import pwcg.aar.outofmission.phase1.elapsedtime.AARMissionsFlownUpdater;
+import pwcg.aar.outofmission.phase1.elapsedtime.AARMissionsCompletedUpdater;
 import pwcg.aar.prelim.AARPreliminaryData;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.context.PWCGContext;
@@ -26,7 +26,7 @@ import pwcg.testutils.CompanyTestProfile;
 
 @ExtendWith(MockitoExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class AARMissionsFlownUpdaterTest
+public class AARMissionsCompletedUpdaterTest
 {
     private Campaign campaign;
     private AARPersonnelAcheivements personnelAcheivements = new AARPersonnelAcheivements();
@@ -47,7 +47,7 @@ public class AARMissionsFlownUpdaterTest
     }
 
     @Test
-    public void testMissionsFlownIncreased() throws PWCGException
+    public void testMissionsCompletedIncreased() throws PWCGException
     {
         Mockito.when(aarContext.getPersonnelAcheivements()).thenReturn(personnelAcheivements);
         Mockito.when(aarContext.getPreliminaryData()).thenReturn(preliminaryData);        
@@ -61,26 +61,26 @@ public class AARMissionsFlownUpdaterTest
 
         Mockito.when(preliminaryData.getCampaignMembersInMission()).thenReturn(campaignMembersInMission);
         
-        int missionsFlownBefore1 = nonPlayerCrewMembers.getCrewMemberList().get(1).getBattlesFought();
-        int missionsFlownBefore2 = nonPlayerCrewMembers.getCrewMemberList().get(2).getBattlesFought();
-        int missionsFlownBefore3 = nonPlayerCrewMembers.getCrewMemberList().get(3).getBattlesFought();
+        int missionsCompletedBefore1 = nonPlayerCrewMembers.getCrewMemberList().get(1).getBattlesFought();
+        int missionsCompletedBefore2 = nonPlayerCrewMembers.getCrewMemberList().get(2).getBattlesFought();
+        int missionsCompletedBefore3 = nonPlayerCrewMembers.getCrewMemberList().get(3).getBattlesFought();
         
-        AARMissionsFlownUpdater missionsFlown = new AARMissionsFlownUpdater(campaign, aarContext);
-        missionsFlown.updateMissionsFlown();
+        AARMissionsCompletedUpdater missionsCompleted = new AARMissionsCompletedUpdater(campaign, aarContext);
+        missionsCompleted.updateMissionsCompleted();
 
-        Map<Integer, Integer> updatedMissionsFLown = personnelAcheivements.getMissionsFlown();
+        Map<Integer, Integer> updatedMissionsFLown = personnelAcheivements.getMissionsCompleted();
         
         assert(updatedMissionsFLown.containsKey(nonPlayerCrewMembers.getCrewMemberList().get(1).getSerialNumber()));
         assert(updatedMissionsFLown.containsKey(nonPlayerCrewMembers.getCrewMemberList().get(2).getSerialNumber()));
         assert(updatedMissionsFLown.containsKey(nonPlayerCrewMembers.getCrewMemberList().get(3).getSerialNumber()));
         
-        int missionsFlownAfter1 = updatedMissionsFLown.get(nonPlayerCrewMembers.getCrewMemberList().get(1).getSerialNumber());
-        int missionsFlownAfter2 = updatedMissionsFLown.get(nonPlayerCrewMembers.getCrewMemberList().get(2).getSerialNumber());
-        int missionsFlownAfter3 = updatedMissionsFLown.get(nonPlayerCrewMembers.getCrewMemberList().get(3).getSerialNumber());
+        int missionsCompletedAfter1 = updatedMissionsFLown.get(nonPlayerCrewMembers.getCrewMemberList().get(1).getSerialNumber());
+        int missionsCompletedAfter2 = updatedMissionsFLown.get(nonPlayerCrewMembers.getCrewMemberList().get(2).getSerialNumber());
+        int missionsCompletedAfter3 = updatedMissionsFLown.get(nonPlayerCrewMembers.getCrewMemberList().get(3).getSerialNumber());
 
-        Assertions.assertTrue ((missionsFlownAfter1 - missionsFlownBefore1) == 1);
-        Assertions.assertTrue ((missionsFlownAfter2 - missionsFlownBefore2) == 1);
-        Assertions.assertTrue ((missionsFlownAfter3 - missionsFlownBefore3) == 1);
+        Assertions.assertTrue ((missionsCompletedAfter1 - missionsCompletedBefore1) == 1);
+        Assertions.assertTrue ((missionsCompletedAfter2 - missionsCompletedBefore2) == 1);
+        Assertions.assertTrue ((missionsCompletedAfter3 - missionsCompletedBefore3) == 1);
     }
 
 }

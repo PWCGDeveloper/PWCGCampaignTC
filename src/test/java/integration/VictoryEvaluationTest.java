@@ -88,7 +88,7 @@ public class VictoryEvaluationTest
         playerDeclarations.addDeclaration(playerVictoryDeclaration1);
 
         CrewMember player = mission.getParticipatingPlayers().getAllParticipatingPlayers().get(0);
-        Assertions.assertEquals(0, player.getCrewMemberVictories().getAirToAirVictories().size());
+        Assertions.assertEquals(0, player.getCrewMemberVictories().getAirVictories().size());
 
         Map<Integer, PlayerDeclarations> playerDeclarationMap = new HashMap<>();
         playerDeclarationMap.put(player.getSerialNumber(), playerDeclarations);
@@ -97,7 +97,7 @@ public class VictoryEvaluationTest
         AARCoordinator.getInstance().submitAAR(playerDeclarationMap);
     
         CrewMember playerAfter = mission.getParticipatingPlayers().getAllParticipatingPlayers().get(0);
-        Assertions.assertEquals(1, playerAfter.getCrewMemberVictories().getAirToAirVictories().size());
+        Assertions.assertEquals(1, playerAfter.getCrewMemberVictories().getAirVictories().size());
     }
 
     @Test
@@ -137,7 +137,7 @@ public class VictoryEvaluationTest
         playerDeclarations.addDeclaration(playerVictoryDeclaration2);
 
         CrewMember player = mission.getParticipatingPlayers().getAllParticipatingPlayers().get(0);
-        Assertions.assertEquals(0, player.getCrewMemberVictories().getAirToAirVictories().size());
+        Assertions.assertEquals(0, player.getCrewMemberVictories().getAirVictories().size());
 
         Map<Integer, PlayerDeclarations> playerDeclarationMap = new HashMap<>();
         playerDeclarationMap.put(player.getSerialNumber(), playerDeclarations);
@@ -146,7 +146,7 @@ public class VictoryEvaluationTest
         AARCoordinator.getInstance().submitAAR(playerDeclarationMap);
     
         CrewMember playerAfter = mission.getParticipatingPlayers().getAllParticipatingPlayers().get(0);
-        Assertions.assertEquals(2, playerAfter.getCrewMemberVictories().getAirToAirVictories().size());
+        Assertions.assertEquals(2, playerAfter.getCrewMemberVictories().getAirVictories().size());
     }
 
     @Test
@@ -183,7 +183,7 @@ public class VictoryEvaluationTest
         playerDeclarations.addDeclaration(playerVictoryDeclaration2);
 
         CrewMember player = mission.getParticipatingPlayers().getAllParticipatingPlayers().get(0);
-        Assertions.assertEquals(0, player.getCrewMemberVictories().getAirToAirVictories().size());
+        Assertions.assertEquals(0, player.getCrewMemberVictories().getAirVictories().size());
 
         Map<Integer, PlayerDeclarations> playerDeclarationMap = new HashMap<>();
         playerDeclarationMap.put(player.getSerialNumber(), playerDeclarations);
@@ -192,7 +192,7 @@ public class VictoryEvaluationTest
         AARCoordinator.getInstance().submitAAR(playerDeclarationMap);
     
         CrewMember playerAfter = mission.getParticipatingPlayers().getAllParticipatingPlayers().get(0);
-        Assertions.assertEquals(1, playerAfter.getCrewMemberVictories().getAirToAirVictories().size());
+        Assertions.assertEquals(1, playerAfter.getCrewMemberVictories().getAirVictories().size());
     }
 
     @Test
@@ -215,7 +215,7 @@ public class VictoryEvaluationTest
         Map<Integer, Integer> playerFlightVictories = new HashMap<>();
         for(PlaneMcu plane : playerFlightPlanes)
         {
-            playerFlightVictories.put(plane.getTankCommander().getSerialNumber(), plane.getTankCommander().getCrewMemberVictories().getAirToAirVictories().size());
+            playerFlightVictories.put(plane.getTankCommander().getSerialNumber(), plane.getTankCommander().getCrewMemberVictories().getAirVictories().size());
         }
 
 
@@ -228,7 +228,7 @@ public class VictoryEvaluationTest
         PlayerDeclarations playerDeclarations = new PlayerDeclarations();
 
         CrewMember player = mission.getParticipatingPlayers().getAllParticipatingPlayers().get(0);
-        Assertions.assertEquals(0, player.getCrewMemberVictories().getAirToAirVictories().size());
+        Assertions.assertEquals(0, player.getCrewMemberVictories().getAirVictories().size());
 
         Map<Integer, PlayerDeclarations> playerDeclarationMap = new HashMap<>();
         playerDeclarationMap.put(player.getSerialNumber(), playerDeclarations);
@@ -237,14 +237,14 @@ public class VictoryEvaluationTest
         AARCoordinator.getInstance().submitAAR(playerDeclarationMap);
     
         CrewMember playerAfter = mission.getParticipatingPlayers().getAllParticipatingPlayers().get(0);
-        Assertions.assertEquals(0, playerAfter.getCrewMemberVictories().getAirToAirVictories().size());
+        Assertions.assertEquals(0, playerAfter.getCrewMemberVictories().getAirVictories().size());
         
         boolean wasAwardedToCrewMember = false;
         for (int serialNumber : playerFlightVictories.keySet())
         {
             int numVictoriesBefore = playerFlightVictories.get(serialNumber);
             CrewMember crewMember = campaign.getPersonnelManager().getAnyCampaignMember(serialNumber);
-            if (numVictoriesBefore < crewMember.getCrewMemberVictories().getAirToAirVictories().size())
+            if (numVictoriesBefore < crewMember.getCrewMemberVictories().getAirVictories().size())
             {
                 wasAwardedToCrewMember = true;
             }

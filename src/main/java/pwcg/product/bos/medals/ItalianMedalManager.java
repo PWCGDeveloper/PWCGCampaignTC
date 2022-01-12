@@ -47,7 +47,7 @@ public class ItalianMedalManager extends BoSMedalManager
         return null;
     }
 
-	protected Medal awardFighter(CrewMember crewMember, ArmedService service, int victoriesThisMission) throws PWCGException 
+	protected Medal awardTanker(CrewMember crewMember, ArmedService service, int victoriesThisMission) throws PWCGException 
 	{
 		if ((crewMember.getCrewMemberVictories().getAirToAirVictoryCount() >= 1) && !hasMedal(crewMember, medals.get(MEDAL_MILITARY_VALOR_BRONZE)))
 		{
@@ -77,7 +77,7 @@ public class ItalianMedalManager extends BoSMedalManager
 		return null;
 	}
 
-    protected Medal awardBomber(CrewMember crewMember, ArmedService service, int victoriesThisMission) throws PWCGException 
+    protected Medal awardAAA(CrewMember crewMember, ArmedService service, int victoriesThisMission) throws PWCGException 
     {
         int numCrewMemberGroundVictoryPoints = crewMember.getCrewMemberVictories().getGroundVictoryPointTotal();
 
@@ -119,6 +119,6 @@ public class ItalianMedalManager extends BoSMedalManager
             }
         }
         
-        return awardFighter(crewMember, service, victoriesThisMission);
+        return awardTanker(crewMember, service, victoriesThisMission);
     }
 }

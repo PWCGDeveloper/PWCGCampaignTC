@@ -50,40 +50,40 @@ public class RussianMedalManager extends BoSMedalManager
         return null;
     }
 
-	protected Medal awardFighter(CrewMember crewMember, ArmedService service, int numMissionVictories) throws PWCGException 
+	protected Medal awardTanker(CrewMember crewMember, ArmedService service, int numMissionVictories) throws PWCGException 
 	{
-	    int crewMemberTotalVictories = crewMember.getCrewMemberVictories().getAirToAirVictoryCount();
-		if ((crewMemberTotalVictories >= 2) && !hasMedal(crewMember, medals.get(ORDER_RED_STAR)))
+	    int tankVictories = crewMember.getCrewMemberVictories().getTankVictoryCount();
+		if ((tankVictories >= 2) && !hasMedal(crewMember, medals.get(ORDER_RED_STAR)))
 		{
 			return medals.get(ORDER_RED_STAR);
 		}
 		
-		if ((crewMemberTotalVictories >= 5) && !hasMedal(crewMember, medals.get(ORDER_OF_GLORY)))
+		if ((tankVictories >= 4) && !hasMedal(crewMember, medals.get(ORDER_OF_GLORY)))
 		{
 			return medals.get(ORDER_OF_GLORY);
 		}
 		
-        if ((crewMemberTotalVictories >= 6) && !hasMedal(crewMember, medals.get(ORDER_PATRIOTIC_WAR_2)))
+        if ((tankVictories >= 6) && !hasMedal(crewMember, medals.get(ORDER_PATRIOTIC_WAR_2)))
         {
             return medals.get(ORDER_PATRIOTIC_WAR_2);
         }
         
-        if ((crewMemberTotalVictories >= 15) && !hasMedal(crewMember, medals.get(ORDER_PATRIOTIC_WAR_1)))
+        if ((tankVictories >= 10) && !hasMedal(crewMember, medals.get(ORDER_PATRIOTIC_WAR_1)))
         {
             return medals.get(ORDER_PATRIOTIC_WAR_1);
         }
         
-        if ((crewMemberTotalVictories >= 20) && numMissionVictories >= 2 && !hasMedal(crewMember, medals.get(ORDER_RED_BANNER)))
+        if ((tankVictories >= 15) && numMissionVictories >= 2 && !hasMedal(crewMember, medals.get(ORDER_RED_BANNER)))
         {
             return medals.get(ORDER_RED_BANNER);
         }
         
-        if ((crewMemberTotalVictories >= 100) && !hasMedal(crewMember, medals.get(ORDER_ALEXANDER_NEVSKY)))
+        if ((tankVictories >= 50) && !hasMedal(crewMember, medals.get(ORDER_ALEXANDER_NEVSKY)))
         {
             return medals.get(ORDER_ALEXANDER_NEVSKY);
         }
 
-        if ((crewMemberTotalVictories >= 30) && numMissionVictories >= 2 && !hasMedal(crewMember, medals.get(HERO_SOVIET_UNION)))
+        if ((tankVictories >= 20) && numMissionVictories >= 2 && !hasMedal(crewMember, medals.get(HERO_SOVIET_UNION)))
         {
             return medals.get(HERO_SOVIET_UNION);
         }
@@ -91,7 +91,7 @@ public class RussianMedalManager extends BoSMedalManager
 		return null;
 	}
 
-    protected Medal awardBomber(CrewMember crewMember, ArmedService service, int victoriesThisMission) throws PWCGException 
+    protected Medal awardAAA(CrewMember crewMember, ArmedService service, int victoriesThisMission) throws PWCGException 
     {
         int numCrewMemberGroundVictoryPoints = crewMember.getCrewMemberVictories().getGroundVictoryPointTotal();
         if (!hasMedal(crewMember, medals.get(ORDER_RED_STAR)))
@@ -100,7 +100,7 @@ public class RussianMedalManager extends BoSMedalManager
 	        {
 	            return medals.get(ORDER_RED_STAR);
 	        }
-            if (numCrewMemberGroundVictoryPoints > 10)
+            if (numCrewMemberGroundVictoryPoints > 3)
             {
                 return medals.get(ORDER_RED_STAR);
             }
@@ -108,7 +108,7 @@ public class RussianMedalManager extends BoSMedalManager
         
         if (!hasMedal(crewMember, medals.get(ORDER_OF_GLORY)))
         {
-            if (numCrewMemberGroundVictoryPoints > 40)
+            if (numCrewMemberGroundVictoryPoints > 15)
             {
                 return medals.get(ORDER_OF_GLORY);
             }
@@ -116,7 +116,7 @@ public class RussianMedalManager extends BoSMedalManager
         
         if (!hasMedal(crewMember, medals.get(ORDER_PATRIOTIC_WAR_2)))
         {
-            if ((crewMember.getBattlesFought() >= 20) && numCrewMemberGroundVictoryPoints > 30)
+            if ((crewMember.getBattlesFought() >= 20) && numCrewMemberGroundVictoryPoints > 20)
             {
                 return medals.get(ORDER_PATRIOTIC_WAR_2);
             }
@@ -124,7 +124,7 @@ public class RussianMedalManager extends BoSMedalManager
         
         if (!hasMedal(crewMember, medals.get(ORDER_PATRIOTIC_WAR_1)))
         {
-            if ((crewMember.getBattlesFought() >= 30) && numCrewMemberGroundVictoryPoints > 50)
+            if ((crewMember.getBattlesFought() >= 30) && numCrewMemberGroundVictoryPoints > 25)
             {
                 return medals.get(ORDER_PATRIOTIC_WAR_1);
             }
@@ -140,12 +140,12 @@ public class RussianMedalManager extends BoSMedalManager
         
         if (!hasMedal(crewMember, medals.get(HERO_SOVIET_UNION)))
         {
-            if ((crewMember.getBattlesFought() >= 40) && numCrewMemberGroundVictoryPoints > 120)
+            if ((crewMember.getBattlesFought() >= 40) && numCrewMemberGroundVictoryPoints > 50)
             {
                 return medals.get(HERO_SOVIET_UNION);
             }
         }
         
-        return awardFighter(crewMember, service, victoriesThisMission);
+        return awardTanker(crewMember, service, victoriesThisMission);
     }
 }

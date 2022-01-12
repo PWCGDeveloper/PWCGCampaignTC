@@ -33,7 +33,7 @@ public class CrewMemberLogPages
         CrewMemberVictories companyMemberVictories = crewMember.getCrewMemberVictories();
         if (companyMemberVictories.getAirToAirVictoryCount() > 0)
         {
-            pageCount = addVictoriesToPage(pageCount, companyMemberVictories.getAirToAirVictories());
+            pageCount = addVictoriesToPage(pageCount, companyMemberVictories.getAirVictories());
         }
 
         if (companyMemberVictories.getTankVictoryCount() > 0)
