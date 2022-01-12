@@ -8,7 +8,7 @@ import pwcg.core.exception.PWCGException;
 
 public class GermanMedalManager extends BoSMedalManager 
 {
-    public static int PILOTS_BADGE = 1;
+    public static int CREWS_BADGE = 1;
 	public static int IRON_CROSS_2 = 2;
 	public static int IRON_CROSS_1 = 3;
 	public static int GERMAN_CROSS_GOLD = 4;
@@ -25,7 +25,7 @@ public class GermanMedalManager extends BoSMedalManager
     {
         super(campaign);
 		
-        medals.put(PILOTS_BADGE, new Medal ("CrewMembers Badge",                                         "ger_crewMembers_badge.png"));
+        medals.put(CREWS_BADGE, new Medal ("CrewMembers Badge",                                     "ger_crew_badge.png"));
         medals.put(IRON_CROSS_2, new Medal ("Iron Cross 2nd Class",                                 "ger_iron_cross_second_class.png"));
 		medals.put(IRON_CROSS_1, new Medal ("Iron Cross 1st Class", 					            "ger_iron_cross_first_class.png"));
 		medals.put(GERMAN_CROSS_GOLD, new Medal ("German Cross Gold", 	                            "ger_german_cross_gold.png"));
@@ -59,9 +59,9 @@ public class GermanMedalManager extends BoSMedalManager
 
     protected Medal awardWings(CrewMember crewMember) 
     {
-        if (!hasMedal(crewMember, medals.get(PILOTS_BADGE)))
+        if (!hasMedal(crewMember, medals.get(CREWS_BADGE)))
         {
-            return medals.get(PILOTS_BADGE);
+            return medals.get(CREWS_BADGE);
         }
         
         return null;

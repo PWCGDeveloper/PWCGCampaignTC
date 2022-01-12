@@ -19,7 +19,7 @@ public class PWCGLogger
     {
         SKIN,
         VICTORY,
-        PILOT_STATUS
+        CREW_STATUS
     };
     
     private static LogCategory enabledCategories[] = 

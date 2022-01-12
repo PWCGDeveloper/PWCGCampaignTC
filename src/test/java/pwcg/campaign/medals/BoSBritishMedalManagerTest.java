@@ -51,7 +51,7 @@ public class BoSBritishMedalManagerTest extends MedalManagerTestBase
         service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.RAF, campaign.getDate());
         Mockito.when(player.determineService(ArgumentMatchers.<Date>any())).thenReturn(service);
 
-        awardMedal(BritishMedalManager.PILOTS_BADGE, 0, 0);
+        awardMedal(BritishMedalManager.CREWS_BADGE, 0, 0);
         awardMedal(BritishMedalManager.DFC, 5, 1);
         awardMedal(BritishMedalManager.DFC_BAR_1, 10, 1);
         awardMedal(BritishMedalManager.DSO, 15, 1);
@@ -66,7 +66,7 @@ public class BoSBritishMedalManagerTest extends MedalManagerTestBase
         service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.RAF, campaign.getDate());
         Mockito.when(player.determineService(ArgumentMatchers.<Date>any())).thenReturn(service);
 
-        awardMedal(BritishMedalManager.PILOTS_BADGE, 0, 0);
+        awardMedal(BritishMedalManager.CREWS_BADGE, 0, 0);
         awardMedal(BritishMedalManager.DFC, 5, 1);
         awardMedal(BritishMedalManager.DFC_BAR_1, 10, 1);
         awardMedal(BritishMedalManager.DSO, 15, 1);
@@ -81,7 +81,7 @@ public class BoSBritishMedalManagerTest extends MedalManagerTestBase
         service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.RAF, campaign.getDate());
         Mockito.when(player.determineService(ArgumentMatchers.<Date>any())).thenReturn(service);
 
-        awardMedal(BritishMedalManager.PILOTS_BADGE, 0, 0);
+        awardMedal(BritishMedalManager.CREWS_BADGE, 0, 0);
         awardMedal(BritishMedalManager.DFC, 5, 1);
         awardMedal(BritishMedalManager.DFC_BAR_1, 10, 1);
         awardMedal(BritishMedalManager.DSO, 15, 1);
@@ -100,7 +100,7 @@ public class BoSBritishMedalManagerTest extends MedalManagerTestBase
         service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.RAF, campaign.getDate());
         Mockito.when(player.determineService(ArgumentMatchers.<Date>any())).thenReturn(service);
 
-        awardMedal(BritishMedalManager.PILOTS_BADGE, 0, 0);
+        awardMedal(BritishMedalManager.CREWS_BADGE, 0, 0);
         awardMedal(BritishMedalManager.DFC, 5, 1);
         awardMedal(BritishMedalManager.DFC_BAR_1, 10, 1);
         awardMedal(BritishMedalManager.DSO, 15, 1);

@@ -52,7 +52,7 @@ public class BoSGermanMedalManagerTest extends MedalManagerTestBase
 	    service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.LUFTWAFFE, campaign.getDate());
         Mockito.when(player.determineService(ArgumentMatchers.<Date>any())).thenReturn(service);
 
-        awardMedal(GermanMedalManager.PILOTS_BADGE, 0, 0);
+        awardMedal(GermanMedalManager.CREWS_BADGE, 0, 0);
         awardMedal(GermanMedalManager.IRON_CROSS_2, 2, 1);
 		awardMedal(GermanMedalManager.IRON_CROSS_1, 10, 1);
 		awardMedal(GermanMedalManager.GERMAN_CROSS_GOLD, 25, 1);
@@ -69,7 +69,7 @@ public class BoSGermanMedalManagerTest extends MedalManagerTestBase
 	    service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.LUFTWAFFE, campaign.getDate());
         Mockito.when(player.determineService(ArgumentMatchers.<Date>any())).thenReturn(service);
 
-        awardMedal(GermanMedalManager.PILOTS_BADGE, 0, 0);
+        awardMedal(GermanMedalManager.CREWS_BADGE, 0, 0);
 		awardMedal(GermanMedalManager.IRON_CROSS_2, 2, 1);
 		awardMedal(GermanMedalManager.IRON_CROSS_1, 10, 1);
 		awardMedal(GermanMedalManager.GERMAN_CROSS_GOLD, 25, 1);
@@ -91,7 +91,7 @@ public class BoSGermanMedalManagerTest extends MedalManagerTestBase
         service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.LUFTWAFFE, campaign.getDate());
         Mockito.when(player.determineService(ArgumentMatchers.<Date>any())).thenReturn(service);
 
-        awardMedal(GermanMedalManager.PILOTS_BADGE, 0, 0);
+        awardMedal(GermanMedalManager.CREWS_BADGE, 0, 0);
         awardMedal(GermanMedalManager.IRON_CROSS_2, 2, 1);
         awardMedal(GermanMedalManager.IRON_CROSS_1, 10, 1);
         awardWoundedAward(player, service);

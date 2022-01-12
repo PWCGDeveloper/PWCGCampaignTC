@@ -46,7 +46,7 @@ public class BoSAmericanMedalManagerTest extends MedalManagerTestBase
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19441001"));
         service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.USAAF, campaign.getDate());
 
-        awardMedal(AmericanMedalManager.PILOTS_BADGE, 0, 0);
+        awardMedal(AmericanMedalManager.CREWS_BADGE, 0, 0);
         awardMedal(AmericanMedalManager.BRONZE_STAR, 3, 1);
         awardMedal(AmericanMedalManager.DISTINGUISHED_FLYING_CROSS, 6, 1);
         awardMedal(AmericanMedalManager.SILVER_STAR, 15, 1);
@@ -60,7 +60,7 @@ public class BoSAmericanMedalManagerTest extends MedalManagerTestBase
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19441001"));
         service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.RAF, campaign.getDate());
 
-        awardMedal(AmericanMedalManager.PILOTS_BADGE, 0, 0);
+        awardMedal(AmericanMedalManager.CREWS_BADGE, 0, 0);
         awardMedal(AmericanMedalManager.BRONZE_STAR, 3, 1);
         awardMedal(AmericanMedalManager.DISTINGUISHED_FLYING_CROSS, 6, 1);
         awardMedal(AmericanMedalManager.SILVER_STAR, 15, 1);
@@ -74,7 +74,7 @@ public class BoSAmericanMedalManagerTest extends MedalManagerTestBase
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19441001"));
         service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.RAF, campaign.getDate());
 
-        awardMedal(AmericanMedalManager.PILOTS_BADGE, 0, 0);
+        awardMedal(AmericanMedalManager.CREWS_BADGE, 0, 0);
         awardMedal(AmericanMedalManager.BRONZE_STAR, 3, 1);
         awardMedal(AmericanMedalManager.DISTINGUISHED_FLYING_CROSS, 6, 1);
         awardMedal(AmericanMedalManager.SILVER_STAR, 15, 1);
@@ -88,7 +88,7 @@ public class BoSAmericanMedalManagerTest extends MedalManagerTestBase
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19441001"));
         service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.RAF, campaign.getDate());
 
-        awardMedal(AmericanMedalManager.PILOTS_BADGE, 0, 0);
+        awardMedal(AmericanMedalManager.CREWS_BADGE, 0, 0);
         awardMedal(AmericanMedalManager.BRONZE_STAR, 3, 1);
         awardMedal(AmericanMedalManager.DISTINGUISHED_FLYING_CROSS, 6, 1);
         awardMedal(AmericanMedalManager.SILVER_STAR, 15, 1);

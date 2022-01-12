@@ -37,7 +37,7 @@ public class PlaneType implements Cloneable
     protected int climbOutRate;
     protected int goodness = 50;
     protected int range = 400;
-    protected boolean isFlyable = false;
+    protected boolean isDrivable = false;
     protected boolean isNovice = false;
     protected PlaneSize planeSize = PlaneSize.PLANE_SIZE_SMALL;
     protected ArrayList<PwcgRoleCategory> roleCategories = new ArrayList<>();
@@ -75,7 +75,7 @@ public class PlaneType implements Cloneable
         planeType.goodness = this.goodness;
         planeType.range = this.range;
 
-        planeType.isFlyable = this.isFlyable;
+        planeType.isDrivable = this.isDrivable;
         planeType.isNovice = this.isNovice;
         planeType.planeSize = this.planeSize;
 
@@ -287,14 +287,14 @@ public class PlaneType implements Cloneable
         this.desc = desc;
     }
 
-    public boolean isFlyable()
+    public boolean isDrivable()
     {
-        return isFlyable;
+        return isDrivable;
     }
 
-    public void setFlyable(boolean isFlyable)
+    public void setFlyable(boolean isDrivable)
     {
-        this.isFlyable = isFlyable;
+        this.isDrivable = isDrivable;
     }
 
     public ArrayList<PwcgRoleCategory> getRoleCategories()

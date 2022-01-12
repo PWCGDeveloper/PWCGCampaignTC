@@ -29,7 +29,7 @@
 		"SaveStupidAi": {
 			"value": "0",
 			"label": "Save AI From Itself",
-			"help": "AI pilots will only be killed in a mission if shot down"
+			"help": "AI crews will only be killed in a mission if shot down"
 		}
 	}
 }

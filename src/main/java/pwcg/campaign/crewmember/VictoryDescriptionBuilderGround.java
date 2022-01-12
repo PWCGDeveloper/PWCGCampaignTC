@@ -22,7 +22,7 @@ public class VictoryDescriptionBuilderGround extends VictoryDescriptionBuilderBa
 
     // On <victory victory.getDate()> near <location>.
     // A <victory.getVictim() ground unit> was destroyed by by <victory.getVictor() name> of <victory.getVictor() company name> 
-    // <victory.getVictor() crew 1> and <victory.getVictor() crew 1> were flying a <victory.getVictor() plane Name>.
+    // <victory.getVictor() crew 1> and <victory.getVictor() crew 1> were using a <victory.getVictor() plane Name>.
     public String createVictoryDescriptionAirToGround() throws PWCGException
     {
         String victoryDesc = "";
@@ -46,7 +46,7 @@ public class VictoryDescriptionBuilderGround extends VictoryDescriptionBuilderBa
         // Line 3
         victoryDesc +=  "\n";
         victoryDesc +=  victory.getVictor().getCrewMemberName();
-        victoryDesc +=  " was flying a " + victorTankType + ".";        
+        victoryDesc +=  " was using a " + victorTankType + ".";        
         
         return victoryDesc;
     }

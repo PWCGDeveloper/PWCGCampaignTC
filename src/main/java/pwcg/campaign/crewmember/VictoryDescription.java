@@ -57,7 +57,7 @@ public class VictoryDescription
     // On <victory victory.getDate()> near <location>.
     // A <victory.getVictim() plane Name> of <victory.getVictim() company name> was brought down by <victory.getVictor() name> of <victory.getVictor() company name> 
     // <victory.getVictim() crew 1> was <killed/captured>.  <victory.getVictim() crew 2> was <killed/captured>
-    // <victory.getVictor() crew 1> was flying a <victory.getVictor() plane Name>.
+    // <victory.getVictor() crew 1> was using a <victory.getVictor() plane Name>.
     /**
      * @return
      * @throws PWCGException 

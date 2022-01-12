@@ -10,7 +10,7 @@ public class DebriefMapPoint
 		LANDING,
 		DAMAGE,
 		CRASH,
-		PILOT,
+		CREW,
 		WP;
 	}
 	

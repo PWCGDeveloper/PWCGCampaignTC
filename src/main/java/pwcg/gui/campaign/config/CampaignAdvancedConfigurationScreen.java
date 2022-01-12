@@ -112,11 +112,11 @@ public class CampaignAdvancedConfigurationScreen extends ImageResizingPanel impl
         buttonPanel.add(makeButton("Flight", "Set AI preferences"));
         buttonPanel.add(makeButton("Mission AI", "Set AI preferences"));
         buttonPanel.add(makeButton("Mission Ground Objects", "Set density of ground objects"));
-        buttonPanel.add(makeButton("Fighter Mission Types", "Set odds of flying different kinds of fighter missions"));
-        buttonPanel.add(makeButton("Ground Attack Mission Types", "Set odds of flying different kinds of ground attack missions"));
-        buttonPanel.add(makeButton("Bomber Mission Types", "Set odds of flying different kinds of bombing missions"));
-        buttonPanel.add(makeButton("Recon Mission Types", "Set odds of flying different kinds of recon missions"));
-        buttonPanel.add(makeButton("Transport Mission Types", "Set odds of flying different kinds of transport missions"));
+        buttonPanel.add(makeButton("Fighter Mission Types", "Set odds of using different kinds of fighter missions"));
+        buttonPanel.add(makeButton("Ground Attack Mission Types", "Set odds of using different kinds of ground attack missions"));
+        buttonPanel.add(makeButton("Bomber Mission Types", "Set odds of using different kinds of bombing missions"));
+        buttonPanel.add(makeButton("Recon Mission Types", "Set odds of using different kinds of recon missions"));
+        buttonPanel.add(makeButton("Transport Mission Types", "Set odds of using different kinds of transport missions"));
         buttonPanel.add(makeButton("Target Types", "Set odds of attacking different target types"));
         buttonPanel.add(makeButton("Aircraft Numbers", "How many planes are in the sky during a mission"));
         buttonPanel.add(makeButton("Mission Limits", "Set items that may affect mission performance"));

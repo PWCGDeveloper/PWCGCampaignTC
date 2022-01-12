@@ -50,7 +50,7 @@ public class RoFBritishMedalManagerTest extends MedalManagerTestBase
 	    service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.RFC, campaign.getDate());
         Mockito.when(player.determineService(ArgumentMatchers.<Date>any())).thenReturn(service);
 
-        awardMedal(BritishMedalManager.PILOTS_BADGE, 0, 0);
+        awardMedal(BritishMedalManager.CREWS_BADGE, 0, 0);
 		awardMedal(BritishMedalManager.MC, 3, 1);
 		awardMedal(BritishMedalManager.DSO, 15, 1);
 		awardMedal(BritishMedalManager.DSO_BAR, 25, 2);
@@ -64,7 +64,7 @@ public class RoFBritishMedalManagerTest extends MedalManagerTestBase
 	    service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.RNAS, campaign.getDate());
         Mockito.when(player.determineService(ArgumentMatchers.<Date>any())).thenReturn(service);
 
-        awardMedal(BritishMedalManager.PILOTS_BADGE, 0, 0);
+        awardMedal(BritishMedalManager.CREWS_BADGE, 0, 0);
 		awardMedal(BritishMedalManager.DSC, 3, 1);
 		awardMedal(BritishMedalManager.DSC_BAR, 12, 2);
 		awardMedal(BritishMedalManager.DSO, 15, 1);
@@ -79,7 +79,7 @@ public class RoFBritishMedalManagerTest extends MedalManagerTestBase
 	    service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.RFC, campaign.getDate());
         Mockito.when(player.determineService(ArgumentMatchers.<Date>any())).thenReturn(service);
 
-        awardMedal(BritishMedalManager.PILOTS_BADGE, 0, 0);
+        awardMedal(BritishMedalManager.CREWS_BADGE, 0, 0);
 		awardMedal(BritishMedalManager.DFC, 8, 1);
 		awardMedal(BritishMedalManager.DFC_BAR_1, 12, 2);
 		awardMedal(BritishMedalManager.DSO, 15, 1);
@@ -95,7 +95,7 @@ public class RoFBritishMedalManagerTest extends MedalManagerTestBase
 	    service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.RFC, campaign.getDate());
         Mockito.when(player.determineService(ArgumentMatchers.<Date>any())).thenReturn(service);
 
-        awardMedal(BritishMedalManager.PILOTS_BADGE, 0, 0);
+        awardMedal(BritishMedalManager.CREWS_BADGE, 0, 0);
 		awardMedal(BritishMedalManager.MC, 3, 1);
 		awardMedal(BritishMedalManager.DSO, 15, 1);
 		awardMedal(BritishMedalManager.DSO_BAR, 25, 2);

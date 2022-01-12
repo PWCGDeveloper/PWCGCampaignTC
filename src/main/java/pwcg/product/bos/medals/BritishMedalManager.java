@@ -8,7 +8,7 @@ import pwcg.core.exception.PWCGException;
 
 public class BritishMedalManager extends BoSMedalManager
 {
-    public static int PILOTS_BADGE = 1;
+    public static int CREWS_BADGE = 1;
 
     public static int DFC = 2;
     public static int DFC_BAR_1 = 3;
@@ -22,9 +22,9 @@ public class BritishMedalManager extends BoSMedalManager
     {
         super(campaign);
 
-        medals.put(PILOTS_BADGE, new Medal("CrewMembers Badge", "gb_crewMembers_badge.png"));
-        medals.put(DFC, new Medal(DISTINGUISHED_FLYING_CROSS_NAME, "gb_distinguished_flying_cross.png"));
-        medals.put(DFC_BAR_1, new Medal(DISTINGUISHED_FLYING_CROSS_NAME + " With Bar", "gb_distinguished_flying_cross_bar.png"));
+        medals.put(CREWS_BADGE, new Medal("CrewMembers Badge", "gb_crew_badge.png"));
+        medals.put(DFC, new Medal(DISTINGUISHED_FLYING_CROSS_NAME, "gb_distinguished_using_cross.png"));
+        medals.put(DFC_BAR_1, new Medal(DISTINGUISHED_FLYING_CROSS_NAME + " With Bar", "gb_distinguished_using_cross_bar.png"));
         medals.put(DSO, new Medal (DISTINGUISHED_SERVICE_ORDER_NAME,                    "gb_distinguished_service_order.png"));
         medals.put(DSO_BAR, new Medal (DISTINGUISHED_SERVICE_ORDER_NAME + " With Bar",      "gb_distinguished_service_order_bar.png"));
         medals.put(VC, new Medal("Victoria Cross", "gb_victoria_cross.png"));
@@ -34,9 +34,9 @@ public class BritishMedalManager extends BoSMedalManager
 
     protected Medal awardWings(CrewMember crewMember)
     {
-        if (!hasMedal(crewMember, medals.get(PILOTS_BADGE)))
+        if (!hasMedal(crewMember, medals.get(CREWS_BADGE)))
         {
-            return medals.get(PILOTS_BADGE);
+            return medals.get(CREWS_BADGE);
         }
 
         return null;

@@ -46,7 +46,7 @@ public class BoSItalianMedalManagerTest extends MedalManagerTestBase
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420801"));
 	    service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.REGIA_AERONAUTICA, campaign.getDate());
 
-        awardMedal(ItalianMedalManager.PILOTS_BADGE, 0, 0);
+        awardMedal(ItalianMedalManager.CREWS_BADGE, 0, 0);
 		awardMedal(ItalianMedalManager.MEDAL_MILITARY_VALOR_BRONZE, 1, 1);
 		awardMedal(ItalianMedalManager.MEDAL_MILITARY_VALOR_SILVER, 5, 1);
 		awardMedal(ItalianMedalManager.MEDAL_MILITARY_VALOR_GOLD, 13, 1);
@@ -60,7 +60,7 @@ public class BoSItalianMedalManagerTest extends MedalManagerTestBase
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420801"));
 	    service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.REGIA_AERONAUTICA, campaign.getDate());
 
-        awardMedal(ItalianMedalManager.PILOTS_BADGE, 0, 0);
+        awardMedal(ItalianMedalManager.CREWS_BADGE, 0, 0);
 		awardMedal(ItalianMedalManager.MEDAL_MILITARY_VALOR_BRONZE, 1, 1);
 		awardMedal(ItalianMedalManager.MEDAL_MILITARY_VALOR_SILVER, 5, 1);
 		awardMedal(ItalianMedalManager.MEDAL_MILITARY_VALOR_GOLD, 13, 1);

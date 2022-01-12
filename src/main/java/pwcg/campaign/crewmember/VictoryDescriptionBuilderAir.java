@@ -14,7 +14,7 @@ public class VictoryDescriptionBuilderAir extends VictoryDescriptionBuilderBase
     // On <victory victory.getDate()> near <location>.
     // A <victory.getVictim() plane Name> of <victory.getVictim() company name> was brought down by <victory.getVictor() name> of <victory.getVictor() company name> 
     // <victory.getVictim() crew 1> was <killed/captured>.  <victory.getVictim() crew 2> was <killed/captured>
-    // <victory.getVictor() crew 1> and <victory.getVictor() crew 1> were flying a <victory.getVictor() plane Name>.
+    // <victory.getVictor() crew 1> and <victory.getVictor() crew 1> were using a <victory.getVictor() plane Name>.
     /**
      * @return
      * @throws PWCGException 
@@ -48,7 +48,7 @@ public class VictoryDescriptionBuilderAir extends VictoryDescriptionBuilderBase
         // Line 4
         victoryDesc +=  "\n";
         victoryDesc +=  victory.getVictor().getCrewMemberName();
-        victoryDesc +=  " was flying a " + victorTankType + ".";          
+        victoryDesc +=  " was using a " + victorTankType + ".";          
         
         return victoryDesc;
     }
@@ -79,7 +79,7 @@ public class VictoryDescriptionBuilderAir extends VictoryDescriptionBuilderBase
         // Line 3
         victoryDesc +=  "\n";
         victoryDesc +=  victory.getVictor().getCrewMemberName();
-        victoryDesc +=  " was flying a " + victorTankType + ".";          
+        victoryDesc +=  " was using a " + victorTankType + ".";          
         
         return victoryDesc;
     }

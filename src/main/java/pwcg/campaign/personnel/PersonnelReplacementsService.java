@@ -8,13 +8,13 @@ import pwcg.core.exception.PWCGException;
 
 public class PersonnelReplacementsService
 {
-    public static final int NUM_POINTS_FOR_ONE_PILOT = 10;
+    public static final int NUM_POINTS_FOR_ONE_CREW = 10;
 
     private Integer serviceId;
     private CrewMembers replacements = new CrewMembers();
     private CrewMembers replacementsDesignatedForAssignment = new CrewMembers();
     private Date lastReplacementDate;
-    private int dailyReplacementRate = NUM_POINTS_FOR_ONE_PILOT;
+    private int dailyReplacementRate = NUM_POINTS_FOR_ONE_CREW;
     private int replacementPoints = 0;
 
     public PersonnelReplacementsService()
@@ -107,7 +107,7 @@ public class PersonnelReplacementsService
 
     public int getNumReplacements()
     {
-        return replacementPoints / NUM_POINTS_FOR_ONE_PILOT;
+        return replacementPoints / NUM_POINTS_FOR_ONE_CREW;
     }
 
     public void addReplacementPoints(int daysSinceLastUpdate)
@@ -118,7 +118,7 @@ public class PersonnelReplacementsService
     public void removeReplacementPoints()
     {
         int numCrewMembersAdded = getNumReplacements();
-        replacementPoints -= (NUM_POINTS_FOR_ONE_PILOT * numCrewMembersAdded);
+        replacementPoints -= (NUM_POINTS_FOR_ONE_CREW * numCrewMembersAdded);
     }
 
     public int getReplacementPoints()

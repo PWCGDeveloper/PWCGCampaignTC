@@ -47,7 +47,7 @@ public class RoFGermanMedalManagerTest extends MedalManagerTestBase
     @Test
     public void testGermanMedals () throws PWCGException
     {            	
-        awardMedal(GermanMedalManager.PILOTS_BADGE, 0, 0);
+        awardMedal(GermanMedalManager.CREWS_BADGE, 0, 0);
 		awardMedal(GermanMedalManager.IRON_CROSS_2, 1, 1);
 		awardMedal(GermanMedalManager.IRON_CROSS_1, 6, 1);
 		awardMedal(GermanMedalManager.ORDER_HOUSE_HOHENZOLLERN, 13, 1);
@@ -60,7 +60,7 @@ public class RoFGermanMedalManagerTest extends MedalManagerTestBase
 	{            	
         Mockito.when(player.getPlayerRegion()).thenReturn(CrewMember.BAVARIA);
 
-        awardMedal(GermanMedalManager.B_PILOTS_BADGE, 0, 0);
+        awardMedal(GermanMedalManager.B_CREWS_BADGE, 0, 0);
 		awardMedal(GermanMedalManager.IRON_CROSS_2, 1, 1);
 		awardMedal(GermanMedalManager.IRON_CROSS_1, 6, 1);
 		awardMedal(GermanMedalManager.ORDER_HOUSE_HOHENZOLLERN, 13, 1);
@@ -77,7 +77,7 @@ public class RoFGermanMedalManagerTest extends MedalManagerTestBase
 	{            	
         Mockito.when(player.getPlayerRegion()).thenReturn(CrewMember.PRUSSIA);
 
-        awardMedal(GermanMedalManager.PILOTS_BADGE, 0, 0);
+        awardMedal(GermanMedalManager.CREWS_BADGE, 0, 0);
 		awardMedal(GermanMedalManager.IRON_CROSS_2, 1, 1);
 		awardMedal(GermanMedalManager.IRON_CROSS_1, 6, 1);
 		awardMedal(GermanMedalManager.ORDER_HOUSE_HOHENZOLLERN, 13, 1);
@@ -95,7 +95,7 @@ public class RoFGermanMedalManagerTest extends MedalManagerTestBase
 	{            	
         Mockito.when(player.getPlayerRegion()).thenReturn(CrewMember.WURTTEMBURG);
 
-        awardMedal(GermanMedalManager.PILOTS_BADGE, 0, 0);
+        awardMedal(GermanMedalManager.CREWS_BADGE, 0, 0);
 		awardMedal(GermanMedalManager.IRON_CROSS_2, 1, 1);
 		awardMedal(GermanMedalManager.IRON_CROSS_1, 6, 1);
 		awardMedal(GermanMedalManager.ORDER_HOUSE_HOHENZOLLERN, 13, 1);
@@ -111,7 +111,7 @@ public class RoFGermanMedalManagerTest extends MedalManagerTestBase
 	{            	
         Mockito.when(player.getPlayerRegion()).thenReturn(CrewMember.SAXONY);
 
-        awardMedal(GermanMedalManager.PILOTS_BADGE, 0, 0);
+        awardMedal(GermanMedalManager.CREWS_BADGE, 0, 0);
 		awardMedal(GermanMedalManager.IRON_CROSS_2, 1, 1);
 		awardMedal(GermanMedalManager.IRON_CROSS_1, 6, 1);
 		awardMedal(GermanMedalManager.ORDER_HOUSE_HOHENZOLLERN, 13, 1);
@@ -127,7 +127,7 @@ public class RoFGermanMedalManagerTest extends MedalManagerTestBase
     public void testIronCrossFirstClassFail () throws PWCGException
     {            
         Mockito.when(player.getPlayerRegion()).thenReturn(CrewMember.PRUSSIA);
-        awardMedal(GermanMedalManager.PILOTS_BADGE, 0, 0);
+        awardMedal(GermanMedalManager.CREWS_BADGE, 0, 0);
 		awardMedal(GermanMedalManager.IRON_CROSS_2, 1, 1);
 
         makeVictories(1);

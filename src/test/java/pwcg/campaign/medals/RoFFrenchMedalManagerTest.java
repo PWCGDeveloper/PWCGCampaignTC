@@ -52,7 +52,7 @@ public class RoFFrenchMedalManagerTest extends MedalManagerTestBase
 	    service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.BRITISH_ARMY, campaign.getDate());
         Mockito.when(player.determineService(ArgumentMatchers.<Date>any())).thenReturn(service);
 
-        awardMedal(FrenchMedalManager.PILOTS_BADGE, 0, 0);
+        awardMedal(FrenchMedalManager.CREWS_BADGE, 0, 0);
 		awardMedal(FrenchMedalManager.MILITARY_MEDAL, 2, 1);
 		awardMedal(FrenchMedalManager.CROIX_DE_GUERRE, 3, 1);
 		awardMedal(FrenchMedalManager.CROIX_DE_GUERRE_BRONZE_STAR, 5, 1);
@@ -85,7 +85,7 @@ public class RoFFrenchMedalManagerTest extends MedalManagerTestBase
         service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.BRITISH_ARMY, campaign.getDate());
         Mockito.when(player.determineService(ArgumentMatchers.<Date>any())).thenReturn(service);
 
-        awardMedal(FrenchMedalManager.PILOTS_BADGE, 0, 0);
+        awardMedal(FrenchMedalManager.CREWS_BADGE, 0, 0);
         awardMedal(FrenchMedalManager.MILITARY_MEDAL, 2, 1);
         awardMedal(FrenchMedalManager.CROIX_DE_GUERRE, 3, 1);
         awardMedal(FrenchMedalManager.CROIX_DE_GUERRE_BRONZE_STAR, 5, 1);

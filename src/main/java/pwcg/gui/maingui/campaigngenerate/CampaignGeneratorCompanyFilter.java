@@ -34,19 +34,19 @@ public class CampaignGeneratorCompanyFilter
 
        			if (rejectBecauseWrongRole(company, campaignDate, selectedRole))
     			{
-	                PWCGLogger.log(LogLevel.DEBUG, company.determineDisplayName(campaignDate) + ": Cannot fly  - incorrect role");
+	                PWCGLogger.log(LogLevel.DEBUG, company.determineDisplayName(campaignDate) + ": Cannot command  - incorrect role");
     				continue;
     			}
     			
        			if (rejectBecauseCommandConflict(company, campaignDate, playerIsCommander))
     			{
-                    PWCGLogger.log(LogLevel.DEBUG, company.determineDisplayName(campaignDate) + ": Cannot fly  - commaned by ace");
+                    PWCGLogger.log(LogLevel.DEBUG, company.determineDisplayName(campaignDate) + ": Cannot command  - commaned by ace");
     				continue;
     			}
     			
        			if (rejectBecauseWrongMap(company, campaignDate, selectedCampaignMap))
     			{
-                    PWCGLogger.log(LogLevel.DEBUG, company.determineDisplayName(campaignDate) + ": Cannot fly  - commaned by ace");
+                    PWCGLogger.log(LogLevel.DEBUG, company.determineDisplayName(campaignDate) + ": Cannot command  - commaned by ace");
     				continue;
     			}
     			

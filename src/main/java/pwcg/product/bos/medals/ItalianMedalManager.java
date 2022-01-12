@@ -8,7 +8,7 @@ import pwcg.core.exception.PWCGException;
 
 public class ItalianMedalManager extends BoSMedalManager 
 {
-    public static int PILOTS_BADGE = 1;
+    public static int CREWS_BADGE = 1;
     public static int MEDAL_MILITARY_VALOR_BRONZE = 4;
     public static int MEDAL_MILITARY_VALOR_SILVER = 5;
     public static int MEDAL_MILITARY_VALOR_GOLD = 6;
@@ -22,7 +22,7 @@ public class ItalianMedalManager extends BoSMedalManager
         super(campaign);
 
 		
-        medals.put(PILOTS_BADGE, new Medal ("CrewMembers Badge",                                "ita_crewMembers_badge.png"));
+        medals.put(CREWS_BADGE, new Medal ("CrewMembers Badge",                                "ita_crew_badge.png"));
         medals.put(WOUND_STRIPE, new Medal ("Wound Stripe",                                "ita_wound_stripe.png"));
         
         medals.put(MEDAL_MILITARY_VALOR_BRONZE, new Medal ("Al Valore Militar Bronze",     "ita_al_valore_militar_bronze.png"));
@@ -39,9 +39,9 @@ public class ItalianMedalManager extends BoSMedalManager
 
     protected Medal awardWings(CrewMember crewMember) 
     {
-        if (!hasMedal(crewMember, medals.get(PILOTS_BADGE)))
+        if (!hasMedal(crewMember, medals.get(CREWS_BADGE)))
         {
-            return medals.get(PILOTS_BADGE);
+            return medals.get(CREWS_BADGE);
         }
         
         return null;

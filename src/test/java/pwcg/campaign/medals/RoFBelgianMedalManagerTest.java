@@ -50,7 +50,7 @@ public class RoFBelgianMedalManagerTest extends MedalManagerTestBase
 	    service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.AVIATION_MILITAIRE_BELGE, campaign.getDate());
         Mockito.when(player.determineService(ArgumentMatchers.<Date>any())).thenReturn(service);
 
-        awardMedal(BelgianMedalManager.PILOTS_BADGE, 0, 0);
+        awardMedal(BelgianMedalManager.CREWS_BADGE, 0, 0);
 		awardMedal(BelgianMedalManager.MILITARY_MEDAL, 2, 1);
 		awardMedal(BelgianMedalManager.BEL_CROIX_DE_GUERRE, 3, 1);
 		awardMedal(BelgianMedalManager.CROIX_DE_GUERRE, 5, 1);
@@ -68,7 +68,7 @@ public class RoFBelgianMedalManagerTest extends MedalManagerTestBase
 	    service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.USAS, campaign.getDate());
         Mockito.when(player.determineService(ArgumentMatchers.<Date>any())).thenReturn(service);
 
-        awardMedal(BelgianMedalManager.PILOTS_BADGE, 0, 0);
+        awardMedal(BelgianMedalManager.CREWS_BADGE, 0, 0);
 		awardMedal(BelgianMedalManager.MILITARY_MEDAL, 2, 1);
 		awardMedal(BelgianMedalManager.BEL_CROIX_DE_GUERRE, 3, 1);
 		awardMedal(BelgianMedalManager.CROIX_DE_GUERRE, 5, 1);

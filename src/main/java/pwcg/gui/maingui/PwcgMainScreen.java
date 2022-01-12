@@ -514,7 +514,7 @@ public class PwcgMainScreen extends ImageResizingPanel implements ActionListener
         if (!missionLogFileValidator.isMissionLoggingEnabled())
         {
             ErrorDialog.userError(
-                    "Mission logging is not enabled.  Before flying the mission open <game install dir>\\Data\\Startup.cfg and set mission_text_log = 1");
+                    "Mission logging is not enabled.  Before using the mission open <game install dir>\\Data\\Startup.cfg and set mission_text_log = 1");
         }
         
         if (!missionLogFileValidator.getMissionLogPath().isEmpty())

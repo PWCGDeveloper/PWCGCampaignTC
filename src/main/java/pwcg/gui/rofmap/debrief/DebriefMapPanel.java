@@ -122,7 +122,7 @@ public class DebriefMapPanel  extends MapPanelBase
 		    	}
 		
 		
-		    	if (debriefPoint.eventType  == EventTypes.PILOT || debriefPoint.eventType  == EventTypes.WP)
+		    	if (debriefPoint.eventType  == EventTypes.CREW || debriefPoint.eventType  == EventTypes.WP)
 		    	{
 		    		g.setColor(Color.BLUE);
 		    		size = 10;
@@ -271,7 +271,7 @@ public class DebriefMapPanel  extends MapPanelBase
         if (damageEvent.getVictor() instanceof LogTurret)
         {
             LogTurret logTurret = (LogTurret)damageEvent.getVictor();
-            displayVictor = "a gunner flying with " + logTurret.getParent().getName();
+            displayVictor = "a gunner using with " + logTurret.getParent().getName();
         }
         else if (!(damageEvent.getVictor() instanceof LogUnknown))
         {
@@ -317,7 +317,7 @@ public class DebriefMapPanel  extends MapPanelBase
 		    {
     	    	DebriefMapPoint debriefPoint= eventPoints.get(atEvent);
     			
-    	    	if (debriefPoint.eventType  == EventTypes.PILOT || debriefPoint.eventType  == EventTypes.WP)
+    	    	if (debriefPoint.eventType  == EventTypes.CREW || debriefPoint.eventType  == EventTypes.WP)
     	    	{
     	    		waitTime = 100; 
     	    	}

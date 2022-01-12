@@ -66,15 +66,15 @@
       "label": "Newspaper Font Size",
       "help": "Font size of newspaper headline"
     },
-    "PilotFont": {
+    "CrewMemberFont": {
       "value": "Serif",
-      "label": "Pilot Font",
-      "help": "Font used on individual pilot page"
+      "label": "CrewMember Font",
+      "help": "Font used on individual crew page"
     },
-    "PilotFontSize": {
+    "CrewMemberFontSize": {
       "value": "20",
-      "label": "Pilot Font Size",
-      "help": "Font size of pilot victories"
+      "label": "CrewMember Font Size",
+      "help": "Font size of crew victories"
     },
     "PrimaryFont": {
       "value": "Serif",

@@ -98,7 +98,7 @@ public class MissionDescriptionSinglePlayer implements IMissionDescription
         
         if (country.isSameSide(vehicleCountry))
         {
-            String friendlyInt = "    " + company + " flying " + vehicle;
+            String friendlyInt = "    " + company + " using " + vehicle;
             friendlyIntList.add(friendlyInt + "\n");
             
             String friendlyInthtml = "<br>    " + friendlyInt;
@@ -106,7 +106,7 @@ public class MissionDescriptionSinglePlayer implements IMissionDescription
         }
         else
         {
-            String enemyInt = "    " + company + " flying " + vehicle;
+            String enemyInt = "    " + company + " using " + vehicle;
             enemyIntList.add(enemyInt + "\n");
             
             String enemyInthtml = "<br>    " + enemyInt;

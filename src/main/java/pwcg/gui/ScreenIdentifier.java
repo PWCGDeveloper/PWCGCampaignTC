@@ -8,7 +8,7 @@ public enum ScreenIdentifier
     CampaignNewCrewMemberScreen("CampaignNewCrewMemberScreen", "Campaign Add New CrewMember Screen", "CampaignGenFullScreen.jpg"),
     
     PwcgSkinConfigurationAnalysisScreen("PwcgSkinConfigurationAnalysisScreen", "PWCG Skin Analysis Screen", "BrickWall.jpg"),
-    PwcgTanksOwnedConfigurationScreen("PwcgPlanesOwnedConfigurationScreen", "PWCG Planes Owned Config Screen", "BrickWall.jpg"),
+    PwcgTanksOwnedConfigurationScreen("PwcgTanksOwnedConfigurationScreen", "PWCG Planes Owned Config Screen", "BrickWall.jpg"),
     PwcgMusicConfigScreen("PwcgMusicConfigScreen", "PWCG Music Config Screen", "BrickWall.jpg"),
     CampaignHomeScreen("CampaignHomeScreen", "Campaign Home Screen", "BrickWall.jpg"),
     BriefingCrewMemberSelectionScreen("BriefingCrewMemberSelectionScreen", "Briefing CrewMember Selection Screen", "BrickWall.jpg"),
@@ -16,7 +16,7 @@ public enum ScreenIdentifier
     MapScreens("MapScreens", "All Map Screens", "BrickWall.jpg"),
     DebriefMissionDescriptionScreen("DebriefMissionDescriptionScreen", "Debrief Mission Description Screen", "BrickWall.jpg"),
 
-    CampaignCrewMemberScreen("CampaignCrewMemberScreen", "Campaign CrewMember Screen", "CrewMemberDeskTop.png"),
+    CampaignCrewMemberScreen("CampaignCrewMemberScreen", "Campaign CrewMember Screen", "CrewDeskTop.png"),
 
     PwcgCoopGlobalAdminScreen("PwcgCoopGlobalAdminScreen", "PWCG Global Coop Admin Screen", "TableTop.jpg"),
     PwcgSkinConfigurationAnalysisDisplayScreen("PwcgSkinConfigurationAnalysisDisplayScreen", "PWCG Skin Analysis Display Screen", "TableTop.jpg"),

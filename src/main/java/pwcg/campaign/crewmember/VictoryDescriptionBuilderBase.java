@@ -23,7 +23,7 @@ public abstract class VictoryDescriptionBuilderBase
         String victorDesc;
         if (victory.getVictor().isGunner())
         {
-            victorDesc = "a gunner flying with " + victory.getVictor().getCrewMemberName();
+            victorDesc = "a gunner using with " + victory.getVictor().getCrewMemberName();
         }
         else
         {

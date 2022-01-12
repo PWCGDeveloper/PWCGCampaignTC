@@ -227,7 +227,7 @@ public class VictoryBuilderTest
         VictoryDescription victoryDescription = new VictoryDescription(campaign, victory);
         String victoryDescriptionText = victoryDescription.createVictoryDescription();
 
-        String verificationSegment =  "A Il-2 mod.1941 of 621st Ground Attack Air Regiment was brought down by a gunner flying with Ofw Hans Schmidt";
+        String verificationSegment =  "A Il-2 mod.1941 of 621st Ground Attack Air Regiment was brought down by a gunner using with Ofw Hans Schmidt";
 
         assert(!victoryDescriptionText.contains(verificationSegment));
     }

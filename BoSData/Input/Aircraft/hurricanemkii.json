@@ -17,7 +17,7 @@
 	"climbOutRate": 1200,
 	"goodness": 25,
 	"range": 600,
-	"isFlyable": true,
+	"isDrivable": true,
 	"isNovice": false,
 	"planeSize": "PLANE_SIZE_SMALL",
 	"roleCategories": [

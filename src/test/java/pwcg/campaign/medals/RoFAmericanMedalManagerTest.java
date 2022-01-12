@@ -50,7 +50,7 @@ public class RoFAmericanMedalManagerTest extends MedalManagerTestBase
 	    service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.USAS, campaign.getDate());
         Mockito.when(player.determineService(ArgumentMatchers.<Date>any())).thenReturn(service);
 
-        awardMedal(AmericanMedalManager.PILOTS_BADGE, 0, 0);
+        awardMedal(AmericanMedalManager.CREWS_BADGE, 0, 0);
 		awardMedal(AmericanMedalManager.DISTINGUISHED_SERVICE_MEDAL, 5, 1);
 		awardMedal(AmericanMedalManager.DISTINGUISHED_FLYING_CROSS, 10, 1);
 		awardMedal(AmericanMedalManager.MEDAL_OF_HONOR, 15, 3);
@@ -63,7 +63,7 @@ public class RoFAmericanMedalManagerTest extends MedalManagerTestBase
 	    service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.USAS, campaign.getDate());
         Mockito.when(player.determineService(ArgumentMatchers.<Date>any())).thenReturn(service);
 
-        awardMedal(AmericanMedalManager.PILOTS_BADGE, 0, 0);
+        awardMedal(AmericanMedalManager.CREWS_BADGE, 0, 0);
 		awardMedal(AmericanMedalManager.DISTINGUISHED_SERVICE_MEDAL, 5, 1);
 		awardMedal(AmericanMedalManager.DISTINGUISHED_FLYING_CROSS, 10, 1);
 

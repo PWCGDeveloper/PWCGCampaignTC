@@ -2,7 +2,7 @@ package pwcg.mission.mcu;
 
 public class McuEvent
 {
-    static public int ONPILOTWOUNDED = 1;
+    static public int ONCREWWOUNDED = 1;
     static public int ONPLANECRASHED = 2;
     static public int ONPLANECRITICALDAMAGED = 3;
     static public int ONPLANEBINGOFUEL = 7;

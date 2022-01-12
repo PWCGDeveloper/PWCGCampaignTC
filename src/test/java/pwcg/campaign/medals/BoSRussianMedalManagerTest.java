@@ -52,7 +52,7 @@ public class BoSRussianMedalManagerTest extends MedalManagerTestBase
 	    service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.VVS, campaign.getDate());
         Mockito.when(player.determineService(ArgumentMatchers.<Date>any())).thenReturn(service);
 
-        awardMedal(RussianMedalManager.PILOTS_BADGE, 0, 0);
+        awardMedal(RussianMedalManager.CREWS_BADGE, 0, 0);
 		awardMedal(RussianMedalManager.ORDER_RED_STAR, 2, 1);
 		awardMedal(RussianMedalManager.ORDER_OF_GLORY, 5, 1);
 		awardMedal(RussianMedalManager.ORDER_PATRIOTIC_WAR_2, 6, 1);
@@ -68,7 +68,7 @@ public class BoSRussianMedalManagerTest extends MedalManagerTestBase
 	    service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.VVS, campaign.getDate());
         Mockito.when(player.determineService(ArgumentMatchers.<Date>any())).thenReturn(service);
 
-        awardMedal(RussianMedalManager.PILOTS_BADGE, 0, 0);
+        awardMedal(RussianMedalManager.CREWS_BADGE, 0, 0);
 		awardMedal(RussianMedalManager.ORDER_RED_STAR, 2, 1);
 		awardMedal(RussianMedalManager.ORDER_OF_GLORY, 5, 1);
 		awardMedal(RussianMedalManager.ORDER_PATRIOTIC_WAR_2, 6, 1);

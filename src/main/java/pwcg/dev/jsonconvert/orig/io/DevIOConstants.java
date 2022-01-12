@@ -29,7 +29,7 @@ public class DevIOConstants
 	public static String DAMAGETHRESH	= "DamageThreshold";
 
     // ATYPE
-    public static String PILOT  = "CrewMember";
+    public static String CREW  = "CrewMember";
 	public static String DESC   = "Desc";
 
 	// Only used in Dev
@@ -75,7 +75,7 @@ public class DevIOConstants
 	public static String NIGHTDATE  = "NightDate";
 	public static String OBJECTS 	= "Objects ";
 	public static String PICTURE = "Picture";
-	public static String PILOTS = "CrewMembers";
+	public static String CREWS = "CrewMembers";
 	public static String PLANE  = "Plane";
 	public static String PLANES = "Planes";
 	public static String PLANETYPE		= "PWCGType";
@@ -104,12 +104,12 @@ public class DevIOConstants
 	public static String VICTORY_BEHIND_OUR_LINES = "VictoryBehindOurLines";
 	public static String VICTORY_LOCATION = "VictoryLocation";
 	public static String VICTORY_VICTIM_AIR_GROUND = "VictoryVictimAirGround";
-	public static String VICTORY_VICTIM_PILOT = "VictoryVictimCrewMember";
-	public static String VICTORY_VICTIM_PILOT_STATUS = "VictoryVictimCrewMemberStatus";
+	public static String VICTORY_VICTIM_CREW = "VictoryVictimCrewMember";
+	public static String VICTORY_VICTIM_CREW_STATUS = "VictoryVictimCrewMemberStatus";
 	public static String VICTORY_VICTIM_Company = "VictoryVictimCompany";
 	public static String VICTORY_VICTIM_TYPE = "VictoryVictimType";
 	public static String VICTORY_VICTOR_AIR_GROUND = "VictoryVictorAirGround";
-	public static String VICTORY_VICTOR_PILOT = "VictoryVictorCrewMember";
+	public static String VICTORY_VICTOR_CREW = "VictoryVictorCrewMember";
 	public static String VICTORY_VICTOR_Company = "VictoryVictorCompany";
 	public static String VICTORY_VICTOR_TYPE = "VictoryVictorType";
 	

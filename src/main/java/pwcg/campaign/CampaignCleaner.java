@@ -133,7 +133,7 @@ public class CampaignCleaner
                 {
                     CompanyPersonnel campaignPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(companyId);
                     CrewMember  crewMember = campaignPersonnel.getCrewMember(serialNumber);
-                    PWCGLogger.log(LogLevel.DEBUG, "Replace " + crewMember.getName() + " company member : " + serialNumber + " flying for " + companyId);
+                    PWCGLogger.log(LogLevel.DEBUG, "Replace " + crewMember.getName() + " company member : " + serialNumber + " using for " + companyId);
                     
                     if (!firstTime)
                     {
@@ -185,7 +185,7 @@ public class CampaignCleaner
             {
                 for (Integer companyId : companysForSerialNumber)
                 {
-                    PWCGLogger.log(LogLevel.DEBUG, "Duplicate company member : " + serialNumber + " flying for " + companyId);
+                    PWCGLogger.log(LogLevel.DEBUG, "Duplicate company member : " + serialNumber + " using for " + companyId);
                 }
             }
         }

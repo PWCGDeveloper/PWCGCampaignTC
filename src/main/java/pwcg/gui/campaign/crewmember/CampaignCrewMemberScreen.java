@@ -243,7 +243,7 @@ public class CampaignCrewMemberScreen extends ImageResizingPanel implements Acti
 		JPanel crewMemberPMedalBoxPanel = new JPanel(new BorderLayout());
 		crewMemberPMedalBoxPanel.setOpaque(false);
 
-        String imagePath = ContextSpecificImages.imagesMisc() + "CrewMemberMedalBox.png";
+        String imagePath = ContextSpecificImages.imagesMisc() + "CrewMedalBox.png";
 		ImageIcon imageIcon = ImageIconCache.getInstance().getImageIcon(imagePath);
         String commandText =  openMedalBoxAction + crewMember.getSerialNumber();
 		PWCGJButton medalBoxButton = PWCGButtonFactory.makeImageButton(imageIcon, bg,  commandText, "View crewMember medals",  "View crewMember medals", this);
