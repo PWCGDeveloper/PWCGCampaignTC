@@ -617,7 +617,8 @@ public class NewCrewMemberDataEntryGUI extends JPanel implements ActionListener
 		try
 		{
             String playerName = (String)playerCrewMemberNameTextBox.getText();
- 
+            parent.getNewCrewMemberGeneratorDO().setPlayerCrewMemberName(playerName);
+
             if (ae.getActionCommand().equalsIgnoreCase("RoleChanged"))
             {
                 String roleDesc = (String)cbRole.getSelectedItem();

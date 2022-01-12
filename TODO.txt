@@ -1,6 +1,5 @@
 TC:
 Campaign creation:
-Service Flag Pictures
 Tank crew pictures
 
 Mission:
@@ -11,12 +10,17 @@ More interesting opposition
 - more AT guns
 - more enemy tanks
 replace existing tank unit
-record AI tank units
+record AI tank types for AAR
 Do not create tank units as base ground units
-Add tank units after the fact
-
+ - Add tank units after the fact
+- 
 
 AAR:
 Add out of mission for tank units
-In mission victory handling
-In mission claims?
+- no need for corresponding victim
+In mission claims
+
+Campaign
+Promotions/Medals based on tank kills
+Rearrange chalk board
+
