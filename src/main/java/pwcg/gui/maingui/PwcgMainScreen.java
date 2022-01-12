@@ -310,7 +310,7 @@ public class PwcgMainScreen extends ImageResizingPanel implements ActionListener
     				else
     				{
     				    String nation = determineCampaignCountryForIcon(campaign).getNationality();
-    					icon = nation + "CrewMember.jpg";
+    					icon = nation + "Commander.jpg";
     				}
     
     				PWCGJButton button = ImageButton.makeCampaignFlagButton(campaignName, icon);

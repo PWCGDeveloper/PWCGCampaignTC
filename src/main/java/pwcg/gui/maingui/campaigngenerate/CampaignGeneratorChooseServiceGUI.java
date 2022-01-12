@@ -74,7 +74,7 @@ public class CampaignGeneratorChooseServiceGUI extends JPanel implements ActionL
         List<ArmedService> alliedArmedServices = getArmedServicesForSide(Side.ALLIED);
 		for (ArmedService service : alliedArmedServices)
 		{
-	        String icon = service.getServiceIcon() + ".jpg";
+	        String icon = service.getServiceIcon();
 	        JRadioButton serviceButton = makeRadioButton(service, icon);
 	        alliedServicePanel.add(serviceButton);
 	        serviceButtonGroup.add(serviceButton);
@@ -84,7 +84,7 @@ public class CampaignGeneratorChooseServiceGUI extends JPanel implements ActionL
         List<ArmedService> axisArmedServices = getArmedServicesForSide(Side.AXIS);
         for (ArmedService service : axisArmedServices)
         {
-            String icon = service.getServiceIcon() + ".jpg";
+            String icon = service.getServiceIcon();
             JRadioButton serviceButton = makeRadioButton(service, icon);
             axisServicePanel.add(serviceButton);
             serviceButtonGroup.add(serviceButton);
@@ -125,8 +125,8 @@ public class CampaignGeneratorChooseServiceGUI extends JPanel implements ActionL
         JRadioButton button = PWCGButtonFactory.makeRadioButton(service.getName(), commandText, "", font, fgColor, false, this);
 
         String imagePath = ContextSpecificImages.imagesNational();
-        String selectedIconPath = imagePath + imageName;
-        String notSelectedIconPath = imagePath + "No" + imageName;
+        String selectedIconPath = imagePath + imageName + ".jpg";
+        String notSelectedIconPath = imagePath + imageName + "No.jpg";
         
         ImageIcon selectedIcon = new ImageIcon(selectedIconPath);
         ImageIcon notSelectedIcon = new ImageIcon(notSelectedIconPath);

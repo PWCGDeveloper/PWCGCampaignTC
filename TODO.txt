@@ -1,8 +1,6 @@
 TC:
 Campaign creation:
 Service Flag Pictures
-Tank pictures
-Tank profiles
 Tank crew pictures
 
 Mission:

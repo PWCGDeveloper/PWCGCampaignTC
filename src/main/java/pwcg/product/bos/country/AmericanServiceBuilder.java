@@ -14,7 +14,7 @@ import pwcg.gui.colors.AmericanColorMap;
 public class AmericanServiceBuilder
 {
     public static String US_ARMY_NAME = "United States Army";
-    public static String US_ARMY_ICON = "ServiceUnitedStatesArmy";
+    public static String US_ARMY_ICON = "ServiceUSArmy";
 
     public static List<ArmedService> createServices() throws PWCGException
     {
