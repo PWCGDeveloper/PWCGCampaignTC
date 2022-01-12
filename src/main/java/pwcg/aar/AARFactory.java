@@ -6,7 +6,6 @@ import pwcg.aar.data.AARPersonnelAwards;
 import pwcg.aar.inmission.phase1.parse.AARMissionFileLogResultMatcher;
 import pwcg.aar.inmission.phase2.logeval.AARBotVehicleMapper;
 import pwcg.aar.inmission.phase2.logeval.AARVehicleBuilder;
-import pwcg.aar.inmission.phase2.logeval.AARVehiclePlaneLanded;
 import pwcg.aar.outofmission.phase2.awards.CampaignMemberAwardsGenerator;
 import pwcg.aar.prelim.AARMostRecentLogSetFinder;
 import pwcg.aar.prelim.AARPreliminaryData;
@@ -35,9 +34,8 @@ public class AARFactory
     public static AARVehicleBuilder makeAARVehicleBuilder(Campaign campaign, AARPreliminaryData preliminaryData, LogEventData logEventData) throws PWCGException
     {
         AARBotVehicleMapper botPlaneMapper = new AARBotVehicleMapper(logEventData);
-        AARVehiclePlaneLanded landedMapper = new AARVehiclePlaneLanded(logEventData);
         PwcgMissionDataEvaluator pwcgMissionDataEvaluator = new PwcgMissionDataEvaluator(campaign, preliminaryData);
-        return new AARVehicleBuilder(botPlaneMapper, landedMapper, pwcgMissionDataEvaluator);
+        return new AARVehicleBuilder(botPlaneMapper, pwcgMissionDataEvaluator);
     }
 
     public static LogSetFinder makeLogSorter() throws PWCGException

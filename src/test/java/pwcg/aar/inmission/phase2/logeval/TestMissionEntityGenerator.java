@@ -116,27 +116,27 @@ public class TestMissionEntityGenerator
         }
     }
 
-    private void makePwcgMissionPlaneFighter(String crewMemberName, Integer crewMemberSerialNumber, Integer planeSerialNumber, IAType12 plane) throws PWCGException
+    private void makePwcgMissionPlaneFighter(String crewMemberName, Integer crewMemberSerialNumber, Integer tankSerialNumber, IAType12 plane) throws PWCGException
     {
         PwcgGeneratedMissionVehicleData pwcgMissionPlane = new PwcgGeneratedMissionVehicleData();
         pwcgMissionPlane.setVehicleType(plane.getType());
         pwcgMissionPlane.setCrewMemberSerialNumber(crewMemberSerialNumber);
-        pwcgMissionPlane.setVehicleSerialNumber(planeSerialNumber);
+        pwcgMissionPlane.setVehicleSerialNumber(tankSerialNumber);
         missionPlanes.put(crewMemberSerialNumber, pwcgMissionPlane);
         
         AType12 crewMemberBot = TestATypeFactory.makeCrewMemberBot(plane);
         crewMemberBots.put(crewMemberBot.getId(), crewMemberBot);
         
-        makeMissionResultPlaneFighter(crewMemberName, crewMemberSerialNumber, planeSerialNumber, plane);
+        makeMissionResultPlaneFighter(crewMemberName, crewMemberSerialNumber, tankSerialNumber, plane);
     }
 
-    private void makeMissionResultPlaneFighter(String crewMemberName, Integer crewMemberSerialNumber, Integer planeSerialNumber, IAType12 plane) throws PWCGException
+    private void makeMissionResultPlaneFighter(String crewMemberName, Integer crewMemberSerialNumber, Integer tankSerialNumber, IAType12 plane) throws PWCGException
     {
     	LogTank missionResultPlane = new LogTank(1);
         missionResultPlane.setVehicleType(plane.getType());
         missionResultPlane.setId(plane.getId());
         missionResultPlane.setCrewMemberSerialNumber(crewMemberSerialNumber);
-        missionResultPlane.setTankSerialNumber(planeSerialNumber);
+        missionResultPlane.setTankSerialNumber(tankSerialNumber);
 
         LogCrewMember crewMemberCrewMember = new LogCrewMember();
         crewMemberCrewMember.setSerialNumber(crewMemberSerialNumber);

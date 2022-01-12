@@ -54,9 +54,9 @@ public class EquipmentArchTypeChangeHandler
                     }
                 }
 
-                for (Integer planeSerialNumber : planesToRemove)
+                for (Integer tankSerialNumber : planesToRemove)
                 {
-                    companyEquipment.deactivateEquippedTankFromCompany(planeSerialNumber, campaign.getDate());
+                    companyEquipment.deactivateEquippedTankFromCompany(tankSerialNumber, campaign.getDate());
                 }
             }            
         }

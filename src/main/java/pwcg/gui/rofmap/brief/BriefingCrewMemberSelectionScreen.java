@@ -240,10 +240,10 @@ public class BriefingCrewMemberSelectionScreen extends ImageResizingPanel implem
             Integer crewMemberSerialNumber = getCrewMemberSerialNumberFromAction(action);
 
             BriefingTankPicker briefingPlanePicker = new BriefingTankPicker(briefingMissionHandler, this);
-            Integer planeSerialNumber = briefingPlanePicker.pickPlane(crewMemberSerialNumber);
-            if (planeSerialNumber != null)
+            Integer tankSerialNumber = briefingPlanePicker.pickPlane(crewMemberSerialNumber);
+            if (tankSerialNumber != null)
             {
-                briefingMissionHandler.changeTank(crewMemberSerialNumber, planeSerialNumber);
+                briefingMissionHandler.changeTank(crewMemberSerialNumber, tankSerialNumber);
             }
 
             refreshCrewMemberDisplay();

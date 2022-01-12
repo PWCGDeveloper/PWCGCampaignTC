@@ -39,14 +39,14 @@ public class EquipmentDepot
         return equipment.removeBestEquippedFromDepot(activeArchTypes); 
     }
 
-    public EquippedTank removeEquippedPlaneFromDepot(int planeSerialNumber)
+    public EquippedTank removeEquippedPlaneFromDepot(int tankSerialNumber)
     {
-        return equipment.removeEquippedTank(planeSerialNumber);
+        return equipment.removeEquippedTank(tankSerialNumber);
     }
 
-    public EquippedTank getPlaneFromDepot(int planeSerialNumber)
+    public EquippedTank getPlaneFromDepot(int tankSerialNumber)
     {
-        return equipment.getEquippedTank(planeSerialNumber);
+        return equipment.getEquippedTank(tankSerialNumber);
     }
 
     public List<EquippedTank> getDepotAircraftForRole(PwcgRoleCategory roleCategory) throws PWCGException
@@ -73,9 +73,9 @@ public class EquipmentDepot
         return allPlanesInDepot;
     }
 
-    public EquippedTank getAnyTankInDepot(int planeSerialNumber) throws PWCGException
+    public EquippedTank getAnyTankInDepot(int tankSerialNumber) throws PWCGException
     {
-        return equipment.getEquippedTank(planeSerialNumber);
+        return equipment.getEquippedTank(tankSerialNumber);
     }
 
     public int getEquipmentPoints()

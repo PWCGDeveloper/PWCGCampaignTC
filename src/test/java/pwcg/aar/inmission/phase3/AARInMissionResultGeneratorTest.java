@@ -143,11 +143,11 @@ public class AARInMissionResultGeneratorTest
         playerDeclarations.put(playerInFlight.getSerialNumber(), playerDeclarationSet);
     }
 
-    private void createVictory(LogTank victor, Integer crewMemberSerialNumber, Integer planeSerialNumber)
+    private void createVictory(LogTank victor, Integer crewMemberSerialNumber, Integer tankSerialNumber)
     {
         LogTank victim = new LogTank(3);
         victim.setCrewMemberSerialNumber(crewMemberSerialNumber);
-        victim.setTankSerialNumber(planeSerialNumber);
+        victim.setTankSerialNumber(tankSerialNumber);
         victim.setVehicleType("albatrosd5");
         victim.setCountry(new BoSCountry(Country.GERMANY));
         victim.setCompanyId(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());

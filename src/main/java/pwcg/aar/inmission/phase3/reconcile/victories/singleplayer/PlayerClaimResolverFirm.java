@@ -35,7 +35,7 @@ public class PlayerClaimResolverFirm
                             if (shotDownPlane == null || claimedPlane == null)
                             {
                                 PWCGLogger.log(LogLevel.ERROR, 
-                                                "resolveAsFirmVictory: No plane found for claimed type " + playerDeclaration.getAircraftType() );
+                                                "resolveAsFirmVictory: No tank found for claimed type " + playerDeclaration.getAircraftType() );
                                 
                             }
                             else if (shotDownPlane.getType().equals(claimedPlane.getType()))

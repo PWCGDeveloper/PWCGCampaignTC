@@ -15,7 +15,7 @@ import pwcg.core.utils.DateUtils;
 public class PlaneStatusEvent extends AARCrewMemberEvent
 {
     private int crewMemberSerialNumber;
-    private int planeSerialNumber;
+    private int tankSerialNumber;
     private String companyName;
 	private int planeStatus;
 	
@@ -23,7 +23,7 @@ public class PlaneStatusEvent extends AARCrewMemberEvent
     {
         super(campaign, lostPlane.getCompanyId(), lostPlane.getCrewMemberSerialNumber(), campaign.getDate(), isNewsWorthy);
         this.crewMemberSerialNumber = lostPlane.getCrewMemberSerialNumber();
-        this.planeSerialNumber = lostPlane.getTankSerialNumber();
+        this.tankSerialNumber = lostPlane.getTankSerialNumber();
         this.planeStatus = planeStatus;
         
         try
@@ -45,7 +45,7 @@ public class PlaneStatusEvent extends AARCrewMemberEvent
     public String getPlaneLostText(Campaign campaign) throws PWCGException
     {
         CampaignEquipmentManager campaignEquipmentManager = campaign.getEquipmentManager();
-        EquippedTank shotDownPlane = campaignEquipmentManager.destroyTank(planeSerialNumber, campaign.getDate());
+        EquippedTank shotDownPlane = campaignEquipmentManager.destroyTank(tankSerialNumber, campaign.getDate());
 
         CampaignPersonnelManager campaignPersonnelManager = campaign.getPersonnelManager();
         CrewMember shotDownCrewMember = campaignPersonnelManager.getAnyCampaignMember(super.getCrewMemberSerialNumber());
@@ -53,7 +53,7 @@ public class PlaneStatusEvent extends AARCrewMemberEvent
         String prettyDate = DateUtils.getDateStringPretty(campaign.getDate());
         String planeEventText = 
                 "A " + shotDownPlane.getDisplayName() +
-                ",  serial number " + planeSerialNumber + 
+                ",  serial number " + tankSerialNumber + 
                 ",  flown by " + shotDownCrewMember.getNameAndRank() + 
                 " has been lost in combat on " + prettyDate + ".\n";    ;                
 
@@ -63,12 +63,12 @@ public class PlaneStatusEvent extends AARCrewMemberEvent
     public String getPlaneAddedToDepotText(Campaign campaign) throws PWCGException
     {
         CampaignEquipmentManager campaignEquipmentManager = campaign.getEquipmentManager();
-        EquippedTank shotDownPlane = campaignEquipmentManager.destroyTank(planeSerialNumber, campaign.getDate());
+        EquippedTank shotDownPlane = campaignEquipmentManager.destroyTank(tankSerialNumber, campaign.getDate());
 
         String prettyDate = DateUtils.getDateStringPretty(campaign.getDate());
         String planeEventText = 
                 "A " + shotDownPlane.getDisplayName() +
-                ",  serial number " + planeSerialNumber + 
+                ",  serial number " + tankSerialNumber + 
                 " has been provided to the depot for distribution to front line units on " + prettyDate + ".\n";               
 
         return planeEventText;
@@ -77,12 +77,12 @@ public class PlaneStatusEvent extends AARCrewMemberEvent
     public String getPlaneWithdrawnFromServiceText(Campaign campaign) throws PWCGException
     {
         CampaignEquipmentManager campaignEquipmentManager = campaign.getEquipmentManager();
-        EquippedTank shotDownPlane = campaignEquipmentManager.destroyTank(planeSerialNumber, campaign.getDate());
+        EquippedTank shotDownPlane = campaignEquipmentManager.destroyTank(tankSerialNumber, campaign.getDate());
 
         String prettyDate = DateUtils.getDateStringPretty(campaign.getDate());
         String planeEventText = 
                 "A " + shotDownPlane.getDisplayName() +
-                ",  serial number " + planeSerialNumber + 
+                ",  serial number " + tankSerialNumber + 
                 " has been withdrawn from service on " + prettyDate + ".\n";                
 
         return planeEventText;
@@ -95,7 +95,7 @@ public class PlaneStatusEvent extends AARCrewMemberEvent
 
     public int getPlaneSerialNumber()
     {
-        return planeSerialNumber;
+        return tankSerialNumber;
     }
     
     public int getCrewMemberSerialNumber()

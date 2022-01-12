@@ -23,7 +23,6 @@ import pwcg.mission.data.PwcgGeneratedMissionVehicleData;
 public class AARVehicleBuilder
 {
     private AARBotVehicleMapper botPlaneMapper;
-    private AARVehiclePlaneLanded landedMapper;
     private PwcgMissionDataEvaluator pwcgMissionDataEvaluator;
 
     private Map<String, LogTank> logTanks = new HashMap<>();
@@ -31,10 +30,9 @@ public class AARVehicleBuilder
     private Map<String, LogGroundUnit> logGroundUnits = new HashMap<>();
     private Map<String, LogTurret> logTurrets = new HashMap<>();
 
-    public AARVehicleBuilder(AARBotVehicleMapper botPlaneMapper, AARVehiclePlaneLanded landedMapper, PwcgMissionDataEvaluator pwcgMissionDataEvaluator)
+    public AARVehicleBuilder(AARBotVehicleMapper botPlaneMapper, PwcgMissionDataEvaluator pwcgMissionDataEvaluator)
     {
         this.botPlaneMapper = botPlaneMapper;
-        this.landedMapper = landedMapper;
         this.pwcgMissionDataEvaluator = pwcgMissionDataEvaluator;
     }
 
@@ -43,7 +41,6 @@ public class AARVehicleBuilder
         sortVehiclesByType(logEventData.getVehicles());
         createTurretEntitiesForVehicle(logEventData.getTurrets());
         botPlaneMapper.mapBotsToCrews(logTanks);
-        landedMapper.buildLandedLocations(logTanks);
     }
 
     public LogAIEntity getVehicle(String id) throws PWCGException

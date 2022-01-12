@@ -55,9 +55,9 @@ public class UnitTankTypeBuilder
     private List<EquippedTank> getSelectedTanks(Set<Integer> selectedTankSerialNumbers)
     {
         List<EquippedTank> selectedTanks = new ArrayList<>();
-        for (Integer planeSerialNumber : selectedTankSerialNumbers)
+        for (Integer tankSerialNumber : selectedTankSerialNumbers)
         {
-            EquippedTank selectedTank = equipmentForCompany.getActiveEquippedTanks().get(planeSerialNumber);
+            EquippedTank selectedTank = equipmentForCompany.getActiveEquippedTanks().get(tankSerialNumber);
             selectedTanks.add(selectedTank);
         }
         return selectedTanks;

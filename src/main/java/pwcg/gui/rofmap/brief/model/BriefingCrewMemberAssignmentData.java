@@ -34,10 +34,10 @@ public class BriefingCrewMemberAssignmentData
         unAssignedPlanes.put(equippedPlane.getSerialNumber(), equippedPlane);
     }
 
-    public void assignCrewMember(int crewMemberSerialNumber, int planeSerialNumber)
+    public void assignCrewMember(int crewMemberSerialNumber, int tankSerialNumber)
     {
         CrewMember assignedCrewMember = unAssignedCrewMembers.remove(crewMemberSerialNumber);        
-        EquippedTank equippedPlane = unAssignedPlanes.remove(planeSerialNumber);
+        EquippedTank equippedPlane = unAssignedPlanes.remove(tankSerialNumber);
         
         CrewTankPayloadPairing crewPlane = new CrewTankPayloadPairing(assignedCrewMember, equippedPlane);
         crewPlane.setPayloadId(CrewTankPayloadPairing.NO_PAYLOAD_ASSIGNED);
@@ -55,13 +55,13 @@ public class BriefingCrewMemberAssignmentData
         unAssignedPlanes.put(crewPlane.getTank().getSerialNumber(), crewPlane.getTank());
     }
     
-    public void changePlane(int crewMemberSerialNumber, Integer planeSerialNumber)
+    public void changePlane(int crewMemberSerialNumber, Integer tankSerialNumber)
     {
         CrewTankPayloadPairing crewPlane = this.findAssignedCrewPairingByCrewMember(crewMemberSerialNumber);
 
         unAssignedPlanes.put(crewPlane.getTank().getSerialNumber(), crewPlane.getTank());
         
-        EquippedTank equippedPlane = unAssignedPlanes.remove(planeSerialNumber);
+        EquippedTank equippedPlane = unAssignedPlanes.remove(tankSerialNumber);
  
         crewPlane.setPlane(equippedPlane);
         crewPlane.setPayloadId(CrewTankPayloadPairing.NO_PAYLOAD_ASSIGNED);
@@ -106,11 +106,11 @@ public class BriefingCrewMemberAssignmentData
         return null;
     }
 
-    public CrewTankPayloadPairing findAssignedCrewPairingByPlane(int planeSerialNumber)
+    public CrewTankPayloadPairing findAssignedCrewPairingByPlane(int tankSerialNumber)
     {
         for (CrewTankPayloadPairing crewPlane : assignedCrewPlanes)
         {
-            if (crewPlane.getTank().getSerialNumber() == planeSerialNumber)
+            if (crewPlane.getTank().getSerialNumber() == tankSerialNumber)
             {
                 return crewPlane;
             }
