@@ -27,7 +27,7 @@ public class TargetDefinitionBuilderTest
     public void setupSuite() throws PWCGException
     {
         
-        campaign = CampaignCache.makeCampaign(CompanyTestProfile.JG_26_PROFILE_WEST);
+        campaign = CampaignCache.makeCampaign(CompanyTestProfile.PANZER_LEHR_PROFILE);
     }
 
     @Test

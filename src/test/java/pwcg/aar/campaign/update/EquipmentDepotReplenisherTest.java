@@ -88,7 +88,7 @@ public class EquipmentDepotReplenisherTest
     @Test
     public void testUpgradeWithWorsePlane() throws PWCGException
     {
-        EquipmentDepot equipmentDepot = campaign.getEquipmentManager().getEquipmentDepotForService(TCServiceManager.LUFTWAFFE);
+        EquipmentDepot equipmentDepot = campaign.getEquipmentManager().getEquipmentDepotForService(TCServiceManager.WEHRMACHT);
         EquipmentUpgradeRecord upgradeRecord = equipmentDepot.getUpgrade(me109E7);
         Assertions.assertTrue (upgradeRecord != null);
         Assertions.assertTrue (upgradeRecord.getUpgrade().getArchType().equals("bf109"));
@@ -109,7 +109,7 @@ public class EquipmentDepotReplenisherTest
     @Test
     public void testUpgradeWithBetterPlane() throws PWCGException
     {
-        EquipmentDepot equipmentDepo = campaign.getEquipmentManager().getEquipmentDepotForService(TCServiceManager.LUFTWAFFE);
+        EquipmentDepot equipmentDepo = campaign.getEquipmentManager().getEquipmentDepotForService(TCServiceManager.WEHRMACHT);
         EquipmentUpgradeRecord replacementPlane = equipmentDepo.getUpgrade(me109K4);
         Assertions.assertTrue (replacementPlane == null);
     }

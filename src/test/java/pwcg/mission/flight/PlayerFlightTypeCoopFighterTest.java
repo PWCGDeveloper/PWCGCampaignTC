@@ -35,13 +35,13 @@ public class PlayerFlightTypeCoopFighterTest
     {
         
         Campaign germanEastCampaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
-        Campaign germanWestCampaign = CampaignCache.makeCampaign(CompanyTestProfile.JG_26_PROFILE_WEST);
+        Campaign germanWestCampaign = CampaignCache.makeCampaign(CompanyTestProfile.PANZER_LEHR_PROFILE);
         Campaign americanCampaign = CampaignCache.makeCampaign(CompanyTestProfile.THIRD_DIVISION_PROFILE);
         Campaign britishCampaign = CampaignCache.makeCampaign(CompanyTestProfile.SEVENTH_DIVISION_PROFILE);
         Campaign russianCampaign = CampaignCache.makeCampaign(CompanyTestProfile.REGIMENT_11_PROFILE);
         
         campaigns.put(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE, germanEastCampaign);
-        campaigns.put(CompanyTestProfile.JG_26_PROFILE_WEST, germanWestCampaign);
+        campaigns.put(CompanyTestProfile.PANZER_LEHR_PROFILE, germanWestCampaign);
         campaigns.put(CompanyTestProfile.THIRD_DIVISION_PROFILE, americanCampaign);
         campaigns.put(CompanyTestProfile.SEVENTH_DIVISION_PROFILE, britishCampaign);
         campaigns.put(CompanyTestProfile.REGIMENT_11_PROFILE, russianCampaign);

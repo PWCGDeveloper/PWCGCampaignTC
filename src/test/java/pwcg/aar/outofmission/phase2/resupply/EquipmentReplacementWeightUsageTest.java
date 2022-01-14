@@ -14,7 +14,6 @@ import pwcg.campaign.Campaign;
 import pwcg.campaign.company.Company;
 import pwcg.campaign.company.CompanyManager;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.factory.ArmedServiceFactory;
 import pwcg.campaign.resupply.depot.EquipmentReplacementWeightUsage;
 import pwcg.core.exception.PWCGException;
@@ -34,129 +33,79 @@ public class EquipmentReplacementWeightUsageTest
     {
         
         earlyCampaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
-        lateCampaign = CampaignCache.makeCampaign(CompanyTestProfile.JG_26_PROFILE_WEST);
+        lateCampaign = CampaignCache.makeCampaign(CompanyTestProfile.PANZER_LEHR_PROFILE);
     }
     
     @Test
     public void testGermanReplacementArchTypes() throws PWCGException
     {
-        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(20101);
+        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(TCServiceManager.WEHRMACHT);
         CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
         List<Company> companysForService = companyManager.getActiveCompaniesForService(earlyCampaign.getDate(), service);
         
         EquipmentReplacementWeightUsage equipmentReplacementWeightUsage = new EquipmentReplacementWeightUsage(earlyCampaign.getDate());
-        Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftUsageByArchType(companysForService);
+        Map<String, Integer> tankUsageByArchType = equipmentReplacementWeightUsage.getTankUsageByArchType(companysForService);
 
-        assert(aircraftUsageByArchType.containsKey("bf109"));
-        assert(aircraftUsageByArchType.containsKey("bf110"));
-        assert(aircraftUsageByArchType.containsKey("he111"));
-        assert(aircraftUsageByArchType.containsKey("ju87"));
-        assert(aircraftUsageByArchType.containsKey("ju88"));
+        assert(tankUsageByArchType.containsKey("pziii"));
+        assert(tankUsageByArchType.containsKey("pziv"));
 
-        assert(!aircraftUsageByArchType.containsKey("hs129"));
-        assert(!aircraftUsageByArchType.containsKey("fw190"));
-        assert(!aircraftUsageByArchType.containsKey("yak"));
-        assert(!aircraftUsageByArchType.containsKey("il2"));
-        assert(!aircraftUsageByArchType.containsKey("fw190d"));
-        assert(!aircraftUsageByArchType.containsKey("me262"));
-        assert(!aircraftUsageByArchType.containsKey("ju52"));
-        
-        int me109Weight = aircraftUsageByArchType.get("bf109");
-        int ju88Weight = aircraftUsageByArchType.get("ju88");
-        assert(me109Weight > ju88Weight);
+        assert(!tankUsageByArchType.containsKey("panther"));
     }
 
     @Test
     public void testRussianReplacementArchTypes() throws PWCGException
     {
-        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(10101);
+        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(TCServiceManager.SSV);
         CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
         List<Company> companysForService = companyManager.getActiveCompaniesForService(earlyCampaign.getDate(), service);
         
         EquipmentReplacementWeightUsage equipmentReplacementWeightUsage = new EquipmentReplacementWeightUsage(earlyCampaign.getDate());
-        Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftUsageByArchType(companysForService);
+        Map<String, Integer> tankUsageByArchType = equipmentReplacementWeightUsage.getTankUsageByArchType(companysForService);
 
-        assert(aircraftUsageByArchType.containsKey("il2"));
-        assert(aircraftUsageByArchType.containsKey("i16"));
-        assert(aircraftUsageByArchType.containsKey("lagg"));
-        assert(aircraftUsageByArchType.containsKey("pe2"));
-        assert(aircraftUsageByArchType.containsKey("mig3"));
-
-        assert(!aircraftUsageByArchType.containsKey("yak"));
-        assert(!aircraftUsageByArchType.containsKey("bf109"));
-        assert(!aircraftUsageByArchType.containsKey("he111"));
-        
-        int il2Weight = aircraftUsageByArchType.get("il2");
-        int i16Weight = aircraftUsageByArchType.get("i16");
-        assert(il2Weight > i16Weight);
+        assert(tankUsageByArchType.containsKey("t34"));
+        assert(tankUsageByArchType.containsKey("kv1")); 
     }
-    
-    @Test
-    public void testItalianReplacementArchTypes() throws PWCGException
-    {
-        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(20202);
-        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
-        List<Company> companysForService = companyManager.getActiveCompaniesForService(earlyCampaign.getDate(), service);
-        
-        EquipmentReplacementWeightUsage equipmentReplacementWeightUsage = new EquipmentReplacementWeightUsage(earlyCampaign.getDate());
-        Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftUsageByArchType(companysForService);
 
-        assert(aircraftUsageByArchType.containsKey("mc200"));
-        assert(aircraftUsageByArchType.size() == 1);
-    }
-    
     @Test
     public void testGermanLateReplacementArchTypes() throws PWCGException
     {
-        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(20101);
+        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(TCServiceManager.WEHRMACHT);
         CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
         List<Company> companysForService = companyManager.getActiveCompaniesForService(lateCampaign.getDate(), service);
         
         EquipmentReplacementWeightUsage equipmentReplacementWeightUsage = new EquipmentReplacementWeightUsage(lateCampaign.getDate());
-        Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftUsageByArchType(companysForService);
+        Map<String, Integer> tankUsageByArchType = equipmentReplacementWeightUsage.getTankUsageByArchType(companysForService);
 
-        assert(aircraftUsageByArchType.containsKey("bf109"));
-        assert(aircraftUsageByArchType.containsKey("ju88"));
-        assert(aircraftUsageByArchType.containsKey("fw190"));
-        assert(aircraftUsageByArchType.containsKey("fw190d"));
-        assert(aircraftUsageByArchType.containsKey("me262"));
+        assert(tankUsageByArchType.containsKey("pziv"));
+        assert(tankUsageByArchType.containsKey("tiger"));
+        assert(tankUsageByArchType.containsKey("panther"));
 
-        assert(aircraftUsageByArchType.containsKey("bf110"));
-        assert(aircraftUsageByArchType.containsKey("he111"));
-        assert(aircraftUsageByArchType.containsKey("ju87"));
-        assert(aircraftUsageByArchType.containsKey("hs129"));        
-        assert(aircraftUsageByArchType.containsKey("he111"));
-        assert(!aircraftUsageByArchType.containsKey("ju52"));
-
-        int me109Weight = aircraftUsageByArchType.get("bf109");
-        int ju88Weight = aircraftUsageByArchType.get("ju88");
-        
-        assert(me109Weight > ju88Weight);
+        assert(!tankUsageByArchType.containsKey("pziii"));        
     }
 
     @Test
     public void testAmericanReplacementArchTypes() throws PWCGException
     {
-        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(TCServiceManager.USAAF);
+        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(TCServiceManager.US_ARMY);
         CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
         List<Company> companysForService = companyManager.getActiveCompaniesForService(lateCampaign.getDate(), service);
         
         EquipmentReplacementWeightUsage equipmentReplacementWeightUsage = new EquipmentReplacementWeightUsage(lateCampaign.getDate());
-        Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftUsageByArchType(companysForService);
+        Map<String, Integer> tankUsageByArchType = equipmentReplacementWeightUsage.getTankUsageByArchType(companysForService);
 
-        assert(aircraftUsageByArchType.containsKey("p47"));
+        assert(tankUsageByArchType.containsKey("sherman"));
     }
 
     @Test
     public void testBritishReplacementArchTypes() throws PWCGException
     {
-        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(TCServiceManager.RAF);
+        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(TCServiceManager.BRITISH_ARMY);
         CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
         List<Company> companysForService = companyManager.getActiveCompaniesForService(lateCampaign.getDate(), service);
         
         EquipmentReplacementWeightUsage equipmentReplacementWeightUsage = new EquipmentReplacementWeightUsage(lateCampaign.getDate());
-        Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftUsageByArchType(companysForService);
+        Map<String, Integer> tankUsageByArchType = equipmentReplacementWeightUsage.getTankUsageByArchType(companysForService);
 
-        assert(aircraftUsageByArchType.containsKey("spitfire"));
+        assert(tankUsageByArchType.containsKey("sherman"));
     }
 }

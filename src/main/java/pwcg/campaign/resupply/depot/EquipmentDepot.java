@@ -19,9 +19,9 @@ public class EquipmentDepot
     private int equipmentPoints;
     private Date lastReplacementDate;
 
-    public void setEquippment(Equipment equippedPlanes)
+    public void setEquippment(Equipment equippedTanks)
     {
-        this.equipment = equippedPlanes;
+        this.equipment = equippedTanks;
     }
 
     public int getDepotSize()
@@ -29,9 +29,9 @@ public class EquipmentDepot
         return equipment.getAvailableDepotTanks().size();
     }
     
-    public void addPlaneToDepot(EquippedTank equippedPlane) throws PWCGException
+    public void addPlaneToDepot(EquippedTank equippedTank) throws PWCGException
     {
-        equipment.addEPlaneToDepot(equippedPlane);
+        equipment.addEPlaneToDepot(equippedTank);
     }
     
     public EquippedTank removeBestPlaneFromDepot(List<String> activeArchTypes)
@@ -52,11 +52,11 @@ public class EquipmentDepot
     public List<EquippedTank> getDepotAircraftForRole(PwcgRoleCategory roleCategory) throws PWCGException
     {
         List<EquippedTank> planesInDepotForRole = new ArrayList<>();
-        for (EquippedTank equippedPlane : equipment.getAvailableDepotTanks().values())
+        for (EquippedTank equippedTank : equipment.getAvailableDepotTanks().values())
         {
-            if (equippedPlane.determinePrimaryRoleCategory() == roleCategory)
+            if (equippedTank.determinePrimaryRoleCategory() == roleCategory)
             {
-                planesInDepotForRole.add(equippedPlane);
+                planesInDepotForRole.add(equippedTank);
             }
         }
         List<EquippedTank> sortedDepotForRole = TankSorter.sortEquippedTanksByGoodness(planesInDepotForRole);
@@ -66,9 +66,9 @@ public class EquipmentDepot
     public List<EquippedTank> getAllPlanesInDepot() throws PWCGException
     {
         List<EquippedTank> allPlanesInDepot = new ArrayList<>();
-        for (EquippedTank equippedPlane : equipment.getAvailableDepotTanks().values())
+        for (EquippedTank equippedTank : equipment.getAvailableDepotTanks().values())
         {
-            allPlanesInDepot.add(equippedPlane);
+            allPlanesInDepot.add(equippedTank);
         }
         return allPlanesInDepot;
     }
@@ -98,33 +98,33 @@ public class EquipmentDepot
         this.lastReplacementDate = lastReplacementDate;
     }
 
-    public EquipmentUpgradeRecord getUpgrade(EquippedTank equippedPlane) throws PWCGException
+    public EquipmentUpgradeRecord getUpgrade(EquippedTank equippedTank) throws PWCGException
     {
         List<EquippedTank> sortedPlanes = getPlanesForFromDepotBestToWorst(equipment.getAvailableDepotTanks());
         for (EquippedTank depotPlane : sortedPlanes)
         {
-            if (isUpgradePlane(depotPlane, equippedPlane))
+            if (isUpgradePlane(depotPlane, equippedTank))
             {
-                EquipmentUpgradeRecord upgradeRecord = new EquipmentUpgradeRecord(depotPlane, equippedPlane);
+                EquipmentUpgradeRecord upgradeRecord = new EquipmentUpgradeRecord(depotPlane, equippedTank);
                 return upgradeRecord;
             }
         }
         return null;
     }
     
-    private boolean isUpgradePlane(EquippedTank depotPlane, EquippedTank equippedPlane)
+    private boolean isUpgradePlane(EquippedTank depotPlane, EquippedTank equippedTank)
     {
-        if (!(depotPlane.getArchType().equals(equippedPlane.getArchType())))
+        if (!(depotPlane.getArchType().equals(equippedTank.getArchType())))
         {
             return false;
         }
         
-        if (!(depotPlane.getGoodness() > equippedPlane.getGoodness()))
+        if (!(depotPlane.getGoodness() > equippedTank.getGoodness()))
         {
             return false;
         }
         
-        if (equippedPlane.isEquipmentRequest())
+        if (equippedTank.isEquipmentRequest())
         {
             return false;
         }

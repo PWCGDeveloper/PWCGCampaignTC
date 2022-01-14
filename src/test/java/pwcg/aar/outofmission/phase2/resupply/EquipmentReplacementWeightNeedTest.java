@@ -51,7 +51,7 @@ public class EquipmentReplacementWeightNeedTest
     @Test
     public void testGermanEquipmentNeed() throws PWCGException
     {
-        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(20101);
+        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(TCServiceManager.WEHRMACHT);
         CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
         List<Company> companysForService = companyManager.getActiveCompaniesForService(campaign.getDate(), service);
         
@@ -84,7 +84,7 @@ public class EquipmentReplacementWeightNeedTest
     @Test
     public void testRussianEquipmentNeed() throws PWCGException
     {
-        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(10101);
+        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(TCServiceManager.SSV);
         CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
         List<Company> companysForService = companyManager.getActiveCompaniesForService(campaign.getDate(), service);
         
@@ -148,11 +148,11 @@ public class EquipmentReplacementWeightNeedTest
     private void destroyPlanesInCompany(Equipment companyEquipment, int numToDestroy) throws PWCGException
     {
         int numDestroyed = 0;
-        for (EquippedTank equippedPlane : companyEquipment.getActiveEquippedTanks().values())
+        for (EquippedTank equippedTank : companyEquipment.getActiveEquippedTanks().values())
         {
-            equippedPlane.setTankStatus(TankStatus.STATUS_DESTROYED);
+            equippedTank.setTankStatus(TankStatus.STATUS_DESTROYED);
             Date dateDestroyed = DateUtils.removeTimeDays(campaign.getDate(), 10);
-            equippedPlane.setDateRemovedFromService(dateDestroyed);
+            equippedTank.setDateRemovedFromService(dateDestroyed);
             ++numDestroyed;
             if (numDestroyed == numToDestroy)
             {

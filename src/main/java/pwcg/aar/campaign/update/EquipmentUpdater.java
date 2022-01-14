@@ -29,9 +29,9 @@ public class EquipmentUpdater
     {
         for (Integer tankSerialNumber : campaignUpdateData.getEquipmentLosses().getPlanesDestroyed().keySet())
         {
-            EquippedTank equippedPlane = campaign.getEquipmentManager().getAnyTankWithPreference(tankSerialNumber);
-            equippedPlane.setPlaneStatus(TankStatus.STATUS_DESTROYED);
-            equippedPlane.setDateRemovedFromService(campaign.getDate());
+            EquippedTank equippedTank = campaign.getEquipmentManager().getAnyTankWithPreference(tankSerialNumber);
+            equippedTank.setTankStatus(TankStatus.STATUS_DESTROYED);
+            equippedTank.setDateRemovedFromService(campaign.getDate());
         }
     }
 
@@ -42,7 +42,7 @@ public class EquipmentUpdater
             Equipment equipment = campaign.getEquipmentManager().getEquipmentForCompany(equipmentResupplyRecord.getTransferTo());
             EquippedTank replacementPlane = equipmentResupplyRecord.getEquippedPlane();
             replacementPlane.setCompanyId(equipmentResupplyRecord.getTransferTo());
-            replacementPlane.setPlaneStatus(TankStatus.STATUS_DEPLOYED);
+            replacementPlane.setTankStatus(TankStatus.STATUS_DEPLOYED);
             equipment.addEquippedTankToCompany(campaign, equipmentResupplyRecord.getTransferTo(), replacementPlane);
         }
     }

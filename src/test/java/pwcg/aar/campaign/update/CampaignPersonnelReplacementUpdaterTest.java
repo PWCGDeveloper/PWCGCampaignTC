@@ -64,7 +64,7 @@ public class CampaignPersonnelReplacementUpdaterTest
     	replacementService.setReplacementPoints(40);
     	replacementService.setDailyReplacementRate(10);
     	replacementService.setLastReplacementDate(DateUtils.removeTimeDays(campaign.getDate(), 8));
-    	replacementService.setServiceId(TCServiceManager.LUFTWAFFE);
+    	replacementService.setServiceId(TCServiceManager.WEHRMACHT);
     	
     	replacementServices.add(replacementService);
     	

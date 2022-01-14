@@ -31,14 +31,14 @@ public class EquippedTank extends TankType
         this.planeStatus = planeStatus;
     }
 
-    public void copyTemplate(EquippedTank equippedPlane)
+    public void copyTemplate(EquippedTank equippedTank)
     {
-        super.copyTemplate(equippedPlane);
-        equippedPlane.serialNumber = this.serialNumber;
-        equippedPlane.companyId = this.companyId;
-        equippedPlane.dateRemovedFromService = this.dateRemovedFromService;
-        equippedPlane.planeStatus = this.planeStatus;
-        equippedPlane.aircraftIdCode = this.aircraftIdCode;
+        super.copyTemplate(equippedTank);
+        equippedTank.serialNumber = this.serialNumber;
+        equippedTank.companyId = this.companyId;
+        equippedTank.dateRemovedFromService = this.dateRemovedFromService;
+        equippedTank.planeStatus = this.planeStatus;
+        equippedTank.aircraftIdCode = this.aircraftIdCode;
     }
 
     // Backwards compatibility method for version 13.2.0.  Remove when safe.
@@ -79,7 +79,7 @@ public class EquippedTank extends TankType
         return planeStatus;
     }
 
-    public void setPlaneStatus(int planeStatus)
+    public void setTankStatus(int planeStatus)
     {
         this.planeStatus = planeStatus;
     }
@@ -109,7 +109,7 @@ public class EquippedTank extends TankType
         return aircraftIdCode;
     }
 
-    public void setAircraftIdCode(String aircraftIdCode)
+    public void setTankIdCode(String aircraftIdCode)
     {
         this.aircraftIdCode = aircraftIdCode;
     }

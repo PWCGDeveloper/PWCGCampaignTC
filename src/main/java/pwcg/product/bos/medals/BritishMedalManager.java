@@ -10,10 +10,12 @@ public class BritishMedalManager extends BoSMedalManager
 {
     public static int CREWS_BADGE = 1;
 
-    public static int DFC = 2;
-    public static int DFC_BAR_1 = 3;
-    public static int DSO = 5;
-    public static int DSO_BAR = 6;
+    public static int MM = 2;
+    public static int MC = 3;
+    public static int DSM = 4;
+    public static int DSC = 5;
+    public static int DSO = 6;
+    public static int DSO_BAR = 7;
     public static int VC = 9;
 
     public static int WOUND_STRIPE = 20;
@@ -22,9 +24,13 @@ public class BritishMedalManager extends BoSMedalManager
     {
         super(campaign);
 
-        medals.put(CREWS_BADGE, new Medal("CrewMembers Badge", "gb_crew_badge.png"));
-        medals.put(DFC, new Medal(DISTINGUISHED_FLYING_CROSS_NAME, "gb_distinguished_using_cross.png"));
-        medals.put(DFC_BAR_1, new Medal(DISTINGUISHED_FLYING_CROSS_NAME + " With Bar", "gb_distinguished_using_cross_bar.png"));
+        medals.put(CREWS_BADGE, new Medal("CrewMembers Badge",          "gb_crew_badge.png"));
+        medals.put(DSO, new Medal ("Military Medal",                    "gb_military_medal.png"));
+        medals.put(DSO, new Medal ("Military Cross",                    "gb_military_cross.png"));
+        medals.put(DSO, new Medal ("Distinguished Service Medal",       "gb_distinguished_service_medal.png"));
+        medals.put(DSO, new Medal ("Distinguished Service Cross",       "gb_distinguished_service_cross.png"));
+
+        medals.put(DSO, new Medal (DISTINGUISHED_SERVICE_ORDER_NAME,                    "gb_distinguished_service_order.png"));
         medals.put(DSO, new Medal (DISTINGUISHED_SERVICE_ORDER_NAME,                    "gb_distinguished_service_order.png"));
         medals.put(DSO_BAR, new Medal (DISTINGUISHED_SERVICE_ORDER_NAME + " With Bar",      "gb_distinguished_service_order_bar.png"));
         medals.put(VC, new Medal("Victoria Cross", "gb_victoria_cross.png"));

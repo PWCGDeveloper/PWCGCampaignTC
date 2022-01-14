@@ -83,7 +83,7 @@ public class MissionSkinSetBuilderTest
         Mockito.when(plane2.getType()).thenReturn("lagg3s29");
         Mockito.when(plane3.getType()).thenReturn("lagg3s29");
      
-        Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420101"));
+        Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420801"));
 
         MissionSkinSet missionSkinSet = MissionSkinSetBuilder.buildWinterMissionSkinSet(flight);
         assert(missionSkinSet.getFactorySkins("lagg3s29").size() > 0);

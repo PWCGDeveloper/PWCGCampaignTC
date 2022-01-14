@@ -40,7 +40,7 @@ public class EquipmentReplacementWeightNoNeedTest
     @Test
     public void testGermanNeedNoLosses() throws PWCGException
     {
-        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(20101);
+        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(TCServiceManager.WEHRMACHT);
         CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
         List<Company> companysForService = companyManager.getActiveCompaniesForService(campaign.getDate(), service);
         
@@ -54,7 +54,7 @@ public class EquipmentReplacementWeightNoNeedTest
     @Test
     public void testRussianNeedNoLosses() throws PWCGException
     {
-        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(10101);
+        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(TCServiceManager.SSV);
         CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
         List<Company> companysForService = companyManager.getActiveCompaniesForService(campaign.getDate(), service);
         

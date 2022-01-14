@@ -10,14 +10,13 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import pwcg.campaign.ArmedService;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.company.Company;
-import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.SerialNumber;
 import pwcg.campaign.factory.ArmedServiceFactory;
 import pwcg.core.constants.AiSkillLevel;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
+import pwcg.product.bos.country.TCServiceManager;
 
 @ExtendWith(MockitoExtension.class)
 public class CrewMemberReplacementFactoryTest
@@ -39,7 +38,7 @@ public class CrewMemberReplacementFactoryTest
     {                
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420601"));
 
-        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(20101);
+        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(ArmedService.);
 
         CrewMemberReplacementFactory companyMemberFactory = new  CrewMemberReplacementFactory (campaign, service);
         CrewMember replacement = companyMemberFactory.createAIReplacementCrewMember();
@@ -56,7 +55,7 @@ public class CrewMemberReplacementFactoryTest
     {                
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19440602"));
 
-        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(20101);
+        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(TCServiceManager.WEHRMACHT);
 
         CrewMemberReplacementFactory companyMemberFactory = new  CrewMemberReplacementFactory (campaign, service);
         CrewMember replacement = companyMemberFactory.createAIReplacementCrewMember();

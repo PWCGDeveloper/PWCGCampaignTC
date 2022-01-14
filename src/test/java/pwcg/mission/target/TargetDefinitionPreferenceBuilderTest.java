@@ -36,13 +36,13 @@ public class TargetDefinitionPreferenceBuilderTest
     public void setupSuite() throws PWCGException
     {
         
-        campaign = CampaignCache.makeCampaign(CompanyTestProfile.JG_26_PROFILE_WEST);
+        campaign = CampaignCache.makeCampaign(CompanyTestProfile.PANZER_LEHR_PROFILE);
     }
     
     @Test
     public void tankBustTargetTypeTest() throws PWCGException
     {
-        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.JG_26_PROFILE_WEST.getCompanyId());
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.PANZER_LEHR_PROFILE.getCompanyId());
         
         CompanyRoleWeight companyRoleWeight = new CompanyRoleWeight();
         companyRoleWeight.setRole(PwcgRole.ROLE_TANK_BUSTER);
@@ -68,7 +68,7 @@ public class TargetDefinitionPreferenceBuilderTest
     @Test
     public void trainBustTargetTypeTest() throws PWCGException
     {
-        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.JG_26_PROFILE_WEST.getCompanyId());
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.PANZER_LEHR_PROFILE.getCompanyId());
         
         CompanyRoleWeight companyRoleWeight = new CompanyRoleWeight();
         companyRoleWeight.setRole(PwcgRole.ROLE_TRAIN_BUSTER);
@@ -94,7 +94,7 @@ public class TargetDefinitionPreferenceBuilderTest
     @Test
     public void shippingTargetTypeTest() throws PWCGException
     {
-        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.JG_26_PROFILE_WEST.getCompanyId());
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.PANZER_LEHR_PROFILE.getCompanyId());
         
         CompanyRoleWeight companyRoleWeight = new CompanyRoleWeight();
         companyRoleWeight.setRole(PwcgRole.ROLE_ANTI_SHIPPING);

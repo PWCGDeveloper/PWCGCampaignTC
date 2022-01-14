@@ -141,7 +141,7 @@ public class Equipment
         EquippedTank equippedTank = equippedTanks.get(tankSerialNumber);
         if (equippedTank != null)
         {
-            equippedTank.setPlaneStatus(TankStatus.STATUS_REMOVED_FROM_SERVICE);
+            equippedTank.setTankStatus(TankStatus.STATUS_REMOVED_FROM_SERVICE);
             equippedTank.setDateRemovedFromService(date);
         }
         return equippedTank;

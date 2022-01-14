@@ -101,9 +101,9 @@ public class AARExtendedTimeHandlerTest
     public void testEquipmentReplacedWhenTimePassed () throws PWCGException
     {
         Map<Integer, EquippedTank> activePlanes = campaign.getEquipmentManager().getEquipmentForCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId()).getActiveEquippedTanks();
-        for (EquippedTank equippedPlane : activePlanes.values())
+        for (EquippedTank equippedTank : activePlanes.values())
         {
-            equippedPlane.setTankStatus(TankStatus.STATUS_DESTROYED);
+            equippedTank.setTankStatus(TankStatus.STATUS_DESTROYED);
             Map<Integer, EquippedTank> activePlanesLeft = campaign.getEquipmentManager().getEquipmentForCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId()).getActiveEquippedTanks();
             if (activePlanesLeft.size() < 3)
             {

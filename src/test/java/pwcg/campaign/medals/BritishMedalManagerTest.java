@@ -16,8 +16,6 @@ import org.mockito.quality.Strictness;
 
 import pwcg.campaign.api.ICountry;
 import pwcg.campaign.context.Country;
-import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.factory.ArmedServiceFactory;
 import pwcg.campaign.factory.CountryFactory;
 import pwcg.campaign.factory.MedalManagerFactory;
@@ -25,12 +23,12 @@ import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.gui.image.ImageIconCache;
 import pwcg.gui.utils.ContextSpecificImages;
+import pwcg.product.bos.country.TCServiceManager;
 import pwcg.product.bos.medals.BritishMedalManager;
-import pwcg.product.fc.country.TCServiceManager;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
-public class RoFBritishMedalManagerTest extends MedalManagerTestBase
+public class BritishMedalManagerTest extends MedalManagerTestBase
 {
     @BeforeEach
     public void setupTest() throws PWCGException
@@ -44,55 +42,23 @@ public class RoFBritishMedalManagerTest extends MedalManagerTestBase
     }
     
     @Test
-    public void testRFCFMedals () throws PWCGException
-    {            	
-        Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19170201"));
-	    service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.RFC, campaign.getDate());
-        Mockito.when(player.determineService(ArgumentMatchers.<Date>any())).thenReturn(service);
-
-        awardMedal(BritishMedalManager.CREWS_BADGE, 0, 0);
-		awardMedal(BritishMedalManager.MC, 3, 1);
-		awardMedal(BritishMedalManager.DSO, 15, 1);
-		awardMedal(BritishMedalManager.DSO_BAR, 25, 2);
-		awardMedal(BritishMedalManager.VC, 35, 3);
-    }
-    
-    @Test
-    public void testRNASMedals () throws PWCGException
-    {            	
-        Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19170201"));
-	    service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.RNAS, campaign.getDate());
-        Mockito.when(player.determineService(ArgumentMatchers.<Date>any())).thenReturn(service);
-
-        awardMedal(BritishMedalManager.CREWS_BADGE, 0, 0);
-		awardMedal(BritishMedalManager.DSC, 3, 1);
-		awardMedal(BritishMedalManager.DSC_BAR, 12, 2);
-		awardMedal(BritishMedalManager.DSO, 15, 1);
-		awardMedal(BritishMedalManager.DSO_BAR, 25, 2);
-		awardMedal(BritishMedalManager.VC, 40, 2);
-    }
-    
-    @Test
     public void testRAFMedals () throws PWCGException
     {            	
-        Mockito.when(campaign.getDate()).thenReturn(DateUtils.getRAFDate());
-	    service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.RFC, campaign.getDate());
+        Mockito.when(campaign.getDate()).thenReturn(DateUtils.getStartofWWIIBritain());
+	    service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.BRITISH_ARMY, campaign.getDate());
         Mockito.when(player.determineService(ArgumentMatchers.<Date>any())).thenReturn(service);
 
         awardMedal(BritishMedalManager.CREWS_BADGE, 0, 0);
-		awardMedal(BritishMedalManager.DFC, 8, 1);
-		awardMedal(BritishMedalManager.DFC_BAR_1, 12, 2);
 		awardMedal(BritishMedalManager.DSO, 15, 1);
 		awardMedal(BritishMedalManager.DSO_BAR, 25, 2);
-		awardMedal(BritishMedalManager.DFC_BAR_2, 30, 3);
 		awardMedal(BritishMedalManager.VC, 40, 2);
     }
 
     @Test
     public void testVCFail () throws PWCGException
     {            
-        Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19170201"));
-	    service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.RFC, campaign.getDate());
+        Mockito.when(campaign.getDate()).thenReturn(DateUtils.getStartofWWIIBritain());
+	    service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.BRITISH_ARMY, campaign.getDate());
         Mockito.when(player.determineService(ArgumentMatchers.<Date>any())).thenReturn(service);
 
         awardMedal(BritishMedalManager.CREWS_BADGE, 0, 0);

@@ -16,13 +16,12 @@ import pwcg.campaign.ArmedService;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.company.Company;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
-import pwcg.campaign.plane.Equipment;
-import pwcg.campaign.plane.EquippedPlane;
-import pwcg.campaign.plane.PlaneStatus;
 import pwcg.campaign.resupply.ResupplyNeedBuilder;
 import pwcg.campaign.resupply.equipment.EquipmentReplacementHandler;
 import pwcg.campaign.resupply.equipment.EquipmentResupplyData;
+import pwcg.campaign.tank.Equipment;
+import pwcg.campaign.tank.EquippedTank;
+import pwcg.campaign.tank.TankStatus;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.testutils.CampaignCache;
@@ -68,15 +67,15 @@ public class EquipmentReplacementHandlerTest
         int numInactivated = 0;
         for (Equipment equipment: campaign.getEquipmentManager().getEquipmentAllCompanies().values())
         {
-            for (EquippedTank equippedPlane : equipment.getActiveEquippedTanks().values())
+            for (EquippedTank equippedTank : equipment.getActiveEquippedTanks().values())
             {
-                Company company = PWCGContext.getInstance().getCompanyManager().getCompany(equippedPlane.getCompanyId());
+                Company company = PWCGContext.getInstance().getCompanyManager().getCompany(equippedTank.getCompanyId());
                 if (company.getService() == armedService.getServiceId())
                 {
-                    if (playerCompany.getCompanyId() != equippedPlane.getCompanyId())
+                    if (playerCompany.getCompanyId() != equippedTank.getCompanyId())
                     {
-                        equippedPlane.setTankStatus(TankStatus.STATUS_DESTROYED);
-                        equippedPlane.setDateRemovedFromService(inactiveDate);
+                        equippedTank.setTankStatus(TankStatus.STATUS_DESTROYED);
+                        equippedTank.setDateRemovedFromService(inactiveDate);
                         ++numInactivated;
                     }
                 }
@@ -110,13 +109,13 @@ public class EquipmentReplacementHandlerTest
         int numInactivated = 0;
         Company playerCompany = campaign.determinePlayerCompanies().get(0);
         Equipment equipment = campaign.getEquipmentManager().getEquipmentForCompany(playerCompany.getCompanyId());
-        for (EquippedTank equippedPlane : equipment.getActiveEquippedTanks().values())
+        for (EquippedTank equippedTank : equipment.getActiveEquippedTanks().values())
         {
             Company company = PWCGContext.getInstance().getCompanyManager().getCompany(playerCompany.getCompanyId());
-            if (company.getCompanyId() == equippedPlane.getCompanyId())
+            if (company.getCompanyId() == equippedTank.getCompanyId())
             {                
-                equippedPlane.setTankStatus(TankStatus.STATUS_DESTROYED);
-                equippedPlane.setDateRemovedFromService(inactiveDate);
+                equippedTank.setTankStatus(TankStatus.STATUS_DESTROYED);
+                equippedTank.setDateRemovedFromService(inactiveDate);
                 ++numInactivated;
             }
                             

@@ -17,7 +17,7 @@ import pwcg.campaign.company.CompanyRoleSet;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.CrewMemberVictories;
 import pwcg.campaign.crewmember.Victory;
-import pwcg.campaign.plane.PwcgRole;
+import pwcg.campaign.tank.PwcgRole;
 import pwcg.core.exception.PWCGException;
 
 public abstract class MedalManagerTestBase

@@ -65,7 +65,7 @@ public class EquipmentReplacementCalculator
     private void loadWeightsByUsage(List<Company> companysForService) throws PWCGException
     {
         EquipmentReplacementWeightUsage equipmentReplacementWeightUsage = new EquipmentReplacementWeightUsage(campaign.getDate());
-        Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftUsageByArchType(companysForService);
+        Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getTankUsageByArchType(companysForService);
         loadWeightedList(aircraftUsageByArchType, weightedArchTypeUsage);        
     }
 

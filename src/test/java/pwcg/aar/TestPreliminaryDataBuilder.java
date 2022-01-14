@@ -132,14 +132,14 @@ public class TestPreliminaryDataBuilder
             Equipment equipment = campaign.getEquipmentManager().getEquipmentForCompany(crewMember.getCompanyId());
             List<EquippedTank> planesForCompany = new ArrayList<>(equipment.getActiveEquippedTanks().values());
             int planeIndex = RandomNumberGenerator.getRandom(planesForCompany.size());
-            EquippedTank equippedPlane = planesForCompany.get(planeIndex);
+            EquippedTank equippedTank = planesForCompany.get(planeIndex);
 
             PwcgGeneratedMissionVehicleData missionPlaneData = new PwcgGeneratedMissionVehicleData();
-            missionPlaneData.setVehicleType(equippedPlane.getType());
+            missionPlaneData.setVehicleType(equippedTank.getType());
             missionPlaneData.setCompanyId(crewMember.getCompanyId());
             missionPlaneData.setCrewMemberName(crewMember.getName());
             missionPlaneData.setCrewMemberSerialNumber(crewMember.getSerialNumber());
-            missionPlaneData.setVehicleSerialNumber(equippedPlane.getSerialNumber());
+            missionPlaneData.setVehicleSerialNumber(equippedTank.getSerialNumber());
             
             missionPlanes.put(crewMember.getSerialNumber(), missionPlaneData);
         }

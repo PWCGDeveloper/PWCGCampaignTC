@@ -57,8 +57,8 @@ public class InitialCompanyEquipper
         {
             String planeTypeName = equipmentWeightCalculator.getTankTypeFromWeight();
             
-            EquippedTank equippedPlane = TankEquipmentFactory.makeTankForCompany(campaign, planeTypeName, company.getCompanyId());
-            equipment.addEquippedTankToCompany(campaign, company.getCompanyId(), equippedPlane);
+            EquippedTank equippedTank = TankEquipmentFactory.makeTankForCompany(campaign, planeTypeName, company.getCompanyId());
+            equipment.addEquippedTankToCompany(campaign, company.getCompanyId(), equippedTank);
         }
     }
 

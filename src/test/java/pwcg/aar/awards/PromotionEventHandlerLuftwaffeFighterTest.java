@@ -56,7 +56,7 @@ public class PromotionEventHandlerLuftwaffeFighterTest
         Mockito.when(crewMember.getCrewMemberVictories()).thenReturn(companyMemberVictories);
         Mockito.when(companyMemberVictories.getAirToAirVictoryCount()).thenReturn(0);        
         Mockito.when(company.determineCompanyPrimaryRoleCategory(Mockito.any())).thenReturn(PwcgRoleCategory.FIGHTER);
-        Mockito.when(company.getService()).thenReturn(TCServiceManager.LUFTWAFFE);
+        Mockito.when(company.getService()).thenReturn(TCServiceManager.WEHRMACHT);
     }
 
     @Test

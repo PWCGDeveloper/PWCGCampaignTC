@@ -4,18 +4,18 @@ import pwcg.campaign.tank.EquippedTank;
 
 public class EquipmentResupplyRecord
 {
-    private EquippedTank equippedPlane;
+    private EquippedTank equippedTank;
     private int transferTo;
 
-    public EquipmentResupplyRecord(EquippedTank equippedPlane, int transferTo)
+    public EquipmentResupplyRecord(EquippedTank equippedTank, int transferTo)
     {
-        this.equippedPlane  = equippedPlane;
+        this.equippedTank  = equippedTank;
         this.transferTo  = transferTo;
     }
     
     public EquippedTank getEquippedPlane()
     {
-        return equippedPlane;
+        return equippedTank;
     }
 
     public int getTransferTo()

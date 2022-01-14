@@ -61,9 +61,9 @@ public class EquipmentUpgradeHandler
         EquipmentDepot equipmentDepot = campaign.getEquipmentManager().getEquipmentDepotForService(company.getService());
 
         List<EquippedTank> sortedPlanes = getPlanesForCompanyWorstToBest(equipmentForCompany);
-        for (EquippedTank equippedPlane : sortedPlanes)
+        for (EquippedTank equippedTank : sortedPlanes)
         {
-            EquipmentUpgradeRecord equipmentUpgrade = equipmentDepot.getUpgrade(equippedPlane);
+            EquipmentUpgradeRecord equipmentUpgrade = equipmentDepot.getUpgrade(equippedTank);
             if (equipmentUpgrade != null)
             {
                 EquippedTank replacementPlane = equipmentDepot.removeEquippedPlaneFromDepot(equipmentUpgrade.getUpgrade().getSerialNumber());

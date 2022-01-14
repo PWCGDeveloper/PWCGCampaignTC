@@ -15,18 +15,18 @@ public class TankEquipmentFactory
     {
         TankTypeFactory tankTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
         TankType tankType = tankTypeFactory.createTankTypeByType(tankTypeName);        
-        EquippedTank equippedPlane = new EquippedTank(tankType, campaign.getSerialNumber().getNextPlaneSerialNumber(), companyId, TankStatus.STATUS_DEPLOYED);
+        EquippedTank equippedTank = new EquippedTank(tankType, campaign.getSerialNumber().getNextPlaneSerialNumber(), companyId, TankStatus.STATUS_DEPLOYED);
 
-        return equippedPlane;
+        return equippedTank;
     }
 
     public static EquippedTank makePlaneForDepot (Campaign campaign, String tankTypeName) throws PWCGException
     {
         TankTypeFactory tankTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
         TankType tankType = tankTypeFactory.createTankTypeByType(tankTypeName);        
-        EquippedTank equippedPlane = new EquippedTank(tankType, campaign.getSerialNumber().getNextPlaneSerialNumber(), -1, TankStatus.STATUS_DEPOT);
+        EquippedTank equippedTank = new EquippedTank(tankType, campaign.getSerialNumber().getNextPlaneSerialNumber(), -1, TankStatus.STATUS_DEPOT);
 
-        return equippedPlane;
+        return equippedTank;
     }
 
     public static EquippedTank makePlaneForBeforeCampaign (Campaign campaign, Side side, Date date) throws PWCGException
@@ -36,8 +36,8 @@ public class TankEquipmentFactory
         int index = RandomNumberGenerator.getRandom(tankTypes.size());
         TankType tankType = tankTypes.get(index);
         
-        EquippedTank equippedPlane = new EquippedTank(tankType, campaign.getSerialNumber().getNextPlaneSerialNumber(), -1, TankStatus.STATUS_DEPOT);
-        return equippedPlane;
+        EquippedTank equippedTank = new EquippedTank(tankType, campaign.getSerialNumber().getNextPlaneSerialNumber(), -1, TankStatus.STATUS_DEPOT);
+        return equippedTank;
     }
 
 }

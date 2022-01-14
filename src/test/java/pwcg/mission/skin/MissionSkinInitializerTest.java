@@ -83,7 +83,7 @@ public class MissionSkinInitializerTest
         plane2.setType("lagg3s29");
         plane3.setType("bf109f2");
      
-        Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420101"));
+        Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420801"));
 
         MissionSkinSet missionSkinSet = MissionSkinSetBuilder.buildWinterMissionSkinSet(flight);
         MissionSkinInitializer.intitializeSkin(missionSkinSet, company, plane1, DateUtils.getDateYYYYMMDD("19420501"));

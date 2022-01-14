@@ -24,14 +24,14 @@ public class PlaneStatusEventGenerator
     {
         for (LogTank lostPlane : equipmentLossesInMission.getPlanesDestroyed().values())
         {
-            PlaneStatusEvent equippedPlaneLostEvent = makePlaneLostEvent(lostPlane);
-            planeStatusEvents.put(lostPlane.getTankSerialNumber(), equippedPlaneLostEvent);
+            PlaneStatusEvent equippedTankLostEvent = makePlaneLostEvent(lostPlane);
+            planeStatusEvents.put(lostPlane.getTankSerialNumber(), equippedTankLostEvent);
         }
         
         for (LogTank lostPlane : equipmentLossesInMission.getPlanesDestroyed().values())
         {
-            PlaneStatusEvent equippedPlaneLostEvent = makePlaneLostEvent(lostPlane);
-            planeStatusEvents.put(lostPlane.getTankSerialNumber(), equippedPlaneLostEvent);
+            PlaneStatusEvent equippedTankLostEvent = makePlaneLostEvent(lostPlane);
+            planeStatusEvents.put(lostPlane.getTankSerialNumber(), equippedTankLostEvent);
         }
         
         return planeStatusEvents;

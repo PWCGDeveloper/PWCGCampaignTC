@@ -35,7 +35,7 @@ public class InterceptPackageTest extends PwcgTestBase
     @Test
     public void playerPackageTest() throws PWCGException
     {
-        Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.JG_26_PROFILE_WEST);
+        Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.PANZER_LEHR_PROFILE);
         MissionFlights missionFlights = buildFlight(campaign);
         
         List<IFlight> opposingFlights = missionFlights.getNecessaryFlightsByType(NecessaryFlightType.OPPOSING_FLIGHT);

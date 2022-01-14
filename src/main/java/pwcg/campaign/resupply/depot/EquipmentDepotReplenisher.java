@@ -80,8 +80,8 @@ public class EquipmentDepotReplenisher
     private void replacePlaneByArchType(EquipmentDepot equipmentDepot, TankArchType planeArchType) throws PWCGException
     {
         String planeTypeName = EquipmentReplacementUtils.getTypeForReplacement(campaign.getDate(), planeArchType);
-        EquippedTank equippedPlane = TankEquipmentFactory.makePlaneForDepot(campaign, planeTypeName);
-        equipmentDepot.addPlaneToDepot(equippedPlane);
+        EquippedTank equippedTank = TankEquipmentFactory.makePlaneForDepot(campaign, planeTypeName);
+        equipmentDepot.addPlaneToDepot(equippedTank);
         equipmentDepot.setLastReplacementDate(campaign.getDate());
     }
 

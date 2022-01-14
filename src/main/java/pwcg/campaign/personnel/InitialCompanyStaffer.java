@@ -122,7 +122,7 @@ public class InitialCompanyStaffer
         CrewMembers crewMembers = CrewMemberFilter.filterActiveAINoWounded(companyPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
         for (CrewMember crewMember : crewMembers.getCrewMemberList())
         {
-            int minimumMissions = 1 + (crewMember.getCrewMemberVictories().getAirToAirVictoryCount() * 3);
+            int minimumMissions = 1 + (crewMember.getCrewMemberVictories().getTankVictoryCount() * 3);
             if (!crewMember.isPlayer())
             {
                 if (crewMember.getBattlesFought() < minimumMissions)

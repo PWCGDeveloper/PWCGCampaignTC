@@ -11,12 +11,14 @@ import pwcg.campaign.Campaign;
 import pwcg.campaign.api.IArmedServiceManager;
 import pwcg.campaign.context.FrontMapIdentifier;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.crewmember.SerialNumber;
 import pwcg.campaign.factory.ArmedServiceFactory;
 import pwcg.campaign.resupply.depot.EquipmentDepotInitializer;
+import pwcg.campaign.tank.Equipment;
+import pwcg.campaign.tank.EquippedTank;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
+import pwcg.product.bos.country.TCServiceManager;
 
 @ExtendWith(MockitoExtension.class)
 public class InitialReplacementEquipperTest
@@ -39,7 +41,7 @@ public class InitialReplacementEquipperTest
         PWCGContext.getInstance().setCampaign(campaign);
         
         IArmedServiceManager serviceManager = ArmedServiceFactory.createServiceManager();
-        ArmedService luftwaffe = serviceManager.getArmedService(20101);
+        ArmedService luftwaffe = serviceManager.getArmedService(TCServiceManager.WEHRMACHT);
         
         EquipmentDepotInitializer replacementEquipper = new EquipmentDepotInitializer(campaign, luftwaffe);
         Equipment equipment = replacementEquipper.createReplacementPoolForService();
@@ -92,7 +94,7 @@ public class InitialReplacementEquipperTest
         PWCGContext.getInstance().setCampaign(campaign);
 
         IArmedServiceManager serviceManager = ArmedServiceFactory.createServiceManager();
-        ArmedService luftwaffe = serviceManager.getArmedService(20101);
+        ArmedService luftwaffe = serviceManager.getArmedService(TCServiceManager.WEHRMACHT);
         
         EquipmentDepotInitializer replacementEquipper = new EquipmentDepotInitializer(campaign, luftwaffe);
         Equipment equipment = replacementEquipper.createReplacementPoolForService();
@@ -143,11 +145,11 @@ public class InitialReplacementEquipperTest
     @Test
     public void testEquipRussianReplacementsEarly() throws PWCGException
     {
-        Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420101"));
+        Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420801"));
         Mockito.when(campaign.getSerialNumber()).thenReturn(serialNumber);
         
         IArmedServiceManager serviceManager = ArmedServiceFactory.createServiceManager();
-        ArmedService vvs = serviceManager.getArmedService(10101);
+        ArmedService vvs = serviceManager.getArmedService(TCServiceManager.SSV);
         
         EquipmentDepotInitializer replacementEquipper = new EquipmentDepotInitializer(campaign, vvs);
         Equipment equipment = replacementEquipper.createReplacementPoolForService();
@@ -217,7 +219,7 @@ public class InitialReplacementEquipperTest
         PWCGContext.getInstance().setCampaign(campaign);
 
         IArmedServiceManager serviceManager = ArmedServiceFactory.createServiceManager();
-        ArmedService vvs = serviceManager.getArmedService(10101);
+        ArmedService vvs = serviceManager.getArmedService(TCServiceManager.SSV);
         
         EquipmentDepotInitializer replacementEquipper = new EquipmentDepotInitializer(campaign, vvs);
         Equipment equipment = replacementEquipper.createReplacementPoolForService();
@@ -282,33 +284,5 @@ public class InitialReplacementEquipperTest
         assert(pe2Found);
         assert(il2Found);
         assert(yak1Found);
-    }
-
-    @Test
-    public void testEquipItalianReplacements() throws PWCGException
-    {
-        Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19430101"));
-        Mockito.when(campaign.getSerialNumber()).thenReturn(serialNumber);
-        Mockito.when(campaign.getCampaignMap()).thenReturn(FrontMapIdentifier.STALINGRAD_MAP);
-        PWCGContext.getInstance().setCampaign(campaign);
-        
-        IArmedServiceManager serviceManager = ArmedServiceFactory.createServiceManager();
-        ArmedService regiaAeronautica = serviceManager.getArmedService(20202);
-        
-        EquipmentDepotInitializer replacementEquipper = new EquipmentDepotInitializer(campaign, regiaAeronautica);
-        Equipment equipment = replacementEquipper.createReplacementPoolForService();
-        assert(equipment.getAvailableDepotTanks().size() == 1);
-        
-        boolean macchiFound = false;
-        
-        for (EquippedTank replacementPlane : equipment.getAvailableDepotTanks().values())
-        {
-            if (replacementPlane.getType().equals("mc202s8"))
-            {
-                macchiFound = true;
-            }
-        }
-        
-        assert(macchiFound);
     }
 }

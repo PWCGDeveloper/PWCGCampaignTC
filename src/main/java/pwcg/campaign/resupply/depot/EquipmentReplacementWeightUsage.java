@@ -19,7 +19,7 @@ public class EquipmentReplacementWeightUsage
         this.campaignDate = campaignDate;
     }
 
-    public Map<String, Integer> getAircraftUsageByArchType(List<Company> companysForService) throws PWCGException
+    public Map<String, Integer> getTankUsageByArchType(List<Company> companysForService) throws PWCGException
     {
         Map<String, Integer> aircraftUsageByArchType = new HashMap<>();
         

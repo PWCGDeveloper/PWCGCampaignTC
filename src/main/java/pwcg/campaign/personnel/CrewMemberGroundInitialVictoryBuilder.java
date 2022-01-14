@@ -6,12 +6,12 @@ import java.util.Date;
 import pwcg.campaign.ArmedService;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.company.Company;
+import pwcg.campaign.context.Country;
 import pwcg.campaign.crewmember.AirToGroundVictoryBuilder;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.GroundVictimGenerator;
 import pwcg.campaign.crewmember.Victory;
 import pwcg.core.exception.PWCGException;
-import pwcg.core.utils.DateUtils;
 import pwcg.core.utils.RandomNumberGenerator;
 import pwcg.mission.ground.vehicle.IVehicle;
 
@@ -32,8 +32,6 @@ public class CrewMemberGroundInitialVictoryBuilder
     {
         initializeVictoriesFromRank(rankPos);
         factorServiceQuality(rankPos);
-        factorCompanyQuality(rankPos);
-        resetForEarlyWWI(rankPos);
 
         int victories = calcNumberOfVictories(minVictories, maxVictories);
         addVictories(newCrewMember, victories);
@@ -41,7 +39,7 @@ public class CrewMemberGroundInitialVictoryBuilder
 
     private void initializeVictoriesFromRank(int rankPos) throws PWCGException
     {
-        if (rankPos == 3)
+        if (rankPos >= 3)
         {
             minVictories = 0;
             maxVictories = 0;
@@ -53,91 +51,44 @@ public class CrewMemberGroundInitialVictoryBuilder
         }
         else if (rankPos == 1)
         {
-            minVictories = 2;
-            maxVictories = 5;
+            minVictories = 1;
+            maxVictories = 2;
         }
         else if (rankPos == 0)
         {
-            minVictories = 3;
-            maxVictories = 8;
+            minVictories = 1;
+            maxVictories = 3;
         }
     }
 
     private void factorServiceQuality(int rankPos) throws PWCGException
     {
+        int minAdjustment = 0;
+        int maxAdjustment = 0;
+
         ArmedService service = victorCompany.determineServiceForCompany(campaign.getDate());
-        int serviceQuality = service.getServiceQuality().getQuality(campaign.getDate()).getQualityValue();
-
-        int minAdjustment = 0;
-        int maxAdjustment = 0;
-        if (rankPos == 2)
+        if (service.getCountry().getCountry() == Country.GERMANY)
         {
-            minAdjustment = (serviceQuality / 10) - 10;
-            maxAdjustment = (serviceQuality / 10) - 7;
-        }
-        else if (rankPos == 1)
-        {
-            minAdjustment = (serviceQuality / 10) - 8;
-            maxAdjustment = (serviceQuality / 10) - 5;
-        }
-        else if (rankPos == 0)
-        {
-            minAdjustment = (serviceQuality / 10) - 6;
-            maxAdjustment = (serviceQuality / 10) - 4;
-        }
-
-        minVictories += minAdjustment;
-        maxVictories += maxAdjustment;
-    }
-
-    private void factorCompanyQuality(int rankPos) throws PWCGException
-    {
-        int companyQuality = victorCompany.determineCompanySkill(campaign.getDate());
-        
-        int minAdjustment = 0;
-        int maxAdjustment = 0;
-        if (rankPos == 2)
-        {
-            minAdjustment = (companyQuality / 10) - 10;
-            maxAdjustment = (companyQuality / 10) - 6;
-        }
-        else if (rankPos == 1)
-        {
-            minAdjustment = (companyQuality / 10) - 8;
-            maxAdjustment = (companyQuality / 10) - 5;
-        }
-        else if (rankPos == 0)
-        {
-            minAdjustment = (companyQuality / 10) - 6;
-            maxAdjustment = (companyQuality / 10) - 4;
-        }
-
-        minVictories += minAdjustment;
-        maxVictories += maxAdjustment;
-    }
-
-
-    private void resetForEarlyWWI(int rankPos) throws PWCGException
-    {
-        Date startOfRealScoring = DateUtils.getDateWithValidityCheck("01/03/1917");
-        if (campaign.getDate().before(startOfRealScoring))
-        {
-            if (rankPos >= 2)
+            if (rankPos == 2)
             {
-                minVictories = 0;
-                maxVictories = 0;
+                minAdjustment = 0;
+                maxAdjustment = 3;
             }
             else if (rankPos == 1)
             {
-                minVictories = 0;
-                maxVictories = 3;
+                minAdjustment = 1;
+                maxAdjustment = 3;
             }
             else if (rankPos == 0)
             {
-                minVictories = 1;
-                maxVictories = 5;
+                minAdjustment = 2;
+                maxAdjustment = 5;
             }
+
         }
+
+        minVictories += minAdjustment;
+        maxVictories += maxAdjustment;
     }
 
     private int calcNumberOfVictories(int minPossibleVictories, int maxAdditionalVictories)

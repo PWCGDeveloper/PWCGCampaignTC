@@ -135,10 +135,10 @@ public class CampaignIOJsonTest
         Equipment fighterCompanyEquipment = campaign.getEquipmentManager().getEquipmentForCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
         Assertions.assertTrue (campaign.getSerialNumber().getNextPlaneSerialNumber() > SerialNumber.PLANE_STARTING_SERIAL_NUMBER + 100);
         Assertions.assertTrue (fighterCompanyEquipment.getActiveEquippedTanks().size() >= 14);
-        for (EquippedTank equippedPlane : fighterCompanyEquipment.getActiveEquippedTanks().values())
+        for (EquippedTank equippedTank : fighterCompanyEquipment.getActiveEquippedTanks().values())
         {
-            Assertions.assertTrue (equippedPlane.getSerialNumber() > SerialNumber.PLANE_STARTING_SERIAL_NUMBER);
-            Assertions.assertTrue (equippedPlane.getArchType().equals("albatrosd"));
+            Assertions.assertTrue (equippedTank.getSerialNumber() > SerialNumber.PLANE_STARTING_SERIAL_NUMBER);
+            Assertions.assertTrue (equippedTank.getArchType().equals("albatrosd"));
         }
     }
 
@@ -147,10 +147,10 @@ public class CampaignIOJsonTest
         Equipment reconCompanyEquipment = campaign.getEquipmentManager().getEquipmentForCompany(CompanyTestProfile.RFC_2_PROFILE.getCompanyId());
         Assertions.assertTrue (campaign.getSerialNumber().getNextPlaneSerialNumber() > SerialNumber.PLANE_STARTING_SERIAL_NUMBER + 100);
         Assertions.assertTrue (reconCompanyEquipment.getActiveEquippedTanks().size() >= 14);
-        for (EquippedTank equippedPlane : reconCompanyEquipment.getActiveEquippedTanks().values())
+        for (EquippedTank equippedTank : reconCompanyEquipment.getActiveEquippedTanks().values())
         {
-            Assertions.assertTrue (equippedPlane.getSerialNumber() > SerialNumber.PLANE_STARTING_SERIAL_NUMBER);
-            Assertions.assertTrue (equippedPlane.getArchType().contains("aircodh4"));
+            Assertions.assertTrue (equippedTank.getSerialNumber() > SerialNumber.PLANE_STARTING_SERIAL_NUMBER);
+            Assertions.assertTrue (equippedTank.getArchType().contains("aircodh4"));
         }
     }
 

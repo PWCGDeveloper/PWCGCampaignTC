@@ -39,7 +39,7 @@ public class EquipmentReplacementWeightByNeedTest
     {
         
         earlyCampaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
-        lateCampaign = CampaignCache.makeCampaign(CompanyTestProfile.JG_26_PROFILE_WEST);        
+        lateCampaign = CampaignCache.makeCampaign(CompanyTestProfile.PANZER_LEHR_PROFILE);        
     }
 
     private void removePlanesFromCampaign(Campaign campaign) throws PWCGException
@@ -48,21 +48,21 @@ public class EquipmentReplacementWeightByNeedTest
         {
             int numDestroyedOverOneWeekAgo = 0;
             int numDestroyedlessThanOneWeekAgo = 0;
-            for (EquippedTank equippedPlane : equipment.getActiveEquippedTanks().values())
+            for (EquippedTank equippedTank : equipment.getActiveEquippedTanks().values())
             {
                 if (numDestroyedOverOneWeekAgo < 2)
                 {
                     Date threeWeeksAgo = DateUtils.removeTimeDays(campaign.getDate(), 21);
                     ++numDestroyedOverOneWeekAgo;
-                    equippedPlane.setDateRemovedFromService(threeWeeksAgo);
-                    equippedPlane.setTankStatus(TankStatus.STATUS_DESTROYED);
+                    equippedTank.setDateRemovedFromService(threeWeeksAgo);
+                    equippedTank.setTankStatus(TankStatus.STATUS_DESTROYED);
                 }
                 else if (numDestroyedlessThanOneWeekAgo < 1)
                 {
                     Date threeDaysAgo = DateUtils.removeTimeDays(campaign.getDate(), 3);
                     ++numDestroyedlessThanOneWeekAgo;
-                    equippedPlane.setDateRemovedFromService(threeDaysAgo);
-                    equippedPlane.setTankStatus(TankStatus.STATUS_DESTROYED);
+                    equippedTank.setDateRemovedFromService(threeDaysAgo);
+                    equippedTank.setTankStatus(TankStatus.STATUS_DESTROYED);
                 }
                 else
                 {
@@ -77,7 +77,7 @@ public class EquipmentReplacementWeightByNeedTest
     {
         removePlanesFromCampaign(earlyCampaign);
         
-        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(20101);
+        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(TCServiceManager.WEHRMACHT);
         CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
         List<Company> companysForService = companyManager.getActiveCompaniesForService(earlyCampaign.getDate(), service);
         
@@ -115,7 +115,7 @@ public class EquipmentReplacementWeightByNeedTest
     {
         removePlanesFromCampaign(earlyCampaign);
 
-        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(10101);
+        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(TCServiceManager.SSV);
         CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
         List<Company> companysForService = companyManager.getActiveCompaniesForService(earlyCampaign.getDate(), service);
         
@@ -165,7 +165,7 @@ public class EquipmentReplacementWeightByNeedTest
     {
         removePlanesFromCampaign(lateCampaign);
 
-        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(20101);
+        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(TCServiceManager.WEHRMACHT);
         CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
         List<Company> companysForService = companyManager.getActiveCompaniesForService(lateCampaign.getDate(), service);
         
@@ -194,7 +194,7 @@ public class EquipmentReplacementWeightByNeedTest
     {
         removePlanesFromCampaign(lateCampaign);
 
-        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(TCServiceManager.USAAF);
+        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(TCServiceManager.US_ARMY);
         CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
         List<Company> companysForService = companyManager.getActiveCompaniesForService(lateCampaign.getDate(), service);
         
@@ -209,7 +209,7 @@ public class EquipmentReplacementWeightByNeedTest
     {
         removePlanesFromCampaign(lateCampaign);
 
-        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(TCServiceManager.RAF);
+        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(TCServiceManager.BRITISH_ARMY);
         CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
         List<Company> companysForService = companyManager.getActiveCompaniesForService(lateCampaign.getDate(), service);
         

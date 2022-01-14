@@ -48,7 +48,7 @@ public class BoSBritishMedalManagerTest extends MedalManagerTestBase
     public void testBritishMedals () throws PWCGException
     {               
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19441001"));
-        service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.RAF, campaign.getDate());
+        service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.BRITISH_ARMY, campaign.getDate());
         Mockito.when(player.determineService(ArgumentMatchers.<Date>any())).thenReturn(service);
 
         awardMedal(BritishMedalManager.CREWS_BADGE, 0, 0);
@@ -63,7 +63,7 @@ public class BoSBritishMedalManagerTest extends MedalManagerTestBase
     public void testBritishMedalsAlternateVCAward () throws PWCGException
     {               
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19441001"));
-        service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.RAF, campaign.getDate());
+        service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.BRITISH_ARMY, campaign.getDate());
         Mockito.when(player.determineService(ArgumentMatchers.<Date>any())).thenReturn(service);
 
         awardMedal(BritishMedalManager.CREWS_BADGE, 0, 0);
@@ -78,7 +78,7 @@ public class BoSBritishMedalManagerTest extends MedalManagerTestBase
     public void testVCFail () throws PWCGException
     {            
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19441001"));
-        service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.RAF, campaign.getDate());
+        service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.BRITISH_ARMY, campaign.getDate());
         Mockito.when(player.determineService(ArgumentMatchers.<Date>any())).thenReturn(service);
 
         awardMedal(BritishMedalManager.CREWS_BADGE, 0, 0);
@@ -97,7 +97,7 @@ public class BoSBritishMedalManagerTest extends MedalManagerTestBase
     public void testAwardConsolidation () throws PWCGException
     {            
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19441001"));
-        service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.RAF, campaign.getDate());
+        service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.BRITISH_ARMY, campaign.getDate());
         Mockito.when(player.determineService(ArgumentMatchers.<Date>any())).thenReturn(service);
 
         awardMedal(BritishMedalManager.CREWS_BADGE, 0, 0);

@@ -127,7 +127,7 @@ public class CampaignEquipmentManager
     public EquippedTank destroyTankFromCompany(int companyId, Date date) throws PWCGException
     {
         EquippedTank destroyedPlane = getAnyActiveTankFromCompany(companyId);
-        destroyedPlane.setPlaneStatus(TankStatus.STATUS_DESTROYED);
+        destroyedPlane.setTankStatus(TankStatus.STATUS_DESTROYED);
         destroyedPlane.setDateRemovedFromService(date);
         return destroyedPlane;
     }
@@ -135,7 +135,7 @@ public class CampaignEquipmentManager
     public EquippedTank destroyTank(int serialNumber, Date date) throws PWCGException
     {
         EquippedTank destroyedPlane = getAnyTankWithPreference(serialNumber);
-        destroyedPlane.setPlaneStatus(TankStatus.STATUS_DESTROYED);
+        destroyedPlane.setTankStatus(TankStatus.STATUS_DESTROYED);
         destroyedPlane.setDateRemovedFromService(date);
         return destroyedPlane;
     }

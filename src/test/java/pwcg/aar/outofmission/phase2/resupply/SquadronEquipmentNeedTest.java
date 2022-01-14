@@ -35,7 +35,7 @@ public class CompanyEquipmentNeedTest
     @Mock private Equipment equipment;
     @Mock private AARPersonnelLosses lossesInMissionData;
     @Mock private CompanyPersonnel companyPersonnel;
-    @Mock private EquippedTank equippedPlane;
+    @Mock private EquippedTank equippedTank;
 
     private Map<Integer, EquippedTank> activeEquippedPlaneCollection = new HashMap<>();
     private Map<Integer, EquippedTank> inactiveEquippedPlaneCollection = new HashMap<>();
@@ -80,7 +80,7 @@ public class CompanyEquipmentNeedTest
     {
         for (int i = 0; i < 11; ++i)
         {
-            activeEquippedPlaneCollection.put(serialNumber.getNextPlaneSerialNumber(), equippedPlane);
+            activeEquippedPlaneCollection.put(serialNumber.getNextPlaneSerialNumber(), equippedTank);
         }
         
         CompanyEquipmentNeed companyResupplyNeed = new CompanyEquipmentNeed(campaign, company);
@@ -103,12 +103,12 @@ public class CompanyEquipmentNeedTest
     {
         for (int i = 0; i < 9; ++i)
         {
-            activeEquippedPlaneCollection.put(serialNumber.getNextPlaneSerialNumber(), equippedPlane);
+            activeEquippedPlaneCollection.put(serialNumber.getNextPlaneSerialNumber(), equippedTank);
         }
         
         for (int i = 0; i < 2; ++i)
         {
-            inactiveEquippedPlaneCollection.put(serialNumber.getNextPlaneSerialNumber(), equippedPlane);
+            inactiveEquippedPlaneCollection.put(serialNumber.getNextPlaneSerialNumber(), equippedTank);
         }
 
         CompanyEquipmentNeed companyResupplyNeed = new CompanyEquipmentNeed(campaign, company);
@@ -130,12 +130,12 @@ public class CompanyEquipmentNeedTest
     {
         for (int i = 0; i < 10; ++i)
         {
-            activeEquippedPlaneCollection.put(serialNumber.getNextPlaneSerialNumber(), equippedPlane);
+            activeEquippedPlaneCollection.put(serialNumber.getNextPlaneSerialNumber(), equippedTank);
         }
         
         for (int i = 0; i < 4; ++i)
         {
-            inactiveEquippedPlaneCollection.put(serialNumber.getNextPlaneSerialNumber(), equippedPlane);
+            inactiveEquippedPlaneCollection.put(serialNumber.getNextPlaneSerialNumber(), equippedTank);
         }
 
         CompanyEquipmentNeed companyResupplyNeed = new CompanyEquipmentNeed(campaign, company);

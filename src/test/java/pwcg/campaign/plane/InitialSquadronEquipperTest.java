@@ -34,11 +34,11 @@ public class InitialCompanyEquipperTest
         Equipment equipment = companyEquipper.generateEquipment();
         
         assert(equipment.getActiveEquippedTanks().size() == Company.COMPANY_EQUIPMENT_SIZE);
-        for (EquippedTank equippedPlane : equipment.getActiveEquippedTanks().values())
+        for (EquippedTank equippedTank : equipment.getActiveEquippedTanks().values())
         {
-            assert(equippedPlane.getArchType().equals("bf109"));
-            assert(equippedPlane.getType().equals("bf109f2") || equippedPlane.getType().equals("bf109f4"));
-            assert(equippedPlane.getSerialNumber() > SerialNumber.PLANE_STARTING_SERIAL_NUMBER);
+            assert(equippedTank.getArchType().equals("bf109"));
+            assert(equippedTank.getType().equals("bf109f2") || equippedTank.getType().equals("bf109f4"));
+            assert(equippedTank.getSerialNumber() > SerialNumber.PLANE_STARTING_SERIAL_NUMBER);
         }
     }
 
@@ -53,11 +53,11 @@ public class InitialCompanyEquipperTest
         Equipment equipment = companyEquipper.generateEquipment();
         
         assert(equipment.getActiveEquippedTanks().size() == Company.COMPANY_EQUIPMENT_SIZE);
-        for (EquippedTank equippedPlane : equipment.getActiveEquippedTanks().values())
+        for (EquippedTank equippedTank : equipment.getActiveEquippedTanks().values())
         {
-            assert(equippedPlane.getArchType().equals("he111"));
-            assert(equippedPlane.getType().equals("he111h6") || equippedPlane.getType().equals("he111h16"));
-            assert(equippedPlane.getSerialNumber() > SerialNumber.PLANE_STARTING_SERIAL_NUMBER);
+            assert(equippedTank.getArchType().equals("he111"));
+            assert(equippedTank.getType().equals("he111h6") || equippedTank.getType().equals("he111h16"));
+            assert(equippedTank.getSerialNumber() > SerialNumber.PLANE_STARTING_SERIAL_NUMBER);
         }
     }
 
@@ -72,11 +72,11 @@ public class InitialCompanyEquipperTest
         Equipment equipment = companyEquipper.generateEquipment();
         
         assert(equipment.getActiveEquippedTanks().size() == Company.COMPANY_EQUIPMENT_SIZE);
-        for (EquippedTank equippedPlane : equipment.getActiveEquippedTanks().values())
+        for (EquippedTank equippedTank : equipment.getActiveEquippedTanks().values())
         {
-            assert(equippedPlane.getArchType().equals("ju87"));
-            assert(equippedPlane.getType().equals("ju87d3"));
-            assert(equippedPlane.getSerialNumber() > SerialNumber.PLANE_STARTING_SERIAL_NUMBER);
+            assert(equippedTank.getArchType().equals("ju87"));
+            assert(equippedTank.getType().equals("ju87d3"));
+            assert(equippedTank.getSerialNumber() > SerialNumber.PLANE_STARTING_SERIAL_NUMBER);
         }
     }
 
@@ -91,11 +91,11 @@ public class InitialCompanyEquipperTest
         Equipment equipment = companyEquipper.generateEquipment();
         
         assert(equipment.getActiveEquippedTanks().size() == Company.COMPANY_EQUIPMENT_SIZE);
-        for (EquippedTank equippedPlane : equipment.getActiveEquippedTanks().values())
+        for (EquippedTank equippedTank : equipment.getActiveEquippedTanks().values())
         {
-            assert(equippedPlane.getArchType().equals("ju52"));
-            assert(equippedPlane.getType().equals("ju523mg4e"));
-            assert(equippedPlane.getSerialNumber() > SerialNumber.PLANE_STARTING_SERIAL_NUMBER);
+            assert(equippedTank.getArchType().equals("ju52"));
+            assert(equippedTank.getType().equals("ju523mg4e"));
+            assert(equippedTank.getSerialNumber() > SerialNumber.PLANE_STARTING_SERIAL_NUMBER);
         }
     }
 
@@ -110,11 +110,11 @@ public class InitialCompanyEquipperTest
         Equipment equipment = companyEquipper.generateEquipment();
         
         assert(equipment.getActiveEquippedTanks().size() == Company.COMPANY_EQUIPMENT_SIZE);
-        for (EquippedTank equippedPlane : equipment.getActiveEquippedTanks().values())
+        for (EquippedTank equippedTank : equipment.getActiveEquippedTanks().values())
         {
-            assert(equippedPlane.getArchType().equals("il2"));
-            assert(equippedPlane.getType().equals("il2m41") || equippedPlane.getType().equals("il2m42"));
-            assert(equippedPlane.getSerialNumber() > SerialNumber.PLANE_STARTING_SERIAL_NUMBER);
+            assert(equippedTank.getArchType().equals("il2"));
+            assert(equippedTank.getType().equals("il2m41") || equippedTank.getType().equals("il2m42"));
+            assert(equippedTank.getSerialNumber() > SerialNumber.PLANE_STARTING_SERIAL_NUMBER);
         }
     }
 }

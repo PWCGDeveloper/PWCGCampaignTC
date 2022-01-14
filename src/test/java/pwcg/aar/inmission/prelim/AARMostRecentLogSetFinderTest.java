@@ -50,9 +50,9 @@ public class AARMostRecentLogSetFinderTest
         Mockito.when(evalPwcgMissionData1.getMissionHeader()).thenReturn(missionHeader1);
         Mockito.when(evalPwcgMissionData2.getMissionHeader()).thenReturn(missionHeader2);
         
-        Mockito.when(missionHeader1.getDate()).thenReturn("19420101");
+        Mockito.when(missionHeader1.getDate()).thenReturn("19420801");
         Mockito.when(missionHeader2.getDate()).thenReturn("19420103");
-        Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420101"));
+        Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420801"));
 
         Mockito.when(validLogEventData.isValid()).thenReturn(true);
         Mockito.when(invalidLogEventData.isValid()).thenReturn(false);
@@ -93,7 +93,7 @@ public class AARMostRecentLogSetFinderTest
     @Test
     public void testGetOlderSetLogSet () throws PWCGException
     {
-        Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420101"));
+        Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420801"));
 
         List<PwcgMissionData> sortedPwcgMissionDataForCampaign = new ArrayList<>();
         sortedPwcgMissionDataForCampaign.add(evalPwcgMissionData2);

@@ -30,7 +30,7 @@ import pwcg.product.bos.medals.RussianMedalManager;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
-public class BoSRussianMedalManagerTest extends MedalManagerTestBase
+public class RussianMedalManagerTest extends MedalManagerTestBase
 {
     
     @BeforeEach

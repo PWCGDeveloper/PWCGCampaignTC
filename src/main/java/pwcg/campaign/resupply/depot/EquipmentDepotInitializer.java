@@ -54,8 +54,8 @@ public class EquipmentDepotInitializer
         for (int i = 0; i < numPlanes; ++i)
         {
             String planeTypeName = equipmentWeightCalculator.getTankTypeFromWeight();
-            EquippedTank equippedPlane = TankEquipmentFactory.makePlaneForDepot(campaign, planeTypeName);
-            equipment.addEPlaneToDepot(equippedPlane);
+            EquippedTank equippedTank = TankEquipmentFactory.makePlaneForDepot(campaign, planeTypeName);
+            equipment.addEPlaneToDepot(equippedTank);
         }
     }
 }

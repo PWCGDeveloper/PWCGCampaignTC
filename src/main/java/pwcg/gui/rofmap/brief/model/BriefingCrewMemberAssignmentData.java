@@ -29,17 +29,17 @@ public class BriefingCrewMemberAssignmentData
         unAssignedCrewMembers.put(crewMember.getSerialNumber(), crewMember);
     }
 
-    public void addPlane(EquippedTank equippedPlane)
+    public void addPlane(EquippedTank equippedTank)
     {
-        unAssignedPlanes.put(equippedPlane.getSerialNumber(), equippedPlane);
+        unAssignedPlanes.put(equippedTank.getSerialNumber(), equippedTank);
     }
 
     public void assignCrewMember(int crewMemberSerialNumber, int tankSerialNumber)
     {
         CrewMember assignedCrewMember = unAssignedCrewMembers.remove(crewMemberSerialNumber);        
-        EquippedTank equippedPlane = unAssignedPlanes.remove(tankSerialNumber);
+        EquippedTank equippedTank = unAssignedPlanes.remove(tankSerialNumber);
         
-        CrewTankPayloadPairing crewPlane = new CrewTankPayloadPairing(assignedCrewMember, equippedPlane);
+        CrewTankPayloadPairing crewPlane = new CrewTankPayloadPairing(assignedCrewMember, equippedTank);
         crewPlane.setPayloadId(CrewTankPayloadPairing.NO_PAYLOAD_ASSIGNED);
         crewPlane.clearModification();
 
@@ -61,9 +61,9 @@ public class BriefingCrewMemberAssignmentData
 
         unAssignedPlanes.put(crewPlane.getTank().getSerialNumber(), crewPlane.getTank());
         
-        EquippedTank equippedPlane = unAssignedPlanes.remove(tankSerialNumber);
+        EquippedTank equippedTank = unAssignedPlanes.remove(tankSerialNumber);
  
-        crewPlane.setPlane(equippedPlane);
+        crewPlane.setPlane(equippedTank);
         crewPlane.setPayloadId(CrewTankPayloadPairing.NO_PAYLOAD_ASSIGNED);
         crewPlane.clearModification();
     }

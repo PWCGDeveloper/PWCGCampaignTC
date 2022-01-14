@@ -5,22 +5,17 @@ import java.util.Map;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 import pwcg.campaign.Campaign;
-import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.CrewMemberStatus;
 import pwcg.campaign.crewmember.CrewMembers;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.CrewMemberPicker;
 import pwcg.testutils.CompanyTestProfile;
+import pwcg.testutils.CrewMemberPicker;
 
-@ExtendWith(MockitoExtension.class)
 public class CrewMemberFilterTest
 {
     private Campaign campaign;
@@ -141,7 +136,7 @@ public class CrewMemberFilterTest
         int numPlayers = CrewMemberFilter.filterActivePlayers(allActiveCampaignMembers, campaign.getDate()).getCrewMemberList().size();
  
         assert(numPlayers == 1);
-        assert(numAces > 0);
+        assert(numAces == 0);
         assert(allActiveCampaignMembers.size() == (numActiveExpected + numAces + numPlayers));
     }
 

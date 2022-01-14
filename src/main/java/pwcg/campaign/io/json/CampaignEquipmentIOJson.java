@@ -76,9 +76,9 @@ public class CampaignEquipmentIOJson
             int companyId = Integer.valueOf(FileUtils.stripFileExtension(jsonFile.getName()));
             campaign.getEquipmentManager().addEquipmentForCompany(companyId, companyEquipment);
             
-            for (EquippedTank equippedPlane : companyEquipment.getEquippedTanks().values())
+            for (EquippedTank equippedTank : companyEquipment.getEquippedTanks().values())
             {
-                equippedPlane.updateFromTankType();
+                equippedTank.updateFromTankType();
             }
         }
     }
@@ -94,16 +94,16 @@ public class CampaignEquipmentIOJson
             int serviceId = Integer.valueOf(FileUtils.stripFileExtension(jsonFile.getName()));
             campaign.getEquipmentManager().addEquipmentDepotForService(serviceId, replacementEquipment);
             
-            for (EquippedTank equippedPlane : replacementEquipment.getAllPlanesInDepot())
+            for (EquippedTank equippedTank : replacementEquipment.getAllPlanesInDepot())
             {
-                equippedPlane.updateFromTankType();
+                equippedTank.updateFromTankType();
             }
 
-            for (EquippedTank equippedPlane : replacementEquipment.getAllPlanesInDepot())
+            for (EquippedTank equippedTank : replacementEquipment.getAllPlanesInDepot())
             {
                 // Propagate any updates to the aircraft definitions into plane instances
-                TankType basePlane = PWCGContext.getInstance().getTankTypeFactory().getTankById(equippedPlane.getType());
-                basePlane.copyTemplate(equippedPlane);
+                TankType basePlane = PWCGContext.getInstance().getTankTypeFactory().getTankById(equippedTank.getType());
+                basePlane.copyTemplate(equippedTank);
             }
         }
     }

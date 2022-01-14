@@ -112,8 +112,8 @@ public class EmergencyResupplyHandler
     private void replaceEquipmentForCompany(Equipment companyEquipment, int companyId, int totalNewPlanes) throws PWCGException
     {
         String planeTypeName = determineTankTypeToAdd(companyId);
-        EquippedTank equippedPlane = TankEquipmentFactory.makePlaneForDepot(campaign, planeTypeName);
-        companyEquipment.addEquippedTankToCompany(campaign, companyId, equippedPlane);
+        EquippedTank equippedTank = TankEquipmentFactory.makePlaneForDepot(campaign, planeTypeName);
+        companyEquipment.addEquippedTankToCompany(campaign, companyId, equippedTank);
     }
 
     private String determineTankTypeToAdd(int companyId) throws PWCGException

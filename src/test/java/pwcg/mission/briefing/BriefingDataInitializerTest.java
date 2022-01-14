@@ -57,10 +57,10 @@ public class BriefingDataInitializerTest
     @Mock protected PlaneMcu plane2;
     @Mock protected PlaneMcu plane3;
     @Mock protected PlaneMcu plane4;
-    @Mock protected EquippedTank equippedPlane1;
-    @Mock protected EquippedTank equippedPlane2;
-    @Mock protected EquippedTank equippedPlane3;
-    @Mock protected EquippedTank equippedPlane4;
+    @Mock protected EquippedTank equippedTank1;
+    @Mock protected EquippedTank equippedTank2;
+    @Mock protected EquippedTank equippedTank3;
+    @Mock protected EquippedTank equippedTank4;
     @Mock protected CrewMember crewMember1;
     @Mock protected CrewMember crewMember2;
     @Mock protected CrewMember crewMember3;
@@ -68,7 +68,7 @@ public class BriefingDataInitializerTest
 
     protected Map<Integer, CrewMember> companyPersonnelMap = new HashMap<>();
     protected List<PlaneMcu> planesInFlight = new ArrayList<>();
-    protected Map<Integer, EquippedTank> equippedPlanes = new HashMap<>();
+    protected Map<Integer, EquippedTank> equippedTanks = new HashMap<>();
     protected BriefingCrewMemberAssignmentData briefingAssignmentData = new BriefingCrewMemberAssignmentData();
 
     @BeforeEach
@@ -88,7 +88,7 @@ public class BriefingDataInitializerTest
         
         Mockito.when(campaign.getEquipmentManager()).thenReturn(equipmentManager);
         Mockito.when(equipmentManager.getEquipmentForCompany(Mockito.any())).thenReturn(equipment);
-        Mockito.when(equipment.getActiveEquippedTanks()).thenReturn(equippedPlanes);
+        Mockito.when(equipment.getActiveEquippedTanks()).thenReturn(equippedTanks);
 
         Mockito.when(personnelManager.getCompanyPersonnel(Mockito.any())).thenReturn(companyPersonnel);
         Mockito.when(companyPersonnel.getCrewMembersWithAces()).thenReturn(crewMembers);
@@ -105,18 +105,18 @@ public class BriefingDataInitializerTest
         companyPersonnelMap.put(SerialNumber.AI_STARTING_SERIAL_NUMBER+3, crewMember3);
         companyPersonnelMap.put(SerialNumber.AI_STARTING_SERIAL_NUMBER+4, crewMember4);
 
-        Mockito.when(equippedPlane1.getSerialNumber()).thenReturn(SerialNumber.PLANE_STARTING_SERIAL_NUMBER+1);
-        Mockito.when(equippedPlane2.getSerialNumber()).thenReturn(SerialNumber.PLANE_STARTING_SERIAL_NUMBER+2);
-        Mockito.when(equippedPlane3.getSerialNumber()).thenReturn(SerialNumber.PLANE_STARTING_SERIAL_NUMBER+3);
-        Mockito.when(equippedPlane4.getSerialNumber()).thenReturn(SerialNumber.PLANE_STARTING_SERIAL_NUMBER+4);
-        Mockito.when(equippedPlane1.getType()).thenReturn("bf109f4");
-        Mockito.when(equippedPlane2.getType()).thenReturn("bf109f2");
-        Mockito.when(equippedPlane3.getType()).thenReturn("bf109f4");
-        Mockito.when(equippedPlane4.getType()).thenReturn("bf109f2");
-        equippedPlanes.put(equippedPlane1.getSerialNumber(), equippedPlane1);
-        equippedPlanes.put(equippedPlane2.getSerialNumber(), equippedPlane2);
-        equippedPlanes.put(equippedPlane3.getSerialNumber(), equippedPlane3);
-        equippedPlanes.put(equippedPlane4.getSerialNumber(), equippedPlane4);
+        Mockito.when(equippedTank1.getSerialNumber()).thenReturn(SerialNumber.PLANE_STARTING_SERIAL_NUMBER+1);
+        Mockito.when(equippedTank2.getSerialNumber()).thenReturn(SerialNumber.PLANE_STARTING_SERIAL_NUMBER+2);
+        Mockito.when(equippedTank3.getSerialNumber()).thenReturn(SerialNumber.PLANE_STARTING_SERIAL_NUMBER+3);
+        Mockito.when(equippedTank4.getSerialNumber()).thenReturn(SerialNumber.PLANE_STARTING_SERIAL_NUMBER+4);
+        Mockito.when(equippedTank1.getType()).thenReturn("bf109f4");
+        Mockito.when(equippedTank2.getType()).thenReturn("bf109f2");
+        Mockito.when(equippedTank3.getType()).thenReturn("bf109f4");
+        Mockito.when(equippedTank4.getType()).thenReturn("bf109f2");
+        equippedTanks.put(equippedTank1.getSerialNumber(), equippedTank1);
+        equippedTanks.put(equippedTank2.getSerialNumber(), equippedTank2);
+        equippedTanks.put(equippedTank3.getSerialNumber(), equippedTank3);
+        equippedTanks.put(equippedTank4.getSerialNumber(), equippedTank4);
 
         Mockito.when(plane1.getTankCommander()).thenReturn(crewMember1);
         Mockito.when(plane2.getTankCommander()).thenReturn(crewMember2);
