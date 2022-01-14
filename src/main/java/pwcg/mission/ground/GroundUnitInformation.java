@@ -18,7 +18,7 @@ public class GroundUnitInformation
     private Coordinate destination = new Coordinate();
 	private Orientation orientation = new Orientation();
     private TargetType targetType = TargetType.TARGET_NONE;
-    private GroundUnitSize unitSize = GroundUnitSize.GROUND_UNIT_SIZE_TINY;
+    private GroundUnitSize unitSize = GroundUnitSize.GROUND_UNIT_SIZE_MEDIUM;
     private String requestedUnitType = "";
 
     public ICountry getCountry()

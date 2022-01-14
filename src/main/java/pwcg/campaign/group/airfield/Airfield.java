@@ -13,7 +13,6 @@ import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.group.Block;
 import pwcg.campaign.group.FixedPosition;
 import pwcg.campaign.group.GroupManager;
-import pwcg.campaign.group.airfield.staticobject.AirfieldObjectPlacer;
 import pwcg.campaign.group.airfield.staticobject.AirfieldObjects;
 import pwcg.core.config.ConfigItemKeys;
 import pwcg.core.config.ConfigManagerCampaign;
@@ -111,15 +110,6 @@ public class Airfield extends FixedPosition implements Cloneable
         for (Runway r : desc.getRunways())
         {
             this.runways.add(r.copy());
-        }
-    }
-
-    public void addAirfieldObjects(Mission mission, ICountry airfieldCountry) throws PWCGException
-    {
-        if (!(determineCountryOnDate(mission.getCampaign().getDate()).isNeutral()))
-        {
-            AirfieldObjectPlacer airfieldObjectPlacer = new AirfieldObjectPlacer(mission, this, airfieldCountry);
-            airfieldObjects = airfieldObjectPlacer.createAirfieldObjects();
         }
     }
 

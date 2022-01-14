@@ -37,13 +37,13 @@ public class GroundAntiTankArtillery extends GroundUnit
         int numatGun = calcNumUnits();
 
 		// Face towards enemy
-		double atGunFacingAngle = MathUtils.calcAngle(pwcgGroundUnitInformation.getPosition(), pwcgGroundUnitInformation.getDestination());
+		double atGunFacingAngle = MathUtils.calcAngle(groundUnitInformation.getPosition(), groundUnitInformation.getDestination());
 		Orientation atGunOrient = new Orientation();
 		atGunOrient.setyOri(atGunFacingAngle);
 		
         // MGs are behind the lines
         double initialPlacementAngle = MathUtils.adjustAngle (atGunFacingAngle, 180.0);      
-        Coordinate atGunCoords = MathUtils.calcNextCoord(pwcgGroundUnitInformation.getPosition(), initialPlacementAngle, 25.0);
+        Coordinate atGunCoords = MathUtils.calcNextCoord(groundUnitInformation.getPosition(), initialPlacementAngle, 25.0);
 
         // Locate the target such that startCoords is the middle of the line
         double startLocationOrientation = MathUtils.adjustAngle (atGunFacingAngle, 270);             
@@ -63,19 +63,15 @@ public class GroundAntiTankArtillery extends GroundUnit
 
     private int calcNumUnits() throws PWCGException
     {
-        if (pwcgGroundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_TINY)
-        {
-            return GroundUnitNumberCalculator.calcNumUnits(1, 1);
-        }
-        else if (pwcgGroundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_LOW)
+        if (groundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_LOW)
         {
             return GroundUnitNumberCalculator.calcNumUnits(1, 2);
         }
-        else if (pwcgGroundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_MEDIUM)
+        else if (groundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_MEDIUM)
         {
             return GroundUnitNumberCalculator.calcNumUnits(2, 3);
         }
-        else if (pwcgGroundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_HIGH)
+        else if (groundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_HIGH)
         {
             return GroundUnitNumberCalculator.calcNumUnits(2, 4);
         }

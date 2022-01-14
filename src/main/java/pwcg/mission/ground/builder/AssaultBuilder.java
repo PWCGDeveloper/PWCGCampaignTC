@@ -19,8 +19,8 @@ public class AssaultBuilder
 {
     public static GroundUnitCollection generateAssault(Mission mission, Coordinate assaultPosition) throws PWCGException
     {
-        AssaultDefinitionGenerator assaultDefinitionGenerator = new AssaultDefinitionGenerator(mission, assaultPosition);
-        List<AssaultDefinition> assaultDefinitions = assaultDefinitionGenerator.generateAssaultDefinition();
+        AssaultDefinitionGenerator assaultDefinitionGenerator = new AssaultDefinitionGenerator(mission);
+        AssaultDefinition assaultDefinition = assaultDefinitionGenerator.generateAssaultDefinition();
         
         GroundUnitCollectionData groundUnitCollectionData = new GroundUnitCollectionData(
                 GroundUnitCollectionType.INFANTRY_GROUND_UNIT_COLLECTION, 
@@ -28,21 +28,23 @@ public class AssaultBuilder
                 TargetType.TARGET_INFANTRY,
                 Coalition.getCoalitions());
 
-        GroundUnitCollection battleUnitCollection = new GroundUnitCollection (mission.getCampaign(), "Assault", groundUnitCollectionData);
-
         List<IGroundUnit> primaryAssaultSegmentGroundUnits = new ArrayList<>();
         
-        for (AssaultDefinition assaultDefinition : assaultDefinitions)
-        {
-            AssaultSegmentBuilder assaultSegmentBuilder = new AssaultSegmentBuilder(mission, assaultDefinition);
-            GroundUnitCollection assaultSegmentUnits = assaultSegmentBuilder.generateAssaultSegment();
-            primaryAssaultSegmentGroundUnits.add(assaultSegmentUnits.getPrimaryGroundUnit());
-            battleUnitCollection.merge(assaultSegmentUnits);
-            mission.registerAssault(assaultDefinition);
-        }
+        GroundUnitCollection assaultUnits = buildAssaultUnits(mission, assaultDefinition, primaryAssaultSegmentGroundUnits);
 
+        GroundUnitCollection battleUnitCollection = new GroundUnitCollection (mission.getCampaign(), "Assault", groundUnitCollectionData);
+        battleUnitCollection.merge(assaultUnits);
         battleUnitCollection.setPrimaryGroundUnit(primaryAssaultSegmentGroundUnits.get(0));
         battleUnitCollection.finishGroundUnitCollection();
         return battleUnitCollection;
+    }
+
+    private static GroundUnitCollection buildAssaultUnits(Mission mission, AssaultDefinition assaultDefinition, List<IGroundUnit> primaryAssaultSegmentGroundUnits) throws PWCGException
+    {
+        AssaultUnitBuilder assaultUnitBuilder = new AssaultUnitBuilder(mission, assaultDefinition);
+        GroundUnitCollection assaultUnits = assaultUnitBuilder.generateAssaultUnits();
+        primaryAssaultSegmentGroundUnits.add(assaultUnits.getPrimaryGroundUnit());
+        mission.registerAssault(assaultDefinition);
+        return assaultUnits;
     }
  }

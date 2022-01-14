@@ -18,7 +18,7 @@ import pwcg.mission.target.AssaultDefinition;
 import pwcg.mission.target.AssaultDefinitionGenerator;
 import pwcg.mission.target.TargetType;
 
-public class AssaultSegmentBuilder
+public class AssaultUnitBuilder
 {
     private Mission mission;
     private AssaultDefinition assaultDefinition;
@@ -26,7 +26,7 @@ public class AssaultSegmentBuilder
 
     private GroundUnitCollection battleSegmentUnitCollection;
    
-    public AssaultSegmentBuilder(Mission mission, AssaultDefinition assaultDefinition)
+    public AssaultUnitBuilder(Mission mission, AssaultDefinition assaultDefinition)
 	{
         this.mission = mission;
         this.assaultDefinition = assaultDefinition;
@@ -41,7 +41,7 @@ public class AssaultSegmentBuilder
 	}
 
 
-    public GroundUnitCollection generateAssaultSegment() throws PWCGException
+    public GroundUnitCollection generateAssaultUnits() throws PWCGException
     {
         createAssault();
         createDefenders();        
@@ -64,6 +64,7 @@ public class AssaultSegmentBuilder
 
     private void assaultingMachineGun() throws PWCGException
     { 
+        
         Coordinate machineGunStartPosition = MathUtils.calcNextCoord(
                 assaultDefinition.getDefensePosition(), 
                 assaultDefinition.getTowardsAttackerOrientation().getyOri(), AssaultDefinitionGenerator.DISTANCE_BETWEEN_COMBATANTS);  

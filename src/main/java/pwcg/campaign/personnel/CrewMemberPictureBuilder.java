@@ -29,12 +29,6 @@ public class CrewMemberPictureBuilder
         return assignCrewMemberPictureFromList(picFiles);
     }
     
-    public String assignFemaleCrewMemberPicture() throws PWCGException 
-    {
-        List<File> picFiles = getFemaleFiles();
-        return assignCrewMemberPictureFromList(picFiles);
-    }
-    
     private String assignCrewMemberPictureFromList(List<File> picFiles) throws PWCGException 
     {
         HashMap<String, String> picturesUsed = getPicturesInUse();

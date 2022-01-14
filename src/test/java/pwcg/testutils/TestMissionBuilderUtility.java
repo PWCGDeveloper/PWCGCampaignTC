@@ -23,7 +23,7 @@ public class TestMissionBuilderUtility
     public static Mission createTestMission(Campaign campaign, MissionHumanParticipants participatingPlayers, CoordinateBox missionBorders) throws PWCGException
     {
         MissionOptions missionOptions = new MissionOptions(campaign.getDate());
-        missionOptions.createFlightSpecificMissionOptions();
+        missionOptions.createOptions();
 
         campaign.getCampaignConfigManager().setParam(ConfigItemKeys.UseRealisticWeatherKey, "0");
         MissionWeather weather = new MissionWeather(campaign, missionOptions.getMissionHour());

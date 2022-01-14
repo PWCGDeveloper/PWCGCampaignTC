@@ -14,10 +14,10 @@ public class AssaultDefinition
 
     private Coordinate assaultPosition = null;
     private Coordinate defensePosition = null;
+    private BattleSize battleSize;
     private ICountry assaultingCountry = null;
     private ICountry defendingCountry = null;
-    private BattleSize battleSize;
-    
+
     public Orientation getTowardsDefenderOrientation() throws PWCGException
     {
         double angleToDefensePosition = MathUtils.calcAngle(assaultPosition, defensePosition);

@@ -37,7 +37,7 @@ public abstract class GroundUnit implements IGroundUnit
     static private int ARTY_ATTACK_AREA_RADIUS = 500;
 
     protected int index = IndexGenerator.getInstance().getNextIndex();
-    protected GroundUnitInformation pwcgGroundUnitInformation;
+    protected GroundUnitInformation groundUnitInformation;
     protected VehicleClass vehicleClass;
 
     protected McuTimer activateGroundUnitUnitTimer = new McuTimer();
@@ -47,13 +47,13 @@ public abstract class GroundUnit implements IGroundUnit
     public GroundUnit(VehicleClass vehicleClass, GroundUnitInformation pwcgGroundUnitInformation)
     {
         this.vehicleClass = vehicleClass;
-        this.pwcgGroundUnitInformation = pwcgGroundUnitInformation;
+        this.groundUnitInformation = pwcgGroundUnitInformation;
     }
 
     @Override
     public TargetType getTargetType()
     {
-        return pwcgGroundUnitInformation.getTargetType();
+        return groundUnitInformation.getTargetType();
     }
 
     @Override
@@ -116,19 +116,19 @@ public abstract class GroundUnit implements IGroundUnit
     @Override
     public ICountry getCountry() throws PWCGException
     {
-        return pwcgGroundUnitInformation.getCountry();
+        return groundUnitInformation.getCountry();
     }
 
     @Override
     public Coordinate getPosition() throws PWCGException
     {
-        return pwcgGroundUnitInformation.getPosition();
+        return groundUnitInformation.getPosition();
     }
 
     @Override
     public String getName() throws PWCGException
     {
-        return pwcgGroundUnitInformation.getName();
+        return groundUnitInformation.getName();
     }
 
     @Override
@@ -201,7 +201,7 @@ public abstract class GroundUnit implements IGroundUnit
         {
             int distanceOffset = RandomNumberGenerator.getRandom(500);
             int directionOffset = RandomNumberGenerator.getRandom(360);
-            Coordinate fireCoordinates = MathUtils.calcNextCoord(pwcgGroundUnitInformation.getDestination(), directionOffset, distanceOffset);
+            Coordinate fireCoordinates = MathUtils.calcNextCoord(groundUnitInformation.getDestination(), directionOffset, distanceOffset);
 
             IGroundAspect areaFire = GroundAspectFactory.createGroundAspectAreaFire(fireCoordinates, groundElement.getVehicle(), AttackAreaType.INDIRECT,
                     ARTY_ATTACK_AREA_RADIUS);
@@ -269,16 +269,16 @@ public abstract class GroundUnit implements IGroundUnit
     {
         if (vehicleClass == VehicleClass.TrainLocomotive)
         {
-            GroundUnitSpawningTrainBuilder trainBuilder = new GroundUnitSpawningTrainBuilder(pwcgGroundUnitInformation);
+            GroundUnitSpawningTrainBuilder trainBuilder = new GroundUnitSpawningTrainBuilder(groundUnitInformation);
             IVehicle vehicle = trainBuilder.createTrainToSpawn();
-            Coordinate vehiclePosition = pwcgGroundUnitInformation.getPosition().copy();
+            Coordinate vehiclePosition = groundUnitInformation.getPosition().copy();
             finishGroundUnit(vehicle, vehiclePosition);
         }
-        else if (!pwcgGroundUnitInformation.getRequestedUnitType().isEmpty())
+        else if (!groundUnitInformation.getRequestedUnitType().isEmpty())
         {
             for (Coordinate vehiclePosition : vehicleStartPositions)
             {
-                IVehicle vehicle = GroundUnitSpawningVehicleBuilder.getRequestedVehicle(pwcgGroundUnitInformation);
+                IVehicle vehicle = GroundUnitSpawningVehicleBuilder.getRequestedVehicle(groundUnitInformation);
                 vehicle.setPosition(vehiclePosition);
                 finishGroundUnit(vehicle, vehiclePosition);
             }
@@ -287,7 +287,7 @@ public abstract class GroundUnit implements IGroundUnit
         {
             for (Coordinate vehiclePosition : vehicleStartPositions)
             {
-                IVehicle vehicle = GroundUnitSpawningVehicleBuilder.createVehicleToSpawn(pwcgGroundUnitInformation, vehicleClass);
+                IVehicle vehicle = GroundUnitSpawningVehicleBuilder.createVehicleToSpawn(groundUnitInformation, vehicleClass);
                 vehicle.setPosition(vehiclePosition);
                 finishGroundUnit(vehicle, vehiclePosition);
             }
@@ -305,7 +305,7 @@ public abstract class GroundUnit implements IGroundUnit
     {
         for (Coordinate vehiclePosition : vehicleStartPositions)
         {
-            IVehicle vehicle = GroundUnitSpawningVehicleBuilder.createVehicleToSpawnFromDefinition(pwcgGroundUnitInformation, vehicleClass, vehicleDefinition);
+            IVehicle vehicle = GroundUnitSpawningVehicleBuilder.createVehicleToSpawnFromDefinition(groundUnitInformation, vehicleClass, vehicleDefinition);
             vehicle.setPosition(vehiclePosition);
             finishGroundUnit(vehicle, vehiclePosition);
         }
@@ -315,7 +315,7 @@ public abstract class GroundUnit implements IGroundUnit
     {
         activateGroundUnitUnitTimer.setName("Ground Unit Spawn Timer");
         activateGroundUnitUnitTimer.setDesc("Ground Unit Spawn Timer");
-        activateGroundUnitUnitTimer.setPosition(pwcgGroundUnitInformation.getPosition());
+        activateGroundUnitUnitTimer.setPosition(groundUnitInformation.getPosition());
         
         makeSubtitles();
     }

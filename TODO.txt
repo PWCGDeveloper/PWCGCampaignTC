@@ -21,6 +21,5 @@ Add out of mission for tank units
 In mission claims
 
 Campaign
-Promotions/Medals based on tank kills
 Rearrange chalk board
 

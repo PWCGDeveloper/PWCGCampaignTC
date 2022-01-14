@@ -38,10 +38,10 @@ public class GroundAAArtilleryBattery extends GroundUnit
         int numAAA = calcNumUnits();
         for (int i = 0; i < numAAA; ++i)
         {
-            Coordinate spawnPosition = pwcgGroundUnitInformation.getPosition().copy();
+            Coordinate spawnPosition = groundUnitInformation.getPosition().copy();
             if (numAAA == 1)
             {
-                spawnPosition = pwcgGroundUnitInformation.getPosition().copy();
+                spawnPosition = groundUnitInformation.getPosition().copy();
             }
             else
             {
@@ -69,19 +69,15 @@ public class GroundAAArtilleryBattery extends GroundUnit
 
     private int calcNumUnits() throws PWCGException
     {
-        if (pwcgGroundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_TINY)
-        {
-            return GroundUnitNumberCalculator.calcNumUnits(1, 1);
-        }
-        else if (pwcgGroundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_LOW)
+        if (groundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_LOW)
         {
             return GroundUnitNumberCalculator.calcNumUnits(1, 2);
         }
-        else if (pwcgGroundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_MEDIUM)
+        else if (groundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_MEDIUM)
         {
             return GroundUnitNumberCalculator.calcNumUnits(2, 3);
         }
-        else if (pwcgGroundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_HIGH)
+        else if (groundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_HIGH)
         {
             return GroundUnitNumberCalculator.calcNumUnits(2, 4);
         }

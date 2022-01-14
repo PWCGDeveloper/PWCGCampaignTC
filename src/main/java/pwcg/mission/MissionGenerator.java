@@ -31,7 +31,7 @@ public class MissionGenerator
     public Mission makeMission(MissionHumanParticipants participatingPlayers, Map<Integer, PwcgRole> companyRoleOverride) throws PWCGException
     {
         MissionOptions missionOptions = new MissionOptions(campaign.getDate());
-        missionOptions.createFlightSpecificMissionOptions();
+        missionOptions.createOptions();
 
         MissionWeather weather = new MissionWeather(campaign, missionOptions.getMissionHour());
         weather.createMissionWeather();
@@ -49,7 +49,7 @@ public class MissionGenerator
             Skirmish skirmish) throws PWCGException
     {
         MissionOptions missionOptions = new MissionOptions(campaign.getDate());
-        missionOptions.createFlightSpecificMissionOptions();
+        missionOptions.createOptions();
 
         campaign.getCampaignConfigManager().setParam(ConfigItemKeys.UseRealisticWeatherKey, "0");
         MissionWeather weather = new MissionWeather(campaign, missionOptions.getMissionHour());
@@ -67,10 +67,13 @@ public class MissionGenerator
             Skirmish skirmish,
             MissionOptions missionOptions) throws PWCGException
     {
+        MissionObjectiveBuilder objectiveLocator = new MissionObjectiveBuilder(campaign, skirmish);
+        MissionObjective objective = objectiveLocator.buildMissionObjective();
+        
         campaign.setCurrentMission(null);
         
         CoordinateBox missionBorders = buildMissionBorders(participatingPlayers, skirmish);
-        Mission mission = new Mission(campaign, participatingPlayers, playerVehicleDefinition, missionBorders, weather, skirmish, missionOptions);
+        Mission mission = new Mission(campaign, objective, participatingPlayers, playerVehicleDefinition, missionBorders, weather, skirmish, missionOptions);
         campaign.setCurrentMission(mission);
         mission.generate();
 

@@ -16,11 +16,6 @@ public class MissionBattleBuilderFactory
         {
             return new AmphibiousAssaultBuilder(mission, amphibiousAssault);
         }
-
-        if (PWCGContext.getInstance().getCurrentMap().isNoDynamicBattlePeriod(mission.getCampaign().getDate()))
-        {
-            return new NoBattleBuilder();
-        }
         
         return new MissionBattleBuilder(mission);
     }

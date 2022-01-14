@@ -29,7 +29,7 @@ public class GroundTrainUnit extends GroundUnit
     protected List<Coordinate> createVehicleStartPositions() throws PWCGException 
     {
         List<Coordinate> vehicleStartPositions = new ArrayList<>();
-        vehicleStartPositions.add(pwcgGroundUnitInformation.getPosition().copy());
+        vehicleStartPositions.add(groundUnitInformation.getPosition().copy());
         return vehicleStartPositions;        
     }
 
@@ -37,7 +37,7 @@ public class GroundTrainUnit extends GroundUnit
     {        
         int unitSpeed = 12;
         List<Coordinate> destinations = new ArrayList<>();
-        destinations.add(pwcgGroundUnitInformation.getDestination());
+        destinations.add(groundUnitInformation.getDestination());
         super.addMovementAspect(unitSpeed, destinations, GroundFormationType.FORMATION_TYPE_ON_WAYPOINT);
     }
 }	

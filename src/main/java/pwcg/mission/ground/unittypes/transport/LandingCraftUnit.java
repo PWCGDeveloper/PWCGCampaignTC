@@ -22,9 +22,9 @@ public class LandingCraftUnit extends GroundUnit
     public void createGroundUnit() throws PWCGException 
     {
         super.createSpawnTimer();
-        List<Coordinate> vehicleStartPositions = Arrays.asList(pwcgGroundUnitInformation.getPosition());
+        List<Coordinate> vehicleStartPositions = Arrays.asList(groundUnitInformation.getPosition());
         super.createVehicles(vehicleStartPositions);
-        List<Coordinate> destinations =  Arrays.asList(pwcgGroundUnitInformation.getDestination());
+        List<Coordinate> destinations =  Arrays.asList(groundUnitInformation.getDestination());
         addAspects(destinations);
         super.linkElements();
     }

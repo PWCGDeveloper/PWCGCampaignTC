@@ -28,7 +28,7 @@ public class DrifterUnit extends GroundUnit
     {
         super.createSpawnTimer();
         
-        VehicleRequestDefinition requestDefinition = new VehicleRequestDefinition(pwcgGroundUnitInformation.getCountry().getCountry(), pwcgGroundUnitInformation.getDate(), vehicleClass);
+        VehicleRequestDefinition requestDefinition = new VehicleRequestDefinition(groundUnitInformation.getCountry().getCountry(), groundUnitInformation.getDate(), vehicleClass);
         VehicleDefinition vehicleDefinition = PWCGContext.getInstance().getVehicleDefinitionManager().getVehicleDefinitionForRequest(requestDefinition);
 
         List<Coordinate> vehicleStartPositions = createVehicleStartPositions(vehicleDefinition);
@@ -43,11 +43,11 @@ public class DrifterUnit extends GroundUnit
         int numDrifter = calcNumUnits(vehicleDefinition);
 
         // Face towards orientation
-        double drifterFacingAngle = MathUtils.adjustAngle(pwcgGroundUnitInformation.getOrientation().getyOri(), 180.0);
+        double drifterFacingAngle = MathUtils.adjustAngle(groundUnitInformation.getOrientation().getyOri(), 180.0);
         Orientation drifterOrient = new Orientation();
         drifterOrient.setyOri(drifterFacingAngle);
         
-        Coordinate drifterCoords = pwcgGroundUnitInformation.getPosition().copy();
+        Coordinate drifterCoords = groundUnitInformation.getPosition().copy();
 
         double drifterSpacing = 30.0;
         if (vehicleDefinition.getVehicleLength() > drifterSpacing)
@@ -56,7 +56,7 @@ public class DrifterUnit extends GroundUnit
         }
         
         // Direction in which subsequent units will be placed
-        double placementOrientation = pwcgGroundUnitInformation.getOrientation().getyOri();        
+        double placementOrientation = groundUnitInformation.getOrientation().getyOri();        
 
         for (int i = 0; i < numDrifter; ++i)
         {   
@@ -71,19 +71,15 @@ public class DrifterUnit extends GroundUnit
     private int calcNumUnits(VehicleDefinition vehicleDefinition) throws PWCGException
     {
         int numUnits = 1;
-        if (pwcgGroundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_TINY)
-        {
-            numUnits = GroundUnitNumberCalculator.calcNumUnits(1, 1);
-        }
-        else if (pwcgGroundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_LOW)
+        if (groundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_LOW)
         {
             numUnits = GroundUnitNumberCalculator.calcNumUnits(2, 3);
         }
-        else if (pwcgGroundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_MEDIUM)
+        else if (groundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_MEDIUM)
         {
             numUnits = GroundUnitNumberCalculator.calcNumUnits(2, 4);
         }
-        else if (pwcgGroundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_HIGH)
+        else if (groundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_HIGH)
         {
             numUnits = GroundUnitNumberCalculator.calcNumUnits(3, 6);
         }

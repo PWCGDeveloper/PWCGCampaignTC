@@ -30,6 +30,7 @@ import pwcg.mission.unit.ITankUnit;
 public class Mission
 {
     private Campaign campaign;
+    private MissionObjective objective;
     private MissionHumanParticipants participatingPlayers;
     private CoordinateBox missionBorders;
     private CoordinateBox structureBorders;
@@ -57,6 +58,7 @@ public class Mission
 
     public Mission(
             Campaign campaign, 
+            MissionObjective objective, 
             MissionHumanParticipants participatingPlayers, 
             VehicleDefinition playerVehicleDefinition,
             CoordinateBox missionBorders, 
@@ -66,6 +68,7 @@ public class Mission
             throws PWCGException
     {
         this.campaign = campaign;
+        this.objective = objective;
         this.participatingPlayers = participatingPlayers;
         this.missionBorders = missionBorders;
         this.weather = weather;
@@ -93,8 +96,8 @@ public class Mission
         validate();
         createStructuresBoxForMission();
         createGroundUnits();
-        generateFlights();
         createPlayerUnits();
+        generateFlights();
     }
 
     private void createPlayerUnits() throws PWCGException
@@ -353,5 +356,35 @@ public class Mission
     public MissionUnits getUnits()
     {
         return missionUnits;
+    }
+
+    public MissionObjective getObjective()
+    {
+        return objective;
+    }
+
+    public void setObjective(MissionObjective objective)
+    {
+        this.objective = objective;
+    }
+
+    public MissionAirfields getMissionAirfields()
+    {
+        return missionAirfields;
+    }
+
+    public MissionUnits getMissionUnits()
+    {
+        return missionUnits;
+    }
+
+    public MissionFlights getMissionFlights()
+    {
+        return missionFlights;
+    }
+
+    public MissionGroundUnitResourceManager getGroundUnitManager()
+    {
+        return groundUnitManager;
     }
 }

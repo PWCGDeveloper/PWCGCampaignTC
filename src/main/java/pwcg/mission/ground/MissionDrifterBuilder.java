@@ -11,9 +11,6 @@ import pwcg.campaign.api.Side;
 import pwcg.campaign.context.DrifterManager;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.factory.CountryFactory;
-import pwcg.core.config.ConfigItemKeys;
-import pwcg.core.config.ConfigManagerCampaign;
-import pwcg.core.config.ConfigSimple;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.location.PWCGLocation;
@@ -42,17 +39,12 @@ public class MissionDrifterBuilder extends MissionUnitBuilder
     private List<GroundUnitCollection> buildDriftersForSide(Side drifterSide) throws PWCGException 
     {
         List<GroundUnitCollection> missionDrifterUnitsForSide = new ArrayList<>();
-        int maxDrifters = getMaxDrifters(campaign);
         
-        ArrayList<PWCGLocation> drifterPositionsForSide = getRiversForDrifters(drifterSide);
-        ArrayList<PWCGLocation> sortedCoordinatesByDistance = sortCoordinatesDistanceFromMission(drifterPositionsForSide);
-        for (PWCGLocation drifterPosition : sortedCoordinatesByDistance)
+        List<PWCGLocation> drifterPositionsForSide = getRiversForDrifters(drifterSide);
+        List<PWCGLocation> sortedCoordinatesByDistance = sortCoordinatesDistanceFromMission(drifterPositionsForSide);
+        if (!sortedCoordinatesByDistance.isEmpty())
         {
-            if (missionDrifterUnitsForSide.size() >= maxDrifters)
-            {
-                break;
-            }
-            
+            PWCGLocation drifterPosition = sortedCoordinatesByDistance.get(0);
             GroundUnitCollection drifterUnit = makeDrifter(drifterSide, drifterPosition);
             missionDrifterUnitsForSide.add(drifterUnit);
         }
@@ -60,9 +52,9 @@ public class MissionDrifterBuilder extends MissionUnitBuilder
         return missionDrifterUnitsForSide;
     }
 
-    private ArrayList<PWCGLocation> getRiversForDrifters(Side drifterSide) throws PWCGException 
+    private List<PWCGLocation> getRiversForDrifters(Side drifterSide) throws PWCGException 
     {
-        ArrayList<PWCGLocation> drifterPositionsForSide = new ArrayList<>();
+        List<PWCGLocation> drifterPositionsForSide = new ArrayList<>();
         Campaign campaign = mission.getCampaign();
 
         DrifterManager drifterManager =  PWCGContext.getInstance().getCurrentMap().getDrifterManager();
@@ -74,7 +66,7 @@ public class MissionDrifterBuilder extends MissionUnitBuilder
         return drifterPositionsForSide;
     }
     
-    private ArrayList<PWCGLocation> sortCoordinatesDistanceFromMission(ArrayList<PWCGLocation> drifterPositionsForSide) throws PWCGException
+    private List<PWCGLocation> sortCoordinatesDistanceFromMission(List<PWCGLocation> drifterPositionsForSide) throws PWCGException
     {
         Map<Double, PWCGLocation> sortedStationsByDistance = new TreeMap<>();
         
@@ -93,26 +85,5 @@ public class MissionDrifterBuilder extends MissionUnitBuilder
         DrifterUnitBuilder drifterUnitBuilder =  new DrifterUnitBuilder(mission.getCampaign(), drifterPosition, drifterCountry);
         GroundUnitCollection drifterUnit = drifterUnitBuilder.createDrifterUnit();
         return drifterUnit;
-    }
-
-
-    private int getMaxDrifters(Campaign campaign) throws PWCGException
-    {
-        int maxDrifters = 1;
-        ConfigManagerCampaign configManager = campaign.getCampaignConfigManager();
-        String currentGroundSetting = configManager.getStringConfigParam(ConfigItemKeys.SimpleConfigGroundKey);
-        if (currentGroundSetting.equals(ConfigSimple.CONFIG_LEVEL_LOW))
-        {
-            maxDrifters = 1;
-        }
-        else if (currentGroundSetting.equals(ConfigSimple.CONFIG_LEVEL_MED))
-        {
-            maxDrifters = 2;
-        }
-        else if (currentGroundSetting.equals(ConfigSimple.CONFIG_LEVEL_HIGH))
-        {
-            maxDrifters = 4;
-        }
-        return maxDrifters;
     }
  }

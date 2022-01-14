@@ -35,19 +35,15 @@ public class GroundTruckAAConvoyUnit extends GroundUnit
 
     private int calcNumUnits() throws PWCGException
     {
-        if (pwcgGroundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_TINY)
-        {
-            return GroundUnitNumberCalculator.calcNumUnits(1, 1);
-        }
-        else if (pwcgGroundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_LOW)
+        if (groundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_LOW)
         {
             return GroundUnitNumberCalculator.calcNumUnits(1, 2);
         }
-        else if (pwcgGroundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_MEDIUM)
+        else if (groundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_MEDIUM)
         {
             return GroundUnitNumberCalculator.calcNumUnits(2, 2);
         }
-        else if (pwcgGroundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_HIGH)
+        else if (groundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_HIGH)
         {
             return GroundUnitNumberCalculator.calcNumUnits(2, 3);
         }
@@ -57,17 +53,17 @@ public class GroundTruckAAConvoyUnit extends GroundUnit
 
     private List<Coordinate> createVehicleStartPositions(int numvehicles) throws PWCGException 
     {
-        return createVehiclePositions(pwcgGroundUnitInformation.getPosition().copy(), numvehicles);        
+        return createVehiclePositions(groundUnitInformation.getPosition().copy(), numvehicles);        
     }
 
     private List<Coordinate> createVehicleDestinationPositions(int numvehicles) throws PWCGException 
     {
-        return createVehiclePositions(pwcgGroundUnitInformation.getDestination(), numvehicles);
+        return createVehiclePositions(groundUnitInformation.getDestination(), numvehicles);
     }
 
     private List<Coordinate> createVehiclePositions(Coordinate firstVehicleCoordinate, int numvehicles) throws PWCGException
     {
-        double placementOrientation = MathUtils.adjustAngle (pwcgGroundUnitInformation.getOrientation().getyOri(), 180);
+        double placementOrientation = MathUtils.adjustAngle (groundUnitInformation.getOrientation().getyOri(), 180);
         List<Coordinate> vehiclePositions = new ArrayList<>();
         Coordinate vehicleCoordinate = MathUtils.calcNextCoord(firstVehicleCoordinate, placementOrientation, 250.0);
         for (int i = 0; i < numvehicles; ++i)

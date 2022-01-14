@@ -45,8 +45,6 @@ public class CrewMemberReplacementFactory
         replacementCrewMember.setAiSkillLevel(aiSkillLevel);
         makeCrewMemberPicture(replacementCrewMember);
         
-        replacementCrewMember = CrewMemberFemaleConverter.possiblyConvertToFemale(service, replacementCrewMember, namesUsed);
-
         return replacementCrewMember;
     }
 

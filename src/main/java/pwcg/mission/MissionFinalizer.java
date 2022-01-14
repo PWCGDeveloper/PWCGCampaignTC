@@ -9,7 +9,6 @@ import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.PWCGLogger;
 import pwcg.core.utils.PWCGLogger.LogLevel;
 import pwcg.mission.ground.builder.IndirectFireAssignmentHandler;
-import pwcg.mission.ground.unittypes.GroundUnitEngagableAAAEvaluator;
 import pwcg.mission.mcu.group.MissionObjectiveGroup;
 import pwcg.mission.mcu.group.StopAttackingNearAirfieldSequence;
 import pwcg.mission.options.MissionOptions;
@@ -51,7 +50,6 @@ public class MissionFinalizer
 
             setGroundUnitTriggers();
             assignIndirectFireTargets();
-            setEngagableAAA();
 
             if (mission.getCampaign().getCampaignData().getCampaignMode() == CampaignMode.CAMPAIGN_MODE_SINGLE)
             {
@@ -81,11 +79,6 @@ public class MissionFinalizer
     {
         IndirectFireAssignmentHandler indirectFireAssignmentHandler = new IndirectFireAssignmentHandler(mission);
         indirectFireAssignmentHandler.makeIndirectFireAssignments();
-    }
-
-    private void setEngagableAAA()
-    {
-        GroundUnitEngagableAAAEvaluator.setAAUnitsEngageableStatus(mission);        
     }
 
     private void finalizeForSinglePlayer() throws PWCGException

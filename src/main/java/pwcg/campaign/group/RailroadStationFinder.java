@@ -56,7 +56,7 @@ public class RailroadStationFinder
         return selectedStations;
     }
     
-    private List<Block> getTrainPositionsBySide(Side side, Date date) throws PWCGException 
+    public List<Block> getTrainPositionsBySide(Side side, Date date) throws PWCGException 
     {
         List<Block>selectedRailroadStations = new ArrayList<Block>();
         for (Block railroadStations : railroadStations)

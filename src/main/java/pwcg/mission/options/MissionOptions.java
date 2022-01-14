@@ -25,7 +25,7 @@ public class MissionOptions
         this.date = date;
     }
 
-    public void createFlightSpecificMissionOptions() throws PWCGException 
+    public void createOptions() throws PWCGException 
     {
         createMissionTime();
     }

@@ -5,7 +5,6 @@ import java.util.Date;
 import pwcg.campaign.context.FrontMapIdentifier;
 import pwcg.campaign.io.json.BattleIOJson;
 import pwcg.core.exception.PWCGException;
-import pwcg.core.location.Coordinate;
 import pwcg.core.utils.DateUtils;
 import pwcg.core.utils.PWCGLogger;
 
@@ -31,7 +30,7 @@ public class BattleManager
         }
 	}
 
-    public Battle getBattleForCampaign(FrontMapIdentifier mapId, Coordinate position, Date date) 
+    public Battle getBattleForCampaign(FrontMapIdentifier mapId, Date date) 
     {     
         try
         {

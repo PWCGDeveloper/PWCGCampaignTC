@@ -12,7 +12,6 @@ import pwcg.campaign.factory.CountryFactory;
 import pwcg.campaign.factory.RankFactory;
 import pwcg.campaign.personnel.CampaignValidatorMedals;
 import pwcg.campaign.personnel.CompanyPersonnel;
-import pwcg.campaign.personnel.CrewMemberFemaleConverter;
 import pwcg.campaign.personnel.CrewMemberFilter;
 import pwcg.campaign.personnel.CrewMemberGroundInitialVictoryBuilder;
 import pwcg.campaign.personnel.CrewMemberPictureBuilder;
@@ -93,9 +92,7 @@ public class CrewMemberFactory
         
         CampaignValidatorMedals medalFixer = new CampaignValidatorMedals(campaign);
         medalFixer.assignMissingMedalsForSquadMember(newCrewMember);
-        
-        newCrewMember = CrewMemberFemaleConverter.possiblyConvertToFemale(service, newCrewMember, namesUsed);
-        
+                
         return newCrewMember;
     }
 

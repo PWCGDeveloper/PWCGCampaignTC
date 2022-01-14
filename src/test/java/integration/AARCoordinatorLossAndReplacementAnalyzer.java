@@ -33,7 +33,7 @@ public class AARCoordinatorLossAndReplacementAnalyzer
     public void setupSuite() throws PWCGException
     {
         
-        campaign = CampaignCache.makeCampaignOnDisk(CompanyTestProfile.FG_354_BODENPLATTE_PROFILE);
+        campaign = CampaignCache.makeCampaignOnDisk(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
     }
 
     @Test

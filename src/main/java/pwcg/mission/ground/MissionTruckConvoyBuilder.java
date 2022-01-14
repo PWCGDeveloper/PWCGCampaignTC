@@ -11,10 +11,7 @@ import pwcg.campaign.api.Side;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.factory.CountryFactory;
 import pwcg.campaign.group.Bridge;
-import pwcg.campaign.group.GroupManager;
-import pwcg.core.config.ConfigItemKeys;
-import pwcg.core.config.ConfigManagerCampaign;
-import pwcg.core.config.ConfigSimple;
+import pwcg.campaign.group.BridgeFinder;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.utils.MathUtils;
@@ -34,76 +31,43 @@ public class MissionTruckConvoyBuilder extends MissionUnitBuilder
     
     public List<GroundUnitCollection> generateMissionTrucks() throws PWCGException 
     {
-        missionTransportConvoys.addAll(buildTruckConvoysForSide(Side.ALLIED));
-        missionTransportConvoys.addAll(buildTruckConvoysForSide(Side.AXIS));
+        missionTransportConvoys.addAll(buildOneOneForSide(Side.ALLIED));
+        missionTransportConvoys.addAll(buildOneOneForSide(Side.AXIS));
         return missionTransportConvoys;
     }
 
-    private List<GroundUnitCollection> buildTruckConvoysForSide(Side truckSide) throws PWCGException 
+    private List<GroundUnitCollection> buildOneOneForSide(Side truckSide) throws PWCGException
     {
-        List<GroundUnitCollection> missionTransportConvoysForSide = new ArrayList<>();
-        int maxTrucks = getMaxTruckConvoys(campaign);
+        BridgeFinder bridgeFinder = PWCGContext.getInstance().getCurrentMap().getGroupManager().getBridgeFinder();
+        List<Bridge> bridgesForSide = bridgeFinder.findBridgesForSideWithinRadius(truckSide, campaign.getDate(), mission.getObjective().getPosition(), 10000);
         
-        ArrayList<Bridge> bridgesForSide = getBridgesForConvoys(truckSide);
-        ArrayList<Bridge> sortedBridgesByDistance = sortBridgesDistanceFromMission(bridgesForSide);
-        for (Bridge bridge : sortedBridgesByDistance)
+        List<GroundUnitCollection> missionConvoysForSide = new ArrayList<>();
+        Bridge bridge = getClosestBridgeToObjective(bridgesForSide);
+        if (bridge != null)
         {
-            if (missionTransportConvoysForSide.size() >= maxTrucks)
-            {
-                break;
-            }
-                        
             GroundUnitCollection truckUnit = makeTruckConvoy(truckSide, bridge);
-            missionTransportConvoysForSide.add( truckUnit);
+            missionConvoysForSide.add( truckUnit);
         }
-        
-        return missionTransportConvoysForSide;
-    }
-
-    private ArrayList<Bridge> getBridgesForConvoys(Side truckSide) throws PWCGException 
-    {
-        ArrayList<Bridge> bridgesForSide = new ArrayList<Bridge>();
-        Campaign campaign = mission.getCampaign();
-
-        GroupManager groupData =  PWCGContext.getInstance().getCurrentMap().getGroupManager();
-        for (Bridge bridge : groupData.getBridgeFinder().findAllBridges())
-        {
-            if (bridge.determineCountryOnDate(campaign.getDate()).getSide() == truckSide)
-            {
-                bridgesForSide.add(bridge);
-            }
-        }
-        
-        return bridgesForSide;
+        return missionConvoysForSide;
     }
     
-    private ArrayList<Bridge> sortBridgesDistanceFromMission(ArrayList<Bridge> bridgesForSide) throws PWCGException
+    private Bridge getClosestBridgeToObjective(List<Bridge> bridgesForSide) throws PWCGException
     {
-        Map<Double, Bridge> sortedStationsByDistance = new TreeMap<>();
+        if (bridgesForSide.isEmpty())
+        {
+            return null;
+        }
         
-        Coordinate missionCenter = mission.getMissionBorders().getCenter();
-        for (Bridge bridge : bridgesForSide)
+        Map<Double, Bridge> sortedBridgesByDistance = new TreeMap<>();
+        Coordinate missionObjective = mission.getObjective().getPosition();
+        for (Bridge station : bridgesForSide)
         {
-            Double distanceFromMission = MathUtils.calcDist(missionCenter, bridge.getPosition());
-            if (!isTooCloseToOtherBridge(bridge, sortedStationsByDistance))
-            {
-                sortedStationsByDistance.put(distanceFromMission, bridge);
-            }
+            Double distanceFromMission = MathUtils.calcDist(missionObjective, station.getPosition());
+            sortedBridgesByDistance.put(distanceFromMission, station);
         }
-        return new ArrayList<Bridge>(sortedStationsByDistance.values());
-    }
-
-    private boolean isTooCloseToOtherBridge(Bridge bridge, Map<Double, Bridge> inUseBridges)
-    {
-        for (Bridge inUseBridge : inUseBridges.values())
-        {
-            double distance = MathUtils.calcDist(bridge.getPosition(), inUseBridge.getPosition());
-            if (distance < 3000)                      
-            {
-                return true;
-            }
-        }
-        return false;
+        
+        List<Bridge> sortedBridgesByDistanceList = new ArrayList<Bridge>(sortedBridgesByDistance.values());        
+        return sortedBridgesByDistanceList.get(0);
     }
 
 
@@ -113,26 +77,5 @@ public class MissionTruckConvoyBuilder extends MissionUnitBuilder
         TruckConvoyBuilder groundUnitFactory =  new TruckConvoyBuilder(campaign, bridge, truckCountry);
         GroundUnitCollection truckUnit = groundUnitFactory.createTruckConvoy();
         return truckUnit;
-    }
-
-
-    private int getMaxTruckConvoys(Campaign campaign) throws PWCGException
-    {
-        int maxTrucks = 3;
-        ConfigManagerCampaign configManager = campaign.getCampaignConfigManager();
-        String currentGroundSetting = configManager.getStringConfigParam(ConfigItemKeys.SimpleConfigGroundKey);
-        if (currentGroundSetting.equals(ConfigSimple.CONFIG_LEVEL_LOW))
-        {
-            maxTrucks = 2;
-        }
-        else if (currentGroundSetting.equals(ConfigSimple.CONFIG_LEVEL_MED))
-        {
-            maxTrucks = 5;
-        }
-        else if (currentGroundSetting.equals(ConfigSimple.CONFIG_LEVEL_HIGH))
-        {
-            maxTrucks = 8;
-        }
-        return maxTrucks;
     }
  }

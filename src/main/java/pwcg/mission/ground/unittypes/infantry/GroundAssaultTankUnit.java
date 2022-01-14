@@ -33,19 +33,15 @@ public class GroundAssaultTankUnit extends GroundUnit
 
     private int calcNumUnits() throws PWCGException
     {
-        if (pwcgGroundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_TINY)
-        {
-            return GroundUnitNumberCalculator.calcNumUnits(1, 1);
-        }
-        else if (pwcgGroundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_LOW)
+        if (groundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_LOW)
         {
             return GroundUnitNumberCalculator.calcNumUnits(3, 5);
         }
-        else if (pwcgGroundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_MEDIUM)
+        else if (groundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_MEDIUM)
         {
             return GroundUnitNumberCalculator.calcNumUnits(4, 7);
         }
-        else if (pwcgGroundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_HIGH)
+        else if (groundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_HIGH)
         {
             return GroundUnitNumberCalculator.calcNumUnits(6, 10);
         }
@@ -55,17 +51,17 @@ public class GroundAssaultTankUnit extends GroundUnit
 
     private List<Coordinate> createVehicleStartPositions(int numvehicles) throws PWCGException 
     {
-        return createVehiclePositions(pwcgGroundUnitInformation.getPosition().copy(), numvehicles);        
+        return createVehiclePositions(groundUnitInformation.getPosition().copy(), numvehicles);        
     }
 
     private List<Coordinate> createVehicleDestinationPositions(int numvehicles) throws PWCGException 
     {
-        return createVehiclePositions(pwcgGroundUnitInformation.getDestination(), numvehicles);
+        return createVehiclePositions(groundUnitInformation.getDestination(), numvehicles);
     }
 
     private List<Coordinate> createVehiclePositions(Coordinate firstVehicleCoordinate, int numvehicles) throws PWCGException 
     {
-        double tankFacingAngle = MathUtils.calcAngle(pwcgGroundUnitInformation.getPosition(), pwcgGroundUnitInformation.getDestination());
+        double tankFacingAngle = MathUtils.calcAngle(groundUnitInformation.getPosition(), groundUnitInformation.getDestination());
         double placementOrientation = MathUtils.adjustAngle (tankFacingAngle, 90.0);        
         
         double tankSpacing = 75.0;
