@@ -10,6 +10,7 @@ import pwcg.campaign.utils.IndexGenerator;
 import pwcg.core.constants.AiSkillLevel;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
+import pwcg.core.location.Orientation;
 import pwcg.core.utils.MathUtils;
 import pwcg.core.utils.PWCGLogger;
 import pwcg.core.utils.RandomNumberGenerator;
@@ -326,6 +327,12 @@ public abstract class GroundUnit implements IGroundUnit
         
         McuSubtitle activateGroundUnitUnitTimerSubtitle = McuSubtitle.makeActivatedSubtitle("Ground unit activation triggered ", subtitlePosition);
         activateGroundUnitUnitTimer.setTarget(activateGroundUnitUnitTimerSubtitle.getIndex());
+    }
+
+    @Override
+    public Orientation getOrientation() throws PWCGException
+    {
+        return groundUnitInformation.getOrientation();
     }
 
     public GroundUnitType getGroundUnitType()

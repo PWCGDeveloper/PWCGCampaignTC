@@ -7,6 +7,7 @@ import pwcg.campaign.api.ICountry;
 import pwcg.core.constants.AiSkillLevel;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
+import pwcg.core.location.Orientation;
 import pwcg.mission.ground.vehicle.IVehicle;
 import pwcg.mission.ground.vehicle.VehicleClass;
 import pwcg.mission.mcu.McuSpawn;
@@ -30,8 +31,10 @@ public interface IGroundUnit
     int getEntryPoint();
 
     GroundUnitType getGroundUnitType();
-
+    
     Coordinate getPosition() throws PWCGException;
+
+    Orientation getOrientation() throws PWCGException;
 
     void setAiLevel(AiSkillLevel aiLevel);
 

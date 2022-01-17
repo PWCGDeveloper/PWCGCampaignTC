@@ -44,7 +44,7 @@ public class BriefingUnit
 
     public void changeTank(Integer crewMemberSerialNumber, Integer tankSerialNumber) throws PWCGException
     {
-        briefingAssignmentData.changePlane(crewMemberSerialNumber, tankSerialNumber);
+        briefingAssignmentData.changeTank(crewMemberSerialNumber, tankSerialNumber);
 
         BriefingPayloadHelper payloadHelper = new BriefingPayloadHelper(mission, briefingAssignmentData);
         payloadHelper.setPayloadForChangedPlane(crewMemberSerialNumber);

@@ -3,7 +3,8 @@
 	"archType": "sherman",
 	"side": "ALLIED",
 	"primaryUsedBy": [
-		"USA"
+		"USA",
+		"BRITAIN"
 	],
 	"stockModifications": [],
 	"displayName": "M4A2",

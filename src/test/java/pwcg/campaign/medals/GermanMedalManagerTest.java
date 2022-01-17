@@ -47,35 +47,35 @@ public class GermanMedalManagerTest extends MedalManagerTestBase
     public void testGermanMedals () throws PWCGException
     {            	
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420801"));
-	    service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.WEHRMACHT, campaign.getDate());
+	    service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.WEHRMACHT);
         Mockito.when(player.determineService(ArgumentMatchers.<Date>any())).thenReturn(service);
 
         awardMedal(GermanMedalManager.CREWS_BADGE, 0, 0);
         awardMedal(GermanMedalManager.IRON_CROSS_2, 2, 1);
 		awardMedal(GermanMedalManager.IRON_CROSS_1, 10, 1);
-		awardMedal(GermanMedalManager.GERMAN_CROSS_GOLD, 25, 1);
+		awardMedal(GermanMedalManager.GERMAN_CROSS_GOLD, 20, 1);
 		awardMedal(GermanMedalManager.KNIGHTS_CROSS, 40, 1);
-		awardMedal(GermanMedalManager.KNIGHTS_CROSS_OAK_LEAVES, 100, 2);
-		awardMedal(GermanMedalManager.KNIGHTS_CROSS_SWORDS, 150, 2);
-		awardMedal(GermanMedalManager.KNIGHTS_CROSS_DIAMONDS, 200, 2);
+		awardMedal(GermanMedalManager.KNIGHTS_CROSS_OAK_LEAVES, 80, 2);
+		awardMedal(GermanMedalManager.KNIGHTS_CROSS_SWORDS, 100, 2);
+		awardMedal(GermanMedalManager.KNIGHTS_CROSS_DIAMONDS, 120, 2);
     }
 
     @Test
     public void testKCDiamondsFail () throws PWCGException
     {            
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420801"));
-	    service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.WEHRMACHT, campaign.getDate());
+	    service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.WEHRMACHT);
         Mockito.when(player.determineService(ArgumentMatchers.<Date>any())).thenReturn(service);
 
         awardMedal(GermanMedalManager.CREWS_BADGE, 0, 0);
 		awardMedal(GermanMedalManager.IRON_CROSS_2, 2, 1);
 		awardMedal(GermanMedalManager.IRON_CROSS_1, 10, 1);
-		awardMedal(GermanMedalManager.GERMAN_CROSS_GOLD, 25, 1);
+		awardMedal(GermanMedalManager.GERMAN_CROSS_GOLD, 20, 1);
 		awardMedal(GermanMedalManager.KNIGHTS_CROSS, 40, 1);
-		awardMedal(GermanMedalManager.KNIGHTS_CROSS_OAK_LEAVES, 100, 2);
-		awardMedal(GermanMedalManager.KNIGHTS_CROSS_SWORDS, 150, 2);
+		awardMedal(GermanMedalManager.KNIGHTS_CROSS_OAK_LEAVES, 80, 2);
+		awardMedal(GermanMedalManager.KNIGHTS_CROSS_SWORDS, 100, 2);
 
-    	makeVictories(199);
+    	makeVictories(119);
         Medal medal = medalManager.award(campaign, player, service, 1);
         Assertions.assertTrue (medal == null);
     }
@@ -86,19 +86,19 @@ public class GermanMedalManagerTest extends MedalManagerTestBase
     public void testAwardConsolidation () throws PWCGException
     {            
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420801"));
-        service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.WEHRMACHT, campaign.getDate());
+        service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.WEHRMACHT);
         Mockito.when(player.determineService(ArgumentMatchers.<Date>any())).thenReturn(service);
 
         awardMedal(GermanMedalManager.CREWS_BADGE, 0, 0);
         awardMedal(GermanMedalManager.IRON_CROSS_2, 2, 1);
         awardMedal(GermanMedalManager.IRON_CROSS_1, 10, 1);
         awardWoundedAward(player, service);
-        awardMedal(GermanMedalManager.GERMAN_CROSS_GOLD, 25, 1);
+        awardMedal(GermanMedalManager.GERMAN_CROSS_GOLD, 20, 1);
         awardMedal(GermanMedalManager.KNIGHTS_CROSS, 40, 1);
         awardWoundedAward(player, service);
-        awardMedal(GermanMedalManager.KNIGHTS_CROSS_OAK_LEAVES, 100, 2);
-        awardMedal(GermanMedalManager.KNIGHTS_CROSS_SWORDS, 150, 2);
-        awardMedal(GermanMedalManager.KNIGHTS_CROSS_DIAMONDS, 200, 2);
+        awardMedal(GermanMedalManager.KNIGHTS_CROSS_OAK_LEAVES, 80, 2);
+        awardMedal(GermanMedalManager.KNIGHTS_CROSS_SWORDS, 100, 2);
+        awardMedal(GermanMedalManager.KNIGHTS_CROSS_DIAMONDS, 120, 2);
 
         List<Medal> highestOrderMedals = medalManager.getMedalsWithHighestOrderOnly(player.getMedals());
         Assertions.assertEquals (6, highestOrderMedals.size());

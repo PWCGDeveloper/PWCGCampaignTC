@@ -39,7 +39,7 @@ public class TankPayloadFactory
         {
             return new PzkwIIIM(tankType, date);
         }
-        else if (attributeMapping == TankAttributeMapping.PZKW_III_M)
+        else if (attributeMapping == TankAttributeMapping.PZKW_IV_G)
         {
             return new PzkwIVG(tankType, date);
         }

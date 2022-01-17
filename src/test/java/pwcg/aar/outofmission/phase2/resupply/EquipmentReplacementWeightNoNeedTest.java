@@ -14,12 +14,12 @@ import pwcg.campaign.Campaign;
 import pwcg.campaign.company.Company;
 import pwcg.campaign.company.CompanyManager;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.factory.ArmedServiceFactory;
 import pwcg.campaign.resupply.CompanyNeedFactory;
 import pwcg.campaign.resupply.CompanyNeedFactory.CompanyNeedType;
 import pwcg.campaign.resupply.depot.EquipmentNeedForCompanysCalculator;
 import pwcg.core.exception.PWCGException;
+import pwcg.product.bos.country.TCServiceManager;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.CompanyTestProfile;
 

@@ -3,7 +3,6 @@ package pwcg.aar.outofmission.phase3.resupply;
 import pwcg.aar.data.AARContext;
 import pwcg.campaign.ArmedService;
 import pwcg.campaign.Campaign;
-import pwcg.campaign.api.IArmedServiceManager;
 import pwcg.campaign.factory.ArmedServiceFactory;
 import pwcg.campaign.personnel.CompanyPersonnel;
 import pwcg.campaign.resupply.ResupplyNeedBuilder;
@@ -15,6 +14,7 @@ import pwcg.campaign.resupply.personnel.CompanyTransferData;
 import pwcg.campaign.resupply.personnel.TransferHandler;
 import pwcg.campaign.tank.Equipment;
 import pwcg.core.exception.PWCGException;
+import pwcg.product.bos.country.TCServiceManager;
 
 public class AARResupplyCoordinator
 {
@@ -46,7 +46,7 @@ public class AARResupplyCoordinator
     
     private void companyTransfers() throws PWCGException
     {
-        IArmedServiceManager serviceManager = ArmedServiceFactory.createServiceManager();
+        TCServiceManager serviceManager = ArmedServiceFactory.createServiceManager();
         for (ArmedService armedService : serviceManager.getAllActiveArmedServices(campaign.getDate()))
         {
             ResupplyNeedBuilder transferNeedBuilder = new ResupplyNeedBuilder(campaign, armedService);
@@ -58,7 +58,7 @@ public class AARResupplyCoordinator
 
     private void equipmentResupply() throws PWCGException
     {
-        IArmedServiceManager serviceManager = ArmedServiceFactory.createServiceManager();
+        TCServiceManager serviceManager = ArmedServiceFactory.createServiceManager();
         for (ArmedService armedService : serviceManager.getAllActiveArmedServices(campaign.getDate()))
         {
             replaceWithdrawnPlanes(armedService);

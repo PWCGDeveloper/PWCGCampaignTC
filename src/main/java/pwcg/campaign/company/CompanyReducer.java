@@ -15,7 +15,6 @@ import pwcg.campaign.group.airfield.Airfield;
 import pwcg.campaign.tank.PwcgRole;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
-import pwcg.core.utils.DateUtils;
 import pwcg.core.utils.MathUtils;
 
 public class CompanyReducer
@@ -136,32 +135,5 @@ public class CompanyReducer
         }
 
         return new ArrayList<Company>(companiesByProximity.values());
-    }
-    
-    public static List<Company> reduceToNoAnomalies(List<Company> companies, Date date) throws PWCGException
-    {       
-        List<Company> companiesWithoutAnomalies = new ArrayList<>();
-        for (Company company : companies)
-        {
-            if (!companyIsAnomaly(company, date))
-            {
-                companiesWithoutAnomalies.add(company);
-            }
-        }
-        return companiesWithoutAnomalies;
-    }
-    
-    private static boolean companyIsAnomaly(Company company, Date date) throws PWCGException
-    {
-        if (company.getCompanyId() == 20115021)
-        {
-            return true;
-        }
-        else if (company.getCompanyId() == 20111051 && (date.before(DateUtils.getDateYYYYMMDD("19430301"))))
-        {
-            return true;
-        }
-        
-        return false;
     }
 }

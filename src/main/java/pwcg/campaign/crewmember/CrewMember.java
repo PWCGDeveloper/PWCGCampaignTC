@@ -12,7 +12,6 @@ import javax.swing.ImageIcon;
 import pwcg.campaign.ArmedService;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.PictureManager;
-import pwcg.campaign.api.IArmedServiceManager;
 import pwcg.campaign.api.ICountry;
 import pwcg.campaign.api.IRankHelper;
 import pwcg.campaign.api.Side;
@@ -32,6 +31,7 @@ import pwcg.core.utils.PWCGLogger;
 import pwcg.core.utils.PWCGLogger.LogLevel;
 import pwcg.gui.image.ImageIconCache;
 import pwcg.gui.utils.PWCGStringValidator;
+import pwcg.product.bos.country.TCServiceManager;
 
 public class CrewMember implements Cloneable
 {
@@ -276,8 +276,8 @@ public class CrewMember implements Cloneable
             if (historicalAce != null)
             {
                 Country aceCountry = historicalAce.getCountry();
-                IArmedServiceManager armedServiceManager = ArmedServiceFactory.createServiceManager();
-                service = armedServiceManager.getPrimaryServiceForNation(aceCountry, date);
+                TCServiceManager armedServiceManager = ArmedServiceFactory.createServiceManager();
+                service = armedServiceManager.getPrimaryServiceForNation(aceCountry);
             }            
         }
 

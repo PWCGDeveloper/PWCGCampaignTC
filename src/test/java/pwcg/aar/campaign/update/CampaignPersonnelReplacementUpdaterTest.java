@@ -17,8 +17,6 @@ import org.mockito.quality.Strictness;
 import pwcg.aar.data.AARContext;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.CampaignPersonnelManager;
-import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.crewmember.SerialNumber;
 import pwcg.campaign.personnel.PersonnelReplacementsService;
 import pwcg.core.exception.PWCGException;
@@ -83,7 +81,7 @@ public class CampaignPersonnelReplacementUpdaterTest
     	replacementService.setReplacementPoints(40);
     	replacementService.setDailyReplacementRate(30);
     	replacementService.setLastReplacementDate(DateUtils.removeTimeDays(campaign.getDate(), 8));
-    	replacementService.setServiceId(TCServiceManager.VVS);
+    	replacementService.setServiceId(TCServiceManager.SSV);
     	
     	replacementServices.add(replacementService);
     	
@@ -102,7 +100,7 @@ public class CampaignPersonnelReplacementUpdaterTest
     	replacementService.setReplacementPoints(40);
     	replacementService.setDailyReplacementRate(30);
     	replacementService.setLastReplacementDate(DateUtils.removeTimeDays(campaign.getDate(), 6));
-    	replacementService.setServiceId(TCServiceManager.VVS);
+    	replacementService.setServiceId(TCServiceManager.SSV);
     	
     	replacementServices.add(replacementService);
     	

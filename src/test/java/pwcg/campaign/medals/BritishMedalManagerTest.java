@@ -42,29 +42,50 @@ public class BritishMedalManagerTest extends MedalManagerTestBase
     }
     
     @Test
-    public void testRAFMedals () throws PWCGException
-    {            	
+    public void testOfficerMedals () throws PWCGException
+    {               
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getStartofWWIIBritain());
-	    service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.BRITISH_ARMY, campaign.getDate());
+        service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.BRITISH_ARMY);
         Mockito.when(player.determineService(ArgumentMatchers.<Date>any())).thenReturn(service);
+        Mockito.when(player.determineRankPos(ArgumentMatchers.<Date>any())).thenReturn(2);
 
         awardMedal(BritishMedalManager.CREWS_BADGE, 0, 0);
-		awardMedal(BritishMedalManager.DSO, 15, 1);
-		awardMedal(BritishMedalManager.DSO_BAR, 25, 2);
-		awardMedal(BritishMedalManager.VC, 40, 2);
+        awardMedal(BritishMedalManager.MC, 2, 1);
+        awardMedal(BritishMedalManager.DSC, 5, 1);
+        awardMedal(BritishMedalManager.DSO, 10, 1);
+        awardMedal(BritishMedalManager.DSO_BAR, 15, 1);
+        awardMedal(BritishMedalManager.VC, 30, 2);
+    }
+    
+    @Test
+    public void testEnlistedrMedals () throws PWCGException
+    {               
+        Mockito.when(campaign.getDate()).thenReturn(DateUtils.getStartofWWIIBritain());
+        service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.BRITISH_ARMY);
+        Mockito.when(player.determineService(ArgumentMatchers.<Date>any())).thenReturn(service);
+        Mockito.when(player.determineRankPos(ArgumentMatchers.<Date>any())).thenReturn(3);
+
+        awardMedal(BritishMedalManager.CREWS_BADGE, 0, 0);
+        awardMedal(BritishMedalManager.MM, 2, 1);
+        awardMedal(BritishMedalManager.DSM, 5, 1);
+        awardMedal(BritishMedalManager.DSO, 10, 1);
+        awardMedal(BritishMedalManager.DSO_BAR, 15, 1);
+        awardMedal(BritishMedalManager.VC, 20, 5);
     }
 
     @Test
     public void testVCFail () throws PWCGException
     {            
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getStartofWWIIBritain());
-	    service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.BRITISH_ARMY, campaign.getDate());
+	    service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.BRITISH_ARMY);
         Mockito.when(player.determineService(ArgumentMatchers.<Date>any())).thenReturn(service);
+        Mockito.when(player.determineRankPos(ArgumentMatchers.<Date>any())).thenReturn(3);
 
         awardMedal(BritishMedalManager.CREWS_BADGE, 0, 0);
-		awardMedal(BritishMedalManager.MC, 3, 1);
-		awardMedal(BritishMedalManager.DSO, 15, 1);
-		awardMedal(BritishMedalManager.DSO_BAR, 25, 2);
+        awardMedal(BritishMedalManager.MM, 2, 1);
+        awardMedal(BritishMedalManager.DSM, 5, 1);
+        awardMedal(BritishMedalManager.DSO, 10, 1);
+        awardMedal(BritishMedalManager.DSO_BAR, 15, 1);
 
     	makeVictories(35);
         Medal medal = medalManager.award(campaign, player, service, 1);

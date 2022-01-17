@@ -9,8 +9,6 @@ import pwcg.aar.prelim.PwcgMissionData;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.CampaignPersonnelManager;
 import pwcg.campaign.company.Company;
-import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.core.exception.PWCGException;
 
 @ExtendWith(MockitoExtension.class)
@@ -28,7 +26,7 @@ public class PwcgMissionDataEvaluatorTest
     @Mock
     Company company;
     
-    static int thisCompanyId = 20111052; // JG52
+    static int thisCompanyId = TestIdentifiers.TEST_GERMAN_COMPANY_ID; // JG52
 
     public PwcgMissionDataEvaluatorTest() throws PWCGException
     {

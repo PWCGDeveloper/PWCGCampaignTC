@@ -11,8 +11,9 @@ import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 
 import pwcg.campaign.crewmember.SerialNumber;
-import pwcg.campaign.plane.payload.IPlanePayload;
-import pwcg.campaign.plane.payload.PlanePayloadDesignation;
+import pwcg.campaign.tank.TankAttributeMapping;
+import pwcg.campaign.tank.payload.ITankPayload;
+import pwcg.campaign.tank.payload.TankPayloadDesignation;
 import pwcg.core.exception.PWCGException;
 import pwcg.gui.rofmap.brief.BriefingPayloadHelper;
 
@@ -21,14 +22,14 @@ import pwcg.gui.rofmap.brief.BriefingPayloadHelper;
 public class BriefingPayloadHelperTest extends BriefingDataInitializerTest
 {
 
-    @Mock private IPlanePayload payload1;
-    @Mock private IPlanePayload payload2;
-    @Mock private IPlanePayload payload3;
-    @Mock private IPlanePayload payload4;
-    @Mock private PlanePayloadDesignation payloadDesignation1;
-    @Mock private PlanePayloadDesignation payloadDesignation2;
-    @Mock private PlanePayloadDesignation payloadDesignation3;
-    @Mock private PlanePayloadDesignation payloadDesignation4;
+    @Mock private ITankPayload payload1;
+    @Mock private ITankPayload payload2;
+    @Mock private ITankPayload payload3;
+    @Mock private ITankPayload payload4;
+    @Mock private TankPayloadDesignation payloadDesignation1;
+    @Mock private TankPayloadDesignation payloadDesignation2;
+    @Mock private TankPayloadDesignation payloadDesignation3;
+    @Mock private TankPayloadDesignation payloadDesignation4;
     
     @BeforeEach
     public void setupTest() throws PWCGException
@@ -44,11 +45,12 @@ public class BriefingPayloadHelperTest extends BriefingDataInitializerTest
         Mockito.when(payloadDesignation1.getPayloadId()).thenReturn(2);
         Mockito.when(payloadDesignation2.getPayloadId()).thenReturn(2);
         Mockito.when(payloadDesignation3.getPayloadId()).thenReturn(2);
+        Mockito.when(payloadDesignation4.getPayloadId()).thenReturn(2);
         
-        Mockito.when(plane1.getPlanePayload()).thenReturn(payload1);
-        Mockito.when(plane2.getPlanePayload()).thenReturn(payload2);
-        Mockito.when(plane3.getPlanePayload()).thenReturn(payload3);
-        Mockito.when(plane4.getPlanePayload()).thenReturn(payload4);
+        Mockito.when(tank1.getTankPayload()).thenReturn(payload1);
+        Mockito.when(tank2.getTankPayload()).thenReturn(payload2);
+        Mockito.when(tank3.getTankPayload()).thenReturn(payload3);
+        Mockito.when(tank4.getTankPayload()).thenReturn(payload4);
     }
     
 
@@ -90,10 +92,10 @@ public class BriefingPayloadHelperTest extends BriefingDataInitializerTest
     @Test
     public void setPayloadForAddedSameTankTypeTest () throws PWCGException
     {       
-        Mockito.when(equippedTank1.getType()).thenReturn("bf109f4");
-        Mockito.when(equippedTank2.getType()).thenReturn("bf109f4");
-        Mockito.when(plane1.getType()).thenReturn("bf109f4");
-        Mockito.when(plane2.getType()).thenReturn("bf109f4");
+        Mockito.when(equippedTank1.getType()).thenReturn(TankAttributeMapping.PZKW_III_L.getTankType());
+        Mockito.when(equippedTank2.getType()).thenReturn(TankAttributeMapping.PZKW_III_L.getTankType());
+        Mockito.when(tank1.getType()).thenReturn(TankAttributeMapping.PZKW_III_L.getTankType());
+        Mockito.when(tank2.getType()).thenReturn(TankAttributeMapping.PZKW_III_L.getTankType());
 
         Mockito.when(crewMember1.determineSortKey(ArgumentMatchers.any())).thenReturn("A");
         Mockito.when(crewMember2.determineSortKey(ArgumentMatchers.any())).thenReturn("B");
@@ -112,10 +114,10 @@ public class BriefingPayloadHelperTest extends BriefingDataInitializerTest
     @Test
     public void setPayloadForAddedDifferentTankTypeTest () throws PWCGException
     {       
-        Mockito.when(equippedTank1.getType()).thenReturn("bf109f4");
-        Mockito.when(equippedTank2.getType()).thenReturn("bf109f2");
-        Mockito.when(plane1.getType()).thenReturn("bf109f4");
-        Mockito.when(plane2.getType()).thenReturn("bf109f2");
+        Mockito.when(equippedTank1.getType()).thenReturn(TankAttributeMapping.PZKW_III_L.getTankType());
+        Mockito.when(equippedTank2.getType()).thenReturn(TankAttributeMapping.PZKW_III_M.getTankType());
+        Mockito.when(tank1.getType()).thenReturn(TankAttributeMapping.PZKW_III_L.getTankType());
+        Mockito.when(tank2.getType()).thenReturn(TankAttributeMapping.PZKW_III_M.getTankType());
 
         Mockito.when(crewMember1.determineSortKey(ArgumentMatchers.any())).thenReturn("A");
         Mockito.when(crewMember2.determineSortKey(ArgumentMatchers.any())).thenReturn("B");

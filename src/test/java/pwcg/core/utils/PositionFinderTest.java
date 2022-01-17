@@ -4,16 +4,14 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import pwcg.campaign.api.TCProductSpecificConfiguration;
 import pwcg.campaign.api.Side;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
-import pwcg.campaign.factory.ProductSpecificConfigurationFactory;
 import pwcg.campaign.group.AirfieldManager;
 import pwcg.campaign.group.airfield.Airfield;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.mission.flight.FlightTypes;
+import pwcg.product.bos.config.TCProductSpecificConfiguration;
 
 @ExtendWith(MockitoExtension.class)
 public class PositionFinderTest

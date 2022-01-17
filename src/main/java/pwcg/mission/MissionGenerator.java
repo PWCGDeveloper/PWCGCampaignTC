@@ -10,7 +10,6 @@ import pwcg.campaign.tank.PwcgRole;
 import pwcg.core.config.ConfigItemKeys;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.CoordinateBox;
-import pwcg.mission.ground.vehicle.VehicleDefinition;
 import pwcg.mission.options.MissionOptions;
 import pwcg.mission.options.MissionWeather;
 
@@ -38,13 +37,12 @@ public class MissionGenerator
 
         Skirmish skirmish = getSkirmishForMission(participatingPlayers);
         
-        VehicleDefinition playerVehicleDefinition = null;
-        Mission mission = buildMission(participatingPlayers, playerVehicleDefinition, weather, skirmish, missionOptions);
+        Mission mission = buildMission(participatingPlayers, weather, skirmish, missionOptions);
         
         return mission;
     }
 
-    public Mission makeTestMissionFromFlightTypeWithSkirmish(
+    public Mission makeTestMissionFromSkirmish(
             MissionHumanParticipants participatingPlayers, 
             Skirmish skirmish) throws PWCGException
     {
@@ -55,14 +53,27 @@ public class MissionGenerator
         MissionWeather weather = new MissionWeather(campaign, missionOptions.getMissionHour());
         weather.createMissionWeather();
 
-        VehicleDefinition playerVehicleDefinition = null;
-        Mission mission = buildMission(participatingPlayers, playerVehicleDefinition, weather, skirmish, missionOptions);
+        Mission mission = buildMission(participatingPlayers, weather, skirmish, missionOptions);
+        return mission;
+    }
+
+
+    public Mission makeTestMissionFromMissionType(MissionHumanParticipants participatingPlayers) throws PWCGException
+    {
+        MissionOptions missionOptions = new MissionOptions(campaign.getDate());
+        missionOptions.createOptions();
+
+        campaign.getCampaignConfigManager().setParam(ConfigItemKeys.UseRealisticWeatherKey, "0");
+        MissionWeather weather = new MissionWeather(campaign, missionOptions.getMissionHour());
+        weather.createMissionWeather();
+        
+        Skirmish skirmish = null;
+        Mission mission = buildMission(participatingPlayers, weather, skirmish, missionOptions);
         return mission;
     }
 
     private Mission buildMission(
             MissionHumanParticipants participatingPlayers, 
-            VehicleDefinition playerVehicleDefinition,
             MissionWeather weather, 
             Skirmish skirmish,
             MissionOptions missionOptions) throws PWCGException
@@ -73,7 +84,7 @@ public class MissionGenerator
         campaign.setCurrentMission(null);
         
         CoordinateBox missionBorders = buildMissionBorders(participatingPlayers, skirmish);
-        Mission mission = new Mission(campaign, objective, participatingPlayers, playerVehicleDefinition, missionBorders, weather, skirmish, missionOptions);
+        Mission mission = new Mission(campaign, objective, participatingPlayers, missionBorders, weather, skirmish, missionOptions);
         campaign.setCurrentMission(mission);
         mission.generate();
 

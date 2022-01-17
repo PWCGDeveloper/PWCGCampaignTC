@@ -199,8 +199,7 @@ public class NewCrewMemberDataEntryGUI extends JPanel implements ActionListener
         spacerColumn (campaignGeneratePanel, 3, rowCount);
         
         int serviceId = parent.getNewCrewMemberGeneratorDO().getService().getServiceId();
-        Date campaignDate = campaign.getDate();
-        ArmedService dateCorrectedService = ArmedServiceFactory.createServiceManager().getArmedServiceById(serviceId, campaignDate);
+        ArmedService dateCorrectedService = ArmedServiceFactory.createServiceManager().getArmedServiceById(serviceId);
         
         makeRankChoices(dateCorrectedService);
         
@@ -522,7 +521,7 @@ public class NewCrewMemberDataEntryGUI extends JPanel implements ActionListener
 	        lSquad.setForeground(labelColorSelected);
 	        
             int serviceId = parent.getNewCrewMemberGeneratorDO().getService().getServiceId();
-            ArmedService dateCorrectedService = ArmedServiceFactory.createServiceManager().getArmedServiceById(serviceId, campaign.getDate());
+            ArmedService dateCorrectedService = ArmedServiceFactory.createServiceManager().getArmedServiceById(serviceId);
             
 	        makeCompanyChoices(dateCorrectedService);
 

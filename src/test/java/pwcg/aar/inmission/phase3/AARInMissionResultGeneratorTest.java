@@ -29,8 +29,6 @@ import pwcg.aar.prelim.PwcgMissionData;
 import pwcg.aar.ui.events.model.ClaimDeniedEvent;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.context.Country;
-import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.CrewMemberStatus;
 import pwcg.campaign.crewmember.SerialNumber;
@@ -104,11 +102,11 @@ public class AARInMissionResultGeneratorTest
         addPlayerDeclarations();
         createAcesInMission();
         
-        createVictory(playerPlaneVictor, SerialNumber.AI_STARTING_SERIAL_NUMBER + 100, SerialNumber.PLANE_STARTING_SERIAL_NUMBER + 100);
-        createVictory(aiPlaneVictor, SerialNumber.AI_STARTING_SERIAL_NUMBER + 101, SerialNumber.PLANE_STARTING_SERIAL_NUMBER + 101);
-        createVictory(aiPlaneVictor, SerialNumber.AI_STARTING_SERIAL_NUMBER + 102, SerialNumber.PLANE_STARTING_SERIAL_NUMBER + 102);
-        createVictory(playerPlaneVictor, WERNER_VOSS, SerialNumber.PLANE_STARTING_SERIAL_NUMBER + 103);
-        createVictory(aiPlaneVictor, GEORGES_GUYNEMER, SerialNumber.PLANE_STARTING_SERIAL_NUMBER + 104);
+        createVictory(playerPlaneVictor, SerialNumber.AI_STARTING_SERIAL_NUMBER + 100, SerialNumber.TANK_STARTING_SERIAL_NUMBER + 100);
+        createVictory(aiPlaneVictor, SerialNumber.AI_STARTING_SERIAL_NUMBER + 101, SerialNumber.TANK_STARTING_SERIAL_NUMBER + 101);
+        createVictory(aiPlaneVictor, SerialNumber.AI_STARTING_SERIAL_NUMBER + 102, SerialNumber.TANK_STARTING_SERIAL_NUMBER + 102);
+        createVictory(playerPlaneVictor, WERNER_VOSS, SerialNumber.TANK_STARTING_SERIAL_NUMBER + 103);
+        createVictory(aiPlaneVictor, GEORGES_GUYNEMER, SerialNumber.TANK_STARTING_SERIAL_NUMBER + 104);
         
         AARContext aarContext = new AARContext(campaign);
         aarContext.setMissionEvaluationData(evaluationData);

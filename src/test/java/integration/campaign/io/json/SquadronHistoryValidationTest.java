@@ -12,8 +12,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import pwcg.campaign.CompanyHistory;
 import pwcg.campaign.CompanyHistoryEntry;
 import pwcg.campaign.company.Company;
-import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.io.json.CompanyIOJson;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;

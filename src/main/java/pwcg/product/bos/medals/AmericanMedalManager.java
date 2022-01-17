@@ -11,7 +11,6 @@ public class AmericanMedalManager extends BoSMedalManager
     public static int CREWS_BADGE = 1;
 
     public static int BRONZE_STAR = 2;
-	public static int DISTINGUISHED_FLYING_CROSS = 3;
     public static int SILVER_STAR = 4;
     public static int DISTINGUISHED_SERVICE_CROSS = 5;
 	public static int MEDAL_OF_HONOR = 6;
@@ -24,7 +23,6 @@ public class AmericanMedalManager extends BoSMedalManager
 	        
         medals.put(CREWS_BADGE, new Medal ("CrewMembers Badge",                                 "us_crew_badge.png"));
 		medals.put(BRONZE_STAR, new Medal ("Bronze Star",	                                "us_bronze_star.png"));
-		medals.put(DISTINGUISHED_FLYING_CROSS, new Medal ("Distinguished Flying Cross",	    "us_distinguished_using_cross.png"));
         medals.put(SILVER_STAR, new Medal ("Silver Star",                                   "us_silver_star.png"));
         medals.put(DISTINGUISHED_SERVICE_CROSS, new Medal ("Distinguished Service Cross",   "us_distinguished_service_cross.png"));
 		medals.put(MEDAL_OF_HONOR, new Medal ("Medal of Honor",							    "us_medal_of_honor.png"));
@@ -54,13 +52,13 @@ public class AmericanMedalManager extends BoSMedalManager
         {
             return medals.get(BRONZE_STAR);
         }
-        else if (tankVictories >= 10 && !hasMedal(crewMember, medals.get(DISTINGUISHED_SERVICE_CROSS)))
-        {
-            return medals.get(DISTINGUISHED_SERVICE_CROSS);
-        }
-        else if (tankVictories >= 15 && !hasMedal(crewMember, medals.get(SILVER_STAR)))
+        else if (tankVictories >= 10 && !hasMedal(crewMember, medals.get(SILVER_STAR)))
         {
             return medals.get(SILVER_STAR);
+        }
+        else if (tankVictories >= 15 && !hasMedal(crewMember, medals.get(DISTINGUISHED_SERVICE_CROSS)))
+        {
+            return medals.get(DISTINGUISHED_SERVICE_CROSS);
         }
 		else
 		{

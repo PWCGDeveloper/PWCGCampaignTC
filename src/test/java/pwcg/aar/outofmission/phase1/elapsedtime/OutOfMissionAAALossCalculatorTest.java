@@ -9,8 +9,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import pwcg.campaign.ArmedService;
 import pwcg.campaign.Campaign;
-import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.core.config.ConfigManagerCampaign;
 import pwcg.core.constants.AiSkillLevel;
@@ -46,7 +44,7 @@ public class OutOfMissionAAALossCalculatorTest
         Mockito.when(crewMember.getCompanyId()).thenReturn(10121312);
         Mockito.when(crewMember.getAiSkillLevel()).thenReturn(AiSkillLevel.NOVICE);
         Mockito.when(crewMember.determineService(campaign.getDate())).thenReturn(service);
-        Mockito.when(service.getServiceId()).thenReturn(TCServiceManager.VVS);
+        Mockito.when(service.getServiceId()).thenReturn(TCServiceManager.SSV);
         
         OutOfMissionAAAOddsCalculator aaaLossOddsCalculator = new OutOfMissionAAAOddsCalculator(campaign);
         int odds = aaaLossOddsCalculator.oddsShotDownByAAA(crewMember);

@@ -7,8 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
 import pwcg.campaign.Campaign;
-import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.core.config.ConfigManagerCampaign;
 import pwcg.core.config.ConfigSet;
 import pwcg.core.exception.PWCGException;
@@ -24,7 +22,7 @@ public class ConfigManagerCampaignTest
     public void testGlobalConfigurationInitialize() throws PWCGException 
     {
         
-        campaign = CampaignCache.makeCampaignOnDisk(CompanyTestProfile.STG77_PROFILE);
+        campaign = CampaignCache.makeCampaignOnDisk(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
         
         String campaignConfigDir = campaign.getCampaignPathAutoCreateDirectory() + "config\\";
         ConfigManagerCampaign campaignConfigManager = new ConfigManagerCampaign(campaignConfigDir);

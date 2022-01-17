@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 
 import pwcg.campaign.ArmedService;
-import pwcg.campaign.api.IArmedServiceManager;
 import pwcg.campaign.api.ICountry;
 import pwcg.campaign.api.IRankHelper;
 import pwcg.campaign.company.Company;
@@ -19,6 +18,7 @@ import pwcg.campaign.skin.Skin;
 import pwcg.core.constants.AiSkillLevel;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.RandomNumberGenerator;
+import pwcg.product.bos.country.TCServiceManager;
 
 public class HistoricalAce extends CrewMember
 {
@@ -145,8 +145,8 @@ public class HistoricalAce extends CrewMember
         else
         {
             ICountry country = CountryFactory.makeCountryByCountry(aceNow.getCountry());
-            IArmedServiceManager armedServiceManager = ArmedServiceFactory.createServiceManager();
-            service = armedServiceManager.getPrimaryServiceForNation(country.getCountry(), date);
+            TCServiceManager armedServiceManager = ArmedServiceFactory.createServiceManager();
+            service = armedServiceManager.getPrimaryServiceForNation(country.getCountry());
         }
 
         if (service != null)

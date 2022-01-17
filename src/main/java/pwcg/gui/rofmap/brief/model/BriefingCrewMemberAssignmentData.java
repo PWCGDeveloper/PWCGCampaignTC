@@ -55,7 +55,7 @@ public class BriefingCrewMemberAssignmentData
         unAssignedPlanes.put(crewPlane.getTank().getSerialNumber(), crewPlane.getTank());
     }
     
-    public void changePlane(int crewMemberSerialNumber, Integer tankSerialNumber)
+    public void changeTank(int crewMemberSerialNumber, Integer tankSerialNumber)
     {
         CrewTankPayloadPairing crewPlane = this.findAssignedCrewPairingByCrewMember(crewMemberSerialNumber);
 

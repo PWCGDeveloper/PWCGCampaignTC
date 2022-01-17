@@ -5,14 +5,13 @@ import java.util.List;
 
 import pwcg.campaign.ArmedService;
 import pwcg.campaign.ArmedServiceManager;
-import pwcg.campaign.api.IArmedServiceManager;
 import pwcg.campaign.api.ICountry;
 import pwcg.campaign.context.Country;
 import pwcg.campaign.factory.CountryFactory;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.PWCGLogger;
 
-public class TCServiceManager extends ArmedServiceManager implements IArmedServiceManager 
+public class TCServiceManager extends ArmedServiceManager
 {
     public static int WEHRMACHT = 20111;
     public static int SSV = 10112;
@@ -72,8 +71,7 @@ public class TCServiceManager extends ArmedServiceManager implements IArmedServi
         armedServicesByCountry.put(BoSCountry.BRITAIN_CODE, BritishServiceBuilder.createServices());
     }
 
-	@Override
-    public ArmedService getArmedServiceById(int serviceId, Date campaignDate) throws PWCGException 
+    public ArmedService getArmedServiceById(int serviceId) throws PWCGException 
 	{
 		for(List <ArmedService> serviceList : armedServicesByCountry.values())
 		{
@@ -89,8 +87,7 @@ public class TCServiceManager extends ArmedServiceManager implements IArmedServi
 		throw new PWCGException ("No service found for id = " + serviceId);
 	}
 
-	@Override
-    public ArmedService getArmedServiceByName(String serviceName, Date campaignDate) throws PWCGException 
+    public ArmedService getArmedServiceByName(String serviceName) throws PWCGException 
 	{
 		for(List <ArmedService> serviceList : armedServicesByCountry.values())
 		{
@@ -106,30 +103,28 @@ public class TCServiceManager extends ArmedServiceManager implements IArmedServi
         throw new PWCGException ("No service found for name = " + serviceName);
 	}
 
-    @Override
-    public ArmedService getPrimaryServiceForNation(Country country, Date date) throws PWCGException
+    public ArmedService getPrimaryServiceForNation(Country country) throws PWCGException
     {
         if (country == Country.GERMANY)
         {
-            return(getArmedServiceById(WEHRMACHT, date));
+            return(getArmedServiceById(WEHRMACHT));
         }
         else if (country == Country.RUSSIA)
         {
-            return(getArmedServiceById(SSV, date));
+            return(getArmedServiceById(SSV));
         }
         else if (country == Country.USA)
         {
-            return(getArmedServiceById(US_ARMY, date));
+            return(getArmedServiceById(US_ARMY));
         }
         else if (country == Country.BRITAIN)
         {
-            return(getArmedServiceById(BRITISH_ARMY, date));
+            return(getArmedServiceById(BRITISH_ARMY));
         }
         
         throw new PWCGException("Unexpected country for getPrimaryServiceForNation " + country);
     }
 
-    @Override
     public ArmedService determineServiceByParsingCompanyId(int companyId, Date date) throws PWCGException
     {
         String companyIdString = "" + companyId;
@@ -139,11 +134,11 @@ public class TCServiceManager extends ArmedServiceManager implements IArmedServi
             Integer countryCode = Integer.valueOf(countryCodeString);
             ICountry country = CountryFactory.makeCountryByCode(countryCode);
     
-            return getPrimaryServiceForNation(country.getCountry(), date);
+            return getPrimaryServiceForNation(country.getCountry());
         }
         else
         {
             throw new PWCGException("");
         }
-    }    
+    }
 }

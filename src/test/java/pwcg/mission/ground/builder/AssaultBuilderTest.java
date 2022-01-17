@@ -1,8 +1,5 @@
 package pwcg.mission.ground.builder;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,7 +16,6 @@ import pwcg.campaign.company.Company;
 import pwcg.campaign.context.Country;
 import pwcg.campaign.context.FrontMapIdentifier;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.core.config.ConfigItemKeys;
 import pwcg.core.config.ConfigManagerCampaign;
 import pwcg.core.config.ConfigSimple;
@@ -29,8 +25,6 @@ import pwcg.core.utils.DateUtils;
 import pwcg.core.utils.RandomNumberGenerator;
 import pwcg.mission.Mission;
 import pwcg.mission.MissionFlights;
-import pwcg.mission.flight.IFlight;
-import pwcg.mission.flight.IFlightPlanes;
 import pwcg.mission.flight.plane.PlaneMcu;
 import pwcg.mission.ground.org.GroundUnitCollection;
 import pwcg.mission.ground.org.IGroundUnit;
@@ -44,9 +38,7 @@ public class AssaultBuilderTest
     @Mock private Company company;
     @Mock private ConfigManagerCampaign configManager;
     @Mock private MissionFlights missionFlightBuilder;
-    @Mock private IFlight playerFlight;
     @Mock private ICountry country;
-    @Mock private IFlightPlanes flightPlanes;
     @Mock private PlaneMcu playerPlane;
 
     @BeforeEach
@@ -55,20 +47,10 @@ public class AssaultBuilderTest
         
         PWCGContext.getInstance().setCurrentMap(FrontMapIdentifier.STALINGRAD_MAP);
 
-        List<IFlight> playerFlights = new ArrayList<>();
-        List<PlaneMcu> playerFlightPlanes = new ArrayList<>();
-        
-        playerFlights.add(playerFlight);
-        playerFlightPlanes.add(playerPlane);
-        
         Mockito.when(mission.getCampaign()).thenReturn(campaign);
         Mockito.when(mission.getFlights()).thenReturn(missionFlightBuilder);
-        Mockito.when(missionFlightBuilder.getUnits()).thenReturn(playerFlights);
         Mockito.when(company.getCountry()).thenReturn(country);
-        Mockito.when(playerFlight.getCompany()).thenReturn(company);
         Mockito.when(country.getSide()).thenReturn(Side.AXIS);
-        Mockito.when(playerFlight.getFlightPlanes()).thenReturn(flightPlanes);
-        Mockito.when(flightPlanes.getPlanes()).thenReturn(playerFlightPlanes);
 
         Mockito.when(campaign.getCampaignConfigManager()).thenReturn(configManager);
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19430401"));
@@ -86,32 +68,6 @@ public class AssaultBuilderTest
             createLargeAssaultTest ();
             GroundUnitCollection groundUnitGroup = createLargeAssaultTest ();
             validate(groundUnitGroup, Country.GERMANY, Country.RUSSIA);
-        }
-    }
-
-    @Test
-    public void createLargeAssaultDuringBattleTest () throws PWCGException 
-    {
-        try (MockedStatic<RandomNumberGenerator> mocked = Mockito.mockStatic(RandomNumberGenerator.class)) 
-        {
-            mocked.when(() -> RandomNumberGenerator.getRandom(100)).thenReturn(79);
-
-            Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420901"));
-            GroundUnitCollection groundUnitGroup = createLargeAssaultTest ();
-            validate(groundUnitGroup, Country.GERMANY, Country.RUSSIA);
-        }
-    }
-
-    @Test
-    public void createLargeAssaultDuringBattleWithAggressorDefendingTest () throws PWCGException 
-    {
-        try (MockedStatic<RandomNumberGenerator> mocked = Mockito.mockStatic(RandomNumberGenerator.class)) 
-        {
-            mocked.when(() -> RandomNumberGenerator.getRandom(100)).thenReturn(81);
-
-            Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420901"));
-            GroundUnitCollection groundUnitGroup = createLargeAssaultTest ();
-            validate(groundUnitGroup, Country.RUSSIA, Country.GERMANY);
         }
     }
     

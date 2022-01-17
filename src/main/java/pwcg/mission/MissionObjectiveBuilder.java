@@ -107,7 +107,7 @@ public class MissionObjectiveBuilder
     {
         if(!townObjectives.isEmpty())
         {
-           objective = new MissionObjective(townObjectives.get(0));
+           return new MissionObjective(townObjectives.get(0));
         }
         return null; 
     }
@@ -116,7 +116,7 @@ public class MissionObjectiveBuilder
     {
         if(!airfieldObjectives.isEmpty())
         {
-           objective = new MissionObjective(airfieldObjectives.get(0));
+           return new MissionObjective(airfieldObjectives.get(0));
         }
         return null; 
     }
@@ -125,7 +125,7 @@ public class MissionObjectiveBuilder
     {
         if(!trainStationObjectives.isEmpty())
         {
-           objective = new MissionObjective(trainStationObjectives.get(0));
+           return new MissionObjective(trainStationObjectives.get(0));
         }
         return null; 
     }
@@ -134,7 +134,7 @@ public class MissionObjectiveBuilder
     {
         if(!bridgeObjectives.isEmpty())
         {
-           objective = new MissionObjective(bridgeObjectives.get(0));
+           return new MissionObjective(bridgeObjectives.get(0));
         }
         return null; 
     }

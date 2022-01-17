@@ -11,13 +11,13 @@ import pwcg.mission.unit.tank.TankMcuFactory;
 
 public abstract class TankUnit implements ITankUnit
 {
-    protected UnitVehicles unitVehicles;
+    protected UnitTanks unitVehicles;
     protected UnitInformation unitInformation;
     protected List<McuWaypoint> waypoints = new ArrayList<>();
 
     public TankUnit(UnitInformation unitInformation)
     {
-        this.unitVehicles = new UnitVehicles();
+        this.unitVehicles = new UnitTanks();
         this.unitInformation = unitInformation;
     }
 
@@ -66,7 +66,7 @@ public abstract class TankUnit implements ITankUnit
     }
 
     @Override
-    public UnitVehicles getUnitTanks()
+    public UnitTanks getUnitTanks()
     {
         return unitVehicles;
     }

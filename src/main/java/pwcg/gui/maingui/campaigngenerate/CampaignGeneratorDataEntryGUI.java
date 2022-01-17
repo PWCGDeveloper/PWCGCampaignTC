@@ -208,8 +208,7 @@ public class CampaignGeneratorDataEntryGUI extends JPanel implements ActionListe
         spacerColumn (campaignGeneratePanel, 3, rowCount);
         
         int serviceId = parent.getCampaignGeneratorDO().getService().getServiceId();
-        Date campaignDate = parent.getCampaignGeneratorDO().getStartDate();
-        ArmedService dateCorrectedService = ArmedServiceFactory.createServiceManager().getArmedServiceById(serviceId, campaignDate);
+        ArmedService dateCorrectedService = ArmedServiceFactory.createServiceManager().getArmedServiceById(serviceId);
         
         makeRankChoices(dateCorrectedService);
 
@@ -608,9 +607,9 @@ public class CampaignGeneratorDataEntryGUI extends JPanel implements ActionListe
 	        lCompany.setForeground(labelColorSelected);
 	        
             int serviceId = parent.getCampaignGeneratorDO().getService().getServiceId();
-            Date campaignDate = parent.getCampaignGeneratorDO().getStartDate();
-            ArmedService dateCorrectedService = ArmedServiceFactory.createServiceManager().getArmedServiceById(serviceId, campaignDate);
+            ArmedService dateCorrectedService = ArmedServiceFactory.createServiceManager().getArmedServiceById(serviceId);
             
+            Date campaignDate = parent.getCampaignGeneratorDO().getStartDate();
 	        makeCompanyChoices(campaignDate, dateCorrectedService);
 
 	        String companyName = (String)cbCompany.getSelectedItem();

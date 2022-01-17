@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import pwcg.campaign.context.FrontMapIdentifier;
 import pwcg.campaign.context.MapArea;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.utils.MathUtils;

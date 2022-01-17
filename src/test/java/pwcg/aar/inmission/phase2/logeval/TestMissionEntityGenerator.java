@@ -36,9 +36,9 @@ public class TestMissionEntityGenerator
         String[] frenchCrewMembers = new String[] { "French CrewMemberA","French CrewMemberB"};
         String[] germanCrewMembers = new String[] { "German CrewMemberA","German CrewMemberB"};
         Integer[] frenchCrewMembersSerialNumbers= new Integer[] { SerialNumber.AI_STARTING_SERIAL_NUMBER + 1, SerialNumber.AI_STARTING_SERIAL_NUMBER + 2};
-        Integer[] frenchPlaneSerialNumbers= new Integer[] { SerialNumber.PLANE_STARTING_SERIAL_NUMBER + 1, SerialNumber.PLANE_STARTING_SERIAL_NUMBER + 2};
+        Integer[] frenchPlaneSerialNumbers= new Integer[] { SerialNumber.TANK_STARTING_SERIAL_NUMBER + 1, SerialNumber.TANK_STARTING_SERIAL_NUMBER + 2};
         Integer[] germanCrewMemberSerialNumbers = new Integer[] { SerialNumber.AI_STARTING_SERIAL_NUMBER + 100, SerialNumber.AI_STARTING_SERIAL_NUMBER + 200};
-        Integer[] germanPlaneSerialNumbers= new Integer[] { SerialNumber.PLANE_STARTING_SERIAL_NUMBER + 100, SerialNumber.PLANE_STARTING_SERIAL_NUMBER + 200};
+        Integer[] germanPlaneSerialNumbers= new Integer[] { SerialNumber.TANK_STARTING_SERIAL_NUMBER + 100, SerialNumber.TANK_STARTING_SERIAL_NUMBER + 200};
         String[] frenchCrewMemberBotId = new String[] { "1001","1002"};
         String[] germanCrewMemberBotId = new String[] { "2001","2002"};
 

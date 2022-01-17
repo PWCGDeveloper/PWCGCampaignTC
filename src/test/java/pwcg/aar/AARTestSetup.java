@@ -23,16 +23,14 @@ import pwcg.campaign.CampaignData;
 import pwcg.campaign.CampaignPersonnelManager;
 import pwcg.campaign.company.Company;
 import pwcg.campaign.context.Country;
-import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.CrewMembers;
 import pwcg.campaign.crewmember.SerialNumber;
 import pwcg.campaign.crewmember.TankAce;
 import pwcg.campaign.factory.CountryFactory;
-import pwcg.campaign.plane.EquippedPlane;
-import pwcg.campaign.plane.PwcgRoleCategory;
 import pwcg.campaign.resupply.personnel.CompanyTransferData;
+import pwcg.campaign.tank.EquippedTank;
+import pwcg.campaign.tank.PwcgRoleCategory;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.mission.data.MissionHeader;
@@ -205,10 +203,10 @@ public abstract class AARTestSetup
         Mockito.when(plane2.getCompanyId()).thenReturn(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
         Mockito.when(plane3.getCompanyId()).thenReturn(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
         
-        Mockito.when(enemyPlane1.getSerialNumber()).thenReturn(SerialNumber.PLANE_STARTING_SERIAL_NUMBER+100);
-        Mockito.when(plane1.getSerialNumber()).thenReturn(SerialNumber.PLANE_STARTING_SERIAL_NUMBER);
-        Mockito.when(plane2.getSerialNumber()).thenReturn(SerialNumber.PLANE_STARTING_SERIAL_NUMBER+1);
-        Mockito.when(plane3.getSerialNumber()).thenReturn(SerialNumber.PLANE_STARTING_SERIAL_NUMBER+2);
+        Mockito.when(enemyPlane1.getSerialNumber()).thenReturn(SerialNumber.TANK_STARTING_SERIAL_NUMBER+100);
+        Mockito.when(plane1.getSerialNumber()).thenReturn(SerialNumber.TANK_STARTING_SERIAL_NUMBER);
+        Mockito.when(plane2.getSerialNumber()).thenReturn(SerialNumber.TANK_STARTING_SERIAL_NUMBER+1);
+        Mockito.when(plane3.getSerialNumber()).thenReturn(SerialNumber.TANK_STARTING_SERIAL_NUMBER+2);
         
         Mockito.when(enemyPlane1.determinePrimaryRoleCategory()).thenReturn(PwcgRoleCategory.FIGHTER);
         Mockito.when(plane1.determinePrimaryRoleCategory()).thenReturn(PwcgRoleCategory.FIGHTER);

@@ -53,7 +53,6 @@ public class CampaignEquipmentManagerTest
         int count = 0;
         for (EquippedTank tank : equipment.getActiveEquippedTanks().values())
         {
-            String wtf = TankAttributeMapping.TIGER_I.getTankType();
             Assertions.assertTrue(TankAttributeMapping.TIGER_I.getTankType().equals(tank.getType()));
             if (count == 0 || count == 3 || count == 6)
             {

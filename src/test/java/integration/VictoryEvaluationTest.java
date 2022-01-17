@@ -17,13 +17,9 @@ import pwcg.aar.inmission.phase3.reconcile.victories.singleplayer.PlayerDeclarat
 import pwcg.aar.inmission.phase3.reconcile.victories.singleplayer.PlayerVictoryDeclaration;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.api.Side;
-import pwcg.campaign.company.Company;
 import pwcg.campaign.context.Country;
-import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.factory.CountryFactory;
-import pwcg.campaign.plane.PwcgRoleCategory;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.location.CoordinateBox;
@@ -35,20 +31,17 @@ import pwcg.core.utils.DateUtils;
 import pwcg.mission.Mission;
 import pwcg.mission.MissionBorderBuilder;
 import pwcg.mission.MissionHumanParticipants;
-import pwcg.mission.MissionProfile;
-import pwcg.mission.MissionCompanyFlightTypes;
-import pwcg.mission.flight.FlightTypes;
-import pwcg.mission.flight.IFlight;
-import pwcg.mission.flight.plane.PlaneMcu;
 import pwcg.mission.io.MissionFileNameBuilder;
+import pwcg.mission.unit.ITankUnit;
+import pwcg.mission.unit.TankMcu;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.CompanyTestProfile;
 import pwcg.testutils.TestMissionBuilderUtility;
 
 public class VictoryEvaluationTest
 {
-    private int ENEMY_START_PLANE_ID = 301000;
-    private int GERMAN_START_PLANE_ID = 401000;
+    private int ENEMY_START_PLANE_ID = 101000;
+    private int GERMAN_START_PLANE_ID = 201000;
 
     private Campaign campaign;
     
@@ -64,14 +57,11 @@ public class VictoryEvaluationTest
     {
         MissionHumanParticipants participatingPlayers = TestMissionBuilderUtility.buildTestParticipatingHumans(campaign);
         
-        Company playerCompany = participatingPlayers.getAllParticipatingPlayers().get(0).determineCompany();
-        MissionCompanyFlightTypes playerFlightTypes = MissionCompanyFlightTypes.buildPlayerFlightType(FlightTypes.PATROL, playerCompany);
-
-        MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(campaign, participatingPlayers, null, playerFlightTypes);
+        MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(campaign, participatingPlayers, null);
         CoordinateBox missionBorders = missionBorderBuilder.buildCoordinateBox();
 
-        Mission mission = TestMissionBuilderUtility.createTestMission(campaign, participatingPlayers, missionBorders, MissionProfile.DAY_TACTICAL_MISSION);
-        mission.generate(playerFlightTypes);
+        Mission mission = TestMissionBuilderUtility.createTestMission(campaign, participatingPlayers, missionBorders);
+        mission.generate();
         mission.finalizeMission();
         mission.write();
 
@@ -105,14 +95,11 @@ public class VictoryEvaluationTest
     {
         MissionHumanParticipants participatingPlayers = TestMissionBuilderUtility.buildTestParticipatingHumans(campaign);
         
-        Company playerCompany = participatingPlayers.getAllParticipatingPlayers().get(0).determineCompany();
-        MissionCompanyFlightTypes playerFlightTypes = MissionCompanyFlightTypes.buildPlayerFlightType(FlightTypes.PATROL, playerCompany);
-
-        MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(campaign, participatingPlayers, null, playerFlightTypes);
+        MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(campaign, participatingPlayers, null);
         CoordinateBox missionBorders = missionBorderBuilder.buildCoordinateBox();
 
-        Mission mission = TestMissionBuilderUtility.createTestMission(campaign, participatingPlayers, missionBorders, MissionProfile.DAY_TACTICAL_MISSION);
-        mission.generate(playerFlightTypes);
+        Mission mission = TestMissionBuilderUtility.createTestMission(campaign, participatingPlayers, missionBorders);
+        mission.generate();
         mission.finalizeMission();
         mission.write();
 
@@ -153,15 +140,12 @@ public class VictoryEvaluationTest
     public void testTwoVictoriesClaimedOneAwardedBecauseNoDamage() throws Exception
     {
         MissionHumanParticipants participatingPlayers = TestMissionBuilderUtility.buildTestParticipatingHumans(campaign);
-        
-        Company playerCompany = participatingPlayers.getAllParticipatingPlayers().get(0).determineCompany();
-        MissionCompanyFlightTypes playerFlightTypes = MissionCompanyFlightTypes.buildPlayerFlightType(FlightTypes.PATROL, playerCompany);
 
-        MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(campaign, participatingPlayers, null, playerFlightTypes);
+        MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(campaign, participatingPlayers, null);
         CoordinateBox missionBorders = missionBorderBuilder.buildCoordinateBox();
 
-        Mission mission = TestMissionBuilderUtility.createTestMission(campaign, participatingPlayers, missionBorders, MissionProfile.DAY_TACTICAL_MISSION);
-        mission.generate(playerFlightTypes);
+        Mission mission = TestMissionBuilderUtility.createTestMission(campaign, participatingPlayers, missionBorders);
+        mission.generate();
         mission.finalizeMission();
         mission.write();
 
@@ -200,22 +184,19 @@ public class VictoryEvaluationTest
     {
         MissionHumanParticipants participatingPlayers = TestMissionBuilderUtility.buildTestParticipatingHumans(campaign);
         
-        Company playerCompany = participatingPlayers.getAllParticipatingPlayers().get(0).determineCompany();
-        MissionCompanyFlightTypes playerFlightTypes = MissionCompanyFlightTypes.buildPlayerFlightType(FlightTypes.PATROL, playerCompany);
-
-        MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(campaign, participatingPlayers, null, playerFlightTypes);
+        MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(campaign, participatingPlayers, null);
         CoordinateBox missionBorders = missionBorderBuilder.buildCoordinateBox();
 
-        Mission mission = TestMissionBuilderUtility.createTestMission(campaign, participatingPlayers, missionBorders, MissionProfile.DAY_TACTICAL_MISSION);
-        mission.generate(playerFlightTypes);
+        Mission mission = TestMissionBuilderUtility.createTestMission(campaign, participatingPlayers, missionBorders);
+        mission.generate();
         mission.finalizeMission();
         mission.write();
         
-        List<PlaneMcu> playerFlightPlanes = mission.getFlights().getUnits().get(0).getFlightPlanes().getPlanes();
-        Map<Integer, Integer> playerFlightVictories = new HashMap<>();
-        for(PlaneMcu plane : playerFlightPlanes)
+        List<TankMcu> playerTanks = mission.getUnits().getPlayerUnits().get(0).getTanks();
+        Map<Integer, Integer> playerVictories = new HashMap<>();
+        for(TankMcu tank : playerTanks)
         {
-            playerFlightVictories.put(plane.getTankCommander().getSerialNumber(), plane.getTankCommander().getCrewMemberVictories().getAirVictories().size());
+            playerVictories.put(tank.getTankCommander().getSerialNumber(), tank.getTankCommander().getCrewMemberVictories().getAirVictories().size());
         }
 
 
@@ -240,9 +221,9 @@ public class VictoryEvaluationTest
         Assertions.assertEquals(0, playerAfter.getCrewMemberVictories().getAirVictories().size());
         
         boolean wasAwardedToCrewMember = false;
-        for (int serialNumber : playerFlightVictories.keySet())
+        for (int serialNumber : playerVictories.keySet())
         {
-            int numVictoriesBefore = playerFlightVictories.get(serialNumber);
+            int numVictoriesBefore = playerVictories.get(serialNumber);
             CrewMember crewMember = campaign.getPersonnelManager().getAnyCampaignMember(serialNumber);
             if (numVictoriesBefore < crewMember.getCrewMemberVictories().getAirVictories().size())
             {
@@ -291,33 +272,30 @@ public class VictoryEvaluationTest
     {       
         Coordinate location = new Coordinate(500000, 0, 50000);
 
-        List<PlaneMcu> enemyPlanes = findEnemyCrewMembers(mission);
-        for (PlaneMcu enemyPlane : enemyPlanes)
+        List<TankMcu> enemyPlanes = findEnemyCrewMembers(mission);
+        for (TankMcu enemyPlane : enemyPlanes)
         {
-            int planeId =  ENEMY_START_PLANE_ID + enemyPlane.getNumberInFormation() - 1;
-            int botId =  planeId +100 ;
+            int tankId =  ENEMY_START_PLANE_ID + enemyPlane.getNumberInFormation() - 1;
+            int botId =  tankId +100 ;
             
-            AType12 aType12 = new AType12(Integer.valueOf(planeId).toString(), enemyPlane.getType(), enemyPlane.getName(), 
+            AType12 aType12 = new AType12(Integer.valueOf(tankId).toString(), enemyPlane.getType(), enemyPlane.getName(), 
                     enemyPlane.getCountry(), "-1", location);
             aType12.write(writer);
 
             AType12 aType1Bot = new AType12(Integer.valueOf(botId).toString(), "BotCrewMember_" + enemyPlane.getType(), "BotCrewMember_" + enemyPlane.getType(), 
-                    enemyPlane.getCountry(), Integer.valueOf(planeId).toString(), location);
+                    enemyPlane.getCountry(), Integer.valueOf(tankId).toString(), location);
             aType1Bot.write(writer);
         }
     }
     
-    private List<PlaneMcu> findEnemyCrewMembers(Mission mission) throws PWCGException
+    private List<TankMcu> findEnemyCrewMembers(Mission mission) throws PWCGException
     {
-        for(IFlight flight : mission.getFlights().getAiFlightsForSide(Side.ALLIED))
+        for(ITankUnit unit : mission.getUnits().getUnitsForSide()(Side.ALLIED))
         {
-            List<PlaneMcu> enemyPlanesForFlight = flight.getFlightPlanes().getAiPlanes();
-            if (enemyPlanesForFlight.size() >= 2)
+            List<TankMcu> enemyTanks = unit.getTanks();
+            if (enemyTanks.size() >= 2)
             {
-                if (flight.getCompany().determineCompanyPrimaryRoleCategory(mission.getCampaign().getDate()) == PwcgRoleCategory.FIGHTER)
-                {
-                     return enemyPlanesForFlight;                    
-                }
+                return enemyTanks;                    
             }
         }
         
@@ -329,24 +307,24 @@ public class VictoryEvaluationTest
         int playerAid = -1;
         
         Coordinate location = new Coordinate(500000, 0, 50000);
-        List<PlaneMcu> playerFlightPlanes = mission.getFlights().getUnits().get(0).getFlightPlanes().getPlanes();
+        List<TankMcu> playerFlightPlanes = mission.getFlights().getUnits().get(0).getFlightPlanes().getPlanes();
         
-        for (PlaneMcu friendlyPlane : playerFlightPlanes)
+        for (TankMcu friendlyPlane : playerFlightPlanes)
         {
-            int planeId =  GERMAN_START_PLANE_ID + friendlyPlane.getNumberInFormation() - 1;
-            int botId =  planeId +100;
+            int tankId =  GERMAN_START_PLANE_ID + friendlyPlane.getNumberInFormation() - 1;
+            int botId =  tankId +100;
             
-            AType12 aType12 = new AType12(Integer.valueOf(planeId).toString(), friendlyPlane.getType(), friendlyPlane.getName(), 
+            AType12 aType12 = new AType12(Integer.valueOf(tankId).toString(), friendlyPlane.getType(), friendlyPlane.getName(), 
                     CountryFactory.makeCountryByCountry(Country.GERMANY), "-1", location);
             aType12.write(writer);
 
             AType12 aType1Bot = new AType12(Integer.valueOf(botId).toString(), "BotCrewMember_" + friendlyPlane.getType(), "BotCrewMember_" + friendlyPlane.getType(), 
-                    CountryFactory.makeCountryByCountry(Country.GERMANY), Integer.valueOf(planeId).toString(), location);
+                    CountryFactory.makeCountryByCountry(Country.GERMANY), Integer.valueOf(tankId).toString(), location);
             aType1Bot.write(writer);
             
             if (friendlyPlane.isActivePlayerPlane())
             {
-                playerAid = planeId;
+                playerAid = tankId;
             }            
         }
         

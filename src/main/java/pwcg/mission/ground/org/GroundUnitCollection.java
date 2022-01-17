@@ -10,7 +10,6 @@ import pwcg.campaign.utils.IndexGenerator;
 import pwcg.core.config.ConfigItemKeys;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
-import pwcg.core.utils.MathUtils;
 import pwcg.core.utils.PWCGLogger;
 import pwcg.mission.Mission;
 import pwcg.mission.mcu.McuSpawn;
@@ -57,6 +56,20 @@ public class GroundUnitCollection
     {
         missionBeginUnit.setCheckZoneTriggerObject(unitIndex);
     }
+    
+    public List<IGroundUnit> getGroundUnitsByTypeAndSide(GroundUnitType groundUnitType, Side side) throws PWCGException
+    {
+        List<IGroundUnit> groundUnitsOfType = new ArrayList<>();
+        for (IGroundUnit groundUnit : getGroundUnitsForSide(side))
+        {
+            if (groundUnit.getGroundUnitType() == groundUnitType)
+            {
+                groundUnitsOfType.add(groundUnit);
+            }
+        }
+        return groundUnitsOfType;
+    }
+
 
     public List<IGroundUnit> getGroundUnitsForSide(Side side) throws PWCGException
     {
@@ -247,19 +260,5 @@ public class GroundUnitCollection
     public String getName()
     {
         return groundUnitName;
-    }
-
-    public void removeExtraUnits(Coordinate coordinate, int keepRadius) throws PWCGException
-    {
-        List<IGroundUnit> groundUnitsToKeep = new ArrayList<>();
-        for (IGroundUnit groundUnit : groundUnits)
-        {
-            double distance = MathUtils.calcDist(coordinate, groundUnit.getPosition());
-            if (distance < keepRadius)
-            {
-                groundUnitsToKeep.add(groundUnit);
-            }
-        }
-        groundUnits = groundUnitsToKeep;
     }
 }

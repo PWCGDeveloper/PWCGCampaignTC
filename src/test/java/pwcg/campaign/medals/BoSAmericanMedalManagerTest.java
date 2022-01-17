@@ -42,57 +42,53 @@ public class BoSAmericanMedalManagerTest extends MedalManagerTestBase
     public void testAmericanMedals () throws PWCGException
     {               
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19441001"));
-        service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.US_ARMY, campaign.getDate());
+        service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.US_ARMY);
 
         awardMedal(AmericanMedalManager.CREWS_BADGE, 0, 0);
         awardMedal(AmericanMedalManager.BRONZE_STAR, 3, 1);
-        awardMedal(AmericanMedalManager.DISTINGUISHED_FLYING_CROSS, 6, 1);
-        awardMedal(AmericanMedalManager.SILVER_STAR, 15, 1);
-        awardMedal(AmericanMedalManager.DISTINGUISHED_SERVICE_CROSS, 20, 1);
-        awardMedal(AmericanMedalManager.MEDAL_OF_HONOR, 20, 3);
+        awardMedal(AmericanMedalManager.SILVER_STAR, 10, 1);
+        awardMedal(AmericanMedalManager.DISTINGUISHED_SERVICE_CROSS, 15, 1);
+        awardMedal(AmericanMedalManager.MEDAL_OF_HONOR, 15, 3);
     }
 
     @Test
     public void testAmericanMedalsAlternateMoHAward1 () throws PWCGException
     {               
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19441001"));
-        service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.US_ARMY, campaign.getDate());
+        service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.US_ARMY);
 
         awardMedal(AmericanMedalManager.CREWS_BADGE, 0, 0);
         awardMedal(AmericanMedalManager.BRONZE_STAR, 3, 1);
-        awardMedal(AmericanMedalManager.DISTINGUISHED_FLYING_CROSS, 6, 1);
-        awardMedal(AmericanMedalManager.SILVER_STAR, 15, 1);
-        awardMedal(AmericanMedalManager.DISTINGUISHED_SERVICE_CROSS, 20, 1);
-        awardMedal(AmericanMedalManager.MEDAL_OF_HONOR, 30, 2);
+        awardMedal(AmericanMedalManager.SILVER_STAR, 10, 1);
+        awardMedal(AmericanMedalManager.DISTINGUISHED_SERVICE_CROSS, 15, 1);
+        awardMedal(AmericanMedalManager.MEDAL_OF_HONOR, 20, 2);
     }
 
     @Test
     public void testAmericanMedalsAlternateMoHAward2 () throws PWCGException
     {               
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19441001"));
-        service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.BRITISH_ARMY, campaign.getDate());
+        service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.BRITISH_ARMY);
 
         awardMedal(AmericanMedalManager.CREWS_BADGE, 0, 0);
         awardMedal(AmericanMedalManager.BRONZE_STAR, 3, 1);
-        awardMedal(AmericanMedalManager.DISTINGUISHED_FLYING_CROSS, 6, 1);
-        awardMedal(AmericanMedalManager.SILVER_STAR, 15, 1);
-        awardMedal(AmericanMedalManager.DISTINGUISHED_SERVICE_CROSS, 20, 1);
-        awardMedal(AmericanMedalManager.MEDAL_OF_HONOR, 35, 1);
+        awardMedal(AmericanMedalManager.SILVER_STAR, 10, 1);
+        awardMedal(AmericanMedalManager.DISTINGUISHED_SERVICE_CROSS, 15, 1);
+        awardMedal(AmericanMedalManager.MEDAL_OF_HONOR, 25, 1);
     }
 
     @Test
     public void testMoHFail () throws PWCGException
     {            
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19441001"));
-        service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.BRITISH_ARMY, campaign.getDate());
+        service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.BRITISH_ARMY);
 
         awardMedal(AmericanMedalManager.CREWS_BADGE, 0, 0);
         awardMedal(AmericanMedalManager.BRONZE_STAR, 3, 1);
-        awardMedal(AmericanMedalManager.DISTINGUISHED_FLYING_CROSS, 6, 1);
-        awardMedal(AmericanMedalManager.SILVER_STAR, 15, 1);
-        awardMedal(AmericanMedalManager.DISTINGUISHED_SERVICE_CROSS, 20, 1);
+        awardMedal(AmericanMedalManager.SILVER_STAR, 10, 1);
+        awardMedal(AmericanMedalManager.DISTINGUISHED_SERVICE_CROSS, 15, 1);
 
-    	makeVictories(32);
+    	makeVictories(24);
         Medal medal = medalManager.award(campaign, player, service, 1);
         Assertions.assertTrue (medal == null);
     }

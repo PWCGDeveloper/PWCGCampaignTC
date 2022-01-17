@@ -10,19 +10,17 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import pwcg.campaign.Campaign;
-import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.CrewMemberStatus;
 import pwcg.campaign.crewmember.CrewMembers;
 import pwcg.campaign.personnel.CrewMemberFilter;
-import pwcg.campaign.resupply.ICompanyNeed;
-import pwcg.campaign.resupply.ServiceResupplyNeed;
 import pwcg.campaign.resupply.CompanyNeedFactory;
 import pwcg.campaign.resupply.CompanyNeedFactory.CompanyNeedType;
+import pwcg.campaign.resupply.ICompanyNeed;
+import pwcg.campaign.resupply.ServiceResupplyNeed;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
-import pwcg.product.fc.country.TCServiceManager;
+import pwcg.product.bos.country.TCServiceManager;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.CompanyTestProfile;
 

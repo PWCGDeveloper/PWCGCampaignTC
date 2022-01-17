@@ -14,7 +14,7 @@ public class AmphibiousAssaultBuilder implements IBattleBuilder
 {
     private Mission mission;
     private AmphibiousAssault amphibiousAssault;
-    private List<GroundUnitCollection> amphibiousAssaultUnits = new ArrayList<>();
+    private GroundUnitCollection amphibiousAssaultUnits;
     
     public AmphibiousAssaultBuilder(Mission mission, AmphibiousAssault amphibiousAssault)
     {
@@ -23,12 +23,12 @@ public class AmphibiousAssaultBuilder implements IBattleBuilder
     }
 
     @Override
-    public List<GroundUnitCollection> generateBattle() throws PWCGException
+    public GroundUnitCollection generateBattle() throws PWCGException
     {
         return generateAmphibiousAssault();
     }
 
-    private List<GroundUnitCollection> generateAmphibiousAssault() throws PWCGException
+    private GroundUnitCollection generateAmphibiousAssault() throws PWCGException
     {
         List<AmphibiousAssaultShipDefinition> shipsForMission = getLandingCraftForAssault();
 
@@ -43,7 +43,7 @@ public class AmphibiousAssaultBuilder implements IBattleBuilder
     {
         AmphibiousAssaultShipBuilder amphibiousAssaultShipBuilder = new AmphibiousAssaultShipBuilder(mission, amphibiousAssault, shipsForMission);
         GroundUnitCollection ships = amphibiousAssaultShipBuilder.generateAmphibiousAssautShips();
-        amphibiousAssaultUnits.add(ships);
+        amphibiousAssaultUnits.merge(ships);
     }
 
     private void makeLanding(List<AmphibiousAssaultShipDefinition> shipsForMission) throws PWCGException
@@ -54,7 +54,7 @@ public class AmphibiousAssaultBuilder implements IBattleBuilder
             {
                 AmphibiousAssaultAttackBuilder amphibiousAssaultShipBuilder = new AmphibiousAssaultAttackBuilder(mission, amphibiousAssault, shipDefinition);
                 GroundUnitCollection assault = amphibiousAssaultShipBuilder.generateAmphibiousAssaultAttack();
-                amphibiousAssaultUnits.add(assault);
+                amphibiousAssaultUnits.merge(assault);
             }
         }
     }
@@ -67,7 +67,7 @@ public class AmphibiousAssaultBuilder implements IBattleBuilder
             {
                 AmphibiousDefenseBuilder amphibiousDefenseBuilder = new AmphibiousDefenseBuilder(mission, amphibiousAssault, shipDefinition);
                 GroundUnitCollection defense = amphibiousDefenseBuilder.generateAmphibiousAssaultDefense();
-                amphibiousAssaultUnits.add(defense);
+                amphibiousAssaultUnits.merge(defense);
             }
         }
     }

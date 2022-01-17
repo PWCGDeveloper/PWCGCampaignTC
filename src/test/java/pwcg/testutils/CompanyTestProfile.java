@@ -7,7 +7,12 @@ public enum CompanyTestProfile
 {
     GROSS_DEUTSCHLAND_PROFILE("Gross Deutschland", 201001001, "19420801", CampaignMode.CAMPAIGN_MODE_SINGLE, FrontMapIdentifier.STALINGRAD_MAP, false),
     PANZER_LEHR_PROFILE("Panzer Lehr", 201011003, "19440901", CampaignMode.CAMPAIGN_MODE_SINGLE, FrontMapIdentifier.BODENPLATTE_MAP, false),
-    TANK_DIVISION_147_PROFILE("147th Tank Division", 101147001, "19440901", CampaignMode.CAMPAIGN_MODE_SINGLE, FrontMapIdentifier.STALINGRAD_MAP, false),
+    
+    TANK_DIVISION_147_PROFILE("147th Tank Division", 101147001, "19420901", CampaignMode.CAMPAIGN_MODE_SINGLE, FrontMapIdentifier.STALINGRAD_MAP, false),
+    TANK_DIVISION_147_PROFILE_KUBAN("147th Tank Division Late", 101147001, "19431001", CampaignMode.CAMPAIGN_MODE_SINGLE, FrontMapIdentifier.KUBAN_MAP, false),
+    TANK_DIVISION_147_PROFILE_LATE("147th Tank Division Late", 101147001, "19440901", CampaignMode.CAMPAIGN_MODE_SINGLE, FrontMapIdentifier.EAST1944_MAP, false),
+    TANK_DIVISION_147_PROFILE_END("147th Tank Division Late", 101147001, "19450201", CampaignMode.CAMPAIGN_MODE_SINGLE, FrontMapIdentifier.EAST1945_MAP, false),
+
     THIRD_DIVISION_PROFILE("3rd Armored Division", 102003005, "19440901", CampaignMode.CAMPAIGN_MODE_SINGLE, FrontMapIdentifier.BODENPLATTE_MAP, false),
     SEVENTH_DIVISION_PROFILE("3rd Armored Division", 103007001, "19440901", CampaignMode.CAMPAIGN_MODE_SINGLE, FrontMapIdentifier.BODENPLATTE_MAP, false),
 

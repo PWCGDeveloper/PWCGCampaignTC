@@ -22,7 +22,7 @@ public interface ITankUnit
 
     Company getCompany();
 
-    UnitVehicles getUnitTanks();
+    UnitTanks getUnitTanks();
 
     void preparePlaneForCoop() throws PWCGException;
 

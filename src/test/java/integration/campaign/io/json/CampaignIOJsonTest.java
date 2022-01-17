@@ -7,9 +7,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import pwcg.campaign.ArmedService;
 import pwcg.campaign.Campaign;
-import pwcg.campaign.api.IArmedServiceManager;
+import pwcg.campaign.api.TCServiceManager;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.CrewMembers;
 import pwcg.campaign.crewmember.SerialNumber;
@@ -19,12 +18,12 @@ import pwcg.campaign.io.json.CampaignIOJson;
 import pwcg.campaign.personnel.CompanyPersonnel;
 import pwcg.campaign.personnel.CrewMemberFilter;
 import pwcg.campaign.personnel.PersonnelReplacementsService;
-import pwcg.campaign.plane.Equipment;
-import pwcg.campaign.plane.EquippedPlane;
+import pwcg.campaign.tank.Equipment;
+import pwcg.campaign.tank.EquippedTank;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.CampaignRemover;
 import pwcg.core.utils.DateUtils;
-import pwcg.product.fc.country.TCServiceManager;
+import pwcg.product.bos.country.TCServiceManager;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.CampaignCacheBase;
 import pwcg.testutils.CompanyTestProfile;
@@ -79,7 +78,7 @@ public class CampaignIOJsonTest
 
     private void validatePersonnelReplacements(Campaign campaign) throws PWCGException
     {
-        IArmedServiceManager armedServiceManager = ArmedServiceFactory.createServiceManager();
+        TCServiceManager armedServiceManager = ArmedServiceFactory.createServiceManager();
     	ArmedService germanArmedService = armedServiceManager.getArmedServiceByName(TCServiceManager.WEHRMACHT, campaign.getDate());
         PersonnelReplacementsService germanReplacements = campaign.getPersonnelManager().getPersonnelReplacementsService(germanArmedService.getServiceId());
         assert(germanReplacements.getReplacements().getActiveCount(campaign.getDate()) == 20);
@@ -133,11 +132,11 @@ public class CampaignIOJsonTest
     private void validateFighterEquipment(Campaign campaign) throws PWCGException
     {
         Equipment fighterCompanyEquipment = campaign.getEquipmentManager().getEquipmentForCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
-        Assertions.assertTrue (campaign.getSerialNumber().getNextPlaneSerialNumber() > SerialNumber.PLANE_STARTING_SERIAL_NUMBER + 100);
+        Assertions.assertTrue (campaign.getSerialNumber().getNextPlaneSerialNumber() > SerialNumber.TANK_STARTING_SERIAL_NUMBER + 100);
         Assertions.assertTrue (fighterCompanyEquipment.getActiveEquippedTanks().size() >= 14);
         for (EquippedTank equippedTank : fighterCompanyEquipment.getActiveEquippedTanks().values())
         {
-            Assertions.assertTrue (equippedTank.getSerialNumber() > SerialNumber.PLANE_STARTING_SERIAL_NUMBER);
+            Assertions.assertTrue (equippedTank.getSerialNumber() > SerialNumber.TANK_STARTING_SERIAL_NUMBER);
             Assertions.assertTrue (equippedTank.getArchType().equals("albatrosd"));
         }
     }
@@ -145,11 +144,11 @@ public class CampaignIOJsonTest
     private void validateReconEquipment(Campaign campaign) throws PWCGException
     {
         Equipment reconCompanyEquipment = campaign.getEquipmentManager().getEquipmentForCompany(CompanyTestProfile.RFC_2_PROFILE.getCompanyId());
-        Assertions.assertTrue (campaign.getSerialNumber().getNextPlaneSerialNumber() > SerialNumber.PLANE_STARTING_SERIAL_NUMBER + 100);
+        Assertions.assertTrue (campaign.getSerialNumber().getNextPlaneSerialNumber() > SerialNumber.TANK_STARTING_SERIAL_NUMBER + 100);
         Assertions.assertTrue (reconCompanyEquipment.getActiveEquippedTanks().size() >= 14);
         for (EquippedTank equippedTank : reconCompanyEquipment.getActiveEquippedTanks().values())
         {
-            Assertions.assertTrue (equippedTank.getSerialNumber() > SerialNumber.PLANE_STARTING_SERIAL_NUMBER);
+            Assertions.assertTrue (equippedTank.getSerialNumber() > SerialNumber.TANK_STARTING_SERIAL_NUMBER);
             Assertions.assertTrue (equippedTank.getArchType().contains("aircodh4"));
         }
     }

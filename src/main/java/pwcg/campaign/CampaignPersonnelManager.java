@@ -201,7 +201,7 @@ public class CampaignPersonnelManager
     {
         if (!personnelReplacementsServices.containsKey(serviceId))
         {
-            ArmedService armedService = ArmedServiceFactory.createServiceManager().getArmedServiceById(serviceId, campaign.getDate());
+            ArmedService armedService = ArmedServiceFactory.createServiceManager().getArmedServiceById(serviceId);
             createPersonnelReplacements(armedService);
         }
         return personnelReplacementsServices.get(serviceId);

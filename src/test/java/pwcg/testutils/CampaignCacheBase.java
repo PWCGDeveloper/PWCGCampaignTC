@@ -50,44 +50,26 @@ public abstract class CampaignCacheBase implements ICampaignCache
             if (profile.isCompetitive())
             {
 	            List<CrewMember> players = campaign.getPersonnelManager().getAllActivePlayers().getCrewMemberList();
-	            assert(players.size() == 1);
 	            
-	            addMoreCrewMembersForCoop(campaign, "Company Mate", "Leutnant", CompanyTestProfile.COOP_COMPETITIVE_PROFILE.getCompanyId());
+	            addMoreCrewMembersForCoop(campaign, "Company Mate", "Leutnant", TestIdentifiers.TEST_GERMAN_COMPANY_ID);
 	            players = campaign.getPersonnelManager().getAllActivePlayers().getCrewMemberList();
-	            assert(players.size() == 2);
 	            
-	            addMoreCrewMembersForCoop(campaign, "Friendly Fighter", "Leutnant", 20112052);
+	            addMoreCrewMembersForCoop(campaign, "Friendly Fighter", "Leutnant", TestIdentifiers.TEST_GERMAN_COMPANY_COMPETITIVE_ID);
 	            players = campaign.getPersonnelManager().getAllActivePlayers().getCrewMemberList();
-	            assert(players.size() == 3);
 	            
-	            addMoreCrewMembersForCoop(campaign, "Friendly Bombermaj", "Major", 20131053);
+	            addMoreCrewMembersForCoop(campaign, "Friendly Bombermaj", "Hauptmann", TestIdentifiers.TEST_GERMAN_COMPANY_COMPETITIVE_ID);
 	            players = campaign.getPersonnelManager().getAllActivePlayers().getCrewMemberList();
-	            assert(players.size() == 4);
+
+	            addMoreCrewMembersForCoop(campaign, "Enemy Fighter", "Leyitenant", TestIdentifiers.TEST_RUSSIAN_COMPANY_ID);
+	            players = campaign.getPersonnelManager().getAllActivePlayers().getCrewMemberList();
 	            
-	            addMoreCrewMembersForCoop(campaign, "Friendly Bombercpt", "Hauptmann", 20131053);
+	            addMoreCrewMembersForCoop(campaign, "Enemy Bomber", "Major", TestIdentifiers.TEST_RUSSIAN_COMPANY_ID);
 	            players = campaign.getPersonnelManager().getAllActivePlayers().getCrewMemberList();
-	            assert(players.size() == 5);
 	            
-	            addMoreCrewMembersForCoop(campaign, "Friendly Divebomber", "Oberleutnant", 20122077);
+	            addMoreCrewMembersForCoop(campaign, "Enemy Bomber", "Kapitan", TestIdentifiers.TEST_RUSSIAN_COMPANY_COMPETITIVE_ID);
 	            players = campaign.getPersonnelManager().getAllActivePlayers().getCrewMemberList();
-	            assert(players.size() == 6);
-	            
-	            addMoreCrewMembersForCoop(campaign, "Enemy Fighter", "Leyitenant", 10111011);
-	            players = campaign.getPersonnelManager().getAllActivePlayers().getCrewMemberList();
+
 	            assert(players.size() == 7);
-	            
-	            addMoreCrewMembersForCoop(campaign, "Enemy Bomber", "Major", 10131132);
-	            players = campaign.getPersonnelManager().getAllActivePlayers().getCrewMemberList();
-	            assert(players.size() == 8);
-	            
-	            addMoreCrewMembersForCoop(campaign, "Enemy Bomber", "Kapitan", 10131132);
-	            players = campaign.getPersonnelManager().getAllActivePlayers().getCrewMemberList();
-	            assert(players.size() == 9);
-	            
-	            addMoreCrewMembersForCoop(campaign, "Enemy Groundattack", "Starshyi Leyitenant", 10121503);
-	            players = campaign.getPersonnelManager().getAllActivePlayers().getCrewMemberList();
-	            assert(players.size() == 10);
-	            
             }
             return campaign;
         }

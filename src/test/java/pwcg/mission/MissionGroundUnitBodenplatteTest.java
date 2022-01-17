@@ -9,9 +9,7 @@ import pwcg.campaign.Campaign;
 import pwcg.campaign.api.Side;
 import pwcg.campaign.context.FrontMapIdentifier;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.core.exception.PWCGException;
-import pwcg.mission.flight.FlightTypes;
 import pwcg.mission.target.TargetType;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.CompanyTestProfile;
@@ -32,8 +30,8 @@ public class MissionGroundUnitBodenplatteTest
         assert(map == FrontMapIdentifier.BODENPLATTE_MAP);
         
         MissionGenerator missionGenerator = new MissionGenerator(campaign);
-        Mission mission = missionGenerator.makeTestSingleMissionFromFlightType(
-                TestMissionBuilderUtility.buildTestParticipatingHumans(campaign), FlightTypes.GROUND_ATTACK, MissionProfile.DAY_TACTICAL_MISSION);
+        Mission mission = missionGenerator.makeTestMissionFromMissionType(
+                TestMissionBuilderUtility.buildTestParticipatingHumans(campaign));
 
         List<Side> sides = Arrays.asList(Side.ALLIED, Side.AXIS);
         for (Side side : sides)

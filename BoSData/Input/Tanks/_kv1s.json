@@ -11,7 +11,7 @@
 	"model": "graphics\\vehicles\\_kv1s\\_kv1s.mgm",
 	"desc": "KV-1s",
 	"cruisingSpeed": 10,
-	"goodness": 50,
+	"goodness": 60,
 	"roleCategories": [
 		"MAIN_BATTLE_TANK"
 	],

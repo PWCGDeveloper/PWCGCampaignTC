@@ -17,7 +17,10 @@ import pwcg.core.location.Coordinate;
 import pwcg.core.utils.MathUtils;
 import pwcg.mission.Mission;
 import pwcg.mission.ground.builder.TruckConvoyBuilder;
+import pwcg.mission.ground.builder.TruckUnitTransportBuilder;
 import pwcg.mission.ground.org.GroundUnitCollection;
+import pwcg.mission.ground.org.GroundUnitType;
+import pwcg.mission.ground.org.IGroundUnit;
 
 public class MissionTruckConvoyBuilder extends MissionUnitBuilder
 {
@@ -29,26 +32,33 @@ public class MissionTruckConvoyBuilder extends MissionUnitBuilder
     }
 
     
-    public List<GroundUnitCollection> generateMissionTrucks() throws PWCGException 
+    public List<GroundUnitCollection> generateMissionTrucks(GroundUnitCollection missionBattle) throws PWCGException 
     {
-        missionTransportConvoys.addAll(buildOneOneForSide(Side.ALLIED));
-        missionTransportConvoys.addAll(buildOneOneForSide(Side.AXIS));
+        missionTransportConvoys.addAll(buildOneOneForSide(Side.ALLIED, missionBattle));
+        missionTransportConvoys.addAll(buildOneOneForSide(Side.AXIS, missionBattle));
         return missionTransportConvoys;
     }
 
-    private List<GroundUnitCollection> buildOneOneForSide(Side truckSide) throws PWCGException
+    private List<GroundUnitCollection> buildOneOneForSide(Side truckSide, GroundUnitCollection missionBattle) throws PWCGException
     {
         BridgeFinder bridgeFinder = PWCGContext.getInstance().getCurrentMap().getGroupManager().getBridgeFinder();
-        List<Bridge> bridgesForSide = bridgeFinder.findBridgesForSideWithinRadius(truckSide, campaign.getDate(), mission.getObjective().getPosition(), 10000);
+        List<Bridge> bridgesForSide = bridgeFinder.findBridgesForSideWithinRadius(truckSide, campaign.getDate(), mission.getObjective().getPosition(), 15000);
         
-        List<GroundUnitCollection> missionConvoysForSide = new ArrayList<>();
+        List<GroundUnitCollection> truckUnitsForSide = new ArrayList<>();
         Bridge bridge = getClosestBridgeToObjective(bridgesForSide);
         if (bridge != null)
         {
             GroundUnitCollection truckUnit = makeTruckConvoy(truckSide, bridge);
-            missionConvoysForSide.add( truckUnit);
+            truckUnitsForSide.add( truckUnit);
         }
-        return missionConvoysForSide;
+        
+        for (IGroundUnit artilleryUnit : missionBattle.getGroundUnitsByTypeAndSide(GroundUnitType.ARTILLERY_UNIT, truckSide))
+        {
+            GroundUnitCollection truckUnit = makeGroundUnitTransport(truckSide, artilleryUnit);
+            truckUnitsForSide.add(truckUnit);
+        }
+        
+        return truckUnitsForSide;
     }
     
     private Bridge getClosestBridgeToObjective(List<Bridge> bridgesForSide) throws PWCGException
@@ -70,11 +80,18 @@ public class MissionTruckConvoyBuilder extends MissionUnitBuilder
         return sortedBridgesByDistanceList.get(0);
     }
 
-
     private GroundUnitCollection makeTruckConvoy(Side truckSide, Bridge bridge) throws PWCGException
     {
         ICountry truckCountry = CountryFactory.makeMapReferenceCountry(truckSide);
         TruckConvoyBuilder groundUnitFactory =  new TruckConvoyBuilder(campaign, bridge, truckCountry);
+        GroundUnitCollection truckUnit = groundUnitFactory.createTruckConvoy();
+        return truckUnit;
+    }
+
+    private GroundUnitCollection makeGroundUnitTransport(Side truckSide, IGroundUnit artilleryUnit) throws PWCGException
+    {
+        ICountry truckCountry = CountryFactory.makeMapReferenceCountry(truckSide);
+        TruckUnitTransportBuilder groundUnitFactory =  new TruckUnitTransportBuilder(campaign, artilleryUnit, truckCountry);
         GroundUnitCollection truckUnit = groundUnitFactory.createTruckConvoy();
         return truckUnit;
     }

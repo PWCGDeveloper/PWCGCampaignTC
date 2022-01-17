@@ -112,7 +112,7 @@ public class MedalPanelEventTabulatorTest extends AARTestSetup
     public void testMedalsAwardedButOneIsNotInCompany() throws PWCGException 
     {
         Mockito.when(crewMember1.getCompanyId()).thenReturn(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
-        Mockito.when(crewMember2.getCompanyId()).thenReturn(CompanyTestProfile.ESC_3_PROFILE.getCompanyId());
+        Mockito.when(crewMember2.getCompanyId()).thenReturn(CompanyTestProfile.TANK_DIVISION_147_PROFILE.getCompanyId());
         Mockito.when(crewMember1.determineCompany()).thenReturn(company1);
         Mockito.when(crewMember2.determineCompany()).thenReturn(company2);
 

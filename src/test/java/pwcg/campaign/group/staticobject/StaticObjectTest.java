@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import pwcg.campaign.context.Country;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.mission.ground.vehicle.VehicleClass;

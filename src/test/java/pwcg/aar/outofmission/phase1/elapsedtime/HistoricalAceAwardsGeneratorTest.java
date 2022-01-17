@@ -12,8 +12,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import pwcg.aar.outofmission.phase2.awards.HistoricalAceAwards;
 import pwcg.aar.outofmission.phase2.awards.HistoricalAceAwardsGenerator;
 import pwcg.campaign.Campaign;
-import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.testutils.CampaignCache;

@@ -22,7 +22,6 @@ import pwcg.campaign.ArmedService;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.api.IRankHelper;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.CrewMemberStatus;
 import pwcg.campaign.crewmember.CrewMembers;
@@ -35,8 +34,8 @@ import pwcg.campaign.resupply.personnel.TransferRecord;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.testutils.CampaignCache;
-import pwcg.testutils.CrewMemberPicker;
 import pwcg.testutils.CompanyTestProfile;
+import pwcg.testutils.CrewMemberPicker;
 
 @ExtendWith(MockitoExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -253,7 +252,7 @@ public class CampaignCompanyPersonnelUpdaterTest
         CrewMember transferredCrewMember = serviceReplacements.findReplacement();
 
         TransferRecord transferRecord = new TransferRecord(transferredCrewMember, CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId(),
-                CompanyTestProfile.ESC_3_PROFILE.getCompanyId());
+                CompanyTestProfile.TANK_DIVISION_147_PROFILE.getCompanyId());
 
         AARCampaignUpdateTabulator campaignUpdateTabulator = new AARCampaignUpdateTabulator(campaign, aarContext);
         CampaignUpdateData campaignUpdateData = campaignUpdateTabulator.tabulateAARForCampaignUpdate();

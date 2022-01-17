@@ -11,7 +11,6 @@ import pwcg.campaign.Campaign;
 import pwcg.campaign.company.Company;
 import pwcg.campaign.company.CompanyManager;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.resupply.ICompanyNeed;
 import pwcg.campaign.resupply.ResupplyCompanyChooser;
 import pwcg.campaign.resupply.equipment.CompanyEquipmentNeed;
@@ -59,7 +58,7 @@ public class ResupplyCompanyChooserTest
             }
             else
             {
-                assert(selectedCompanyNeed.getCompanyId() == 20111052);
+                assert(selectedCompanyNeed.getCompanyId() == TestIdentifiers.TEST_GERMAN_COMPANY_ID);
             }
         }
     }
@@ -81,7 +80,7 @@ public class ResupplyCompanyChooserTest
             {
                 ++i_jg51Count;
             }
-            else if (selectedCompanyNeed.getCompanyId() == 20111052)
+            else if (selectedCompanyNeed.getCompanyId() == TestIdentifiers.TEST_GERMAN_COMPANY_ID)
             {
                 ++i_jg52Count;
             }
@@ -109,7 +108,7 @@ public class ResupplyCompanyChooserTest
         playerCompanyEquipmentNeed.setPlanesNeeded(playerPlanesNeeded);
         needs.put(playerCompany.getCompanyId(), playerCompanyEquipmentNeed);
         
-        Company i_jg52 = companyManager.getCompany(20111052);
+        Company i_jg52 = companyManager.getCompany(TestIdentifiers.TEST_GERMAN_COMPANY_ID);
         CompanyEquipmentNeed i_jg52EquipmentNeed = new CompanyEquipmentNeed(campaign, i_jg52);
         i_jg52EquipmentNeed.setPlanesNeeded(i_jg52PlanesNeeded);
         needs.put(i_jg52.getCompanyId(), i_jg52EquipmentNeed);        

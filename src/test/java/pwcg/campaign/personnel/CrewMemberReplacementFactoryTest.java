@@ -38,7 +38,7 @@ public class CrewMemberReplacementFactoryTest
     {                
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420601"));
 
-        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(ArmedService.);
+        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.WEHRMACHT);
 
         CrewMemberReplacementFactory companyMemberFactory = new  CrewMemberReplacementFactory (campaign, service);
         CrewMember replacement = companyMemberFactory.createAIReplacementCrewMember();

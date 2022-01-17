@@ -16,7 +16,6 @@ import javax.swing.JTabbedPane;
 
 import pwcg.campaign.ArmedService;
 import pwcg.campaign.Campaign;
-import pwcg.campaign.api.IArmedServiceManager;
 import pwcg.campaign.factory.ArmedServiceFactory;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.PWCGLogger;
@@ -30,6 +29,7 @@ import pwcg.gui.utils.ImageToDisplaySizer;
 import pwcg.gui.utils.PWCGButtonFactory;
 import pwcg.gui.utils.PwcgBorderFactory;
 import pwcg.gui.utils.SpacerPanelFactory;
+import pwcg.product.bos.country.TCServiceManager;
 
 public class CampaignEquipmentDepotScreen extends ImageResizingPanel implements ActionListener
 {
@@ -100,7 +100,7 @@ public class CampaignEquipmentDepotScreen extends ImageResizingPanel implements 
         tabs.setBackground(tabBG);
         tabs.setOpaque(false);
         
-        IArmedServiceManager serviceManager = ArmedServiceFactory.createServiceManager();
+        TCServiceManager serviceManager = ArmedServiceFactory.createServiceManager();
         List<ArmedService> allArmedServices = serviceManager.getAllActiveArmedServices(campaign.getDate());
         for (ArmedService service : allArmedServices)
         {

@@ -12,8 +12,6 @@ import pwcg.aar.data.AARContext;
 import pwcg.campaign.ArmedService;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.company.Company;
-import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.Victory;
 import pwcg.campaign.outofmission.DuringCampaignAirVictimGenerator;

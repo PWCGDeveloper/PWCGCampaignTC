@@ -44,7 +44,7 @@ public class CampaignEquipmentManager
     {
         if (!equipmentDepotsForServices.containsKey(serviceId))
         {
-            ArmedService armedService = ArmedServiceFactory.createServiceManager().getArmedServiceById(serviceId, campaign.getDate());
+            ArmedService armedService = ArmedServiceFactory.createServiceManager().getArmedServiceById(serviceId);
             createEquipmentDepot(armedService);
         }
         return equipmentDepotsForServices.get(serviceId);

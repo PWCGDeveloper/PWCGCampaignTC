@@ -9,10 +9,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import pwcg.campaign.company.Company;
-import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.io.json.CompanyIOJson;
-import pwcg.campaign.plane.CompanyPlaneAssignment;
+import pwcg.campaign.tank.CompanyTankAssignment;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 

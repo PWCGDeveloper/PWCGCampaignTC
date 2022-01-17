@@ -14,13 +14,11 @@ import org.mockito.quality.Strictness;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.PlaneMarkingManagerFactory;
 import pwcg.campaign.company.Company;
-import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.crewmember.SerialNumber;
-import pwcg.campaign.plane.Equipment;
-import pwcg.campaign.plane.EquippedPlane;
-import pwcg.campaign.plane.PlaneEquipmentFactory;
 import pwcg.campaign.resupply.equipment.WithdrawnEquipmentReplacer;
+import pwcg.campaign.tank.Equipment;
+import pwcg.campaign.tank.EquippedTank;
+import pwcg.campaign.tank.TankEquipmentFactory;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 
@@ -78,7 +76,7 @@ public class WithdrawnEquipmentReplacerTest
     @Test
     public void testKeepingMe109F2() throws PWCGException
     {
-        Date campaigndate = DateUtils.getDateYYYYMMDD("19420401");
+        Date campaigndate = DateUtils.getDateYYYYMMDD("19420801");
         Mockito.when(campaign.getDate()).thenReturn(campaigndate);
         Mockito.when(campaign.getPlaneMarkingManager()).thenReturn(PlaneMarkingManagerFactory.buildIPlaneMarkingManager());
 

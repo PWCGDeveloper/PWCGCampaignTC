@@ -14,10 +14,10 @@ public abstract class ArmedServiceManager
 {
     protected HashMap<Integer, List<ArmedService>> armedServicesByCountry = new HashMap<Integer, List<ArmedService>>();
 
-    public abstract ArmedService getArmedServiceById(int armedServiceId, Date campaignDate) throws PWCGException;
-    public abstract ArmedService getArmedServiceByName(String armedServiceName, Date campaignDate) throws PWCGException ;
+    public abstract ArmedService getArmedServiceById(int armedServiceId) throws PWCGException;
+    public abstract ArmedService getArmedServiceByName(String armedServiceName) throws PWCGException ;
     protected abstract void initialize() ;
-    public abstract ArmedService getPrimaryServiceForNation(Country country, Date date) throws PWCGException;
+    public abstract ArmedService getPrimaryServiceForNation(Country country) throws PWCGException;
 
     public ArmedService getArmedService(int armedServiceId) throws PWCGException
     {
@@ -64,7 +64,7 @@ public abstract class ArmedServiceManager
         return allServices;
     }
 
-    public List<ArmedService> getAlliedServices(Date date) throws PWCGException
+    public List<ArmedService> getAlliedServices() throws PWCGException
     {
         List<ArmedService> alliedServices = new ArrayList<ArmedService>();
         
@@ -80,7 +80,7 @@ public abstract class ArmedServiceManager
         return alliedServices;
     }
 
-    public List<ArmedService> getAxisServices(Date date) throws PWCGException
+    public List<ArmedService> getAxisServices() throws PWCGException
     {
         List<ArmedService> axisServices = new ArrayList<ArmedService>();
         

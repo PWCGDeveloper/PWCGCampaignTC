@@ -8,7 +8,6 @@ import pwcg.campaign.Campaign;
 import pwcg.campaign.company.Company;
 import pwcg.campaign.context.FrontMapIdentifier;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.skirmish.Skirmish;
 import pwcg.campaign.skirmish.SkirmishBuilder;
@@ -17,7 +16,6 @@ import pwcg.core.location.Coordinate;
 import pwcg.core.location.CoordinateBox;
 import pwcg.core.utils.DateUtils;
 import pwcg.core.utils.MathUtils;
-import pwcg.mission.flight.FlightTypes;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.CompanyTestProfile;
 
@@ -43,9 +41,7 @@ public class MissionBorderBuilderTest
         for (int i = 0; i < 10; ++i)
         {
             Company playerCompany = participatingPlayers.getAllParticipatingPlayers().get(0).determineCompany();
-            MissionCompanyFlightTypes playerFlightTypes = MissionCompanyFlightTypes.buildPlayerFlightType(FlightTypes.PATROL, playerCompany);
-
-            MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(campaign, participatingPlayers, null, playerFlightTypes);
+            MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(campaign, participatingPlayers, null);
             
             CoordinateBox missionBorders = missionBorderBuilder.buildCoordinateBox();
             Coordinate missionBoxCenter = missionBorders.getCenter();
@@ -71,10 +67,7 @@ public class MissionBorderBuilderTest
         
         for (int i = 0; i < 10; ++i)
         {
-            Company playerCompany = participatingPlayers.getAllParticipatingPlayers().get(0).determineCompany();
-            MissionCompanyFlightTypes playerFlightTypes = MissionCompanyFlightTypes.buildPlayerFlightType(FlightTypes.PATROL, playerCompany);
-
-            MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(coopCampaign, participatingPlayers, null, playerFlightTypes);
+            MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(coopCampaign, participatingPlayers, null);
 
             CoordinateBox missionBorders = missionBorderBuilder.buildCoordinateBox();
             Coordinate missionBoxCenter = missionBorders.getCenter();
@@ -99,10 +92,7 @@ public class MissionBorderBuilderTest
         SkirmishBuilder skirmishBuilder = new SkirmishBuilder(campaign, participatingPlayers);
         Skirmish skirmish = skirmishBuilder.chooseBestSkirmish();
 
-        Company playerCompany = participatingPlayers.getAllParticipatingPlayers().get(0).determineCompany();
-        MissionCompanyFlightTypes playerFlightTypes = MissionCompanyFlightTypes.buildPlayerFlightType(FlightTypes.PATROL, playerCompany);
-
-        MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(campaign, participatingPlayers, skirmish, playerFlightTypes);
+        MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(campaign, participatingPlayers, skirmish);
 
         CoordinateBox missionBorders = missionBorderBuilder.buildCoordinateBox();
 

@@ -12,7 +12,6 @@ import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.group.airfield.Airfield;
 import pwcg.campaign.io.json.CompanyIOJson;
 import pwcg.campaign.tank.PwcgRole;
-import pwcg.core.config.ConfigItemKeys;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 
@@ -200,7 +199,7 @@ public class CompanyManager
         List<Company> selectedCompanysNoPlayer = CompanyReducer.reduceToAIOnly(viableCompanysForSide, campaign);
         List<Company> selectedCompanysForCurrentMap = CompanyReducer.reduceToCurrentMap(selectedCompanysNoPlayer, campaign.getDate());
         
-        return eliminateAnomalyCompanies(campaign, selectedCompanysForCurrentMap);
+        return selectedCompanysForCurrentMap;
     }
 
     public List<Company> getViableAiCompaniesForCurrentMapAndSideAndRole(Campaign campaign, List <PwcgRole> acceptableRoles, Side side) throws PWCGException 
@@ -210,20 +209,7 @@ public class CompanyManager
         List<Company> selectedCompanysNoPlayer = CompanyReducer.reduceToAIOnly(selectedCompanysByRole, campaign);
         List<Company> selectedCompanysForCurrentMap = CompanyReducer.reduceToCurrentMap(selectedCompanysNoPlayer, campaign.getDate());
         
-        return eliminateAnomalyCompanies(campaign, selectedCompanysForCurrentMap);
-    }
-
-    private List<Company> eliminateAnomalyCompanies(Campaign campaign, List<Company> selectedCompanysForCurrentMap) throws PWCGException
-    {
-        if (campaign.getCampaignConfigManager().getIntConfigParam(ConfigItemKeys.RemoveNonHistoricalCompanysKey) == 1)
-        {
-            List<Company> selectedCompanysNoAnomalies = CompanyReducer.reduceToNoAnomalies(selectedCompanysForCurrentMap, campaign.getDate());
-            return selectedCompanysNoAnomalies;
-        }
-        else
-        {
-            return selectedCompanysForCurrentMap;
-        }
+        return selectedCompanysForCurrentMap;
     }
 
     public Company getClosestCompany(Coordinate position, Date date) throws PWCGException 

@@ -7,8 +7,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import pwcg.campaign.battle.Battles;
 import pwcg.campaign.context.FrontMapIdentifier;
-import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.io.json.BattleIOJson;
 import pwcg.core.exception.PWCGException;
 

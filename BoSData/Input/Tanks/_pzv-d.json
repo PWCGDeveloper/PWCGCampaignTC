@@ -11,7 +11,7 @@
 	"model": "graphics\\vehicles\\_pzv-d\\_pzv-d.mgm",
 	"desc": "Pz.Kpfw.V Ausf.D",
 	"cruisingSpeed": 15,
-	"goodness": 80,
+	"goodness": 75,
 	"roleCategories": [
 		"MAIN_BATTLE_TANK"
 	],

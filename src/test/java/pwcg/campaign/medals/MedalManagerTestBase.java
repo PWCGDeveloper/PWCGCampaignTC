@@ -65,7 +65,8 @@ public abstract class MedalManagerTestBase
 
     protected void makeVictories(int numVictories)
     {
-        Mockito.when(companyMemberVictories.getAirToAirVictoryCount()).thenReturn(numVictories);
+        Mockito.when(companyMemberVictories.getTankVictoryCount()).thenReturn(numVictories);
+        Mockito.when(companyMemberVictories.getGroundVictoryPointTotal()).thenReturn(numVictories);
     }
 
 }

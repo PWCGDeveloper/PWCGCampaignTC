@@ -25,14 +25,13 @@ public class BritishMedalManager extends BoSMedalManager
         super(campaign);
 
         medals.put(CREWS_BADGE, new Medal("CrewMembers Badge",          "gb_crew_badge.png"));
-        medals.put(DSO, new Medal ("Military Medal",                    "gb_military_medal.png"));
-        medals.put(DSO, new Medal ("Military Cross",                    "gb_military_cross.png"));
-        medals.put(DSO, new Medal ("Distinguished Service Medal",       "gb_distinguished_service_medal.png"));
-        medals.put(DSO, new Medal ("Distinguished Service Cross",       "gb_distinguished_service_cross.png"));
+        medals.put(MM, new Medal ("Military Medal",                    "gb_military_medal.png"));
+        medals.put(MC, new Medal ("Military Cross",                    "gb_military_cross.png"));
+        medals.put(DSM, new Medal ("Distinguished Service Medal",       "gb_distinguished_service_medal.png"));
+        medals.put(DSC, new Medal ("Distinguished Service Cross",       "gb_distinguished_service_cross.png"));
 
         medals.put(DSO, new Medal (DISTINGUISHED_SERVICE_ORDER_NAME,                    "gb_distinguished_service_order.png"));
-        medals.put(DSO, new Medal (DISTINGUISHED_SERVICE_ORDER_NAME,                    "gb_distinguished_service_order.png"));
-        medals.put(DSO_BAR, new Medal (DISTINGUISHED_SERVICE_ORDER_NAME + " With Bar",      "gb_distinguished_service_order_bar.png"));
+        medals.put(DSO_BAR, new Medal (DISTINGUISHED_SERVICE_ORDER_NAME + " With Bar",  "gb_distinguished_service_order_bar.png"));
         medals.put(VC, new Medal("Victoria Cross", "gb_victoria_cross.png"));
 
         medals.put(WOUND_STRIPE, new Medal("Wound Stripe", "gb_wound_chevron.png"));
@@ -56,7 +55,37 @@ public class BritishMedalManager extends BoSMedalManager
     public Medal awardTanker(CrewMember crewMember, ArmedService service, int victoriesThisMission) throws PWCGException
     {
         int tankVictories = crewMember.getCrewMemberVictories().getTankVictoryCount();
+        boolean isOfficer = true;
+        if(crewMember.determineRankPos(campaign.getDate()) >= 3)
+        {
+            isOfficer = false;
+        }
 
+        if ((tankVictories >= 2) && !hasMedal(crewMember, medals.get(MM)) && !isOfficer)
+        {
+            return medals.get(MM);
+        }
+
+        if ((tankVictories >= 2) && !hasMedal(crewMember, medals.get(MC)) && isOfficer)
+        {
+            return medals.get(MC);
+        }
+
+        if ((tankVictories >= 5) && !hasMedal(crewMember, medals.get(DSM)) && !isOfficer)
+        {
+            return medals.get(DSM);
+        }
+
+        if ((tankVictories >= 5) && !hasMedal(crewMember, medals.get(DSC)) && isOfficer)
+        {
+            return medals.get(DSC);
+        }
+
+        if ((tankVictories >= 10) && !hasMedal(crewMember, medals.get(DSO)))
+        {
+            return medals.get(DSO);
+        }
+        
         if ((tankVictories >= 10) && !hasMedal(crewMember, medals.get(DSO)))
         {
             return medals.get(DSO);
@@ -71,7 +100,7 @@ public class BritishMedalManager extends BoSMedalManager
         {
             if (tankVictories >= 30)
             {
-                if (victoriesThisMission >= 3)
+                if (victoriesThisMission >= 2)
                 {
                     return medals.get(VC);
                 }

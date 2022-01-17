@@ -13,11 +13,10 @@ import pwcg.campaign.company.Company;
 import pwcg.campaign.context.Country;
 import pwcg.campaign.context.FrontMapIdentifier;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.factory.CountryFactory;
 import pwcg.campaign.personnel.CompanyPersonnel;
-import pwcg.campaign.plane.Equipment;
+import pwcg.campaign.tank.Equipment;
 import pwcg.core.config.ConfigItemKeys;
 import pwcg.core.config.ConfigManagerCampaign;
 import pwcg.core.config.ConfigSimple;
@@ -29,8 +28,8 @@ import pwcg.mission.Mission;
 import pwcg.mission.MissionFlights;
 import pwcg.mission.MissionGroundUnitResourceManager;
 import pwcg.mission.MissionHumanParticipants;
-import pwcg.mission.flight.FlightInformation;
-import pwcg.mission.flight.FlightTypes;
+import pwcg.mission.unit.UnitInformation;
+import pwcg.mission.unit.UnitMissionType;
 
 public class KubanAttackMockCampaign
 {
@@ -43,7 +42,7 @@ public class KubanAttackMockCampaign
     @Mock protected CampaignEquipmentManager equipmentManager;
     @Mock protected Equipment companyEquipment;
     @Mock protected CrewMember player;
-    @Mock protected FlightInformation flightInformation;
+    @Mock protected UnitInformation unitInformation;
     @Mock protected MissionHumanParticipants humanParticipants;
 
     protected ICountry country = CountryFactory.makeCountryByCountry(Country.GERMANY);
@@ -87,10 +86,10 @@ public class KubanAttackMockCampaign
     
     public void buildMockFlightInformation()
     {
-        Mockito.when(flightInformation.getCampaign()).thenReturn(campaign);
-        Mockito.when(flightInformation.getMission()).thenReturn(mission);
-        Mockito.when(flightInformation.getCompany()).thenReturn(company);
-        Mockito.when(flightInformation.getFlightType()).thenReturn(FlightTypes.DIVE_BOMB);
+        Mockito.when(unitInformation.getCampaign()).thenReturn(campaign);
+        Mockito.when(unitInformation.getMission()).thenReturn(mission);
+        Mockito.when(unitInformation.getCompany()).thenReturn(company);
+        Mockito.when(unitInformation.getMissionType()).thenReturn(UnitMissionType.ASSAULT);
     }
 
 

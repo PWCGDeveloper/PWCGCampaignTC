@@ -8,7 +8,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.io.json.SkirmishProfileIOJson;
 import pwcg.campaign.skirmish.SkirmishProfile;
 import pwcg.campaign.skirmish.SkirmishProfileType;

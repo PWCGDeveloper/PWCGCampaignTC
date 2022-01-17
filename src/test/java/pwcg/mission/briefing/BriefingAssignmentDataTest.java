@@ -8,6 +8,7 @@ import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 
 import pwcg.campaign.crewmember.SerialNumber;
+import pwcg.campaign.tank.TankAttributeMapping;
 import pwcg.core.exception.PWCGException;
 import pwcg.mission.playerunit.crew.CrewTankPayloadPairing;
 
@@ -19,7 +20,7 @@ public class BriefingAssignmentDataTest extends BriefingDataInitializerTest
     public void setupTest() throws PWCGException
     {
         briefingAssignmentData.reset();        
-        planesInFlight.clear();       
+        unitTanks.clear();       
         
         super.setupTest();
         super.initializePayloadsFromMissionTest();
@@ -28,37 +29,37 @@ public class BriefingAssignmentDataTest extends BriefingDataInitializerTest
     @Test
     public void modifyTankTypeTest () throws PWCGException
     {             
-        briefingAssignmentData.changePlane(SerialNumber.AI_STARTING_SERIAL_NUMBER+1, SerialNumber.PLANE_STARTING_SERIAL_NUMBER+4);
+        briefingAssignmentData.changeTank(SerialNumber.AI_STARTING_SERIAL_NUMBER+1, SerialNumber.TANK_STARTING_SERIAL_NUMBER+4);
         
         assert(briefingAssignmentData.getCrews().size() == 2);
         assert(briefingAssignmentData.getUnassignedCrewMembers().size() == 2);
         
-        CrewTankPayloadPairing crewPlane1 = briefingAssignmentData.findAssignedCrewPairingByCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER+1);
-        CrewTankPayloadPairing crewPlane2 = briefingAssignmentData.findAssignedCrewPairingByCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER+2);
+        CrewTankPayloadPairing crewTank1 = briefingAssignmentData.findAssignedCrewPairingByCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER+1);
+        CrewTankPayloadPairing crewTank2 = briefingAssignmentData.findAssignedCrewPairingByCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER+2);
         
-        assert(crewPlane1.getTank().getType().equals("bf109f2"));
-        assert(crewPlane2.getTank().getType().equals("bf109f2"));
-        assert(crewPlane1.getTank().getSerialNumber() == SerialNumber.PLANE_STARTING_SERIAL_NUMBER+4);
-        assert(crewPlane2.getTank().getSerialNumber() == SerialNumber.PLANE_STARTING_SERIAL_NUMBER+2);
-        assert(crewPlane1.getCrewMember().getSerialNumber() == SerialNumber.AI_STARTING_SERIAL_NUMBER+1);
-        assert(crewPlane2.getCrewMember().getSerialNumber() == SerialNumber.AI_STARTING_SERIAL_NUMBER+2);
+        assert(crewTank1.getTank().getType().equals(TankAttributeMapping.PZKW_III_M.getTankType()));
+        assert(crewTank2.getTank().getType().equals(TankAttributeMapping.PZKW_III_M.getTankType()));
+        assert(crewTank1.getTank().getSerialNumber() == SerialNumber.TANK_STARTING_SERIAL_NUMBER+4);
+        assert(crewTank2.getTank().getSerialNumber() == SerialNumber.TANK_STARTING_SERIAL_NUMBER+2);
+        assert(crewTank1.getCrewMember().getSerialNumber() == SerialNumber.AI_STARTING_SERIAL_NUMBER+1);
+        assert(crewTank2.getCrewMember().getSerialNumber() == SerialNumber.AI_STARTING_SERIAL_NUMBER+2);
     }
 
     @Test
     public void assignCrewMemberFromBriefingTest () throws PWCGException
     {             
-        briefingAssignmentData.assignCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER+3, SerialNumber.PLANE_STARTING_SERIAL_NUMBER+3);
+        briefingAssignmentData.assignCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER+3, SerialNumber.TANK_STARTING_SERIAL_NUMBER+3);
 
-        CrewTankPayloadPairing crewPlane1 = briefingAssignmentData.findAssignedCrewPairingByCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER+1);
-        CrewTankPayloadPairing crewPlane2 = briefingAssignmentData.findAssignedCrewPairingByCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER+2);
+        CrewTankPayloadPairing crewTank1 = briefingAssignmentData.findAssignedCrewPairingByCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER+1);
+        CrewTankPayloadPairing crewTank2 = briefingAssignmentData.findAssignedCrewPairingByCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER+2);
 
         assert(briefingAssignmentData.getCrews().size() == 3);
         assert(briefingAssignmentData.getUnassignedCrewMembers().size() == 1);
-        assert(crewPlane1.getTank().getType().equals("bf109f4"));
-        assert(crewPlane2.getTank().getType().equals("bf109f2"));
-        assert(briefingAssignmentData.findAssignedCrewPairingByCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER+3).getTank().getType().equals("bf109f4"));
-        assert(crewPlane1.getCrewMember().getSerialNumber() == SerialNumber.AI_STARTING_SERIAL_NUMBER+1);
-        assert(crewPlane2.getCrewMember().getSerialNumber() == SerialNumber.AI_STARTING_SERIAL_NUMBER+2);
+        assert(crewTank1.getTank().getType().equals(TankAttributeMapping.PZKW_III_L.getTankType()));
+        assert(crewTank2.getTank().getType().equals(TankAttributeMapping.PZKW_III_M.getTankType()));
+        assert(briefingAssignmentData.findAssignedCrewPairingByCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER+3).getTank().getType().equals(TankAttributeMapping.PZKW_III_L.getTankType()));
+        assert(crewTank1.getCrewMember().getSerialNumber() == SerialNumber.AI_STARTING_SERIAL_NUMBER+1);
+        assert(crewTank2.getCrewMember().getSerialNumber() == SerialNumber.AI_STARTING_SERIAL_NUMBER+2);
         assert(briefingAssignmentData.findAssignedCrewPairingByCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER+3).getCrewMember().getSerialNumber() == SerialNumber.AI_STARTING_SERIAL_NUMBER+3);
     }
 
@@ -67,12 +68,12 @@ public class BriefingAssignmentDataTest extends BriefingDataInitializerTest
     {             
         briefingAssignmentData.unassignCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER+2);
         
-        CrewTankPayloadPairing crewPlane1 = briefingAssignmentData.findAssignedCrewPairingByCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER+1);
+        CrewTankPayloadPairing crewTank1 = briefingAssignmentData.findAssignedCrewPairingByCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER+1);
 
         assert(briefingAssignmentData.getCrews().size() == 1);
         assert(briefingAssignmentData.getUnassignedCrewMembers().size() == 3);
-        assert(crewPlane1.getTank().getType().equals("bf109f4"));
-        assert(crewPlane1.getCrewMember().getSerialNumber() == SerialNumber.AI_STARTING_SERIAL_NUMBER+1);
+        assert(crewTank1.getTank().getType().equals(TankAttributeMapping.PZKW_III_L.getTankType()));
+        assert(crewTank1.getCrewMember().getSerialNumber() == SerialNumber.AI_STARTING_SERIAL_NUMBER+1);
     }
 
 }

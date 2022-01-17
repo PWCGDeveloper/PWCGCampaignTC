@@ -8,15 +8,11 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import pwcg.campaign.Campaign;
-import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.mission.Mission;
 import pwcg.mission.MissionGenerator;
 import pwcg.mission.MissionHumanParticipants;
-import pwcg.mission.MissionProfile;
-import pwcg.mission.flight.FlightTypes;
 import pwcg.mission.ground.vehicle.VehicleSetBuilderComprehensive;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.CompanyTestProfile;
@@ -49,7 +45,7 @@ public class VehicleSetBuilderComprehensiveTest
     {
         MissionHumanParticipants participatingPlayers = TestMissionBuilderUtility.buildTestParticipatingHumans(campaign);
     	MissionGenerator missionGenerator = new MissionGenerator(campaign);
-    	Mission mission = missionGenerator.makeTestSingleMissionFromFlightType(participatingPlayers, FlightTypes.PATROL, MissionProfile.DAY_TACTICAL_MISSION);
+    	Mission mission = missionGenerator.makeTestMissionFromMissionType(participatingPlayers);
         mission.generateAllGroundUnitTypesForTest();
         mission.finalizeMission();
     }

@@ -18,13 +18,11 @@ import pwcg.aar.outofmission.phase2.awards.PromotionEventHandler;
 import pwcg.campaign.ArmedService;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.company.Company;
-import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.CrewMemberVictories;
 import pwcg.campaign.crewmember.Victory;
-import pwcg.campaign.plane.PwcgRoleCategory;
 import pwcg.campaign.promotion.PromotionArbitrator;
+import pwcg.campaign.tank.PwcgRoleCategory;
 import pwcg.core.exception.PWCGException;
 import pwcg.product.bos.country.TCServiceManager;
 import pwcg.testutils.CampaignCache;
@@ -46,7 +44,7 @@ public class PromotionEventHandlerBomberTest
     public void setupSuite() throws PWCGException
     {
         
-        campaign = CampaignCache.makeCampaign(CompanyTestProfile.REGIMENT_321_PROFILE);
+        campaign = CampaignCache.makeCampaign(CompanyTestProfile.TANK_DIVISION_147_PROFILE);
     }
 
     @BeforeEach
@@ -56,7 +54,7 @@ public class PromotionEventHandlerBomberTest
         Mockito.when(crewMember.getCrewMemberVictories()).thenReturn(companyMemberVictories);
         Mockito.when(companyMemberVictories.getGroundVictoryPointTotal()).thenReturn(0);        
         Mockito.when(company.determineCompanyPrimaryRoleCategory(Mockito.any())).thenReturn(PwcgRoleCategory.ATTACK);
-        Mockito.when(company.getService()).thenReturn(TCServiceManager.VVS);
+        Mockito.when(company.getService()).thenReturn(TCServiceManager.SSV);
     }
 
     @Test
@@ -113,7 +111,7 @@ public class PromotionEventHandlerBomberTest
         Mockito.when(crewMember.getBattlesFought()).thenReturn(110);
         Mockito.when(crewMember.getRank()).thenReturn("Kapitan");
         Mockito.when(crewMember.isPlayer()).thenReturn(true);
-        Mockito.when(crewMember.getCompanyId()).thenReturn(CompanyTestProfile.REGIMENT_321_PROFILE.getCompanyId());
+        Mockito.when(crewMember.getCompanyId()).thenReturn(CompanyTestProfile.TANK_DIVISION_147_PROFILE.getCompanyId());
 
         String promotion = PromotionEventHandler.promoteNonHistoricalCrewMembers(campaign, crewMember);
 
@@ -130,7 +128,7 @@ public class PromotionEventHandlerBomberTest
         Mockito.when(crewMember.getBattlesFought()).thenReturn(110);
         Mockito.when(crewMember.getRank()).thenReturn("Kapitan");
         Mockito.when(crewMember.isPlayer()).thenReturn(false);
-        Mockito.when(crewMember.getCompanyId()).thenReturn(CompanyTestProfile.REGIMENT_321_PROFILE.getCompanyId());
+        Mockito.when(crewMember.getCompanyId()).thenReturn(CompanyTestProfile.TANK_DIVISION_147_PROFILE.getCompanyId());
 
         String promotion = PromotionEventHandler.promoteNonHistoricalCrewMembers(campaign, crewMember);
 

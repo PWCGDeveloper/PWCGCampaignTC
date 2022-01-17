@@ -8,18 +8,14 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
 import pwcg.campaign.Campaign;
-import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.core.exception.PWCGException;
 import pwcg.gui.rofmap.brief.model.BriefingData;
+import pwcg.gui.rofmap.brief.model.BriefingMapPoint;
 import pwcg.gui.rofmap.brief.model.BriefingUnit;
 import pwcg.gui.rofmap.brief.model.BriefingUnitParameters;
-import pwcg.gui.rofmap.brief.model.BriefingMapPoint;
 import pwcg.mission.Mission;
 import pwcg.mission.MissionGenerator;
-import pwcg.mission.MissionProfile;
-import pwcg.mission.flight.FlightTypes;
-import pwcg.mission.flight.IFlight;
+import pwcg.mission.unit.ITankUnit;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.CompanyTestProfile;
 import pwcg.testutils.TestMissionBuilderUtility;
@@ -37,7 +33,7 @@ public class BriefingDataBuilderTest
         campaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
 
         MissionGenerator missionGenerator = new MissionGenerator(campaign);
-        mission = missionGenerator.makeTestSingleMissionFromFlightType(TestMissionBuilderUtility.buildTestParticipatingHumans(campaign), FlightTypes.GROUND_ATTACK, MissionProfile.DAY_TACTICAL_MISSION);
+        mission = missionGenerator.makeTestMissionFromMissionType(TestMissionBuilderUtility.buildTestParticipatingHumans(campaign));
     }
 
     @Test
@@ -47,11 +43,10 @@ public class BriefingDataBuilderTest
         BriefingData briefingData = briefingDataBuilder.buildBriefingData();
         assert(briefingData != null);
         assert(briefingData.getActiveBriefingUnit() != null);
-        assert(briefingData.getActiveBriefingUnit().getBriefingUnitParameters().getBriefingMapMapPoints().size() > 4);
         assert(briefingData.getActiveBriefingUnit().getBriefingAssignmentData().getCrews().size() > 0);
         
-        IFlight flight = briefingData.getSelectedUnit();
-        Assertions.assertTrue (flight.getCompany().getCompanyId() == CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
+        ITankUnit unit = briefingData.getSelectedUnit();
+        Assertions.assertTrue (unit.getCompany().getCompanyId() == CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
 
         BriefingUnit briefingFlight = briefingData.getActiveBriefingUnit();
         Assertions.assertTrue (briefingFlight.getCompanyId() == CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());

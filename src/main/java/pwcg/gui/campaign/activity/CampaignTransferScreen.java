@@ -284,11 +284,11 @@ public class CampaignTransferScreen extends ImageResizingPanel implements Action
         List<ArmedService> services = null;
         if (companyMemberToTransfer.determineCountry(campaign.getDate()).getSideNoNeutral() == Side.ALLIED)
         {
-            services = ArmedServiceFactory.createServiceManager().getAlliedServices(campaign.getDate());
+            services = ArmedServiceFactory.createServiceManager().getAlliedServices();
         }
         else
         {
-            services = ArmedServiceFactory.createServiceManager().getAxisServices(campaign.getDate());
+            services = ArmedServiceFactory.createServiceManager().getAxisServices();
         }
         
         for (ArmedService service : services)
@@ -457,7 +457,7 @@ public class CampaignTransferScreen extends ImageResizingPanel implements Action
                 String serviceName = (String)cbService.getSelectedItem();
                 if (serviceName != null)
                 {
-                    service = ArmedServiceFactory.createServiceManager().getArmedServiceByName(serviceName, campaign.getDate());
+                    service = ArmedServiceFactory.createServiceManager().getArmedServiceByName(serviceName);
                 }
                 evaluate();
                 return;

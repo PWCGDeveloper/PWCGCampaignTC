@@ -32,18 +32,17 @@ public class TargetDefinitionBuilderAAATruck implements ITargetDefinitionBuilder
     {
         double closestUnitDistance = 1000000000.0;
         IGroundUnit unitClosestToMissionCenter = null;
-        for (GroundUnitCollection groundUnitCollection : unitInformation.getMission().getGroundUnitBuilder().getAssaults())
+        GroundUnitCollection assault = unitInformation.getMission().getGroundUnitBuilder().getAssault();
+        for (IGroundUnit friendlyGroundUnit : assault.getGroundUnitsForSide(enemyUnitSide))
         {
-            for (IGroundUnit friendlyGroundUnit : groundUnitCollection.getGroundUnitsForSide(enemyUnitSide))
+            double distanceBetweenCenterAndUnit = MathUtils.calcDist(truckPosition, friendlyGroundUnit.getPosition());
+            if (distanceBetweenCenterAndUnit < closestUnitDistance)
             {
-                double distanceBetweenCenterAndUnit = MathUtils.calcDist(truckPosition, friendlyGroundUnit.getPosition());
-                if (distanceBetweenCenterAndUnit < closestUnitDistance)
-                {
-                    closestUnitDistance = distanceBetweenCenterAndUnit;
-                    unitClosestToMissionCenter = friendlyGroundUnit;
-                }
+                closestUnitDistance = distanceBetweenCenterAndUnit;
+                unitClosestToMissionCenter = friendlyGroundUnit;
             }
         }
+
         return unitClosestToMissionCenter;
     }
 

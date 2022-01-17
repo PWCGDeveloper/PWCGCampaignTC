@@ -4,8 +4,6 @@ import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
-import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.core.exception.PWCGException;
 
 public class SkinLoaderTest

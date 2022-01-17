@@ -28,10 +28,6 @@ public abstract class BoSMedalManager extends MedalManager
         {
             medalManager = new RussianMedalManager(campaign);
         }
-        else if (country.isCountry(Country.ITALY))
-        {
-            medalManager = new ItalianMedalManager(campaign);
-        }
         else if (country.isCountry(Country.USA))
         {
             medalManager = new AmericanMedalManager(campaign);
@@ -54,7 +50,6 @@ public abstract class BoSMedalManager extends MedalManager
         List<MedalManager> medalManagers = new ArrayList<MedalManager>();
         medalManagers.add(new GermanMedalManager(campaign));
         medalManagers.add(new RussianMedalManager(campaign));
-        medalManagers.add(new ItalianMedalManager(campaign));
         medalManagers.add(new AmericanMedalManager(campaign));
         medalManagers.add(new BritishMedalManager(campaign));
         

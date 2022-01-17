@@ -16,8 +16,6 @@ import org.mockito.quality.Strictness;
 
 import pwcg.campaign.api.ICountry;
 import pwcg.campaign.context.Country;
-import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.factory.ArmedServiceFactory;
 import pwcg.campaign.factory.CountryFactory;
 import pwcg.campaign.factory.MedalManagerFactory;
@@ -49,33 +47,33 @@ public class RussianMedalManagerTest extends MedalManagerTestBase
     public void testRussianMedals () throws PWCGException
     {            	
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19430801"));
-	    service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.VVS, campaign.getDate());
+	    service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.SSV);
         Mockito.when(player.determineService(ArgumentMatchers.<Date>any())).thenReturn(service);
 
         awardMedal(RussianMedalManager.CREWS_BADGE, 0, 0);
 		awardMedal(RussianMedalManager.ORDER_RED_STAR, 2, 1);
-		awardMedal(RussianMedalManager.ORDER_OF_GLORY, 5, 1);
+		awardMedal(RussianMedalManager.ORDER_OF_GLORY, 4, 1);
 		awardMedal(RussianMedalManager.ORDER_PATRIOTIC_WAR_2, 6, 1);
-		awardMedal(RussianMedalManager.ORDER_PATRIOTIC_WAR_1, 15, 1);
-		awardMedal(RussianMedalManager.ORDER_RED_BANNER, 20, 2);
-		awardMedal(RussianMedalManager.HERO_SOVIET_UNION, 30, 2);
+		awardMedal(RussianMedalManager.ORDER_PATRIOTIC_WAR_1, 10, 1);
+		awardMedal(RussianMedalManager.ORDER_RED_BANNER, 15, 2);
+		awardMedal(RussianMedalManager.HERO_SOVIET_UNION, 20, 2);
     }
 
     @Test
-    public void testMMMFail () throws PWCGException
+    public void testHSMFail () throws PWCGException
     {            
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19430801"));
-	    service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.VVS, campaign.getDate());
+	    service = ArmedServiceFactory.createServiceManager().getArmedServiceById(TCServiceManager.SSV);
         Mockito.when(player.determineService(ArgumentMatchers.<Date>any())).thenReturn(service);
 
         awardMedal(RussianMedalManager.CREWS_BADGE, 0, 0);
-		awardMedal(RussianMedalManager.ORDER_RED_STAR, 2, 1);
-		awardMedal(RussianMedalManager.ORDER_OF_GLORY, 5, 1);
-		awardMedal(RussianMedalManager.ORDER_PATRIOTIC_WAR_2, 6, 1);
-		awardMedal(RussianMedalManager.ORDER_PATRIOTIC_WAR_1, 15, 1);
-		awardMedal(RussianMedalManager.ORDER_RED_BANNER, 20, 2);
+        awardMedal(RussianMedalManager.ORDER_RED_STAR, 2, 1);
+        awardMedal(RussianMedalManager.ORDER_OF_GLORY, 4, 1);
+        awardMedal(RussianMedalManager.ORDER_PATRIOTIC_WAR_2, 6, 1);
+        awardMedal(RussianMedalManager.ORDER_PATRIOTIC_WAR_1, 10, 1);
+        awardMedal(RussianMedalManager.ORDER_RED_BANNER, 15, 2);
 
-    	makeVictories(30);
+    	makeVictories(19);
         Medal medal = medalManager.award(campaign, player, service, 1);
         Assertions.assertTrue (medal == null);
     }

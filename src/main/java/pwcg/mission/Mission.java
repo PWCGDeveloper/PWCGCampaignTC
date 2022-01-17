@@ -17,7 +17,6 @@ import pwcg.core.location.CoordinateBox;
 import pwcg.core.utils.PWCGLogger;
 import pwcg.mission.data.PwcgGeneratedMission;
 import pwcg.mission.ground.MissionGroundUnitBuilder;
-import pwcg.mission.ground.vehicle.VehicleDefinition;
 import pwcg.mission.ground.vehicle.VehicleSetBuilderComprehensive;
 import pwcg.mission.io.MissionDescriptionFile;
 import pwcg.mission.io.MissionFileFactory;
@@ -60,7 +59,6 @@ public class Mission
             Campaign campaign, 
             MissionObjective objective, 
             MissionHumanParticipants participatingPlayers, 
-            VehicleDefinition playerVehicleDefinition,
             CoordinateBox missionBorders, 
             MissionWeather weather,
             Skirmish skirmish,
@@ -353,11 +351,6 @@ public class Mission
         return finalizer;
     }
 
-    public MissionUnits getUnits()
-    {
-        return missionUnits;
-    }
-
     public MissionObjective getObjective()
     {
         return objective;
@@ -373,7 +366,7 @@ public class Mission
         return missionAirfields;
     }
 
-    public MissionUnits getMissionUnits()
+    public MissionUnits getUnits()
     {
         return missionUnits;
     }

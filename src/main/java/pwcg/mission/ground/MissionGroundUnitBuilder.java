@@ -2,6 +2,7 @@ package pwcg.mission.ground;
 
 import java.io.BufferedWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +25,7 @@ public class MissionGroundUnitBuilder
     private Mission mission = null;
     private Campaign campaign = null;
 
-    private List<GroundUnitCollection> missionBattles = new ArrayList<>();
+    private GroundUnitCollection missionBattle;
     private List<GroundUnitCollection> missionTrains = new ArrayList<>();
     private List<GroundUnitCollection> missionTrucks = new ArrayList<>();
     private List<GroundUnitCollection> missionDrifters = new ArrayList<>();
@@ -46,7 +47,7 @@ public class MissionGroundUnitBuilder
     private void generateBattle() throws PWCGException 
     {
         IBattleBuilder battleBuilder = MissionBattleBuilderFactory.getBattleBuilder(mission);
-        missionBattles = battleBuilder.generateBattle();
+        missionBattle = battleBuilder.generateBattle();
     }
 
     private void generateTrains() throws PWCGException 
@@ -58,7 +59,7 @@ public class MissionGroundUnitBuilder
     private void generateTrucks() throws PWCGException 
     {
         MissionTruckConvoyBuilder truckConvoyBuilder = new MissionTruckConvoyBuilder(campaign, mission);
-        missionTrucks = truckConvoyBuilder.generateMissionTrucks();
+        missionTrucks = truckConvoyBuilder.generateMissionTrucks(missionBattle);
     }
 
     private void generateDrifters() throws PWCGException
@@ -78,21 +79,11 @@ public class MissionGroundUnitBuilder
     public List<GroundUnitCollection> getAllMissionGroundUnits()
     {
         List<GroundUnitCollection> allMissionGroundUnits = new ArrayList<>();
-        allMissionGroundUnits.addAll(missionBattles);
+        allMissionGroundUnits.add(missionBattle);
         allMissionGroundUnits.addAll(missionTrains);
         allMissionGroundUnits.addAll(missionTrucks);
         allMissionGroundUnits.addAll(missionDrifters);
         return allMissionGroundUnits;
-    }
-    
-    public List<GroundUnitCollection> getAllInterestingMissionGroundUnits()
-    {
-        List<GroundUnitCollection> allInterestingMissionGroundUnits = new ArrayList<>();
-        allInterestingMissionGroundUnits.addAll(missionBattles);
-        allInterestingMissionGroundUnits.addAll(missionTrucks);
-        allInterestingMissionGroundUnits.addAll(missionTrains);
-        allInterestingMissionGroundUnits.addAll(missionDrifters);
-        return allInterestingMissionGroundUnits;
     }
     
     public void finalizeGroundUnits() throws PWCGException
@@ -102,7 +93,7 @@ public class MissionGroundUnitBuilder
     
     private void eliminateDuplicateGroundUnits() throws PWCGException
     {
-        eliminateDuplicateGroundUnitsFromCollection(missionBattles);
+        eliminateDuplicateGroundUnitsFromCollection(Arrays.asList(missionBattle));
         eliminateDuplicateGroundUnitsFromCollection(missionTrucks);
         eliminateDuplicateGroundUnitsFromCollection(missionTrains);
         eliminateDuplicateGroundUnitsFromCollection(missionDrifters);
@@ -134,7 +125,7 @@ public class MissionGroundUnitBuilder
     public List<GroundUnitCollection> getBattleMissionGroundUnits()
     {
         List<GroundUnitCollection> allMissionGroundUnits = new ArrayList<>();
-        allMissionGroundUnits.addAll(missionBattles);
+        allMissionGroundUnits.add(missionBattle);
         return allMissionGroundUnits;
     }
     
@@ -171,7 +162,6 @@ public class MissionGroundUnitBuilder
     {
         int trainCount = 0;
         int truckCount = 0;
-        int battleCount = 0;
         
         for (GroundUnitCollection groundUnitCollection : missionTrains)
         {
@@ -181,16 +171,11 @@ public class MissionGroundUnitBuilder
         {
             truckCount += groundUnitCollection.getUnitCount();
         }
-        for (GroundUnitCollection groundUnitCollection : missionBattles)
-        {
-            battleCount += groundUnitCollection.getUnitCount();
-        }
-
-        PWCGLogger.log(LogLevel.INFO, "Mission unit count battle : " + battleCount);
+ 
         PWCGLogger.log(LogLevel.INFO, "Mission unit count train : " + trainCount);
         PWCGLogger.log(LogLevel.INFO, "Mission unit count truck : " + truckCount);
         
-        int missionUnitCount = trainCount + truckCount + battleCount;
+        int missionUnitCount = trainCount + truckCount;
         PWCGLogger.log(LogLevel.INFO, "Mission unit count total : " + missionUnitCount);
         return missionUnitCount;
 
@@ -201,7 +186,7 @@ public class MissionGroundUnitBuilder
         GroundUnitCollection closestGroundUnitForSide = null;
         
         double closestDistanceToPosition = PositionFinder.ABSURDLY_LARGE_DISTANCE;
-        for (GroundUnitCollection groundUnitCollection : getAllInterestingMissionGroundUnits())
+        for (GroundUnitCollection groundUnitCollection : getAllMissionGroundUnits())
         {
             if (!groundUnitCollection.getGroundUnitsForSide(side).isEmpty())
             {
@@ -217,8 +202,8 @@ public class MissionGroundUnitBuilder
         return closestGroundUnitForSide;
     }
 
-    public List<GroundUnitCollection> getAssaults()
+    public GroundUnitCollection getAssault()
     {
-        return missionBattles;
+        return missionBattle;
     }
  }

@@ -18,23 +18,22 @@ import pwcg.campaign.Campaign;
 import pwcg.campaign.CampaignEquipmentManager;
 import pwcg.campaign.CampaignPersonnelManager;
 import pwcg.campaign.company.Company;
-import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.CrewMembers;
 import pwcg.campaign.crewmember.SerialNumber;
 import pwcg.campaign.personnel.CompanyPersonnel;
-import pwcg.campaign.plane.Equipment;
-import pwcg.campaign.plane.EquippedPlane;
+import pwcg.campaign.tank.Equipment;
+import pwcg.campaign.tank.EquippedTank;
+import pwcg.campaign.tank.TankAttributeMapping;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.gui.rofmap.brief.BriefingDataInitializer;
 import pwcg.gui.rofmap.brief.model.BriefingCrewMemberAssignmentData;
 import pwcg.mission.Mission;
-import pwcg.mission.MissionFlights;
-import pwcg.mission.flight.IFlight;
-import pwcg.mission.flight.IFlightPlanes;
-import pwcg.mission.flight.plane.PlaneMcu;
+import pwcg.mission.MissionUnits;
+import pwcg.mission.unit.ITankUnit;
+import pwcg.mission.unit.TankMcu;
+import pwcg.mission.unit.UnitTanks;
 import pwcg.testutils.CompanyTestProfile;
 
 @ExtendWith(MockitoExtension.class)
@@ -50,13 +49,13 @@ public class BriefingDataInitializerTest
     @Mock protected CompanyPersonnel companyPersonnel;
     @Mock protected CrewMembers crewMembers;
     @Mock protected Mission mission;
-    @Mock protected MissionFlights missionFlightBuilder;
-    @Mock protected IFlight flight;
-    @Mock protected IFlightPlanes flightPlanes;
-    @Mock protected PlaneMcu plane1;
-    @Mock protected PlaneMcu plane2;
-    @Mock protected PlaneMcu plane3;
-    @Mock protected PlaneMcu plane4;
+    @Mock protected MissionUnits missionUnits;
+    @Mock protected ITankUnit unit;
+    @Mock protected UnitTanks unitTanks;
+    @Mock protected TankMcu tank1;
+    @Mock protected TankMcu tank2;
+    @Mock protected TankMcu tank3;
+    @Mock protected TankMcu tank4;
     @Mock protected EquippedTank equippedTank1;
     @Mock protected EquippedTank equippedTank2;
     @Mock protected EquippedTank equippedTank3;
@@ -67,7 +66,7 @@ public class BriefingDataInitializerTest
     @Mock protected CrewMember crewMember4;
 
     protected Map<Integer, CrewMember> companyPersonnelMap = new HashMap<>();
-    protected List<PlaneMcu> planesInFlight = new ArrayList<>();
+    protected List<TankMcu> tanksInUnit = new ArrayList<>();
     protected Map<Integer, EquippedTank> equippedTanks = new HashMap<>();
     protected BriefingCrewMemberAssignmentData briefingAssignmentData = new BriefingCrewMemberAssignmentData();
 
@@ -76,12 +75,12 @@ public class BriefingDataInitializerTest
     {
         
         Mockito.when(mission.getCampaign()).thenReturn(campaign);
-        Mockito.when(mission.getFlights()).thenReturn(missionFlightBuilder);
+        Mockito.when(mission.getUnits()).thenReturn(missionUnits);
 
-        Mockito.when(missionFlightBuilder.getPlayerFlightForCompany(Mockito.anyInt())).thenReturn(flight);
+        Mockito.when(missionUnits.getPlayerUnitForCompany(Mockito.anyInt())).thenReturn(unit);
 
-        Mockito.when(flight.getFlightPlanes()).thenReturn(flightPlanes);
-        Mockito.when(flightPlanes.getPlanes()).thenReturn(planesInFlight);
+        Mockito.when(unit.getUnitTanks()).thenReturn(unitTanks);
+        Mockito.when(unitTanks.getTanks()).thenReturn(tanksInUnit);
 
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420801"));
         Mockito.when(campaign.getPersonnelManager()).thenReturn(personnelManager);
@@ -105,26 +104,26 @@ public class BriefingDataInitializerTest
         companyPersonnelMap.put(SerialNumber.AI_STARTING_SERIAL_NUMBER+3, crewMember3);
         companyPersonnelMap.put(SerialNumber.AI_STARTING_SERIAL_NUMBER+4, crewMember4);
 
-        Mockito.when(equippedTank1.getSerialNumber()).thenReturn(SerialNumber.PLANE_STARTING_SERIAL_NUMBER+1);
-        Mockito.when(equippedTank2.getSerialNumber()).thenReturn(SerialNumber.PLANE_STARTING_SERIAL_NUMBER+2);
-        Mockito.when(equippedTank3.getSerialNumber()).thenReturn(SerialNumber.PLANE_STARTING_SERIAL_NUMBER+3);
-        Mockito.when(equippedTank4.getSerialNumber()).thenReturn(SerialNumber.PLANE_STARTING_SERIAL_NUMBER+4);
-        Mockito.when(equippedTank1.getType()).thenReturn("bf109f4");
-        Mockito.when(equippedTank2.getType()).thenReturn("bf109f2");
-        Mockito.when(equippedTank3.getType()).thenReturn("bf109f4");
-        Mockito.when(equippedTank4.getType()).thenReturn("bf109f2");
+        Mockito.when(equippedTank1.getSerialNumber()).thenReturn(SerialNumber.TANK_STARTING_SERIAL_NUMBER+1);
+        Mockito.when(equippedTank2.getSerialNumber()).thenReturn(SerialNumber.TANK_STARTING_SERIAL_NUMBER+2);
+        Mockito.when(equippedTank3.getSerialNumber()).thenReturn(SerialNumber.TANK_STARTING_SERIAL_NUMBER+3);
+        Mockito.when(equippedTank4.getSerialNumber()).thenReturn(SerialNumber.TANK_STARTING_SERIAL_NUMBER+4);
+        Mockito.when(equippedTank1.getType()).thenReturn(TankAttributeMapping.PZKW_III_L.getTankType());
+        Mockito.when(equippedTank2.getType()).thenReturn(TankAttributeMapping.PZKW_III_M.getTankType());
+        Mockito.when(equippedTank3.getType()).thenReturn(TankAttributeMapping.PZKW_III_L.getTankType());
+        Mockito.when(equippedTank4.getType()).thenReturn(TankAttributeMapping.PZKW_III_M.getTankType());
         equippedTanks.put(equippedTank1.getSerialNumber(), equippedTank1);
         equippedTanks.put(equippedTank2.getSerialNumber(), equippedTank2);
         equippedTanks.put(equippedTank3.getSerialNumber(), equippedTank3);
         equippedTanks.put(equippedTank4.getSerialNumber(), equippedTank4);
 
-        Mockito.when(plane1.getTankCommander()).thenReturn(crewMember1);
-        Mockito.when(plane2.getTankCommander()).thenReturn(crewMember2);
-        Mockito.when(plane1.getSerialNumber()).thenReturn(SerialNumber.PLANE_STARTING_SERIAL_NUMBER+1);
-        Mockito.when(plane2.getSerialNumber()).thenReturn(SerialNumber.PLANE_STARTING_SERIAL_NUMBER+2);
+        Mockito.when(tank1.getTankCommander()).thenReturn(crewMember1);
+        Mockito.when(tank2.getTankCommander()).thenReturn(crewMember2);
+        Mockito.when(tank1.getSerialNumber()).thenReturn(SerialNumber.TANK_STARTING_SERIAL_NUMBER+1);
+        Mockito.when(tank2.getSerialNumber()).thenReturn(SerialNumber.TANK_STARTING_SERIAL_NUMBER+2);
 
-        planesInFlight.add(plane1);
-        planesInFlight.add(plane2);
+        tanksInUnit.add(tank1);
+        tanksInUnit.add(tank2);
     }
 
     @Test
@@ -137,8 +136,8 @@ public class BriefingDataInitializerTest
         assert(briefingAssignmentData.getCrews().size() == 2);
         assert(briefingAssignmentData.getUnassignedCrewMembers().size() == 2);
         assert(briefingAssignmentData.getUnassignedPlanes().size() == 2);
-        assert(briefingAssignmentData.findAssignedCrewPairingByCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER+1).getTank().getType().equals("bf109f4"));
-        assert(briefingAssignmentData.findAssignedCrewPairingByCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER+2).getTank().getType().equals("bf109f2"));
+        assert(briefingAssignmentData.findAssignedCrewPairingByCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER+1).getTank().getType().equals(TankAttributeMapping.PZKW_III_L.getTankType()));
+        assert(briefingAssignmentData.findAssignedCrewPairingByCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER+2).getTank().getType().equals(TankAttributeMapping.PZKW_III_M.getTankType()));
         assert(briefingAssignmentData.findAssignedCrewPairingByCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER+1).getCrewMember().getSerialNumber() == SerialNumber.AI_STARTING_SERIAL_NUMBER+1);
         assert(briefingAssignmentData.findAssignedCrewPairingByCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER+2).getCrewMember().getSerialNumber() == SerialNumber.AI_STARTING_SERIAL_NUMBER+2);
     }

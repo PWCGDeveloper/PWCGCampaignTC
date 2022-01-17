@@ -23,8 +23,6 @@ import pwcg.aar.prelim.PwcgMissionDataEvaluator;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.CampaignData;
 import pwcg.campaign.CampaignPersonnelManager;
-import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.CrewMembers;
 import pwcg.campaign.crewmember.SerialNumber;
@@ -67,9 +65,9 @@ public class AiDeclarationResolutionFirmTest
         Mockito.when(campaign.getPersonnelManager()).thenReturn(personnelManager);   
 
         playerVictor.setCrewMemberSerialNumber(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
-        playerVictor.setTankSerialNumber(SerialNumber.PLANE_STARTING_SERIAL_NUMBER + 1);
+        playerVictor.setTankSerialNumber(SerialNumber.TANK_STARTING_SERIAL_NUMBER + 1);
         aiVictor.setCrewMemberSerialNumber(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1);
-        aiVictor.setTankSerialNumber(SerialNumber.PLANE_STARTING_SERIAL_NUMBER + 2);
+        aiVictor.setTankSerialNumber(SerialNumber.TANK_STARTING_SERIAL_NUMBER + 2);
 
         createVictory(playerVictor, SerialNumber.AI_STARTING_SERIAL_NUMBER + 1000);
         createVictory(aiVictor, SerialNumber.AI_STARTING_SERIAL_NUMBER + 1001);
@@ -80,7 +78,7 @@ public class AiDeclarationResolutionFirmTest
     {        
         LogTank victim = new LogTank(3);
         victim.setCrewMemberSerialNumber(victimSerialNumber);
-        victim.setTankSerialNumber(SerialNumber.PLANE_STARTING_SERIAL_NUMBER + 100);
+        victim.setTankSerialNumber(SerialNumber.TANK_STARTING_SERIAL_NUMBER + 100);
         
         LogVictory resultVictory = new LogVictory(10);
         resultVictory.setVictor(victor);

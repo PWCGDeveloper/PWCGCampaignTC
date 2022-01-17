@@ -38,7 +38,7 @@ import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.CrewMemberStatus;
 import pwcg.campaign.crewmember.CrewMembers;
 import pwcg.campaign.crewmember.Victory;
-import pwcg.campaign.plane.PlaneStatus;
+import pwcg.campaign.tank.TankStatus;
 import pwcg.core.exception.PWCGException;
 import pwcg.testutils.CompanyTestProfile;
 
@@ -92,13 +92,13 @@ public class CombatReportTabulatorTest extends AARTestSetup
         List<VictoryEvent> victories = new ArrayList<>();
         VictoryEvent victoryEvent = new VictoryEvent(campaign, victory, CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId(), crewMember1.getSerialNumber(), campaign.getDate(), isNewsWorthy);        
         victories.add(victoryEvent);
-        VictoryEvent victoryEventNotFromCompany = new VictoryEvent(campaign, victory, CompanyTestProfile.ESC_3_PROFILE.getCompanyId(), crewMember2.getSerialNumber(), campaign.getDate(), isNewsWorthy);        
+        VictoryEvent victoryEventNotFromCompany = new VictoryEvent(campaign, victory, CompanyTestProfile.TANK_DIVISION_147_PROFILE.getCompanyId(), crewMember2.getSerialNumber(), campaign.getDate(), isNewsWorthy);        
         victories.add(victoryEventNotFromCompany);
         Mockito.when(victoryEventGenerator.createCrewMemberVictoryEvents(ArgumentMatchers.<Map<Integer, List<Victory>>>any())).thenReturn(victories);
                 
         isNewsWorthy = true;
         CrewMemberStatusEvent crewMemberStatusEvent = new CrewMemberStatusEvent(campaign, CrewMemberStatus.STATUS_KIA, CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId(), crewMember1.getSerialNumber(), campaign.getDate(), isNewsWorthy);
-        CrewMemberStatusEvent crewMemberStatusEventNotFromCompany = new CrewMemberStatusEvent(campaign, CrewMemberStatus.STATUS_KIA, CompanyTestProfile.ESC_3_PROFILE.getCompanyId(), crewMember2.getSerialNumber(), campaign.getDate(), isNewsWorthy);
+        CrewMemberStatusEvent crewMemberStatusEventNotFromCompany = new CrewMemberStatusEvent(campaign, CrewMemberStatus.STATUS_KIA, CompanyTestProfile.TANK_DIVISION_147_PROFILE.getCompanyId(), crewMember2.getSerialNumber(), campaign.getDate(), isNewsWorthy);
         Map<Integer, CrewMemberStatusEvent> crewMembersLost = new HashMap<>();
         crewMembersLost.put(crewMember1.getSerialNumber(), crewMemberStatusEvent);
         crewMembersLost.put(crewMember2.getSerialNumber(), crewMemberStatusEventNotFromCompany);

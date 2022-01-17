@@ -395,7 +395,7 @@ public class Company
 
 	public ArmedService determineServiceForCompany(Date date) throws PWCGException 
 	{
-	    ArmedService service = ArmedServiceFactory.createServiceManager().getArmedServiceById(serviceId, date);
+	    ArmedService service = ArmedServiceFactory.createServiceManager().getArmedServiceById(serviceId);
 
 		if (date != null)
 		{
@@ -403,7 +403,7 @@ public class Company
 	        if (companyHistoryEntry != null)
 	        {
                 String serviceName = companyHistoryEntry.getArmedServiceName();
-                service = ArmedServiceFactory.createServiceManager().getArmedServiceByName(serviceName, date);
+                service = ArmedServiceFactory.createServiceManager().getArmedServiceByName(serviceName);
 	        }
 		}
 		
@@ -559,7 +559,7 @@ public class Company
             if (companyHistoryEntry != null)
             {
                 String serviceName = companyHistoryEntry.getArmedServiceName();
-                ArmedService service = ArmedServiceFactory.createServiceManager().getArmedServiceByName(serviceName, date);
+                ArmedService service = ArmedServiceFactory.createServiceManager().getArmedServiceByName(serviceName);
                 companyCountry = CountryFactory.makeCountryByService(service);
             }
         }

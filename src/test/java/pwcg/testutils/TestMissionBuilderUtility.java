@@ -1,19 +1,18 @@
 package pwcg.testutils;
 
 import pwcg.campaign.Campaign;
-import pwcg.campaign.company.Company;
+import pwcg.campaign.api.Side;
+import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.crewmember.CrewMember;
+import pwcg.campaign.group.Block;
+import pwcg.campaign.group.Bridge;
 import pwcg.campaign.skirmish.Skirmish;
 import pwcg.core.config.ConfigItemKeys;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.CoordinateBox;
 import pwcg.mission.Mission;
-import pwcg.mission.MissionBorderBuilder;
-import pwcg.mission.MissionFlights;
 import pwcg.mission.MissionHumanParticipants;
-import pwcg.mission.MissionCompanyFlightTypes;
-import pwcg.mission.flight.FlightTypes;
-import pwcg.mission.ground.vehicle.VehicleDefinition;
+import pwcg.mission.MissionObjective;
 import pwcg.mission.options.MissionOptions;
 import pwcg.mission.options.MissionWeather;
 
@@ -29,28 +28,17 @@ public class TestMissionBuilderUtility
         MissionWeather weather = new MissionWeather(campaign, missionOptions.getMissionHour());
         weather.createMissionWeather();
 
+        Bridge bridge = PWCGContext.getInstance().getCurrentMap().getGroupManager().getBridgeFinder().findAllBridgesForSide(Side.AXIS, campaign.getDate()).get(0);
+        
+        Block station = PWCGContext.getInstance().getCurrentMap().getGroupManager().getRailroadStationFinder().getClosestTrainPositionBySide(Side.AXIS, campaign.getDate(), bridge.getPosition());
+        MissionObjective objective = new MissionObjective(station);
+        objective.setAssaultingCountry(PWCGContext.getInstance().getCurrentMap().getGroundCountryForMapBySide(Side.ALLIED));
+        objective.setDefendingCountry(PWCGContext.getInstance().getCurrentMap().getGroundCountryForMapBySide(Side.AXIS));
+        
         Skirmish skirmish = null;
-        VehicleDefinition playerVehicleDefinition = null;
-        Mission mission = new Mission(campaign, participatingPlayers, playerVehicleDefinition, missionBorders, weather, skirmish, missionOptions);
+        Mission mission = new Mission(campaign, objective, participatingPlayers, missionBorders, weather, skirmish, missionOptions);
         campaign.setCurrentMission(mission);
         return mission;
-    }
-
-    public static MissionFlights createTestMission(Campaign campaign, FlightTypes flightType) throws PWCGException
-    {
-        MissionHumanParticipants participatingPlayers = buildTestParticipatingHumans(campaign);
-
-        Company playerCompany = participatingPlayers.getAllParticipatingPlayers().get(0).determineCompany();
-        MissionCompanyFlightTypes playerFlightTypes = MissionCompanyFlightTypes.buildPlayerFlightType(flightType, playerCompany);
-
-        MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(campaign, participatingPlayers, null, playerFlightTypes);
-        CoordinateBox missionBorders = missionBorderBuilder.buildCoordinateBox();
-
-        Mission mission = TestMissionBuilderUtility.createTestMission(campaign, participatingPlayers, missionBorders);
-        mission.generate(playerFlightTypes);
-
-        campaign.setCurrentMission(mission);
-        return mission.getFlights();
     }
 
     public static MissionHumanParticipants buildTestParticipatingHumans(Campaign campaign) throws PWCGException

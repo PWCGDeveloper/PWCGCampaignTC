@@ -40,10 +40,6 @@ public class WaypointPriorityValidator
             {
                 Assertions.assertTrue (waypoint.getPriority() != WaypointPriority.PRIORITY_LOW);
             }
-            else if (waypoint.getWpAction().equals(WaypointAction.WP_ACTION_LANDING_APPROACH))
-            {
-                Assertions.assertTrue (waypoint.getPriority() == WaypointPriority.PRIORITY_MED);
-            }
             else
             {
                 Assertions.assertTrue (waypoint.getPriority() == expectedWaypointPriority);

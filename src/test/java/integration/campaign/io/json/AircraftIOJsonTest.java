@@ -7,10 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.io.json.AircraftIOJson;
-import pwcg.campaign.plane.TankType;
+import pwcg.campaign.tank.TankType;
 import pwcg.core.exception.PWCGException;
 
 @ExtendWith(MockitoExtension.class)

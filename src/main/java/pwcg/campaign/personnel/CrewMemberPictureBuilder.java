@@ -65,20 +65,6 @@ public class CrewMemberPictureBuilder
         List<File> picFiles = getPictureFilesFromDirectories(picDirs);
         return picFiles;
     }
-    
-    private List<File> getFemaleFiles() 
-    {
-        List<String> picDirs = service.getPicDirs();
-        List<String> femalePicDirs = new ArrayList<>();;
-        for (String dirName : picDirs)
-        {
-            String femaleDirName = dirName + "\\Female";
-            femalePicDirs.add(femaleDirName);
-        }
-        
-        List<File> picFiles = getPictureFilesFromDirectories(femalePicDirs);
-        return picFiles;
-    }
 
     private List<File> getPictureFilesFromDirectories(List<String> picDirs)
     {

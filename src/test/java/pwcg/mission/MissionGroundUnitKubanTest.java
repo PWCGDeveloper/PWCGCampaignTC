@@ -9,9 +9,7 @@ import pwcg.campaign.Campaign;
 import pwcg.campaign.api.Side;
 import pwcg.campaign.context.FrontMapIdentifier;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.core.exception.PWCGException;
-import pwcg.mission.flight.FlightTypes;
 import pwcg.mission.target.TargetType;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.CompanyTestProfile;
@@ -27,13 +25,13 @@ public class MissionGroundUnitKubanTest
     @Test
     public void verifySmallerDistanceToFront () throws PWCGException
     {
-        Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.REGIMENT_321_PROFILE);
+        Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.TANK_DIVISION_147_PROFILE_KUBAN);
         FrontMapIdentifier map = PWCGContext.getInstance().getCurrentMap().getMapIdentifier();
         assert(map == FrontMapIdentifier.KUBAN_MAP);
 
         MissionGenerator missionGenerator = new MissionGenerator(campaign);
-        Mission mission = missionGenerator.makeTestSingleMissionFromFlightType(
-                TestMissionBuilderUtility.buildTestParticipatingHumans(campaign), FlightTypes.GROUND_ATTACK, MissionProfile.DAY_TACTICAL_MISSION);
+        Mission mission = missionGenerator.makeTestMissionFromMissionType(
+                TestMissionBuilderUtility.buildTestParticipatingHumans(campaign));
 
         verifyAllied(mission);
         verifyAxis(mission);
@@ -44,11 +42,11 @@ public class MissionGroundUnitKubanTest
         Side side = Side.ALLIED;
         List<TargetType> availableGroundUnitTypes = mission.getGroundUnitBuilder().getAvailableGroundUnitTargetTypesForMissionForSide(side);
         
-        List<TargetType> expectedGroundUnitTypes = Arrays.asList(TargetType.TARGET_SHIPPING, TargetType.TARGET_INFANTRY, TargetType.TARGET_TRANSPORT, TargetType.TARGET_TRAIN);
+        List<TargetType> expectedGroundUnitTypes = Arrays.asList(TargetType.TARGET_INFANTRY, TargetType.TARGET_TRANSPORT);
         boolean allExist = validateExpectedGroundUnits(side , availableGroundUnitTypes, expectedGroundUnitTypes);
         assert(allExist);
         
-        List<TargetType> unexpectedGroundUnitTypes = Arrays.asList(TargetType.TARGET_BALLOON, TargetType.TARGET_DRIFTER);
+        List<TargetType> unexpectedGroundUnitTypes = Arrays.asList(TargetType.TARGET_BALLOON);
         boolean allDoNotExist = validateUnexpectedGroundUnits(side , availableGroundUnitTypes, unexpectedGroundUnitTypes);
         assert(allDoNotExist);
     }
@@ -58,7 +56,7 @@ public class MissionGroundUnitKubanTest
         Side side = Side.AXIS;
         List<TargetType> availableGroundUnitTypes = mission.getGroundUnitBuilder().getAvailableGroundUnitTargetTypesForMissionForSide(side);
         
-        List<TargetType> expectedGroundUnitTypes = Arrays.asList(TargetType.TARGET_SHIPPING, TargetType.TARGET_INFANTRY, TargetType.TARGET_TRANSPORT, TargetType.TARGET_TRAIN, TargetType.TARGET_DRIFTER);
+        List<TargetType> expectedGroundUnitTypes = Arrays.asList(TargetType.TARGET_INFANTRY, TargetType.TARGET_TRANSPORT);
         boolean allExist = validateExpectedGroundUnits(side , availableGroundUnitTypes, expectedGroundUnitTypes);
         assert(allExist);
         

@@ -7,7 +7,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import pwcg.campaign.context.FrontMapIdentifier;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.io.json.SkirmishIOJson;
 import pwcg.campaign.skirmish.Skirmishes;
 import pwcg.core.exception.PWCGException;

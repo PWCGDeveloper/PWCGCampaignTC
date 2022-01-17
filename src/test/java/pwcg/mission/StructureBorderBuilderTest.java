@@ -7,7 +7,6 @@ import org.junit.jupiter.api.TestInstance;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.context.FrontMapIdentifier;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.core.config.ConfigItemKeys;
 import pwcg.core.config.ConfigManager;

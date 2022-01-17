@@ -3,8 +3,6 @@ package pwcg.mission;
 import org.junit.jupiter.api.Test;
 
 import pwcg.campaign.Campaign;
-import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.group.Block;
 import pwcg.campaign.group.FixedPosition;
 import pwcg.core.exception.PWCGException;

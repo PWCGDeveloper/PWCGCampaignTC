@@ -21,8 +21,6 @@ import pwcg.aar.inmission.phase3.reconcile.victories.ReconciledMissionVictoryDat
 import pwcg.aar.outofmission.phase2.awards.CampaignAwardsGenerator;
 import pwcg.aar.prelim.PwcgMissionData;
 import pwcg.campaign.Campaign;
-import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.context.PWCGProduct;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.CrewMembers;
 import pwcg.campaign.crewmember.Victory;
@@ -72,7 +70,6 @@ public class CampaignAwardsGeneratorTest
     @Test
     public void testMedalAwardedForVictories () throws PWCGException
     {             
-        
         CrewMembers aiCrewMembers = CrewMemberFilter.filterActiveAINoWounded(campaign.getPersonnelManager().getAllCampaignMembers(), campaign.getDate());
         CampaignPersonnelTestHelper.addVictories(aiCrewMembers.getCrewMemberList().get(1), campaign.getDate(), 20);
         
