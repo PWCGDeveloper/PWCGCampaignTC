@@ -30,10 +30,10 @@ import pwcg.core.utils.DateUtils;
 import pwcg.gui.rofmap.brief.BriefingDataInitializer;
 import pwcg.gui.rofmap.brief.model.BriefingCrewMemberAssignmentData;
 import pwcg.mission.Mission;
-import pwcg.mission.MissionUnits;
-import pwcg.mission.unit.ITankUnit;
+import pwcg.mission.MissionPlatoons;
+import pwcg.mission.unit.ITankPlatoon;
 import pwcg.mission.unit.TankMcu;
-import pwcg.mission.unit.UnitTanks;
+import pwcg.mission.unit.PlatoonTanks;
 import pwcg.testutils.CompanyTestProfile;
 
 @ExtendWith(MockitoExtension.class)
@@ -49,9 +49,9 @@ public class BriefingDataInitializerTest
     @Mock protected CompanyPersonnel companyPersonnel;
     @Mock protected CrewMembers crewMembers;
     @Mock protected Mission mission;
-    @Mock protected MissionUnits missionUnits;
-    @Mock protected ITankUnit unit;
-    @Mock protected UnitTanks unitTanks;
+    @Mock protected MissionPlatoons missionUnits;
+    @Mock protected ITankPlatoon unit;
+    @Mock protected PlatoonTanks unitTanks;
     @Mock protected TankMcu tank1;
     @Mock protected TankMcu tank2;
     @Mock protected TankMcu tank3;
@@ -75,7 +75,7 @@ public class BriefingDataInitializerTest
     {
         
         Mockito.when(mission.getCampaign()).thenReturn(campaign);
-        Mockito.when(mission.getUnits()).thenReturn(missionUnits);
+        Mockito.when(mission.getPlatoons()).thenReturn(missionUnits);
 
         Mockito.when(missionUnits.getPlayerUnitForCompany(Mockito.anyInt())).thenReturn(unit);
 

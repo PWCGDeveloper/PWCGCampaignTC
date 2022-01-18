@@ -13,7 +13,7 @@ import pwcg.campaign.tank.payload.TankPayloadFactory;
 import pwcg.core.constants.AiSkillLevel;
 import pwcg.core.exception.PWCGException;
 import pwcg.mission.playerunit.crew.CrewTankPayloadPairing;
-import pwcg.mission.unit.ITankUnit;
+import pwcg.mission.unit.ITankPlatoon;
 import pwcg.mission.unit.TankMcu;
 import pwcg.mission.unit.UnitPositionSetter;
 import pwcg.mission.unit.tank.TankMcuFactory;
@@ -21,13 +21,13 @@ import pwcg.mission.unit.tank.TankMcuFactory;
 public class BriefingCrewTankUpdater
 {
     private Campaign campaign;
-    private ITankUnit playerUnit;
+    private ITankPlatoon playerPlatoon;
     private List<TankMcu> updatedTankSet = new ArrayList<>();
     
-    public BriefingCrewTankUpdater(Campaign campaign, ITankUnit playerFlight)
+    public BriefingCrewTankUpdater(Campaign campaign, ITankPlatoon playerFlight)
     {
         this.campaign = campaign;
-        this.playerUnit = playerFlight;
+        this.playerPlatoon = playerFlight;
     }
 
     public void updatePlayerTanks(List<CrewTankPayloadPairing> crewTanks) throws PWCGException
@@ -39,7 +39,7 @@ public class BriefingCrewTankUpdater
 
     private void resetPlayerUnitInitialPosition() throws PWCGException
     {
-        UnitPositionSetter.setUnitTankPositions(playerUnit);
+        UnitPositionSetter.setUnitTankPositions(playerPlatoon);
     }
 
     private void updateTanksFromBriefing(List<CrewTankPayloadPairing> crewTanks) throws PWCGException
@@ -54,7 +54,7 @@ public class BriefingCrewTankUpdater
 
     private void replaceTanksInPlayerUnit() throws PWCGException
     {
-        playerUnit.getUnitTanks().setTanks(updatedTankSet);
+        playerPlatoon.getUnitTanks().setTanks(updatedTankSet);
     }
 
     private void createTankBasedOnBriefingSelections(int numInFormation, CrewTankPayloadPairing crewTank) throws PWCGException
@@ -70,7 +70,7 @@ public class BriefingCrewTankUpdater
         }
 
         tank.setNumberInFormation(numInFormation);
-        tank.setCallsign(playerUnit.getCompany().determineCurrentCallsign(campaign.getDate()));
+        tank.setCallsign(playerPlatoon.getCompany().determineCurrentCallsign(campaign.getDate()));
         tank.setCallnum(numInFormation);
         setPayloadFromBriefing(tank, crewTank);
         setModificationsFromBriefing(tank, crewTank);
@@ -104,7 +104,7 @@ public class BriefingCrewTankUpdater
     private void configureTankForCrew(TankMcu tank, CrewTankPayloadPairing crewTank) throws PWCGException
     {
         AiSkillLevel aiLevel = crewTank.getCrewMember().getAiSkillLevel();
-        CompanyPersonnel companyPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(playerUnit.getCompany().getCompanyId());
+        CompanyPersonnel companyPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(playerPlatoon.getCompany().getCompanyId());
         CrewMember crewMember = companyPersonnel.getCrewMember(crewTank.getCrewMember().getSerialNumber());
         if (crewMember == null)
         {
@@ -123,9 +123,9 @@ public class BriefingCrewTankUpdater
 
     private TankMcu updateFlightMember(CrewTankPayloadPairing crewTank) throws PWCGException
     {
-        TankMcu flightmember = playerUnit.getUnitTanks().getUnitLeader();
+        TankMcu flightmember = playerPlatoon.getUnitTanks().getUnitLeader();
         TankMcu updatedTankMcu = TankMcuFactory.createTankMcuByTankType(campaign, crewTank.getTank(), 
-                playerUnit.getUnitInformation().getCountry(), crewTank.getCrewMember());
+                playerPlatoon.getUnitInformation().getCountry(), crewTank.getCrewMember());
         updatedTankMcu.setTarget(flightmember.getLinkTrId());
         updatedTankMcu.setFuel(flightmember.getFuel());
 
@@ -135,8 +135,8 @@ public class BriefingCrewTankUpdater
     private TankMcu updateLeader(CrewTankPayloadPairing crewTank) throws PWCGException
     {        
         TankMcu updatedFlightLeader = TankMcuFactory.createTankMcuByTankType(campaign, crewTank.getTank(), 
-                playerUnit.getUnitInformation().getCountry(), crewTank.getCrewMember());
-        TankMcu flightLeaderTankMcu = playerUnit.getUnitTanks().getUnitLeader();        
+                playerPlatoon.getUnitInformation().getCountry(), crewTank.getCrewMember());
+        TankMcu flightLeaderTankMcu = playerPlatoon.getUnitTanks().getUnitLeader();        
         updatedFlightLeader.copyEntityIndexFromTank(flightLeaderTankMcu);
         updatedFlightLeader.setLinkTrId(flightLeaderTankMcu.getLinkTrId());
         updatedFlightLeader.copyEntityIndexFromTank(flightLeaderTankMcu);

@@ -12,23 +12,23 @@ import pwcg.campaign.crewmember.SerialNumber;
 import pwcg.campaign.crewmember.SerialNumber.SerialNumberClassification;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.RandomNumberGenerator;
-import pwcg.mission.unit.UnitInformation;
+import pwcg.mission.unit.PlatoonInformation;
 
 public class UnitCrewBuilder
 {
-    private UnitInformation unitInformation;
+    private PlatoonInformation platoonInformation;
 
     private Map <Integer, CrewMember> assignedCrewMap = new HashMap <>();
     private Map <Integer, CrewMember> unassignedCrewMap = new HashMap <>();
     
-	public UnitCrewBuilder(UnitInformation unitInformation)
+	public UnitCrewBuilder(PlatoonInformation platoonInformation)
 	{
-        this.unitInformation = unitInformation;
+        this.platoonInformation = platoonInformation;
 	}
 
     public List<CrewMember> createCrewAssignmentsForFlight(int numCrewNeeded) throws PWCGException 
     {
-        CrewFactory crewFactory = new CrewFactory(unitInformation);
+        CrewFactory crewFactory = new CrewFactory(platoonInformation);
         unassignedCrewMap = crewFactory.createCrews();
         
         assignPlayersToCrew();
@@ -40,10 +40,10 @@ public class UnitCrewBuilder
 
     private void assignPlayersToCrew() throws PWCGException
     {
-        if (Company.isPlayerCompany(unitInformation.getCampaign(), unitInformation.getCompany().getCompanyId()))
+        if (Company.isPlayerCompany(platoonInformation.getCampaign(), platoonInformation.getCompany().getCompanyId()))
         {
             List<CrewMember> participatingPlayerCrews = new ArrayList<>();
-            for (CrewMember crewMember : unitInformation.getParticipatingPlayersForCompany())
+            for (CrewMember crewMember : platoonInformation.getParticipatingPlayersForCompany())
             {
             	participatingPlayerCrews.add(crewMember);
             }
@@ -102,6 +102,6 @@ public class UnitCrewBuilder
 	
     private List<CrewMember> sortCrewsByRank() throws PWCGException
     {
-        return CrewMemberSorter.sortCrewMembers(unitInformation.getCampaign(), assignedCrewMap);
+        return CrewMemberSorter.sortCrewMembers(platoonInformation.getCampaign(), assignedCrewMap);
     }
 }

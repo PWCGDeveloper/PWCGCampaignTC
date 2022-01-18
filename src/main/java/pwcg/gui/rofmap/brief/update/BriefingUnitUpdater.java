@@ -13,7 +13,7 @@ import pwcg.gui.rofmap.brief.model.BriefingUnit;
 import pwcg.mission.Mission;
 import pwcg.mission.flight.waypoint.WaypointType;
 import pwcg.mission.mcu.McuWaypoint;
-import pwcg.mission.unit.ITankUnit;
+import pwcg.mission.unit.ITankPlatoon;
 
 public class BriefingUnitUpdater
 {
@@ -51,9 +51,9 @@ public class BriefingUnitUpdater
 
         for (BriefingUnit briefingUnit : briefingData.getBriefingUnits())
         {
-            ITankUnit playerUnit = mission.getUnits().getPlayerUnitForCompany(briefingUnit.getCompanyId());
+            ITankPlatoon playerPlatoon = mission.getPlatoons().getPlayerUnitForCompany(briefingUnit.getCompanyId());
             List<McuWaypoint> waypoints = briefingPointToWaypoint(briefingUnit.getBriefingUnitParameters().getBriefingMapMapPoints());
-            playerUnit.setWaypoints(waypoints);
+            playerPlatoon.setWaypoints(waypoints);
         }
     }
 
@@ -86,8 +86,8 @@ public class BriefingUnitUpdater
         Mission mission = briefingData.getMission();
         for (BriefingUnit briefingUnit : briefingData.getBriefingUnits())
         {
-            ITankUnit playerUnit = mission.getUnits().getPlayerUnitForCompany(briefingUnit.getCompanyId());
-            BriefingCrewTankUpdater crewePlaneUpdater = new BriefingCrewTankUpdater(mission.getCampaign(), playerUnit);
+            ITankPlatoon playerPlatoon = mission.getPlatoons().getPlayerUnitForCompany(briefingUnit.getCompanyId());
+            BriefingCrewTankUpdater crewePlaneUpdater = new BriefingCrewTankUpdater(mission.getCampaign(), playerPlatoon);
             crewePlaneUpdater.updatePlayerTanks(briefingUnit.getBriefingAssignmentData().getCrews());
         }
     }
@@ -100,8 +100,8 @@ public class BriefingUnitUpdater
 
         for (BriefingUnit briefingUnit : briefingData.getBriefingUnits())
         {
-            ITankUnit playerUnit = mission.getUnits().getPlayerUnitForCompany(briefingUnit.getCompanyId());
-            playerUnit.getUnitTanks().setFuelForUnit(briefingUnit.getSelectedFuel());
+            ITankPlatoon playerPlatoon = mission.getPlatoons().getPlayerUnitForCompany(briefingUnit.getCompanyId());
+            playerPlatoon.getUnitTanks().setFuelForUnit(briefingUnit.getSelectedFuel());
         }
     }
 

@@ -131,7 +131,7 @@ public class MissionBlockSmoke
 
     private void createSmokeForStructure(Coordinate position, SmokeEffect smokeEffect) throws PWCGException
     {
-        List<Integer> triggerUnits = mission.getUnits().determinePlayerVehicleIds();
+        List<Integer> triggerUnits = mission.getPlatoons().determinePlayerVehicleIds();
         
         List<Integer> smoketriggers = new ArrayList<>();
         smoketriggers.addAll(triggerUnits);

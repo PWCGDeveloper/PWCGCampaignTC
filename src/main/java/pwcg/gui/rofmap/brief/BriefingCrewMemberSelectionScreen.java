@@ -38,7 +38,7 @@ import pwcg.gui.utils.PWCGButtonFactory;
 import pwcg.gui.utils.PWCGLabelFactory;
 import pwcg.mission.Mission;
 import pwcg.mission.playerunit.crew.CrewTankPayloadPairing;
-import pwcg.mission.unit.ITankUnit;
+import pwcg.mission.unit.ITankPlatoon;
 import pwcg.mission.unit.TankMcu;
 
 public class BriefingCrewMemberSelectionScreen extends ImageResizingPanel implements ActionListener, MouseWheelListener, IUnitChanged
@@ -448,8 +448,8 @@ public class BriefingCrewMemberSelectionScreen extends ImageResizingPanel implem
             return true;
         }
 
-        ITankUnit playerUnit = briefingData.getSelectedUnit();
-        List<TankMcu> playerPlanes = playerUnit.getUnitTanks().getPlayerTanks();
+        ITankPlatoon playerPlatoon = briefingData.getSelectedUnit();
+        List<TankMcu> playerPlanes = playerPlatoon.getUnitTanks().getPlayerTanks();
         for (TankMcu playerPlane : playerPlanes)
         {
             CrewMember crewMember = playerPlane.getTankCommander();

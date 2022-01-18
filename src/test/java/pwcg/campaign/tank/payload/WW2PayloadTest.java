@@ -11,12 +11,12 @@ import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.tank.TankType;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
-import pwcg.mission.unit.ITankUnit;
+import pwcg.mission.unit.ITankPlatoon;
 
 @ExtendWith(MockitoExtension.class)
 public class WW2PayloadTest
 {
-    @Mock ITankUnit unit;
+    @Mock ITankPlatoon unit;
 
     @BeforeEach
     public void setupTest() throws PWCGException

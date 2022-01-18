@@ -13,7 +13,6 @@ import pwcg.campaign.group.airfield.Airfield;
 import pwcg.campaign.plane.PlaneType;
 import pwcg.campaign.plane.PlaneTypeFactory;
 import pwcg.campaign.tank.PwcgRoleCategory;
-import pwcg.core.config.ConfigItemKeys;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.core.utils.RandomNumberGenerator;
@@ -26,13 +25,11 @@ public class AIFlightPlanner
     {
         List<FlightBuildInformation> flightBuildInformationForMission = new ArrayList<>();
 
-        int configuredAlliedAiFlights = mission.getCampaign().getCampaignConfigManager().getIntConfigParam(ConfigItemKeys.AlliedFlightsToKeepKey);
-        int numAlliedFlights = RandomNumberGenerator.getRandom(configuredAlliedAiFlights);
+        int numAlliedFlights = 2;
         List<FlightBuildInformation> flightBuildInformationAllied = createFlightBuildInformationForCountry(mission, Side.ALLIED, numAlliedFlights);
         flightBuildInformationForMission.addAll(flightBuildInformationAllied);
 
-        int configuredAxisAiFlights =  mission.getCampaign().getCampaignConfigManager().getIntConfigParam(ConfigItemKeys.AxisFlightsToKeepKey);
-        int numAxisFlights = RandomNumberGenerator.getRandom(configuredAxisAiFlights);
+        int numAxisFlights = 1;
         List<FlightBuildInformation> flightBuildInformationAxis = createFlightBuildInformationForCountry(mission, Side.AXIS, numAxisFlights);
         flightBuildInformationForMission.addAll(flightBuildInformationAxis);
         

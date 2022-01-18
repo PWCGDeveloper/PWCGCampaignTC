@@ -9,16 +9,16 @@ import pwcg.core.exception.PWCGException;
 import pwcg.mission.mcu.McuWaypoint;
 import pwcg.mission.unit.tank.TankMcuFactory;
 
-public abstract class TankUnit implements ITankUnit
+public abstract class TankPlatoon implements ITankPlatoon
 {
-    protected UnitTanks unitVehicles;
-    protected UnitInformation unitInformation;
+    protected PlatoonTanks platoonVehicles;
+    protected PlatoonInformation platoonInformation;
     protected List<McuWaypoint> waypoints = new ArrayList<>();
 
-    public TankUnit(UnitInformation unitInformation)
+    public TankPlatoon(PlatoonInformation platoonInformation)
     {
-        this.unitVehicles = new UnitTanks();
-        this.unitInformation = unitInformation;
+        this.platoonVehicles = new PlatoonTanks();
+        this.platoonInformation = platoonInformation;
     }
 
     @Override
@@ -31,21 +31,21 @@ public abstract class TankUnit implements ITankUnit
     }
 
     @Override
-    public UnitInformation getUnitInformation()
+    public PlatoonInformation getUnitInformation()
     {
-        return unitInformation;
+        return platoonInformation;
     }
 
     @Override
     public List<TankMcu> getTanks()
     {
-        return unitVehicles.getTanks();
+        return platoonVehicles.getTanks();
     }
 
     @Override
     public TankMcu getLeadVehicle()
     {
-        return unitVehicles.getUnitLeader();
+        return platoonVehicles.getUnitLeader();
     }
 
     @Override
@@ -62,25 +62,25 @@ public abstract class TankUnit implements ITankUnit
     @Override
     public Company getCompany()
     {
-        return unitInformation.getCompany();
+        return platoonInformation.getCompany();
     }
 
     @Override
-    public UnitTanks getUnitTanks()
+    public PlatoonTanks getUnitTanks()
     {
-        return unitVehicles;
+        return platoonVehicles;
     }
 
     @Override
     public void preparePlaneForCoop() throws PWCGException
     {
-        unitVehicles.prepareTankForCoop();        
+        platoonVehicles.prepareTankForCoop();        
     }
 
     @Override
     public void write(BufferedWriter writer) throws PWCGException
     {        
-        for(TankMcu tank : unitVehicles.getTanks())
+        for(TankMcu tank : platoonVehicles.getTanks())
         {
             tank.write(writer);
         }
@@ -93,24 +93,24 @@ public abstract class TankUnit implements ITankUnit
 
     protected void setUnitPayload() throws PWCGException
     {
-        for(TankMcu tank : unitVehicles.getTanks())
+        for(TankMcu tank : platoonVehicles.getTanks())
         {
-            tank.buildTankPayload(this, unitInformation.getCampaign().getDate());
+            tank.buildTankPayload(this, platoonInformation.getCampaign().getDate());
         }
     }
 
     private void buildTanks() throws PWCGException
     {
-        int numTanks = unitInformation.getParticipatingPlayersForCompany().size();
+        int numTanks = platoonInformation.getParticipatingPlayersForCompany().size();
         if(numTanks < 4)
         {
             numTanks = 4;
         }
                 
-        TankMcuFactory tankMcuFactory = new TankMcuFactory(unitInformation);        
+        TankMcuFactory tankMcuFactory = new TankMcuFactory(platoonInformation);        
         List<TankMcu> tanks = tankMcuFactory.createTanksForUnit(numTanks);
-        unitVehicles.setTanks(tanks);
-        unitVehicles.setFuelForUnit(1.0);
+        platoonVehicles.setTanks(tanks);
+        platoonVehicles.setFuelForUnit(1.0);
     }
 
     private void createInitialPosition() throws PWCGException

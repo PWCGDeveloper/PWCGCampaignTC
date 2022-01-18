@@ -12,7 +12,7 @@ import pwcg.core.exception.PWCGException;
 import pwcg.mission.Mission;
 import pwcg.mission.MissionGenerator;
 import pwcg.mission.MissionHumanParticipants;
-import pwcg.mission.unit.ITankUnit;
+import pwcg.mission.unit.ITankPlatoon;
 import pwcg.mission.unit.TankMcu;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.CompanyTestProfile;
@@ -50,7 +50,7 @@ public class FlightCrewBuilderTest
         for (CrewMember player : participatingPlayers.getAllParticipatingPlayers())
         {
             boolean playerFound = false;
-            for (ITankUnit unit : mission.getUnits().getPlayerUnits())
+            for (ITankPlatoon unit : mission.getPlatoons().getPlayerUnits())
             {
                 for(TankMcu tank : unit.getTanks())
                 {

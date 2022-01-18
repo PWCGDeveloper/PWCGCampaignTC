@@ -3,7 +3,7 @@ package pwcg.mission.unit;
 import java.util.ArrayList;
 import java.util.List;
 
-public enum UnitMissionType
+public enum PlatoonMissionType
 {
     ASSAULT(UnitMissionTypeCategory.TANK), 
     DEFENSE(UnitMissionTypeCategory.TANK), 
@@ -13,7 +13,7 @@ public enum UnitMissionType
 
     UnitMissionTypeCategory category = UnitMissionTypeCategory.INVALID;
 
-    private UnitMissionType(UnitMissionTypeCategory category)
+    private PlatoonMissionType(UnitMissionTypeCategory category)
     {
         this.category = category;
     }
@@ -27,10 +27,10 @@ public enum UnitMissionType
         return false;
     }
 
-    public static List<UnitMissionType> getUnitTypesByCategory(UnitMissionTypeCategory categoryToFind)
+    public static List<PlatoonMissionType> getUnitTypesByCategory(UnitMissionTypeCategory categoryToFind)
     {
-        List<UnitMissionType> unitTypesByCategory = new ArrayList<>();
-        for (UnitMissionType unitType : UnitMissionType.values())
+        List<PlatoonMissionType> unitTypesByCategory = new ArrayList<>();
+        for (PlatoonMissionType unitType : PlatoonMissionType.values())
         {
             if (unitType.category == categoryToFind)
             {

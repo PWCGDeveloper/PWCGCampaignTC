@@ -7,12 +7,12 @@ import pwcg.campaign.company.Company;
 import pwcg.core.exception.PWCGException;
 import pwcg.mission.mcu.McuWaypoint;
 
-public interface ITankUnit
+public interface ITankPlatoon
 {
 
     void createUnit() throws PWCGException;
 
-    UnitInformation getUnitInformation();
+    PlatoonInformation getUnitInformation();
 
     List<TankMcu> getTanks();
 
@@ -22,7 +22,7 @@ public interface ITankUnit
 
     Company getCompany();
 
-    UnitTanks getUnitTanks();
+    PlatoonTanks getUnitTanks();
 
     void preparePlaneForCoop() throws PWCGException;
 

@@ -5,7 +5,7 @@ import java.util.List;
 
 import pwcg.core.exception.PWCGException;
 import pwcg.mission.Mission;
-import pwcg.mission.unit.ITankUnit;
+import pwcg.mission.unit.ITankPlatoon;
 
 public class MissionUnitWriter 
 {
@@ -18,12 +18,12 @@ public class MissionUnitWriter
 	
 	public void writeUnits(BufferedWriter writer) throws PWCGException
 	{
-        writePlayerUnits(mission.getUnits().getPlayerUnits(), writer);
+        writePlayerUnits(mission.getPlatoons().getPlayerUnits(), writer);
 	}
 
-    private void writePlayerUnits(List<ITankUnit> units, BufferedWriter writer) throws PWCGException
+    private void writePlayerUnits(List<ITankPlatoon> units, BufferedWriter writer) throws PWCGException
     {
-        for (ITankUnit unit : units)
+        for (ITankPlatoon unit : units)
         {
             unit.write(writer);
         }

@@ -35,7 +35,7 @@ import pwcg.gui.utils.MapPointInfoPopup;
 import pwcg.mission.Mission;
 import pwcg.mission.mcu.McuWaypoint;
 import pwcg.mission.target.AssaultDefinition;
-import pwcg.mission.unit.ITankUnit;
+import pwcg.mission.unit.ITankPlatoon;
 
 public class BriefingMapPanel extends MapPanelBase implements ActionListener
 {
@@ -262,7 +262,7 @@ public class BriefingMapPanel extends MapPanelBase implements ActionListener
         axisVirtualPoints.clear();        
     }
 
-    public void makeMapPanelVirtualPoints(ITankUnit unit) throws PWCGException
+    public void makeMapPanelVirtualPoints(ITankPlatoon unit) throws PWCGException
     {       
         UnitMap unitMap = buildFlightMap(unit);
         if (unit.getUnitInformation().getCountry().getSideNoNeutral() == Side.ALLIED)
@@ -275,7 +275,7 @@ public class BriefingMapPanel extends MapPanelBase implements ActionListener
         }
     }
 
-    private UnitMap buildFlightMap(ITankUnit unit) throws PWCGException
+    private UnitMap buildFlightMap(ITankPlatoon unit) throws PWCGException
     {
         UnitMap unitMap = new UnitMap();
         unitMap.unitType = unit.getUnitInformation().getMissionType().name();

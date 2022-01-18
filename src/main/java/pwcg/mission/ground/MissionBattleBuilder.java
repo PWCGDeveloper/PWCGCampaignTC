@@ -2,7 +2,6 @@ package pwcg.mission.ground;
 
 import pwcg.core.exception.PWCGException;
 import pwcg.mission.Mission;
-import pwcg.mission.ground.builder.AssaultArmoredPlatoonBuilder;
 import pwcg.mission.ground.builder.AssaultFixedUnitSegmentBuilder;
 import pwcg.mission.ground.builder.IBattleBuilder;
 import pwcg.mission.ground.org.GroundUnitCollection;
@@ -27,12 +26,6 @@ public class MissionBattleBuilder implements IBattleBuilder
 
         GroundUnitCollection assaultFixedUnitCollection = AssaultFixedUnitSegmentBuilder.generateAssault(mission);
         battleUnitCollection.merge(assaultFixedUnitCollection);
-
-        GroundUnitCollection assaultArmoredUnitCollection = AssaultArmoredPlatoonBuilder.generateAssault(mission, assaultFixedUnitCollection);
-        battleUnitCollection.merge(assaultArmoredUnitCollection);
-
-        GroundUnitCollection defendingArmoredUnitCollection = DefendingArmoredUnitSegmentBuilder.generateAssault(mission, mission.getObjective().getPosition());
-        battleUnitCollection.merge(defendingArmoredUnitCollection);
         
         return battleUnitCollection;
     }

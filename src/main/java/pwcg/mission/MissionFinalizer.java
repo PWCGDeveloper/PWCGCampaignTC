@@ -40,11 +40,11 @@ public class MissionFinalizer
 
             setMissionScript(mission.getMissionOptions());
 
-            mission.getUnits().finalizeMissionUnits();
+            mission.getPlatoons().finalizeMissionUnits();
             mission.getGroundUnitBuilder().finalizeGroundUnits();
             
             frontLineIconBuilder.buildFrontLineIcons();
-            waypointIconBuilder.createWaypointIcons(mission.getUnits().getPlayerUnits());
+            waypointIconBuilder.createWaypointIcons(mission.getPlatoons().getPlayerUnits());
             assaultIconBuilder.createAssaultIcons(mission.getBattleManager().getMissionAssaultDefinitions());
             mission.getMissionBlocks().adjustBlockDamageAndSmoke();
 
@@ -64,7 +64,7 @@ public class MissionFinalizer
 
     private void setMissionScript(MissionOptions missionOptions) throws PWCGException
     {
-        List<TankMcu> playerVehicles = mission.getUnits().getReferencePlayerUnit().getTanks();
+        List<TankMcu> playerVehicles = mission.getPlatoons().getReferencePlayerUnit().getTanks();
         String playerScript = playerVehicles.get(0).getScript();
         missionOptions.setPlayerConfig(playerScript);
     }

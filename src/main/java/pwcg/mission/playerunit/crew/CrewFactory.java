@@ -10,7 +10,7 @@ import pwcg.campaign.crewmember.CrewMembers;
 import pwcg.campaign.personnel.CrewMemberFilter;
 import pwcg.core.exception.PWCGException;
 import pwcg.mission.MissionHumanParticipants;
-import pwcg.mission.unit.UnitInformation;
+import pwcg.mission.unit.PlatoonInformation;
 
 public class CrewFactory
 {
@@ -19,11 +19,11 @@ public class CrewFactory
     private MissionHumanParticipants participatingPlayers;
     private Map <Integer, CrewMember> crewsForCompany = new HashMap <>();
     
-	public CrewFactory(UnitInformation unitInformation)
+	public CrewFactory(PlatoonInformation platoonInformation)
 	{
-        this.campaign = unitInformation.getCampaign();
-        this.company = unitInformation.getCompany();
-        this.participatingPlayers = unitInformation.getMission().getParticipatingPlayers();
+        this.campaign = platoonInformation.getCampaign();
+        this.company = platoonInformation.getCompany();
+        this.participatingPlayers = platoonInformation.getMission().getParticipatingPlayers();
 	}
 
     public Map <Integer, CrewMember> createCrews() throws PWCGException 

@@ -9,11 +9,11 @@ import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.location.Orientation;
 
-public class UnitTanks
+public class PlatoonTanks
 {
     private List<TankMcu> tanks = new ArrayList<>();
 
-    public UnitTanks()
+    public PlatoonTanks()
     {
     }
 

@@ -1,14 +1,14 @@
 package pwcg.mission.unit.defense;
 
 import pwcg.core.exception.PWCGException;
-import pwcg.mission.unit.TankUnit;
-import pwcg.mission.unit.UnitInformation;
+import pwcg.mission.unit.TankPlatoon;
+import pwcg.mission.unit.PlatoonInformation;
 
-public class DefenseUnit extends TankUnit
+public class DefenseUnit extends TankPlatoon
 {
-    public DefenseUnit(UnitInformation unitInformation)
+    public DefenseUnit(PlatoonInformation platoonInformation)
     {
-        super(unitInformation);
+        super(platoonInformation);
     }
     
     @Override

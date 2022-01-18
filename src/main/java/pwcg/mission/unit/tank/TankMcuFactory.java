@@ -16,15 +16,15 @@ import pwcg.core.utils.PWCGLogger;
 import pwcg.core.utils.PWCGLogger.LogLevel;
 import pwcg.mission.playerunit.crew.UnitCrewBuilder;
 import pwcg.mission.unit.TankMcu;
-import pwcg.mission.unit.UnitInformation;
+import pwcg.mission.unit.PlatoonInformation;
 
 public class TankMcuFactory
 {    
-    private UnitInformation unitInformation;
+    private PlatoonInformation platoonInformation;
     
-    public TankMcuFactory(UnitInformation unitInformation)
+    public TankMcuFactory(PlatoonInformation platoonInformation)
     {
-        this.unitInformation = unitInformation;
+        this.platoonInformation = platoonInformation;
     }
 
     public List<TankMcu> createTanksForUnit(int numTanks) throws PWCGException
@@ -49,7 +49,7 @@ public class TankMcuFactory
 
     private List<EquippedTank> buildEquipmentForFllght(int numTanks) throws PWCGException 
     {
-        Equipment equipmentForCompany = unitInformation.getCampaign().getEquipmentManager().getEquipmentForCompany(unitInformation.getCompany().getCompanyId());
+        Equipment equipmentForCompany = platoonInformation.getCampaign().getEquipmentManager().getEquipmentForCompany(platoonInformation.getCompany().getCompanyId());
         UnitTankTypeBuilder tankTypeBuilder = new UnitTankTypeBuilder(equipmentForCompany, numTanks);
         List<EquippedTank> tanksTypesForFlight =tankTypeBuilder.getTankListForFlight();
         return tanksTypesForFlight;
@@ -57,7 +57,7 @@ public class TankMcuFactory
 
     private List<CrewMember> buildUnitCrews(int numTanks) throws PWCGException 
     {
-        UnitCrewBuilder unitCrewBuilder = new UnitCrewBuilder(unitInformation);
+        UnitCrewBuilder unitCrewBuilder = new UnitCrewBuilder(platoonInformation);
         List<CrewMember> crewsForFlight = unitCrewBuilder.createCrewAssignmentsForFlight(numTanks);
         return crewsForFlight;
     }
@@ -71,7 +71,7 @@ public class TankMcuFactory
             {
                 EquippedTank equippedTank = tanksTypesForFlight.get(index);
                 CrewMember tankCommander = crewsForFlight.get(index);            
-                TankMcu tank = createTankMcuByTankType(unitInformation.getCampaign(), equippedTank, unitInformation.getCompany().getCountry(), tankCommander);
+                TankMcu tank = createTankMcuByTankType(platoonInformation.getCampaign(), equippedTank, platoonInformation.getCompany().getCountry(), tankCommander);
                 if (index > 0)
                 {
                     TankMcu leadTank = tanksForFlight.get(0);
@@ -115,7 +115,7 @@ public class TankMcuFactory
 
     private void setTankCallsign(int numInFormation, TankMcu tank)
     {
-        Callsign callsign = unitInformation.getCompany().determineCurrentCallsign(unitInformation.getCampaign().getDate());
+        Callsign callsign = platoonInformation.getCompany().determineCurrentCallsign(platoonInformation.getCampaign().getDate());
 
         tank.setCallsign(callsign);
         tank.setCallnum(numInFormation);

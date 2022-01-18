@@ -25,7 +25,7 @@ import pwcg.gui.rofmap.brief.model.BriefingData;
 import pwcg.gui.utils.PWCGButtonFactory;
 import pwcg.gui.utils.ScrollBarWrapper;
 import pwcg.mission.Mission;
-import pwcg.mission.unit.ITankUnit;
+import pwcg.mission.unit.ITankPlatoon;
 
 public class BriefingMapCompanySelector implements ActionListener
 {
@@ -61,7 +61,7 @@ public class BriefingMapCompanySelector implements ActionListener
 
     private void addFlights(JPanel companySelectorGrid) throws PWCGException
     {
-        ITankUnit selectedFlight = briefingContext.getSelectedUnit();
+        ITankPlatoon selectedFlight = briefingContext.getSelectedUnit();
         Side selectedFlightSide = selectedFlight.getCompany().determineSide();
 
         JButton checkBoxAll = PWCGButtonFactory.makeTranslucentMenuButton("All Companys", "" + ALL_CompanyS, "Show unit path for all companys", this);
@@ -70,7 +70,7 @@ public class BriefingMapCompanySelector implements ActionListener
         JButton checkBoxNone = PWCGButtonFactory.makeTranslucentMenuButton("No Companys", "" + NO_CompanyS, "Show unit path for only your company", this);
         companySelectorGrid.add(checkBoxNone);
 
-        for (ITankUnit aiunit : mission.getUnits().getPlayerUnits())
+        for (ITankPlatoon aiunit : mission.getPlatoons().getPlayerUnits())
         {
             Company company = aiunit.getCompany();
             Side companySide = company.getCountry().getSide();
@@ -153,7 +153,7 @@ public class BriefingMapCompanySelector implements ActionListener
 
     private void addCompanyToSelected(int companyId) throws PWCGException
     {
-        ITankUnit unit = mission.getUnits().getPlayerUnitForCompany(companyId);
+        ITankPlatoon unit = mission.getPlatoons().getPlayerUnitForCompany(companyId);
         Company company = unit.getCompany();
         selectedCompanys.put(companyId, company.determineDisplayName(mission.getCampaign().getDate()));
     }

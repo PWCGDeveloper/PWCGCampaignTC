@@ -4,16 +4,16 @@ import pwcg.core.exception.PWCGException;
 import pwcg.gui.rofmap.brief.model.BriefingMapPoint;
 import pwcg.gui.rofmap.brief.model.BriefingUnitParameters;
 import pwcg.mission.mcu.McuWaypoint;
-import pwcg.mission.unit.ITankUnit;
+import pwcg.mission.unit.ITankPlatoon;
 
 public class BriefingUnitParametersBuilder
 {
-	private ITankUnit playerUnit;
+	private ITankPlatoon playerPlatoon;
 	private BriefingUnitParameters briefingFlightParameters;
 
-	public BriefingUnitParametersBuilder (ITankUnit playerUnit)
+	public BriefingUnitParametersBuilder (ITankPlatoon playerPlatoon)
 	{
-        this.playerUnit = playerUnit;
+        this.playerPlatoon = playerPlatoon;
         briefingFlightParameters = new BriefingUnitParameters();
 	}
 	
@@ -26,7 +26,7 @@ public class BriefingUnitParametersBuilder
 	private void setWaypoints() throws PWCGException
 	{
 		McuWaypoint prevWaypoint = null;
-		for (McuWaypoint waypoint :  playerUnit.getWaypoints())
+		for (McuWaypoint waypoint :  playerPlatoon.getWaypoints())
 		{				
 		     addPlayerFlightWaypoint(prevWaypoint, waypoint);
 		     prevWaypoint = waypoint;

@@ -45,11 +45,11 @@ public class MissionHumanParticipants
 		}
 		return participatingPlayersForCompany;
 	}
-	
-	public List<Integer> getParticipatingCompanyIds ()
-	{
-		return new ArrayList<Integer>(participatingPlayers.keySet());
-	}
+    
+    public List<Integer> getParticipatingCompanyIds ()
+    {
+        return new ArrayList<Integer>(participatingPlayers.keySet());
+    }
 	
 	public boolean isCompanyInMission(Company company)
 	{
@@ -105,6 +105,20 @@ public class MissionHumanParticipants
         
         List<Company> companys = new ArrayList<>(playerCompanysMap.values());
         return companys;
+    }
+    
+    public List<Company> getParticipatingCompanyIdsForSide (Side side) throws PWCGException
+    {
+        List<Company> companiedPerSide = new ArrayList<>();
+        for(int companyId : getParticipatingCompanyIds())
+        {
+            Company company = PWCGContext.getInstance().getCompanyManager().getCompany(companyId);
+            if(company.determineSide() == side)
+            {
+                companiedPerSide.add(company);
+            }
+        }
+        return companiedPerSide;
     }
 
     public List<Side> getMissionPlayerSides() throws PWCGException

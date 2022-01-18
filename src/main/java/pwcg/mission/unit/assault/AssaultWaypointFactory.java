@@ -7,13 +7,13 @@ import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.mission.flight.waypoint.WaypointFactory;
 import pwcg.mission.mcu.McuWaypoint;
-import pwcg.mission.unit.ITankUnit;
+import pwcg.mission.unit.ITankPlatoon;
 
 public class AssaultWaypointFactory
 {
-    private ITankUnit unit;
+    private ITankPlatoon unit;
 
-    public AssaultWaypointFactory(ITankUnit unit) throws PWCGException
+    public AssaultWaypointFactory(ITankPlatoon unit) throws PWCGException
     {
         this.unit = unit;
     }

@@ -13,8 +13,8 @@ import pwcg.campaign.context.PWCGContext;
 import pwcg.core.exception.PWCGException;
 import pwcg.mission.Mission;
 import pwcg.mission.MissionGenerator;
-import pwcg.mission.unit.ITankUnit;
-import pwcg.mission.unit.UnitMissionType;
+import pwcg.mission.unit.ITankPlatoon;
+import pwcg.mission.unit.PlatoonMissionType;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.CompanyTestProfile;
 import pwcg.testutils.TestMissionBuilderUtility;
@@ -48,12 +48,12 @@ public class PlayerMissionTypeCoopTest
         {
         	Campaign campaign = campaigns.get(profile);
             PWCGContext.getInstance().setCampaign(campaign);
-            Mission mission = generateMission(campaign, UnitMissionType.ASSAULT);
+            Mission mission = generateMission(campaign, PlatoonMissionType.ASSAULT);
             verifyEnemyFlights(campaign, mission);
         }
     }
  
-    private Mission generateMission(Campaign campaign, UnitMissionType missionType) throws PWCGException
+    private Mission generateMission(Campaign campaign, PlatoonMissionType missionType) throws PWCGException
     {
         MissionGenerator missionGenerator = new MissionGenerator(campaign);
         Mission mission = missionGenerator.makeTestMissionFromMissionType(TestMissionBuilderUtility.buildTestParticipatingHumans(campaign));
@@ -63,11 +63,11 @@ public class PlayerMissionTypeCoopTest
     
     private int verifyEnemyFlights(Campaign campaign,Mission mission) throws PWCGException 
     {
-        Side enemySide = mission.getUnits().getPlayerUnits().get(0).getCompany().determineEnemySide();
+        Side enemySide = mission.getPlatoons().getPlayerUnits().get(0).getCompany().determineEnemySide();
         
         boolean enemyUnitFound = false;
         int numEnemyFlights = 0;
-        for (ITankUnit unit: mission.getUnits().getAiUnits())
+        for (ITankPlatoon unit: mission.getPlatoons().getAiUnits())
         {
             if(unit.getCompany().determineSide() == enemySide)
             {

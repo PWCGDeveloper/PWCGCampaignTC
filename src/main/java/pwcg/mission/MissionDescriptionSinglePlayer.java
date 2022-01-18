@@ -13,13 +13,13 @@ import pwcg.mission.options.MissionOptions;
 import pwcg.mission.options.MissionWeather;
 import pwcg.mission.options.WindLayer;
 import pwcg.mission.playerunit.objective.MissionObjectiveFactory;
-import pwcg.mission.unit.ITankUnit;
+import pwcg.mission.unit.ITankPlatoon;
 
 public class MissionDescriptionSinglePlayer implements IMissionDescription 
 {
     private Mission mission;
     private Campaign campaign;
-    private ITankUnit playerUnit;
+    private ITankPlatoon playerPlatoon;
     
 	private String author = "Brought to you by PWCGCampaign";
 	private String title = "";
@@ -50,11 +50,11 @@ public class MissionDescriptionSinglePlayer implements IMissionDescription
 	private ArrayList<String> enemyIntHtmlList = new ArrayList<String>();
 	private ArrayList<String> friendlyIntHtmlList = new ArrayList<String>();
 	
-    public MissionDescriptionSinglePlayer (Campaign campaign, Mission mission, ITankUnit  playerUnit)
+    public MissionDescriptionSinglePlayer (Campaign campaign, Mission mission, ITankPlatoon  playerPlatoon)
     {
         this.mission = mission;
         this.campaign = campaign;
-        this.playerUnit = playerUnit;
+        this.playerPlatoon = playerPlatoon;
         campaignDateString = DateUtils.getDateStringDashDelimitedYYYYMMDD(campaign.getDate());
     }
 
@@ -67,28 +67,28 @@ public class MissionDescriptionSinglePlayer implements IMissionDescription
         MissionOptions missionOptions = mission.getMissionOptions();
         setMissionDateTime(DateUtils.getDateAsMissionFileFormat(campaign.getDate()), missionOptions.getMissionTime().getMissionTime());
 
-        setVehicle(playerUnit.getLeadVehicle().getDisplayName());
-        setTown(playerUnit.getUnitInformation().getBase());
-        setObjective(MissionObjectiveFactory.formMissionObjective(playerUnit, campaign.getDate()));
-        setCompany(playerUnit.getCompany().determineDisplayName(campaign.getDate()));
-        buildTitleDescription(campaign.getCampaignData().getName(), playerUnit.getUnitInformation().getCompany().determineDisplayName(campaign.getDate()));
+        setVehicle(playerPlatoon.getLeadVehicle().getDisplayName());
+        setTown(playerPlatoon.getUnitInformation().getBase());
+        setObjective(MissionObjectiveFactory.formMissionObjective(playerPlatoon, campaign.getDate()));
+        setCompany(playerPlatoon.getCompany().determineDisplayName(campaign.getDate()));
+        buildTitleDescription(campaign.getCampaignData().getName(), playerPlatoon.getUnitInformation().getCompany().determineDisplayName(campaign.getDate()));
 
-        HashMap<String, ITankUnit> companyMap = new HashMap<>();
-        for (ITankUnit unit : mission.getUnits().getPlayerUnits())
+        HashMap<String, ITankPlatoon> companyMap = new HashMap<>();
+        for (ITankPlatoon unit : mission.getPlatoons().getPlayerUnits())
         {
             companyMap.put(unit.getCompany().determineDisplayName(campaign.getDate()), unit);
         }
 
-        for (ITankUnit unit : companyMap.values())
+        for (ITankPlatoon unit : companyMap.values())
         {
-            setUnit(playerUnit.getUnitInformation().getCountry(), unit);
+            setUnit(playerPlatoon.getUnitInformation().getCountry(), unit);
         }
         
         return descSinglePlayerTemplate;
     }
 
     
-    private void setUnit(ICountry country, ITankUnit unit) throws PWCGException 
+    private void setUnit(ICountry country, ITankPlatoon unit) throws PWCGException 
     {
         Campaign campaign =     PWCGContext.getInstance().getCampaign();
         

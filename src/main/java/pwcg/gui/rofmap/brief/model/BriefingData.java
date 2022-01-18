@@ -7,7 +7,7 @@ import java.util.Map;
 
 import pwcg.core.exception.PWCGException;
 import pwcg.mission.Mission;
-import pwcg.mission.unit.ITankUnit;
+import pwcg.mission.unit.ITankPlatoon;
 
 public class BriefingData
 {
@@ -28,9 +28,9 @@ public class BriefingData
         return briefingMissionUnits.get(selectedCompanyId);
     }
     
-    public ITankUnit getSelectedUnit() throws PWCGException
+    public ITankPlatoon getSelectedUnit() throws PWCGException
     {
-        ITankUnit playerFlight = mission.getUnits().getPlayerUnitForCompany(selectedCompanyId);
+        ITankPlatoon playerFlight = mission.getPlatoons().getPlayerUnitForCompany(selectedCompanyId);
         return playerFlight;
     }
 

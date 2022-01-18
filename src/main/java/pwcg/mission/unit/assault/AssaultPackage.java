@@ -4,20 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pwcg.core.exception.PWCGException;
-import pwcg.mission.unit.ITankUnit;
+import pwcg.mission.unit.ITankPlatoon;
 import pwcg.mission.unit.IUnitPackage;
-import pwcg.mission.unit.UnitInformation;
+import pwcg.mission.unit.PlatoonInformation;
 
 public class AssaultPackage implements IUnitPackage
 
 {
-    private List<ITankUnit> packageUnits = new ArrayList<>();
+    private List<ITankPlatoon> packageUnits = new ArrayList<>();
 
     @Override
-    public List<ITankUnit> createUnitPackage (UnitInformation unitInformation) throws PWCGException 
+    public List<ITankPlatoon> createUnitPackage (PlatoonInformation platoonInformation) throws PWCGException 
     {
 
-        ITankUnit patrolUnit = new AssaultUnit (unitInformation);
+        ITankPlatoon patrolUnit = new AssaultUnit (platoonInformation);
         patrolUnit.createUnit();
 
         packageUnits.add(patrolUnit);

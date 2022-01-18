@@ -6,5 +6,5 @@ import pwcg.core.exception.PWCGException;
 
 public interface IUnitPackage
 {
-    List<ITankUnit> createUnitPackage(UnitInformation unitInformation) throws PWCGException;
+    List<ITankPlatoon> createUnitPackage(PlatoonInformation platoonInformation) throws PWCGException;
 }

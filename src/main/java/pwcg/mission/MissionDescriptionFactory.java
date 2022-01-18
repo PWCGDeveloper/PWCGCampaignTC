@@ -1,7 +1,7 @@
 package pwcg.mission;
 
 import pwcg.campaign.Campaign;
-import pwcg.mission.unit.ITankUnit;
+import pwcg.mission.unit.ITankPlatoon;
 
 public class MissionDescriptionFactory 
 {
@@ -13,13 +13,13 @@ public class MissionDescriptionFactory
 	    }
 	    else
 	    {
-            return new MissionDescriptionSinglePlayer(campaign, mission, mission.getUnits().getReferencePlayerUnit());
+            return new MissionDescriptionSinglePlayer(campaign, mission, mission.getPlatoons().getReferencePlayerUnit());
 	    }
 	}
 
-    public static IMissionDescription buildMissionDescription(Campaign campaign, Mission mission, ITankUnit  playerUnit)
+    public static IMissionDescription buildMissionDescription(Campaign campaign, Mission mission, ITankPlatoon  playerPlatoon)
     {
-        return new MissionDescriptionSinglePlayer(campaign, mission, playerUnit);
+        return new MissionDescriptionSinglePlayer(campaign, mission, playerPlatoon);
     }
 
 }

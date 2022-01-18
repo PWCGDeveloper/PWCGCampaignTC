@@ -166,7 +166,7 @@ public class TankMcu extends EquippedTank implements Cloneable
         return isPlayerTank;
     }
     
-    public ITankPayload buildTankPayload(ITankUnit unit, Date date) throws PWCGException
+    public ITankPayload buildTankPayload(ITankPlatoon unit, Date date) throws PWCGException
     {
         TankPayloadFactory payloadFactory = new TankPayloadFactory();        
         payload = payloadFactory.createPayload(this.getType(), date);
@@ -329,7 +329,7 @@ public class TankMcu extends EquippedTank implements Cloneable
         }
     }
 
-    public void populateEntity(ITankUnit unit, TankMcu unitLeader)
+    public void populateEntity(ITankPlatoon unit, TankMcu unitLeader)
     {
         if (unitLeader.getIndex() != index)
         {

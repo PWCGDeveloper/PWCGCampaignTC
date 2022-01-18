@@ -11,8 +11,8 @@ public class ConfigSetMissionLimits
         configSet.addConfigItem(ConfigItemKeys.MissionBoxMinDistanceFromBaseKey, new ConfigItem("40000"));
         configSet.addConfigItem(ConfigItemKeys.MissionBoxMaxDistanceFromBaseKey, new ConfigItem("40"));
 				
-        configSet.addConfigItem(ConfigItemKeys.AlliedFlightsToKeepKey, new ConfigItem("4"));
-        configSet.addConfigItem(ConfigItemKeys.AxisFlightsToKeepKey, new ConfigItem("3"));
+        configSet.addConfigItem(ConfigItemKeys.AlliedPlatoonsInMissionKey, new ConfigItem("6"));
+        configSet.addConfigItem(ConfigItemKeys.AxisPlatoonsInMissionKey, new ConfigItem("3"));
 
         configSet.addConfigItem(ConfigItemKeys.AiFighterFlightsForGroundCampaignMaxKey, new ConfigItem("1"));
         configSet.addConfigItem(ConfigItemKeys.AiFighterFlightsForFighterCampaignMaxKey, new ConfigItem("3"));        

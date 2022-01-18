@@ -20,8 +20,8 @@ public class ConfigSimple
     {
         setParamForSimpleConfigChange(ConfigItemKeys.SimpleConfigAirKey, ConfigSimple.CONFIG_LEVEL_LOW);
 
-        setParamForSimpleConfigChange(ConfigItemKeys.AlliedFlightsToKeepKey, "3");
-        setParamForSimpleConfigChange(ConfigItemKeys.AxisFlightsToKeepKey, "2");
+        setParamForSimpleConfigChange(ConfigItemKeys.AlliedPlatoonsInMissionKey, "3");
+        setParamForSimpleConfigChange(ConfigItemKeys.AxisPlatoonsInMissionKey, "2");
         setParamForSimpleConfigChange(ConfigItemKeys.MaxVirtualEscortedFlightKey, "2");
 
         setParamForSimpleConfigChange(ConfigItemKeys.PatrolMinimumKey, "2");
@@ -40,8 +40,8 @@ public class ConfigSimple
     {
         setParamForSimpleConfigChange(ConfigItemKeys.SimpleConfigAirKey, ConfigSimple.CONFIG_LEVEL_MED);
 
-        setParamForSimpleConfigChange(ConfigItemKeys.AlliedFlightsToKeepKey, "4");
-        setParamForSimpleConfigChange(ConfigItemKeys.AxisFlightsToKeepKey, "3");
+        setParamForSimpleConfigChange(ConfigItemKeys.AlliedPlatoonsInMissionKey, "6");
+        setParamForSimpleConfigChange(ConfigItemKeys.AxisPlatoonsInMissionKey, "3");
         setParamForSimpleConfigChange(ConfigItemKeys.MaxVirtualEscortedFlightKey, "2");
 
         setParamForSimpleConfigChange(ConfigItemKeys.PatrolMinimumKey, "2");
@@ -60,8 +60,8 @@ public class ConfigSimple
     {
         setParamForSimpleConfigChange(ConfigItemKeys.SimpleConfigAirKey, ConfigSimple.CONFIG_LEVEL_HIGH);
         
-        setParamForSimpleConfigChange(ConfigItemKeys.AlliedFlightsToKeepKey, "6");
-        setParamForSimpleConfigChange(ConfigItemKeys.AxisFlightsToKeepKey, "4");
+        setParamForSimpleConfigChange(ConfigItemKeys.AlliedPlatoonsInMissionKey, "12");
+        setParamForSimpleConfigChange(ConfigItemKeys.AxisPlatoonsInMissionKey, "6");
         setParamForSimpleConfigChange(ConfigItemKeys.MaxVirtualEscortedFlightKey, "2");
 
         setParamForSimpleConfigChange(ConfigItemKeys.PatrolMinimumKey, "2");

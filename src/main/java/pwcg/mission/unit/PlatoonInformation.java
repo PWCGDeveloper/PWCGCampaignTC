@@ -9,16 +9,16 @@ import pwcg.campaign.crewmember.CrewMember;
 import pwcg.core.exception.PWCGException;
 import pwcg.mission.Mission;
 
-public class UnitInformation
+public class PlatoonInformation
 {
     
     private Mission mission;
     private Campaign campaign;
     private Company company;
     private List<CrewMember> crewMembers;
-    private UnitObjectiveDefinition objective;
+    private PlatoonObjectiveDefinition objective;
 
-    public UnitInformation(Mission mission, Company company, List<CrewMember> crewMembers, UnitObjectiveDefinition objective)
+    public PlatoonInformation(Mission mission, Company company, List<CrewMember> crewMembers, PlatoonObjectiveDefinition objective)
     {
         this.mission = mission;
         this.campaign = mission.getCampaign();
@@ -62,12 +62,12 @@ public class UnitInformation
         return crewMembers;
     }
     
-    public UnitMissionType getMissionType()
+    public PlatoonMissionType getMissionType()
     {
         return objective.getMissionType();
     }
     
-    public UnitObjectiveDefinition getObjective()
+    public PlatoonObjectiveDefinition getObjective()
     {
         return objective;
     }

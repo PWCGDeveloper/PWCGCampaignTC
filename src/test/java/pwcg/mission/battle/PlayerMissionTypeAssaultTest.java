@@ -13,7 +13,7 @@ import pwcg.mission.mcu.group.virtual.VirtualWaypointPackageValidator;
 import pwcg.mission.target.TargetCategory;
 import pwcg.mission.target.TargetDefinition;
 import pwcg.mission.target.TargetType;
-import pwcg.mission.unit.ITankUnit;
+import pwcg.mission.unit.ITankPlatoon;
 import pwcg.mission.unit.TankMcu;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.CompanyTestProfile;
@@ -36,7 +36,7 @@ public class PlayerMissionTypeAssaultTest
     {
         MissionGenerator missionGenerator = new MissionGenerator(campaign);
         Mission mission = missionGenerator.makeTestMissionFromMissionType(TestMissionBuilderUtility.buildTestParticipatingHumans(campaign));
-        ITankUnit unit = mission.getUnits().getPlayerUnits().get(0);
+        ITankPlatoon unit = mission.getPlatoons().getPlayerUnits().get(0);
         mission.finalizeMission();
 
         for (TankMcu tank : unit.getUnitTanks().getTanks())

@@ -14,7 +14,7 @@ import pwcg.mission.mcu.McuEvent;
 import pwcg.mission.mcu.McuMessage;
 import pwcg.mission.mcu.McuMissionObjective;
 import pwcg.mission.mcu.McuTimer;
-import pwcg.mission.unit.ITankUnit;
+import pwcg.mission.unit.ITankPlatoon;
 import pwcg.mission.unit.TankMcu;
 
 public class MissionObjectiveGroup
@@ -32,11 +32,11 @@ public class MissionObjectiveGroup
 
     public void createSuccessMissionObjective(Campaign campaign, Mission mission) throws PWCGException 
     {
-        ITankUnit playerUnit = mission.getUnits().getReferencePlayerUnit();
-        Coordinate companyLocation = playerUnit.getCompany().determineCurrentPosition(campaign.getDate());
+        ITankPlatoon playerPlatoon = mission.getPlatoons().getReferencePlayerUnit();
+        Coordinate companyLocation = playerPlatoon.getCompany().determineCurrentPosition(campaign.getDate());
         missionBeginUnit = new MissionBeginUnit(companyLocation.copy());            
                 
-        missionObjective.setCoalition(playerUnit.getCompany().getCountry());
+        missionObjective.setCoalition(playerPlatoon.getCompany().getCountry());
         missionObjective.setSuccess(1);
         missionObjective.setPosition(companyLocation);
 
@@ -47,15 +47,15 @@ public class MissionObjectiveGroup
 
     public void createFailureMissionObjective(Campaign campaign, Mission mission) throws PWCGException 
     {
-        ITankUnit playerUnit = mission.getUnits().getReferencePlayerUnit();
-        Coordinate companyLocation = playerUnit.getCompany().determineCurrentPosition(campaign.getDate());
+        ITankPlatoon playerPlatoon = mission.getPlatoons().getReferencePlayerUnit();
+        Coordinate companyLocation = playerPlatoon.getCompany().determineCurrentPosition(campaign.getDate());
         missionBeginUnit = new MissionBeginUnit(companyLocation.copy());            
 
-        missionObjective.setCoalition(playerUnit.getCompany().getCountry());
+        missionObjective.setCoalition(playerPlatoon.getCompany().getCountry());
         missionObjective.setPosition(companyLocation);
         missionObjective.setSuccess(0);
 
-        TankMcu referenceVehicle = mission.getUnits().getReferencePlayerUnit().getTanks().get(0);
+        TankMcu referenceVehicle = mission.getPlatoons().getReferencePlayerUnit().getTanks().get(0);
         referenceVehicle.setOnMessages(
                         McuMessage.ONKILL,
                         missionBeginUnit.getStartTimeindex(),

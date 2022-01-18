@@ -192,7 +192,7 @@ public class SelfDeactivatingCheckZone
 
     private void triggerCheckZoneByPlayer(Mission mission) throws PWCGException
     {
-        List<Integer> triggerVehicles = mission.getUnits().determinePlayerVehicleIds();
+        List<Integer> triggerVehicles = mission.getPlatoons().determinePlayerVehicleIds();
         checkZone.triggerCheckZoneByMultiplePlaneIds(triggerVehicles);        
     }
     

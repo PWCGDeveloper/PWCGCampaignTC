@@ -7,7 +7,7 @@ import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.mission.Mission;
 import pwcg.mission.io.MissionFileNameBuilder;
-import pwcg.mission.unit.ITankUnit;
+import pwcg.mission.unit.ITankPlatoon;
 
 public class MissionHeaderGenerator
 {
@@ -16,7 +16,7 @@ public class MissionHeaderGenerator
     {
         // Even for Coop flights we have to set the header.  Doesn't really matter which flight 
         // as long as it is a player flight
-        ITankUnit myUnit = mission.getUnits().getReferencePlayerUnit();
+        ITankPlatoon myUnit = mission.getPlatoons().getReferencePlayerUnit();
         Company myCompany = myUnit.getCompany();
         
         MissionHeader missionHeader = new MissionHeader();

@@ -28,8 +28,8 @@ import pwcg.mission.Mission;
 import pwcg.mission.MissionFlights;
 import pwcg.mission.MissionGroundUnitResourceManager;
 import pwcg.mission.MissionHumanParticipants;
-import pwcg.mission.unit.UnitInformation;
-import pwcg.mission.unit.UnitMissionType;
+import pwcg.mission.unit.PlatoonInformation;
+import pwcg.mission.unit.PlatoonMissionType;
 
 public class KubanAttackMockCampaign
 {
@@ -42,7 +42,7 @@ public class KubanAttackMockCampaign
     @Mock protected CampaignEquipmentManager equipmentManager;
     @Mock protected Equipment companyEquipment;
     @Mock protected CrewMember player;
-    @Mock protected UnitInformation unitInformation;
+    @Mock protected PlatoonInformation platoonInformation;
     @Mock protected MissionHumanParticipants humanParticipants;
 
     protected ICountry country = CountryFactory.makeCountryByCountry(Country.GERMANY);
@@ -86,10 +86,10 @@ public class KubanAttackMockCampaign
     
     public void buildMockFlightInformation()
     {
-        Mockito.when(unitInformation.getCampaign()).thenReturn(campaign);
-        Mockito.when(unitInformation.getMission()).thenReturn(mission);
-        Mockito.when(unitInformation.getCompany()).thenReturn(company);
-        Mockito.when(unitInformation.getMissionType()).thenReturn(UnitMissionType.ASSAULT);
+        Mockito.when(platoonInformation.getCampaign()).thenReturn(campaign);
+        Mockito.when(platoonInformation.getMission()).thenReturn(mission);
+        Mockito.when(platoonInformation.getCompany()).thenReturn(company);
+        Mockito.when(platoonInformation.getMissionType()).thenReturn(PlatoonMissionType.ASSAULT);
     }
 
 

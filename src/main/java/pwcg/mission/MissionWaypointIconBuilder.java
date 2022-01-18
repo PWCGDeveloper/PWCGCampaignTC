@@ -8,23 +8,23 @@ import pwcg.core.exception.PWCGException;
 import pwcg.mission.mcu.McuIcon;
 import pwcg.mission.mcu.McuIconFactory;
 import pwcg.mission.mcu.McuWaypoint;
-import pwcg.mission.unit.ITankUnit;
+import pwcg.mission.unit.ITankPlatoon;
 
 public class MissionWaypointIconBuilder
 {
     private List<McuIcon> waypointIcons = new ArrayList<>();
 
-    public void createWaypointIcons(List<ITankUnit> list) throws PWCGException
+    public void createWaypointIcons(List<ITankPlatoon> list) throws PWCGException
     {
-        for (ITankUnit playerUnit : list)
+        for (ITankPlatoon playerPlatoon : list)
         {
-            createWaypointIconsForUnit(playerUnit);
+            createWaypointIconsForUnit(playerPlatoon);
         }
     }
 
-    private void createWaypointIconsForUnit(ITankUnit playerUnit) throws PWCGException
+    private void createWaypointIconsForUnit(ITankPlatoon playerPlatoon) throws PWCGException
     {
-        List<McuWaypoint> waypoints = playerUnit.getWaypoints();
+        List<McuWaypoint> waypoints = playerPlatoon.getWaypoints();
 
         McuIcon firstIcon = null;
         McuIcon prevIcon = null;
@@ -32,7 +32,7 @@ public class MissionWaypointIconBuilder
         for (int i = 0; i < waypoints.size(); ++i)
         {
             McuWaypoint waypoint = waypoints.get(i);
-            McuIcon icon = McuIconFactory.buildWaypointIcon(waypoint, playerUnit.getUnitInformation().getCountry().getSide());
+            McuIcon icon = McuIconFactory.buildWaypointIcon(waypoint, playerPlatoon.getUnitInformation().getCountry().getSide());
             if (firstIcon == null)
             {
                 firstIcon = icon;

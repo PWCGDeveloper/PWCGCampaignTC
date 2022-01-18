@@ -131,8 +131,8 @@ public class ConfigItemKeys
     public static final String MissionBoxMinDistanceFromBaseKey = "MissionBoxMinDistanceFromBase";
     public static final String MissionBoxMaxDistanceFromBaseKey = "MissionBoxMaxDistanceFromBase";
 
-	public static final String AlliedFlightsToKeepKey = "AlliedFlightsToKeep";
-	public static final String AxisFlightsToKeepKey = "AxisFlightsToKeep";
+	public static final String AlliedPlatoonsInMissionKey = "AlliedPlatoonsInMission";
+	public static final String AxisPlatoonsInMissionKey = "AxisPlatoonsInMission";
 
 	public static final String AiFighterFlightsForGroundCampaignMaxKey = "AiFighterFlightsForGroundCampaignMax";
 	public static final String AiFighterFlightsForFighterCampaignMaxKey = "AiFighterFlightsForFighterCampaignMax";

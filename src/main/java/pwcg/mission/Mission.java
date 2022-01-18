@@ -24,7 +24,7 @@ import pwcg.mission.options.MissionOptions;
 import pwcg.mission.options.MissionType;
 import pwcg.mission.options.MissionWeather;
 import pwcg.mission.target.AssaultDefinition;
-import pwcg.mission.unit.ITankUnit;
+import pwcg.mission.unit.ITankPlatoon;
 
 public class Mission
 {
@@ -41,7 +41,7 @@ public class Mission
     private MissionAirfields missionAirfields;
     private MissionFinalizer finalizer;
 
-    private MissionUnits missionUnits;
+    private MissionPlatoons missionPlatoons;
     private MissionFlights missionFlights;
     private SkinsInUse skinsInUse = new SkinsInUse();
 
@@ -82,7 +82,7 @@ public class Mission
         MissionStringHandler subtitleHandler = MissionStringHandler.getInstance();
         subtitleHandler.clear();
 
-        missionUnits = new MissionUnits(this);
+        missionPlatoons = new MissionPlatoons(this);
         groundUnitManager = new MissionGroundUnitResourceManager();
         groundUnitBuilder = new MissionGroundUnitBuilder(this);
         missionFlights = new MissionFlights(this);
@@ -100,8 +100,8 @@ public class Mission
 
     private void createPlayerUnits() throws PWCGException
     {
-        MissionUnitBuilder unitBuilder = new MissionUnitBuilder(this);
-        missionUnits = unitBuilder.createPlayerUnits(participatingPlayers);
+        MissionPlatoonBuilder platoonBuilder = new MissionPlatoonBuilder(this);
+        missionPlatoons = platoonBuilder.createPlatoons(participatingPlayers);
     }
 
     private void createStructuresBoxForMission() throws PWCGException
@@ -110,7 +110,7 @@ public class Mission
         MissionBlockBuilder blockBuilder = new MissionBlockBuilder(this, structureBorders);
         missionBlocks = blockBuilder.buildFixedPositionsForMission();
 
-        MissionAirfieldBuilder airfieldBuilder = new MissionAirfieldBuilder(this, structureBorders);
+        MissionAirfieldBuilder airfieldBuilder = new MissionAirfieldBuilder(structureBorders);
         missionAirfields = airfieldBuilder.buildFieldsForPatrol();
     }
 
@@ -209,7 +209,7 @@ public class Mission
     {
         boolean hasPlayerAllied = false;
         boolean hasPlayerAxis = false;
-        for (ITankUnit unit : missionUnits.getPlayerUnits())
+        for (ITankPlatoon unit : missionPlatoons.getPlayerUnits())
         {
             if (unit.getUnitInformation().getCountry().getSide() == Side.ALLIED)
             {
@@ -366,9 +366,9 @@ public class Mission
         return missionAirfields;
     }
 
-    public MissionUnits getUnits()
+    public MissionPlatoons getPlatoons()
     {
-        return missionUnits;
+        return missionPlatoons;
     }
 
     public MissionFlights getMissionFlights()

@@ -1,6 +1,6 @@
 package pwcg.core.config;
 
-public class ConfigSetAircraftNumbers
+public class ConfigSetTankNumbers
 {
 	public static ConfigSet initialize()
 	{

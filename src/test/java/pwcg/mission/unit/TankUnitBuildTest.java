@@ -26,13 +26,13 @@ public class TankUnitBuildTest
     }
 
 	@Test
-	public void tankUnitMissionCreateAndWriteTest() throws PWCGException
+	public void tankPlatoonMissionCreateAndWriteTest() throws PWCGException
 	{
         MissionGenerator missionGenerator = new MissionGenerator(campaign);
         Mission mission = missionGenerator.makeMission(TestMissionBuilderUtility.buildTestParticipatingHumans(campaign));
         mission.finalizeMission();
         mission.write();
-        ITankUnit unit = mission.getUnits().getPlayerUnits().get(0);
+        ITankPlatoon unit = mission.getPlatoons().getPlayerUnits().get(0);
         Assertions.assertNotNull(unit);
  	}
 }
