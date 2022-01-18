@@ -1,5 +1,7 @@
 package pwcg.mission.ground.builder;
 
+import java.util.Arrays;
+
 import pwcg.campaign.Campaign;
 import pwcg.campaign.api.ICountry;
 import pwcg.campaign.context.PWCGContext;
@@ -77,10 +79,9 @@ public class TruckUnitTransportBuilder
                 country, 
                 TargetType.TARGET_TRANSPORT,
                 startPosition, 
-                destination,
+                Arrays.asList(destination),
                 groundUnit.getOrientation());
 
-        groundUnitInformation.setDestination(destination);
         return groundUnitInformation;
     }
 

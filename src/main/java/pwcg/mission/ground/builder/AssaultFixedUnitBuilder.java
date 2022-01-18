@@ -1,9 +1,10 @@
 package pwcg.mission.ground.builder;
 
+import java.util.Arrays;
+
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.utils.MathUtils;
-import pwcg.core.utils.RandomNumberGenerator;
 import pwcg.mission.Mission;
 import pwcg.mission.ground.BattleSize;
 import pwcg.mission.ground.GroundUnitInformation;
@@ -18,7 +19,7 @@ import pwcg.mission.target.AssaultDefinition;
 import pwcg.mission.target.AssaultDefinitionGenerator;
 import pwcg.mission.target.TargetType;
 
-public class AssaultUnitBuilder
+public class AssaultFixedUnitBuilder
 {
     private Mission mission;
     private AssaultDefinition assaultDefinition;
@@ -26,7 +27,7 @@ public class AssaultUnitBuilder
 
     private GroundUnitCollection battleSegmentUnitCollection;
    
-    public AssaultUnitBuilder(Mission mission, AssaultDefinition assaultDefinition)
+    public AssaultFixedUnitBuilder(Mission mission, AssaultDefinition assaultDefinition)
 	{
         this.mission = mission;
         this.assaultDefinition = assaultDefinition;
@@ -52,14 +53,11 @@ public class AssaultUnitBuilder
 
     private void createAssault() throws PWCGException
     {
-        assaultingTanks();
         assaultingMachineGun();
-        if (assaultDefinition.getBattleSize() == BattleSize.BATTLE_SIZE_ASSAULT || assaultDefinition.getBattleSize() == BattleSize.BATTLE_SIZE_OFFENSIVE)
-        {
-            assaultingArtillery();
-            assaultingAAAMachineGun();
-            assaultingAAAArty();
-        }
+        assaultingATGunScreen();
+        assaultingArtillery();
+        assaultingAAAMachineGun();
+        assaultingAAAArty();
     }
 
     private void assaultingMachineGun() throws PWCGException
@@ -74,15 +72,15 @@ public class AssaultUnitBuilder
         battleSegmentUnitCollection.addGroundUnit(assaultingMachineGunUnit);
     }
 
-    private void assaultingTanks() throws PWCGException
-    {         
-        Coordinate tankAssaultStartPosition = MathUtils.calcNextCoord(
+    private void assaultingATGunScreen() throws PWCGException
+    { 
+        Coordinate antiTankDefensePosition = MathUtils.calcNextCoord(
                 assaultDefinition.getDefensePosition(), 
-                assaultDefinition.getTowardsAttackerOrientation().getyOri(), AssaultDefinitionGenerator.DISTANCE_BETWEEN_COMBATANTS + 1000.0);  
-        
-        GroundUnitInformation groundUnitInformation = buildAssaultGroundUnitInformation(tankAssaultStartPosition, "Tank", TargetType.TARGET_ARMOR);
-        IGroundUnit assaultTankUnit = assaultFactory.createAssaultTankUnit (groundUnitInformation);
-        battleSegmentUnitCollection.addGroundUnit(assaultTankUnit);
+                assaultDefinition.getTowardsAttackerOrientation().getyOri(), AssaultDefinitionGenerator.DISTANCE_BETWEEN_COMBATANTS + 200);  
+
+        GroundUnitInformation groundUnitInformation = buildDefenseGroundUnitInformation(antiTankDefensePosition, "Anti Tank Gun", TargetType.TARGET_ANTI_TANK);
+        IGroundUnit assaultAntiTankUnit = assaultFactory.createAntiTankGunUnit (groundUnitInformation);
+        battleSegmentUnitCollection.addGroundUnit(assaultAntiTankUnit);
     }
 
     private void assaultingArtillery() throws PWCGException
@@ -102,7 +100,7 @@ public class AssaultUnitBuilder
                 assaultDefinition.getDefensePosition(), 
                 assaultDefinition.getTowardsAttackerOrientation().getyOri(), AssaultDefinitionGenerator.DISTANCE_BETWEEN_COMBATANTS + 300.0);     
 
-        GroundUnitInformation groundUnitInformation = buildAssaultGroundUnitInformation(aaaMgAssaultPosition, "AA Machine Gun", TargetType.TARGET_INFANTRY);
+        GroundUnitInformation groundUnitInformation = buildAssaultGroundUnitInformation(aaaMgAssaultPosition, "AA Machine Gun", TargetType.TARGET_AAA);
         IGroundUnit assaultAAMachineGunUnit = assaultFactory.createAAMachineGunUnitUnit(groundUnitInformation);
         battleSegmentUnitCollection.addGroundUnit(assaultAAMachineGunUnit);
     }
@@ -113,7 +111,7 @@ public class AssaultUnitBuilder
                 assaultDefinition.getDefensePosition(), 
                 assaultDefinition.getTowardsAttackerOrientation().getyOri(), AssaultDefinitionGenerator.DISTANCE_BETWEEN_COMBATANTS + 1500.0);            
 
-        GroundUnitInformation groundUnitInformation = buildAssaultGroundUnitInformation(aaaArtyAssaultPosition, "AA Machine Gun", TargetType.TARGET_INFANTRY);
+        GroundUnitInformation groundUnitInformation = buildAssaultGroundUnitInformation(aaaArtyAssaultPosition, "AA Machine Gun", TargetType.TARGET_AAA);
         IGroundUnit assaultAAArtilleryUnit = assaultFactory.createAAArtilleryUnitUnit(groundUnitInformation);
         battleSegmentUnitCollection.addGroundUnit(assaultAAArtilleryUnit);
     }
@@ -126,7 +124,7 @@ public class AssaultUnitBuilder
                 assaultDefinition.getAssaultingCountry(),
                 targetType, 
                 unitPosition, 
-                assaultDefinition.getDefensePosition(), 
+                Arrays.asList(assaultDefinition.getDefensePosition()),
                 assaultDefinition.getTowardsDefenderOrientation());
         
         return groundUnitInformation;
@@ -139,7 +137,7 @@ public class AssaultUnitBuilder
     private void createDefenders() throws PWCGException
     {
         defendingMachineGun();
-        defendingATCapability();
+        defendingATGunScreen();
         if (assaultDefinition.getBattleSize() == BattleSize.BATTLE_SIZE_ASSAULT || assaultDefinition.getBattleSize() == BattleSize.BATTLE_SIZE_OFFENSIVE)
         {
             defendingArtillery();
@@ -156,37 +154,13 @@ public class AssaultUnitBuilder
         battleSegmentUnitCollection.addGroundUnit(defenseMachineGunUnit);
     }
 
-    private void defendingATCapability() throws PWCGException
-    {
-        int roll = RandomNumberGenerator.getRandom(100);
-        if (roll < 20)
-        {
-            defendingTanks();
-        }
-        else
-        {
-            defendingATGuns();
-        }
-    }
-
-    private void defendingTanks() throws PWCGException
-    {         
-        Coordinate tankDefenseStartPosition = MathUtils.calcNextCoord(
-                assaultDefinition.getAssaultPosition(), 
-                assaultDefinition.getTowardsDefenderOrientation().getyOri(), AssaultDefinitionGenerator.DISTANCE_BETWEEN_COMBATANTS + 1000.0);  
-        
-        GroundUnitInformation groundUnitInformation = buildAssaultGroundUnitInformation(tankDefenseStartPosition, "Tank", TargetType.TARGET_ARMOR);
-        IGroundUnit assaultTankUnit = assaultFactory.createAssaultTankUnit (groundUnitInformation);
-        battleSegmentUnitCollection.addGroundUnit(assaultTankUnit);
-    }
-
-    private void defendingATGuns() throws PWCGException
+    private void defendingATGunScreen() throws PWCGException
     { 
         Coordinate antiTankDefensePosition = MathUtils.calcNextCoord(
                 assaultDefinition.getDefensePosition(), 
-                assaultDefinition.getTowardsDefenderOrientation().getyOri(), AssaultDefinitionGenerator.DISTANCE_BETWEEN_COMBATANTS + 150.0);     
+                assaultDefinition.getTowardsDefenderOrientation().getyOri(), AssaultDefinitionGenerator.DISTANCE_BETWEEN_COMBATANTS + 200);     
 
-        GroundUnitInformation groundUnitInformation = buildDefenseGroundUnitInformation(antiTankDefensePosition, "Anti Tank Gun", TargetType.TARGET_INFANTRY);
+        GroundUnitInformation groundUnitInformation = buildDefenseGroundUnitInformation(antiTankDefensePosition, "Anti Tank Gun", TargetType.TARGET_ANTI_TANK);
         IGroundUnit defenseAntiTankUnit = assaultFactory.createAntiTankGunUnit (groundUnitInformation);
         battleSegmentUnitCollection.addGroundUnit(defenseAntiTankUnit);
     }
@@ -208,7 +182,7 @@ public class AssaultUnitBuilder
                 assaultDefinition.getDefensePosition(), 
                 assaultDefinition.getTowardsDefenderOrientation().getyOri(), AssaultDefinitionGenerator.DISTANCE_BETWEEN_COMBATANTS + 150.0);     
 
-        GroundUnitInformation groundUnitInformation = buildDefenseGroundUnitInformation(aaaMgDefensePosition, "Machine Gun AA", TargetType.TARGET_INFANTRY);
+        GroundUnitInformation groundUnitInformation = buildDefenseGroundUnitInformation(aaaMgDefensePosition, "Machine Gun AA", TargetType.TARGET_AAA);
         IGroundUnit defenseAAMachineGunUnit = assaultFactory.createAAMachineGunUnitUnit(groundUnitInformation);
         battleSegmentUnitCollection.addGroundUnit(defenseAAMachineGunUnit);
     }
@@ -219,7 +193,7 @@ public class AssaultUnitBuilder
                 assaultDefinition.getDefensePosition(), 
                 assaultDefinition.getTowardsDefenderOrientation().getyOri(), AssaultDefinitionGenerator.DISTANCE_BETWEEN_COMBATANTS + 1000.0);     
 
-        GroundUnitInformation groundUnitInformation = buildDefenseGroundUnitInformation(aaaArtilleryDefensePosition, "AA Artillery", TargetType.TARGET_ARTILLERY);
+        GroundUnitInformation groundUnitInformation = buildDefenseGroundUnitInformation(aaaArtilleryDefensePosition, "AA Artillery", TargetType.TARGET_AAA);
         IGroundUnit assaultAAArtilleryUnit = assaultFactory.createAAArtilleryUnitUnit(groundUnitInformation);
         battleSegmentUnitCollection.addGroundUnit(assaultAAArtilleryUnit);
     }
@@ -231,21 +205,13 @@ public class AssaultUnitBuilder
                 assaultDefinition.getDefendingCountry(),
                 targetType, 
                 unitPosition, 
-                assaultDefinition.getAssaultPosition(), 
+                Arrays.asList(assaultDefinition.getAssaultPosition()),
                 assaultDefinition.getTowardsAttackerOrientation());
         return groundUnitInformation;
     }
 
     public IGroundUnit getPrimaryGroundUnit() throws PWCGException
     {
-        for (IGroundUnit groundUnit : battleSegmentUnitCollection.getGroundUnits())
-        {
-            if (groundUnit.getName().endsWith("Tank"))
-            {
-                return groundUnit;
-            }
-        }
-
         for (IGroundUnit groundUnit : battleSegmentUnitCollection.getGroundUnits())
         {
             if (groundUnit.getName().endsWith("Machine Gun"))
@@ -256,4 +222,4 @@ public class AssaultUnitBuilder
         
         return battleSegmentUnitCollection.getGroundUnits().get(0);
     }
- }
+}

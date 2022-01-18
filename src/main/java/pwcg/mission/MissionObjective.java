@@ -55,7 +55,7 @@ public class MissionObjective
 
     public Coordinate getPosition()
     {
-        return objectiveLocation;
+        return objectiveLocation.copy();
     }
 
     public ICountry getAssaultingCountry()

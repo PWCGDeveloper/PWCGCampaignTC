@@ -74,7 +74,7 @@ public class AssaultBuilderTest
     public GroundUnitCollection createLargeAssaultTest () throws PWCGException 
     {
         Coordinate assaultPosition = new Coordinate(150000, 0, 150000);
-        GroundUnitCollection groundUnitGroup = AssaultBuilder.generateAssault(mission, assaultPosition);
+        GroundUnitCollection groundUnitGroup = AssaultFixedUnitSegmentBuilder.generateAssault(mission, assaultPosition);
         
         Assertions.assertTrue (groundUnitGroup.getGroundUnits().size() >= 10);
         groundUnitGroup.validate();

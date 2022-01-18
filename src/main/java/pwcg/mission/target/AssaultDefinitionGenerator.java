@@ -15,17 +15,20 @@ import pwcg.mission.ground.BattleSize;
 
 public class AssaultDefinitionGenerator
 {
-    public static final int DISTANCE_FROM_OBJECTIVE = 800;
+    public static final int DISTANCE_FROM_OBJECTIVE = 1400;
     public static final int DISTANCE_BETWEEN_COMBATANTS = 200;
+    public static final int UNIT_FRONTAGE = 1000;
 
     private Campaign campaign;
+    private int segmentNumber;
     private MissionObjective objective;
     private AssaultDefinition assaultDefinition = new AssaultDefinition();
 
-    public AssaultDefinitionGenerator(Mission mission)
+    public AssaultDefinitionGenerator(Mission mission, int segmentNumber)
     {
         this.campaign = mission.getCampaign();
         this.objective = mission.getObjective();
+        this.segmentNumber = segmentNumber;
     }
 
     public AssaultDefinition generateAssaultDefinition() throws PWCGException
@@ -47,6 +50,7 @@ public class AssaultDefinitionGenerator
 
     private void completeBattleDefinition(ICountry defendingCountry, ICountry assaultingCountry, BattleSize battleSize, Coordinate defensePosition, Coordinate assaultPosition) throws PWCGException
     {
+        assaultDefinition.setObjectivePosition(objective.getPosition().copy());
         assaultDefinition.setAssaultPosition(assaultPosition);
         assaultDefinition.setDefensePosition(defensePosition);
         assaultDefinition.setBattleSize(battleSize);
@@ -57,10 +61,23 @@ public class AssaultDefinitionGenerator
     private Coordinate getDefensePosition(ICountry assaultingCountry) throws PWCGException
     {
         double angleTowardsFront = calculateBattleOrientation(assaultingCountry.getSide());
-        double distanceFromObjective = DISTANCE_FROM_OBJECTIVE + RandomNumberGenerator.getRandom(1200);
+        double distanceFromObjective = DISTANCE_FROM_OBJECTIVE + RandomNumberGenerator.getRandom(500);
 
-        Coordinate assaultDefensePosition = MathUtils.calcNextCoord(objective.getPosition(), angleTowardsFront, distanceFromObjective);
-        return assaultDefensePosition;
+        Coordinate defensePosition = MathUtils.calcNextCoord(objective.getPosition(), angleTowardsFront, distanceFromObjective);
+        defensePosition = offsetForSegmentNumber(assaultingCountry, defensePosition);
+        return defensePosition;
+    }
+
+    private Coordinate offsetForSegmentNumber(ICountry assaultingCountry, Coordinate defensePosition) throws PWCGException
+    {
+        double angleTowardsFront = calculateBattleOrientation(assaultingCountry.getSide());
+        double angleForSegment = MathUtils.adjustAngle(angleTowardsFront, 90);
+        if(segmentNumber%2 > 0)
+        {
+            angleForSegment = MathUtils.adjustAngle(angleTowardsFront, 270);
+        }
+        Coordinate segmentDefensePosition = MathUtils.calcNextCoord(defensePosition, angleForSegment, AssaultDefinitionGenerator.UNIT_FRONTAGE + 100);
+        return segmentDefensePosition;
     }
 
     private Coordinate getAssaultPositionAcrossFromAssaultingUnit(Side assaultingSide, Coordinate defensePosition) throws PWCGException

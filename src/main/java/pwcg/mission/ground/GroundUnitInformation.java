@@ -1,6 +1,8 @@
 package pwcg.mission.ground;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import pwcg.campaign.api.ICountry;
 import pwcg.campaign.context.Country;
@@ -15,10 +17,9 @@ public class GroundUnitInformation
     private String name = "";
     private Date date;
     private Coordinate position = new Coordinate();
-    private Coordinate destination = new Coordinate();
+    private List<Coordinate> destinations = new ArrayList<>();
 	private Orientation orientation = new Orientation();
     private TargetType targetType = TargetType.TARGET_NONE;
-    private GroundUnitSize unitSize = GroundUnitSize.GROUND_UNIT_SIZE_MEDIUM;
     private String requestedUnitType = "";
 
     public ICountry getCountry()
@@ -53,12 +54,16 @@ public class GroundUnitInformation
 
     public Coordinate getDestination()
     {
-        return destination;
+        if (!destinations.isEmpty())
+        {
+            return destinations.get(destinations.size()-1);
+        }
+        return null;
     }
 
-    public void setDestination(Coordinate destination)
+    public void addDestination(Coordinate destination)
     {
-        this.destination = destination;
+        this.destinations.add(destination);
     }
 
     public Orientation getOrientation()
@@ -79,16 +84,6 @@ public class GroundUnitInformation
     public void setTargetType(TargetType targetType)
     {
         this.targetType = targetType;
-    }
-
-    public GroundUnitSize getUnitSize()
-    {
-        return unitSize;
-    }
-
-    public void setUnitSize(GroundUnitSize unitSize)
-    {
-        this.unitSize = unitSize;
     }
 
     public Date getDate()

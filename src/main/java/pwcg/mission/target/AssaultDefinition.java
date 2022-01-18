@@ -12,6 +12,7 @@ public class AssaultDefinition
 {
     private static final Integer CLOSE_TO_BATTLE = 10000;
 
+    private Coordinate objectivePosition = null;
     private Coordinate assaultPosition = null;
     private Coordinate defensePosition = null;
     private BattleSize battleSize;
@@ -138,4 +139,16 @@ public class AssaultDefinition
     {
         this.defendingCountry = defendingCountry;
     }
+
+    public Coordinate getObjectivePosition()
+    {
+        return objectivePosition;
+    }
+
+    public void setObjectivePosition(Coordinate objectivePosition)
+    {
+        this.objectivePosition = objectivePosition;
+    }
+    
+    
 }

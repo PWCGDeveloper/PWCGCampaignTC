@@ -13,7 +13,6 @@ import pwcg.core.utils.MathUtils;
 import pwcg.mission.Mission;
 import pwcg.mission.ground.GroundUnitInformation;
 import pwcg.mission.ground.GroundUnitInformationFactory;
-import pwcg.mission.ground.GroundUnitSize;
 import pwcg.mission.ground.org.GroundUnitCollection;
 import pwcg.mission.ground.org.GroundUnitCollectionData;
 import pwcg.mission.ground.org.GroundUnitCollectionType;
@@ -78,7 +77,7 @@ public class AmphibiousAssaultAttackBuilder
     {         
         Coordinate tankAssaultStartPosition = MathUtils.calcNextCoord(amphibiousPositionBuilder.getAssaultPosition(), amphibiousPositionBuilder.getAssaultOrientation().getyOri(), 100);  
 
-        GroundUnitInformation groundUnitInformation = buildAssaultGroundUnitInformation(tankAssaultStartPosition, "Tank", TargetType.TARGET_ARMOR, GroundUnitSize.GROUND_UNIT_SIZE_LOW);
+        GroundUnitInformation groundUnitInformation = buildAssaultGroundUnitInformation(tankAssaultStartPosition, "Tank", TargetType.TARGET_ARMOR);
         if (amphibiousAssault.getAggressorCountry() == Country.RUSSIA)
         {
             groundUnitInformation.setRequestedUnitType("t70");
@@ -96,12 +95,12 @@ public class AmphibiousAssaultAttackBuilder
     { 
         Coordinate aaaMgAssaultPosition = MathUtils.calcNextCoord(amphibiousPositionBuilder.getAssaultPosition(), amphibiousPositionBuilder.getAssaultOrientation().getyOri(), 50);  
 
-        GroundUnitInformation groundUnitInformation = buildAssaultGroundUnitInformation(aaaMgAssaultPosition, "AA Machine Gun", TargetType.TARGET_INFANTRY, GroundUnitSize.GROUND_UNIT_SIZE_TINY);
+        GroundUnitInformation groundUnitInformation = buildAssaultGroundUnitInformation(aaaMgAssaultPosition, "AA Machine Gun", TargetType.TARGET_INFANTRY);
         IGroundUnit assaultAAMachineGunUnit = assaultFactory.createAAMachineGunUnitUnit(groundUnitInformation);
         amphibiousAssaultAttack.addGroundUnit(assaultAAMachineGunUnit);
     }
 
-    private GroundUnitInformation buildAssaultGroundUnitInformation(Coordinate unitPosition, String unitName, TargetType targetType, GroundUnitSize groundUnitSize) throws PWCGException
+    private GroundUnitInformation buildAssaultGroundUnitInformation(Coordinate unitPosition, String unitName, TargetType targetType) throws PWCGException
     {
         GroundUnitInformation groundUnitInformation = GroundUnitInformationFactory.buildGroundUnitInformation(
                 mission.getCampaign(), 
@@ -111,8 +110,6 @@ public class AmphibiousAssaultAttackBuilder
                 amphibiousPositionBuilder.getDefensePosition(), 
                 amphibiousPositionBuilder.getAssaultOrientation());
         
-        groundUnitInformation.setUnitSize(groundUnitSize);
-
         return groundUnitInformation;
     }
 

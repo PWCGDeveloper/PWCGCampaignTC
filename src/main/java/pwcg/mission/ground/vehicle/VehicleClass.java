@@ -16,7 +16,7 @@ public enum VehicleClass implements IWeight
     
     Balloon(false, "Balloon", GroundUnitType.BALLOON_UNIT, TargetType.TARGET_BALLOON, 0),
     
-    ArtilleryAntiTank(false, "Anti Tank Gun", GroundUnitType.INFANTRY_UNIT, TargetType.TARGET_INFANTRY, 10),
+    ArtilleryAntiTank(false, "Anti Tank Gun", GroundUnitType.ANTI_TANK_UNIT, TargetType.TARGET_ANTI_TANK, 10),
     MachineGun(false, "Machine Gun", GroundUnitType.INFANTRY_UNIT, TargetType.TARGET_INFANTRY, 10),
     
     Tank(false, "Tank", GroundUnitType.TANK_UNIT, TargetType.TARGET_ARMOR, 2),

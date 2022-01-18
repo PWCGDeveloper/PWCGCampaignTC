@@ -1,22 +1,22 @@
 package pwcg.mission.ground.unittypes.artillery;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
-import pwcg.core.utils.MathUtils;
 import pwcg.mission.ground.GroundUnitInformation;
-import pwcg.mission.ground.GroundUnitSize;
 import pwcg.mission.ground.org.GroundAspectAreaFire;
 import pwcg.mission.ground.org.GroundUnit;
 import pwcg.mission.ground.org.GroundUnitElement;
+import pwcg.mission.ground.org.GroundUnitLineAbreastPosition;
 import pwcg.mission.ground.org.GroundUnitNumberCalculator;
 import pwcg.mission.ground.org.IGroundAspect;
 import pwcg.mission.ground.vehicle.VehicleClass;
 
 public class GroundArtilleryBattery extends GroundUnit
 {
+    private static final int ARTILLERY_SPACING = 40;
+    
     public GroundArtilleryBattery(GroundUnitInformation pwcgGroundUnitInformation)
     {
         super(VehicleClass.ArtilleryHowitzer, pwcgGroundUnitInformation);
@@ -26,55 +26,23 @@ public class GroundArtilleryBattery extends GroundUnit
     public void createGroundUnit() throws PWCGException 
     {
         super.createSpawnTimer();
-        List<Coordinate> vehicleStartPositions = createVehicleStartPositions();
+        int numVehicles = calcNumUnits();
+        List<Coordinate> vehicleStartPositions = GroundUnitLineAbreastPosition.createVehicleStartPositions(
+                groundUnitInformation, numVehicles, (numVehicles + 2) * ARTILLERY_SPACING);
         super.createVehicles(vehicleStartPositions);
         addAspects();
         super.linkElements();
     }
-
-    private List<Coordinate> createVehicleStartPositions() throws PWCGException 
-    {
-        List<Coordinate> spawnerLocations = new ArrayList<>();
-
-        int numArtillery = calcNumUnits();
-
-        double startLocationOrientation = MathUtils.adjustAngle (groundUnitInformation.getOrientation().getyOri(), 270);             
-        double gunSpacing = 30.0;
-        Coordinate gunCoords = MathUtils.calcNextCoord(groundUnitInformation.getPosition(), startLocationOrientation, ((numArtillery * gunSpacing) / 2));       
-        
-        // Direction in which subsequent units will be placed
-        double placementOrientation = MathUtils.adjustAngle (groundUnitInformation.getOrientation().getyOri(), 90.0);        
-
-        for (int i = 0; i < numArtillery; ++i)
-        {   
-            gunCoords = MathUtils.calcNextCoord(gunCoords, placementOrientation, gunSpacing);
-            spawnerLocations.add(gunCoords);
-        }
-        return spawnerLocations;
-    }
-
+    
     private int calcNumUnits() throws PWCGException
     {
-        if (groundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_LOW)
-        {
-            return GroundUnitNumberCalculator.calcNumUnits(2, 4);
-        }
-        else if (groundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_MEDIUM)
-        {
-            return GroundUnitNumberCalculator.calcNumUnits(3, 6);
-        }
-        else if (groundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_HIGH)
-        {
-            return GroundUnitNumberCalculator.calcNumUnits(4, 8);
-        }
-        
-        throw new PWCGException ("No unit size provided for ground unit");
+        return GroundUnitNumberCalculator.calcNumUnits(3, 5);
     }
 
     private void addAspects() throws PWCGException
     {
         super.addIndirectFireAspect();
-     }
+    }
 
     public void setTargetPosition(Coordinate targetPosition)
     {

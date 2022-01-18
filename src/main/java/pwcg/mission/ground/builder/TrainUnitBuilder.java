@@ -1,5 +1,7 @@
 package pwcg.mission.ground.builder;
 
+import java.util.Arrays;
+
 import pwcg.campaign.Campaign;
 import pwcg.campaign.api.ICountry;
 import pwcg.campaign.context.PWCGContext;
@@ -65,10 +67,9 @@ public class TrainUnitBuilder
                 country, 
                 TargetType.TARGET_TRAIN,
                 station.getPosition(), 
-                destination,
+                Arrays.asList(destination),
                 station.getOrientation());
                 
-        groundUnitInformation.setDestination(destination);
         return groundUnitInformation;
     }
 

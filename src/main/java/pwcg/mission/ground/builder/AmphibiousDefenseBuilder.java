@@ -12,7 +12,6 @@ import pwcg.core.utils.MathUtils;
 import pwcg.mission.Mission;
 import pwcg.mission.ground.GroundUnitInformation;
 import pwcg.mission.ground.GroundUnitInformationFactory;
-import pwcg.mission.ground.GroundUnitSize;
 import pwcg.mission.ground.org.GroundUnitCollection;
 import pwcg.mission.ground.org.GroundUnitCollectionData;
 import pwcg.mission.ground.org.GroundUnitCollectionType;
@@ -122,9 +121,7 @@ public class AmphibiousDefenseBuilder
                 unitPosition, 
                 unitPosition, 
                 amphibiousPositionBuilder.getDefenseOrientation());
-        
-        groundUnitInformation.setUnitSize(GroundUnitSize.GROUND_UNIT_SIZE_TINY);
-        
+                
         return groundUnitInformation;
     }
  }

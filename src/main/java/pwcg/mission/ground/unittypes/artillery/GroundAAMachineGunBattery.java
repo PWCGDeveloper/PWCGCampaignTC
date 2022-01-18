@@ -6,7 +6,6 @@ import java.util.List;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.mission.ground.GroundUnitInformation;
-import pwcg.mission.ground.GroundUnitSize;
 import pwcg.mission.ground.org.GroundUnit;
 import pwcg.mission.ground.org.GroundUnitNumberCalculator;
 import pwcg.mission.ground.vehicle.VehicleClass;
@@ -68,20 +67,7 @@ public class GroundAAMachineGunBattery extends GroundUnit
 
     protected int calcNumUnits() throws PWCGException
     {
-        if (groundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_LOW)
-        {
-            return GroundUnitNumberCalculator.calcNumUnits(1, 2);
-        }
-        else if (groundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_MEDIUM)
-        {
-            return GroundUnitNumberCalculator.calcNumUnits(1, 2);
-        }
-        else if (groundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_HIGH)
-        {
-            return GroundUnitNumberCalculator.calcNumUnits(1, 2);
-        }
-        
-        throw new PWCGException ("No unit size provided for ground unit");
+        return GroundUnitNumberCalculator.calcNumUnits(1, 2);
     }
 
     protected void addAspects() throws PWCGException

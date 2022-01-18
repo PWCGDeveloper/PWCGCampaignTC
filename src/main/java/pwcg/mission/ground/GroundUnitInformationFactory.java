@@ -1,5 +1,7 @@
 package pwcg.mission.ground;
 
+import java.util.List;
+
 import pwcg.campaign.Campaign;
 import pwcg.campaign.api.ICountry;
 import pwcg.core.exception.PWCGException;
@@ -14,7 +16,7 @@ public class GroundUnitInformationFactory
             ICountry country, 
             TargetType targetType,
             Coordinate startCoords, 
-            Coordinate targetCoords,
+            List<Coordinate> targetCoords,
             Orientation orientation) throws PWCGException
     {
         GroundUnitInformation groundUnitInformation = new GroundUnitInformation();
@@ -23,12 +25,12 @@ public class GroundUnitInformationFactory
         groundUnitInformation.setDate(campaign.getDate());
         groundUnitInformation.setTargetType(targetType);
         groundUnitInformation.setPosition(startCoords);
-        groundUnitInformation.setDestination(targetCoords);
+        for (Coordinate destination : targetCoords)
+        {
+            groundUnitInformation.addDestination(destination);
+        }
         groundUnitInformation.setOrientation(orientation);
         
-        GroundUnitSize unitSize = GroundUnitSize.calcNumUnitsByConfig(campaign);
-        groundUnitInformation.setUnitSize(unitSize);
-
         return groundUnitInformation;
     }
 }

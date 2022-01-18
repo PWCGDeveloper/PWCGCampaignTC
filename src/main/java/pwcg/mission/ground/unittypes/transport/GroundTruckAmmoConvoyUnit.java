@@ -7,7 +7,6 @@ import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.utils.MathUtils;
 import pwcg.mission.ground.GroundUnitInformation;
-import pwcg.mission.ground.GroundUnitSize;
 import pwcg.mission.ground.org.GroundUnit;
 import pwcg.mission.ground.org.GroundUnitNumberCalculator;
 import pwcg.mission.ground.vehicle.VehicleClass;
@@ -33,20 +32,7 @@ public class GroundTruckAmmoConvoyUnit extends GroundUnit
 
     private int calcNumUnits() throws PWCGException
     {
-        if (groundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_LOW)
-        {
-            return GroundUnitNumberCalculator.calcNumUnits(1, 1);
-        }
-        else if (groundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_MEDIUM)
-        {
-            return GroundUnitNumberCalculator.calcNumUnits(1, 2);
-        }
-        else if (groundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_HIGH)
-        {
-            return GroundUnitNumberCalculator.calcNumUnits(1, 2);
-        }
-        
-        throw new PWCGException ("No unit size provided for ground unit");
+        return GroundUnitNumberCalculator.calcNumUnits(1, 2);
     }
 
     private List<Coordinate> createVehicleStartPositions(int numvehicles) throws PWCGException 

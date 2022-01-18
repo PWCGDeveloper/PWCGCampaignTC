@@ -7,7 +7,6 @@ import pwcg.campaign.battle.AmphibiousAssault;
 import pwcg.campaign.battle.AmphibiousAssaultShipDefinition;
 import pwcg.core.exception.PWCGException;
 import pwcg.mission.Mission;
-import pwcg.mission.ground.GroundUnitSize;
 import pwcg.mission.ground.org.GroundUnitCollection;
 
 public class AmphibiousAssaultBuilder implements IBattleBuilder
@@ -74,17 +73,7 @@ public class AmphibiousAssaultBuilder implements IBattleBuilder
 
     private List<AmphibiousAssaultShipDefinition> getLandingCraftForAssault() throws PWCGException
     {
-        GroundUnitSize groundUnitSizeConfig = GroundUnitSize.calcNumUnitsByConfig(mission.getCampaign());
-        int numLandingCraft = 3;
-        if (groundUnitSizeConfig == GroundUnitSize.GROUND_UNIT_SIZE_MEDIUM)
-        {
-            numLandingCraft = 6;
-        }
-        else if (groundUnitSizeConfig == GroundUnitSize.GROUND_UNIT_SIZE_HIGH)
-        {
-            numLandingCraft = 9;
-        }
-        
+        int numLandingCraft = 12;        
         amphibiousAssault.shuffleLandingCraft();;
         List<AmphibiousAssaultShipDefinition> shipsForMission = new ArrayList<>();
         for (int i = 0; i < numLandingCraft; ++ i)

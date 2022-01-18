@@ -1,5 +1,7 @@
 package pwcg.mission.ground.builder;
 
+import java.util.Arrays;
+
 import pwcg.campaign.Campaign;
 import pwcg.campaign.api.ICountry;
 import pwcg.core.exception.PWCGException;
@@ -34,7 +36,7 @@ public class DrifterUnitBuilder
                 country, 
                 TargetType.TARGET_DRIFTER,
                 position.getPosition(), 
-                position.getPosition(),
+                Arrays.asList(position.getPosition()),
                 position.getOrientation());
 
         IGroundUnit drifterUnit = new DrifterUnit(groundUnitInformation);

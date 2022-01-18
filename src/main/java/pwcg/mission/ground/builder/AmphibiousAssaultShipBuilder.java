@@ -1,6 +1,7 @@
 package pwcg.mission.ground.builder;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import pwcg.campaign.api.ICountry;
@@ -13,7 +14,6 @@ import pwcg.core.utils.MathUtils;
 import pwcg.mission.Mission;
 import pwcg.mission.ground.GroundUnitInformation;
 import pwcg.mission.ground.GroundUnitInformationFactory;
-import pwcg.mission.ground.GroundUnitSize;
 import pwcg.mission.ground.org.GroundUnitCollection;
 import pwcg.mission.ground.org.GroundUnitCollectionData;
 import pwcg.mission.ground.org.GroundUnitCollectionType;
@@ -110,11 +110,9 @@ public class AmphibiousAssaultShipBuilder
                 targetDefinition.getCountry(), 
                 TargetType.TARGET_SHIPPING,
                 targetDefinition.getPosition(), 
-                amphibiousAssaultShip.getDestination(),
+                Arrays.asList(amphibiousAssaultShip.getDestination()),
                 amphibiousAssaultShip.getOrientation().copy());
 
-        groundUnitInformation.setDestination(amphibiousAssaultShip.getDestination());
-        groundUnitInformation.setUnitSize(GroundUnitSize.GROUND_UNIT_SIZE_TINY);
         return groundUnitInformation;
     }
 

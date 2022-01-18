@@ -9,7 +9,6 @@ import pwcg.core.location.Coordinate;
 import pwcg.core.location.Orientation;
 import pwcg.core.utils.MathUtils;
 import pwcg.mission.ground.GroundUnitInformation;
-import pwcg.mission.ground.GroundUnitSize;
 import pwcg.mission.ground.org.GroundUnit;
 import pwcg.mission.ground.org.GroundUnitNumberCalculator;
 import pwcg.mission.ground.vehicle.VehicleClass;
@@ -70,35 +69,7 @@ public class DrifterUnit extends GroundUnit
 
     private int calcNumUnits(VehicleDefinition vehicleDefinition) throws PWCGException
     {
-        int numUnits = 1;
-        if (groundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_LOW)
-        {
-            numUnits = GroundUnitNumberCalculator.calcNumUnits(2, 3);
-        }
-        else if (groundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_MEDIUM)
-        {
-            numUnits = GroundUnitNumberCalculator.calcNumUnits(2, 4);
-        }
-        else if (groundUnitInformation.getUnitSize() == GroundUnitSize.GROUND_UNIT_SIZE_HIGH)
-        {
-            numUnits = GroundUnitNumberCalculator.calcNumUnits(3, 6);
-        }
-        
-        if (vehicleDefinition.getVehicleLength() > 200.0)
-        {
-            if (numUnits > 2)
-            {
-                numUnits = 2;
-            }
-        }
-        else if (vehicleDefinition.getVehicleLength() > 50.0)
-        {
-            if (numUnits > 3)
-            {
-                numUnits = 3;
-            }
-        }
-        
+        int numUnits = GroundUnitNumberCalculator.calcNumUnits(2, 3);
         return numUnits;
     }
 }

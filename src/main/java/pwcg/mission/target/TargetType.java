@@ -6,6 +6,8 @@ public enum TargetType
     
     TARGET_ARTILLERY("Artillery", TargetCategory.TARGET_CATEGORY_SOFT),
     TARGET_ARMOR("Armor", TargetCategory.TARGET_CATEGORY_ARMORED),
+    TARGET_ANTI_TANK("Anti Tank", TargetCategory.TARGET_CATEGORY_SOFT),
+    TARGET_AAA("AAA", TargetCategory.TARGET_CATEGORY_SOFT),
     TARGET_INFANTRY("Infantry", TargetCategory.TARGET_CATEGORY_SOFT),
     TARGET_TRANSPORT("transport units", TargetCategory.TARGET_CATEGORY_SOFT),
     TARGET_TRAIN("train", TargetCategory.TARGET_CATEGORY_ARMORED),
