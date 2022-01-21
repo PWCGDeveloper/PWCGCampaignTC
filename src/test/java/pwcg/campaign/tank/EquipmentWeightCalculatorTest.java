@@ -13,7 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.resupply.depot.EquipmentWeightCalculator;
-import pwcg.campaign.tank.TankType;
+import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 
@@ -30,9 +30,9 @@ public class EquipmentWeightCalculatorTest
     @Test
     public void testEquipCompanyGermanFighter() throws PWCGException
     {
-        TankType me109F4 = PWCGContext.getInstance().getTankTypeFactory().getTankById("bf109f4");
-        TankType me109G2 = PWCGContext.getInstance().getTankTypeFactory().getTankById("bf109g2");
-        List<TankType> planeTypes = new ArrayList<>();
+        TankTypeInformation me109F4 = PWCGContext.getInstance().getTankTypeFactory().getTankById("bf109f4");
+        TankTypeInformation me109G2 = PWCGContext.getInstance().getTankTypeFactory().getTankById("bf109g2");
+        List<TankTypeInformation> planeTypes = new ArrayList<>();
         planeTypes.add(me109F4);
         planeTypes.add(me109G2);
         

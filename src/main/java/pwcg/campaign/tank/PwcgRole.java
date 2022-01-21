@@ -9,7 +9,7 @@ public enum PwcgRole
     ROLE_TRAIN_BUSTER (PwcgRoleCategory.ATTACK, "Train Buster"),
     ROLE_TANK_BUSTER (PwcgRoleCategory.ATTACK, "Tank Buster"),
     ROLE_DIVE_BOMB (PwcgRoleCategory.ATTACK, "Dive Bomb"),
-    ROLE_BOMB (PwcgRoleCategory.BOMBER, "Bomber"),
+    ROLE_BOMBER (PwcgRoleCategory.BOMBER, "Bomber"),
     ROLE_TRANSPORT (PwcgRoleCategory.TRANSPORT, "Transport"),
 
     ROLE_GROUND_UNIT (PwcgRoleCategory.OTHER, "Ground Unit"),

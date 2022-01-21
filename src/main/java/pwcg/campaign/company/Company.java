@@ -35,23 +35,25 @@ import pwcg.campaign.tank.EquippedTank;
 import pwcg.campaign.tank.PwcgRole;
 import pwcg.campaign.tank.PwcgRoleCategory;
 import pwcg.campaign.tank.TankArchType;
-import pwcg.campaign.tank.TankType;
+import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.core.constants.Callsign;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.utils.DateUtils;
 import pwcg.core.utils.MathUtils;
+import pwcg.mission.ICompanyMission;
 import pwcg.product.bos.config.TCProductSpecificConfiguration;
 
-public class Company 
+public class Company implements ICompanyMission 
 {
-    public static final Integer HOME_ASSIGNMENT = -2;
-    public static final Integer REPLACEMENT = -1;
-    public static final Integer Company_ID_ANY = -1;
-    public static final Integer COMPANY_STAFF_SIZE = 16;
-    public static final Integer COMPANY_EQUIPMENT_SIZE = 16;
-    public static final Integer MIN_REEQUIPMENT_SIZE = 10;
-    public static final Integer REPLACEMENTS_TANKS_PER_COMPANY = 3;
+    public static final int HOME_ASSIGNMENT = -2;
+    public static final int REPLACEMENT = -1;
+    public static final int Company_ID_ANY = -1;
+    public static final int COMPANY_STAFF_SIZE = 16;
+    public static final int COMPANY_EQUIPMENT_SIZE = 16;
+    public static final int MIN_REEQUIPMENT_SIZE = 10;
+    public static final int REPLACEMENTS_TANKS_PER_COMPANY = 3;
+    public static final int AI = 0;
     private Country country = Country.NEUTRAL;
 	private int companyId = 0;
     private String name = "";
@@ -80,9 +82,9 @@ public class Company
         return false;
 	}
 
-	public List<TankType> determineCurrentAircraftList(Date now) throws PWCGException
+	public List<TankTypeInformation> determineCurrentAircraftList(Date now) throws PWCGException
 	{
-		TreeMap<String, TankType> currentAircraftByGoodness = new TreeMap<>();
+		TreeMap<String, TankTypeInformation> currentAircraftByGoodness = new TreeMap<>();
 		
 		for (CompanyTankAssignment planeAssignment : tankAssignments)
 		{
@@ -93,17 +95,17 @@ public class Company
 			{
 				if (withdrawal.after(now) || withdrawal.equals((now)))
 				{
-				    List<TankType> planeTypesForArchType = PWCGContext.getInstance().getTankTypeFactory().createActiveTankTypesForArchType(planeAssignment.getArchType(), now);
-				    for (TankType planeType : planeTypesForArchType)
+				    List<TankTypeInformation> planeTypesForArchType = PWCGContext.getInstance().getTankTypeFactory().createActiveTankTypesForArchType(planeAssignment.getArchType(), now);
+				    for (TankTypeInformation planeType : planeTypesForArchType)
 				    {
-				        TankType plane = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(planeType.getType());
+				        TankTypeInformation plane = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(planeType.getType());
 				        currentAircraftByGoodness.put("" + plane.getGoodness() + planeType.getType(), plane);
 				    }
 				}
 			}			
 		}
 		
-		List<TankType> currentAircraftByQuality = new ArrayList<TankType>();
+		List<TankTypeInformation> currentAircraftByQuality = new ArrayList<TankTypeInformation>();
 		currentAircraftByQuality.addAll(currentAircraftByGoodness.values());
 		
 		return currentAircraftByQuality;
@@ -320,9 +322,9 @@ public class Company
 		String fieldName = determineCurrentAirfieldName(date);
 		companyDescription += fieldName + "\n\n";
 		
-		List<TankType> planes = determineCurrentAircraftList(date);
+		List<TankTypeInformation> planes = determineCurrentAircraftList(date);
 		companyDescription += "Operating the:\n";
-		for (TankType plane : planes)
+		for (TankTypeInformation plane : planes)
 		{
 			companyDescription += "    " + plane.getDisplayName() + "\n";
 		}
@@ -440,11 +442,11 @@ public class Company
         this.conversionPeriods = conversionPeriods;
     }
 
-    public TankType determineBestPlane(Date date) throws PWCGException
+    public TankTypeInformation determineBestPlane(Date date) throws PWCGException
     {
-        TankType bestPlane = null;
-        List<TankType> planes = this.determineCurrentAircraftList(date);
-        for (TankType plane : planes)
+        TankTypeInformation bestPlane = null;
+        List<TankTypeInformation> planes = this.determineCurrentAircraftList(date);
+        for (TankTypeInformation plane : planes)
         {
             if (bestPlane == null)
             {
@@ -462,19 +464,19 @@ public class Company
         return bestPlane;
     }
     
-    public TankType determineEarliestPlane() throws PWCGException
+    public TankTypeInformation determineEarliestPlane() throws PWCGException
     {
-        TreeMap<Date, TankType> planeTypesTypeByIntroduction = new TreeMap<>();
+        TreeMap<Date, TankTypeInformation> planeTypesTypeByIntroduction = new TreeMap<>();
         for (CompanyTankAssignment planeAssignment : tankAssignments)
         {
-            List<TankType> planeTypesForArchType = PWCGContext.getInstance().getTankTypeFactory().createTanksByIntroduction(planeAssignment.getArchType());
-            for (TankType planeType : planeTypesForArchType)
+            List<TankTypeInformation> planeTypesForArchType = PWCGContext.getInstance().getTankTypeFactory().createTanksByIntroduction(planeAssignment.getArchType());
+            for (TankTypeInformation planeType : planeTypesForArchType)
             {
                 planeTypesTypeByIntroduction.put(planeType.getIntroduction(), planeType);
             }
         }
  
-        List<TankType> planes = new ArrayList<>(planeTypesTypeByIntroduction.values());
+        List<TankTypeInformation> planes = new ArrayList<>(planeTypesTypeByIntroduction.values());
         return planes.get(0);
     }
 
@@ -491,8 +493,8 @@ public class Company
         }
         
         companyInfo.append(DateUtils.getDateString(campaignDate) + "\n");
-        List <TankType> planes = determineCurrentAircraftList(campaignDate);
-        for (TankType plane : planes)
+        List <TankTypeInformation> planes = determineCurrentAircraftList(campaignDate);
+        for (TankTypeInformation plane : planes)
         {
             companyInfo.append(plane.getDisplayName() + "   ");
         }
@@ -786,5 +788,23 @@ public class Company
     public PwcgRoleCategory determineCompanyPrimaryRoleCategory(Date date) throws PWCGException
     {
         return companyRoles.selectCompanyPrimaryRoleCategory(date);
+    }
+
+    @Override
+    public Coordinate determinePosition(Date campaignDate) throws PWCGException
+    {
+        return this.determineCurrentPosition(campaignDate);
+    }
+
+    @Override
+    public String determineBaseName(Date campaignDate)
+    {
+        return this.determineCurrentAirfieldName(campaignDate);
+    }
+
+    @Override
+    public boolean isPlayercompany()
+    {
+        return true;
     }
 }

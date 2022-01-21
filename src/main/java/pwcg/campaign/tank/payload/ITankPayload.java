@@ -3,7 +3,7 @@ package pwcg.campaign.tank.payload;
 import java.util.List;
 
 import pwcg.core.exception.PWCGException;
-import pwcg.mission.unit.ITankPlatoon;
+import pwcg.mission.platoon.ITankPlatoon;
 
 public interface ITankPayload
 {

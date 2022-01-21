@@ -11,7 +11,7 @@ import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.skin.Skin;
 import pwcg.campaign.tank.TankSorter;
-import pwcg.campaign.tank.TankType;
+import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.core.exception.PWCGException;
 
 public class CrewMemberSkinInfo
@@ -39,9 +39,9 @@ public class CrewMemberSkinInfo
         Company company = referencePlayer.determineCompany();
         
         // Make an entry for each plane initialized to "No Skin"
-        List<TankType> companyPlanes = company.determineCurrentAircraftList(campaign.getDate());
-        List<TankType> companyPlanesByBest = TankSorter.sortTanksByGoodness(companyPlanes);
-        for (TankType plane : companyPlanesByBest)
+        List<TankTypeInformation> companyPlanes = company.determineCurrentAircraftList(campaign.getDate());
+        List<TankTypeInformation> companyPlanesByBest = TankSorter.sortTanksByGoodness(companyPlanes);
+        for (TankTypeInformation plane : companyPlanesByBest)
         {
             updateSkinForPlane(plane.getType(), null);
         }        

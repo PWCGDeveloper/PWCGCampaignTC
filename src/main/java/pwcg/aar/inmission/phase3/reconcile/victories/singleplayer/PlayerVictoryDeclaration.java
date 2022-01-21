@@ -23,7 +23,7 @@ public class PlayerVictoryDeclaration
         return cloneVictoryDeclaration;
 	}
 
-    public String getAircraftType()
+    public String getTankType()
     {
         return aircraftType;
     }

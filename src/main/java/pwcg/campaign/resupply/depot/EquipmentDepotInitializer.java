@@ -9,7 +9,7 @@ import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.tank.Equipment;
 import pwcg.campaign.tank.EquippedTank;
 import pwcg.campaign.tank.TankEquipmentFactory;
-import pwcg.campaign.tank.TankType;
+import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.core.exception.PWCGException;
 
 public class EquipmentDepotInitializer
@@ -37,7 +37,7 @@ public class EquipmentDepotInitializer
 
     private EquipmentWeightCalculator createPlaneCalculator(Company company) throws PWCGException
     {
-        List<TankType> planeTypesForCompany = company.determineCurrentAircraftList(campaign.getDate());
+        List<TankTypeInformation> planeTypesForCompany = company.determineCurrentAircraftList(campaign.getDate());
         EquipmentWeightCalculator equipmentWeightCalculator = new EquipmentWeightCalculator(campaign.getDate());
         equipmentWeightCalculator.determinePlaneWeightsForPlanes(planeTypesForCompany);
         return equipmentWeightCalculator;
@@ -54,7 +54,7 @@ public class EquipmentDepotInitializer
         for (int i = 0; i < numPlanes; ++i)
         {
             String planeTypeName = equipmentWeightCalculator.getTankTypeFromWeight();
-            EquippedTank equippedTank = TankEquipmentFactory.makePlaneForDepot(campaign, planeTypeName);
+            EquippedTank equippedTank = TankEquipmentFactory.makeTankForDepot(campaign, planeTypeName);
             equipment.addEPlaneToDepot(equippedTank);
         }
     }

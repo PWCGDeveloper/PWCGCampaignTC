@@ -3,7 +3,6 @@ package pwcg.gui.rofmap.brief.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import pwcg.campaign.company.Company;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.CrewMemberSorter;
 import pwcg.campaign.tank.EquippedTank;
@@ -11,9 +10,10 @@ import pwcg.campaign.tank.TankSorter;
 import pwcg.core.exception.PWCGException;
 import pwcg.gui.rofmap.brief.BriefingDataInitializer;
 import pwcg.gui.rofmap.brief.BriefingPayloadHelper;
+import pwcg.mission.ICompanyMission;
 import pwcg.mission.Mission;
+import pwcg.mission.platoon.ITankPlatoon;
 import pwcg.mission.playerunit.crew.CrewTankPayloadPairing;
-import pwcg.mission.unit.ITankPlatoon;
 
 public class BriefingUnit
 {
@@ -31,7 +31,7 @@ public class BriefingUnit
         briefingAssignmentData = new BriefingCrewMemberAssignmentData();
     }
     
-    public void initializeFromMission(Company company) throws PWCGException
+    public void initializeFromMission(ICompanyMission company) throws PWCGException
     {
         BriefingDataInitializer crewMemberHelper = new BriefingDataInitializer(mission);
         briefingAssignmentData = crewMemberHelper.initializeFromMission(company);

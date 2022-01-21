@@ -15,7 +15,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import pwcg.campaign.api.Side;
-import pwcg.campaign.company.Company;
 import pwcg.core.config.ConfigItemKeys;
 import pwcg.core.config.ConfigManagerCampaign;
 import pwcg.core.exception.PWCGException;
@@ -24,8 +23,9 @@ import pwcg.gui.dialogs.PWCGMonitorFonts;
 import pwcg.gui.rofmap.brief.model.BriefingData;
 import pwcg.gui.utils.PWCGButtonFactory;
 import pwcg.gui.utils.ScrollBarWrapper;
+import pwcg.mission.ICompanyMission;
 import pwcg.mission.Mission;
-import pwcg.mission.unit.ITankPlatoon;
+import pwcg.mission.platoon.ITankPlatoon;
 
 public class BriefingMapCompanySelector implements ActionListener
 {
@@ -72,7 +72,7 @@ public class BriefingMapCompanySelector implements ActionListener
 
         for (ITankPlatoon aiunit : mission.getPlatoons().getPlayerUnits())
         {
-            Company company = aiunit.getCompany();
+            ICompanyMission company = aiunit.getCompany();
             Side companySide = company.getCountry().getSide();
 
             if (includeCompany(selectedFlightSide, companySide))
@@ -154,7 +154,7 @@ public class BriefingMapCompanySelector implements ActionListener
     private void addCompanyToSelected(int companyId) throws PWCGException
     {
         ITankPlatoon unit = mission.getPlatoons().getPlayerUnitForCompany(companyId);
-        Company company = unit.getCompany();
+        ICompanyMission company = unit.getCompany();
         selectedCompanys.put(companyId, company.determineDisplayName(mission.getCampaign().getDate()));
     }
 }

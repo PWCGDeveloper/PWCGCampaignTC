@@ -1,0 +1,15 @@
+{
+  "scriptDir": "vehicles\\",
+  "modelDir": "vehicles\\_kv1s",
+  "vehicleType": "_kv1s",
+  "vehicleName": "KV-1s",
+  "displayName": "KV-1s",
+  "countries": [
+    "RUSSIA"
+  ],
+  "startDate": "19410601",
+  "endDate": "19450601",
+  "rarityWeight": 10,
+  "vehicleClass": "PlayerVehicle",
+}
+

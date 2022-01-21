@@ -14,7 +14,7 @@ import pwcg.campaign.context.Country;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.factory.CountryFactory;
 import pwcg.campaign.tank.PwcgRoleCategory;
-import pwcg.campaign.tank.TankType;
+import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.campaign.tank.TankTypeFactory;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
@@ -33,7 +33,7 @@ public class TankTypeFactoryTest
     public void testCreatePlane() throws PWCGException
     {
         TankTypeFactory tankTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
-        TankType tankType =  tankTypeFactory.createTankTypeByType("_pziii-l");
+        TankTypeInformation tankType =  tankTypeFactory.createTankTypeByType("_pziii-l");
         assert(tankType.getType().equals("_pziii-l"));
         assert(tankType.getArchType().equals("pziii"));
     }
@@ -42,7 +42,7 @@ public class TankTypeFactoryTest
     public void testCreatePlaneByDesc() throws PWCGException
     {
         TankTypeFactory tankTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
-        TankType tankType =  tankTypeFactory.createTankTypeByAnyName("Pz.Kpfw.III Ausf.L");
+        TankTypeInformation tankType =  tankTypeFactory.createTankTypeByAnyName("Pz.Kpfw.III Ausf.L");
         assert(tankType.getType().equals("_pziii-l"));
         assert(tankType.getArchType().equals("pziii"));
     }
@@ -52,19 +52,19 @@ public class TankTypeFactoryTest
     {
         TankTypeFactory tankTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
         
-        List<TankType> availableGermanTankTypes = tankTypeFactory.getAvailableTankTypes(CountryFactory.makeCountryByCountry(Country.GERMANY), PwcgRoleCategory.MAIN_BATTLE_TANK, DateUtils.getDateYYYYMMDD("19431001"));        
+        List<TankTypeInformation> availableGermanTankTypes = tankTypeFactory.getAvailableTankTypes(CountryFactory.makeCountryByCountry(Country.GERMANY), PwcgRoleCategory.MAIN_BATTLE_TANK, DateUtils.getDateYYYYMMDD("19431001"));        
         assert(availableGermanTankTypes.size() == 5);
 
-        List<TankType> availableBritishTankTypes = tankTypeFactory.getAvailableTankTypes(CountryFactory.makeCountryByCountry(Country.BRITAIN), PwcgRoleCategory.MAIN_BATTLE_TANK, DateUtils.getDateYYYYMMDD("19431001"));        
+        List<TankTypeInformation> availableBritishTankTypes = tankTypeFactory.getAvailableTankTypes(CountryFactory.makeCountryByCountry(Country.BRITAIN), PwcgRoleCategory.MAIN_BATTLE_TANK, DateUtils.getDateYYYYMMDD("19431001"));        
         assert(availableBritishTankTypes.size() == 1);
 
-        List<TankType> availableAmericanTankTypes = tankTypeFactory.getAvailableTankTypes(CountryFactory.makeCountryByCountry(Country.USA), PwcgRoleCategory.MAIN_BATTLE_TANK, DateUtils.getDateYYYYMMDD("19431001"));        
+        List<TankTypeInformation> availableAmericanTankTypes = tankTypeFactory.getAvailableTankTypes(CountryFactory.makeCountryByCountry(Country.USA), PwcgRoleCategory.MAIN_BATTLE_TANK, DateUtils.getDateYYYYMMDD("19431001"));        
         assert(availableAmericanTankTypes.size() == 1);
 
-        List<TankType> availableRussianTankTypes = tankTypeFactory.getAvailableTankTypes(CountryFactory.makeCountryByCountry(Country.RUSSIA), PwcgRoleCategory.MAIN_BATTLE_TANK, DateUtils.getDateYYYYMMDD("19431001"));        
+        List<TankTypeInformation> availableRussianTankTypes = tankTypeFactory.getAvailableTankTypes(CountryFactory.makeCountryByCountry(Country.RUSSIA), PwcgRoleCategory.MAIN_BATTLE_TANK, DateUtils.getDateYYYYMMDD("19431001"));        
         assert(availableRussianTankTypes.size() == 3);
         
-        List<TankType> availableGermanAttackTankTypes = tankTypeFactory.getAvailableTankTypes(CountryFactory.makeCountryByCountry(Country.RUSSIA), PwcgRoleCategory.SELF_PROPELLED_GUN, DateUtils.getDateYYYYMMDD("19431001"));        
+        List<TankTypeInformation> availableGermanAttackTankTypes = tankTypeFactory.getAvailableTankTypes(CountryFactory.makeCountryByCountry(Country.RUSSIA), PwcgRoleCategory.SELF_PROPELLED_GUN, DateUtils.getDateYYYYMMDD("19431001"));        
         assert(availableGermanAttackTankTypes.size() == 2);
     }
 
@@ -72,9 +72,9 @@ public class TankTypeFactoryTest
     public void testAllTankTypes() throws PWCGException
     {
         TankTypeFactory tankTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
-        Map<String, TankType> tankTypes =  tankTypeFactory.getTankTypes();
+        Map<String, TankTypeInformation> tankTypes =  tankTypeFactory.getTankTypes();
         assert(tankTypes.size() > 10);
-        for (TankType tankType : tankTypes.values())
+        for (TankTypeInformation tankType : tankTypes.values())
         {
             assert(tankType.getArchType() != null);
             assert(tankType.getIntroduction().after(DateUtils.getDateYYYYMMDD("19390901")));
@@ -89,9 +89,9 @@ public class TankTypeFactoryTest
     public void testCreateTanksForArchType() throws PWCGException
     {
         TankTypeFactory tankTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
-        List<TankType> tankTypes =  tankTypeFactory.createTankTypesForArchType("t34");
+        List<TankTypeInformation> tankTypes =  tankTypeFactory.createTankTypesForArchType("t34");
         assert(tankTypes.size() == 2);
-        for (TankType tankType : tankTypes)
+        for (TankTypeInformation tankType : tankTypes)
         {
             assert(tankType.getArchType().equals("t34"));
         }
@@ -103,9 +103,9 @@ public class TankTypeFactoryTest
         Date tankDate = DateUtils.getDateYYYYMMDD("19420402");
         
         TankTypeFactory tankTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
-        List<TankType> tankTypes =  tankTypeFactory.createActiveTankTypesForArchType("t34", tankDate);
+        List<TankTypeInformation> tankTypes =  tankTypeFactory.createActiveTankTypesForArchType("t34", tankDate);
         assert(tankTypes.size() == 1);
-        for (TankType tankType : tankTypes)
+        for (TankTypeInformation tankType : tankTypes)
         {
             assert(tankType.getArchType().equals("t34"));
         }

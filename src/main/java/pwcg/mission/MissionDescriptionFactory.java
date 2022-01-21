@@ -1,11 +1,12 @@
 package pwcg.mission;
 
 import pwcg.campaign.Campaign;
-import pwcg.mission.unit.ITankPlatoon;
+import pwcg.core.exception.PWCGException;
+import pwcg.mission.platoon.ITankPlatoon;
 
 public class MissionDescriptionFactory 
 {
-	public static IMissionDescription buildMissionDescription(Campaign campaign, Mission mission)
+	public static IMissionDescription buildMissionDescription(Campaign campaign, Mission mission) throws PWCGException
 	{
 	    if (mission.isAAATruckMission())
 	    {

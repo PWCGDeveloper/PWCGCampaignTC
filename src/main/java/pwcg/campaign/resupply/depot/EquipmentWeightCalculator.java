@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import pwcg.campaign.tank.TankType;
+import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.core.utils.RandomNumberGenerator;
@@ -20,9 +20,9 @@ public class EquipmentWeightCalculator
         this.campaignDate = campaignDate;
     }
     
-    public void determinePlaneWeightsForPlanes(List<TankType> planeTypes) throws PWCGException
+    public void determinePlaneWeightsForPlanes(List<TankTypeInformation> planeTypes) throws PWCGException
     {
-        for (TankType planeType : planeTypes)
+        for (TankTypeInformation planeType : planeTypes)
         {
             Integer planeWeight = determinePlaneWeight(planeType);
             weightedPlaneOdds.put(planeType.getType(), planeWeight);
@@ -60,7 +60,7 @@ public class EquipmentWeightCalculator
         return totalWeight;
     }
 
-    private Integer determinePlaneWeight(TankType planeType) throws PWCGException
+    private Integer determinePlaneWeight(TankTypeInformation planeType) throws PWCGException
     {
         Integer daysSinceIntroduction = DateUtils.daysDifference(planeType.getIntroduction(), campaignDate);
         Integer weight = daysSinceIntroduction;

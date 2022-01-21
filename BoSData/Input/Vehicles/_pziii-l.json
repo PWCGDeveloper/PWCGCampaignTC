@@ -1,0 +1,14 @@
+{
+  "scriptDir": "vehicles\\",
+  "modelDir": "vehicles\\_pziii-l",
+  "vehicleType": "_pziii-l",
+  "vehicleName": "Pz.Kpfw.III Ausf.L",
+  "displayName": "Pz.Kpfw.III Ausf.L",
+  "countries": [
+	"GERMANY"
+  ],
+  "startDate": "19410601",
+  "endDate": "19440301",
+  "rarityWeight": 60,
+  "vehicleClass": "PlayerVehicle",
+}

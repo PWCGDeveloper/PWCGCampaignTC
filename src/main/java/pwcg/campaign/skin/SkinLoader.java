@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.tank.TankType;
+import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.PWCGLogger;
 
@@ -32,8 +32,8 @@ public class SkinLoader
     {
         try
         {
-            List<TankType> allPlanes = PWCGContext.getInstance().getTankTypeFactory().getAllTanks();
-            for(TankType plane : allPlanes)
+            List<TankTypeInformation> allPlanes = PWCGContext.getInstance().getTankTypeFactory().getAllTanks();
+            for(TankTypeInformation plane : allPlanes)
             {
                 SkinsForPlane skinsForPlane = new SkinsForPlane();
                 skinsForPlanes.put(plane.getType(), skinsForPlane);

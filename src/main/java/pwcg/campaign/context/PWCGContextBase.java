@@ -11,7 +11,6 @@ import pwcg.campaign.company.CompanyManager;
 import pwcg.campaign.company.SkirmishProfileManager;
 import pwcg.campaign.group.AirfieldManager;
 import pwcg.campaign.group.airfield.Airfield;
-import pwcg.campaign.group.airfield.staticobject.StaticObjectDefinitionManager;
 import pwcg.campaign.newspapers.NewspaperManager;
 import pwcg.campaign.plane.PlaneTypeFactory;
 import pwcg.campaign.skin.SkinManager;
@@ -30,17 +29,15 @@ public abstract class PWCGContextBase
     protected SkinManager skinManager = new SkinManager();
     protected SkirmishProfileManager skirmishProfileManager = new SkirmishProfileManager();
     protected VehicleDefinitionManager vehicleDefinitionManager = new VehicleDefinitionManager();
-    protected StaticObjectDefinitionManager staticObjectDefinitionManager = new StaticObjectDefinitionManager();
     protected boolean testMode = false;
     protected String missionLogPath = "";
     protected PlaneTypeFactory planeTypeFactory = new PlaneTypeFactory();
     protected TankTypeFactory tankTypeFactory = new TankTypeFactory();
 
     protected List<String> campaignStartDates = new ArrayList<String>();
-    
 
     public void configurePwcgMaps() throws PWCGException
-    {        
+    {
         for (PWCGMap map : pwcgMaps.values())
         {
             map.configure();
@@ -50,10 +47,10 @@ public abstract class PWCGContextBase
         newspaperManager.initialize();
     }
 
-    protected void initialize() throws PWCGException 
+    protected void initialize() throws PWCGException
     {
         initializeMap();
-        
+
         planeTypeFactory.initialize();
         tankTypeFactory.initialize();
         aceManager.configure();
@@ -61,26 +58,22 @@ public abstract class PWCGContextBase
         skirmishProfileManager.initialize();
         skinManager.initialize();
         vehicleDefinitionManager.initialize();
-        staticObjectDefinitionManager.initialize();
     }
 
-
-    public void changeContext(FrontMapIdentifier frontMapIdentifier) throws PWCGException  
+    public void changeContext(FrontMapIdentifier frontMapIdentifier) throws PWCGException
     {
         frontMapIdentifier = StalingradMapResolver.resolveStalingradMap(campaign, frontMapIdentifier);
         currentMap = frontMapIdentifier;
     }
 
-
-    public void setCampaign(Campaign campaign) throws PWCGException  
+    public void setCampaign(Campaign campaign) throws PWCGException
     {
         this.campaign = campaign;
         if (campaign != null)
         {
-        	setMapForCampaign(campaign);
+            setMapForCampaign(campaign);
         }
     }
-
 
     public void setMapForCampaign(Campaign campaign) throws PWCGException
     {
@@ -92,10 +85,9 @@ public abstract class PWCGContextBase
         }
     }
 
-
-    public Date getEarliestPwcgDate() throws PWCGException 
+    public Date getEarliestPwcgDate() throws PWCGException
     {
-        Date earliesDateForPWCG = null;        
+        Date earliesDateForPWCG = null;
         for (PWCGMap map : pwcgMaps.values())
         {
             Date earliestMapDate = map.getFrontDatesForMap().getEarliestMapDate();
@@ -111,22 +103,19 @@ public abstract class PWCGContextBase
                 }
             }
         }
-        
+
         return earliesDateForPWCG;
     }
-
 
     public Campaign getCampaign()
     {
         return campaign;
     }
 
-
     public PWCGMap getCurrentMap()
     {
         return pwcgMaps.get(currentMap);
     }
-
 
     public PWCGMap getMapByMapName(String mapName)
     {
@@ -134,57 +123,50 @@ public abstract class PWCGContextBase
         return pwcgMaps.get(mapId);
     }
 
-
     public PWCGMap getMapByMapId(FrontMapIdentifier mapId)
     {
         return pwcgMaps.get(mapId);
     }
-
 
     public AceManager getAceManager()
     {
         return aceManager;
     }
 
-
     public boolean isTestMode()
     {
         return testMode;
     }
-
 
     public void setTestMode(boolean testMode)
     {
         this.testMode = testMode;
     }
 
-
     public List<String> getCampaignStartDates()
     {
         return campaignStartDates;
     }
 
-
     public List<PWCGMap> getAllMaps()
     {
         List<PWCGMap> allMaps = new ArrayList<PWCGMap>();
         allMaps.addAll(pwcgMaps.values());
-        
+
         return allMaps;
     }
-
 
     public Airfield getAirfieldAllMaps(String airfieldName)
     {
         Airfield airfield = null;
-        
+
         for (PWCGMap map : pwcgMaps.values())
         {
             AirfieldManager airfieldManager = map.getAirfieldManager();
             if (airfieldManager != null)
             {
                 airfield = airfieldManager.getAirfield(airfieldName);
-                
+
                 if (airfield != null)
                 {
                     return airfield;
@@ -195,80 +177,61 @@ public abstract class PWCGContextBase
         return airfield;
     }
 
-
     public void setCurrentMap(FrontMapIdentifier mapIdentifier) throws PWCGException
     {
-        changeContext(mapIdentifier);        
+        changeContext(mapIdentifier);
     }
-
 
     public CompanyManager getCompanyManager()
     {
         return companyManager;
     }
 
-
-
     public SkirmishProfileManager getSkirmishProfileManager()
     {
         return skirmishProfileManager;
     }
-
 
     public SkinManager getSkinManager()
     {
         return skinManager;
     }
 
-
     public TankTypeFactory getTankTypeFactory()
     {
         return tankTypeFactory;
     }
-
 
     public PlaneTypeFactory getPlaneTypeFactory()
     {
         return planeTypeFactory;
     }
 
-
     public List<PWCGMap> getMaps()
     {
         return new ArrayList<PWCGMap>(pwcgMaps.values());
     }
-
 
     public VehicleDefinitionManager getVehicleDefinitionManager()
     {
         return vehicleDefinitionManager;
     }
 
-
-    public StaticObjectDefinitionManager getStaticObjectDefinitionManager()
-    {
-        return staticObjectDefinitionManager;
-    }
-
-
     public void setMissionLogDirectory(String missionLogPath)
     {
-        this.missionLogPath = missionLogPath + "\\";        
+        this.missionLogPath = missionLogPath + "\\";
     }
-
 
     public String getMissionLogDirectory()
     {
-        return missionLogPath;        
+        return missionLogPath;
     }
-    
 
     public NewspaperManager getNewspaperManager()
     {
         return newspaperManager;
     }
 
-
-    public abstract void initializeMap() throws PWCGException;    
+    public abstract void initializeMap() throws PWCGException;
 
 }

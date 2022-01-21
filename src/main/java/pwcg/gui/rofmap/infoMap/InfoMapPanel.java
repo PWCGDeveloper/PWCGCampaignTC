@@ -45,7 +45,6 @@ public class InfoMapPanel extends MapPanelBase
     public static int DISPLAY_FIGHTER = 5;
     public static int DISPLAY_ATTACK = 6;
     public static int DISPLAY_BOMBER = 7;
-    public static int DISPLAY_RECON = 8;
     
 	private static final long serialVersionUID = 1L;
 	
@@ -165,20 +164,6 @@ public class InfoMapPanel extends MapPanelBase
                 {
                     PwcgRoleCategory companyPrimaryRole = company.determineCompanyPrimaryRoleCategory(parent.getMapDate());
                     if (companyPrimaryRole == PwcgRoleCategory.ATTACK)
-                    {
-                        drawPointsByCompany(g, company);
-                    }
-                }        
-            }
-            
-            if (whatToDisplay[DISPLAY_RECON])
-            {
-                CompanyManager companyManager =  PWCGContext.getInstance().getCompanyManager();
-                List<Company> allCompanys = companyManager.getActiveCompaniesForCurrentMap(parent.getMapDate());
-                for (Company company : allCompanys)
-                {
-                    PwcgRoleCategory companyPrimaryRole = company.determineCompanyPrimaryRoleCategory(parent.getMapDate());
-                    if (companyPrimaryRole == PwcgRoleCategory.RECON)
                     {
                         drawPointsByCompany(g, company);
                     }
@@ -422,8 +407,7 @@ public class InfoMapPanel extends MapPanelBase
             if ((whatToDisplay[DISPLAY_FIGHTER] == true && companyPrimaryRole == PwcgRoleCategory.FIGHTER)    || 
                 (whatToDisplay[DISPLAY_BOMBER] == true && companyPrimaryRole == PwcgRoleCategory.BOMBER)      || 
                 (whatToDisplay[DISPLAY_BOMBER] == true && companyPrimaryRole == PwcgRoleCategory.TRANSPORT)   || 
-                (whatToDisplay[DISPLAY_ATTACK] == true && companyPrimaryRole == PwcgRoleCategory.ATTACK)      ||
-                (whatToDisplay[DISPLAY_RECON] == true && companyPrimaryRole == PwcgRoleCategory.RECON))
+                (whatToDisplay[DISPLAY_ATTACK] == true && companyPrimaryRole == PwcgRoleCategory.ATTACK))
             {
                 // Is the company based near a field that was clicked on
                 Coordinate clickCoord = this.pointToCoordinate(clickPoint);

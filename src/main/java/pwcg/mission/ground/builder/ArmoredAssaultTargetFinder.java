@@ -20,7 +20,7 @@ public class ArmoredAssaultTargetFinder
     private Mission mission;
     private GroundUnitType groundUnitType;
     private Side infantryTargetSide;
-    private List<Coordinate> initialTargetPositions = new ArrayList<>();;
+    private List<Coordinate> initialTargetPositions = new ArrayList<>();
 
     public ArmoredAssaultTargetFinder(Mission mission, GroundUnitCollection assaultFixedUnitCollection, Side side, GroundUnitType groundUnitType)
     {

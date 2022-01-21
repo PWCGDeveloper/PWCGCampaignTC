@@ -1,0 +1,14 @@
+{
+  "scriptDir": "vehicles\\",
+  "modelDir": "vehicles\\_sdkfz184",
+  "vehicleType": "_sdkfz184",
+  "vehicleName": "Sd.Kfz.184",
+  "displayName": "Sd.Kfz.184",
+  "countries": [
+	"GERMANY"
+  ],
+  "startDate": "19430601",
+  "endDate": "19450601",
+  "rarityWeight": 5,
+  "vehicleClass": "PlayerVehicle",
+}

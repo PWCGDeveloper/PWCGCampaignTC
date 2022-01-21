@@ -58,7 +58,7 @@ public class TargetDefinitionBuilderInfantry
     {
         if (enemyGroundUnit.getVehicles() != null && enemyGroundUnit.getVehicles().size() > 0)
         {
-            return enemyGroundUnit.getVehicles().get(0).getVehicleName();
+            return enemyGroundUnit.getVehicles().get(0).getName();
         }
         return "Infantry";
     }

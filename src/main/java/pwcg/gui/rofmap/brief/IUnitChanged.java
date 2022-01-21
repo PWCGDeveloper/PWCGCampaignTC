@@ -1,9 +1,9 @@
 package pwcg.gui.rofmap.brief;
 
-import pwcg.campaign.company.Company;
 import pwcg.core.exception.PWCGException;
+import pwcg.mission.ICompanyMission;
 
 public interface IUnitChanged
 {
-    void unitChanged(Company company) throws PWCGException;
+    void unitChanged(ICompanyMission company) throws PWCGException;
 }

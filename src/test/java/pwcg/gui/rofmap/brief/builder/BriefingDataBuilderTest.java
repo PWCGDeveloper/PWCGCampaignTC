@@ -15,7 +15,7 @@ import pwcg.gui.rofmap.brief.model.BriefingUnit;
 import pwcg.gui.rofmap.brief.model.BriefingUnitParameters;
 import pwcg.mission.Mission;
 import pwcg.mission.MissionGenerator;
-import pwcg.mission.unit.ITankPlatoon;
+import pwcg.mission.platoon.ITankPlatoon;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.CompanyTestProfile;
 import pwcg.testutils.TestMissionBuilderUtility;

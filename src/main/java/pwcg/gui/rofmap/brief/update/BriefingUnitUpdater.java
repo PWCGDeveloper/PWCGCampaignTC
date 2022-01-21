@@ -13,7 +13,7 @@ import pwcg.gui.rofmap.brief.model.BriefingUnit;
 import pwcg.mission.Mission;
 import pwcg.mission.flight.waypoint.WaypointType;
 import pwcg.mission.mcu.McuWaypoint;
-import pwcg.mission.unit.ITankPlatoon;
+import pwcg.mission.platoon.ITankPlatoon;
 
 public class BriefingUnitUpdater
 {

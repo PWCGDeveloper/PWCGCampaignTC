@@ -7,7 +7,7 @@ import java.util.Map;
 
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.tank.TankArchType;
-import pwcg.campaign.tank.TankType;
+import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.core.exception.PWCGException;
 import pwcg.mission.ground.vehicle.VehicleClass;
 import pwcg.mission.ground.vehicle.VehicleDefinition;
@@ -57,7 +57,7 @@ public class CrewMemberVictories
         }
     }
 
-    private void addAirVictoryInType(Victory victory)
+    private void addAirVictoryInType(Victory victory) throws PWCGException
     {
         String key = getTankArchTypeForPlaneName(victory.getVictor().getType());
         if (!airVictoriesdInType.containsKey(key))
@@ -69,7 +69,7 @@ public class CrewMemberVictories
         playerAircraftTypeTypeList.add(victory);
     }
 
-    private void addGroundVictoryInType(Victory victory)
+    private void addGroundVictoryInType(Victory victory) throws PWCGException
     {
         String key = getTankArchTypeForPlaneName(victory.getVictor().getType());
         if (!groundVictoriesdInType.containsKey(key))
@@ -81,7 +81,7 @@ public class CrewMemberVictories
         playerAircraftTypeTypeList.add(victory);
     }
 
-    private void addAirTypeVictory(Victory victory)
+    private void addAirTypeVictory(Victory victory) throws PWCGException
     {
         String key = getTankArchTypeForPlaneName(victory.getVictim().getType());
         if (!airVictoriesType.containsKey(key))
@@ -105,9 +105,9 @@ public class CrewMemberVictories
         tankTypeList.add(victory);
     }
     
-    private String getTankArchTypeForPlaneName(String planeTypeName)
+    private String getTankArchTypeForPlaneName(String planeTypeName) throws PWCGException
     {
-        TankType planeType = PWCGContext.getInstance().getTankTypeFactory().getTankByDisplayName(planeTypeName);
+        TankTypeInformation planeType = PWCGContext.getInstance().getTankTypeFactory().getTankByDisplayName(planeTypeName);
         String archTypeName = "Unknown";
         if (planeType != null)
         {

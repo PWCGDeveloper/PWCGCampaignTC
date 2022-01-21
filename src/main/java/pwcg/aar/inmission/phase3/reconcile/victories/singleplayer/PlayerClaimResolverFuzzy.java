@@ -4,7 +4,7 @@ import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogVictory;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.tank.PwcgRoleCategory;
-import pwcg.campaign.tank.TankType;
+import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.core.exception.PWCGException;
 
 public class PlayerClaimResolverFuzzy
@@ -17,8 +17,8 @@ public class PlayerClaimResolverFuzzy
         
         if (!resultVictory.isConfirmed())
         {
-            TankType shotDownPlane = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(resultVictory.getVictim().getVehicleType());
-            TankType claimedPlane = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(playerDeclaration.getAircraftType());
+            TankTypeInformation shotDownPlane = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(resultVictory.getVictim().getVehicleType());
+            TankTypeInformation claimedPlane = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(playerDeclaration.getTankType());
                 
             if (shotDownPlane != null && claimedPlane != null)
             {
@@ -40,7 +40,7 @@ public class PlayerClaimResolverFuzzy
             if (!VictoryResolverSameSideDetector.isSameSide(player, resultVictory))
             {
                 PwcgRoleCategory victimApproximateRole = resultVictory.getVictim().getRoleCategory();
-                TankType declaredPlane = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(playerDeclaration.getAircraftType());
+                TankTypeInformation declaredPlane = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(playerDeclaration.getTankType());
                 if (declaredPlane != null)
                 {
                     PwcgRoleCategory declarationApproximateRole = declaredPlane.determinePrimaryRoleCategory();

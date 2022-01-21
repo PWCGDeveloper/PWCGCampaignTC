@@ -16,7 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.tank.TankType;
+import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.core.config.InternationalizationManager;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.MissingSkin;
@@ -142,7 +142,7 @@ public class MissingSkinScreen extends ImageResizingPanel implements ActionListe
                 
         for (String planeTypeDesc : selectedMissingSkins.keySet())
         {
-            TankType plane = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(planeTypeDesc);
+            TankTypeInformation plane = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(planeTypeDesc);
             List<MissingSkin> missingSkinSet = selectedMissingSkins.get(planeTypeDesc);
             
             if (missingSkinSet.size() > 0)

@@ -132,7 +132,7 @@ public class CampaignIOJsonTest
     private void validateFighterEquipment(Campaign campaign) throws PWCGException
     {
         Equipment fighterCompanyEquipment = campaign.getEquipmentManager().getEquipmentForCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
-        Assertions.assertTrue (campaign.getSerialNumber().getNextPlaneSerialNumber() > SerialNumber.TANK_STARTING_SERIAL_NUMBER + 100);
+        Assertions.assertTrue (campaign.getSerialNumber().getNextTankSerialNumber() > SerialNumber.TANK_STARTING_SERIAL_NUMBER + 100);
         Assertions.assertTrue (fighterCompanyEquipment.getActiveEquippedTanks().size() >= 14);
         for (EquippedTank equippedTank : fighterCompanyEquipment.getActiveEquippedTanks().values())
         {
@@ -144,7 +144,7 @@ public class CampaignIOJsonTest
     private void validateReconEquipment(Campaign campaign) throws PWCGException
     {
         Equipment reconCompanyEquipment = campaign.getEquipmentManager().getEquipmentForCompany(CompanyTestProfile.RFC_2_PROFILE.getCompanyId());
-        Assertions.assertTrue (campaign.getSerialNumber().getNextPlaneSerialNumber() > SerialNumber.TANK_STARTING_SERIAL_NUMBER + 100);
+        Assertions.assertTrue (campaign.getSerialNumber().getNextTankSerialNumber() > SerialNumber.TANK_STARTING_SERIAL_NUMBER + 100);
         Assertions.assertTrue (reconCompanyEquipment.getActiveEquippedTanks().size() >= 14);
         for (EquippedTank equippedTank : reconCompanyEquipment.getActiveEquippedTanks().values())
         {

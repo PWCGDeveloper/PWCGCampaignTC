@@ -45,7 +45,7 @@ public class McuLanding extends BaseFlightMcu
 	}	
 	
 	   
-    public McuLanding clone ()
+    public McuLanding copy ()
     {
         McuLanding clone = new McuLanding();
 

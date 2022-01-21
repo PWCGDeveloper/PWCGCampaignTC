@@ -4,7 +4,7 @@ import pwcg.core.exception.PWCGException;
 import pwcg.core.location.CoordinateBox;
 import pwcg.gui.rofmap.brief.model.BriefingUnit;
 import pwcg.mission.Mission;
-import pwcg.mission.unit.ITankPlatoon;
+import pwcg.mission.platoon.ITankPlatoon;
 
 public class BriefingMapFlightMapper
 {

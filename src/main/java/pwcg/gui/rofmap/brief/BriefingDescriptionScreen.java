@@ -10,7 +10,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import pwcg.campaign.Campaign;
-import pwcg.campaign.company.Company;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.PWCGLogger;
@@ -26,6 +25,7 @@ import pwcg.gui.utils.ImageResizingPanel;
 import pwcg.gui.utils.PWCGButtonFactory;
 import pwcg.gui.utils.PWCGLabelFactory;
 import pwcg.gui.utils.ScrollBarWrapper;
+import pwcg.mission.ICompanyMission;
 import pwcg.mission.Mission;
 
 public class BriefingDescriptionScreen extends ImageResizingPanel implements ActionListener, IUnitChanged
@@ -161,7 +161,7 @@ public class BriefingDescriptionScreen extends ImageResizingPanel implements Act
     }
 
     @Override
-    public void unitChanged(Company company) throws PWCGException
+    public void unitChanged(ICompanyMission company) throws PWCGException
     {
         briefingData.changeSelectedUnit(company.getCompanyId());
         briefingChalkboard.setMissionText();

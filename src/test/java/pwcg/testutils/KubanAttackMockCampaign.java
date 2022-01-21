@@ -28,8 +28,8 @@ import pwcg.mission.Mission;
 import pwcg.mission.MissionFlights;
 import pwcg.mission.MissionGroundUnitResourceManager;
 import pwcg.mission.MissionHumanParticipants;
-import pwcg.mission.unit.PlatoonInformation;
-import pwcg.mission.unit.PlatoonMissionType;
+import pwcg.mission.platoon.PlatoonInformation;
+import pwcg.mission.platoon.PlatoonMissionType;
 
 public class KubanAttackMockCampaign
 {

@@ -43,11 +43,11 @@ public class CampaignLogs
 			}
 			else if (event instanceof AircraftIntroducedEvent)
 			{
-				addAircraftIntroducedToCampaignLogs(event);
+				addTankIntroducedToCampaignLogs(event);
 			}
 			else if (event instanceof AircraftRetiredEvent)
 			{
-				addAircraftRetiredToCampaignLogs(event);
+				addTankRetiredToCampaignLogs(event);
 			}
 			else if (event instanceof ClaimDeniedEvent)
 			{
@@ -83,7 +83,7 @@ public class CampaignLogs
 		}
 	}
 
-	private void addAircraftIntroducedToCampaignLogs(AAREvent event)
+	private void addTankIntroducedToCampaignLogs(AAREvent event)
 	{
 		AircraftIntroducedEvent logEvent = (AircraftIntroducedEvent) event;
 		String planeName = logEvent.getAircraft();
@@ -91,7 +91,7 @@ public class CampaignLogs
 		addCampaignLog(logEvent.getDate(), logEntry, Company.Company_ID_ANY);
 	}
 
-	private void addAircraftRetiredToCampaignLogs(AAREvent event)
+	private void addTankRetiredToCampaignLogs(AAREvent event)
 	{
 		AircraftRetiredEvent logEvent = (AircraftRetiredEvent) event;
 		String planeName = logEvent.getAircraft();

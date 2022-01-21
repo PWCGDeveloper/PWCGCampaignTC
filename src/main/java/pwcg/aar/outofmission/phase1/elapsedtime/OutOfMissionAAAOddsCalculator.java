@@ -44,10 +44,6 @@ public class OutOfMissionAAAOddsCalculator
         {
             shotDownOdds += 7;
         }
-        if (roleThisMission.isRoleCategory(PwcgRoleCategory.RECON))
-        {
-            shotDownOdds += 7;
-        }
         if (roleThisMission.isRoleCategory(PwcgRoleCategory.FIGHTER))
         {
             shotDownOdds -= 10;

@@ -2,66 +2,66 @@ package pwcg.campaign.tank;
 
 import java.util.Date;
 
-import pwcg.campaign.context.PWCGContext;
+import pwcg.campaign.company.Company;
 import pwcg.campaign.crewmember.SerialNumber;
-import pwcg.core.exception.PWCGException;
-import pwcg.core.utils.PWCGLogger;
-import pwcg.core.utils.PWCGLogger.LogLevel;
+import pwcg.core.utils.DateUtils;
+import pwcg.mission.ground.vehicle.Vehicle;
+import pwcg.mission.ground.vehicle.VehicleDefinition;
 
-public class EquippedTank extends TankType
+public class EquippedTank extends Vehicle
 {
     protected int serialNumber = SerialNumber.NO_SERIAL_NUMBER;
-    protected int planeStatus = TankStatus.NO_STATUS;
+    protected int tankStatus = TankStatus.NO_STATUS;
     protected int companyId;
     protected Date dateRemovedFromService;
-    protected String aircraftIdCode;
+    protected String tankIdCode;
     protected boolean isEquipmentRequest = false;
+    protected TankTypeInformation tankType;
 
-    public EquippedTank()
+    // Equipped tank for depot
+    public EquippedTank(VehicleDefinition vehicleDefinition, TankTypeInformation tankType, int serialNumber, int companyId, int tankStatus)
     {
-        super();
-    }
-
-    public EquippedTank(TankType planeType, int serialNumber, int companyId, int planeStatus)
-    {
-        super();
-        planeType.copyTemplate(this);
+        super(vehicleDefinition);
+        this.tankType = tankType;
         this.serialNumber = serialNumber;
         this.companyId = companyId;
-        this.planeStatus = planeStatus;
+        this.tankStatus = tankStatus;
     }
 
-    public void copyTemplate(EquippedTank equippedTank)
+    // Player Tank
+    public EquippedTank(EquippedTank equippedTank)
     {
-        super.copyTemplate(equippedTank);
-        equippedTank.serialNumber = this.serialNumber;
-        equippedTank.companyId = this.companyId;
-        equippedTank.dateRemovedFromService = this.dateRemovedFromService;
-        equippedTank.planeStatus = this.planeStatus;
-        equippedTank.aircraftIdCode = this.aircraftIdCode;
+        super(equippedTank.getVehicleDefinition());
+        this.copyFromTemplate(equippedTank);;
     }
 
-    // Backwards compatibility method for version 13.2.0.  Remove when safe.
-    public void updateFromTankType()
+    // AI Tank
+    public EquippedTank(VehicleDefinition vehicleDefinition, TankTypeInformation tankType)
     {
+        super(vehicleDefinition);
+        this.tankType = tankType;
+        this.tankStatus = TankStatus.STATUS_DEPLOYED;
+        this.serialNumber = SerialNumber.NO_SERIAL_NUMBER;
+        this.companyId = Company.AI;
         try
         {
-            if (this.roleCategories.size() == 0)
-            {
-                TankTypeFactory planeTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
-                TankType planeType = planeTypeFactory.getTankById(this.getType());
-                planeType.copyTemplate(this);
-
-                if(this.roleCategories.size() == 0)
-                {
-                    PWCGLogger.log(LogLevel.INFO, "Backwards compatibility for 13.2 and earlier.  Equipped plane update did not work");
-                }
-            }
+            this.dateRemovedFromService = DateUtils.getEndOfWar();
         }
-        catch (PWCGException e)
+        catch(Exception e)
         {
             e.printStackTrace();
         }
+    }
+
+    private void copyFromTemplate(EquippedTank equippedTank)
+    {
+        super.copyFromTemplate(equippedTank);
+        this.serialNumber = equippedTank.serialNumber;
+        this.companyId = equippedTank.companyId;
+        this.dateRemovedFromService = equippedTank.dateRemovedFromService;
+        this.tankStatus = equippedTank.tankStatus;
+        this.tankIdCode = equippedTank.tankIdCode;
+        this.tankType = equippedTank.tankType;
     }
 
     public int getSerialNumber()
@@ -76,12 +76,12 @@ public class EquippedTank extends TankType
     
     public int getPlaneStatus()
     {
-        return planeStatus;
+        return tankStatus;
     }
 
     public void setTankStatus(int planeStatus)
     {
-        this.planeStatus = planeStatus;
+        this.tankStatus = planeStatus;
     }
 
     public Date getDateRemovedFromService()
@@ -106,12 +106,12 @@ public class EquippedTank extends TankType
 
     public String getAircraftIdCode()
     {
-        return aircraftIdCode;
+        return tankIdCode;
     }
 
     public void setTankIdCode(String aircraftIdCode)
     {
-        this.aircraftIdCode = aircraftIdCode;
+        this.tankIdCode = aircraftIdCode;
     }
 
     public boolean isEquipmentRequest()
@@ -122,5 +122,30 @@ public class EquippedTank extends TankType
     public void setEquipmentRequest(boolean isEquipmentRequest)
     {
         this.isEquipmentRequest = isEquipmentRequest;
+    }
+
+    public String getDisplayName()
+    {
+        return this.getName();
+    }
+
+    public PwcgRoleCategory determinePrimaryRoleCategory()
+    {
+        return tankType.determinePrimaryRoleCategory();
+    }
+
+    public String getArchType()
+    {
+        return tankType.getArchType();
+    }
+
+    public int getGoodness()
+    {
+        return tankType.getGoodness();
+    }
+
+    public Date getWithdrawal()
+    {
+        return tankType.getWithdrawal();
     }
 }

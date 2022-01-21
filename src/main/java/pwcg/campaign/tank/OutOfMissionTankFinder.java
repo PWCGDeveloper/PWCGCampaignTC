@@ -10,9 +10,9 @@ import pwcg.core.utils.DateUtils;
 public class OutOfMissionTankFinder
 {
 
-    public TankType findTankType(Company company, PwcgRoleCategory roleCategory, Date date) throws PWCGException
+    public TankTypeInformation findTankType(Company company, PwcgRoleCategory roleCategory, Date date) throws PWCGException
     {
-        TankType planeType = findPreferredTankTypeForCompany(company, date);
+        TankTypeInformation planeType = findPreferredTankTypeForCompany(company, date);
         if (planeType == null)
         {
             planeType = findAlternativeTankTypeForCompany(company, roleCategory, date);
@@ -36,29 +36,29 @@ public class OutOfMissionTankFinder
         return planeType;
     }
 
-    private TankType findPreferredTankTypeForCompany(Company company, Date date) throws PWCGException
+    private TankTypeInformation findPreferredTankTypeForCompany(Company company, Date date) throws PWCGException
     {
-        TankType planeType = company.determineBestPlane(date);
+        TankTypeInformation planeType = company.determineBestPlane(date);
         return planeType;
     }
 
-    private TankType findAlternativeTankTypeForCompany(Company company, PwcgRoleCategory roleCategory, Date date) throws PWCGException
+    private TankTypeInformation findAlternativeTankTypeForCompany(Company company, PwcgRoleCategory roleCategory, Date date) throws PWCGException
     {
-        TankType planeType = PWCGContext.getInstance().getTankTypeFactory().findActiveTankTypeByCountryDateAndRole(
+        TankTypeInformation planeType = PWCGContext.getInstance().getTankTypeFactory().findActiveTankTypeByCountryDateAndRole(
                 company.determineCompanyCountry(date), date, roleCategory);
         return planeType;        
     }
 
-    private TankType findAnyTankTypeForCountryAndDate(Company company, Date date) throws PWCGException
+    private TankTypeInformation findAnyTankTypeForCountryAndDate(Company company, Date date) throws PWCGException
     {
-        TankType planeType = PWCGContext.getInstance().getTankTypeFactory().findAnyTankTypeForCountryAndDate(
+        TankTypeInformation planeType = PWCGContext.getInstance().getTankTypeFactory().findAnyTankTypeForCountryAndDate(
                 company.determineCompanyCountry(date), date);
         return planeType;        
     }
 
-    private TankType findEarliestTankTypeForCompany(Company company) throws PWCGException
+    private TankTypeInformation findEarliestTankTypeForCompany(Company company) throws PWCGException
     {
-        TankType planeType = company.determineEarliestPlane();
+        TankTypeInformation planeType = company.determineEarliestPlane();
         return planeType;
     }
 }

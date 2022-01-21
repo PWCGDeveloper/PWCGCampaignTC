@@ -12,7 +12,7 @@ import pwcg.campaign.crewmember.CrewMemberStatus;
 import pwcg.campaign.crewmember.SerialNumber;
 import pwcg.campaign.crewmember.Victory;
 import pwcg.campaign.crewmember.VictoryEntity;
-import pwcg.campaign.tank.TankType;
+import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.utils.PWCGLogger;
@@ -82,7 +82,7 @@ public class StructureVictoryBuilder
         
         Company company = victorCrewMember.determineCompany();
 
-        TankType victorTankType = company.determineBestPlane(date);
+        TankTypeInformation victorTankType = company.determineBestPlane(date);
         if (victorTankType == null)
         {
             return null;

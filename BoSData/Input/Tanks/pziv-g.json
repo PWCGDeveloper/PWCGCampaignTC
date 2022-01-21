@@ -1,0 +1,17 @@
+{
+	"type": "pziv-g",
+	"archType": "pziv",
+	"isPlayer": false,
+	"primaryUsedBy": [
+		"GERMANY"
+	],
+	"stockModifications": [],
+	"cruisingSpeed": 12,
+	"goodness": 55,
+	"roleCategories": [
+		"MAIN_BATTLE_TANK"
+	],
+	"introduction": "19420301",
+	"endProduction": "19450601",
+	"withdrawal": "19450601"
+}

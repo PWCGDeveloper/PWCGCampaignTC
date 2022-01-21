@@ -1,15 +1,11 @@
 {
 	"type": "_sdkfz184",
 	"archType": "elefant",
-	"side": "AXIS",
+	"isPlayer": true,
 	"primaryUsedBy": [
 		"GERMANY"
 	],
 	"stockModifications": [],
-	"displayName": "Sd.Kfz.184",
-	"script": "LuaScripts\\WorldObjects\\vehicles\\_sdkfz184.txt",
-	"model": "graphics\\vehicles\\_sdkfz184\\_sdkfz184.mgm",
-	"desc": "Sd.Kfz.184",
 	"cruisingSpeed": 9,
 	"goodness": 50,
 	"roleCategories": [

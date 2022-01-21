@@ -11,5 +11,5 @@
   "endDate": "19460724",
   "rarityWeight": 20,
   "vehicleClass": "AAAMachineGun",
-  "associatedBlock": "mg_position"
+  "associatedBlockDefinition": "mg_position"
 }

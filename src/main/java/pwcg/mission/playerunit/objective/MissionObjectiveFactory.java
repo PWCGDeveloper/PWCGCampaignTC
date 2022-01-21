@@ -3,7 +3,7 @@ package pwcg.mission.playerunit.objective;
 import java.util.Date;
 
 import pwcg.core.exception.PWCGException;
-import pwcg.mission.unit.ITankPlatoon;
+import pwcg.mission.platoon.ITankPlatoon;
 
 public class MissionObjectiveFactory
 {

@@ -12,7 +12,6 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import pwcg.campaign.Campaign;
-import pwcg.campaign.company.Company;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.utils.PWCGLogger;
@@ -27,6 +26,7 @@ import pwcg.gui.rofmap.brief.model.BriefingUnit;
 import pwcg.gui.rofmap.brief.model.BriefingUnitParameters;
 import pwcg.gui.utils.PWCGButtonFactory;
 import pwcg.gui.utils.PWCGLabelFactory;
+import pwcg.mission.ICompanyMission;
 import pwcg.mission.Mission;
 import pwcg.mission.mcu.McuWaypoint;
 
@@ -215,7 +215,7 @@ public class BriefingMapGUI extends MapGUI implements ActionListener, IUnitChang
     }
 
     @Override
-    public void unitChanged(Company company) throws PWCGException
+    public void unitChanged(ICompanyMission company) throws PWCGException
     {
         if (!isChangedCompanySameSide(briefingData.getSelectedUnit().getCompany(), company))
         {
@@ -233,7 +233,7 @@ public class BriefingMapGUI extends MapGUI implements ActionListener, IUnitChang
         this.add(BorderLayout.WEST, makeNavPanel());
     }
     
-    private boolean isChangedCompanySameSide(Company before, Company after) throws PWCGException
+    private boolean isChangedCompanySameSide(ICompanyMission before, ICompanyMission after) throws PWCGException
     {
         if (before.determineSide() == after.determineSide())
         {

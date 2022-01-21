@@ -1,0 +1,14 @@
+{
+  "scriptDir": "vehicles\\",
+  "modelDir": "vehicles\\_sdkfz10-5",
+  "vehicleType": "_sdkfz10-5",
+  "vehicleName": "Sd.Kfz.10-5",
+  "displayName": "Sd.Kfz.10-5",
+  "countries": [
+	"GERMANY"
+  ],
+  "startDate": "19400601",
+  "endDate": "19450601",
+  "rarityWeight": 100,
+  "vehicleClass": "PlayerVehicle",
+}

@@ -6,7 +6,7 @@ import java.util.List;
 import pwcg.campaign.company.Company;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.tank.CompanyTankAssignment;
-import pwcg.campaign.tank.TankType;
+import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.campaign.tank.TankTypeFactory;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
@@ -72,7 +72,7 @@ public class CompanyPlaneFinder
             boolean hasPlane = false;
             for (CompanyTankAssignment planeAssignment : company.getPlaneAssignments())
             {
-                for (TankType plane : planeTypeFactory.createTankTypesForArchType(planeAssignment.getArchType()))
+                for (TankTypeInformation plane : planeTypeFactory.createTankTypesForArchType(planeAssignment.getArchType()))
                 {
                     PWCGLogger.log(LogLevel.DEBUG, "        " + plane.getDisplayName());
                 }

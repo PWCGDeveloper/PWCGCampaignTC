@@ -12,8 +12,8 @@ import pwcg.core.utils.MathUtils;
 import pwcg.mission.options.MissionOptions;
 import pwcg.mission.options.MissionWeather;
 import pwcg.mission.options.WindLayer;
+import pwcg.mission.platoon.ITankPlatoon;
 import pwcg.mission.playerunit.objective.MissionObjectiveFactory;
-import pwcg.mission.unit.ITankPlatoon;
 
 public class MissionDescriptionSinglePlayer implements IMissionDescription 
 {
@@ -68,10 +68,10 @@ public class MissionDescriptionSinglePlayer implements IMissionDescription
         setMissionDateTime(DateUtils.getDateAsMissionFileFormat(campaign.getDate()), missionOptions.getMissionTime().getMissionTime());
 
         setVehicle(playerPlatoon.getLeadVehicle().getDisplayName());
-        setTown(playerPlatoon.getUnitInformation().getBase());
+        setTown(playerPlatoon.getPlatoonInformation().getBase());
         setObjective(MissionObjectiveFactory.formMissionObjective(playerPlatoon, campaign.getDate()));
         setCompany(playerPlatoon.getCompany().determineDisplayName(campaign.getDate()));
-        buildTitleDescription(campaign.getCampaignData().getName(), playerPlatoon.getUnitInformation().getCompany().determineDisplayName(campaign.getDate()));
+        buildTitleDescription(campaign.getCampaignData().getName(), playerPlatoon.getPlatoonInformation().getCompany().determineDisplayName(campaign.getDate()));
 
         HashMap<String, ITankPlatoon> companyMap = new HashMap<>();
         for (ITankPlatoon unit : mission.getPlatoons().getPlayerUnits())
@@ -81,7 +81,7 @@ public class MissionDescriptionSinglePlayer implements IMissionDescription
 
         for (ITankPlatoon unit : companyMap.values())
         {
-            setUnit(playerPlatoon.getUnitInformation().getCountry(), unit);
+            setUnit(playerPlatoon.getPlatoonInformation().getCountry(), unit);
         }
         
         return descSinglePlayerTemplate;
@@ -93,8 +93,8 @@ public class MissionDescriptionSinglePlayer implements IMissionDescription
         Campaign campaign =     PWCGContext.getInstance().getCampaign();
         
         String company = unit.getCompany().determineDisplayName(campaign.getDate());
-        String vehicle = unit.getLeadVehicle().getDesc();
-        ICountry vehicleCountry = unit.getUnitInformation().getCountry();
+        String vehicle = unit.getLeadVehicle().getDescription();
+        ICountry vehicleCountry = unit.getPlatoonInformation().getCountry();
         
         if (country.isSameSide(vehicleCountry))
         {

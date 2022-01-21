@@ -85,11 +85,18 @@ public class WaypointFactory
     {
         McuWaypoint waypoint = new McuWaypoint(WaypointType.HUNT_WAYPOINT);
         waypoint.setWpAction(WaypointAction.WP_ACTION_ATTACK);
-        waypoint.setPriority(WaypointPriority.PRIORITY_MED);            
-        
+        waypoint.setPriority(WaypointPriority.PRIORITY_MED);                    
         return waypoint;
     }
 
+    public static McuWaypoint createObjectiveWaypointType()
+    {
+        McuWaypoint waypoint = new McuWaypoint(WaypointType.OBJECTIVE_WAYPOINT);
+        waypoint.setWpAction(WaypointAction.WP_ACTION_ATTACK);
+        waypoint.setPriority(WaypointPriority.PRIORITY_LOW);            
+        return waypoint;
+    }
+ 
 	public static McuWaypoint createDefinedWaypointType(WaypointType waypointType, WaypointAction waypointAction)
 	{
 		McuWaypoint waypoint = new McuWaypoint(waypointType);

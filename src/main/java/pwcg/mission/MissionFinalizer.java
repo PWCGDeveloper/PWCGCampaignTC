@@ -12,7 +12,7 @@ import pwcg.mission.ground.builder.IndirectFireAssignmentHandler;
 import pwcg.mission.mcu.group.MissionObjectiveGroup;
 import pwcg.mission.mcu.group.StopAttackingNearAirfieldSequence;
 import pwcg.mission.options.MissionOptions;
-import pwcg.mission.unit.TankMcu;
+import pwcg.mission.platoon.tank.TankMcu;
 
 public class MissionFinalizer
 {

@@ -1,0 +1,17 @@
+{
+	"type": "marderiii-h",
+	"archType": "marder",
+	"isPlayer": false,
+	"primaryUsedBy": [
+		"GERMANY"
+	],
+	"stockModifications": [],
+	"cruisingSpeed": 12,
+	"goodness": 47,
+	"roleCategories": [
+		"TANK_DESTROYER"
+	],
+	"introduction": "19420101",
+	"endProduction": "19440101",
+	"withdrawal": "19440601"
+}

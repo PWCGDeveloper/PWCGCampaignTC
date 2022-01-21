@@ -10,12 +10,12 @@ import pwcg.core.exception.PWCGException;
 public class TankSorter
 {
 
-    public static List<TankType> sortTanksByGoodness(List<TankType> tanks) throws PWCGException
+    public static List<TankTypeInformation> sortTanksByGoodness(List<TankTypeInformation> tanks) throws PWCGException
     {
-        List<TankType> tanksByGoodness = new ArrayList<>();
-        TreeMap<Integer, TankType> tanksByGoodnessMap = new TreeMap<>();
+        List<TankTypeInformation> tanksByGoodness = new ArrayList<>();
+        TreeMap<Integer, TankTypeInformation> tanksByGoodnessMap = new TreeMap<>();
         
-        for (TankType tank : tanks)
+        for (TankTypeInformation tank : tanks)
         {
             int tankGoodnessKey = tank.getGoodness() * 1000;
             while (tanksByGoodnessMap.containsKey(tankGoodnessKey))

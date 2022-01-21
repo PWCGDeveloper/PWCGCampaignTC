@@ -5,7 +5,7 @@ import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogVictory;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.tank.PwcgRoleCategory;
-import pwcg.campaign.tank.TankType;
+import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.PWCGLogger;
 import pwcg.core.utils.PWCGLogger.LogLevel;
@@ -29,13 +29,13 @@ public class PlayerClaimResolverFirm
                         if (resultVictory.getVictim() instanceof LogTank)
                         {
                             LogTank victimPlane = (LogTank)resultVictory.getVictim();
-                            TankType shotDownPlane = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(victimPlane.getVehicleType());
-                            TankType claimedPlane = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(playerDeclaration.getAircraftType());
+                            TankTypeInformation shotDownPlane = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(victimPlane.getVehicleType());
+                            TankTypeInformation claimedPlane = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(playerDeclaration.getTankType());
             
                             if (shotDownPlane == null || claimedPlane == null)
                             {
                                 PWCGLogger.log(LogLevel.ERROR, 
-                                                "resolveAsFirmVictory: No tank found for claimed type " + playerDeclaration.getAircraftType() );
+                                                "resolveAsFirmVictory: No tank found for claimed type " + playerDeclaration.getTankType() );
                                 
                             }
                             else if (shotDownPlane.getType().equals(claimedPlane.getType()))
@@ -63,7 +63,7 @@ public class PlayerClaimResolverFirm
                 {
                     PwcgRoleCategory victimApproximateRole = resultVictory.getVictim().getRoleCategory();
                     
-                    TankType declaredPlane = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(playerDeclaration.getAircraftType());
+                    TankTypeInformation declaredPlane = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(playerDeclaration.getTankType());
                     if (declaredPlane != null)
                     {
                         PwcgRoleCategory declarationApproximateRole = declaredPlane.determinePrimaryRoleCategory();

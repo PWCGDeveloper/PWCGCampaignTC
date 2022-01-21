@@ -14,8 +14,8 @@ import pwcg.mission.mcu.McuEvent;
 import pwcg.mission.mcu.McuMessage;
 import pwcg.mission.mcu.McuMissionObjective;
 import pwcg.mission.mcu.McuTimer;
-import pwcg.mission.unit.ITankPlatoon;
-import pwcg.mission.unit.TankMcu;
+import pwcg.mission.platoon.ITankPlatoon;
+import pwcg.mission.platoon.tank.TankMcu;
 
 public class MissionObjectiveGroup
 {
@@ -33,7 +33,7 @@ public class MissionObjectiveGroup
     public void createSuccessMissionObjective(Campaign campaign, Mission mission) throws PWCGException 
     {
         ITankPlatoon playerPlatoon = mission.getPlatoons().getReferencePlayerUnit();
-        Coordinate companyLocation = playerPlatoon.getCompany().determineCurrentPosition(campaign.getDate());
+        Coordinate companyLocation = playerPlatoon.getCompany().determinePosition(campaign.getDate());
         missionBeginUnit = new MissionBeginUnit(companyLocation.copy());            
                 
         missionObjective.setCoalition(playerPlatoon.getCompany().getCountry());
@@ -48,7 +48,7 @@ public class MissionObjectiveGroup
     public void createFailureMissionObjective(Campaign campaign, Mission mission) throws PWCGException 
     {
         ITankPlatoon playerPlatoon = mission.getPlatoons().getReferencePlayerUnit();
-        Coordinate companyLocation = playerPlatoon.getCompany().determineCurrentPosition(campaign.getDate());
+        Coordinate companyLocation = playerPlatoon.getCompany().determinePosition(campaign.getDate());
         missionBeginUnit = new MissionBeginUnit(companyLocation.copy());            
 
         missionObjective.setCoalition(playerPlatoon.getCompany().getCountry());

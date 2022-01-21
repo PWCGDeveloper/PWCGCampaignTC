@@ -11,7 +11,6 @@ import pwcg.aar.inmission.phase3.reconcile.victories.singleplayer.PlayerDeclarat
 import pwcg.aar.inmission.phase3.reconcile.victories.singleplayer.VerifiedVictoryGenerator;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.CampaignModeChooser;
-import pwcg.campaign.context.PWCGContext;
 import pwcg.core.exception.PWCGException;
 
 public class CampaignModeAARFactory
@@ -24,7 +23,7 @@ public class CampaignModeAARFactory
         }
         else
         {
-            ClaimDenier claimDenier = new ClaimDenier(campaign, PWCGContext.getInstance().getTankTypeFactory());
+            ClaimDenier claimDenier = new ClaimDenier(campaign);
             VerifiedVictoryGenerator verifiedVictoryGenerator = new VerifiedVictoryGenerator(campaign, aarContext);
             return new ClaimResolverSinglePlayer(campaign, verifiedVictoryGenerator, claimDenier, playerDeclarations);
         }

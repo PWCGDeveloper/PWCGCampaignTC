@@ -1,0 +1,17 @@
+{
+	"type": "kv1-42",
+	"archType": "kv1",
+	"isPlayer": false,
+	"primaryUsedBy": [
+		"RUSSIA"
+	],
+	"stockModifications": [],
+	"cruisingSpeed": 10,
+	"goodness": 55,
+	"roleCategories": [
+		"MAIN_BATTLE_TANK"
+	],
+	"introduction": "19420401",
+	"endProduction": "19430601",
+	"withdrawal": "19450601"
+}

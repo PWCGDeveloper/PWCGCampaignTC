@@ -4,18 +4,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 import pwcg.campaign.Campaign;
-import pwcg.campaign.company.Company;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.CrewMembers;
 import pwcg.campaign.personnel.CrewMemberFilter;
 import pwcg.core.exception.PWCGException;
+import pwcg.mission.ICompanyMission;
 import pwcg.mission.MissionHumanParticipants;
-import pwcg.mission.unit.PlatoonInformation;
+import pwcg.mission.platoon.PlatoonInformation;
 
 public class CrewFactory
 {
     private Campaign campaign;
-    private Company company;
+    private ICompanyMission company;
     private MissionHumanParticipants participatingPlayers;
     private Map <Integer, CrewMember> crewsForCompany = new HashMap <>();
     

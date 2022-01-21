@@ -6,7 +6,7 @@ import pwcg.core.location.Coordinate;
 import pwcg.core.utils.MathUtils;
 import pwcg.mission.ground.org.GroundUnitCollection;
 import pwcg.mission.ground.org.IGroundUnit;
-import pwcg.mission.unit.PlatoonInformation;
+import pwcg.mission.platoon.PlatoonInformation;
 
 public class TargetDefinitionBuilderAAATruck implements ITargetDefinitionBuilder
 {

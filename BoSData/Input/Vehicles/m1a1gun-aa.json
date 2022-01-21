@@ -11,5 +11,5 @@
   "endDate": "19460724",
   "rarityWeight": 80,
   "vehicleClass": "AAAArtillery",
-  "associatedBlock": "art_position_big"
+  "associatedBlockDefinition": "art_position_big"
 }

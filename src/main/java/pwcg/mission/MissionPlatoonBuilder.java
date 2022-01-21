@@ -1,21 +1,25 @@
 package pwcg.mission;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import pwcg.campaign.api.Side;
-import pwcg.campaign.company.Company;
+import pwcg.campaign.crewmember.CrewMember;
 import pwcg.core.exception.PWCGException;
-import pwcg.mission.ground.builder.AssaultArmoredPlatoonBuilder;
-import pwcg.mission.ground.org.GroundUnitCollection;
-import pwcg.mission.unit.ITankPlatoon;
-import pwcg.mission.unit.IUnitPackage;
-import pwcg.mission.unit.PlatoonInformation;
-import pwcg.mission.unit.PlatoonInformationFactory;
-import pwcg.mission.unit.PlatoonMissionType;
-import pwcg.mission.unit.aaa.AAAPackage;
-import pwcg.mission.unit.assault.AssaultPackage;
-import pwcg.mission.unit.defense.DefensePackage;
-import pwcg.mission.unit.infantrysupport.InfantrySupportPackage;
+import pwcg.core.location.Coordinate;
+import pwcg.core.location.Orientation;
+import pwcg.core.utils.MathUtils;
+import pwcg.mission.flight.waypoint.WaypointFactory;
+import pwcg.mission.ground.builder.ArmoredAssaultRouteBuilder;
+import pwcg.mission.ground.builder.ArmoredDefenseRouteBuilder;
+import pwcg.mission.mcu.McuWaypoint;
+import pwcg.mission.platoon.AiTankPlatoon;
+import pwcg.mission.platoon.ITankPlatoon;
+import pwcg.mission.platoon.PlatoonInformation;
+import pwcg.mission.platoon.PlatoonMissionType;
+import pwcg.mission.platoon.PlatoonMissionTypeFactory;
+import pwcg.mission.platoon.PlayerTankPlatoon;
 
 public class MissionPlatoonBuilder
 {
@@ -30,75 +34,105 @@ public class MissionPlatoonBuilder
     public MissionPlatoons createPlatoons() throws PWCGException
     {
         missionPlatoons = new MissionPlatoons(mission);
-        List<Company> alliedCompaniesInMission = participatingPlayers.getParticipatingCompanyIdsForSide(Side.ALLIED);
-        
-        // get tanks for platoons
-        
-        // AI platoons have  
-        
-        // get waypoints for platoons
+        buildPlatoonsForSide(Side.ALLIED);
+        buildPlatoonsForSide(Side.AXIS);
 
+        createAssaultingWaypoints();
+        createDefendingingWaypoints();
+                
         return missionPlatoons;
     }
-    
-    private void  buildPlatoonsForSide(Side side)
-    {
-        buildPlayerPlatoons(side);
-        buildAiPlatoons(side);
-    }
-    
-    private void buildPlayerPlatoons(Side side)
-    {
-        List<Company> companiesInMission = mission.getParticipatingPlayers().getParticipatingCompanyIdsForSide(side);
-        for(Company playerCompany : companiesInMission)
-        {            
-            PlatoonInformation UnitInformation = PlatoonInformationFactory.buildUnitInformation(mission, playerCompany, mission.getParticipatingPlayers());
 
-            List<ITankPlatoon> playerPlatoons = buildPlayerUnit(UnitInformation);
-            for (ITankPlatoon playerPlatoon : playerPlatoons)
-            {
-                missionPlatoons.addPlatoon(playerPlatoon);
-            }
-        }
-    }
-    
-    private void buildAiPlatoons(Side side)
+    private void createAssaultingWaypoints() throws PWCGException
     {
-        List<Company> companiesInMission = mission.getParticipatingPlayers().getParticipatingCompanyIdsForSide(Side.ALLIED);
-        int numAlliedPlatoons = MissionPlatoonSize.getNumAiPlatoonsForSide(mission, side, companiesInMission.size());
-        for(int i = 0; i < numAlliedPlatoons; ++i)
-        {            
-            PlatoonInformation UnitInformation = PlatoonInformationFactory.buildUnitInformation(mission, null, null);
-
-            List<ITankPlatoon> playerPlatoons = buildAiUnit(UnitInformation);
-            for (ITankPlatoon playerPlatoon : playerPlatoons)
-            {
-                missionPlatoons.addPlatoon(playerPlatoon);
-            }
+        ArmoredAssaultRouteBuilder assaultRouteBuilder = new ArmoredAssaultRouteBuilder(mission);
+        Map<Integer, List<Coordinate>> assaultRoutes = assaultRouteBuilder.buildAssaultRoutesForArmor(missionPlatoons.getPlatoons());
+        for (int index : assaultRoutes.keySet())
+        {
+            List<Coordinate> waypointCoordinates = assaultRoutes.get(index);
+            ITankPlatoon platoon = missionPlatoons.getPlatoon(index);
+            
+            createStartPosition(waypointCoordinates, platoon);
+            
+            List<McuWaypoint> assaultWaypoints = createWaypoints(waypointCoordinates, platoon.getTanks().get(0).getCruisingSpeed());
+            platoon.setWaypoints(assaultWaypoints);
         }
     }
 
-    private List<ITankPlatoon> buildPlayerUnit(PlatoonInformation platoonInformation) throws PWCGException
+    private void createDefendingingWaypoints() throws PWCGException
     {
-        IUnitPackage unitPackage = null;
-        if (platoonInformation.getMissionType() == PlatoonMissionType.ASSAULT)
+        ArmoredDefenseRouteBuilder defenseRouteBuilder = new ArmoredDefenseRouteBuilder(mission);
+        Map<Integer, List<Coordinate>> defenseRoutes = defenseRouteBuilder.buildAssaultRoutesForArmor(missionPlatoons.getPlatoons());
+        for (int index : defenseRoutes.keySet())
         {
-            unitPackage = new AssaultPackage();
+            List<Coordinate> waypointCoordinates = defenseRoutes.get(index);
+            ITankPlatoon platoon = missionPlatoons.getPlatoon(index);
+            
+            createStartPosition(waypointCoordinates, platoon);
+            
+            List<McuWaypoint> defenseWaypoints = createWaypoints(waypointCoordinates, platoon.getTanks().get(0).getCruisingSpeed());
+            platoon.setWaypoints(defenseWaypoints);
         }
-        else if (platoonInformation.getMissionType() == PlatoonMissionType.DEFENSE)
+    }
+
+    private void createStartPosition(List<Coordinate> waypointCoordinates, ITankPlatoon platoon) throws PWCGException
+    {
+        Coordinate startPosition = waypointCoordinates.get(0);
+        Coordinate towardsPosition = waypointCoordinates.get(1);
+        platoon.setStartPosition(startPosition, towardsPosition);
+    }
+
+    private List<McuWaypoint> createWaypoints(List<Coordinate> assaultWaypointCoordinates, int platoonSpeed) throws PWCGException
+    {
+        List<McuWaypoint> assaultWaypoints = new ArrayList<>();
+        for(int i = 1; i < assaultWaypointCoordinates.size(); ++i)
         {
-            unitPackage = new DefensePackage();
+            Coordinate assaultWaypointCoordinate = assaultWaypointCoordinates.get(i);
+            McuWaypoint waypoint;
+            waypoint = WaypointFactory.createObjectiveWaypointType();
+            waypoint.setTriggerArea(200);
+            waypoint.setDesc("Assault Waypoint");
+            waypoint.setSpeed(platoonSpeed);
+            waypoint.setPosition(assaultWaypointCoordinate.copy());
+            waypoint.setTargetWaypoint(true);
+            
+            double angle = MathUtils.calcAngle(assaultWaypointCoordinates.get(i-1), assaultWaypointCoordinate);
+            waypoint.setOrientation(new Orientation(angle));
+            
+            assaultWaypoints.add(waypoint);
         }
-        else if (platoonInformation.getMissionType() == PlatoonMissionType.INFANTRY_SUPPORT)
+        return assaultWaypoints;
+    }
+
+    private void buildPlatoonsForSide(Side side) throws PWCGException
+    {
+        List<ICompanyMission> companiesForSide = MissionCompanyBuilder.getCompaniesInMissionForSide(mission, side);
+        for (ICompanyMission company : companiesForSide)
         {
-            unitPackage = new InfantrySupportPackage();
+            buildPlatoon(company);
         }
-        else if (platoonInformation.getMissionType() == PlatoonMissionType.AAA)
+    }
+    
+    private void buildPlatoon(ICompanyMission company) throws PWCGException
+    {
+        List<CrewMember> playerCrews = mission.getParticipatingPlayers().getParticipatingPlayersForCompany(company.getCompanyId());
+        PlatoonInformation platoonInformation = new PlatoonInformation(mission, company, playerCrews);
+
+        ITankPlatoon tankPlatoon = null;
+        if (company.isPlayercompany())
         {
-            unitPackage = new AAAPackage();
+            tankPlatoon = new PlayerTankPlatoon(platoonInformation);
+            tankPlatoon.createUnit();
         }
+        else
+        {
+            tankPlatoon = new AiTankPlatoon(platoonInformation);
+            tankPlatoon.createUnit();
+        }
+
+        PlatoonMissionType platoonMissionType = PlatoonMissionTypeFactory.getPlatoonMissionType(mission, company, tankPlatoon.getTanks());
+        tankPlatoon.setPlatoonMissionType(platoonMissionType);
         
-        List<ITankPlatoon> playerPlatoons = unitPackage.createUnitPackage(platoonInformation);
-        return playerPlatoons;
+        missionPlatoons.addPlatoon(tankPlatoon);
     }
 }

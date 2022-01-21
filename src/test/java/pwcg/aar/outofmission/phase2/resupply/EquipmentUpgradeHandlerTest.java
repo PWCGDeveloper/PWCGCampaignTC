@@ -22,7 +22,7 @@ import pwcg.campaign.resupply.equipment.EquipmentUpgradeHandler;
 import pwcg.campaign.tank.Equipment;
 import pwcg.campaign.tank.EquippedTank;
 import pwcg.campaign.tank.TankStatus;
-import pwcg.campaign.tank.TankType;
+import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.campaign.tank.TankTypeFactory;
 import pwcg.core.exception.PWCGException;
 import pwcg.testutils.CampaignCache;
@@ -60,8 +60,8 @@ public class EquipmentUpgradeHandlerTest
         List<Integer> veryGoodPlanesInDepot = new ArrayList<>();
         for (int i = 0; i < 2; ++i)
         {
-            TankType planeTypeMe109K4 = planeTypeFactory.createTankTypeByType("bf109k4");
-            EquippedTank me109K4ForDepot = new EquippedTank(planeTypeMe109K4, campaign.getSerialNumber().getNextPlaneSerialNumber(), -1,
+            TankTypeInformation planeTypeMe109K4 = planeTypeFactory.createTankTypeByType("bf109k4");
+            EquippedTank me109K4ForDepot = new EquippedTank(planeTypeMe109K4, campaign.getSerialNumber().getNextTankSerialNumber(), -1,
                     TankStatus.STATUS_DEPOT);
             equipmentDepotBeforeTest.addPlaneToDepot(me109K4ForDepot);
             veryGoodPlanesInDepot.add(me109K4ForDepot.getSerialNumber());
@@ -84,8 +84,8 @@ public class EquipmentUpgradeHandlerTest
         List<Integer> planesThatShouldBeReplaced = new ArrayList<>();
         for (int i = 0; i < 2; ++i)
         {
-            TankType planeTypeMe109F2 = planeTypeFactory.createTankTypeByType("bf109f2");
-            EquippedTank me109F2ForCompany = new EquippedTank(planeTypeMe109F2, campaign.getSerialNumber().getNextPlaneSerialNumber(), -1,
+            TankTypeInformation planeTypeMe109F2 = planeTypeFactory.createTankTypeByType("bf109f2");
+            EquippedTank me109F2ForCompany = new EquippedTank(planeTypeMe109F2, campaign.getSerialNumber().getNextTankSerialNumber(), -1,
                     TankStatus.STATUS_DEPLOYED);
             equipmentForCompanyBeforeTest.addEquippedTankToCompany(campaign, playerCompany.getCompanyId(), me109F2ForCompany);
             planesThatShouldBeReplaced.add(me109F2ForCompany.getSerialNumber());
@@ -94,8 +94,8 @@ public class EquipmentUpgradeHandlerTest
         List<Integer> planesThatShouldNotBeReplaced = new ArrayList<>();
         for (int i = 0; i < 10; ++i)
         {
-            TankType planeTypeMe109F4 = planeTypeFactory.createTankTypeByType("bf109f4");
-            EquippedTank me109F4ForCompany = new EquippedTank(planeTypeMe109F4, campaign.getSerialNumber().getNextPlaneSerialNumber(), -1,
+            TankTypeInformation planeTypeMe109F4 = planeTypeFactory.createTankTypeByType("bf109f4");
+            EquippedTank me109F4ForCompany = new EquippedTank(planeTypeMe109F4, campaign.getSerialNumber().getNextTankSerialNumber(), -1,
                     TankStatus.STATUS_DEPLOYED);
             equipmentForCompanyBeforeTest.addEquippedTankToCompany(campaign, playerCompany.getCompanyId(), me109F4ForCompany);
             planesThatShouldNotBeReplaced.add(me109F4ForCompany.getSerialNumber());
@@ -147,8 +147,8 @@ public class EquipmentUpgradeHandlerTest
         List<Integer> veryGoodPlanesInDepot = new ArrayList<>();
         for (int i = 0; i < 2; ++i)
         {
-            TankType planeTypeMe109K4 = planeTypeFactory.createTankTypeByType("bf109k4");
-            EquippedTank me109K4ForDepot = new EquippedTank(planeTypeMe109K4, campaign.getSerialNumber().getNextPlaneSerialNumber(), -1,
+            TankTypeInformation planeTypeMe109K4 = planeTypeFactory.createTankTypeByType("bf109k4");
+            EquippedTank me109K4ForDepot = new EquippedTank(planeTypeMe109K4, campaign.getSerialNumber().getNextTankSerialNumber(), -1,
                     TankStatus.STATUS_DEPOT);
             equipmentDepotBeforeTest.addPlaneToDepot(me109K4ForDepot);
             veryGoodPlanesInDepot.add(me109K4ForDepot.getSerialNumber());
@@ -171,8 +171,8 @@ public class EquipmentUpgradeHandlerTest
         List<Integer> originalPlayerCompanyPlanes = new ArrayList<>();
         for (int i = 0; i < 16; ++i)
         {
-            TankType planeTypeMe109K4 = planeTypeFactory.createTankTypeByType("bf109k4");
-            EquippedTank me109F2ForCompany = new EquippedTank(planeTypeMe109K4, campaign.getSerialNumber().getNextPlaneSerialNumber(), -1,
+            TankTypeInformation planeTypeMe109K4 = planeTypeFactory.createTankTypeByType("bf109k4");
+            EquippedTank me109F2ForCompany = new EquippedTank(planeTypeMe109K4, campaign.getSerialNumber().getNextTankSerialNumber(), -1,
                     TankStatus.STATUS_DEPLOYED);
             equipmentForCompanyBeforeTest.addEquippedTankToCompany(campaign, playerCompany.getCompanyId(), me109F2ForCompany);
             originalPlayerCompanyPlanes.add(me109F2ForCompany.getSerialNumber());
@@ -229,8 +229,8 @@ public class EquipmentUpgradeHandlerTest
         List<Integer> badPlanesInDepot = new ArrayList<>();
         for (int i = 0; i < 2; ++i)
         {
-            TankType planeTypeMe109F2 = planeTypeFactory.createTankTypeByType("bf109f2");
-            EquippedTank me109F2ForDepot = new EquippedTank(planeTypeMe109F2, campaign.getSerialNumber().getNextPlaneSerialNumber(), -1,
+            TankTypeInformation planeTypeMe109F2 = planeTypeFactory.createTankTypeByType("bf109f2");
+            EquippedTank me109F2ForDepot = new EquippedTank(planeTypeMe109F2, campaign.getSerialNumber().getNextTankSerialNumber(), -1,
                     TankStatus.STATUS_DEPOT);
             equipmentDepotBeforeTest.addPlaneToDepot(me109F2ForDepot);
             badPlanesInDepot.add(me109F2ForDepot.getSerialNumber());
@@ -249,8 +249,8 @@ public class EquipmentUpgradeHandlerTest
         List<Integer> goodPlanesInTheCompany = new ArrayList<>();
         for (int i = 0; i < 12; ++i)
         {
-            TankType planeTypeMe109K4 = planeTypeFactory.createTankTypeByType("bf109k4");
-            EquippedTank me109K4ForCompany = new EquippedTank(planeTypeMe109K4, campaign.getSerialNumber().getNextPlaneSerialNumber(), -1,
+            TankTypeInformation planeTypeMe109K4 = planeTypeFactory.createTankTypeByType("bf109k4");
+            EquippedTank me109K4ForCompany = new EquippedTank(planeTypeMe109K4, campaign.getSerialNumber().getNextTankSerialNumber(), -1,
                     TankStatus.STATUS_DEPLOYED);
             equipmentForCompanyBeforeTest.addEquippedTankToCompany(campaign, playerCompany.getCompanyId(), me109K4ForCompany);
             goodPlanesInTheCompany.add(me109K4ForCompany.getSerialNumber());

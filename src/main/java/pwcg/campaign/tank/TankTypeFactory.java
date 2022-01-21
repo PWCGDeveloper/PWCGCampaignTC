@@ -18,7 +18,7 @@ import pwcg.core.utils.RandomNumberGenerator;
 
 public class TankTypeFactory 
 {
-    private Map<String, TankType> tankTypes = new TreeMap<>();
+    private Map<String, TankTypeInformation> tankTypes = new TreeMap<>();
     private Map<String, TankArchType> tankArchTypes = new TreeMap<>();
 
     public TankTypeFactory ()
@@ -33,7 +33,7 @@ public class TankTypeFactory
 
     private void createTankArchTypes()
     {
-        for (TankType tankType : tankTypes.values())
+        for (TankTypeInformation tankType : tankTypes.values())
         {
             if (!tankArchTypes.containsKey(tankType.getArchType()))
             {
@@ -46,9 +46,9 @@ public class TankTypeFactory
         }
     }
 
-    public void dump() 
+    public void dump() throws PWCGException 
     {
-        for (TankType tankType : tankTypes.values())
+        for (TankTypeInformation tankType : tankTypes.values())
         {
             PWCGLogger.log(LogLevel.DEBUG, "" + tankType.getType() + "    " +  tankType.getDisplayName());
         }
@@ -59,13 +59,13 @@ public class TankTypeFactory
         return tankArchTypes.get(tankArchTypeName);
     }
 
-    public List<TankType> getAlliedTanks() 
+    public List<TankTypeInformation> getTanksForSide(Side side) 
     {
-        List<TankType>alliedPlanes = new ArrayList<TankType>();
+        List<TankTypeInformation>alliedPlanes = new ArrayList<TankTypeInformation>();
 
-        for (TankType tankType : tankTypes.values())
+        for (TankTypeInformation tankType : tankTypes.values())
         {
-            if (tankType.getSide() == Side.ALLIED)
+            if (tankType.getSide() == side)
             {
                 alliedPlanes.add(tankType);
             }
@@ -74,11 +74,11 @@ public class TankTypeFactory
         return alliedPlanes;
     }
 
-    public List<TankType> getAllTanks()  throws PWCGException
+    public List<TankTypeInformation> getAllTanks()  throws PWCGException
     {
-        List<TankType>allPlanes = new ArrayList<TankType>();
-        Map<String, TankType>allPlanesSet = new HashMap<String, TankType>();
-        for (TankType tank : tankTypes.values())
+        List<TankTypeInformation>allPlanes = new ArrayList<TankTypeInformation>();
+        Map<String, TankTypeInformation>allPlanesSet = new HashMap<String, TankTypeInformation>();
+        for (TankTypeInformation tank : tankTypes.values())
         {
             allPlanesSet.put(tank.getType(), tank);
         }
@@ -87,24 +87,9 @@ public class TankTypeFactory
         return allPlanes;
     }
 
-    public List<TankType> getAxisTanks() 
+    public TankTypeInformation getTankById(String tankTypeName) throws PWCGException
     {
-        List<TankType>axisPlanes = new ArrayList<TankType>();
-
-        for (TankType tankType : tankTypes.values())
-        {
-            if (tankType.getSide() == Side.AXIS)
-            {
-                axisPlanes.add(tankType);
-            }
-        }
-
-        return axisPlanes;
-    }
-
-    public TankType getTankById(String tankTypeName) throws PWCGException
-    {
-        TankType tank = null;
+        TankTypeInformation tank = null;
         if (tankTypes.containsKey(tankTypeName))
         {
             tank = tankTypes.get(tankTypeName);
@@ -117,11 +102,11 @@ public class TankTypeFactory
         return tank;
     }
 
-    public TankType createTankTypeByType (String tankTypeName) throws PWCGException
+    public TankTypeInformation createTankTypeByType (String tankTypeName) throws PWCGException
     {
-        TankType tank = null;
+        TankTypeInformation tank = null;
 
-        for (TankType thisPlane : tankTypes.values())
+        for (TankTypeInformation thisPlane : tankTypes.values())
         {
             if (thisPlane.getType().equalsIgnoreCase(tankTypeName))
             {
@@ -138,9 +123,9 @@ public class TankTypeFactory
         return tank;
     }
 
-    public TankType createTankTypeByAnyName (String name)
+    public TankTypeInformation createTankTypeByAnyName (String name) throws PWCGException
     {
-        TankType tank = getTankByTankType(name);
+        TankTypeInformation tank = getTankByTankType(name);
         if (tank != null)
         {
             return tank;
@@ -155,10 +140,10 @@ public class TankTypeFactory
         return null;
     }
 
-    public List<TankType> getAvailableTankTypes(ICountry country, PwcgRoleCategory roleCategory, Date date) throws PWCGException
+    public List<TankTypeInformation> getAvailableTankTypes(ICountry country, PwcgRoleCategory roleCategory, Date date) throws PWCGException
     {
-        Map<Integer, TankType> availableTankTypes = new TreeMap<>();
-        for (TankType thisPlane : tankTypes.values())
+        Map<Integer, TankTypeInformation> availableTankTypes = new TreeMap<>();
+        for (TankTypeInformation thisPlane : tankTypes.values())
         {
             if (thisPlane.isUsedBy(country))
             {
@@ -175,10 +160,10 @@ public class TankTypeFactory
         return new ArrayList<>(availableTankTypes.values());
     }
 
-    public List<TankType> createTankTypesForArchType(String tankArchType) throws PWCGException
+    public List<TankTypeInformation> createTankTypesForArchType(String tankArchType) throws PWCGException
     {
-        List<TankType> tankTypesForArchType = new ArrayList<>();
-        for (TankType thisPlane : tankTypes.values())
+        List<TankTypeInformation> tankTypesForArchType = new ArrayList<>();
+        for (TankTypeInformation thisPlane : tankTypes.values())
         {
             if (thisPlane.getArchType().equals(tankArchType))
             {
@@ -194,10 +179,10 @@ public class TankTypeFactory
         return tankTypesForArchType;
     }
 
-    public List<TankType> createActiveTankTypesForArchType(String tankArchType, Date date) throws PWCGException
+    public List<TankTypeInformation> createActiveTankTypesForArchType(String tankArchType, Date date) throws PWCGException
     {
-        List<TankType> tankTypesForArchType = new ArrayList<>();
-        for (TankType thisPlane : tankTypes.values())
+        List<TankTypeInformation> tankTypesForArchType = new ArrayList<>();
+        for (TankTypeInformation thisPlane : tankTypes.values())
         {
             if (thisPlane.getArchType().equals(tankArchType))
             {
@@ -221,10 +206,10 @@ public class TankTypeFactory
         return tankTypesForArchType;
     }
 
-    public List<TankType> createOlderTankTypesForArchType(String tankArchType, Date date) throws PWCGException
+    public List<TankTypeInformation> createOlderTankTypesForArchType(String tankArchType, Date date) throws PWCGException
     {
-        List<TankType> tankTypesForArchType = new ArrayList<>();
-        for (TankType thisPlane : tankTypes.values())
+        List<TankTypeInformation> tankTypesForArchType = new ArrayList<>();
+        for (TankTypeInformation thisPlane : tankTypes.values())
         {
             if (thisPlane.getArchType().equals(tankArchType))
             {
@@ -244,10 +229,10 @@ public class TankTypeFactory
     }
     
 
-    public List<TankType> createTanksByIntroduction(String tankArchType) throws PWCGException
+    public List<TankTypeInformation> createTanksByIntroduction(String tankArchType) throws PWCGException
     {
-        TreeMap<Date, TankType> tankTypesTypeByIntroduction = new TreeMap<>();
-        for (TankType thisPlane : tankTypes.values())
+        TreeMap<Date, TankTypeInformation> tankTypesTypeByIntroduction = new TreeMap<>();
+        for (TankTypeInformation thisPlane : tankTypes.values())
         {
             if (thisPlane.getArchType().equals(tankArchType))
             {
@@ -255,15 +240,15 @@ public class TankTypeFactory
             }
         }
 
-        List<TankType> tankTypesForArchType = new ArrayList<>(tankTypesTypeByIntroduction.values());
+        List<TankTypeInformation> tankTypesForArchType = new ArrayList<>(tankTypesTypeByIntroduction.values());
         return tankTypesForArchType;
     }
 
 
-    public List<TankType> createActiveTankTypesForDateAndSide(Side side, Date date) throws PWCGException
+    public List<TankTypeInformation> createActiveTankTypesForDateAndSide(Side side, Date date) throws PWCGException
     {
-        List<TankType> tankTypesForArchType = new ArrayList<>();
-        for (TankType thisPlane : tankTypes.values())
+        List<TankTypeInformation> tankTypesForArchType = new ArrayList<>();
+        for (TankTypeInformation thisPlane : tankTypes.values())
         {
             if (DateUtils.isDateInRange(date, thisPlane.getIntroduction(), thisPlane.getWithdrawal()))
             {
@@ -283,10 +268,10 @@ public class TankTypeFactory
     }
 
 
-    public TankType findActiveTankTypeByCountryDateAndRole(ICountry country, Date date, PwcgRoleCategory roleCategory) throws PWCGException
+    public TankTypeInformation findActiveTankTypeByCountryDateAndRole(ICountry country, Date date, PwcgRoleCategory roleCategory) throws PWCGException
     {
-        List<TankType> possiblePlanes = new ArrayList<>();
-        for (TankType tankType : tankTypes.values())
+        List<TankTypeInformation> possiblePlanes = new ArrayList<>();
+        for (TankTypeInformation tankType : tankTypes.values())
         {
             if (tankType.isUsedBy(country))
             {
@@ -300,7 +285,7 @@ public class TankTypeFactory
             }
         }
         
-        TankType selectedPlane = null;
+        TankTypeInformation selectedPlane = null;
         if (possiblePlanes.size() > 0)
         {
             int index = RandomNumberGenerator.getRandom(possiblePlanes.size());
@@ -310,10 +295,10 @@ public class TankTypeFactory
         return selectedPlane;
     }
 
-    public TankType findAnyTankTypeForCountryAndDate(ICountry country, Date date) throws PWCGException
+    public TankTypeInformation findAnyTankTypeForCountryAndDate(ICountry country, Date date) throws PWCGException
     {
-        List<TankType> possiblePlanes = new ArrayList<>();
-        for (TankType tankType : tankTypes.values())
+        List<TankTypeInformation> possiblePlanes = new ArrayList<>();
+        for (TankTypeInformation tankType : tankTypes.values())
         {
             if (tankType.isUsedBy(country))
             {
@@ -324,7 +309,7 @@ public class TankTypeFactory
             }
         }
         
-        TankType selectedPlane = null;
+        TankTypeInformation selectedPlane = null;
         if (possiblePlanes.size() > 0)
         {
             int index = RandomNumberGenerator.getRandom(possiblePlanes.size());
@@ -334,11 +319,11 @@ public class TankTypeFactory
         return selectedPlane;
     }
     
-    public TankType getTankByDisplayName(String pwcgDesc) 
+    public TankTypeInformation getTankByDisplayName(String pwcgDesc) throws PWCGException 
     {
-        TankType tank = null;
+        TankTypeInformation tank = null;
 
-        for (TankType thisPlane : tankTypes.values())
+        for (TankTypeInformation thisPlane : tankTypes.values())
         {
             if (thisPlane.getDisplayName().equalsIgnoreCase(pwcgDesc))
             {
@@ -350,11 +335,11 @@ public class TankTypeFactory
         return tank;
     }
 
-    private TankType getTankByTankType (String abrevName)
+    private TankTypeInformation getTankByTankType (String abrevName)
     {
-        TankType tank = null;
+        TankTypeInformation tank = null;
 
-        for (TankType thisPlane : tankTypes.values())
+        for (TankTypeInformation thisPlane : tankTypes.values())
         {
             if (abrevName.equalsIgnoreCase(thisPlane.getType()))
             {
@@ -366,7 +351,7 @@ public class TankTypeFactory
         return tank;
     }
 
-    public Map<String, TankType> getTankTypes()
+    public Map<String, TankTypeInformation> getTankTypes()
     {
         return tankTypes;
     }

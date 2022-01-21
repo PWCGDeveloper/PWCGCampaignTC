@@ -6,7 +6,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.plane.payload.IPlanePayload;
-import pwcg.campaign.tank.TankType;
+import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.campaign.tank.TankTypeFactory;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
@@ -26,7 +26,7 @@ public class BoSPayloadFactoryTest
         PlanePayloadFactory bosPayloadFactory = new PlanePayloadFactory();
         TankTypeFactory planeTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
 
-        for (TankType bosTankType : planeTypeFactory.getAllTanks())
+        for (TankTypeInformation bosTankType : planeTypeFactory.getAllTanks())
         {
             System.out.println(bosTankType.getType());
             

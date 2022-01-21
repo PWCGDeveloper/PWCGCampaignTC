@@ -1,6 +1,5 @@
 package pwcg.gui.rofmap.brief;
 
-import pwcg.campaign.company.Company;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.CrewMembers;
 import pwcg.campaign.personnel.CompanyPersonnel;
@@ -9,9 +8,10 @@ import pwcg.campaign.tank.Equipment;
 import pwcg.campaign.tank.EquippedTank;
 import pwcg.core.exception.PWCGException;
 import pwcg.gui.rofmap.brief.model.BriefingCrewMemberAssignmentData;
+import pwcg.mission.ICompanyMission;
 import pwcg.mission.Mission;
-import pwcg.mission.unit.ITankPlatoon;
-import pwcg.mission.unit.TankMcu;
+import pwcg.mission.platoon.ITankPlatoon;
+import pwcg.mission.platoon.tank.TankMcu;
 
 public class BriefingDataInitializer
 {
@@ -22,7 +22,7 @@ public class BriefingDataInitializer
         this.mission = mission;
 	}
 	
-	public BriefingCrewMemberAssignmentData initializeFromMission(Company company) throws PWCGException
+	public BriefingCrewMemberAssignmentData initializeFromMission(ICompanyMission company) throws PWCGException
 	{	    
 	    BriefingCrewMemberAssignmentData briefingAssignmentData = new BriefingCrewMemberAssignmentData();
 	    briefingAssignmentData.setCompany(company);

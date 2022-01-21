@@ -12,8 +12,8 @@ import pwcg.core.exception.PWCGException;
 import pwcg.mission.Mission;
 import pwcg.mission.MissionGenerator;
 import pwcg.mission.MissionHumanParticipants;
-import pwcg.mission.unit.ITankPlatoon;
-import pwcg.mission.unit.TankMcu;
+import pwcg.mission.platoon.ITankPlatoon;
+import pwcg.mission.platoon.tank.TankMcu;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.CompanyTestProfile;
 

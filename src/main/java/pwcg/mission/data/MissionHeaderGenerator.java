@@ -7,7 +7,7 @@ import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.mission.Mission;
 import pwcg.mission.io.MissionFileNameBuilder;
-import pwcg.mission.unit.ITankPlatoon;
+import pwcg.mission.platoon.ITankPlatoon;
 
 public class MissionHeaderGenerator
 {
@@ -16,8 +16,8 @@ public class MissionHeaderGenerator
     {
         // Even for Coop flights we have to set the header.  Doesn't really matter which flight 
         // as long as it is a player flight
-        ITankPlatoon myUnit = mission.getPlatoons().getReferencePlayerUnit();
-        Company myCompany = myUnit.getCompany();
+        ITankPlatoon myPlatoon = mission.getPlatoons().getReferencePlayerUnit();
+        Company myCompany = mission.getParticipatingPlayers().getMissionPlayerCompanys().get(0);
         
         MissionHeader missionHeader = new MissionHeader();
         
@@ -27,10 +27,10 @@ public class MissionHeaderGenerator
         missionHeader.setBase(myCompany.determineCurrentAirfieldName(campaign.getDate()));
         missionHeader.setDate(DateUtils.getDateStringYYYYMMDD(campaign.getDate()));
         missionHeader.setCompany(myCompany.determineDisplayName(campaign.getDate()));
-        missionHeader.setVehicleType(myUnit.getLeadVehicle().getDisplayName());
+        missionHeader.setVehicleType(myPlatoon.getLeadVehicle().getDisplayName());
 
         
-        missionHeader.setDuty("" + myUnit.getUnitInformation().getMissionType()); 
+        missionHeader.setDuty("" + myPlatoon.getPlatoonMissionType().name()); 
         
         missionHeader.setMapName(PWCGContext.getInstance().getCurrentMap().getMapName()); 
 

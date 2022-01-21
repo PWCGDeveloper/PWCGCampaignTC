@@ -1,0 +1,18 @@
+{
+	"type": "stug",
+	"archType": "stug40l43",
+	"isPlayer": false,
+	"primaryUsedBy": [
+		"GERMANY"
+	],
+	"stockModifications": [],
+	"cruisingSpeed": 12,
+	"goodness": 52,
+	"roleCategories": [
+		"SELF_PROPELLED_GUN",
+		"TANK_DESTROYER"
+	],
+	"introduction": "19420601",
+	"endProduction": "19450601",
+	"withdrawal": "19450601"
+}

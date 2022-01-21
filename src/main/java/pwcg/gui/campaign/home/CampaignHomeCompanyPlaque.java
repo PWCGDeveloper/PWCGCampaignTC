@@ -11,7 +11,7 @@ import javax.swing.SwingConstants;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.company.Company;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.tank.TankType;
+import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.core.config.InternationalizationManager;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
@@ -82,7 +82,7 @@ public class CampaignHomeCompanyPlaque extends JPanel
         descGridPanel.add(lDate);
 
 
-        TankType aircraftType = company.determineBestPlane(campaign.getDate());
+        TankTypeInformation aircraftType = company.determineBestPlane(campaign.getDate());
         if (aircraftType != null)
         {
             String aircraftString = spacing + InternationalizationManager.getTranslation("Operating the");

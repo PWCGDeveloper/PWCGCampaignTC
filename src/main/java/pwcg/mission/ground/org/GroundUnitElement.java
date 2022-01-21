@@ -94,7 +94,7 @@ public class GroundUnitElement
 
     private void createSpawn() throws PWCGException
     {
-        spawn.setName("Spawn " + vehicle.getVehicleName());
+        spawn.setName("Spawn " + vehicle.getName());
         spawn.setDesc("Ground Element Spawn");
         spawn.setPosition(vehicleStartLocation);
         spawn.setOrientation(vehicle.getOrientation());

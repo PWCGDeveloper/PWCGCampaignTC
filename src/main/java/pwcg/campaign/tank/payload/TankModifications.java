@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import pwcg.campaign.tank.TankType;
+import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.core.exception.PWCGException;
 
 public class TankModifications
@@ -13,9 +13,9 @@ public class TankModifications
     private TankPayloadDesignations modifications = new TankPayloadDesignations();
     private TankPayloadDesignations stockModifications = new TankPayloadDesignations();
     private Set<Integer> selectedModifications = new HashSet<>();
-    private TankType tankType;
+    private TankTypeInformation tankType;
 
-    public TankModifications(TankType tankType)
+    public TankModifications(TankTypeInformation tankType)
     {
         this.tankType = tankType;
     }

@@ -23,8 +23,8 @@ import pwcg.mission.io.MissionFileFactory;
 import pwcg.mission.options.MissionOptions;
 import pwcg.mission.options.MissionType;
 import pwcg.mission.options.MissionWeather;
+import pwcg.mission.platoon.ITankPlatoon;
 import pwcg.mission.target.AssaultDefinition;
-import pwcg.mission.unit.ITankPlatoon;
 
 public class Mission
 {
@@ -50,7 +50,6 @@ public class Mission
     private MissionGroundUnitResourceManager groundUnitManager;
     private VehicleSetBuilderComprehensive vehicleSetBuilder = new VehicleSetBuilderComprehensive();
 
-    private MissionCompanyRegistry missionCompanyRegistry = new MissionCompanyRegistry();
     private Skirmish skirmish;
     
     private MissionEffects missionEffects = new MissionEffects();
@@ -101,7 +100,7 @@ public class Mission
     private void createPlayerUnits() throws PWCGException
     {
         MissionPlatoonBuilder platoonBuilder = new MissionPlatoonBuilder(this);
-        missionPlatoons = platoonBuilder.createPlatoons(participatingPlayers);
+        missionPlatoons = platoonBuilder.createPlatoons();
     }
 
     private void createStructuresBoxForMission() throws PWCGException
@@ -211,7 +210,7 @@ public class Mission
         boolean hasPlayerAxis = false;
         for (ITankPlatoon unit : missionPlatoons.getPlayerUnits())
         {
-            if (unit.getUnitInformation().getCountry().getSide() == Side.ALLIED)
+            if (unit.getPlatoonInformation().getCountry().getSide() == Side.ALLIED)
             {
                 hasPlayerAllied = true;
             }
@@ -339,11 +338,6 @@ public class Mission
     public Skirmish getSkirmish()
     {
         return skirmish;
-    }
-
-    public MissionCompanyRegistry getMissionCompanyRegistry()
-    {
-        return missionCompanyRegistry;
     }
 
     public MissionFinalizer getFinalizer()

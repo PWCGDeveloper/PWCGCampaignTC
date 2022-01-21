@@ -21,7 +21,7 @@ import pwcg.campaign.company.Company;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.CrewMembers;
 import pwcg.campaign.crewmember.SerialNumber;
-import pwcg.campaign.tank.TankType;
+import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.campaign.tank.TankTypeFactory;
 import pwcg.core.exception.PWCGException;
 
@@ -37,7 +37,7 @@ public class ClaimDenierTest
     @Mock private CrewMember crewMember;
     @Mock private Company company;
     @Mock private TankTypeFactory planeFactory;
-    @Mock private TankType planeType;
+    @Mock private TankTypeInformation planeType;
    
     private List<CrewMember> players = new ArrayList<>();
 
@@ -68,7 +68,7 @@ public class ClaimDenierTest
     {
 
         Mockito.when(declaration.isConfirmed()).thenReturn(false);
-        Mockito.when(declaration.getAircraftType()).thenReturn("Albatros D.III");
+        Mockito.when(declaration.getTankType()).thenReturn("Albatros D.III");
         Mockito.when(planeFactory.createTankTypeByAnyName(ArgumentMatchers.<String>any())).thenReturn(planeType);
         Mockito.when(planeType.getDisplayName()).thenReturn("Albatros D.III");
         
@@ -82,10 +82,10 @@ public class ClaimDenierTest
     {
 
         Mockito.when(declaration.isConfirmed()).thenReturn(false);
-        Mockito.when(declaration.getAircraftType()).thenReturn(TankType.BALLOON);
+        Mockito.when(declaration.getTankType()).thenReturn(TankTypeInformation.BALLOON);
         
         ClaimDenier claimDenier = new ClaimDenier(campaign, planeFactory);
         ClaimDeniedEvent claimDeniedEvent = claimDenier.determineClaimDenied(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER, declaration);
-        Assertions.assertTrue (claimDeniedEvent.getType().equals(TankType.BALLOON));
+        Assertions.assertTrue (claimDeniedEvent.getType().equals(TankTypeInformation.BALLOON));
     }
 }

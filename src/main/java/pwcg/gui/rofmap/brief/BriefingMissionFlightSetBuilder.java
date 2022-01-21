@@ -8,7 +8,7 @@ import pwcg.gui.rofmap.brief.builder.BriefingUnitParametersBuilder;
 import pwcg.gui.rofmap.brief.model.BriefingUnit;
 import pwcg.gui.rofmap.brief.model.BriefingUnitParameters;
 import pwcg.mission.Mission;
-import pwcg.mission.unit.ITankPlatoon;
+import pwcg.mission.platoon.ITankPlatoon;
 
 public class BriefingMissionFlightSetBuilder
 {

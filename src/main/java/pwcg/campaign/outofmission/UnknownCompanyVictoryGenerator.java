@@ -12,7 +12,7 @@ import pwcg.campaign.crewmember.CrewMemberStatus;
 import pwcg.campaign.crewmember.Victory;
 import pwcg.campaign.crewmember.VictoryEntity;
 import pwcg.campaign.tank.OutOfMissionTankFinder;
-import pwcg.campaign.tank.TankType;
+import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.utils.PWCGLogger;
@@ -78,7 +78,7 @@ public class UnknownCompanyVictoryGenerator
         Company company = victorCrewMember.determineCompany();
         
         OutOfMissionTankFinder outOfMissionPlaneFinder = new OutOfMissionTankFinder();
-        TankType planeType = outOfMissionPlaneFinder.findTankType(
+        TankTypeInformation planeType = outOfMissionPlaneFinder.findTankType(
                 company,
                 company.determineCompanyPrimaryRoleCategory(date),
                 date);

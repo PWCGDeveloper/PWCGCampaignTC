@@ -6,9 +6,7 @@ import java.io.IOException;
 
 import pwcg.campaign.api.ICountry;
 import pwcg.campaign.context.Country;
-import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.factory.CountryFactory;
-import pwcg.campaign.group.airfield.staticobject.StaticObject;
 import pwcg.campaign.utils.IndexGenerator;
 import pwcg.core.config.ConfigItemKeys;
 import pwcg.core.config.ConfigManagerGlobal;
@@ -42,13 +40,8 @@ public class Vehicle implements Cloneable, IVehicle
     protected int spotter = -1;
     protected int beaconChannel = 0;
     protected ICountry country = CountryFactory.makeCountryByCountry(Country.NEUTRAL);
-    protected IVehicle associatedBlock;
 
     protected McuTREntity entity;
-
-    private Vehicle()
-    {
-    }
 
     public Vehicle(VehicleDefinition vehicleDefinition)
     {
@@ -57,38 +50,31 @@ public class Vehicle implements Cloneable, IVehicle
         entity = new McuTREntity(index);
         linkTrId = entity.getIndex();
     }
-
-    public IVehicle clone()
+    
+    public void copyFromTemplate(Vehicle vehicle)
     {
-        Vehicle clone = new Vehicle();
-        clone.vehicleDefinition = this.vehicleDefinition;
-        clone.vehicleName = this.vehicleName;
-        clone.vehicleType = this.vehicleType;
-        clone.position = this.position.copy();
-        clone.orientation = this.orientation.copy();
-        clone.script = this.script;
-        clone.model = this.model;
-        clone.Desc = this.Desc;
-        clone.numberInFormation = this.numberInFormation;
-        clone.vulnerable = this.vulnerable;
-        clone.engageable = this.engageable;
-        clone.limitAmmo = this.limitAmmo;
-        clone.aiLevel = this.aiLevel;
-        clone.damageReport = this.damageReport;
-        clone.damageThreshold = this.damageThreshold;
-        clone.deleteAfterDeath = this.deleteAfterDeath;
-        clone.beaconChannel = this.beaconChannel;
-        clone.country = this.country;
-        if (associatedBlock != null)
-        {
-            clone.associatedBlock = this.associatedBlock.clone();
-        }
+        this.vehicleDefinition = vehicle.vehicleDefinition;
+        this.vehicleName = vehicle.vehicleName;
+        this.vehicleType = vehicle.vehicleType;
+        this.position = vehicle.position.copy();
+        this.orientation = vehicle.orientation.copy();
+        this.script = vehicle.script;
+        this.model = vehicle.model;
+        this.Desc = vehicle.Desc;
+        this.numberInFormation = vehicle.numberInFormation;
+        this.vulnerable = vehicle.vulnerable;
+        this.engageable = vehicle.engageable;
+        this.limitAmmo = vehicle.limitAmmo;
+        this.aiLevel = vehicle.aiLevel;
+        this.damageReport = vehicle.damageReport;
+        this.damageThreshold = vehicle.damageThreshold;
+        this.deleteAfterDeath = vehicle.deleteAfterDeath;
+        this.beaconChannel = vehicle.beaconChannel;
+        this.country = vehicle.country;
 
-        clone.index = IndexGenerator.getInstance().getNextIndex();
-        clone.entity = this.entity.copy(clone.index);
-        clone.linkTrId = entity.getIndex();
-
-        return clone;
+        this.index = IndexGenerator.getInstance().getNextIndex();
+        this.entity = vehicle.entity.copy(vehicle.index);
+        this.linkTrId = entity.getIndex();
     }
 
     public void makeVehicleFromDefinition(ICountry vehicleCountry) throws PWCGException
@@ -101,7 +87,6 @@ public class Vehicle implements Cloneable, IVehicle
         setPosition(new Coordinate());
         setOrientation(new Orientation());
         populateEntity();
-        buildAssociatedBlock();
         setDeleteAfterDeath();
     }
 
@@ -118,19 +103,6 @@ public class Vehicle implements Cloneable, IVehicle
     {
         entity.setPosition(position);
         entity.setOrientation(orientation);
-    }
-
-    private void buildAssociatedBlock() throws PWCGException
-    {
-        VehicleDefinition blockDefinition = PWCGContext.getInstance().getStaticObjectDefinitionManager()
-                .getVehicleDefinitionByType(vehicleDefinition.getAssociatedBlock());
-        if (blockDefinition != null)
-        {
-            associatedBlock = new StaticObject(blockDefinition);
-            associatedBlock.makeVehicleFromDefinition(country);
-            associatedBlock.setPosition(position);
-            associatedBlock.setOrientation(orientation);
-        }
     }
 
     public void write(BufferedWriter writer) throws PWCGException
@@ -150,11 +122,6 @@ public class Vehicle implements Cloneable, IVehicle
             writer.newLine();
 
             entity.write(writer);
-
-            if (associatedBlock != null)
-            {
-                associatedBlock.write(writer);
-            }
         }
         catch (IOException e)
         {
@@ -240,10 +207,6 @@ public class Vehicle implements Cloneable, IVehicle
     {
         this.position = position;
         entity.setPosition(position);
-        if (associatedBlock != null)
-        {
-            associatedBlock.setPosition(position);
-        }
     }
 
     public Orientation getOrientation()
@@ -276,6 +239,16 @@ public class Vehicle implements Cloneable, IVehicle
     {
         this.engageable = engageable;
     }
+ 
+    public int getNumberInFormation()
+    {
+        return numberInFormation;
+    }
+
+    public void setNumberInFormation(int numberInFormation)
+    {
+        this.numberInFormation = numberInFormation;
+    }
 
     public void setAiLevel(AiSkillLevel aiLevel)
     {
@@ -292,7 +265,7 @@ public class Vehicle implements Cloneable, IVehicle
         return country;
     }
 
-    public String getVehicleName()
+    public String getName()
     {
         return vehicleName;
     }
@@ -309,25 +282,7 @@ public class Vehicle implements Cloneable, IVehicle
     }
 
     @Override
-    public void setSpotterRange(int spotterRange)
-    {
-        this.spotter = spotterRange;
-    }
-
-    @Override
-    public int getBeaconChannel()
-    {
-        return beaconChannel;
-    }
-
-    @Override
-    public void setBeaconChannel(int beaconChannel)
-    {
-        this.beaconChannel = beaconChannel;
-    }
-
-    @Override
-    public String getVehicleType()
+    public String getType()
     {
         return vehicleType;
     }
@@ -336,5 +291,26 @@ public class Vehicle implements Cloneable, IVehicle
     public int getLinkTrId()
     {
         return linkTrId;
+    }
+
+    public void setVehicleName(String vehicleName)
+    {
+        this.vehicleName = vehicleName;
+    }
+
+    public void setDescription(String desc)
+    {
+        Desc = desc;
+    }
+
+    public VehicleDefinition getVehicleDefinition()
+    {
+        return vehicleDefinition;
+    }
+    
+
+    public void setLinkTrId(int linkTrId)
+    {
+        this.linkTrId = linkTrId;
     }
 }

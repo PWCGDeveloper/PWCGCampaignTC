@@ -1,6 +1,7 @@
 package pwcg.mission.ground.builder;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import pwcg.campaign.battle.AmphibiousAssault;
@@ -107,7 +108,7 @@ public class AmphibiousAssaultAttackBuilder
                 CountryFactory.makeCountryByCountry(amphibiousAssault.getAggressorCountry()),
                 targetType, 
                 unitPosition, 
-                amphibiousPositionBuilder.getDefensePosition(), 
+                Arrays.asList(amphibiousPositionBuilder.getDefensePosition()), 
                 amphibiousPositionBuilder.getAssaultOrientation());
         
         return groundUnitInformation;

@@ -11,7 +11,7 @@ import pwcg.campaign.tank.Equipment;
 import pwcg.campaign.tank.EquippedTank;
 import pwcg.campaign.tank.TankArchType;
 import pwcg.campaign.tank.TankEquipmentFactory;
-import pwcg.campaign.tank.TankType;
+import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.core.exception.PWCGException;
 
 public class InitialCompanyEquipper 
@@ -40,10 +40,10 @@ public class InitialCompanyEquipper
     {
         List<TankArchType> currentAircraftArchTypes = company.determineCurrentAircraftArchTypes(campaign.getDate());
         
-        List<TankType> planeTypesInCompany = new ArrayList<>();
+        List<TankTypeInformation> planeTypesInCompany = new ArrayList<>();
         for (TankArchType planeArchType : currentAircraftArchTypes)
         {
-            List<TankType> planeTypesForArchType = PWCGContext.getInstance().getTankTypeFactory().createActiveTankTypesForArchType(planeArchType.getTankArchTypeName(), campaign.getDate());
+            List<TankTypeInformation> planeTypesForArchType = PWCGContext.getInstance().getTankTypeFactory().createActiveTankTypesForArchType(planeArchType.getTankArchTypeName(), campaign.getDate());
             planeTypesInCompany.addAll(planeTypesForArchType);
         }
         

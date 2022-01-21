@@ -5,7 +5,6 @@ import java.util.List;
 
 import pwcg.campaign.Campaign;
 import pwcg.campaign.api.Side;
-import pwcg.campaign.company.Company;
 import pwcg.campaign.context.FrontLinePoint;
 import pwcg.campaign.context.FrontLinesForMap;
 import pwcg.campaign.context.MapArea;
@@ -157,8 +156,8 @@ public class MissionCenterBuilderFrontLines implements IMissionCenterBuilder
         List<Coordinate> playerCompanyCoordinates = new ArrayList<>();
         for (int playerCompanyId : participatingPlayers.getParticipatingCompanyIds())
         {
-            Company playerCompany = PWCGContext.getInstance().getCompanyManager().getCompany(playerCompanyId);
-            Coordinate playerCompanyCoordinate = playerCompany.determineCurrentPosition(campaign.getDate());
+            ICompanyMission playerCompany = PWCGContext.getInstance().getCompanyManager().getCompany(playerCompanyId);
+            Coordinate playerCompanyCoordinate = playerCompany.determinePosition(campaign.getDate());
             playerCompanyCoordinates.add(playerCompanyCoordinate);
         }
         return playerCompanyCoordinates;

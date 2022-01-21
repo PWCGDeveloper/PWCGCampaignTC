@@ -2,31 +2,26 @@ package pwcg.campaign.tank;
 
 public enum PwcgRoleCategory
 {
-    FIGHTER("Fighter"),
-    ATTACK("Attack"),
-    BOMBER("Bomber"),
-    RECON("Recon"), 
-    TRANSPORT("Transport"),
-    BALLOON("Balloon"),
-    GROUND_UNIT("Ground Unit"),
+    FIGHTER("Fighter", PwcgRole.ROLE_FIGHTER),
+    ATTACK("Attack", PwcgRole.ROLE_ATTACK),
+    BOMBER("Bomber", PwcgRole.ROLE_BOMBER),
+    TRANSPORT("Transport", PwcgRole.ROLE_TRANSPORT),
+    GROUND_UNIT("Ground Unit", PwcgRole.ROLE_NONE),
     
-    MAIN_BATTLE_TANK("Tank Unit"),
-    TANK_DESTROYER("Tank Destroyer Unit"),
-    SELF_PROPELLED_GUN("Self Propelled Gun Unit"),
-    SELF_PROPELLED_AAA("Self Propelled AAA Unit"),
+    MAIN_BATTLE_TANK("Tank Unit", PwcgRole.ROLE_MAIN_BATTLE_TANK),
+    TANK_DESTROYER("Tank Destroyer Unit", PwcgRole.ROLE_TANK_DESTROYER),
+    SELF_PROPELLED_GUN("Self Propelled Gun Unit", PwcgRole.ROLE_SELF_PROPELLED_GUN),
+    SELF_PROPELLED_AAA("Self Propelled AAA Unit", PwcgRole.ROLE_SELF_PROPELLED_AAA),
 
-    OTHER("other");
+    OTHER("other", PwcgRole.ROLE_NONE);
 
     private String roleCategoryDescription;
+    private PwcgRole defaultRole;
     
-    PwcgRoleCategory (String roleCategoryDescription) 
+    PwcgRoleCategory (String roleCategoryDescription, PwcgRole defaultRole) 
     {
         this.roleCategoryDescription = roleCategoryDescription;
-    }
-
-    public String getRoleCategoryDescription()
-    {
-        return roleCategoryDescription;
+        this.defaultRole = defaultRole;
     }
     
     public static PwcgRoleCategory getRoleCategoryFromDescription(String description)
@@ -40,4 +35,20 @@ public enum PwcgRoleCategory
         }
         return PwcgRoleCategory.OTHER;
     }
+
+    public String getRoleCategoryDescription()
+    {
+        return roleCategoryDescription;
+    }
+
+    public PwcgRole getDefaultRole()
+    {
+        return defaultRole;
+    }
+
+    public void setDefaultRole(PwcgRole defaultRole)
+    {
+        this.defaultRole = defaultRole;
+    }
+
 }

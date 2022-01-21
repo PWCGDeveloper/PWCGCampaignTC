@@ -14,7 +14,7 @@ import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.factory.CountryFactory;
 import pwcg.campaign.tank.CompanyTankAssignment;
-import pwcg.campaign.tank.TankType;
+import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.campaign.tank.TankTypeFactory;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
@@ -88,9 +88,9 @@ public class MissionLogEventsBuilder
         {
             CompanyTankAssignment planeAssignment = AARCoordinatorInMissionTest.getPlaneForCompany(crewMember.getCompanyId());
             TankTypeFactory planeTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
-            List<TankType> planeTypesForCompany = planeTypeFactory.createActiveTankTypesForArchType(planeAssignment.getArchType(), campaign.getDate());
+            List<TankTypeInformation> planeTypesForCompany = planeTypeFactory.createActiveTankTypesForArchType(planeAssignment.getArchType(), campaign.getDate());
             int index = RandomNumberGenerator.getRandom(planeTypesForCompany.size());
-            TankType planeType = planeTypesForCompany.get(index);
+            TankTypeInformation planeType = planeTypesForCompany.get(index);
             AType12 planeSpawn = new AType12(
                     makeNextId(),
                     planeType.getDisplayName(),

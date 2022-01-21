@@ -34,8 +34,8 @@ import pwcg.gui.rofmap.brief.model.BriefingUnitParameters;
 import pwcg.gui.utils.MapPointInfoPopup;
 import pwcg.mission.Mission;
 import pwcg.mission.mcu.McuWaypoint;
+import pwcg.mission.platoon.ITankPlatoon;
 import pwcg.mission.target.AssaultDefinition;
-import pwcg.mission.unit.ITankPlatoon;
 
 public class BriefingMapPanel extends MapPanelBase implements ActionListener
 {
@@ -45,8 +45,8 @@ public class BriefingMapPanel extends MapPanelBase implements ActionListener
     private Mission mission;
     private BriefingMapGUI parent;
 	
-    private List <UnitMap> alliedVirtualPoints = new ArrayList<UnitMap>();
-    private List <UnitMap> axisVirtualPoints = new ArrayList<UnitMap>();
+    private List <PlatoonMap> alliedVirtualPoints = new ArrayList<PlatoonMap>();
+    private List <PlatoonMap> axisVirtualPoints = new ArrayList<PlatoonMap>();
     private CoordinateBox missionBorders = new CoordinateBox();
     
 	public BriefingMapPanel(BriefingMapGUI parent) throws PWCGException
@@ -150,7 +150,7 @@ public class BriefingMapPanel extends MapPanelBase implements ActionListener
         }
     }
 
-    private void drawAiFlightWaypoints(Graphics g, List<UnitMap> unitMaps) throws PWCGException 
+    private void drawAiFlightWaypoints(Graphics g, List<PlatoonMap> platoonMaps) throws PWCGException 
     {
         Graphics2D g2 = (Graphics2D) g;
         g2.setStroke(new BasicStroke(3));
@@ -158,30 +158,30 @@ public class BriefingMapPanel extends MapPanelBase implements ActionListener
         Color requestedColor = g.getColor();
  
         BriefingData briefingData = BriefingContext.getInstance().getBriefingData();
-        for (UnitMap unitMap : unitMaps)
+        for (PlatoonMap platoonMap : platoonMaps)
         {
-            if (briefingData.getAiFlightsToDisplay().containsKey(unitMap.companyId))
+            if (briefingData.getAiFlightsToDisplay().containsKey(platoonMap.companyId))
             {
-                paintWaypointLines(g, g2, requestedColor, unitMap);
+                paintWaypointLines(g, g2, requestedColor, platoonMap);
             }
         }
         
-        for (UnitMap unitMap : unitMaps)
+        for (PlatoonMap platoonMap : platoonMaps)
         {
-            if (briefingData.getAiFlightsToDisplay().containsKey(unitMap.companyId))
+            if (briefingData.getAiFlightsToDisplay().containsKey(platoonMap.companyId))
             {
-                paintWaypoints(g, g2, unitMap);
+                paintWaypoints(g, g2, platoonMap);
             }
         }
         
         drawMissionBorders(g, g2);
     }
 
-    private void paintWaypoints(Graphics g, Graphics2D g2, UnitMap unitMap) throws PWCGException
+    private void paintWaypoints(Graphics g, Graphics2D g2, PlatoonMap platoonMap) throws PWCGException
     {
-        for (int i = 0; i < unitMap.mapPoints.size(); ++i)
+        for (int i = 0; i < platoonMap.mapPoints.size(); ++i)
         {
-            BriefingMapPoint mapPoint = unitMap.mapPoints.get(i);
+            BriefingMapPoint mapPoint = platoonMap.mapPoints.get(i);
             if (i == 0)
             {
                 g.setColor(Color.GREEN);
@@ -192,9 +192,9 @@ public class BriefingMapPanel extends MapPanelBase implements ActionListener
                 g.setColor(Color.BLACK);
                 Font font = PWCGMonitorFonts.getPrimaryFont();
                 g.setFont(font);
-                g.drawString((unitMap.unitType + "/" + unitMap.tankType), point.x + 4, point.y);
+                g.drawString((platoonMap.platoonType + "/" + platoonMap.tankType), point.x + 4, point.y);
             }
-            if (i == (unitMap.mapPoints.size()-1) )
+            if (i == (platoonMap.mapPoints.size()-1) )
             {
                 g.setColor(Color.RED);
                 Point point = super.coordinateToPoint(mapPoint.getPosition());
@@ -211,13 +211,13 @@ public class BriefingMapPanel extends MapPanelBase implements ActionListener
         }
     }
 
-    private void paintWaypointLines(Graphics g, Graphics2D g2, Color requestedColor, UnitMap unitMap)
+    private void paintWaypointLines(Graphics g, Graphics2D g2, Color requestedColor, PlatoonMap platoonMap)
     {
         BriefingMapPoint prevMapPoint = null;
         
-         for (int i = 0; i < unitMap.mapPoints.size(); ++i)
+         for (int i = 0; i < platoonMap.mapPoints.size(); ++i)
          {
-            BriefingMapPoint mapPoint = unitMap.mapPoints.get(i);
+            BriefingMapPoint mapPoint = platoonMap.mapPoints.get(i);
             g.setColor(requestedColor);
 
             Point point = super.coordinateToPoint(mapPoint.getPosition());
@@ -262,33 +262,33 @@ public class BriefingMapPanel extends MapPanelBase implements ActionListener
         axisVirtualPoints.clear();        
     }
 
-    public void makeMapPanelVirtualPoints(ITankPlatoon unit) throws PWCGException
+    public void makeMapPanelVirtualPoints(ITankPlatoon platoon) throws PWCGException
     {       
-        UnitMap unitMap = buildFlightMap(unit);
-        if (unit.getUnitInformation().getCountry().getSideNoNeutral() == Side.ALLIED)
+        PlatoonMap platoonMap = buildFlightMap(platoon);
+        if (platoon.getPlatoonInformation().getCountry().getSideNoNeutral() == Side.ALLIED)
         {
-            alliedVirtualPoints.add(unitMap);
+            alliedVirtualPoints.add(platoonMap);
         }
         else
         {
-            axisVirtualPoints.add(unitMap);
+            axisVirtualPoints.add(platoonMap);
         }
     }
 
-    private UnitMap buildFlightMap(ITankPlatoon unit) throws PWCGException
+    private PlatoonMap buildFlightMap(ITankPlatoon platoon) throws PWCGException
     {
-        UnitMap unitMap = new UnitMap();
-        unitMap.unitType = unit.getUnitInformation().getMissionType().name();
-        unitMap.tankType = unit.getUnitTanks().getUnitLeader().getDisplayName();
-        unitMap.companyId = unit.getCompany().getCompanyId();
+        PlatoonMap platoonMap = new PlatoonMap();
+        platoonMap.platoonType = platoon.getPlatoonMissionType().name();
+        platoonMap.tankType = platoon.getUnitTanks().getUnitLeader().getDisplayName();
+        platoonMap.companyId = platoon.getCompany().getCompanyId();
         
-        for (McuWaypoint waypoint : unit.getWaypoints())
+        for (McuWaypoint waypoint : platoon.getWaypoints())
         {
             BriefingMapPoint mapPoint = BriefingMapPointFactory.waypointToMapPoint(waypoint);
-            unitMap.mapPoints.add(mapPoint);
+            platoonMap.mapPoints.add(mapPoint);
         }
         
-        return unitMap;
+        return platoonMap;
     }
 
 	public void mouseMovedCallback(MouseEvent e) 
@@ -530,9 +530,9 @@ public class BriefingMapPanel extends MapPanelBase implements ActionListener
 		
 	}
 	
-	private class UnitMap
+	private class PlatoonMap
 	{
-        String unitType;
+        String platoonType;
         String tankType;
         int companyId;
         List<BriefingMapPoint> mapPoints = new ArrayList<BriefingMapPoint>();

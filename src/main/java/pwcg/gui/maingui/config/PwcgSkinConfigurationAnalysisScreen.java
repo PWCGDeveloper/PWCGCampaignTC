@@ -20,8 +20,9 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import pwcg.campaign.api.Side;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.tank.TankType;
+import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.MissingSkin;
 import pwcg.core.utils.PWCGLogger;
@@ -150,22 +151,22 @@ public class PwcgSkinConfigurationAnalysisScreen extends ImageResizingPanel impl
 
     public JPanel makeAxisPanel() throws PWCGException 
     {
-        List<TankType> axisPlanes = PWCGContext.getInstance().getTankTypeFactory().getAxisTanks();
+        List<TankTypeInformation> axisPlanes = PWCGContext.getInstance().getTankTypeFactory().getTanksForSide(Side.AXIS);
         return makePlanePanel(axisPlanes);
     }
 
     public JPanel makeAlliedPanel() throws PWCGException 
     {
-        List<TankType> alliedPlanes = PWCGContext.getInstance().getTankTypeFactory().getAlliedTanks();
+        List<TankTypeInformation> alliedPlanes = PWCGContext.getInstance().getTankTypeFactory().getTanksForSide(Side.ALLIED);
         return makePlanePanel(alliedPlanes);
     }
 
-	public JPanel makePlanePanel(List<TankType> planes) throws PWCGException 
+	public JPanel makePlanePanel(List<TankTypeInformation> planes) throws PWCGException 
 	{
         JPanel planeListOuterPanel = new JPanel(new BorderLayout());
         planeListOuterPanel.setOpaque(false);
 		
-		TreeMap<String, TankType> planeMap = sortPlanesByType(planes);
+		TreeMap<String, TankTypeInformation> planeMap = sortPlanesByType(planes);
 		
 		JPanel planeListPanel = createPlanePanel(planeMap);
 		
@@ -176,18 +177,18 @@ public class PwcgSkinConfigurationAnalysisScreen extends ImageResizingPanel impl
         return planeListOuterPanel;
 	}
 
-    private TreeMap<String, TankType> sortPlanesByType(List<TankType> planes)
+    private TreeMap<String, TankTypeInformation> sortPlanesByType(List<TankTypeInformation> planes)
     {
-        TreeMap<String, TankType> planeMap = new TreeMap<String, TankType>();
+        TreeMap<String, TankTypeInformation> planeMap = new TreeMap<String, TankTypeInformation>();
         for (int i = 0; i < planes.size(); ++i)
         {
-            TankType plane = planes.get(i);
+            TankTypeInformation plane = planes.get(i);
             planeMap.put(plane.getType(), plane);
         }
         return planeMap;
     }
 
-    private JPanel createPlanePanel(TreeMap<String, TankType> planeMap) throws PWCGException
+    private JPanel createPlanePanel(TreeMap<String, TankTypeInformation> planeMap) throws PWCGException
     {
         MonitorSize monitorSize = PWCGMonitorSupport.getFrameWidth();
         int columns = 2;
@@ -201,7 +202,7 @@ public class PwcgSkinConfigurationAnalysisScreen extends ImageResizingPanel impl
 
         Color buttonBG = ColorMap.PAPERPART_BACKGROUND;
         
-        for (TankType plane : planeMap.values())
+        for (TankTypeInformation plane : planeMap.values())
 		{
 			JCheckBox planeCheckBox = makeCheckBox(plane);
 
@@ -216,7 +217,7 @@ public class PwcgSkinConfigurationAnalysisScreen extends ImageResizingPanel impl
         return planeListPanel;
     }
 
-    private JCheckBox makeCheckBox(TankType plane) throws PWCGException 
+    private JCheckBox makeCheckBox(TankTypeInformation plane) throws PWCGException 
     {        
         Font font = PWCGMonitorFonts.getPrimaryFont();
         JCheckBox checkBox = PWCGButtonFactory.makeCheckBoxWithDimensions(plane.getType(), plane.getDisplayName(), font, new Dimension(300, 50));
@@ -298,13 +299,13 @@ public class PwcgSkinConfigurationAnalysisScreen extends ImageResizingPanel impl
     {
         try
         {
-            Map<String, TankType> planeTypesToDisplay = new TreeMap<String, TankType>();
+            Map<String, TankTypeInformation> planeTypesToDisplay = new TreeMap<String, TankTypeInformation>();
             for (String planeTypeDesc: selectionBoxes.keySet())
             {
                 JCheckBox selectionBox = selectionBoxes.get(planeTypeDesc);
                 if (selectionBox.isSelected())
                 {
-                    TankType planeType = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(planeTypeDesc);
+                    TankTypeInformation planeType = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(planeTypeDesc);
                     planeTypesToDisplay.put(planeTypeDesc, planeType);
                 }
             }

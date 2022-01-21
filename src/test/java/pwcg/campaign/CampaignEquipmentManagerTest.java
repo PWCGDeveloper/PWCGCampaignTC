@@ -14,7 +14,7 @@ import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.tank.Equipment;
 import pwcg.campaign.tank.EquippedTank;
 import pwcg.campaign.tank.TankAttributeMapping;
-import pwcg.campaign.tank.TankType;
+import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.campaign.tank.TankTypeFactory;
 import pwcg.core.exception.PWCGException;
 import pwcg.testutils.CampaignCache;
@@ -63,7 +63,7 @@ public class CampaignEquipmentManagerTest
         
         Company company = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
         TankTypeFactory tankTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
-        TankType tankType = tankTypeFactory.getTankById(TankAttributeMapping.PANTHER_D.getTankType());
+        TankTypeInformation tankType = tankTypeFactory.getTankById(TankAttributeMapping.PANTHER_D.getTankType());
         campaign.getEquipmentManager().actOnEquipmentRequest(company, tanksToReplace, tankType.getDisplayName());
         
         int pantherCount = 0;

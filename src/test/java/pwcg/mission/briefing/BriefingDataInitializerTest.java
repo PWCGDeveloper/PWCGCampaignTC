@@ -31,9 +31,9 @@ import pwcg.gui.rofmap.brief.BriefingDataInitializer;
 import pwcg.gui.rofmap.brief.model.BriefingCrewMemberAssignmentData;
 import pwcg.mission.Mission;
 import pwcg.mission.MissionPlatoons;
-import pwcg.mission.unit.ITankPlatoon;
-import pwcg.mission.unit.TankMcu;
-import pwcg.mission.unit.PlatoonTanks;
+import pwcg.mission.platoon.ITankPlatoon;
+import pwcg.mission.platoon.PlatoonTanks;
+import pwcg.mission.platoon.tank.TankMcu;
 import pwcg.testutils.CompanyTestProfile;
 
 @ExtendWith(MockitoExtension.class)

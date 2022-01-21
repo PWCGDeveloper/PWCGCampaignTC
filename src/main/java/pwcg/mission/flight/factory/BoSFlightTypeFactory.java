@@ -34,7 +34,7 @@ public class BoSFlightTypeFactory implements IFlightTypeFactory
         {
             flightType = getDiveBomberFlightType();
         }
-        else if (missionRole == PwcgRole.ROLE_BOMB)
+        else if (missionRole == PwcgRole.ROLE_BOMBER)
         {
             flightType = getBomberFlightType(company);
         }

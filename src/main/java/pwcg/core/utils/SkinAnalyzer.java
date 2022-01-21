@@ -8,7 +8,7 @@ import java.util.Map;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.skin.Skin;
 import pwcg.campaign.skin.SkinsForPlane;
-import pwcg.campaign.tank.TankType;
+import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.core.exception.PWCGException;
 
 public class SkinAnalyzer 
@@ -26,11 +26,11 @@ public class SkinAnalyzer
 
 	private void initMissingSkinMap() throws PWCGException
 	{
-        List<TankType> allPlanes = PWCGContext.getInstance().getTankTypeFactory().getAllTanks();
+        List<TankTypeInformation> allPlanes = PWCGContext.getInstance().getTankTypeFactory().getAllTanks();
         
         missingSkinListMap.clear();
         
-        for (TankType plane : allPlanes)
+        for (TankTypeInformation plane : allPlanes)
         {
             List<MissingSkin> missingSkinList = new ArrayList<>();
             missingSkinListMap.put(plane.getType(), missingSkinList);
@@ -39,7 +39,7 @@ public class SkinAnalyzer
 
 	private void findMissingConfiguredSkins() throws PWCGException 
 	{
-		for (TankType plane : PWCGContext.getInstance().getTankTypeFactory().getAllTanks())
+		for (TankTypeInformation plane : PWCGContext.getInstance().getTankTypeFactory().getAllTanks())
 		{
 			SkinsForPlane skinsForPlane = PWCGContext.getInstance().getSkinManager().getSkinsForPlane(plane.getType());
 		
@@ -55,7 +55,7 @@ public class SkinAnalyzer
 	
 	private void findMissingCompanySkins() throws PWCGException 
 	{
-		for (TankType plane : PWCGContext.getInstance().getTankTypeFactory().getAllTanks())
+		for (TankTypeInformation plane : PWCGContext.getInstance().getTankTypeFactory().getAllTanks())
 		{
 			SkinsForPlane skinsForPlane = PWCGContext.getInstance().getSkinManager().getSkinsForPlane(plane.getType());
 		
@@ -70,7 +70,7 @@ public class SkinAnalyzer
 	}
 	private void findMissingAceSkins() throws PWCGException 
 	{
-		for (TankType plane : PWCGContext.getInstance().getTankTypeFactory().getAllTanks())
+		for (TankTypeInformation plane : PWCGContext.getInstance().getTankTypeFactory().getAllTanks())
 		{
 			SkinsForPlane skinsForPlane = PWCGContext.getInstance().getSkinManager().getSkinsForPlane(plane.getType());
 		
@@ -97,7 +97,7 @@ public class SkinAnalyzer
         return false;
     }
     
-    private void addMissingSkin(TankType plane, String skinName, String category)
+    private void addMissingSkin(TankTypeInformation plane, String skinName, String category)
     {
         MissingSkin missingSkin = new MissingSkin();
         

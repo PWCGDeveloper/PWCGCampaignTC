@@ -12,5 +12,5 @@
   "endDate": "19460724",
   "rarityWeight": 10,
   "vehicleClass": "ArtilleryAntiTank",
-  "associatedBlock": "art_position_big"
+  "associatedBlockDefinition": "art_position_big"
 }

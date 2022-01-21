@@ -1,0 +1,17 @@
+{
+	"type": "bt7m",
+	"archType": "bt7",
+	"isPlayer": false,
+	"primaryUsedBy": [
+		"RUSSIA"
+	],
+	"stockModifications": [],
+	"cruisingSpeed": 14,
+	"goodness": 20,
+	"roleCategories": [
+		"MAIN_BATTLE_TANK"
+	],
+	"introduction": "19410601",
+	"endProduction": "19420101",
+	"withdrawal": "19430601"
+}

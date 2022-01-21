@@ -18,10 +18,10 @@ public class CrewTankPayloadPairing
     private int payloadId = NO_PAYLOAD_ASSIGNED;
     private Map<String, String> modifications = new HashMap<>();
 
-    public CrewTankPayloadPairing(CrewMember crewMember, EquippedTank plane)
+    public CrewTankPayloadPairing(CrewMember crewMember, EquippedTank tank)
     {
         this.crewMember = crewMember;
-        this.vehicle = plane;
+        this.vehicle = tank;
     }
     
     public CrewMember getCrewMember()

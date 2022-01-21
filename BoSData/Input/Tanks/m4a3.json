@@ -1,0 +1,18 @@
+{
+	"type": "m4a3",
+	"archType": "sherman",
+	"isPlayer": false,
+	"primaryUsedBy": [
+		"USA",
+		"BRITAIN"
+	],
+	"stockModifications": [],
+	"cruisingSpeed": 14,
+	"goodness": 50,
+	"roleCategories": [
+		"MAIN_BATTLE_TANK"
+	],
+	"introduction": "19430601",
+	"endProduction": "19450601",
+	"withdrawal": "19450601"
+}

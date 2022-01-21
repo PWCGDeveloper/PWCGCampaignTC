@@ -26,7 +26,6 @@ public final class VirtualWaypoint implements IVirtualWaypoint
     private boolean shouldLinkToAttack = false;
 
     private VirtualWaypointPlanes vwpPlanes;
-    private VirtualWaypointEscort vwpEscort;
     
     private VirtualWaypointCheckZone vwpCheckZone;
     private VirtualWaypointTriggered vwpTriggered;
@@ -97,11 +96,6 @@ public final class VirtualWaypoint implements IVirtualWaypoint
             vwpPlanes.write(writer);
             vwpCheckZone.write(writer);
             vwpTriggered.write(writer);
-
-            if (vwpEscort != null)
-            {
-                vwpEscort.write(writer);
-            }
 
             writer.write("}");
             writer.newLine();
@@ -188,11 +182,6 @@ public final class VirtualWaypoint implements IVirtualWaypoint
     public VirtualWaypointPlanes getVwpPlanes()
     {
         return vwpPlanes;
-    }
-
-    public VirtualWaypointEscort getVwpEscort()
-    {
-        return vwpEscort;
     }
 
     @Override

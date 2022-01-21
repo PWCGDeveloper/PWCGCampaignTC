@@ -1,0 +1,14 @@
+{
+  "scriptDir": "vehicles\\",
+  "modelDir": "vehicles\\_pzv-d",
+  "vehicleType": "_pzv-d",
+  "vehicleName": "Pz.Kpfw.V Ausf.D",
+  "displayName": "Pz.Kpfw.V Ausf.D",
+  "countries": [
+	"GERMANY"
+  ],
+  "startDate": "19430601",
+  "endDate": "19450601",
+  "rarityWeight": 70,
+  "vehicleClass": "PlayerVehicle",
+}

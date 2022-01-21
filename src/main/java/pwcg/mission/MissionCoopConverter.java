@@ -3,7 +3,7 @@ package pwcg.mission;
 import pwcg.core.exception.PWCGException;
 import pwcg.mission.options.MissionOptions;
 import pwcg.mission.options.MissionType;
-import pwcg.mission.unit.ITankPlatoon;
+import pwcg.mission.platoon.ITankPlatoon;
 
 
 public class MissionCoopConverter

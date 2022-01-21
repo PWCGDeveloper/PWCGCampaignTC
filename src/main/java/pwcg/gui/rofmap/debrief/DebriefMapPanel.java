@@ -23,7 +23,7 @@ import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.crewmember.Victory;
 import pwcg.campaign.crewmember.VictoryBuilder;
 import pwcg.campaign.crewmember.VictoryDescription;
-import pwcg.campaign.tank.TankType;
+import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.PWCGLogger;
 import pwcg.gui.rofmap.MapPanelBase;
@@ -233,8 +233,8 @@ public class DebriefMapPanel  extends MapPanelBase
         LogVictory victoryEvent = (LogVictory)event;
         if (!parent.displayMaxInfo())
         {
-            TankType victimVehicle = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(victoryEvent.getVictim().getVehicleType());
-            TankType victorVehicle = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(victoryEvent.getVictor().getVehicleType());
+            TankTypeInformation victimVehicle = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(victoryEvent.getVictim().getVehicleType());
+            TankTypeInformation victorVehicle = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(victoryEvent.getVictor().getVehicleType());
             if (victimVehicle == null && victorVehicle == null)
             {
                 return;

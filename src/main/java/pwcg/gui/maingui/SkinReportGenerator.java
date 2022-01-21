@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.tank.TankType;
+import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.core.utils.MissingSkin;
@@ -59,7 +59,7 @@ public class SkinReportGenerator
     {
         for (String planeTypeDesc : skinsToWrite.keySet())
         {
-            TankType plane = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(planeTypeDesc);
+            TankTypeInformation plane = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(planeTypeDesc);
             List<MissingSkin> missingSkinSet = skinsToWrite.get(planeTypeDesc);
             
             // The plane

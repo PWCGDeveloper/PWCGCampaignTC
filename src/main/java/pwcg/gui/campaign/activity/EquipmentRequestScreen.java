@@ -30,7 +30,7 @@ import pwcg.campaign.factory.CountryFactory;
 import pwcg.campaign.tank.Equipment;
 import pwcg.campaign.tank.EquippedTank;
 import pwcg.campaign.tank.PwcgRoleCategory;
-import pwcg.campaign.tank.TankType;
+import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.campaign.tank.TankTypeFactory;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.PWCGLogger;
@@ -233,13 +233,13 @@ public class EquipmentRequestScreen extends ImageResizingPanel implements Action
         ICountry country = CountryFactory.makeCountryByCountry(referencePlayer.getCountry());
         Company company = PWCGContext.getInstance().getCompanyManager().getCompany(referencePlayer.getCompanyId());
         PwcgRoleCategory roleCategory = company.getCompanyRoles().selectCompanyPrimaryRoleCategory(campaign.getDate());
-        List<TankType> availableTankTypes = planeTypeFactory.getAvailableTankTypes(country, roleCategory, campaign.getDate());        
+        List<TankTypeInformation> availableTankTypes = planeTypeFactory.getAvailableTankTypes(country, roleCategory, campaign.getDate());        
 
         replacementAircraftTypeSelector = new JComboBox<String>();
         replacementAircraftTypeSelector.setOpaque(false);
         if (!availableTankTypes.isEmpty())
         {
-            for (TankType planeType : availableTankTypes)
+            for (TankTypeInformation planeType : availableTankTypes)
             {
                 replacementAircraftTypeSelector.addItem(planeType.getDisplayName());
             }

@@ -33,7 +33,7 @@ public class BoSFlightTypeCoopFactory implements IFlightTypeFactory
         {
             return getDiveBomberFlightType();
         }
-        else if (missionRole == PwcgRole.ROLE_BOMB)
+        else if (missionRole == PwcgRole.ROLE_BOMBER)
         {
             return getBomberFlightType(company);
         }

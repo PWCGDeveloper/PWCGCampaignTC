@@ -4,12 +4,9 @@ import java.io.File;
 import java.util.List;
 
 import pwcg.campaign.Campaign;
-import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGDirectoryUserManager;
 import pwcg.campaign.resupply.depot.EquipmentDepot;
 import pwcg.campaign.tank.Equipment;
-import pwcg.campaign.tank.EquippedTank;
-import pwcg.campaign.tank.TankType;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.FileUtils;
 
@@ -75,11 +72,6 @@ public class CampaignEquipmentIOJson
             Equipment companyEquipment = jsoReader.readJsonFile(campaignEquipmentDir, jsonFile.getName());
             int companyId = Integer.valueOf(FileUtils.stripFileExtension(jsonFile.getName()));
             campaign.getEquipmentManager().addEquipmentForCompany(companyId, companyEquipment);
-            
-            for (EquippedTank equippedTank : companyEquipment.getEquippedTanks().values())
-            {
-                equippedTank.updateFromTankType();
-            }
         }
     }
 
@@ -93,18 +85,6 @@ public class CampaignEquipmentIOJson
             EquipmentDepot replacementEquipment = jsoReader.readJsonFile(campaignEquipmentReplacementDir, jsonFile.getName());
             int serviceId = Integer.valueOf(FileUtils.stripFileExtension(jsonFile.getName()));
             campaign.getEquipmentManager().addEquipmentDepotForService(serviceId, replacementEquipment);
-            
-            for (EquippedTank equippedTank : replacementEquipment.getAllPlanesInDepot())
-            {
-                equippedTank.updateFromTankType();
-            }
-
-            for (EquippedTank equippedTank : replacementEquipment.getAllPlanesInDepot())
-            {
-                // Propagate any updates to the aircraft definitions into plane instances
-                TankType basePlane = PWCGContext.getInstance().getTankTypeFactory().getTankById(equippedTank.getType());
-                basePlane.copyTemplate(equippedTank);
-            }
         }
     }
 }

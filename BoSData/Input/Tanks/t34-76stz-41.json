@@ -1,0 +1,17 @@
+{
+	"type": "t34-76stz-41",
+	"archType": "t34",
+	"isPlayer": false,
+	"primaryUsedBy": [
+		"RUSSIA"
+	],
+	"stockModifications": [],
+	"cruisingSpeed": 18,
+	"goodness": 35,
+	"roleCategories": [
+		"MAIN_BATTLE_TANK"
+	],
+	"introduction": "19410601",
+	"endProduction": "19430101",
+	"withdrawal": "19431001"
+}

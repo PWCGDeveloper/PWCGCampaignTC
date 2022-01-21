@@ -3,19 +3,19 @@ package pwcg.campaign.tank.payload;
 import java.util.Date;
 import java.util.List;
 
-import pwcg.campaign.tank.TankType;
+import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.MathUtils;
-import pwcg.mission.unit.ITankPlatoon;
+import pwcg.mission.platoon.ITankPlatoon;
 
 public abstract class TankPayload implements ITankPayload
 {
     private TankPayloads payloads = new TankPayloads();
     private TankModifications modifications;
-    private TankType tankType;
+    private TankTypeInformation tankType;
     private Date date;
 
-	public TankPayload(TankType tankType, Date date)
+	public TankPayload(TankTypeInformation tankType, Date date)
 	{
 	    this.tankType = tankType;
         this.date = date;
@@ -203,7 +203,7 @@ public abstract class TankPayload implements ITankPayload
         }
     }
 
-    protected TankType getTankType()
+    protected TankTypeInformation getTankType()
     {
         return tankType;
     }

@@ -1,0 +1,14 @@
+{
+  "scriptDir": "vehicles\\",
+  "modelDir": "vehicles\\_t34-76stz",
+  "vehicleType": "_t34-76stz",
+  "vehicleName": "T-34-76 STZ 41",
+  "displayName": "T-34-76 STZ 41",
+  "countries": [
+    "RUSSIA"
+  ],
+  "startDate": "19410601",
+  "endDate": "19431101",
+  "rarityWeight": 100,
+  "vehicleClass": "PlayerVehicle",
+}

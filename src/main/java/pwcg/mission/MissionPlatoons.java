@@ -1,17 +1,19 @@
 package pwcg.mission;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import pwcg.campaign.Campaign;
 import pwcg.core.exception.PWCGException;
-import pwcg.mission.unit.ITankPlatoon;
-import pwcg.mission.unit.TankMcu;
-import pwcg.mission.unit.TankPlatoon;
+import pwcg.mission.platoon.ITankPlatoon;
+import pwcg.mission.platoon.PlayerTankPlatoon;
+import pwcg.mission.platoon.tank.TankMcu;
 
 public class MissionPlatoons
 {
-    private List<ITankPlatoon> tankPlatoons = new ArrayList<>();
+    private Map<Integer, ITankPlatoon> tankPlatoons = new HashMap<>();
     private Mission mission;
     private Campaign campaign;
 
@@ -21,15 +23,15 @@ public class MissionPlatoons
         this.campaign = mission.getCampaign();
     }
     
-    public void addPlatoon(ITankPlatoon playerPlatoon)
+    public void addPlatoon(ITankPlatoon platoon)
     {
-        tankPlatoons.add(playerPlatoon);
+        tankPlatoons.put(platoon.getIndex(), platoon);
     }
 
     public List<Integer> determinePlayerVehicleIds() throws PWCGException
     {
         List<Integer> playersInMission = new ArrayList<>();
-        for (ITankPlatoon unit : tankPlatoons)
+        for (ITankPlatoon unit : tankPlatoons.values())
         {
             for (TankMcu tank : unit.getUnitTanks().getPlayerTanks())
             {
@@ -45,7 +47,7 @@ public class MissionPlatoons
     public List<ITankPlatoon> getPlayerUnits() throws PWCGException
     {
         List<ITankPlatoon> playerPlatoons = new ArrayList<>();
-        for (ITankPlatoon unit : tankPlatoons)
+        for (ITankPlatoon unit : tankPlatoons.values())
         {
             for (TankMcu tank : unit.getUnitTanks().getPlayerTanks())
             {
@@ -58,17 +60,24 @@ public class MissionPlatoons
         return playerPlatoons;
     }
 
-    public List<TankPlatoon> getAiUnits()
+    public List<PlayerTankPlatoon> getAiUnits()
     {
         return new ArrayList<>();
     }
 
-    public ITankPlatoon getReferencePlayerUnit()
+    public ITankPlatoon getReferencePlayerUnit() throws PWCGException
     {
-        return tankPlatoons.get(0);
+        for (ITankPlatoon platoon : getPlayerUnits())
+        {
+            if (platoon.isPlayerPlatoon())
+            {
+                return platoon;
+            }
+        }
+        
+        throw new PWCGException("No player platoon found in mission");
     }
     
-
     public void finalizeMissionUnits() throws PWCGException
     {
         MissionUnitFinalizer unitFinalizer = new MissionUnitFinalizer(campaign, mission);
@@ -77,14 +86,23 @@ public class MissionPlatoons
 
     public ITankPlatoon getPlayerUnitForCompany(int companyId) throws PWCGException
     {
-        for (ITankPlatoon unit : getPlayerUnits())
+        for (ITankPlatoon platoon : getPlayerUnits())
         {
-            if (unit.getCompany().getCompanyId() == companyId)
+            if (platoon.getCompany().getCompanyId() == companyId)
             {
-                return unit;
+                return platoon;
             }
         }
         return null;
     }
 
+    public ITankPlatoon getPlatoon(int index)
+    {
+        return tankPlatoons.get(index);
+    }
+    
+    public List<ITankPlatoon> getPlatoons()
+    {
+        return new ArrayList<>(tankPlatoons.values());
+    }
 }

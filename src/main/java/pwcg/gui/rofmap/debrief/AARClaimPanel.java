@@ -18,7 +18,7 @@ import pwcg.aar.AARCoordinator;
 import pwcg.aar.inmission.phase3.reconcile.victories.singleplayer.PlayerDeclarations;
 import pwcg.aar.inmission.phase3.reconcile.victories.singleplayer.PlayerVictoryDeclaration;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.tank.TankType;
+import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.core.config.InternationalizationManager;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.PWCGLogger;
@@ -132,7 +132,7 @@ public class AARClaimPanel extends JPanel implements ActionListener
 		return victoriesClaimedPanel;
 	}
 
-    private JComboBox<String> createPlaneDropdown(Color bgColor, Font font)
+    private JComboBox<String> createPlaneDropdown(Color bgColor, Font font) throws PWCGException
     {
         JComboBox<String> cbPlane = new JComboBox<String>();
         cbPlane.setOpaque(false);
@@ -145,7 +145,7 @@ public class AARClaimPanel extends JPanel implements ActionListener
         for (String tankName : tankTypesInMission)
         {
             String tankDisplayName = tankName;
-            TankType tank = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(tankName);
+            TankTypeInformation tank = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(tankName);
             if (tank != null)
             {
                 tankDisplayName = tank.getDisplayName();
@@ -162,27 +162,19 @@ public class AARClaimPanel extends JPanel implements ActionListener
 			PlayerVictoryDeclaration declaration = new PlayerVictoryDeclaration();
 			String tankTypeDesc = (String)cbTankBoxes.get(i).getSelectedItem();
 				
-			if (tankTypeDesc.equals(TankType.BALLOON))
-			{
-			    declaration.setAircraftType(TankType.BALLOON);
-			    playerDeclarations.addDeclaration(declaration);
-			}
-			else
-			{
-			    TankType tankType = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(tankTypeDesc);
-			    if (tankType != null)
-			    {
-    			    if (tankType.getType().equalsIgnoreCase(tankType.getType()))
-    			    {
-    			        declaration.setAircraftType(tankType.getType());
-    			        playerDeclarations.addDeclaration(declaration);
-    			    }
-			    }
-			    else
-			    {
-			        PWCGLogger.log(LogLevel.ERROR, "Declared tank type not found: " + tankTypeDesc);
-			    }
-			}
+            TankTypeInformation tankType = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(tankTypeDesc);
+            if (tankType != null)
+            {
+                if (tankType.getType().equalsIgnoreCase(tankType.getType()))
+                {
+                    declaration.setAircraftType(tankType.getType());
+                    playerDeclarations.addDeclaration(declaration);
+                }
+            }
+            else
+            {
+                PWCGLogger.log(LogLevel.ERROR, "Declared tank type not found: " + tankTypeDesc);
+            }
 		}
 		
 		return playerDeclarations;

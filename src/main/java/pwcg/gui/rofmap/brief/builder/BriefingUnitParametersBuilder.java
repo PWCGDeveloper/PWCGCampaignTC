@@ -4,7 +4,7 @@ import pwcg.core.exception.PWCGException;
 import pwcg.gui.rofmap.brief.model.BriefingMapPoint;
 import pwcg.gui.rofmap.brief.model.BriefingUnitParameters;
 import pwcg.mission.mcu.McuWaypoint;
-import pwcg.mission.unit.ITankPlatoon;
+import pwcg.mission.platoon.ITankPlatoon;
 
 public class BriefingUnitParametersBuilder
 {

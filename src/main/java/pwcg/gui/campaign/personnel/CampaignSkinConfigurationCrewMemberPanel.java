@@ -25,7 +25,7 @@ import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.skin.Skin;
 import pwcg.campaign.tank.TankSorter;
-import pwcg.campaign.tank.TankType;
+import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.core.config.InternationalizationManager;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.PWCGLogger;
@@ -232,12 +232,12 @@ public class CampaignSkinConfigurationCrewMemberPanel extends ImageResizingPanel
         CrewMember referencePlayer = campaign.findReferencePlayer();
         Company company = referencePlayer.determineCompany();
 
-        List<TankType> companyPlanes = company.determineCurrentAircraftList(campaign.getDate());
+        List<TankTypeInformation> companyPlanes = company.determineCurrentAircraftList(campaign.getDate());
 
-        List<TankType> companyPlanesByBest = TankSorter.sortTanksByGoodness(companyPlanes);
+        List<TankTypeInformation> companyPlanesByBest = TankSorter.sortTanksByGoodness(companyPlanes);
 
         boolean planeSelected = false;
-        for (TankType plane : companyPlanesByBest)
+        for (TankTypeInformation plane : companyPlanesByBest)
         {
             // Add this aircraft to the aircraft button group and panel
             JRadioButton aircraftButton = makeRadioButton(plane.getDisplayName(), "SelectPlane:" + plane.getType(), ColorMap.PAPER_FOREGROUND);
@@ -350,7 +350,7 @@ public class CampaignSkinConfigurationCrewMemberPanel extends ImageResizingPanel
 
         String planeDisplayName = "";
 
-        TankType plane = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(planeName);
+        TankTypeInformation plane = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(planeName);
         if (plane != null)
         {
             planeDisplayName = plane.getDisplayName();

@@ -5,14 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import pwcg.campaign.company.Company;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.tank.EquippedTank;
+import pwcg.mission.ICompanyMission;
 import pwcg.mission.playerunit.crew.CrewTankPayloadPairing;
 
 public class BriefingCrewMemberAssignmentData
 {
-	private Company company;
+	private ICompanyMission company;
     private List<CrewTankPayloadPairing> assignedCrewPlanes = new ArrayList<>();
     private Map<Integer, CrewMember> unAssignedCrewMembers = new HashMap<>();
     private Map<Integer, EquippedTank> unAssignedPlanes = new HashMap<>();
@@ -84,12 +84,12 @@ public class BriefingCrewMemberAssignmentData
         return unAssignedPlanes;
     }
 
-	public Company getCompany() 
+	public ICompanyMission getCompany() 
 	{
 		return company;
 	}
 
-	public void setCompany(Company company) 
+	public void setCompany(ICompanyMission company) 
 	{
 		this.company = company;
 	}

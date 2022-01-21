@@ -78,7 +78,7 @@ public class CompanyEquipmentNeedTest
     {
         for (int i = 0; i < 11; ++i)
         {
-            activeEquippedPlaneCollection.put(serialNumber.getNextPlaneSerialNumber(), equippedTank);
+            activeEquippedPlaneCollection.put(serialNumber.getNextTankSerialNumber(), equippedTank);
         }
         
         CompanyEquipmentNeed companyResupplyNeed = new CompanyEquipmentNeed(campaign, company);
@@ -101,12 +101,12 @@ public class CompanyEquipmentNeedTest
     {
         for (int i = 0; i < 9; ++i)
         {
-            activeEquippedPlaneCollection.put(serialNumber.getNextPlaneSerialNumber(), equippedTank);
+            activeEquippedPlaneCollection.put(serialNumber.getNextTankSerialNumber(), equippedTank);
         }
         
         for (int i = 0; i < 2; ++i)
         {
-            inactiveEquippedPlaneCollection.put(serialNumber.getNextPlaneSerialNumber(), equippedTank);
+            inactiveEquippedPlaneCollection.put(serialNumber.getNextTankSerialNumber(), equippedTank);
         }
 
         CompanyEquipmentNeed companyResupplyNeed = new CompanyEquipmentNeed(campaign, company);
@@ -128,12 +128,12 @@ public class CompanyEquipmentNeedTest
     {
         for (int i = 0; i < 10; ++i)
         {
-            activeEquippedPlaneCollection.put(serialNumber.getNextPlaneSerialNumber(), equippedTank);
+            activeEquippedPlaneCollection.put(serialNumber.getNextTankSerialNumber(), equippedTank);
         }
         
         for (int i = 0; i < 4; ++i)
         {
-            inactiveEquippedPlaneCollection.put(serialNumber.getNextPlaneSerialNumber(), equippedTank);
+            inactiveEquippedPlaneCollection.put(serialNumber.getNextTankSerialNumber(), equippedTank);
         }
 
         CompanyEquipmentNeed companyResupplyNeed = new CompanyEquipmentNeed(campaign, company);

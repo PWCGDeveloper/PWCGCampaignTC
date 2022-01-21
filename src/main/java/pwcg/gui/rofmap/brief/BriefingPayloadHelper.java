@@ -7,9 +7,9 @@ import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.PWCGLogger;
 import pwcg.gui.rofmap.brief.model.BriefingCrewMemberAssignmentData;
 import pwcg.mission.Mission;
+import pwcg.mission.platoon.ITankPlatoon;
+import pwcg.mission.platoon.tank.TankMcu;
 import pwcg.mission.playerunit.crew.CrewTankPayloadPairing;
-import pwcg.mission.unit.ITankPlatoon;
-import pwcg.mission.unit.TankMcu;
 
 public class BriefingPayloadHelper
 {

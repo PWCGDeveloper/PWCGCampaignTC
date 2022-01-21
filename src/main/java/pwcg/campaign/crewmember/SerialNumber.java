@@ -57,7 +57,7 @@ public class SerialNumber
         return nextPlayerSerialNumber;
     }
 
-    public int getNextPlaneSerialNumber()
+    public int getNextTankSerialNumber()
     {
         ++nextPlaneSerialNumber;
         return nextPlaneSerialNumber;

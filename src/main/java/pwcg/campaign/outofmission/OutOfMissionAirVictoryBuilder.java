@@ -13,7 +13,7 @@ import pwcg.campaign.crewmember.CrewMemberStatus;
 import pwcg.campaign.crewmember.Victory;
 import pwcg.campaign.crewmember.VictoryEntity;
 import pwcg.campaign.tank.EquippedTank;
-import pwcg.campaign.tank.TankType;
+import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.utils.PWCGLogger;
@@ -89,7 +89,7 @@ public class OutOfMissionAirVictoryBuilder
         
         Company company = victorCrewMember.determineCompany();
 
-        TankType victorTankType = company.determineBestPlane(campaign.getDate());
+        TankTypeInformation victorTankType = company.determineBestPlane(campaign.getDate());
 
         victor.setAirOrGround(Victory.AIRCRAFT);
         victor.setType(victorTankType.getDisplayName());

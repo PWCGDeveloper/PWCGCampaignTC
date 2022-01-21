@@ -1,0 +1,16 @@
+{
+  "scriptDir": "vehicles\\",
+  "modelDir": "vehicles\\_m4a2",
+  "vehicleType": "_m4a2",
+  "vehicleName": "M4A2",
+  "displayName": "M4A2",
+  "countries": [
+	"USA",
+	"BRITAIN"
+  ],
+  "startDate": "19410601",
+  "endDate": "19450601",
+  "rarityWeight": 100,
+  "vehicleClass": "PlayerVehicle",
+}
+

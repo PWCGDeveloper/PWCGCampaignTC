@@ -9,7 +9,6 @@ import pwcg.aar.inmission.phase3.reconcile.victories.common.ConfirmedVictories;
 import pwcg.aar.inmission.phase3.reconcile.victories.common.VictorySorter;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.crewmember.CrewMember;
-import pwcg.campaign.tank.TankType;
 import pwcg.core.exception.PWCGException;
 
 public class PlayerDeclarationResolution
@@ -38,16 +37,7 @@ public class PlayerDeclarationResolution
             PlayerDeclarations playerDeclaration = playerDeclarations.get(playerSerialNumber);
             for (PlayerVictoryDeclaration victoryDeclaration : playerDeclaration.getDeclarations())
             {
-                boolean resolved = false;
-                
-                if (!victoryDeclaration.getAircraftType().equals(TankType.BALLOON))
-                {
-                    resolvePlayerAircraftClaim(playerSerialNumber, victoryDeclaration);
-                }
-                else
-                {
-                    resolvePlayerBalloonClaim(playerSerialNumber, victoryDeclaration, resolved);
-                }
+                resolvePlayerTankClaim(playerSerialNumber, victoryDeclaration);
             }
         }
         
@@ -57,7 +47,7 @@ public class PlayerDeclarationResolution
         return confirmedPlayerVictories;
     }
 
-    private void resolvePlayerAircraftClaim(Integer playerSerialNumber, PlayerVictoryDeclaration victoryDeclaration) throws PWCGException
+    private void resolvePlayerTankClaim(Integer playerSerialNumber, PlayerVictoryDeclaration victoryDeclaration) throws PWCGException
     {        
         if (!resolveAsFirmVictory(playerSerialNumber, victoryDeclaration))
         {
@@ -154,55 +144,6 @@ public class PlayerDeclarationResolution
         }
         
         return false;
-    }
-
-    private boolean resolveAsFirmBalloonVictory(Integer playerSerialNumber, PlayerVictoryDeclaration victoryDeclaration) throws PWCGException
-    {
-        for (LogVictory resultVictory : victorySorter.getFirmBalloonVictories())
-        {
-            CrewMember player = campaign.getPersonnelManager().getAnyCampaignMember(playerSerialNumber);
-            if (!VictoryResolverSameSideDetector.isSameSide(player, resultVictory))
-            {
-                if (resultVictory.getVictor() instanceof LogTank)
-                {
-                    CrewMember crewMember = campaign.getPersonnelManager().getAnyCampaignMember(playerSerialNumber);
-                    if (PlayerVictoryResolver.isPlayerVictory(crewMember, resultVictory.getVictor()))
-                    {
-                        generatePlayerVictoryIfNotAlreadyConfirmed(playerSerialNumber, victoryDeclaration, resultVictory, resultVictory.getVictim().getVehicleType());
-                        return true;
-                    }
-                }
-            }
-        }
-        
-        return false;
-    }
-
-    private boolean resolveAsFuzzyBalloonVictory(Integer playerSerialNumber, PlayerVictoryDeclaration victoryDeclaration) throws PWCGException
-    {
-        for (LogVictory resultVictory : victorySorter.getFuzzyBalloonVictories())
-        {
-            if (didPlayerDamagePlane(playerSerialNumber, resultVictory))
-            {
-                CrewMember player = campaign.getPersonnelManager().getAnyCampaignMember(playerSerialNumber);
-                if (!VictoryResolverSameSideDetector.isSameSide(player, resultVictory))
-                {
-                    generatePlayerVictoryIfNotAlreadyConfirmed(playerSerialNumber, victoryDeclaration, resultVictory, resultVictory.getVictim().getVehicleType());
-                    return true;
-                }
-            }
-        }
-        
-        return false;
-    }
-
-    private void resolvePlayerBalloonClaim(Integer playerSerialNumber, PlayerVictoryDeclaration victoryDeclaration, boolean resolvedByFirmMatch) throws PWCGException
-    {
-        resolvedByFirmMatch = resolveAsFirmBalloonVictory(playerSerialNumber, victoryDeclaration);
-        if (!resolvedByFirmMatch)
-        {
-            resolvedByFirmMatch = resolveAsFuzzyBalloonVictory(playerSerialNumber, victoryDeclaration);
-        }
     }
 
     private boolean didPlayerDamagePlane(Integer playerSerialNumber, LogVictory resultVictory) throws PWCGException

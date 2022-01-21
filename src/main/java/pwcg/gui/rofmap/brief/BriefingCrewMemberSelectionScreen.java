@@ -18,7 +18,6 @@ import javax.swing.JPanel;
 
 import pwcg.campaign.Campaign;
 import pwcg.campaign.CampaignMode;
-import pwcg.campaign.company.Company;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.tank.EquippedTank;
 import pwcg.campaign.utils.TanksOwnedManager;
@@ -36,10 +35,11 @@ import pwcg.gui.sound.SoundManager;
 import pwcg.gui.utils.ImageResizingPanel;
 import pwcg.gui.utils.PWCGButtonFactory;
 import pwcg.gui.utils.PWCGLabelFactory;
+import pwcg.mission.ICompanyMission;
 import pwcg.mission.Mission;
+import pwcg.mission.platoon.ITankPlatoon;
+import pwcg.mission.platoon.tank.TankMcu;
 import pwcg.mission.playerunit.crew.CrewTankPayloadPairing;
-import pwcg.mission.unit.ITankPlatoon;
-import pwcg.mission.unit.TankMcu;
 
 public class BriefingCrewMemberSelectionScreen extends ImageResizingPanel implements ActionListener, MouseWheelListener, IUnitChanged
 {
@@ -491,7 +491,7 @@ public class BriefingCrewMemberSelectionScreen extends ImageResizingPanel implem
     }
 
     @Override
-    public void unitChanged(Company company) throws PWCGException
+    public void unitChanged(ICompanyMission company) throws PWCGException
     {
         briefingData.changeSelectedUnit(company.getCompanyId());
         this.add(BorderLayout.CENTER, createCenterPanel());

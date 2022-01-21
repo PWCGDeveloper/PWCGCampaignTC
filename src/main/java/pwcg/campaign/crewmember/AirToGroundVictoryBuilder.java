@@ -7,7 +7,7 @@ import pwcg.campaign.company.Company;
 import pwcg.campaign.context.FrontLinePoint;
 import pwcg.campaign.context.FrontLinesForMap;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.tank.TankType;
+import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.utils.PWCGLogger;
@@ -76,7 +76,7 @@ public class AirToGroundVictoryBuilder
         Company company = victorCrewMember.determineCompany();
         if (company != null)
         {
-            TankType victorTankType = company.determineBestPlane(date);
+            TankTypeInformation victorTankType = company.determineBestPlane(date);
     
             if (victorTankType != null)
             {
@@ -99,8 +99,8 @@ public class AirToGroundVictoryBuilder
     {
         VictoryEntity victim = new VictoryEntity();            
         victim.setAirOrGround(Victory.VEHICLE);
-        victim.setType(victimVehicle.getVehicleType());
-        victim.setName(victimVehicle.getVehicleName());
+        victim.setType(victimVehicle.getType());
+        victim.setName(victimVehicle.getName());
         victim.setCompanyName("");
         victim.setCrewMemberName("");
         victim.setCrewMemberSerialNumber(SerialNumber.NO_SERIAL_NUMBER);

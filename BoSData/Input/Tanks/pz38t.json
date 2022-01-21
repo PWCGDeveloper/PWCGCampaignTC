@@ -1,0 +1,17 @@
+{
+	"type": "pz38t",
+	"archType": "pz38",
+	"isPlayer": false,
+	"primaryUsedBy": [
+		"GERMANY"
+	],
+	"stockModifications": [],
+	"cruisingSpeed": 12,
+	"goodness": 26,
+	"roleCategories": [
+		"MAIN_BATTLE_TANK"
+	],
+	"introduction": "19390901",
+	"endProduction": "19420901",
+	"withdrawal": "19430201"
+}

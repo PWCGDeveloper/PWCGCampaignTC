@@ -1,0 +1,17 @@
+{
+	"type": "jagdpz4l70",
+	"archType": "jagdpziv",
+	"isPlayer": false,
+	"primaryUsedBy": [
+		"GERMANY"
+	],
+	"stockModifications": [],
+	"cruisingSpeed": 10,
+	"goodness": 63,
+	"roleCategories": [
+		"TANK_DESTROYER"
+	],
+	"introduction": "19430601",
+	"endProduction": "19450601",
+	"withdrawal": "19450601"
+}

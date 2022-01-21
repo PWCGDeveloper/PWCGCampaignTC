@@ -2,20 +2,18 @@ package pwcg.aar.inmission.phase3.reconcile.victories.singleplayer;
 
 import pwcg.aar.ui.events.model.ClaimDeniedEvent;
 import pwcg.campaign.Campaign;
+import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.crewmember.CrewMember;
-import pwcg.campaign.tank.TankType;
-import pwcg.campaign.tank.TankTypeFactory;
 import pwcg.core.exception.PWCGException;
+import pwcg.mission.ground.vehicle.VehicleDefinition;
 
 public class ClaimDenier
 {
     private Campaign campaign;
-    private TankTypeFactory tankFactory;
 
-    public ClaimDenier(Campaign campaign, TankTypeFactory tankFactory)
+    public ClaimDenier(Campaign campaign)
     {
         this.campaign = campaign;
-        this.tankFactory = tankFactory;
     }
 
     public ClaimDeniedEvent determineClaimDenied(Integer playerSerialNumber, PlayerVictoryDeclaration declaration) throws PWCGException
@@ -40,13 +38,13 @@ public class ClaimDenier
         return claimDenied;
     }
 
-    private String getPlaneDescription(PlayerVictoryDeclaration playerDeclaration)
+    private String getPlaneDescription(PlayerVictoryDeclaration playerDeclaration) throws PWCGException
     {
         String tankDesc = "Unknown";
-        TankType tank = tankFactory.createTankTypeByAnyName(playerDeclaration.getAircraftType());
-        if (tank != null)
+        VehicleDefinition vehicleDefinition = PWCGContext.getInstance().getVehicleDefinitionManager().getVehicleDefinitionByVehicleType(playerDeclaration.getTankType());
+        if (vehicleDefinition != null)
         {
-            tankDesc = tank.getDisplayName();
+            tankDesc = vehicleDefinition.getDisplayName();
         }
         return tankDesc;
     }

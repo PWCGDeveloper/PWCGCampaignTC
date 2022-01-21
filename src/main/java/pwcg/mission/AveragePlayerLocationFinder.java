@@ -5,7 +5,6 @@ import java.util.List;
 
 import pwcg.campaign.Campaign;
 import pwcg.campaign.api.Side;
-import pwcg.campaign.company.Company;
 import pwcg.campaign.context.FrontLinesForMap;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.crewmember.CrewMember;
@@ -28,8 +27,8 @@ public class AveragePlayerLocationFinder
         List<Coordinate> playerLocations = new ArrayList<>();
         for (CrewMember player : participatingPlayers.getAllParticipatingPlayers())
         {
-            Company company = player.determineCompany();
-            Coordinate companyLocation = company.determineCurrentAirfieldAnyMap(campaign.getDate()).getPosition();
+            ICompanyMission company = player.determineCompany();
+            Coordinate companyLocation = company.determinePosition(campaign.getDate());
             playerLocations.add(companyLocation);
         }
         

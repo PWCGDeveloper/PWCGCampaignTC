@@ -21,12 +21,7 @@ public class CompanyRoleSet
         if (companyRoleForDate != null)
         {
             selectedRole = selectRoleFromSet(companyRoleForDate);
-        }
-        else
-        {
-            throw new PWCGException("No role found for company on date " + DateUtils.getDateStringDashDelimitedYYYYMMDD(date));
-        }
-        
+        }        
         return selectedRole;
     }
     

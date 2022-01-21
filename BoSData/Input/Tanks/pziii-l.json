@@ -1,0 +1,17 @@
+{
+	"type": "pziii-l",
+	"archType": "pziii",
+	"isPlayer": false,
+	"primaryUsedBy": [
+		"GERMANY"
+	],
+	"stockModifications": [],
+	"cruisingSpeed": 12,
+	"goodness": 40,
+	"roleCategories": [
+		"MAIN_BATTLE_TANK"
+	],
+	"introduction": "19420201",
+	"endProduction": "19430301",
+	"withdrawal": "19440301"
+}

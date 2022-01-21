@@ -1,0 +1,14 @@
+{
+  "scriptDir": "vehicles\\",
+  "modelDir": "vehicles\\_pziv-g",
+  "vehicleType": "_pziv-g",
+  "vehicleName": "Pz.Kpfw.IV Ausf.G",
+  "displayName": "Pz.Kpfw.IV Ausf.G",
+  "countries": [
+	"GERMANY"
+  ],
+  "startDate": "19420601",
+  "endDate": "19450601",
+  "rarityWeight": 100,
+  "vehicleClass": "PlayerVehicle",
+}

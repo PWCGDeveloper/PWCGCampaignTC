@@ -8,7 +8,7 @@ import pwcg.core.exception.PWCGException;
 import pwcg.mission.mcu.McuIcon;
 import pwcg.mission.mcu.McuIconFactory;
 import pwcg.mission.mcu.McuWaypoint;
-import pwcg.mission.unit.ITankPlatoon;
+import pwcg.mission.platoon.ITankPlatoon;
 
 public class MissionWaypointIconBuilder
 {
@@ -32,7 +32,7 @@ public class MissionWaypointIconBuilder
         for (int i = 0; i < waypoints.size(); ++i)
         {
             McuWaypoint waypoint = waypoints.get(i);
-            McuIcon icon = McuIconFactory.buildWaypointIcon(waypoint, playerPlatoon.getUnitInformation().getCountry().getSide());
+            McuIcon icon = McuIconFactory.buildWaypointIcon(waypoint, playerPlatoon.getPlatoonInformation().getCountry().getSide());
             if (firstIcon == null)
             {
                 firstIcon = icon;

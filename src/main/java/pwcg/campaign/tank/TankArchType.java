@@ -12,14 +12,14 @@ import pwcg.core.utils.DateUtils;
 public class TankArchType
 {
     private String tankArchTypeName = "";
-    private Map<String, TankType> memberTankTypes = new HashMap<>();
+    private Map<String, TankTypeInformation> memberTankTypes = new HashMap<>();
     
     public TankArchType(String tankArchTypeName)
     {
         this.tankArchTypeName = tankArchTypeName;
     }
     
-    public void addTankTypeToArchType(TankType memberTankType)
+    public void addTankTypeToArchType(TankTypeInformation memberTankType)
     {
         memberTankTypes.put(memberTankType.getType(), memberTankType);
     }
@@ -29,15 +29,15 @@ public class TankArchType
         return tankArchTypeName;
     }
 
-    public List<TankType> getAllMemberTankTypes()
+    public List<TankTypeInformation> getAllMemberTankTypes()
     {
         return new ArrayList<>(memberTankTypes.values());
     }
 
-    public List<TankType> getActiveMemberTankTypes(Date date) throws PWCGException
+    public List<TankTypeInformation> getActiveMemberTankTypes(Date date) throws PWCGException
     {
-        List<TankType> activeTankTypes = new ArrayList<>();
-        for (TankType tankType : memberTankTypes.values())
+        List<TankTypeInformation> activeTankTypes = new ArrayList<>();
+        for (TankTypeInformation tankType : memberTankTypes.values())
         {
             if (DateUtils.isDateInRange(date, tankType.getIntroduction(), tankType.getWithdrawal()))
             {
@@ -47,10 +47,10 @@ public class TankArchType
         return activeTankTypes;
     }
 
-    public List<TankType> getInProductionMemberTankTypes(Date date) throws PWCGException
+    public List<TankTypeInformation> getInProductionMemberTankTypes(Date date) throws PWCGException
     {
-        List<TankType> activeTankTypes = new ArrayList<>();
-        for (TankType tankType : memberTankTypes.values())
+        List<TankTypeInformation> activeTankTypes = new ArrayList<>();
+        for (TankTypeInformation tankType : memberTankTypes.values())
         {
             if (DateUtils.isDateInRange(date, tankType.getIntroduction(), tankType.getEndProduction()))
             {

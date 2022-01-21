@@ -18,7 +18,7 @@ import javax.swing.SwingConstants;
 import pwcg.campaign.company.Company;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.skin.Skin;
-import pwcg.campaign.tank.TankType;
+import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.core.config.InternationalizationManager;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
@@ -40,9 +40,9 @@ public class PwcgSkinConfigurationAnalysisDisplayScreen extends ImageResizingPan
 {
     private static final long serialVersionUID = 1L;
     
-    private Map<String, TankType> planeTypesToDisplay = null;
+    private Map<String, TankTypeInformation> planeTypesToDisplay = null;
 
-	public PwcgSkinConfigurationAnalysisDisplayScreen(Map<String, TankType> planeTypesToDisplay) 
+	public PwcgSkinConfigurationAnalysisDisplayScreen(Map<String, TankTypeInformation> planeTypesToDisplay) 
 	{
         super("");
         this.setLayout(new BorderLayout());
@@ -135,7 +135,7 @@ public class PwcgSkinConfigurationAnalysisDisplayScreen extends ImageResizingPan
         
         for (String planeTypeDesc : planeTypesToDisplay.keySet())
         {
-            TankType plane = planeTypesToDisplay.get(planeTypeDesc);
+            TankTypeInformation plane = planeTypesToDisplay.get(planeTypeDesc);
             List<Skin> skinSet = allSkinsInPWCG.get(planeTypeDesc);
             
             addSkinsForPlane(reportBodyPanel, plane, skinSet);
@@ -144,7 +144,7 @@ public class PwcgSkinConfigurationAnalysisDisplayScreen extends ImageResizingPan
         return reportBodyPanel;
     }
 
-    private void addSkinsForPlane(JPanel reportBodyPanel, TankType plane, List<Skin> skinSet) throws PWCGException
+    private void addSkinsForPlane(JPanel reportBodyPanel, TankTypeInformation plane, List<Skin> skinSet) throws PWCGException
     {
         JLabel reportBodyPlaneLabel = PWCGLabelFactory.makePaperLabelMedium("Plane: " + plane.getDisplayName());
         reportBodyPanel.add(reportBodyPlaneLabel);

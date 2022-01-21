@@ -1,15 +1,11 @@
 {
 	"type": "_gaz-mm-72k",
 	"archType": "gaz",
-	"side": "ALLIED",
+	"isPlayer": true,
 	"primaryUsedBy": [
 		"RUSSIA"
 	],
 	"stockModifications": [],
-	"displayName": "GAZ-MM 72-K",
-	"script": "LuaScripts\\WorldObjects\\vehicles\\_gaz-mm-72k.txt",
-	"model": "graphics\\vehicles\\_gaz-mm\\_gaz-mm-72k.mgm",
-	"desc": "AAA Truck",
 	"cruisingSpeed": 10,
 	"goodness": 40,
 	"roleCategories": [
