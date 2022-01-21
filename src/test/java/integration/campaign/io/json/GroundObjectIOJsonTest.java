@@ -13,14 +13,6 @@ import pwcg.core.exception.PWCGException;
 public class GroundObjectIOJsonTest
 {
     @Test
-    public void readJsonArrasTest() throws PWCGException
-    {
-        
-        String mapName = "Arras";
-        validateGroundStructures(mapName);
-    }
-    
-    @Test
     public void readJsonMoscowTest() throws PWCGException
     {
         

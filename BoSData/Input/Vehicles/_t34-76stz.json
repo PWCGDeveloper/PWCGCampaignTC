@@ -10,5 +10,5 @@
   "startDate": "19410601",
   "endDate": "19431101",
   "rarityWeight": 100,
-  "vehicleClass": "PlayerVehicle",
+  "vehicleClass": "PlayerVehicle"
 }

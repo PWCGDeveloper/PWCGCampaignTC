@@ -53,6 +53,7 @@ public class Company implements ICompanyMission
     public static final int COMPANY_EQUIPMENT_SIZE = 16;
     public static final int MIN_REEQUIPMENT_SIZE = 10;
     public static final int REPLACEMENTS_TANKS_PER_COMPANY = 3;
+    public static final int DEPOT = -1;
     public static final int AI = 0;
     private Country country = Country.NEUTRAL;
 	private int companyId = 0;

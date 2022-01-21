@@ -15,7 +15,7 @@ import pwcg.core.utils.DateUtils;
 public class Equipment
 {
     private Map<Integer, EquippedTank> equippedTanks = new HashMap<>();
-
+    
     public EquippedTank getEquippedTank(int tankSerialNumber)
     {
         return equippedTanks.get(tankSerialNumber);

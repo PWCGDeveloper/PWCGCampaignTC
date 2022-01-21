@@ -13,7 +13,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.resupply.depot.EquipmentWeightCalculator;
-import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 
@@ -38,7 +37,7 @@ public class EquipmentWeightCalculatorTest
         
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420501"));
         EquipmentWeightCalculator equipmentWeightCalculator = new EquipmentWeightCalculator(campaign.getDate());
-        equipmentWeightCalculator.determinePlaneWeightsForPlanes(planeTypes);
+        equipmentWeightCalculator.determineTankWeightsForTanks(planeTypes);
         
         Map<String, Integer> weightedPlaneOdds = equipmentWeightCalculator.getWeightedPlaneOdds();
         assert(weightedPlaneOdds.get("bf109f4") == 100);

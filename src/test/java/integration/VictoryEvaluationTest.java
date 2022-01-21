@@ -32,8 +32,8 @@ import pwcg.mission.Mission;
 import pwcg.mission.MissionBorderBuilder;
 import pwcg.mission.MissionHumanParticipants;
 import pwcg.mission.io.MissionFileNameBuilder;
-import pwcg.mission.unit.ITankUnit;
-import pwcg.mission.unit.TankMcu;
+import pwcg.mission.platoon.ITankPlatoon;
+import pwcg.mission.platoon.tank.TankMcu;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.CompanyTestProfile;
 import pwcg.testutils.TestMissionBuilderUtility;
@@ -290,7 +290,7 @@ public class VictoryEvaluationTest
     
     private List<TankMcu> findEnemyCrewMembers(Mission mission) throws PWCGException
     {
-        for(ITankUnit unit : mission.getUnits().getUnitsForSide()(Side.ALLIED))
+        for(ITankPlatoon unit : mission.getUnits().getUnitsForSide()(Side.ALLIED))
         {
             List<TankMcu> enemyTanks = unit.getTanks();
             if (enemyTanks.size() >= 2)

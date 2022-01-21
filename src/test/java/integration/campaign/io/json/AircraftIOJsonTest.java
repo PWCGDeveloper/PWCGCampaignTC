@@ -8,7 +8,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import pwcg.campaign.io.json.AircraftIOJson;
-import pwcg.campaign.tank.TankTypeInformation;
+import pwcg.campaign.plane.PlaneType;
 import pwcg.core.exception.PWCGException;
 
 @ExtendWith(MockitoExtension.class)
@@ -18,7 +18,7 @@ public class AircraftIOJsonTest
     public void readJsonTest() throws PWCGException
     {
         
-        Map<String, TankTypeInformation> aircraft = AircraftIOJson.readJson();
+        Map<String, PlaneType> aircraft = AircraftIOJson.readJson();
         validate(aircraft);
     }
     
@@ -26,14 +26,14 @@ public class AircraftIOJsonTest
     public void readJsonBoSTest() throws PWCGException
     {
         
-        Map<String, TankTypeInformation> aircraft = AircraftIOJson.readJson();
+        Map<String, PlaneType> aircraft = AircraftIOJson.readJson();
         validate(aircraft);
     }
 
-    private void validate(Map<String, TankTypeInformation> aircraft)
+    private void validate(Map<String, PlaneType> aircraft)
     {
         Assertions.assertTrue (aircraft.size() > 0);
-        for (TankTypeInformation planeType : aircraft.values())
+        for (PlaneType planeType : aircraft.values())
         {
             assert(planeType.getRoleCategories().size() > 0);
         }

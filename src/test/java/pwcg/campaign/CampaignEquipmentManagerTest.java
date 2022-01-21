@@ -14,8 +14,8 @@ import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.tank.Equipment;
 import pwcg.campaign.tank.EquippedTank;
 import pwcg.campaign.tank.TankAttributeMapping;
-import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.campaign.tank.TankTypeFactory;
+import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.core.exception.PWCGException;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.CompanyTestProfile;
@@ -31,7 +31,7 @@ public class CampaignEquipmentManagerTest
     }
     
     @Test
-    public void makeAircraftForCompanyTest () throws PWCGException
+    public void makeTanksForCompanyTest () throws PWCGException
     {
         Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
         Equipment equipment = campaign.getEquipmentManager().getEquipmentForCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());

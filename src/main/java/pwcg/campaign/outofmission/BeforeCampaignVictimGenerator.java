@@ -17,7 +17,7 @@ import pwcg.campaign.tank.TankEquipmentFactory;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.RandomNumberGenerator;
 
-public class BeforeCampaignVictimGenerator implements IVictimGenerator
+public class BeforeCampaignVictimGenerator
 {
     private CrewMember victimCrewMember;
 
@@ -32,14 +32,12 @@ public class BeforeCampaignVictimGenerator implements IVictimGenerator
         this.date = date;
     }
 
-    @Override
     public EquippedTank generateVictimPlane() throws PWCGException
     {
-        EquippedTank equippedTank = TankEquipmentFactory.makeTankForBeforeCampaign(campaign, victimCompany.determineSide(), date);
+        EquippedTank equippedTank = TankEquipmentFactory.makeTankForBeforeCampaign(campaign, victimCompany.getCountry().getCountry(), date);
         return equippedTank;
     }
 
-    @Override
     public CrewMember generateVictimAiCrew() throws PWCGException 
     {        
         List<CrewMember> allCrewMembers = generateAICrewMembers(victimCompany, date);

@@ -10,9 +10,6 @@ import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.crewmember.SerialNumber;
 import pwcg.campaign.resupply.InitialCompanyEquipper;
 import pwcg.campaign.resupply.depot.EquipmentWeightCalculator;
-import pwcg.campaign.tank.Equipment;
-import pwcg.campaign.tank.EquippedTank;
-import pwcg.campaign.tank.TankAttributeMapping;
 import pwcg.core.exception.PWCGException;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.CompanyTestProfile;
@@ -114,8 +111,8 @@ public class InitialCompanyEquipperTest
         assert(equipment.getActiveEquippedTanks().size() == Company.COMPANY_EQUIPMENT_SIZE);
         for (EquippedTank equippedTank : equipment.getActiveEquippedTanks().values())
         {
-            assert(equippedTank.getArchType().equals("il2"));
-            assert(equippedTank.getType().equals("il2m41") || equippedTank.getType().equals("il2m42"));
+            assert(equippedTank.getArchType().equals("t34"));
+            assert(equippedTank.getType().equals("_t34-76stz") || equippedTank.getType().equals("_t34-76uvz-43"));
             assert(equippedTank.getSerialNumber() > SerialNumber.TANK_STARTING_SERIAL_NUMBER);
         }
     }

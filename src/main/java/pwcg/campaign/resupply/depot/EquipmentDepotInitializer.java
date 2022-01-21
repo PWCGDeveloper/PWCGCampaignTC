@@ -37,9 +37,9 @@ public class EquipmentDepotInitializer
 
     private EquipmentWeightCalculator createPlaneCalculator(Company company) throws PWCGException
     {
-        List<TankTypeInformation> planeTypesForCompany = company.determineCurrentAircraftList(campaign.getDate());
+        List<TankTypeInformation> tankTypesForCompany = company.determineCurrentAircraftList(campaign.getDate());
         EquipmentWeightCalculator equipmentWeightCalculator = new EquipmentWeightCalculator(campaign.getDate());
-        equipmentWeightCalculator.determinePlaneWeightsForPlanes(planeTypesForCompany);
+        equipmentWeightCalculator.determineTankWeightsForTanks(tankTypesForCompany);
         return equipmentWeightCalculator;
     }
 
@@ -53,8 +53,8 @@ public class EquipmentDepotInitializer
         
         for (int i = 0; i < numPlanes; ++i)
         {
-            String planeTypeName = equipmentWeightCalculator.getTankTypeFromWeight();
-            EquippedTank equippedTank = TankEquipmentFactory.makeTankForDepot(campaign, planeTypeName);
+            String tankTypeName = equipmentWeightCalculator.getTankTypeFromWeight();
+            EquippedTank equippedTank = TankEquipmentFactory.makeTankForDepot(campaign, tankTypeName, service.getCountry().getCountry());
             equipment.addEPlaneToDepot(equippedTank);
         }
     }

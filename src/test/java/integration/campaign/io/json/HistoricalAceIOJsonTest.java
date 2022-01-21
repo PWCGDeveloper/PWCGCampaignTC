@@ -15,18 +15,10 @@ import pwcg.core.exception.PWCGException;
 public class HistoricalAceIOJsonTest
 {
     @Test
-    public void readJsonRoFTest() throws PWCGException
-    {
-        
-        List<HistoricalAce> aces = HistoricalAceIOJson.readJson();
-        Assertions.assertTrue (aces.size() > 0);
-    }
-
-    @Test
     public void readJsonBoSTest() throws PWCGException
     {
         
         List<HistoricalAce> aces = HistoricalAceIOJson.readJson();
-        Assertions.assertTrue (aces.size() > 0);
+        Assertions.assertTrue (aces.size() == 0);
     }
 }

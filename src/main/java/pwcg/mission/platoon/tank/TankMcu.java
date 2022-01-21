@@ -10,6 +10,7 @@ import pwcg.campaign.api.ICountry;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.CrewMembers;
+import pwcg.campaign.factory.CountryFactory;
 import pwcg.campaign.skin.Skin;
 import pwcg.campaign.tank.EquippedTank;
 import pwcg.campaign.tank.PwcgRoleCategory;
@@ -45,7 +46,7 @@ public class TankMcu extends EquippedTank implements Cloneable, IVehicle
 
     public TankMcu(EquippedTank equippedTank, ICountry country, CrewMember crewMember) throws PWCGException
     {
-        super(equippedTank);
+        super(equippedTank, country.getCountry());
         this.tankCommander = crewMember;
         
         buildPlayerTank(equippedTank, country);
@@ -53,7 +54,7 @@ public class TankMcu extends EquippedTank implements Cloneable, IVehicle
 
     public TankMcu(VehicleDefinition vehicleDefinition, TankTypeInformation tankType, ICountry country) throws PWCGException
     {
-        super(vehicleDefinition, tankType);
+        super(vehicleDefinition, tankType, country.getCountry());
         this.tankCommander = null;
         
         buildAiTank(tankType, country);
@@ -207,7 +208,8 @@ public class TankMcu extends EquippedTank implements Cloneable, IVehicle
             position.write(writer);
             orientation.write(writer);
 
-            country.writeAdjusted(writer);
+            CountryFactory.makeCountryByCountry(country).writeAdjusted(writer);
+
             writer.write("  NumberInFormation = " + numberInFormation + ";");
             writer.newLine();            writer.write("  Vulnerable = " + vulnerable + ";");
             writer.newLine();
@@ -250,7 +252,7 @@ public class TankMcu extends EquippedTank implements Cloneable, IVehicle
             TCProductSpecificConfiguration productSpecificConfiguration =new TCProductSpecificConfiguration();
             if (productSpecificConfiguration.useCallSign())
             {
-                writer.write("  Callsign = " + callsign.getNum(country.getCountry()) + ";");
+                writer.write("  Callsign = " + callsign.getNum(country) + ";");
                 writer.newLine();
                 writer.write("  Callnum = " + callnum + ";");
                 writer.newLine();

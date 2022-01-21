@@ -52,7 +52,7 @@ public class EquipmentDepotReplenisher
             List<Company> companysForService, 
             EquipmentDepot depot) throws PWCGException
     {
-        replacePlanesInDepot(companysForService, depot);        
+        replacePlanesInDepot(service, companysForService, depot);        
         updatePlaneReplacementPoints(service, depot);
     }
 
@@ -64,7 +64,7 @@ public class EquipmentDepotReplenisher
         depot.setEquipmentPoints(updatedEquipmentPoints);
     }
 
-    private void replacePlanesInDepot(List<Company> companysForService, EquipmentDepot equipmentDepot) throws PWCGException
+    private void replacePlanesInDepot(ArmedService service, List<Company> companysForService, EquipmentDepot equipmentDepot) throws PWCGException
     {
         EquipmentReplacementCalculator equipmentReplacementCalculator = new EquipmentReplacementCalculator(campaign);
         equipmentReplacementCalculator.createArchTypeForReplacementPlane(companysForService);
@@ -73,14 +73,14 @@ public class EquipmentDepotReplenisher
         for (int i = 0; i < numPlanes; ++i)
         {
             TankArchType planeArchType = getArchTypeForReplacement(equipmentReplacementCalculator);
-            replacePlaneByArchType(equipmentDepot, planeArchType);
+            replacePlaneByArchType(service, equipmentDepot, planeArchType);
         }
     }
 
-    private void replacePlaneByArchType(EquipmentDepot equipmentDepot, TankArchType planeArchType) throws PWCGException
+    private void replacePlaneByArchType(ArmedService service, EquipmentDepot equipmentDepot, TankArchType planeArchType) throws PWCGException
     {
         String planeTypeName = EquipmentReplacementUtils.getTypeForReplacement(campaign.getDate(), planeArchType);
-        EquippedTank equippedTank = TankEquipmentFactory.makeTankForDepot(campaign, planeTypeName);
+        EquippedTank equippedTank = TankEquipmentFactory.makeTankForDepot(campaign, planeTypeName, service.getCountry().getCountry());
         equipmentDepot.addPlaneToDepot(equippedTank);
         equipmentDepot.setLastReplacementDate(campaign.getDate());
     }

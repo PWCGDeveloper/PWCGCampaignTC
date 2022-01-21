@@ -17,6 +17,7 @@ import pwcg.campaign.resupply.equipment.CompanyEquipmentNeed;
 import pwcg.core.exception.PWCGException;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.CompanyTestProfile;
+import pwcg.testutils.TestIdentifiers;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ResupplyCompanyChooserTest

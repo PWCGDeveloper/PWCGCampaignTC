@@ -18,7 +18,7 @@ public class VehicleSetBuilderComprehensive
         List< VehicleDefinition> allVehicleDefinitions = VehicleDefinitionIOJson.readJson();
         for (VehicleDefinition vehicleDefinition : allVehicleDefinitions)
         {
-            IVehicle vehicle = new Vehicle(vehicleDefinition);
+            IVehicle vehicle = new Vehicle(vehicleDefinition, vehicleDefinition.getCountries().get(0));
             allVehicles.add(vehicle);
         }
         return allVehicles;

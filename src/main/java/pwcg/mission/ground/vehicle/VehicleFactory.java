@@ -19,8 +19,7 @@ public class VehicleFactory
 
     public static IVehicle createVehicleFromDefinition(ICountry country, Date date, VehicleDefinition vehicleDefinition) throws PWCGException
     {
-        IVehicle vehicle = new Vehicle(vehicleDefinition);
-        vehicle.makeVehicleFromDefinition(country);
+        IVehicle vehicle = new Vehicle(vehicleDefinition, country.getCountry());
         return vehicle;
     }
 
@@ -28,8 +27,7 @@ public class VehicleFactory
     {
         VehicleRequestDefinition requestDefinition = new VehicleRequestDefinition(country.getCountry(), date, VehicleClass.TrainLocomotive);
         VehicleDefinition vehicleDefinition = PWCGContext.getInstance().getVehicleDefinitionManager().getVehicleDefinitionForRequest(requestDefinition);
-        TrainLocomotive locomotive = new TrainLocomotive(vehicleDefinition);
-        locomotive.makeVehicleFromDefinition(country);
+        TrainLocomotive locomotive = new TrainLocomotive(vehicleDefinition, country.getCountry());
         return locomotive;
     }
 

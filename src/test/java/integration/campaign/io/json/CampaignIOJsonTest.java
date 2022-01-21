@@ -7,7 +7,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import pwcg.campaign.ArmedService;
 import pwcg.campaign.Campaign;
-import pwcg.campaign.api.TCServiceManager;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.CrewMembers;
@@ -23,6 +22,8 @@ import pwcg.campaign.tank.EquippedTank;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.CampaignRemover;
 import pwcg.core.utils.DateUtils;
+import pwcg.product.bos.country.GermanServiceBuilder;
+import pwcg.product.bos.country.RussianServiceBuilder;
 import pwcg.product.bos.country.TCServiceManager;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.CampaignCacheBase;
@@ -55,11 +56,9 @@ public class CampaignIOJsonTest
         PWCGContext.getInstance().setCampaign(campaign);
 
         validateCoreCampaign(campaign);        
-        validateFighterCrewMembers(campaign);        
-        validateReconCrewMembers(campaign);        
+        validateTankCrewMembers(campaign);        
     	validatePersonnelReplacements(campaign);
-    	validateFighterEquipment(campaign);
-    	validateReconEquipment(campaign);
+    	validateTankEquipment(campaign);
     }
 
     private void validateCoreCampaign(Campaign campaign) throws PWCGException
@@ -79,31 +78,19 @@ public class CampaignIOJsonTest
     private void validatePersonnelReplacements(Campaign campaign) throws PWCGException
     {
         TCServiceManager armedServiceManager = ArmedServiceFactory.createServiceManager();
-    	ArmedService germanArmedService = armedServiceManager.getArmedServiceByName(TCServiceManager.WEHRMACHT, campaign.getDate());
+    	ArmedService germanArmedService = armedServiceManager.getArmedServiceByName(GermanServiceBuilder.WEHRMACHT_NAME);
         PersonnelReplacementsService germanReplacements = campaign.getPersonnelManager().getPersonnelReplacementsService(germanArmedService.getServiceId());
         assert(germanReplacements.getReplacements().getActiveCount(campaign.getDate()) == 20);
-        assert(germanReplacements.getDailyReplacementRate() == 22);
+        assert(germanReplacements.getDailyReplacementRate() == 6);
         assert(germanReplacements.getLastReplacementDate().equals(campaign.getDate()));
 
-        ArmedService belgianArmedService = armedServiceManager.getArmedServiceByName(TCServiceManager.AVIATION_MILITAIRE_BELGE_NAME, campaign.getDate());
+        ArmedService belgianArmedService = armedServiceManager.getArmedServiceByName(RussianServiceBuilder.SSV_NAME);
         PersonnelReplacementsService belgianReplacements = campaign.getPersonnelManager().getPersonnelReplacementsService(belgianArmedService.getServiceId());
         assert(belgianReplacements.getReplacements().getActiveCount(campaign.getDate()) == 20);
-        assert(belgianReplacements.getDailyReplacementRate() == 3);
+        assert(belgianReplacements.getDailyReplacementRate() == 15);
     }
 
-    private void validateReconCrewMembers(Campaign campaign) throws PWCGException
-    {
-        CompanyPersonnel companyPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(CompanyTestProfile.RFC_2_PROFILE.getCompanyId());
-        CrewMembers reconCompanyPersonnel = CrewMemberFilter.filterActiveAIAndPlayerAndAces(companyPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());        
-        Assertions.assertTrue (reconCompanyPersonnel.getCrewMemberList().size() == 12);
-        for (CrewMember crewMember : reconCompanyPersonnel.getCrewMemberList())
-        {
-            Assertions.assertTrue (crewMember.getSerialNumber() > SerialNumber.AI_STARTING_SERIAL_NUMBER);
-            Assertions.assertTrue (crewMember.getBattlesFought() > 0);
-        }
-    }
-
-    private void validateFighterCrewMembers(Campaign campaign) throws PWCGException
+    private void validateTankCrewMembers(Campaign campaign) throws PWCGException
     {
         CompanyPersonnel companyPersonnel = campaign.getPersonnelManager().getCompanyPersonnel(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
         CrewMembers fighterCompanyPersonnel = CrewMemberFilter.filterActiveAIAndPlayerAndAces(companyPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());        
@@ -129,7 +116,7 @@ public class CampaignIOJsonTest
         }
     }
 
-    private void validateFighterEquipment(Campaign campaign) throws PWCGException
+    private void validateTankEquipment(Campaign campaign) throws PWCGException
     {
         Equipment fighterCompanyEquipment = campaign.getEquipmentManager().getEquipmentForCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
         Assertions.assertTrue (campaign.getSerialNumber().getNextTankSerialNumber() > SerialNumber.TANK_STARTING_SERIAL_NUMBER + 100);
@@ -137,19 +124,7 @@ public class CampaignIOJsonTest
         for (EquippedTank equippedTank : fighterCompanyEquipment.getActiveEquippedTanks().values())
         {
             Assertions.assertTrue (equippedTank.getSerialNumber() > SerialNumber.TANK_STARTING_SERIAL_NUMBER);
-            Assertions.assertTrue (equippedTank.getArchType().equals("albatrosd"));
-        }
-    }
-
-    private void validateReconEquipment(Campaign campaign) throws PWCGException
-    {
-        Equipment reconCompanyEquipment = campaign.getEquipmentManager().getEquipmentForCompany(CompanyTestProfile.RFC_2_PROFILE.getCompanyId());
-        Assertions.assertTrue (campaign.getSerialNumber().getNextTankSerialNumber() > SerialNumber.TANK_STARTING_SERIAL_NUMBER + 100);
-        Assertions.assertTrue (reconCompanyEquipment.getActiveEquippedTanks().size() >= 14);
-        for (EquippedTank equippedTank : reconCompanyEquipment.getActiveEquippedTanks().values())
-        {
-            Assertions.assertTrue (equippedTank.getSerialNumber() > SerialNumber.TANK_STARTING_SERIAL_NUMBER);
-            Assertions.assertTrue (equippedTank.getArchType().contains("aircodh4"));
+            Assertions.assertTrue (equippedTank.getArchType().equals("tiger"));
         }
     }
 

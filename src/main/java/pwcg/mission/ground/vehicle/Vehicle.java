@@ -8,8 +8,6 @@ import pwcg.campaign.api.ICountry;
 import pwcg.campaign.context.Country;
 import pwcg.campaign.factory.CountryFactory;
 import pwcg.campaign.utils.IndexGenerator;
-import pwcg.core.config.ConfigItemKeys;
-import pwcg.core.config.ConfigManagerGlobal;
 import pwcg.core.constants.AiSkillLevel;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
@@ -36,19 +34,21 @@ public class Vehicle implements Cloneable, IVehicle
     protected AiSkillLevel aiLevel = AiSkillLevel.NOVICE;
     protected int damageReport = 50;
     protected int damageThreshold = 1;
-    protected int deleteAfterDeath = 1;
+    protected int deleteAfterDeath = 0;
     protected int spotter = -1;
     protected int beaconChannel = 0;
-    protected ICountry country = CountryFactory.makeCountryByCountry(Country.NEUTRAL);
+    protected Country country = Country.NEUTRAL;
 
     protected McuTREntity entity;
 
-    public Vehicle(VehicleDefinition vehicleDefinition)
+    public Vehicle(VehicleDefinition vehicleDefinition, Country country)
     {
-        this.vehicleDefinition = vehicleDefinition;
         index = IndexGenerator.getInstance().getNextIndex();
         entity = new McuTREntity(index);
         linkTrId = entity.getIndex();
+
+        this.vehicleDefinition = vehicleDefinition;
+        this.makeVehicleFromDefinition(country);
     }
     
     public void copyFromTemplate(Vehicle vehicle)
@@ -77,26 +77,16 @@ public class Vehicle implements Cloneable, IVehicle
         this.linkTrId = entity.getIndex();
     }
 
-    public void makeVehicleFromDefinition(ICountry vehicleCountry) throws PWCGException
+    private void makeVehicleFromDefinition(Country country)
     {
-        country = vehicleCountry;
-        vehicleType = vehicleDefinition.getVehicleType();
-        vehicleName = vehicleDefinition.getVehicleName();
-        script = "LuaScripts\\WorldObjects\\" + vehicleDefinition.getScriptDir() + vehicleDefinition.getVehicleType() + ".txt";
-        model = "graphics\\" + vehicleDefinition.getModelDir() + vehicleDefinition.getVehicleType() + ".mgm";
+        this.country = country;
+        this.vehicleType = vehicleDefinition.getVehicleType();
+        this.vehicleName = vehicleDefinition.getVehicleName();
+        this.script = "LuaScripts\\WorldObjects\\" + vehicleDefinition.getScriptDir() + vehicleDefinition.getVehicleType() + ".txt";
+        this.model = "graphics\\" + vehicleDefinition.getModelDir() + vehicleDefinition.getVehicleType() + ".mgm";
         setPosition(new Coordinate());
         setOrientation(new Orientation());
         populateEntity();
-        setDeleteAfterDeath();
-    }
-
-    private void setDeleteAfterDeath() throws PWCGException
-    {
-        int isDeleteAfterDeath = ConfigManagerGlobal.getInstance().getIntConfigParam(ConfigItemKeys.DeleteAfterDeathKey);
-        if (isDeleteAfterDeath == 0) 
-        {
-            deleteAfterDeath = 0;
-        }
     }
 
     public void populateEntity()
@@ -149,7 +139,7 @@ public class Vehicle implements Cloneable, IVehicle
             writer.write("  Model = \"" + model + "\";");
             writer.newLine();
 
-            country.writeAdjusted(writer);
+            this.getCountry().writeAdjusted(writer);
 
             writer.write("  Desc = \"" + Desc + "\";");
             writer.newLine();
@@ -257,12 +247,12 @@ public class Vehicle implements Cloneable, IVehicle
 
     public void setCountry(ICountry country)
     {
-        this.country = country;
+        this.country = country.getCountry();
     }
 
     public ICountry getCountry()
     {
-        return country;
+        return CountryFactory.makeCountryByCountry(country);
     }
 
     public String getName()

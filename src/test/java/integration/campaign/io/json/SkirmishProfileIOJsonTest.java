@@ -22,6 +22,6 @@ public class SkirmishProfileIOJsonTest
         
         PWCGContext.getInstance();
         Map<SkirmishProfileType, SkirmishProfile> skirmishProfiles = SkirmishProfileIOJson.readJson();
-        Assertions.assertTrue (skirmishProfiles.size() == 9);
+        Assertions.assertTrue (skirmishProfiles.size() == 7);
     }
 }

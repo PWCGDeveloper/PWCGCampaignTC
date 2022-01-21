@@ -72,7 +72,7 @@ public class EquipmentArchTypeChangeHandler
             TankTypeInformation bestTankType = getBestTankTypeForCompany(company);
             for (int i = 0; i < numPlanesNeeded; ++i)
             {
-                EquippedTank replacementPlane = TankEquipmentFactory.makeTankForCompany(campaign, bestTankType.getType(), company.getCompanyId());
+                EquippedTank replacementPlane = TankEquipmentFactory.makeTankForCompany(campaign, bestTankType.getType(), company);
                 companyEquipment.addEquippedTankToCompany(campaign, company.getCompanyId(), replacementPlane);
             }
         }

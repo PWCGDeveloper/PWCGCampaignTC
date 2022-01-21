@@ -15,7 +15,7 @@ import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 
 @ExtendWith(MockitoExtension.class)
-public class CompanyAircraftAssignmentTest
+public class CompanyTankAssignmentTest
 {    
     @Test
     public void verifyValidBoSAirfieldMoveDatesTest() throws PWCGException
@@ -27,7 +27,7 @@ public class CompanyAircraftAssignmentTest
         boolean success = true;
         for (Company company : companys)
         {
-            if (!verifyCompanyAircraftTransitions(company))
+            if (!verifyCompanyTankTransitions(company))
             {
                 success = false;
             }
@@ -36,7 +36,7 @@ public class CompanyAircraftAssignmentTest
         assert(success);
     }
  
-    private boolean verifyCompanyAircraftTransitions(Company company) throws PWCGException
+    private boolean verifyCompanyTankTransitions(Company company) throws PWCGException
     {
         boolean success = true;
         Date lastEndDate = null;

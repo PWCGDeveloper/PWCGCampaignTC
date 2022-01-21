@@ -13,9 +13,6 @@ import pwcg.campaign.Campaign;
 import pwcg.campaign.context.Country;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.factory.CountryFactory;
-import pwcg.campaign.tank.PwcgRoleCategory;
-import pwcg.campaign.tank.TankTypeInformation;
-import pwcg.campaign.tank.TankTypeFactory;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 

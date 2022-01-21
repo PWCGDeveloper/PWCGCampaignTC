@@ -13,8 +13,6 @@ import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.crewmember.SerialNumber;
 import pwcg.campaign.factory.ArmedServiceFactory;
 import pwcg.campaign.resupply.depot.EquipmentDepotInitializer;
-import pwcg.campaign.tank.Equipment;
-import pwcg.campaign.tank.EquippedTank;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.product.bos.country.TCServiceManager;

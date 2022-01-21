@@ -17,20 +17,11 @@ import pwcg.core.exception.PWCGException;
 public class AceIOJsonTest
 {
     @Test
-    public void readJsonTest() throws PWCGException
-    {
-        
-        List<HistoricalAce> aces = HistoricalAceIOJson.readJson();
-        Assertions.assertTrue (aces.size() == 186);        
-        verifyNoDuplicateSerialNumbers(aces);
-    }
-    
-    @Test
     public void readJsonBoSTest() throws PWCGException
     {
         
         List<HistoricalAce> aces = HistoricalAceIOJson.readJson();
-        Assertions.assertTrue (aces.size() == 17);        
+        Assertions.assertTrue (aces.size() == 0);        
         verifyNoDuplicateSerialNumbers(aces);
     }
 

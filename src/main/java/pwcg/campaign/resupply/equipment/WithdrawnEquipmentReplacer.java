@@ -143,7 +143,7 @@ public class WithdrawnEquipmentReplacer
 
     private void addPlaneToCompany(String planeTypeName) throws PWCGException
     {
-        EquippedTank equippedTank = TankEquipmentFactory.makeTankForCompany(campaign, planeTypeName, company.getCompanyId());
+        EquippedTank equippedTank = TankEquipmentFactory.makeTankForCompany(campaign, planeTypeName, company);
         equipment.addEquippedTankToCompany(campaign, company.getCompanyId(), equippedTank);
     }
 }

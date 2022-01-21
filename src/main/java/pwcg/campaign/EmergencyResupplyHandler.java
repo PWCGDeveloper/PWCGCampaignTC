@@ -111,8 +111,9 @@ public class EmergencyResupplyHandler
 
     private void replaceEquipmentForCompany(Equipment companyEquipment, int companyId, int totalNewPlanes) throws PWCGException
     {
-        String planeTypeName = determineTankTypeToAdd(companyId);
-        EquippedTank equippedTank = TankEquipmentFactory.makeTankForDepot(campaign, planeTypeName);
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(companyId);
+        String tankTypeName = determineTankTypeToAdd(companyId);
+        EquippedTank equippedTank = TankEquipmentFactory.makeTankForDepot(campaign, tankTypeName, company.getCountry().getCountry());
         companyEquipment.addEquippedTankToCompany(campaign, companyId, equippedTank);
     }
 
@@ -122,8 +123,8 @@ public class EmergencyResupplyHandler
         List<String> activeArchTypes = company.getActiveArchTypes(campaign.getDate());
         int archTypeIndex = RandomNumberGenerator.getRandom(activeArchTypes.size());
         
-        TankArchType planeArchType = PWCGContext.getInstance().getTankTypeFactory().getTankArchType(activeArchTypes.get(archTypeIndex));
-        String planeTypeName = EquipmentReplacementUtils.getTypeForReplacement(campaign.getDate(), planeArchType);
-        return planeTypeName;
+        TankArchType tankArchType = PWCGContext.getInstance().getTankTypeFactory().getTankArchType(activeArchTypes.get(archTypeIndex));
+        String tankTypeName = EquipmentReplacementUtils.getTypeForReplacement(campaign.getDate(), tankArchType);
+        return tankTypeName;
     }
 }

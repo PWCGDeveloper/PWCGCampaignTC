@@ -13,15 +13,6 @@ import pwcg.core.location.LocationSet;
 public class LocationIOJsonTest
 {
     @Test
-    public void readJsonArrasTest() throws PWCGException
-    {
-        
-        String directory = System.getProperty("user.dir") + "\\FCData\\Input\\Arras\\19170601\\";
-        LocationSet locationSet = LocationIOJson.readJson(directory, "FrontLines");
-        Assertions.assertTrue (locationSet.getLocations().size() > 0);
-    }
-    
-    @Test
     public void readJsonMoscowTest() throws PWCGException
     {
         

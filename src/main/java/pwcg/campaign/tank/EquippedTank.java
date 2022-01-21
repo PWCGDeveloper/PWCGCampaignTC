@@ -3,6 +3,7 @@ package pwcg.campaign.tank;
 import java.util.Date;
 
 import pwcg.campaign.company.Company;
+import pwcg.campaign.context.Country;
 import pwcg.campaign.crewmember.SerialNumber;
 import pwcg.core.utils.DateUtils;
 import pwcg.mission.ground.vehicle.Vehicle;
@@ -19,26 +20,36 @@ public class EquippedTank extends Vehicle
     protected TankTypeInformation tankType;
 
     // Equipped tank for depot
-    public EquippedTank(VehicleDefinition vehicleDefinition, TankTypeInformation tankType, int serialNumber, int companyId, int tankStatus)
+    public EquippedTank(VehicleDefinition vehicleDefinition, TankTypeInformation tankType, int serialNumber, Company company, int tankStatus)
     {
-        super(vehicleDefinition);
+        super(vehicleDefinition, company.getCountry().getCountry());
         this.tankType = tankType;
         this.serialNumber = serialNumber;
-        this.companyId = companyId;
+        this.companyId = company.getCompanyId();
+        this.tankStatus = tankStatus;
+    }
+
+    // Equipped tank for depot
+    public EquippedTank(VehicleDefinition vehicleDefinition, TankTypeInformation tankType, int serialNumber, int tankStatus, Country country)
+    {
+        super(vehicleDefinition, country);
+        this.tankType = tankType;
+        this.serialNumber = serialNumber;
+        this.companyId = Company.DEPOT;
         this.tankStatus = tankStatus;
     }
 
     // Player Tank
-    public EquippedTank(EquippedTank equippedTank)
+    public EquippedTank(EquippedTank equippedTank, Country country)
     {
-        super(equippedTank.getVehicleDefinition());
-        this.copyFromTemplate(equippedTank);;
+        super(equippedTank.getVehicleDefinition(), country);
+        this.copyFromTemplate(equippedTank);
     }
 
     // AI Tank
-    public EquippedTank(VehicleDefinition vehicleDefinition, TankTypeInformation tankType)
+    public EquippedTank(VehicleDefinition vehicleDefinition, TankTypeInformation tankType, Country country)
     {
-        super(vehicleDefinition);
+        super(vehicleDefinition, country);
         this.tankType = tankType;
         this.tankStatus = TankStatus.STATUS_DEPLOYED;
         this.serialNumber = SerialNumber.NO_SERIAL_NUMBER;

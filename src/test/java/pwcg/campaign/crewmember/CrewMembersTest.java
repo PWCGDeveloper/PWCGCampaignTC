@@ -10,9 +10,6 @@ import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 
 import pwcg.campaign.Campaign;
-import pwcg.campaign.crewmember.CrewMember;
-import pwcg.campaign.crewmember.CrewMembers;
-import pwcg.campaign.crewmember.SerialNumber;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 

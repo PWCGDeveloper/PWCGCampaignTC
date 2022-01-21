@@ -31,12 +31,12 @@ public class InitialCompanyEquipper
 
     public Equipment generateEquipment() throws PWCGException 
     {
-        determinePlaneWeightsForCompany();
-        generatePlanesForCompany();
+        determineTankWeightsForCompany();
+        generateTanksForCompany();
         return equipment;
     }
     
-    private void determinePlaneWeightsForCompany() throws PWCGException
+    private void determineTankWeightsForCompany() throws PWCGException
     {
         List<TankArchType> currentAircraftArchTypes = company.determineCurrentAircraftArchTypes(campaign.getDate());
         
@@ -47,17 +47,17 @@ public class InitialCompanyEquipper
             planeTypesInCompany.addAll(planeTypesForArchType);
         }
         
-        equipmentWeightCalculator.determinePlaneWeightsForPlanes(planeTypesInCompany);
+        equipmentWeightCalculator.determineTankWeightsForTanks(planeTypesInCompany);
     }
 
-    private void generatePlanesForCompany() throws PWCGException 
+    private void generateTanksForCompany() throws PWCGException 
     {       
         
         for (int i = 0; i < planesNeeded; ++i)
         {
             String planeTypeName = equipmentWeightCalculator.getTankTypeFromWeight();
             
-            EquippedTank equippedTank = TankEquipmentFactory.makeTankForCompany(campaign, planeTypeName, company.getCompanyId());
+            EquippedTank equippedTank = TankEquipmentFactory.makeTankForCompany(campaign, planeTypeName, company);
             equipment.addEquippedTankToCompany(campaign, company.getCompanyId(), equippedTank);
         }
     }

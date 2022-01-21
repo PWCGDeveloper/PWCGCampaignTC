@@ -22,12 +22,12 @@ public class OutOfMissionAirVictoryBuilder
 {
     private Campaign campaign;
     private Company victimCompany;
-    private IVictimGenerator victimGenerator;
+    private BeforeCampaignVictimGenerator victimGenerator;
     private CrewMember victorCrewMember;
     private CrewMember victimCrewMember;
     private EquippedTank victimPlane;
 
-    public OutOfMissionAirVictoryBuilder (Campaign campaign, Company victimCompany, IVictimGenerator victimGenerator, CrewMember victorCrewMember)
+    public OutOfMissionAirVictoryBuilder (Campaign campaign, Company victimCompany, BeforeCampaignVictimGenerator victimGenerator, CrewMember victorCrewMember)
     {
         this.campaign = campaign;
         this.victimCompany = victimCompany;

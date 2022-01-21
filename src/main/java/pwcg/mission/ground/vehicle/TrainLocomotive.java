@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import pwcg.campaign.context.Country;
+import pwcg.campaign.factory.CountryFactory;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.location.Orientation;
@@ -14,9 +16,9 @@ public class TrainLocomotive extends Vehicle implements IVehicle
 {
     private List<IVehicle> cars = new ArrayList<>();
 
-    public TrainLocomotive(VehicleDefinition vehicleDefinition)
+    public TrainLocomotive(VehicleDefinition vehicleDefinition, Country country)
     {
-        super(vehicleDefinition);
+        super(vehicleDefinition, country);
     }
 
     public void write(BufferedWriter writer) throws PWCGException
@@ -43,7 +45,7 @@ public class TrainLocomotive extends Vehicle implements IVehicle
             writer.write("  Model = \"" + model + "\";");
             writer.newLine();
 
-            country.writeAdjusted(writer);
+            CountryFactory.makeCountryByCountry(country).writeAdjusted(writer);
 
             writer.write("  Desc = \"" + Desc + "\";");
             writer.newLine();

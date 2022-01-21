@@ -20,12 +20,15 @@ public class EquipmentWeightCalculator
         this.campaignDate = campaignDate;
     }
     
-    public void determinePlaneWeightsForPlanes(List<TankTypeInformation> planeTypes) throws PWCGException
+    public void determineTankWeightsForTanks(List<TankTypeInformation> tankTypes) throws PWCGException
     {
-        for (TankTypeInformation planeType : planeTypes)
+        for (TankTypeInformation tankType : tankTypes)
         {
-            Integer planeWeight = determinePlaneWeight(planeType);
-            weightedPlaneOdds.put(planeType.getType(), planeWeight);
+            if(tankType.isPlayer())
+            {
+                Integer tankWeight = determinePlaneWeight(tankType);
+                weightedPlaneOdds.put(tankType.getType(), tankWeight);
+            }
         }
     }
 
@@ -34,20 +37,20 @@ public class EquipmentWeightCalculator
         int totalWeight = determineTotalWeight(weightedPlaneOdds);
         int accumulatedWeight = 0;
         int roll = RandomNumberGenerator.getRandom(totalWeight);
-        String planeTypeDefault = "";
-        for (String planeTypeName : weightedPlaneOdds.keySet())
+        String tankTypeDefault = "";
+        for (String tankTypeName : weightedPlaneOdds.keySet())
         {
-            planeTypeDefault = planeTypeName;
+            tankTypeDefault = tankTypeName;
             
-            Integer weightForThisTankType = weightedPlaneOdds.get(planeTypeName);
+            Integer weightForThisTankType = weightedPlaneOdds.get(tankTypeName);
             accumulatedWeight += weightForThisTankType;
             if (roll < accumulatedWeight)
             {
-                return planeTypeName;
+                return tankTypeName;
             }
         }
         
-        return planeTypeDefault;
+        return tankTypeDefault;
     }
 
     private int determineTotalWeight(Map<String, Integer> weightedPlaneOdds)
@@ -60,9 +63,9 @@ public class EquipmentWeightCalculator
         return totalWeight;
     }
 
-    private Integer determinePlaneWeight(TankTypeInformation planeType) throws PWCGException
+    private Integer determinePlaneWeight(TankTypeInformation tankType) throws PWCGException
     {
-        Integer daysSinceIntroduction = DateUtils.daysDifference(planeType.getIntroduction(), campaignDate);
+        Integer daysSinceIntroduction = DateUtils.daysDifference(tankType.getIntroduction(), campaignDate);
         Integer weight = daysSinceIntroduction;
         if (weight > 100)
         {
