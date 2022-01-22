@@ -10,9 +10,9 @@ import pwcg.core.utils.PWCGLogger;
 
 public class LooseSkinLoader
 {
-    private Map<String, SkinsForPlane> skinsForPlanes = new HashMap<>();
+    private Map<String, SkinsForTank> skinsForPlanes = new HashMap<>();
     
-    LooseSkinLoader(Map<String, SkinsForPlane> skinsForPlanes)
+    LooseSkinLoader(Map<String, SkinsForTank> skinsForPlanes)
     {
         this.skinsForPlanes = skinsForPlanes;
     }
@@ -48,7 +48,7 @@ public class LooseSkinLoader
         
             if (skinsForPlanes.containsKey(planeType))
             {
-                SkinsForPlane skinsForPlane = skinsForPlanes.get(planeType);
+                SkinsForTank skinsForPlane = skinsForPlanes.get(planeType);
                 List<String> skinFiles = looseSkinNames.get(planeType);
                 for (String looseSkinName : skinFiles)
                 {

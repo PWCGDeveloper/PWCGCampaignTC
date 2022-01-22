@@ -11,13 +11,13 @@ import pwcg.core.utils.PWCGLogger;
 
 public class SkinLoader
 {
-    private Map<String, SkinsForPlane> skinsForPlanes = new HashMap<>();
+    private Map<String, SkinsForTank> skinsForPlanes = new HashMap<>();
     
     public SkinLoader ()
     {
     }
     
-    public Map<String, SkinsForPlane> loadPwcgSkins()
+    public Map<String, SkinsForTank> loadPwcgSkins()
     {
         initialize();
         readConfiguredAndDoNotUseSkins();
@@ -35,7 +35,7 @@ public class SkinLoader
             List<TankTypeInformation> allPlanes = PWCGContext.getInstance().getPlayerTankTypeFactory().getAllTanks();
             for(TankTypeInformation plane : allPlanes)
             {
-                SkinsForPlane skinsForPlane = new SkinsForPlane();
+                SkinsForTank skinsForPlane = new SkinsForTank();
                 skinsForPlanes.put(plane.getType(), skinsForPlane);
             }
         }

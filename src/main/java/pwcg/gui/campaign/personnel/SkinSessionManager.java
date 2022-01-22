@@ -47,7 +47,7 @@ public class SkinSessionManager
         Campaign campaign = PWCGContext.getInstance().getCampaign();
         Company company = crewMember.determineCompany();
 
-        List<Skin> companySkins = PWCGContext.getInstance().getSkinManager().getSkinsByCompanyPlaneDate(selectedPlane, company.getCompanyId(), campaign.getDate());
+        List<Skin> companySkins = PWCGContext.getInstance().getSkinManager().getSkinsByCompanyTankDate(selectedPlane, company.getCompanyId(), campaign.getDate());
         skinNames = getConfiguredSkins(companySkins);
 
         return skinNames;
@@ -59,7 +59,7 @@ public class SkinSessionManager
         
         Campaign campaign = PWCGContext.getInstance().getCampaign();
 
-        List<Skin> unaffiliatedSkins = PWCGContext.getInstance().getSkinManager().getSkinsByCompanyPlaneDate(selectedPlane, Skin.PERSONAL_SKIN, campaign.getDate());
+        List<Skin> unaffiliatedSkins = PWCGContext.getInstance().getSkinManager().getSkinsByCompanyTankDate(selectedPlane, Skin.PERSONAL_SKIN, campaign.getDate());
 
         skinNames = getConfiguredSkins(unaffiliatedSkins);
 
@@ -79,7 +79,7 @@ public class SkinSessionManager
         knownSkinsForPlane.addAll(nonCompanySkins);
 
         // Exclude known company and nonCompanys
-        List<Skin> allLooseSkins = PWCGContext.getInstance().getSkinManager().getLooseSkinByPlane(selectedPlane);
+        List<Skin> allLooseSkins = PWCGContext.getInstance().getSkinManager().getLooseSkinByTank(selectedPlane);
         for (Skin looseSkin : allLooseSkins)
         {
             if (!isKnownSkin(knownSkinsForPlane, looseSkin.getSkinName()))

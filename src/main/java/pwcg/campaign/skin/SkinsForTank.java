@@ -5,7 +5,7 @@ import java.util.List;
 
 import pwcg.core.exception.PWCGException;
 
-public class SkinsForPlane
+public class SkinsForTank
 {
 	private String planeType;
     private SkinSet configuredSkins = new SkinSet(SkinSetType.SKIN_CONFIGURED);
@@ -15,7 +15,7 @@ public class SkinsForPlane
     private SkinSet companySkins = new SkinSet(SkinSetType.SKIN_Company);
 
 
-	public SkinsForPlane()
+	public SkinsForTank()
 	{
 	}
 

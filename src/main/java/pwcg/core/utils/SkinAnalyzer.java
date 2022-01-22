@@ -7,7 +7,7 @@ import java.util.Map;
 
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.skin.Skin;
-import pwcg.campaign.skin.SkinsForPlane;
+import pwcg.campaign.skin.SkinsForTank;
 import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.core.exception.PWCGException;
 
@@ -41,7 +41,7 @@ public class SkinAnalyzer
 	{
 		for (TankTypeInformation plane : PWCGContext.getInstance().getFullTankTypeFactory().getAllTanks())
 		{
-			SkinsForPlane skinsForPlane = PWCGContext.getInstance().getSkinManager().getSkinsForPlane(plane.getType());
+			SkinsForTank skinsForPlane = PWCGContext.getInstance().getSkinManager().getSkinsForTank(plane.getType());
 		
 			for (Skin skin : skinsForPlane.getConfiguredSkins().getSkins().values())
 			{
@@ -57,7 +57,7 @@ public class SkinAnalyzer
 	{
 		for (TankTypeInformation plane : PWCGContext.getInstance().getFullTankTypeFactory().getAllTanks())
 		{
-			SkinsForPlane skinsForPlane = PWCGContext.getInstance().getSkinManager().getSkinsForPlane(plane.getType());
+			SkinsForTank skinsForPlane = PWCGContext.getInstance().getSkinManager().getSkinsForTank(plane.getType());
 		
 			for (Skin skin : skinsForPlane.getCompanySkins().getSkins().values())
 			{
@@ -72,7 +72,7 @@ public class SkinAnalyzer
 	{
 		for (TankTypeInformation plane : PWCGContext.getInstance().getFullTankTypeFactory().getAllTanks())
 		{
-			SkinsForPlane skinsForPlane = PWCGContext.getInstance().getSkinManager().getSkinsForPlane(plane.getType());
+			SkinsForTank skinsForPlane = PWCGContext.getInstance().getSkinManager().getSkinsForTank(plane.getType());
 		
 			for (Skin skin : skinsForPlane.getAceSkins().getSkins().values())
 			{

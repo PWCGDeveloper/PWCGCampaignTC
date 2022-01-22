@@ -116,7 +116,7 @@ public class PwcgSkinConfigurationAnalysisDisplayScreen extends ImageResizingPan
 
     String generateReportHeader() throws PWCGException
     {
-        Map<String, List<Skin>> allSkinsInPWCG = PWCGContext.getInstance().getSkinManager().getAllSkinsByPlane();
+        Map<String, List<Skin>> allSkinsInPWCG = PWCGContext.getInstance().getSkinManager().getAllSkinsByTank();
         int numSkinsInPWCG = 0;
         for (List<Skin> skinSet : allSkinsInPWCG.values())
         {
@@ -131,7 +131,7 @@ public class PwcgSkinConfigurationAnalysisDisplayScreen extends ImageResizingPan
         JPanel reportBodyPanel = new JPanel(new GridLayout(0,5));
         reportBodyPanel.setOpaque(false);
                 
-        Map<String, List<Skin>> allSkinsInPWCG = PWCGContext.getInstance().getSkinManager().getAllSkinsByPlane();
+        Map<String, List<Skin>> allSkinsInPWCG = PWCGContext.getInstance().getSkinManager().getAllSkinsByTank();
         
         for (String planeTypeDesc : planeTypesToDisplay.keySet())
         {

@@ -7,9 +7,9 @@ import pwcg.core.exception.PWCGException;
 
 public class ConfiguredSkinReader
 {
-    private Map<String, SkinsForPlane> skinsForPlanes;
+    private Map<String, SkinsForTank> skinsForPlanes;
     
-    public ConfiguredSkinReader (Map<String, SkinsForPlane> skinsForPlanes)
+    public ConfiguredSkinReader (Map<String, SkinsForTank> skinsForPlanes)
     {
         this.skinsForPlanes = skinsForPlanes;
     }
@@ -21,7 +21,7 @@ public class ConfiguredSkinReader
 
         for (String planeType : skinsForPlanes.keySet())
         {
-            SkinsForPlane skinsForPlane = skinsForPlanes.get(planeType);
+            SkinsForTank skinsForPlane = skinsForPlanes.get(planeType);
             if (configuredSkinSets.containsKey(planeType))
             {
                 SkinSet configuredSkins = configuredSkinSets.get(planeType);

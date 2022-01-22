@@ -23,7 +23,7 @@ public class RussianMedalManager extends BoSMedalManager
     {
         super(campaign);
 
-        medals.put(CREWS_BADGE, new Medal ("CrewMembers Badge",                                   "ussr_crewMember_badge.png"));
+        medals.put(CREWS_BADGE, new Medal ("CrewMembers Badge",                                   "ussr_crew_badge.png"));
 		medals.put(WOUND_STRIPE, new Medal ("Wound Stripe", 		                          "ussr_wound_stripe.png"));
 
         medals.put(ORDER_RED_STAR, new Medal ("Order of the Red Star",                        "ussr_order_red_star.png"));

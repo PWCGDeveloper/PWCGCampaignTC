@@ -45,27 +45,8 @@ public class CrewMemberReplacementFactoryTest
         
         assert(replacement.isPlayer() == false);
         assert(replacement.getSerialNumber() >= SerialNumber.AI_STARTING_SERIAL_NUMBER);
-        assert(replacement.getRank().equals("Oberfeldwebel") || replacement.getRank().equals("Leutnant"));
+        assert(replacement.getRank().equals("Gefreiter") || replacement.getRank().equals("Oberfeldwebel"));
         assert(replacement.getCompanyId() == Company.REPLACEMENT);
         assert(replacement.getAiSkillLevel() == AiSkillLevel.COMMON);
     }
-
-    @Test
-    public void testCreateNoviceReplacementCrewMember() throws Exception
-    {                
-        Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19440602"));
-
-        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(TCServiceManager.WEHRMACHT);
-
-        CrewMemberReplacementFactory companyMemberFactory = new  CrewMemberReplacementFactory (campaign, service);
-        CrewMember replacement = companyMemberFactory.createAIReplacementCrewMember();
-        
-        assert(replacement.isPlayer() == false);
-        assert(replacement.getSerialNumber() >= SerialNumber.AI_STARTING_SERIAL_NUMBER);
-        assert(replacement.getRank().equals("Oberfeldwebel") || replacement.getRank().equals("Leutnant"));
-        assert(replacement.getCompanyId() == Company.REPLACEMENT);
-        assert(replacement.getAiSkillLevel() == AiSkillLevel.NOVICE);
-    }
-    
-
 }

@@ -13,7 +13,7 @@ public class SkinLoaderTest
     {
         
         SkinLoader skinLoader = new SkinLoader();
-        Map<String, SkinsForPlane> skinsForPlanes = skinLoader.loadPwcgSkins();
+        Map<String, SkinsForTank> skinsForPlanes = skinLoader.loadPwcgSkins();
         
         assert(skinsForPlanes != null);
     }
@@ -23,7 +23,7 @@ public class SkinLoaderTest
     {
         
         SkinLoader skinLoader = new SkinLoader();
-        Map<String, SkinsForPlane> skinsForPlanes = skinLoader.loadPwcgSkins();
+        Map<String, SkinsForTank> skinsForPlanes = skinLoader.loadPwcgSkins();
         
         assert(skinsForPlanes != null);
     }

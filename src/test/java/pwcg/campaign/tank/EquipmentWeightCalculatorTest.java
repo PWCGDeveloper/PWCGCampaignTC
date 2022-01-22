@@ -41,7 +41,7 @@ public class EquipmentWeightCalculatorTest
         
         Map<String, Integer> weightedPlaneOdds = equipmentWeightCalculator.getWeightedPlaneOdds();
         assert(weightedPlaneOdds.get(TankAttributeMapping.TIGER_I.getTankType()) == 31);
-        assert(weightedPlaneOdds.get(TankAttributeMapping.PZKW_IV_G.getTankType()) == 61);
+        assert(weightedPlaneOdds.get(TankAttributeMapping.PZKW_IV_G.getTankType()) == 100);
         
         int tigerCount = 0;
         int pzivCount = 0;

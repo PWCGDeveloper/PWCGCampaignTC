@@ -7,17 +7,17 @@ import java.util.Map;
 
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.skin.SkinSet;
-import pwcg.campaign.skin.SkinsForPlane;
+import pwcg.campaign.skin.SkinsForTank;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.FileUtils;
 
 public class SkinIOJson 
 {	
-    public static void writeJson(Map<String, SkinsForPlane> skinsForPlanes) throws PWCGException
+    public static void writeJson(Map<String, SkinsForTank> skinsForPlanes) throws PWCGException
 	{
 		for (String planeType : skinsForPlanes.keySet())
 		{
-			SkinsForPlane skinsForPlane = skinsForPlanes.get(planeType);
+			SkinsForTank skinsForPlane = skinsForPlanes.get(planeType);
 			writeJson(planeType, skinsForPlane.getConfiguredSkins());
 			writeJson(planeType, skinsForPlane.getDoNotUse());
 		}

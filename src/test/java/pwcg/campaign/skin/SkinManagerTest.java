@@ -25,26 +25,26 @@ public class SkinManagerTest
     {
         SkinManager skinManager = PWCGContext.getInstance().getSkinManager();
         List<Skin> testSkins;
-        String planeType = "bf109f4";
+        String tankType = "bf109f4";
         ICountry iCountry = CountryFactory.makeCountryByCountry(Country.GERMANY);
 
-        testSkins = skinManager.getLooseSkinByPlane(planeType);
-        Assertions.assertTrue (testSkins.size() > 0);
-        
-        testSkins = skinManager.getPersonalSkinsByPlaneCountryDateInUse(planeType, iCountry.getCountryName(), DateUtils.getDateYYYYMMDD("19420801"));
-        Assertions.assertTrue (testSkins.size() > 0);
-        
-        testSkins = skinManager.getSkinsByPlaneCompany(planeType, 20111051);
+        testSkins = skinManager.getLooseSkinByTank(tankType);
         Assertions.assertTrue (testSkins.size() == 0);
         
-        testSkins = skinManager.getSkinsByPlaneCompany(planeType, TestIdentifiers.TEST_GERMAN_COMPANY_ID);
-        Assertions.assertTrue (testSkins.size() > 0);
+        testSkins = skinManager.getPersonalSkinsByTankCountryDateInUse(tankType, iCountry.getCountryName(), DateUtils.getDateYYYYMMDD("19420801"));
+        Assertions.assertTrue (testSkins.size() == 0);
         
-        testSkins = skinManager.getSkinsByPlaneCountry(planeType, iCountry.getCountryName());
-        Assertions.assertTrue (testSkins.size() > 0);
+        testSkins = skinManager.getSkinsByTankCompany(tankType, TestIdentifiers.TEST_GERMAN_COMPANY_ID);
+        Assertions.assertTrue (testSkins.size() == 0);
         
-        testSkins = skinManager.getSkinsByPlaneCompanyDateInUse(planeType, TestIdentifiers.TEST_GERMAN_COMPANY_ID, DateUtils.getDateYYYYMMDD("19420801"));
-        Assertions.assertTrue (testSkins.size() > 0);
+        testSkins = skinManager.getSkinsByTankCompany(tankType, TestIdentifiers.TEST_GERMAN_COMPANY_ID);
+        Assertions.assertTrue (testSkins.size() == 0);
+        
+        testSkins = skinManager.getSkinsByTankCountry(tankType, iCountry.getCountryName());
+        Assertions.assertTrue (testSkins.size() == 0);
+        
+        testSkins = skinManager.getSkinsByTankCompanyDateInUse(tankType, TestIdentifiers.TEST_GERMAN_COMPANY_ID, DateUtils.getDateYYYYMMDD("19420801"));
+        Assertions.assertTrue (testSkins.size() == 0);
     }
 
 }
