@@ -57,7 +57,7 @@ public class AceSkinChecker
 
             List<HistoricalAce> historicalAces = aceManager.getHistoricalAces();
             
-            List<TankTypeInformation> allPlanes = PWCGContext.getInstance().getTankTypeFactory().getAllTanks();
+            List<TankTypeInformation> allPlanes = PWCGContext.getInstance().getFullTankTypeFactory().getAllTanks();
             
             for (HistoricalAce ace : historicalAces)
             {

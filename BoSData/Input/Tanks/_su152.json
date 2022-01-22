@@ -1,6 +1,6 @@
 {
 	"type": "_su152",
-	"archType": "su",
+	"archType": "su152",
 	"isPlayer": true,
 	"primaryUsedBy": [
 		"RUSSIA"

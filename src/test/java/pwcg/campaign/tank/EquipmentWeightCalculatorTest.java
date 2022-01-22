@@ -27,34 +27,34 @@ public class EquipmentWeightCalculatorTest
     }
 
     @Test
-    public void testEquipCompanyGermanFighter() throws PWCGException
+    public void testEquipCompany() throws PWCGException
     {
-        TankTypeInformation me109F4 = PWCGContext.getInstance().getTankTypeFactory().getTankById("bf109f4");
-        TankTypeInformation me109G2 = PWCGContext.getInstance().getTankTypeFactory().getTankById("bf109g2");
+        TankTypeInformation tiger = PWCGContext.getInstance().getPlayerTankTypeFactory().getTankById(TankAttributeMapping.TIGER_I.getTankType());
+        TankTypeInformation pziv = PWCGContext.getInstance().getPlayerTankTypeFactory().getTankById(TankAttributeMapping.PZKW_IV_G.getTankType());
         List<TankTypeInformation> planeTypes = new ArrayList<>();
-        planeTypes.add(me109F4);
-        planeTypes.add(me109G2);
+        planeTypes.add(tiger);
+        planeTypes.add(pziv);
         
-        Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420501"));
+        Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420801"));
         EquipmentWeightCalculator equipmentWeightCalculator = new EquipmentWeightCalculator(campaign.getDate());
         equipmentWeightCalculator.determineTankWeightsForTanks(planeTypes);
         
         Map<String, Integer> weightedPlaneOdds = equipmentWeightCalculator.getWeightedPlaneOdds();
-        assert(weightedPlaneOdds.get("bf109f4") == 100);
-        assert(weightedPlaneOdds.get("bf109g2") == 30);
+        assert(weightedPlaneOdds.get(TankAttributeMapping.TIGER_I.getTankType()) == 31);
+        assert(weightedPlaneOdds.get(TankAttributeMapping.PZKW_IV_G.getTankType()) == 61);
         
-        int me109F4Count = 0;
-        int me109G2Count = 0;
+        int tigerCount = 0;
+        int pzivCount = 0;
         for (int i = 0; i < 10000; ++i)
         {
             String planeTypeName = equipmentWeightCalculator.getTankTypeFromWeight();
-            if (planeTypeName.equals("bf109f4"))
+            if (planeTypeName.equals(TankAttributeMapping.TIGER_I.getTankType()))
             {
-                ++me109F4Count;
+                ++tigerCount;
             }
-            else if (planeTypeName.equals("bf109g2"))
+            else if (planeTypeName.equals(TankAttributeMapping.PZKW_IV_G.getTankType()))
             {
-                ++me109G2Count;
+                ++pzivCount;
             }
             else
             {
@@ -62,7 +62,6 @@ public class EquipmentWeightCalculatorTest
             }
         }
         
-        assert(me109F4Count > 7000 && me109F4Count < 8500);
-        assert(me109G2Count > 1500 && me109G2Count < 3000);
+        assert(pzivCount > tigerCount);
     }
 }

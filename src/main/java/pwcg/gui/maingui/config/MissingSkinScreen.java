@@ -142,7 +142,7 @@ public class MissingSkinScreen extends ImageResizingPanel implements ActionListe
                 
         for (String planeTypeDesc : selectedMissingSkins.keySet())
         {
-            TankTypeInformation plane = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(planeTypeDesc);
+            TankTypeInformation plane = PWCGContext.getInstance().getFullTankTypeFactory().createTankTypeByAnyName(planeTypeDesc);
             List<MissingSkin> missingSkinSet = selectedMissingSkins.get(planeTypeDesc);
             
             if (missingSkinSet.size() > 0)

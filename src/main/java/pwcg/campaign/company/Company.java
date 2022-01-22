@@ -83,24 +83,27 @@ public class Company implements ICompanyMission
         return false;
 	}
 
-	public List<TankTypeInformation> determineCurrentAircraftList(Date now) throws PWCGException
+	public List<TankTypeInformation> determineCurrentTankList(Date now) throws PWCGException
 	{
 		TreeMap<String, TankTypeInformation> currentAircraftByGoodness = new TreeMap<>();
 		
-		for (CompanyTankAssignment planeAssignment : tankAssignments)
+		for (CompanyTankAssignment tankAssignment : tankAssignments)
 		{
-			Date introduction = planeAssignment.getCompanyIntroduction();
-			Date withdrawal = planeAssignment.getCompanyWithdrawal();
+			Date introduction = tankAssignment.getCompanyIntroduction();
+			Date withdrawal = tankAssignment.getCompanyWithdrawal();
 			
 			if (introduction.before(now) || introduction.equals((now)))
 			{
 				if (withdrawal.after(now) || withdrawal.equals((now)))
 				{
-				    List<TankTypeInformation> planeTypesForArchType = PWCGContext.getInstance().getTankTypeFactory().createActiveTankTypesForArchType(planeAssignment.getArchType(), now);
-				    for (TankTypeInformation planeType : planeTypesForArchType)
+				    List<TankTypeInformation> tankTypesForArchType = PWCGContext.getInstance().getPlayerTankTypeFactory().createActiveTankTypesForArchType(tankAssignment.getArchType(), now);
+				    for (TankTypeInformation tankType : tankTypesForArchType)
 				    {
-				        TankTypeInformation plane = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(planeType.getType());
-				        currentAircraftByGoodness.put("" + plane.getGoodness() + planeType.getType(), plane);
+			            if (tankType.isPlayer())
+			            {
+			                TankTypeInformation tank = PWCGContext.getInstance().getPlayerTankTypeFactory().createTankTypeByAnyName(tankType.getType());
+			                currentAircraftByGoodness.put("" + tank.getGoodness() + tankType.getType(), tank);
+			            }
 				    }
 				}
 			}			
@@ -112,21 +115,21 @@ public class Company implements ICompanyMission
 		return currentAircraftByQuality;
 	}
 
-    public List<TankArchType> determineCurrentAircraftArchTypes(Date now) throws PWCGException
+    public List<TankArchType> determineCurrentTankArchTypes(Date now) throws PWCGException
     {
         List<TankArchType> currentTankArchTypes = new ArrayList<>();
         
-        for (CompanyTankAssignment planeAssignment : tankAssignments)
+        for (CompanyTankAssignment tankAssignment : tankAssignments)
         {
-            Date introduction = planeAssignment.getCompanyIntroduction();
-            Date withdrawal = planeAssignment.getCompanyWithdrawal();
+            Date introduction = tankAssignment.getCompanyIntroduction();
+            Date withdrawal = tankAssignment.getCompanyWithdrawal();
             
             if (introduction.before(now) || introduction.equals((now)))
             {
                 if (withdrawal.after(now) || withdrawal.equals((now)))
                 {
-                    TankArchType planeArchType = PWCGContext.getInstance().getTankTypeFactory().getTankArchType(planeAssignment.getArchType());
-                    currentTankArchTypes.add(planeArchType);
+                    TankArchType tankArchType = PWCGContext.getInstance().getPlayerTankTypeFactory().getTankArchType(tankAssignment.getArchType());
+                    currentTankArchTypes.add(tankArchType);
                 }
             }           
         }
@@ -135,12 +138,12 @@ public class Company implements ICompanyMission
     }
 
 
-    public boolean isPlaneInActiveCompanyArchTypes(Date date, EquippedTank plane) throws PWCGException
+    public boolean isPlaneInActiveCompanyArchTypes(Date date, EquippedTank tank) throws PWCGException
     {
         boolean isActiveArchType = false;
-        for (TankArchType archType : determineCurrentAircraftArchTypes(date))
+        for (TankArchType archType : determineCurrentTankArchTypes(date))
         {
-            if (plane.getArchType().equals(archType.getTankArchTypeName()))
+            if (tank.getArchType().equals(archType.getTankArchTypeName()))
             {
                 isActiveArchType = true;
                 break;
@@ -237,11 +240,11 @@ public class Company implements ICompanyMission
     public Date determineFirstAircraftDate() throws PWCGException 
     {
         Date firstPlaneDate = DateUtils.getEndOfWar();
-        for (CompanyTankAssignment planeAssignment : tankAssignments)
+        for (CompanyTankAssignment tankAssignment : tankAssignments)
         {
-            if (planeAssignment.getCompanyIntroduction().before(firstPlaneDate))
+            if (tankAssignment.getCompanyIntroduction().before(firstPlaneDate))
             {
-                firstPlaneDate = planeAssignment.getCompanyIntroduction();
+                firstPlaneDate = tankAssignment.getCompanyIntroduction();
             }
         }
         
@@ -323,11 +326,11 @@ public class Company implements ICompanyMission
 		String fieldName = determineCurrentAirfieldName(date);
 		companyDescription += fieldName + "\n\n";
 		
-		List<TankTypeInformation> planes = determineCurrentAircraftList(date);
+		List<TankTypeInformation> tanks = determineCurrentTankList(date);
 		companyDescription += "Operating the:\n";
-		for (TankTypeInformation plane : planes)
+		for (TankTypeInformation tank : tanks)
 		{
-			companyDescription += "    " + plane.getDisplayName() + "\n";
+			companyDescription += "    " + tank.getDisplayName() + "\n";
 		}
 
 		Campaign campaign =     PWCGContext.getInstance().getCampaign();
@@ -446,18 +449,18 @@ public class Company implements ICompanyMission
     public TankTypeInformation determineBestPlane(Date date) throws PWCGException
     {
         TankTypeInformation bestPlane = null;
-        List<TankTypeInformation> planes = this.determineCurrentAircraftList(date);
-        for (TankTypeInformation plane : planes)
+        List<TankTypeInformation> tanks = this.determineCurrentTankList(date);
+        for (TankTypeInformation tank : tanks)
         {
             if (bestPlane == null)
             {
-                bestPlane = plane;
+                bestPlane = tank;
             }
             else
             {
-                if (plane.getGoodness() > bestPlane.getGoodness())
+                if (tank.getGoodness() > bestPlane.getGoodness())
                 {
-                    bestPlane = plane;
+                    bestPlane = tank;
                 }
             }
         }
@@ -465,20 +468,20 @@ public class Company implements ICompanyMission
         return bestPlane;
     }
     
-    public TankTypeInformation determineEarliestPlane() throws PWCGException
+    public TankTypeInformation determineEarliestTank() throws PWCGException
     {
-        TreeMap<Date, TankTypeInformation> planeTypesTypeByIntroduction = new TreeMap<>();
-        for (CompanyTankAssignment planeAssignment : tankAssignments)
+        TreeMap<Date, TankTypeInformation> tankTypesTypeByIntroduction = new TreeMap<>();
+        for (CompanyTankAssignment tankAssignment : tankAssignments)
         {
-            List<TankTypeInformation> planeTypesForArchType = PWCGContext.getInstance().getTankTypeFactory().createTanksByIntroduction(planeAssignment.getArchType());
-            for (TankTypeInformation planeType : planeTypesForArchType)
+            List<TankTypeInformation> tankTypesForArchType = PWCGContext.getInstance().getPlayerTankTypeFactory().createTanksByIntroduction(tankAssignment.getArchType());
+            for (TankTypeInformation tankType : tankTypesForArchType)
             {
-                planeTypesTypeByIntroduction.put(planeType.getIntroduction(), planeType);
+                tankTypesTypeByIntroduction.put(tankType.getIntroduction(), tankType);
             }
         }
  
-        List<TankTypeInformation> planes = new ArrayList<>(planeTypesTypeByIntroduction.values());
-        return planes.get(0);
+        List<TankTypeInformation> tanks = new ArrayList<>(tankTypesTypeByIntroduction.values());
+        return tanks.get(0);
     }
 
     public String determineCompanyInfo(Date campaignDate) throws PWCGException 
@@ -494,10 +497,10 @@ public class Company implements ICompanyMission
         }
         
         companyInfo.append(DateUtils.getDateString(campaignDate) + "\n");
-        List <TankTypeInformation> planes = determineCurrentAircraftList(campaignDate);
-        for (TankTypeInformation plane : planes)
+        List <TankTypeInformation> tanks = determineCurrentTankList(campaignDate);
+        for (TankTypeInformation tank : tanks)
         {
-            companyInfo.append(plane.getDisplayName() + "   ");
+            companyInfo.append(tank.getDisplayName() + "   ");
         }
         companyInfo.append("\n");
 
@@ -507,7 +510,7 @@ public class Company implements ICompanyMission
         return companyInfo.toString();
     }
 
-    public PWCGMap getMapForAirfield(Date campaignDate)
+    public PWCGMap getMapForBase(Date campaignDate)
     {
         String airfieldName = determineCurrentAirfieldName(campaignDate);
     	List<FrontMapIdentifier> airfieldMapIdentifiers = MapForAirfieldFinder.getMapForAirfield(airfieldName);
@@ -612,11 +615,11 @@ public class Company implements ICompanyMission
     public List<String> getActiveArchTypes(Date date) throws PWCGException 
     {
         List<String> activeArchTypes = new ArrayList<>();
-        for (CompanyTankAssignment planeAssignment : tankAssignments)
+        for (CompanyTankAssignment tankAssignment : tankAssignments)
         {
-            if (DateUtils.isDateInRange(date, planeAssignment.getCompanyIntroduction(), planeAssignment.getCompanyWithdrawal()))
+            if (DateUtils.isDateInRange(date, tankAssignment.getCompanyIntroduction(), tankAssignment.getCompanyWithdrawal()))
             {
-                activeArchTypes.add(planeAssignment.getArchType());
+                activeArchTypes.add(tankAssignment.getArchType());
             }
         }
         return activeArchTypes;
@@ -625,9 +628,9 @@ public class Company implements ICompanyMission
     public List<String> getAllArchTypes() throws PWCGException 
     {
         List<String> activeArchTypes = new ArrayList<>();
-        for (CompanyTankAssignment planeAssignment : tankAssignments)
+        for (CompanyTankAssignment tankAssignment : tankAssignments)
         {
-            activeArchTypes.add(planeAssignment.getArchType());
+            activeArchTypes.add(tankAssignment.getArchType());
         }
         return activeArchTypes;
     }

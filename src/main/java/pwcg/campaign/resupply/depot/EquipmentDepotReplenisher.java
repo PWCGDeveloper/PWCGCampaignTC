@@ -97,7 +97,7 @@ public class EquipmentDepotReplenisher
             archTypeForReplacementPlane = equipmentReplacementCalculator.chooseArchTypeForReplacementByUsage();
         }
 
-        TankArchType planeArchType = PWCGContext.getInstance().getTankTypeFactory().getTankArchType(archTypeForReplacementPlane);
+        TankArchType planeArchType = PWCGContext.getInstance().getPlayerTankTypeFactory().getTankArchType(archTypeForReplacementPlane);
         return planeArchType;
     }
 }

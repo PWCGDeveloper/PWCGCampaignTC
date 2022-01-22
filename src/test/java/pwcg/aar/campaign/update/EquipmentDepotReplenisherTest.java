@@ -67,7 +67,7 @@ public class EquipmentDepotReplenisherTest
         {
             for (CompanyTankAssignment planeAssignment : company.getPlaneAssignments())
             {
-                TankArchType planeArchType = PWCGContext.getInstance().getTankTypeFactory().getTankArchType(planeAssignment.getArchType());
+                TankArchType planeArchType = PWCGContext.getInstance().getPlayerTankTypeFactory().getTankArchType(planeAssignment.getArchType());
                 String selectedTankType = EquipmentReplacementUtils.getTypeForReplacement(planeAssignment.getCompanyWithdrawal(), planeArchType);
                 Assertions.assertTrue (selectedTankType.length() > 0);
             }

@@ -145,7 +145,7 @@ public class AARClaimPanel extends JPanel implements ActionListener
         for (String tankName : tankTypesInMission)
         {
             String tankDisplayName = tankName;
-            TankTypeInformation tank = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(tankName);
+            TankTypeInformation tank = PWCGContext.getInstance().getFullTankTypeFactory().createTankTypeByAnyName(tankName);
             if (tank != null)
             {
                 tankDisplayName = tank.getDisplayName();
@@ -162,7 +162,7 @@ public class AARClaimPanel extends JPanel implements ActionListener
 			PlayerVictoryDeclaration declaration = new PlayerVictoryDeclaration();
 			String tankTypeDesc = (String)cbTankBoxes.get(i).getSelectedItem();
 				
-            TankTypeInformation tankType = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(tankTypeDesc);
+            TankTypeInformation tankType = PWCGContext.getInstance().getFullTankTypeFactory().createTankTypeByAnyName(tankTypeDesc);
             if (tankType != null)
             {
                 if (tankType.getType().equalsIgnoreCase(tankType.getType()))

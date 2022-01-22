@@ -38,12 +38,12 @@ public class InitialCompanyEquipper
     
     private void determineTankWeightsForCompany() throws PWCGException
     {
-        List<TankArchType> currentAircraftArchTypes = company.determineCurrentAircraftArchTypes(campaign.getDate());
+        List<TankArchType> currentAircraftArchTypes = company.determineCurrentTankArchTypes(campaign.getDate());
         
         List<TankTypeInformation> planeTypesInCompany = new ArrayList<>();
         for (TankArchType planeArchType : currentAircraftArchTypes)
         {
-            List<TankTypeInformation> planeTypesForArchType = PWCGContext.getInstance().getTankTypeFactory().createActiveTankTypesForArchType(planeArchType.getTankArchTypeName(), campaign.getDate());
+            List<TankTypeInformation> planeTypesForArchType = PWCGContext.getInstance().getPlayerTankTypeFactory().createActiveTankTypesForArchType(planeArchType.getTankArchTypeName(), campaign.getDate());
             planeTypesInCompany.addAll(planeTypesForArchType);
         }
         

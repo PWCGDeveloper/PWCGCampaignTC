@@ -14,7 +14,7 @@ import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.factory.CountryFactory;
 import pwcg.campaign.tank.CompanyTankAssignment;
-import pwcg.campaign.tank.TankTypeFactory;
+import pwcg.campaign.tank.ITankTypeFactory;
 import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
@@ -46,7 +46,7 @@ public class MissionLogEventsBuilder
     public LogEventData makeLogEvents() throws PWCGException
     {
         makeCrewMembersForVictories();
-        makePlanes();
+        makeTanks();
         makeTrucks();
         makewaypointEvents();
         makePlayerDestroyedEvents();
@@ -82,12 +82,12 @@ public class MissionLogEventsBuilder
         }
     }
 
-    private void makePlanes() throws PWCGException
+    private void makeTanks() throws PWCGException
     {
         for (CrewMember crewMember : preliminaryData.getCampaignMembersInMission().getCrewMemberCollection().values())
         {
             CompanyTankAssignment planeAssignment = AARCoordinatorInMissionTest.getPlaneForCompany(crewMember.getCompanyId());
-            TankTypeFactory planeTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
+            ITankTypeFactory planeTypeFactory = PWCGContext.getInstance().getFullTankTypeFactory();
             List<TankTypeInformation> planeTypesForCompany = planeTypeFactory.createActiveTankTypesForArchType(planeAssignment.getArchType(), campaign.getDate());
             int index = RandomNumberGenerator.getRandom(planeTypesForCompany.size());
             TankTypeInformation planeType = planeTypesForCompany.get(index);

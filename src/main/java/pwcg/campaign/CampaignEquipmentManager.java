@@ -13,9 +13,9 @@ import pwcg.campaign.resupply.depot.EquipmentDepot;
 import pwcg.campaign.resupply.depot.EquipmentDepotInitializer;
 import pwcg.campaign.tank.Equipment;
 import pwcg.campaign.tank.EquippedTank;
+import pwcg.campaign.tank.ITankTypeFactory;
 import pwcg.campaign.tank.TankEquipmentFactory;
 import pwcg.campaign.tank.TankStatus;
-import pwcg.campaign.tank.TankTypeFactory;
 import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.core.exception.PWCGException;
 
@@ -175,7 +175,7 @@ public class CampaignEquipmentManager
         Equipment companyEquipment = equipmentAllCompanies.get(company.getCompanyId());
         for (int i = 0; i < serialNumbersOfChangedPlanes.size(); ++i)
         {
-            TankTypeFactory tankTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
+            ITankTypeFactory tankTypeFactory = PWCGContext.getInstance().getPlayerTankTypeFactory();
             TankTypeInformation tankType = tankTypeFactory.getTankByDisplayName(tankTypeToChangeTo);
             EquippedTank equippedTank = TankEquipmentFactory.makeTankForCompany(campaign, tankType.getType(), company);
             equippedTank.setEquipmentRequest(true);

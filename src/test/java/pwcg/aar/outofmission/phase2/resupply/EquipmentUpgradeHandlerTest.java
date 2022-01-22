@@ -22,7 +22,7 @@ import pwcg.campaign.resupply.equipment.EquipmentUpgradeHandler;
 import pwcg.campaign.tank.Equipment;
 import pwcg.campaign.tank.EquippedTank;
 import pwcg.campaign.tank.TankStatus;
-import pwcg.campaign.tank.TankTypeFactory;
+import pwcg.campaign.tank.ITankTypeFactory;
 import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.core.exception.PWCGException;
 import pwcg.testutils.CampaignCache;
@@ -53,7 +53,7 @@ public class EquipmentUpgradeHandlerTest
     @Test
     public void testEquipmentUpgradeForPlayer() throws PWCGException
     {
-        TankTypeFactory planeTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
+        ITankTypeFactory planeTypeFactory = PWCGContext.getInstance().getPlayerTankTypeFactory();
         EquipmentDepot equipmentDepotBeforeTest = campaign.getEquipmentManager().getEquipmentDepotForService(armedService.getServiceId());
 
         // Add good planes to the depo
@@ -140,7 +140,7 @@ public class EquipmentUpgradeHandlerTest
     @Test
     public void testEquipmentUpgradeForAI() throws PWCGException
     {
-        TankTypeFactory planeTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
+        ITankTypeFactory planeTypeFactory = PWCGContext.getInstance().getPlayerTankTypeFactory();
         EquipmentDepot equipmentDepotBeforeTest = campaign.getEquipmentManager().getEquipmentDepotForService(armedService.getServiceId());
 
         // Add good planes to the depo
@@ -217,7 +217,7 @@ public class EquipmentUpgradeHandlerTest
     @Test
     public void testEquipmentUpgradeNotNeeded() throws PWCGException
     {
-        TankTypeFactory planeTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
+        ITankTypeFactory planeTypeFactory = PWCGContext.getInstance().getPlayerTankTypeFactory();
 
         // Clear out the depot and replace with a couple of bad planes
         EquipmentDepot equipmentDepotBeforeTest = campaign.getEquipmentManager().getEquipmentDepotForService(armedService.getServiceId());

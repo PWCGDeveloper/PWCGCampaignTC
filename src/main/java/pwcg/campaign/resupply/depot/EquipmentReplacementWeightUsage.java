@@ -27,7 +27,7 @@ public class EquipmentReplacementWeightUsage
         {
             if (CompanyViability.isCompanyActive(company, campaignDate))
             {
-                List<TankArchType> currentAircraftArchTypes = company.determineCurrentAircraftArchTypes(campaignDate);
+                List<TankArchType> currentAircraftArchTypes = company.determineCurrentTankArchTypes(campaignDate);
                 for (TankArchType planeArchType : currentAircraftArchTypes)
                 {
                     if (excludeFromWeightedList(planeArchType.getTankArchTypeName()))

@@ -32,7 +32,7 @@ public class SkinLoader
     {
         try
         {
-            List<TankTypeInformation> allPlanes = PWCGContext.getInstance().getTankTypeFactory().getAllTanks();
+            List<TankTypeInformation> allPlanes = PWCGContext.getInstance().getPlayerTankTypeFactory().getAllTanks();
             for(TankTypeInformation plane : allPlanes)
             {
                 SkinsForPlane skinsForPlane = new SkinsForPlane();

@@ -6,7 +6,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.plane.payload.IPlanePayload;
-import pwcg.campaign.tank.TankTypeFactory;
+import pwcg.campaign.tank.ITankTypeFactory;
 import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
@@ -24,7 +24,7 @@ public class BoSPayloadFactoryTest
     public void validatePayloadsForAllPlanes() throws PWCGException 
     {
         PlanePayloadFactory bosPayloadFactory = new PlanePayloadFactory();
-        TankTypeFactory planeTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
+        ITankTypeFactory planeTypeFactory = PWCGContext.getInstance().getFullTankTypeFactory();
 
         for (TankTypeInformation bosTankType : planeTypeFactory.getAllTanks())
         {

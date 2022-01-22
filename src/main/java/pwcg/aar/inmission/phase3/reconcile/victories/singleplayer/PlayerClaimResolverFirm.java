@@ -29,8 +29,8 @@ public class PlayerClaimResolverFirm
                         if (resultVictory.getVictim() instanceof LogTank)
                         {
                             LogTank victimPlane = (LogTank)resultVictory.getVictim();
-                            TankTypeInformation shotDownPlane = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(victimPlane.getVehicleType());
-                            TankTypeInformation claimedPlane = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(playerDeclaration.getTankType());
+                            TankTypeInformation shotDownPlane = PWCGContext.getInstance().getFullTankTypeFactory().createTankTypeByAnyName(victimPlane.getVehicleType());
+                            TankTypeInformation claimedPlane = PWCGContext.getInstance().getFullTankTypeFactory().createTankTypeByAnyName(playerDeclaration.getTankType());
             
                             if (shotDownPlane == null || claimedPlane == null)
                             {
@@ -63,7 +63,7 @@ public class PlayerClaimResolverFirm
                 {
                     PwcgRoleCategory victimApproximateRole = resultVictory.getVictim().getRoleCategory();
                     
-                    TankTypeInformation declaredPlane = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(playerDeclaration.getTankType());
+                    TankTypeInformation declaredPlane = PWCGContext.getInstance().getFullTankTypeFactory().createTankTypeByAnyName(playerDeclaration.getTankType());
                     if (declaredPlane != null)
                     {
                         PwcgRoleCategory declarationApproximateRole = declaredPlane.determinePrimaryRoleCategory();

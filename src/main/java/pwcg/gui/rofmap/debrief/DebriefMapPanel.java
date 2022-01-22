@@ -233,8 +233,8 @@ public class DebriefMapPanel  extends MapPanelBase
         LogVictory victoryEvent = (LogVictory)event;
         if (!parent.displayMaxInfo())
         {
-            TankTypeInformation victimVehicle = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(victoryEvent.getVictim().getVehicleType());
-            TankTypeInformation victorVehicle = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(victoryEvent.getVictor().getVehicleType());
+            TankTypeInformation victimVehicle = PWCGContext.getInstance().getFullTankTypeFactory().createTankTypeByAnyName(victoryEvent.getVictim().getVehicleType());
+            TankTypeInformation victorVehicle = PWCGContext.getInstance().getFullTankTypeFactory().createTankTypeByAnyName(victoryEvent.getVictor().getVehicleType());
             if (victimVehicle == null && victorVehicle == null)
             {
                 return;

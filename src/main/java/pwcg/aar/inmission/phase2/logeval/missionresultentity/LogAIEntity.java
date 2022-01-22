@@ -27,10 +27,10 @@ public abstract class LogAIEntity extends LogBase
         setName(atype12.getName());
         setVehicleType(atype12.getType());
         
-        TankTypeInformation plane = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(atype12.getType());
-        if (plane != null)
+        TankTypeInformation tank = PWCGContext.getInstance().getFullTankTypeFactory().createTankTypeByAnyName(atype12.getType());
+        if (tank != null)
         {
-            setRoleCategory(plane.determinePrimaryRoleCategory());
+            setRoleCategory(tank.determinePrimaryRoleCategory());
         }
     }
 

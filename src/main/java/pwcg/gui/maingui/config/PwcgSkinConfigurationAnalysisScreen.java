@@ -151,13 +151,13 @@ public class PwcgSkinConfigurationAnalysisScreen extends ImageResizingPanel impl
 
     public JPanel makeAxisPanel() throws PWCGException 
     {
-        List<TankTypeInformation> axisPlanes = PWCGContext.getInstance().getTankTypeFactory().getTanksForSide(Side.AXIS);
+        List<TankTypeInformation> axisPlanes = PWCGContext.getInstance().getFullTankTypeFactory().getTanksForSide(Side.AXIS);
         return makePlanePanel(axisPlanes);
     }
 
     public JPanel makeAlliedPanel() throws PWCGException 
     {
-        List<TankTypeInformation> alliedPlanes = PWCGContext.getInstance().getTankTypeFactory().getTanksForSide(Side.ALLIED);
+        List<TankTypeInformation> alliedPlanes = PWCGContext.getInstance().getFullTankTypeFactory().getTanksForSide(Side.ALLIED);
         return makePlanePanel(alliedPlanes);
     }
 
@@ -305,7 +305,7 @@ public class PwcgSkinConfigurationAnalysisScreen extends ImageResizingPanel impl
                 JCheckBox selectionBox = selectionBoxes.get(planeTypeDesc);
                 if (selectionBox.isSelected())
                 {
-                    TankTypeInformation planeType = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(planeTypeDesc);
+                    TankTypeInformation planeType = PWCGContext.getInstance().getFullTankTypeFactory().createTankTypeByAnyName(planeTypeDesc);
                     planeTypesToDisplay.put(planeTypeDesc, planeType);
                 }
             }

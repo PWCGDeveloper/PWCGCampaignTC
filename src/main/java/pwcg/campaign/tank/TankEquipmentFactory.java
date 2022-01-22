@@ -20,7 +20,7 @@ public class TankEquipmentFactory
         VehicleDefinitionManager vehicleDefinitionManager = PWCGContext.getInstance().getVehicleDefinitionManager();
         VehicleDefinition vehicleDefinition = vehicleDefinitionManager.getVehicleDefinitionByVehicleType(tankTypeName);
 
-        TankTypeFactory tankTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
+        ITankTypeFactory tankTypeFactory = PWCGContext.getInstance().getPlayerTankTypeFactory();
         TankTypeInformation tankType = tankTypeFactory.createTankTypeByType(tankTypeName);   
         
         EquippedTank equippedTank = new EquippedTank(vehicleDefinition, tankType, campaign.getSerialNumber().getNextTankSerialNumber(), company, TankStatus.STATUS_DEPLOYED);
@@ -33,7 +33,7 @@ public class TankEquipmentFactory
         VehicleDefinitionManager vehicleDefinitionManager = PWCGContext.getInstance().getVehicleDefinitionManager();
         VehicleDefinition vehicleDefinition = vehicleDefinitionManager.getVehicleDefinitionByVehicleType(tankTypeName);
 
-        TankTypeFactory tankTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
+        ITankTypeFactory tankTypeFactory = PWCGContext.getInstance().getPlayerTankTypeFactory();
         TankTypeInformation tankType = tankTypeFactory.createTankTypeByType(tankTypeName);   
         
         EquippedTank equippedTank = new EquippedTank(vehicleDefinition, tankType, campaign.getSerialNumber().getNextTankSerialNumber(), TankStatus.STATUS_DEPOT, country);
@@ -43,7 +43,7 @@ public class TankEquipmentFactory
 
     public static EquippedTank makeTankForBeforeCampaign (Campaign campaign, Country country, Date date) throws PWCGException
     {
-        TankTypeFactory tankTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
+        ITankTypeFactory tankTypeFactory = PWCGContext.getInstance().getFullTankTypeFactory();
         List<TankTypeInformation> tankTypes = tankTypeFactory.createActiveTankTypesForDateAndSide(CountryFactory.makeCountryByCountry(country).getSide(), date);
         int index = RandomNumberGenerator.getRandom(tankTypes.size());
         TankTypeInformation tankType = tankTypes.get(index);

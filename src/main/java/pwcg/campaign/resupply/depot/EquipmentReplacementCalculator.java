@@ -80,7 +80,7 @@ public class EquipmentReplacementCalculator
     {
         for (String planeArchTypeName : aircraftReplacementWeights.keySet())
         {
-            TankArchType planeArchType = PWCGContext.getInstance().getTankTypeFactory().getTankArchType(planeArchTypeName);
+            TankArchType planeArchType = PWCGContext.getInstance().getPlayerTankTypeFactory().getTankArchType(planeArchTypeName);
             if (planeArchType.getInProductionMemberTankTypes(campaign.getDate()).size() > 0)
             {
                 int numUses = aircraftReplacementWeights.get(planeArchTypeName);

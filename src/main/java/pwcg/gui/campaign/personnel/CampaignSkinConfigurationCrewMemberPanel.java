@@ -232,7 +232,7 @@ public class CampaignSkinConfigurationCrewMemberPanel extends ImageResizingPanel
         CrewMember referencePlayer = campaign.findReferencePlayer();
         Company company = referencePlayer.determineCompany();
 
-        List<TankTypeInformation> companyPlanes = company.determineCurrentAircraftList(campaign.getDate());
+        List<TankTypeInformation> companyPlanes = company.determineCurrentTankList(campaign.getDate());
 
         List<TankTypeInformation> companyPlanesByBest = TankSorter.sortTanksByGoodness(companyPlanes);
 
@@ -350,7 +350,7 @@ public class CampaignSkinConfigurationCrewMemberPanel extends ImageResizingPanel
 
         String planeDisplayName = "";
 
-        TankTypeInformation plane = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(planeName);
+        TankTypeInformation plane = PWCGContext.getInstance().getPlayerTankTypeFactory().createTankTypeByAnyName(planeName);
         if (plane != null)
         {
             planeDisplayName = plane.getDisplayName();

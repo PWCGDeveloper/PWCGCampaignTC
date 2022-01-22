@@ -17,8 +17,8 @@ public class PlayerClaimResolverFuzzy
         
         if (!resultVictory.isConfirmed())
         {
-            TankTypeInformation shotDownPlane = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(resultVictory.getVictim().getVehicleType());
-            TankTypeInformation claimedPlane = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(playerDeclaration.getTankType());
+            TankTypeInformation shotDownPlane = PWCGContext.getInstance().getFullTankTypeFactory().createTankTypeByAnyName(resultVictory.getVictim().getVehicleType());
+            TankTypeInformation claimedPlane = PWCGContext.getInstance().getFullTankTypeFactory().createTankTypeByAnyName(playerDeclaration.getTankType());
                 
             if (shotDownPlane != null && claimedPlane != null)
             {
@@ -40,7 +40,7 @@ public class PlayerClaimResolverFuzzy
             if (!VictoryResolverSameSideDetector.isSameSide(player, resultVictory))
             {
                 PwcgRoleCategory victimApproximateRole = resultVictory.getVictim().getRoleCategory();
-                TankTypeInformation declaredPlane = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(playerDeclaration.getTankType());
+                TankTypeInformation declaredPlane = PWCGContext.getInstance().getFullTankTypeFactory().createTankTypeByAnyName(playerDeclaration.getTankType());
                 if (declaredPlane != null)
                 {
                     PwcgRoleCategory declarationApproximateRole = declaredPlane.determinePrimaryRoleCategory();

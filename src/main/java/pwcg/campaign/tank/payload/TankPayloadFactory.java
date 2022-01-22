@@ -3,9 +3,9 @@ package pwcg.campaign.tank.payload;
 import java.util.Date;
 
 import pwcg.campaign.context.PWCGContext;
+import pwcg.campaign.tank.ITankTypeFactory;
 import pwcg.campaign.tank.TankAttributeFactory;
 import pwcg.campaign.tank.TankAttributeMapping;
-import pwcg.campaign.tank.TankTypeFactory;
 import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.core.exception.PWCGException;
 import pwcg.mission.playerunit.payload.tank.GAZAAA;
@@ -27,7 +27,7 @@ public class TankPayloadFactory
 {
 	public ITankPayload createPayload(String tankeTypeName, Date date) throws PWCGException 
 	{
-	    TankTypeFactory tankTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
+	    ITankTypeFactory tankTypeFactory = PWCGContext.getInstance().getPlayerTankTypeFactory();
 		TankTypeInformation tankType = tankTypeFactory.createTankTypeByAnyName(tankeTypeName);
 		TankAttributeMapping attributeMapping = TankAttributeFactory.createTankAttributeMap(tankeTypeName);
 	    

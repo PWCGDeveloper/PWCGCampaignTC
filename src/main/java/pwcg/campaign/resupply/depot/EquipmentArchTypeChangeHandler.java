@@ -81,7 +81,7 @@ public class EquipmentArchTypeChangeHandler
     private TankTypeInformation getBestTankTypeForCompany(Company company) throws PWCGException
     {
         List<TankTypeInformation> planeTypesForCompany = new ArrayList<>();
-        for (TankArchType archType : company.determineCurrentAircraftArchTypes(newDate))
+        for (TankArchType archType : company.determineCurrentTankArchTypes(newDate))
         {
             List<TankTypeInformation> planeTypesForArchType = archType.getActiveMemberTankTypes(newDate);
             planeTypesForCompany.addAll(planeTypesForArchType);

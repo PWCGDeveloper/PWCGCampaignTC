@@ -26,7 +26,7 @@ public class CompanyViability
             return false;
         }
         
-        if (company.determineCurrentAircraftList(date).size() == 0)
+        if (company.determineCurrentTankList(date).size() == 0)
         {
             return false;
         }

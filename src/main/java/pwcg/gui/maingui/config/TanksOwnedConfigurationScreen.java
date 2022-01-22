@@ -162,13 +162,13 @@ public class TanksOwnedConfigurationScreen extends ImageResizingPanel implements
 
     public JPanel makeAxisPanel() throws PWCGException 
     {
-        List<TankTypeInformation> axisPlanes = PWCGContext.getInstance().getTankTypeFactory().getTanksForSide(Side.AXIS);
+        List<TankTypeInformation> axisPlanes = PWCGContext.getInstance().getPlayerTankTypeFactory().getTanksForSide(Side.AXIS);
         return makePlanePanel(axisPlanes);
     }
 
     public JPanel makeAlliedPanel() throws PWCGException 
     {
-        List<TankTypeInformation> alliedPlanes = PWCGContext.getInstance().getTankTypeFactory().getTanksForSide(Side.ALLIED);
+        List<TankTypeInformation> alliedPlanes = PWCGContext.getInstance().getPlayerTankTypeFactory().getTanksForSide(Side.ALLIED);
         return makePlanePanel(alliedPlanes);
     }
 

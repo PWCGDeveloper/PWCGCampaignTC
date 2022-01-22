@@ -80,7 +80,7 @@ public class Equipment
         equippedTanks.put(equippedTank.getSerialNumber(), equippedTank);
     }
 
-    public void addEPlaneToDepot(EquippedTank equippedTank) throws PWCGException
+    public void addTankToDepot(EquippedTank equippedTank) throws PWCGException
     {
         equippedTanks.put(equippedTank.getSerialNumber(), equippedTank);
     }

@@ -14,7 +14,10 @@ import pwcg.campaign.group.airfield.Airfield;
 import pwcg.campaign.newspapers.NewspaperManager;
 import pwcg.campaign.plane.PlaneTypeFactory;
 import pwcg.campaign.skin.SkinManager;
-import pwcg.campaign.tank.TankTypeFactory;
+import pwcg.campaign.tank.AiTankTypeFactory;
+import pwcg.campaign.tank.FullTankTypeFactory;
+import pwcg.campaign.tank.ITankTypeFactory;
+import pwcg.campaign.tank.PlayerTankTypeFactory;
 import pwcg.core.exception.PWCGException;
 import pwcg.mission.ground.vehicle.VehicleDefinitionManager;
 
@@ -32,7 +35,9 @@ public abstract class PWCGContextBase
     protected boolean testMode = false;
     protected String missionLogPath = "";
     protected PlaneTypeFactory planeTypeFactory = new PlaneTypeFactory();
-    protected TankTypeFactory tankTypeFactory = new TankTypeFactory();
+    protected ITankTypeFactory fullTankTypeFactory = new FullTankTypeFactory();
+    protected ITankTypeFactory playerTankTypeFactory = new PlayerTankTypeFactory();
+    protected ITankTypeFactory aiTankTypeFactory = new AiTankTypeFactory();
 
     protected List<String> campaignStartDates = new ArrayList<String>();
 
@@ -52,7 +57,9 @@ public abstract class PWCGContextBase
         initializeMap();
 
         planeTypeFactory.initialize();
-        tankTypeFactory.initialize();
+        fullTankTypeFactory.initialize();
+        playerTankTypeFactory.initialize();
+        aiTankTypeFactory.initialize();
         aceManager.configure();
         companyManager.initialize();
         skirmishProfileManager.initialize();
@@ -196,10 +203,20 @@ public abstract class PWCGContextBase
     {
         return skinManager;
     }
-
-    public TankTypeFactory getTankTypeFactory()
+    
+    public ITankTypeFactory getFullTankTypeFactory()
     {
-        return tankTypeFactory;
+        return fullTankTypeFactory;
+    }
+
+    public ITankTypeFactory getPlayerTankTypeFactory()
+    {
+        return playerTankTypeFactory;
+    }
+
+    public ITankTypeFactory getAiTankTypeFactory()
+    {
+        return aiTankTypeFactory;
     }
 
     public PlaneTypeFactory getPlaneTypeFactory()

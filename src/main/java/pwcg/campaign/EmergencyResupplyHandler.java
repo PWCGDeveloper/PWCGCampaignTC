@@ -123,7 +123,7 @@ public class EmergencyResupplyHandler
         List<String> activeArchTypes = company.getActiveArchTypes(campaign.getDate());
         int archTypeIndex = RandomNumberGenerator.getRandom(activeArchTypes.size());
         
-        TankArchType tankArchType = PWCGContext.getInstance().getTankTypeFactory().getTankArchType(activeArchTypes.get(archTypeIndex));
+        TankArchType tankArchType = PWCGContext.getInstance().getPlayerTankTypeFactory().getTankArchType(activeArchTypes.get(archTypeIndex));
         String tankTypeName = EquipmentReplacementUtils.getTypeForReplacement(campaign.getDate(), tankArchType);
         return tankTypeName;
     }

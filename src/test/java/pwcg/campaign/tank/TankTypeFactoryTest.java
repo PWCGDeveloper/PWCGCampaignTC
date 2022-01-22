@@ -27,48 +27,48 @@ public class TankTypeFactoryTest
     }
 
     @Test
-    public void testCreatePlane() throws PWCGException
+    public void testCreateTank() throws PWCGException
     {
-        TankTypeFactory tankTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
-        TankTypeInformation tankType =  tankTypeFactory.createTankTypeByType("_pziii-l");
-        assert(tankType.getType().equals("_pziii-l"));
+        ITankTypeFactory tankTypeFactory = PWCGContext.getInstance().getPlayerTankTypeFactory();
+        TankTypeInformation tankType =  tankTypeFactory.createTankTypeByType(TankAttributeMapping.PZKW_III_L.getTankType());
+        assert(tankType.getType().equals(TankAttributeMapping.PZKW_III_L.getTankType()));
         assert(tankType.getArchType().equals("pziii"));
     }
 
     @Test
-    public void testCreatePlaneByDesc() throws PWCGException
+    public void testCreateTankByDesc() throws PWCGException
     {
-        TankTypeFactory tankTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
+        ITankTypeFactory tankTypeFactory = PWCGContext.getInstance().getPlayerTankTypeFactory();
         TankTypeInformation tankType =  tankTypeFactory.createTankTypeByAnyName("Pz.Kpfw.III Ausf.L");
-        assert(tankType.getType().equals("_pziii-l"));
+        assert(tankType.getType().equals(TankAttributeMapping.PZKW_III_L.getTankType()));
         assert(tankType.getArchType().equals("pziii"));
     }
 
     @Test
     public void getAvailableTankTypesTest() throws PWCGException
     {
-        TankTypeFactory tankTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
+        ITankTypeFactory tankTypeFactory = PWCGContext.getInstance().getPlayerTankTypeFactory();
         
-        List<TankTypeInformation> availableGermanTankTypes = tankTypeFactory.getAvailableTankTypes(CountryFactory.makeCountryByCountry(Country.GERMANY), PwcgRoleCategory.MAIN_BATTLE_TANK, DateUtils.getDateYYYYMMDD("19431001"));        
+        List<TankTypeInformation> availableGermanTankTypes = tankTypeFactory.getAvailablePlayerTankTypes(CountryFactory.makeCountryByCountry(Country.GERMANY), PwcgRoleCategory.MAIN_BATTLE_TANK, DateUtils.getDateYYYYMMDD("19431001"));        
         assert(availableGermanTankTypes.size() == 5);
 
-        List<TankTypeInformation> availableBritishTankTypes = tankTypeFactory.getAvailableTankTypes(CountryFactory.makeCountryByCountry(Country.BRITAIN), PwcgRoleCategory.MAIN_BATTLE_TANK, DateUtils.getDateYYYYMMDD("19431001"));        
+        List<TankTypeInformation> availableBritishTankTypes = tankTypeFactory.getAvailablePlayerTankTypes(CountryFactory.makeCountryByCountry(Country.BRITAIN), PwcgRoleCategory.MAIN_BATTLE_TANK, DateUtils.getDateYYYYMMDD("19440901"));        
         assert(availableBritishTankTypes.size() == 1);
 
-        List<TankTypeInformation> availableAmericanTankTypes = tankTypeFactory.getAvailableTankTypes(CountryFactory.makeCountryByCountry(Country.USA), PwcgRoleCategory.MAIN_BATTLE_TANK, DateUtils.getDateYYYYMMDD("19431001"));        
+        List<TankTypeInformation> availableAmericanTankTypes = tankTypeFactory.getAvailablePlayerTankTypes(CountryFactory.makeCountryByCountry(Country.USA), PwcgRoleCategory.MAIN_BATTLE_TANK, DateUtils.getDateYYYYMMDD("19440901"));        
         assert(availableAmericanTankTypes.size() == 1);
 
-        List<TankTypeInformation> availableRussianTankTypes = tankTypeFactory.getAvailableTankTypes(CountryFactory.makeCountryByCountry(Country.RUSSIA), PwcgRoleCategory.MAIN_BATTLE_TANK, DateUtils.getDateYYYYMMDD("19431001"));        
+        List<TankTypeInformation> availableRussianTankTypes = tankTypeFactory.getAvailablePlayerTankTypes(CountryFactory.makeCountryByCountry(Country.RUSSIA), PwcgRoleCategory.MAIN_BATTLE_TANK, DateUtils.getDateYYYYMMDD("19431001"));        
         assert(availableRussianTankTypes.size() == 3);
         
-        List<TankTypeInformation> availableGermanAttackTankTypes = tankTypeFactory.getAvailableTankTypes(CountryFactory.makeCountryByCountry(Country.RUSSIA), PwcgRoleCategory.SELF_PROPELLED_GUN, DateUtils.getDateYYYYMMDD("19431001"));        
+        List<TankTypeInformation> availableGermanAttackTankTypes = tankTypeFactory.getAvailablePlayerTankTypes(CountryFactory.makeCountryByCountry(Country.RUSSIA), PwcgRoleCategory.SELF_PROPELLED_GUN, DateUtils.getDateYYYYMMDD("19431001"));        
         assert(availableGermanAttackTankTypes.size() == 2);
     }
 
     @Test
     public void testAllTankTypes() throws PWCGException
     {
-        TankTypeFactory tankTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
+        ITankTypeFactory tankTypeFactory = PWCGContext.getInstance().getPlayerTankTypeFactory();
         Map<String, TankTypeInformation> tankTypes =  tankTypeFactory.getTankTypes();
         assert(tankTypes.size() > 10);
         for (TankTypeInformation tankType : tankTypes.values())
@@ -85,7 +85,7 @@ public class TankTypeFactoryTest
     @Test
     public void testCreateTanksForArchType() throws PWCGException
     {
-        TankTypeFactory tankTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
+        ITankTypeFactory tankTypeFactory = PWCGContext.getInstance().getPlayerTankTypeFactory();
         List<TankTypeInformation> tankTypes =  tankTypeFactory.createTankTypesForArchType("t34");
         assert(tankTypes.size() == 2);
         for (TankTypeInformation tankType : tankTypes)
@@ -99,7 +99,7 @@ public class TankTypeFactoryTest
     {
         Date tankDate = DateUtils.getDateYYYYMMDD("19420402");
         
-        TankTypeFactory tankTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
+        ITankTypeFactory tankTypeFactory = PWCGContext.getInstance().getPlayerTankTypeFactory();
         List<TankTypeInformation> tankTypes =  tankTypeFactory.createActiveTankTypesForArchType("t34", tankDate);
         assert(tankTypes.size() == 1);
         for (TankTypeInformation tankType : tankTypes)

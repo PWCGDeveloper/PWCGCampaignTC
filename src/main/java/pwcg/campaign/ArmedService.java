@@ -153,7 +153,8 @@ public class ArmedService
     {
         List<Company> companys = PWCGContext.getInstance().getCompanyManager().getActiveCompaniesForService(date, this);
         double dailyEquipmentReplacementRateForThisDate = dailyEquipmentReplacementRatePerCompany * companys.size();
-        return Double.valueOf(dailyEquipmentReplacementRateForThisDate).intValue();
+        int replacementValue = Double.valueOf(dailyEquipmentReplacementRateForThisDate).intValue();
+        return replacementValue;
     }
 
     public int getDailyPersonnelReplacementRate(Date date) throws PWCGException

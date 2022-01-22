@@ -6,22 +6,18 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.tank.TankTypeFactory;
+import pwcg.campaign.tank.ITankTypeFactory;
 import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.core.exception.PWCGException;
 
 @ExtendWith(MockitoExtension.class)
-public class BoSPlaneFactoryTest
+public class BoSTankFactoryTest
 {	
-	public BoSPlaneFactoryTest() throws PWCGException
-	{
-    	      
-	}
 
 	@Test
 	public void testTankTypeCreation() throws PWCGException
 	{
-		TankTypeFactory planeTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
+		ITankTypeFactory planeTypeFactory = PWCGContext.getInstance().getFullTankTypeFactory();
 		
 		for (TankTypeInformation planeType : planeTypeFactory.getAllTanks())
 		{

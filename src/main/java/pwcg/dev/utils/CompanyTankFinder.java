@@ -6,14 +6,14 @@ import java.util.List;
 import pwcg.campaign.company.Company;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.tank.CompanyTankAssignment;
-import pwcg.campaign.tank.TankTypeFactory;
+import pwcg.campaign.tank.ITankTypeFactory;
 import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.core.utils.PWCGLogger;
 import pwcg.core.utils.PWCGLogger.LogLevel;
 
-public class CompanyPlaneFinder 
+public class CompanyTankFinder 
 {
 	static public void main (String[] args)
 	{
@@ -21,7 +21,7 @@ public class CompanyPlaneFinder
 
         try
 		{
-			CompanyPlaneFinder finder = new CompanyPlaneFinder();
+			CompanyTankFinder finder = new CompanyTankFinder();
 			
 			Date startDate = DateUtils.getBeginningOfWar();
 			Date endDate = DateUtils.getEndOfWar();
@@ -65,7 +65,7 @@ public class CompanyPlaneFinder
     private void printPlanes() throws PWCGException  
     {       
         List<Company> allSq =  PWCGContext.getInstance().getCompanyManager().getAllCompanies();
-        TankTypeFactory planeTypeFactory = PWCGContext.getInstance().getTankTypeFactory();
+        ITankTypeFactory planeTypeFactory = PWCGContext.getInstance().getPlayerTankTypeFactory();
         for (Company company : allSq)
         {
             PWCGLogger.log(LogLevel.DEBUG, "Company: " + company.getCompanyId());

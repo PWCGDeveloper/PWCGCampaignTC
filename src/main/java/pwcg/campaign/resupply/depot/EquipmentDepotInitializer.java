@@ -29,33 +29,33 @@ public class EquipmentDepotInitializer
         List<Company> activeCompanysForService = PWCGContext.getInstance().getCompanyManager().getActiveCompaniesForService(campaign.getDate(), service);
         for (Company company : activeCompanysForService)
         {
-            EquipmentWeightCalculator equipmentWeightCalculator = createPlaneCalculator(company);            
-            makeReplacementPlanesForCompany(equipmentWeightCalculator);
+            EquipmentWeightCalculator equipmentWeightCalculator = createTankCalculator(company);            
+            makeReplacementTanksForCompany(equipmentWeightCalculator);
         }
         return equipment;
     }
 
-    private EquipmentWeightCalculator createPlaneCalculator(Company company) throws PWCGException
+    private EquipmentWeightCalculator createTankCalculator(Company company) throws PWCGException
     {
-        List<TankTypeInformation> tankTypesForCompany = company.determineCurrentAircraftList(campaign.getDate());
+        List<TankTypeInformation> tankTypesForCompany = company.determineCurrentTankList(campaign.getDate());
         EquipmentWeightCalculator equipmentWeightCalculator = new EquipmentWeightCalculator(campaign.getDate());
         equipmentWeightCalculator.determineTankWeightsForTanks(tankTypesForCompany);
         return equipmentWeightCalculator;
     }
 
-    private void makeReplacementPlanesForCompany(EquipmentWeightCalculator equipmentWeightCalculator) throws PWCGException
+    private void makeReplacementTanksForCompany(EquipmentWeightCalculator equipmentWeightCalculator) throws PWCGException
     {
-        int numPlanes = service.getDailyEquipmentReplacementRate(campaign.getDate()) / EquipmentDepot.NUM_POINTS_PER_PLANE;
-        if (numPlanes < 1)
+        int numTanks = service.getDailyEquipmentReplacementRate(campaign.getDate()) / EquipmentDepot.NUM_POINTS_PER_PLANE;
+        if (numTanks < 1)
         {
-            numPlanes = 1;
+            numTanks = 1;
         }
         
-        for (int i = 0; i < numPlanes; ++i)
+        for (int i = 0; i < numTanks; ++i)
         {
             String tankTypeName = equipmentWeightCalculator.getTankTypeFromWeight();
             EquippedTank equippedTank = TankEquipmentFactory.makeTankForDepot(campaign, tankTypeName, service.getCountry().getCountry());
-            equipment.addEPlaneToDepot(equippedTank);
+            equipment.addTankToDepot(equippedTank);
         }
     }
 }

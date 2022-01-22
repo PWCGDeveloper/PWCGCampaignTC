@@ -32,9 +32,9 @@ public class InitialReplacementEquipperTest
     @Test
     public void testEquipGermanReplacementsEarly() throws PWCGException
     {
-        Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420501"));
+        Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19411101"));
         Mockito.when(campaign.getSerialNumber()).thenReturn(serialNumber);
-        Mockito.when(campaign.getCampaignMap()).thenReturn(FrontMapIdentifier.STALINGRAD_MAP);
+        Mockito.when(campaign.getCampaignMap()).thenReturn(FrontMapIdentifier.MOSCOW_MAP);
         PWCGContext.getInstance().setCampaign(campaign);
         
         TCServiceManager serviceManager = ArmedServiceFactory.createServiceManager();
@@ -42,52 +42,51 @@ public class InitialReplacementEquipperTest
         
         EquipmentDepotInitializer replacementEquipper = new EquipmentDepotInitializer(campaign, luftwaffe);
         Equipment equipment = replacementEquipper.createReplacementPoolForService();
-        assert(equipment.getAvailableDepotTanks().size() == 15);
+        assert(equipment.getAvailableDepotTanks().size() == 5);
         
-        boolean me110e2Found = false;
-        boolean he111h6Found = false;
-        boolean me109f4Found = false;
-        boolean ju87d3Found = false;
-        boolean ju52Found = false;
+        boolean pziiilFound = false;
+        boolean pziiimFound = false;
+        boolean pzivgFound = false;
+        boolean pantherFound = false;
+        boolean tigerFound = false;
         
         for (EquippedTank replacementPlane : equipment.getAvailableDepotTanks().values())
         {
-            if (replacementPlane.getType().equals("bf110e2"))
+            if (replacementPlane.getType().equals(TankAttributeMapping.PZKW_III_L.getTankType()))
             {
-                me110e2Found = true;
+                pziiilFound = true;
             }
-            else if (replacementPlane.getType().equals("he111h6"))
+            else if (replacementPlane.getType().equals(TankAttributeMapping.PZKW_III_M.getTankType()))
             {
-                he111h6Found = true;
+                pziiimFound = true;
             }
-            else if (replacementPlane.getType().equals("bf109f4"))
+            else if (replacementPlane.getType().equals(TankAttributeMapping.PZKW_IV_G.getTankType()))
             {
-                me109f4Found = true;
+                pzivgFound = true;
             }
-            else if (replacementPlane.getType().equals("ju87d3"))
+            else if (replacementPlane.getType().equals(TankAttributeMapping.PANTHER_D.getTankType()))
             {
-                ju87d3Found = true;
+                pantherFound = true;
             }
-            else if (replacementPlane.getType().equals("ju523mg4e"))
+            else if (replacementPlane.getType().equals(TankAttributeMapping.TIGER_I.getTankType()))
             {
-                ju52Found = true;
+                tigerFound = true;
             }
         }
         
-        assert(me110e2Found);
-        assert(he111h6Found);
-        assert(me109f4Found);
-        assert(ju87d3Found);
-        assert(ju52Found);
+        assert(pziiilFound || pziiimFound);
+        assert(!pzivgFound);
+        assert(!pantherFound);
+        assert(!tigerFound);
     }
 
 
     @Test
     public void testEquipGermanReplacementsMid() throws PWCGException
     {
-        Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19430201"));
+        Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19430901"));
         Mockito.when(campaign.getSerialNumber()).thenReturn(serialNumber);
-        Mockito.when(campaign.getCampaignMap()).thenReturn(FrontMapIdentifier.STALINGRAD_MAP);
+        Mockito.when(campaign.getCampaignMap()).thenReturn(FrontMapIdentifier.KUBAN_MAP);
         PWCGContext.getInstance().setCampaign(campaign);
 
         TCServiceManager serviceManager = ArmedServiceFactory.createServiceManager();
@@ -95,191 +94,144 @@ public class InitialReplacementEquipperTest
         
         EquipmentDepotInitializer replacementEquipper = new EquipmentDepotInitializer(campaign, luftwaffe);
         Equipment equipment = replacementEquipper.createReplacementPoolForService();
-        assert(equipment.getAvailableDepotTanks().size() == 17);
+        assert(equipment.getAvailableDepotTanks().size() == 6);
         
-        boolean me110g2Found = false;
-        boolean he111h6Found = false;
-        boolean he111h16Found = false;
-        boolean me109G2Found = false;
-        boolean ju87d3Found = false;
-        boolean ju52Found = false;
+        boolean pziiilFound = false;
+        boolean pziiimFound = false;
+        boolean pzivgFound = false;
+        boolean pantherFound = false;
+        boolean tigerFound = false;
         
         for (EquippedTank replacementPlane : equipment.getAvailableDepotTanks().values())
         {
-            if (replacementPlane.getType().equals("bf110g2"))
+            if (replacementPlane.getType().equals(TankAttributeMapping.PZKW_III_L.getTankType()))
             {
-                me110g2Found = true;
+                pziiilFound = true;
             }
-            else if (replacementPlane.getType().equals("he111h6"))
+            else if (replacementPlane.getType().equals(TankAttributeMapping.PZKW_III_M.getTankType()))
             {
-                he111h6Found = true;
+                pziiimFound = true;
             }
-            else if (replacementPlane.getType().equals("he111h16"))
+            else if (replacementPlane.getType().equals(TankAttributeMapping.PZKW_IV_G.getTankType()))
             {
-                he111h6Found = true;
+                pzivgFound = true;
             }
-            else if (replacementPlane.getType().equals("bf109g2"))
+            else if (replacementPlane.getType().equals(TankAttributeMapping.PANTHER_D.getTankType()))
             {
-                me109G2Found = true;
+                pantherFound = true;
             }
-            else if (replacementPlane.getType().equals("ju87d3"))
+            else if (replacementPlane.getType().equals(TankAttributeMapping.TIGER_I.getTankType()))
             {
-                ju87d3Found = true;
-            }
-            else if (replacementPlane.getType().equals("ju523mg4e"))
-            {
-                ju52Found = true;
+                tigerFound = true;
             }
         }
         
-        assert(me110g2Found);
-        assert(he111h6Found || he111h16Found);
-        assert(me109G2Found);
-        assert(ju87d3Found);
-        assert(ju52Found);
+        assert(!pziiilFound);
+        assert(!pziiimFound);
+        assert(pzivgFound);
+        assert(pantherFound);
+        assert(tigerFound);
     }
 
     @Test
     public void testEquipRussianReplacementsEarly() throws PWCGException
     {
-        Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420801"));
+        Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19411101"));
         Mockito.when(campaign.getSerialNumber()).thenReturn(serialNumber);
+        Mockito.when(campaign.getCampaignMap()).thenReturn(FrontMapIdentifier.MOSCOW_MAP);
+        PWCGContext.getInstance().setCampaign(campaign);
         
         TCServiceManager serviceManager = ArmedServiceFactory.createServiceManager();
-        ArmedService vvs = serviceManager.getArmedService(TCServiceManager.SSV);
+        ArmedService luftwaffe = serviceManager.getArmedService(TCServiceManager.SSV);
         
-        EquipmentDepotInitializer replacementEquipper = new EquipmentDepotInitializer(campaign, vvs);
+        EquipmentDepotInitializer replacementEquipper = new EquipmentDepotInitializer(campaign, luftwaffe);
         Equipment equipment = replacementEquipper.createReplacementPoolForService();
-        assert(equipment.getAvailableDepotTanks().size() == 90);
+        assert(equipment.getAvailableDepotTanks().size() == 5);
         
-        boolean c47 = false;
-        boolean hurricane = false;
-        boolean i16Found = false;
-        boolean mig3 = false;
-        boolean lagg3 = false;
-        boolean p40 = false;
-        boolean pe2Found = false;
-        boolean il2Found = false;
-
+        boolean t34EarlyFound = false;
+        boolean t34LateFound = false;
+        boolean kv1Found = false;
+        boolean su122Found = false;
+        boolean su152Found = false;
+        
         for (EquippedTank replacementPlane : equipment.getAvailableDepotTanks().values())
         {
-            if (replacementPlane.getType().equals("i16t24"))
+            if (replacementPlane.getType().equals(TankAttributeMapping.T34_EARLY.getTankType()))
             {
-                i16Found = true;
+                t34EarlyFound = true;
             }
-            else if (replacementPlane.getType().equals("c47a"))
+            else if (replacementPlane.getType().equals(TankAttributeMapping.T34_LATE.getTankType()))
             {
-                c47 = true;
+                t34LateFound = true;
             }
-            else if (replacementPlane.getType().equals("hurricanemkii"))
+            else if (replacementPlane.getType().equals(TankAttributeMapping.KV1_S.getTankType()))
             {
-                hurricane = true;
+                kv1Found = true;
             }
-            else if (replacementPlane.getType().equals("mig3s24"))
+            else if (replacementPlane.getType().equals(TankAttributeMapping.SU122.getTankType()))
             {
-                mig3 = true;
+                su122Found = true;
             }
-            else if (replacementPlane.getType().equals("lagg3s29"))
+            else if (replacementPlane.getType().equals(TankAttributeMapping.SU152.getTankType()))
             {
-                lagg3 = true;
-            }
-            else if (replacementPlane.getType().equals("p40e1"))
-            {
-                p40 = true;
-            }
-            else if (replacementPlane.getType().equals("pe2s35"))
-            {
-                pe2Found = true;
-            }
-            else if (replacementPlane.getType().equals("il2m41"))
-            {
-                il2Found = true;
+                su152Found = true;
             }
         }
         
-        assert(hurricane);
-        assert(c47);
-        assert(i16Found);
-        assert(mig3);
-        assert(lagg3);
-        assert(p40);
-        assert(pe2Found);
-        assert(il2Found);
+        assert(t34EarlyFound);
+        assert(kv1Found);
+        assert(!t34LateFound);
+        assert(!su122Found);
+        assert(!su152Found);
     }
 
     @Test
     public void testEquipRussianReplacementsMid() throws PWCGException
     {
-        Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19430101"));
+        Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19430901"));
         Mockito.when(campaign.getSerialNumber()).thenReturn(serialNumber);
-        Mockito.when(campaign.getCampaignMap()).thenReturn(FrontMapIdentifier.STALINGRAD_MAP);
+        Mockito.when(campaign.getCampaignMap()).thenReturn(FrontMapIdentifier.KUBAN_MAP);
         PWCGContext.getInstance().setCampaign(campaign);
-
+        
         TCServiceManager serviceManager = ArmedServiceFactory.createServiceManager();
-        ArmedService vvs = serviceManager.getArmedService(TCServiceManager.SSV);
+        ArmedService luftwaffe = serviceManager.getArmedService(TCServiceManager.SSV);
         
-        EquipmentDepotInitializer replacementEquipper = new EquipmentDepotInitializer(campaign, vvs);
+        EquipmentDepotInitializer replacementEquipper = new EquipmentDepotInitializer(campaign, luftwaffe);
         Equipment equipment = replacementEquipper.createReplacementPoolForService();
-        assert(equipment.getAvailableDepotTanks().size() == 175);
+        assert(equipment.getAvailableDepotTanks().size() == 14);
         
-        boolean c47 = false;
-        boolean hurricane = false;
-        boolean i16Found = false;
-        boolean mig3 = false;
-        boolean lagg3 = false;
-        boolean p40 = false;
-        boolean pe2Found = false;
-        boolean il2Found = false;
-        boolean yak1Found = false;
+        boolean t34EarlyFound = false;
+        boolean t34LateFound = false;
+        boolean kv1Found = false;
+        boolean su122Found = false;
+        boolean su152Found = false;
         
         for (EquippedTank replacementPlane : equipment.getAvailableDepotTanks().values())
         {
-            if (replacementPlane.getType().equals("i16t24"))
+            if (replacementPlane.getType().equals(TankAttributeMapping.T34_EARLY.getTankType()))
             {
-                i16Found = true;
+                t34EarlyFound = true;
             }
-            else if (replacementPlane.getType().equals("c47a"))
+            else if (replacementPlane.getType().equals(TankAttributeMapping.T34_LATE.getTankType()))
             {
-                c47 = true;
+                t34LateFound = true;
             }
-            else if (replacementPlane.getType().equals("hurricanemkii"))
+            else if (replacementPlane.getType().equals(TankAttributeMapping.KV1_S.getTankType()))
             {
-                hurricane = true;
+                kv1Found = true;
             }
-            else if (replacementPlane.getType().equals("mig3s24"))
+            else if (replacementPlane.getType().equals(TankAttributeMapping.SU122.getTankType()))
             {
-                mig3 = true;
+                su122Found = true;
             }
-            else if (replacementPlane.getType().equals("lagg3s29"))
+            else if (replacementPlane.getType().equals(TankAttributeMapping.SU152.getTankType()))
             {
-                lagg3 = true;
-            }
-            else if (replacementPlane.getType().equals("p40e1"))
-            {
-                p40 = true;
-            }
-            else if (replacementPlane.getType().equals("pe2s87"))
-            {
-                pe2Found = true;
-            }
-            else if (replacementPlane.getType().equals("il2m42"))
-            {
-                il2Found = true;
-            }
-            else if (replacementPlane.getType().equals("yak1s127"))
-            {
-                yak1Found = true;
+                su152Found = true;
             }
         }
         
-        assert(hurricane);
-        assert(c47);
-        assert(i16Found);
-        assert(mig3);
-        assert(lagg3);
-        assert(p40);
-        assert(pe2Found);
-        assert(il2Found);
-        assert(yak1Found);
+        assert(t34EarlyFound || t34LateFound);
+        assert(kv1Found);
+        assert(su122Found || su152Found);
     }
 }

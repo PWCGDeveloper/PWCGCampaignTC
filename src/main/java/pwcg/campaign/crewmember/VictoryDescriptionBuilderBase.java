@@ -39,7 +39,7 @@ public abstract class VictoryDescriptionBuilderBase
     protected String getPlaneDescription(String planeType) throws PWCGException
     {
         String planeName = "Enemy Aircraft";
-        TankTypeInformation plane = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(planeType);
+        TankTypeInformation plane = PWCGContext.getInstance().getFullTankTypeFactory().createTankTypeByAnyName(planeType);
         if (plane != null)
         {
             planeName = plane.getDisplayName();

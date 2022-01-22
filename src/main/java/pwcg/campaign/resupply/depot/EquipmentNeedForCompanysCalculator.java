@@ -32,7 +32,7 @@ public class EquipmentNeedForCompanysCalculator
             companyResupplyNeed.determineResupplyNeeded();                
             for (int i = 0; i < companyResupplyNeed.getNumNeeded(); ++i)
             {
-                List<TankArchType> currentAircraftArchTypes = company.determineCurrentAircraftArchTypes(campaign.getDate());
+                List<TankArchType> currentAircraftArchTypes = company.determineCurrentTankArchTypes(campaign.getDate());
                 for (TankArchType planeArchType : currentAircraftArchTypes)
                 {
                     if (!aircraftNeedByArchType.containsKey(planeArchType.getTankArchTypeName()))

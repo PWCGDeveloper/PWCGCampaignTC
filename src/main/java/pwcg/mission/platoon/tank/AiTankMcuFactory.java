@@ -26,7 +26,7 @@ public class AiTankMcuFactory
         List<TankMcu> tanksForPlatoon = new ArrayList<>();
         for (int index = 0; index < numTanks; ++index)
         {
-            List<TankTypeInformation> tankTypes = PWCGContext.getInstance().getTankTypeFactory().createActiveTankTypesForDateAndSide(
+            List<TankTypeInformation> tankTypes = PWCGContext.getInstance().getAiTankTypeFactory().createActiveTankTypesForDateAndSide(
                     platoonInformation.getCountry().getSide(), platoonInformation.getCampaign().getDate());
             Collections.shuffle(tankTypes);
             TankTypeInformation tankType = tankTypes.get(0);

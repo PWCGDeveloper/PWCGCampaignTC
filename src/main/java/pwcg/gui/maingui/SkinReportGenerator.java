@@ -59,7 +59,7 @@ public class SkinReportGenerator
     {
         for (String planeTypeDesc : skinsToWrite.keySet())
         {
-            TankTypeInformation plane = PWCGContext.getInstance().getTankTypeFactory().createTankTypeByAnyName(planeTypeDesc);
+            TankTypeInformation plane = PWCGContext.getInstance().getFullTankTypeFactory().createTankTypeByAnyName(planeTypeDesc);
             List<MissingSkin> missingSkinSet = skinsToWrite.get(planeTypeDesc);
             
             // The plane

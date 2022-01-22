@@ -49,7 +49,7 @@ public class CompanySkinLoader
             }
             for (String archTypeName : companySkin.getArchTypes())
             {
-                TankArchType archType = PWCGContext.getInstance().getTankTypeFactory().getTankArchType(archTypeName);
+                TankArchType archType = PWCGContext.getInstance().getPlayerTankTypeFactory().getTankArchType(archTypeName);
                 for (TankTypeInformation planeType : archType.getAllMemberTankTypes())
                 {
                     String planeName = planeType.getType();

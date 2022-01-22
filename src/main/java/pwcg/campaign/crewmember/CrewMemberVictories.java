@@ -86,11 +86,11 @@ public class CrewMemberVictories
         String key = getTankArchTypeForPlaneName(victory.getVictim().getType());
         if (!airVictoriesType.containsKey(key))
         {
-            List<Victory> planeTypeList = new ArrayList<>();
-            airVictoriesType.put(key, planeTypeList);
+            List<Victory> tankTypeList = new ArrayList<>();
+            airVictoriesType.put(key, tankTypeList);
         }
-        List<Victory> planeTypeList = airVictoriesType.get(key);
-        planeTypeList.add(victory);
+        List<Victory> tankTypeList = airVictoriesType.get(key);
+        tankTypeList.add(victory);
     }
 
     private void addTankTypeVictory(Victory victory)
@@ -105,14 +105,14 @@ public class CrewMemberVictories
         tankTypeList.add(victory);
     }
     
-    private String getTankArchTypeForPlaneName(String planeTypeName) throws PWCGException
+    private String getTankArchTypeForPlaneName(String tankTypeName) throws PWCGException
     {
-        TankTypeInformation planeType = PWCGContext.getInstance().getTankTypeFactory().getTankByDisplayName(planeTypeName);
+        TankTypeInformation tankType = PWCGContext.getInstance().getFullTankTypeFactory().getTankByDisplayName(tankTypeName);
         String archTypeName = "Unknown";
-        if (planeType != null)
+        if (tankType != null)
         {
-            TankArchType planeArchType = PWCGContext.getInstance().getTankTypeFactory().getTankArchType(planeType.getArchType());
-            archTypeName = TankArchType.getArchTypeDescription(planeArchType.getTankArchTypeName());
+            TankArchType tankArchType = PWCGContext.getInstance().getFullTankTypeFactory().getTankArchType(tankType.getArchType());
+            archTypeName = TankArchType.getArchTypeDescription(tankArchType.getTankArchTypeName());
         }
         return archTypeName;
     }

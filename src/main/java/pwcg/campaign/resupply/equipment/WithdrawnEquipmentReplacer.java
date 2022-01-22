@@ -98,7 +98,7 @@ public class WithdrawnEquipmentReplacer
         String planeArchTypeName = chooseArchTypeForCompany();
         if (!planeArchTypeName.isEmpty())
         {
-            TankArchType planeArchType = PWCGContext.getInstance().getTankTypeFactory().getTankArchType(planeArchTypeName);
+            TankArchType planeArchType = PWCGContext.getInstance().getPlayerTankTypeFactory().getTankArchType(planeArchTypeName);
             String planeTypeName = EquipmentReplacementUtils.getTypeForReplacement(campaign.getDate(), planeArchType);
             return planeTypeName;
         }
@@ -127,7 +127,7 @@ public class WithdrawnEquipmentReplacer
         List<String> availableArchTypes = new ArrayList<>();
         for (String planeArchTypeName : equipment.getArchTypes())
         {
-            TankArchType planeArchType = PWCGContext.getInstance().getTankTypeFactory().getTankArchType(planeArchTypeName);
+            TankArchType planeArchType = PWCGContext.getInstance().getPlayerTankTypeFactory().getTankArchType(planeArchTypeName);
             String planeTypeName = EquipmentReplacementUtils.getTypeForReplacement(campaign.getDate(), planeArchType);
             if (planeTypeName != null && !planeTypeName.isEmpty())
             {

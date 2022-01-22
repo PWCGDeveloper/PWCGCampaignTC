@@ -14,7 +14,7 @@ import pwcg.core.utils.DateUtils;
 import pwcg.mission.platoon.ITankPlatoon;
 
 @ExtendWith(MockitoExtension.class)
-public class WW2PayloadTest
+public class TankPayloadTest
 {
     @Mock ITankPlatoon unit;
 
@@ -28,7 +28,7 @@ public class WW2PayloadTest
     {
         TankPayloadFactory payloadFactory = new TankPayloadFactory();        
 
-        for (TankTypeInformation tankType : PWCGContext.getInstance().getTankTypeFactory().getAllTanks())
+        for (TankTypeInformation tankType : PWCGContext.getInstance().getPlayerTankTypeFactory().getAllTanks())
         {
             ITankPayload payloadGenerator = payloadFactory.createPayload(tankType.getType(), DateUtils.getDateYYYYMMDD("19420801"));
             runPayload(payloadGenerator);

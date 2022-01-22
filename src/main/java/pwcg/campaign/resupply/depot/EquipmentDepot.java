@@ -31,7 +31,7 @@ public class EquipmentDepot
     
     public void addPlaneToDepot(EquippedTank equippedTank) throws PWCGException
     {
-        equipment.addEPlaneToDepot(equippedTank);
+        equipment.addTankToDepot(equippedTank);
     }
     
     public EquippedTank removeBestPlaneFromDepot(List<String> activeArchTypes)
