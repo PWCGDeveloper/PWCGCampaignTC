@@ -43,7 +43,7 @@ public class VictoryDescription
         }
         else if (victory.getVictim().getAirOrGround() == Victory.VEHICLE && victory.getVictor().getAirOrGround() == Victory.VEHICLE)
         {
-            return descriptionBuilderGround.createVictoryDescriptionGroundToGround();
+            return getGroundGround(descriptionBuilderGround);
         }
         else if (victory.getVictim().getAirOrGround() == Victory.VEHICLE && victory.getVictor().getAirOrGround() == Victory.UNSPECIFIED_VICTORY)
         {
@@ -54,8 +54,17 @@ public class VictoryDescription
     }
 
 
+    private String getGroundGround(VictoryDescriptionBuilderGround descriptionBuilderGround) throws PWCGException
+    {
+        if (useFullDescription())
+        {
+            return descriptionBuilderGround.getVictoryDescriptionGroundToGroundFull();
+        }
+        return descriptionBuilderGround.createVictoryDescriptionGroundToGround();
+    }
+
     // On <victory victory.getDate()> near <location>.
-    // A <victory.getVictim() plane Name> of <victory.getVictim() company name> was brought down by <victory.getVictor() name> of <victory.getVictor() company name> 
+    // A <victory.getVictim() plane Name> of <victory.getVictim() company name> was destroyed by <victory.getVictor() name> of <victory.getVictor() company name> 
     // <victory.getVictim() crew 1> was <killed/captured>.  <victory.getVictim() crew 2> was <killed/captured>
     // <victory.getVictor() crew 1> was using a <victory.getVictor() plane Name>.
     /**
@@ -65,16 +74,6 @@ public class VictoryDescription
     private String createVictoryDescriptionAirToAir() throws PWCGException
     {
         VictoryDescriptionBuilderAir descriptionBuilder = new VictoryDescriptionBuilderAir(campaign, victory);
-        // There might not be any mission plane if this an out of mission victory during a mission evaluation
-        if (useFullDescription())
-        {
-            return descriptionBuilder.getVictoryDescriptionAirToAirFull();
-        }
-        else if (useBalloonDescription())
-        {
-            return descriptionBuilder.getVictoryDescriptionBalloonFull();
-        }
-        
         return descriptionBuilder.getVictoryDescriptionAirToAirSimple();
     }
 
@@ -97,20 +96,4 @@ public class VictoryDescription
                 
         return true;
     }
-
-    private boolean useBalloonDescription()
-    {
-        if (victory.getDate() == null)
-        {
-            return false;
-        }
-        
-        if (victory.getVictor() == null || victory.getVictor().determineCompleteForAir() == false)
-        {
-            return false;
-        }
-                
-        return true;
-    }
-
 }

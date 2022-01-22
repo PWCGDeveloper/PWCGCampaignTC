@@ -10,87 +10,13 @@ public class VictoryDescriptionBuilderAir extends VictoryDescriptionBuilderBase
     {
         super(campaign, victory);
     }    
-    
-    // On <victory victory.getDate()> near <location>.
-    // A <victory.getVictim() plane Name> of <victory.getVictim() company name> was brought down by <victory.getVictor() name> of <victory.getVictor() company name> 
-    // <victory.getVictim() crew 1> was <killed/captured>.  <victory.getVictim() crew 2> was <killed/captured>
-    // <victory.getVictor() crew 1> and <victory.getVictor() crew 1> were using a <victory.getVictor() plane Name>.
-    /**
-     * @return
-     * @throws PWCGException 
-     */
-    public String getVictoryDescriptionAirToAirFull() throws PWCGException
-    {
-        // Create the victory description
-        String victoryDesc = "";
-        
-        String victimTankType = getPlaneDescription(victory.getVictim().getType());
-        String victorTankType = getPlaneDescription(victory.getVictor().getType());
-
-        // Line 1
-        victoryDesc +=  "On " + DateUtils.getDateString(victory.getDate());
-        if (!victory.getLocation().isEmpty())
-        {
-            victoryDesc +=  " near " + victory.getLocation();
-        }
-        victoryDesc +=  ".";
-
-        // Line 2
-        victoryDesc +=  "\n";
-        victoryDesc +=  "A " + victimTankType + " of " + victory.getVictim().getCompanyName() + " was brought down by ";
-        victoryDesc += describeVictor();
-        victoryDesc +=  ".";
-
-        // Line 3
-        String crewMemberFate = getCrewMemberFate();
-        victoryDesc += crewMemberFate;
-
-        // Line 4
-        victoryDesc +=  "\n";
-        victoryDesc +=  victory.getVictor().getCrewMemberName();
-        victoryDesc +=  " was using a " + victorTankType + ".";          
-        
-        return victoryDesc;
-    }
-
-    
-    public String getVictoryDescriptionBalloonFull() throws PWCGException
-    {
-        // Create the victory description
-        String victoryDesc = "";
-        
-        String victimBalloonType = victory.getVictim().getType();
-        String victorTankType = getPlaneDescription(victory.getVictor().getType());
-
-        // Line 1
-        victoryDesc +=  "On " + DateUtils.getDateString(victory.getDate());
-        if (!victory.getLocation().isEmpty())
-        {
-            victoryDesc +=  " near " + victory.getLocation();
-        }
-        victoryDesc +=  ".";
-
-        // Line 2
-        victoryDesc +=  "\n";
-        victoryDesc +=  "A " + victimBalloonType + " was brought down by ";
-        victoryDesc += describeVictor();
-        victoryDesc +=  ".";
-
-        // Line 3
-        victoryDesc +=  "\n";
-        victoryDesc +=  victory.getVictor().getCrewMemberName();
-        victoryDesc +=  " was using a " + victorTankType + ".";          
-        
-        return victoryDesc;
-    }
-
-
+ 
     public String getVictoryDescriptionAirToAirSimple() throws PWCGException
     {
         String victimTankType = "Enemy Aircraft";
         if (victory.getVictim().getType() != null && !victory.getVictim().getType().isEmpty())
         {
-            victimTankType = getPlaneDescription(victory.getVictim().getType());
+            victimTankType = getVehicleDescription(victory.getVictim().getType());
         }
      
         String victoryDesc = "";
@@ -108,9 +34,9 @@ public class VictoryDescriptionBuilderAir extends VictoryDescriptionBuilderBase
     {
         String victoryDesc = "";
         
-        String victimTankType = getPlaneDescription(victory.getVictim().getType());
+        String victimTankType = getVehicleDescription(victory.getVictim().getType());
 
-        if (victory.getCrashedInSight() && !(victory.getVictim().getCrewMemberName().isEmpty()))
+        if (!(victory.getVictim().getCrewMemberName().isEmpty()))
         {
             // Line 1
             victoryDesc +=  "On " + DateUtils.getDateString(victory.getDate());
@@ -123,10 +49,6 @@ public class VictoryDescriptionBuilderAir extends VictoryDescriptionBuilderBase
             // Line 2
             victoryDesc +=  "\n";
             victoryDesc +=  "A " + victimTankType + " of " + victory.getVictim().getCompanyName() + " crashed.";
-
-            // Line 3
-            String crewMemberFate = getCrewMemberFate();
-            victoryDesc += crewMemberFate;
         }
         // Backwards compatibility - we do not have the information for the latest victory logs
         else

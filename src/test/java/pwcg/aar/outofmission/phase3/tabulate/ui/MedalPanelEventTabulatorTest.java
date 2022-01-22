@@ -22,7 +22,7 @@ import pwcg.campaign.factory.MedalManagerFactory;
 import pwcg.campaign.medals.IMedalManager;
 import pwcg.campaign.medals.Medal;
 import pwcg.core.exception.PWCGException;
-import pwcg.product.fc.medals.FrenchMedalManager;
+import pwcg.product.bos.medals.RussianMedalManager;
 import pwcg.testutils.CompanyTestProfile;
 
 @ExtendWith(MockitoExtension.class)
@@ -31,9 +31,6 @@ public class MedalPanelEventTabulatorTest extends AARTestSetup
 {
     @Mock
     private Company company1;
-    
-    @Mock
-    private Company company2;
 
     @Mock 
     private ICountry country;
@@ -48,9 +45,8 @@ public class MedalPanelEventTabulatorTest extends AARTestSetup
         setupAARMocks();
 
         Mockito.when(company1.determineDisplayName(Mockito.any())).thenReturn("Esc 103");
-        Mockito.when(company2.determineDisplayName(Mockito.any())).thenReturn("Esc 3");
         
-        Mockito.when(country.isCountry(Country.FRANCE)).thenReturn(true);
+        Mockito.when(country.isCountry(Country.RUSSIA)).thenReturn(true);
         medalManager = MedalManagerFactory.createMedalManager(country, campaign);
 
         medalsAwarded.clear();
@@ -59,8 +55,8 @@ public class MedalPanelEventTabulatorTest extends AARTestSetup
     @Test
     public void testMedalsAwardedInMission() throws PWCGException 
     {
-        Mockito.when(crewMember1.getCompanyId()).thenReturn(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
-        Mockito.when(crewMember2.getCompanyId()).thenReturn(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
+        Mockito.when(crewMember1.getCompanyId()).thenReturn(CompanyTestProfile.TANK_DIVISION_147_PROFILE.getCompanyId());
+        Mockito.when(crewMember2.getCompanyId()).thenReturn(CompanyTestProfile.TANK_DIVISION_147_PROFILE.getCompanyId());
         Mockito.when(crewMember1.determineCompany()).thenReturn(company1);
         Mockito.when(crewMember2.determineCompany()).thenReturn(company1);
 
@@ -68,10 +64,10 @@ public class MedalPanelEventTabulatorTest extends AARTestSetup
         medalsAwarded.put(crewMember2.getSerialNumber(), new HashMap<String, Medal>());
         Mockito.when(personnelAwards.getCampaignMemberMedals()).thenReturn(medalsAwarded);
 
-        Map<Integer, Medal> frenchMedals = medalManager.getMedals();
-        Medal cdg = frenchMedals.get(FrenchMedalManager.CROIX_DE_GUERRE);
-        Medal cdgBronzeStar = frenchMedals.get(FrenchMedalManager.CROIX_DE_GUERRE_BRONZE_STAR);
-        Medal cdgSilverPalm = frenchMedals.get(FrenchMedalManager.CROIX_DE_GUERRE_SILVER_PALM);
+        Map<Integer, Medal> russianMedals = medalManager.getMedals();
+        Medal cdg = russianMedals.get(RussianMedalManager.ORDER_RED_STAR);
+        Medal cdgBronzeStar = russianMedals.get(RussianMedalManager.ORDER_OF_GLORY);
+        Medal cdgSilverPalm = russianMedals.get(RussianMedalManager.ORDER_PATRIOTIC_WAR_2);
         medalsAwarded.get(crewMember1.getSerialNumber()).put(cdg.getMedalName(), cdg);
         medalsAwarded.get(crewMember1.getSerialNumber()).put(cdgBronzeStar.getMedalName(), cdgBronzeStar);
         medalsAwarded.get(crewMember2.getSerialNumber()).put(cdgSilverPalm.getMedalName(), cdgSilverPalm);
@@ -85,8 +81,8 @@ public class MedalPanelEventTabulatorTest extends AARTestSetup
     @Test
     public void testMedalsAwarded() throws PWCGException 
     {
-        Mockito.when(crewMember1.getCompanyId()).thenReturn(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
-        Mockito.when(crewMember2.getCompanyId()).thenReturn(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
+        Mockito.when(crewMember1.getCompanyId()).thenReturn(CompanyTestProfile.TANK_DIVISION_147_PROFILE.getCompanyId());
+        Mockito.when(crewMember2.getCompanyId()).thenReturn(CompanyTestProfile.TANK_DIVISION_147_PROFILE.getCompanyId());
         Mockito.when(crewMember1.determineCompany()).thenReturn(company1);
         Mockito.when(crewMember2.determineCompany()).thenReturn(company1);
 
@@ -94,10 +90,10 @@ public class MedalPanelEventTabulatorTest extends AARTestSetup
         medalsAwarded.put(crewMember2.getSerialNumber(), new HashMap<String, Medal>());
         Mockito.when(personnelAwards.getCampaignMemberMedals()).thenReturn(medalsAwarded);
 
-        Map<Integer, Medal> frenchMedals = medalManager.getMedals();
-        Medal cdg = frenchMedals.get(FrenchMedalManager.CROIX_DE_GUERRE);
-        Medal cdgBronzeStar = frenchMedals.get(FrenchMedalManager.CROIX_DE_GUERRE_BRONZE_STAR);
-        Medal cdgSilverPalm = frenchMedals.get(FrenchMedalManager.CROIX_DE_GUERRE_SILVER_PALM);
+        Map<Integer, Medal> russianMedals = medalManager.getMedals();
+        Medal cdg = russianMedals.get(RussianMedalManager.ORDER_RED_STAR);
+        Medal cdgBronzeStar = russianMedals.get(RussianMedalManager.ORDER_OF_GLORY);
+        Medal cdgSilverPalm = russianMedals.get(RussianMedalManager.ORDER_PATRIOTIC_WAR_2);
         medalsAwarded.get(crewMember1.getSerialNumber()).put(cdg.getMedalName(), cdg);
         medalsAwarded.get(crewMember1.getSerialNumber()).put(cdgBronzeStar.getMedalName(), cdgBronzeStar);
         medalsAwarded.get(crewMember2.getSerialNumber()).put(cdgSilverPalm.getMedalName(), cdgSilverPalm);
@@ -107,31 +103,4 @@ public class MedalPanelEventTabulatorTest extends AARTestSetup
         
         assert(medalPanelData.getMedalsAwarded().size() == 3);
     }
-
-    @Test
-    public void testMedalsAwardedButOneIsNotInCompany() throws PWCGException 
-    {
-        Mockito.when(crewMember1.getCompanyId()).thenReturn(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
-        Mockito.when(crewMember2.getCompanyId()).thenReturn(CompanyTestProfile.TANK_DIVISION_147_PROFILE.getCompanyId());
-        Mockito.when(crewMember1.determineCompany()).thenReturn(company1);
-        Mockito.when(crewMember2.determineCompany()).thenReturn(company2);
-
-        medalsAwarded.put(crewMember1.getSerialNumber(), new HashMap<String, Medal>());
-        medalsAwarded.put(crewMember2.getSerialNumber(), new HashMap<String, Medal>());
-        Mockito.when(personnelAwards.getCampaignMemberMedals()).thenReturn(medalsAwarded);
-
-        FrenchMedalManager frenchMedalManager = new FrenchMedalManager(campaign);
-        Medal cdg = frenchMedalManager.getMedal(FrenchMedalManager.CROIX_DE_GUERRE);
-        Medal cdgBronzeStar = frenchMedalManager.getMedal(FrenchMedalManager.CROIX_DE_GUERRE_BRONZE_STAR);
-        Medal cdgSilverPalm = frenchMedalManager.getMedal(FrenchMedalManager.CROIX_DE_GUERRE_SILVER_PALM);
-        medalsAwarded.get(crewMember1.getSerialNumber()).put(cdg.getMedalName(), cdg);
-        medalsAwarded.get(crewMember1.getSerialNumber()).put(cdgBronzeStar.getMedalName(), cdgBronzeStar);
-        medalsAwarded.get(crewMember2.getSerialNumber()).put(cdgSilverPalm.getMedalName(), cdgSilverPalm);
-
-        MedalPanelEventTabulator medalPanelEventTabulator = new MedalPanelEventTabulator(campaign, aarContext);
-        AARMedalPanelData medalPanelData = medalPanelEventTabulator.tabulateForAARMedalPanel();
-        
-        assert(medalPanelData.getMedalsAwarded().size() == 3);
-    }
-
 }

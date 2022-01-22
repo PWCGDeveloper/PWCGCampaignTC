@@ -1,6 +1,6 @@
 {
-	"type": "stug",
-	"archType": "stug37l24",
+	"type": "stug37l24",
+	"archType": "stug",
 	"isPlayer": false,
 	"primaryUsedBy": [
 		"GERMANY"

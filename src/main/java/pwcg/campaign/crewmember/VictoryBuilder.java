@@ -23,9 +23,7 @@ public class VictoryBuilder
     public Victory buildVictory(Date victoryDate, LogVictory missionVictory) throws PWCGException
     {
         Victory victory = new Victory();
-        initializeVictory(victoryDate, missionVictory, victory);
-        completeAirVictory(missionVictory, victory);
-        
+        initializeVictory(victoryDate, missionVictory, victory);        
         return victory;
     }
 
@@ -49,6 +47,7 @@ public class VictoryBuilder
             LogTurret logTurret = (LogTurret)logEntity;
             logEntity = logTurret.getParent();
         }
+        
         if (logEntity instanceof LogTank)
         {
             LogTank logPlane = (LogTank)logEntity;
@@ -60,15 +59,6 @@ public class VictoryBuilder
         }
         
         return companyMemberName;
-    }
-
-    private void completeAirVictory(LogVictory missionVictory, Victory victory)
-    {
-        if (missionVictory.getVictim() instanceof LogTank)
-        {
-            LogTank missionPlane = (LogTank)missionVictory.getVictim();
-            victory.setCrashedInSight(missionPlane.isCrashedInSight());
-        }
     }
 
     private String getEventLocation(Coordinate eventPosition) throws PWCGException

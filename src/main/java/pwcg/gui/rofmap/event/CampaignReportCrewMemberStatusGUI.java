@@ -64,7 +64,7 @@ public class CampaignReportCrewMemberStatusGUI extends AARDocumentIconPanel
         {
             crewMemberLostString = "We regret to inform command that " + 
                 crewMemberLostEvent.getCrewMemberName() + 
-                " has been brought down behind enemy lines and is missing in action.\n";                
+                " has been destroyed behind enemy lines and is missing in action.\n";                
         }
         else if (crewMemberLostEvent.getStatus() == CrewMemberStatus.STATUS_SERIOUSLY_WOUNDED)
         {

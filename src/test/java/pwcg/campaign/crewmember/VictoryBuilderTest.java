@@ -12,7 +12,6 @@ import org.mockito.quality.Strictness;
 
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogGroundUnit;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTurret;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogVictory;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.CampaignPersonnelManager;
@@ -20,7 +19,6 @@ import pwcg.core.config.ConfigItemKeys;
 import pwcg.core.config.ConfigManagerCampaign;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
-import pwcg.core.logfiles.event.AType12;
 import pwcg.core.utils.DateUtils;
 import pwcg.testutils.TestIdentifiers;
 
@@ -63,25 +61,23 @@ public class VictoryBuilderTest
     }
     
     @Test
-    public void buildVictoryPlanePlane () throws PWCGException
+    public void buildVictoryTankTank () throws PWCGException
     {
         Mockito.when(configManager.getIntConfigParam(ConfigItemKeys.DetailedVictoryDescriptionKey)).thenReturn(0);
 
         LogTank logVictor = new LogTank(1);
-        logVictor.setCrashedInSight(true);
         logVictor.setName(victor.getNameAndRank());
         logVictor.setCrewMemberSerialNumber(victor.getSerialNumber());
-        logVictor.setVehicleType("Bf109 F-2");
+        logVictor.setVehicleType("pziii-l");
         logVictor.setCompanyId(TestIdentifiers.TEST_GERMAN_COMPANY_ID);
         logVictor.intializeCrewMember(victor.getSerialNumber());
         logVictor.getLogCrewMember().setStatus(CrewMemberStatus.STATUS_ACTIVE);
 
         LogTank logVictim = new LogTank(2);
-        logVictim.setCrashedInSight(true);
         logVictim.setName(victim.getNameAndRank());
         logVictim.setCrewMemberSerialNumber(victim.getSerialNumber());
-        logVictim.setVehicleType("Il-2 mod.1941");
-        logVictim.setCompanyId(10121312);
+        logVictim.setVehicleType("kv1s");
+        logVictim.setCompanyId(-1);
         logVictim.intializeCrewMember(victim.getSerialNumber());
         logVictim.getLogCrewMember().setStatus(CrewMemberStatus.STATUS_CAPTURED);
 
@@ -99,59 +95,18 @@ public class VictoryBuilderTest
         VictoryDescription victoryDescription = new VictoryDescription(campaign, victory);
         String victoryDescriptionText = victoryDescription.createVictoryDescription();
         
-        String verificationSegment =  "A Il-2 mod.1941 of 621st Ground Attack Air Regiment was brought down by Ofw Hans Schmidt";
-
-        assert(!victoryDescriptionText.contains(verificationSegment));
-    }
-    
-    @Test
-    public void buildVictoryFogOfWar () throws PWCGException
-    {
-        LogTank logVictor = new LogTank(1);
-        logVictor.setCrashedInSight(true);
-        logVictor.setName(victor.getNameAndRank());
-        logVictor.setCrewMemberSerialNumber(victor.getSerialNumber());
-        logVictor.setVehicleType("Bf109 F-2");
-        logVictor.setCompanyId(TestIdentifiers.TEST_GERMAN_COMPANY_ID);
-        logVictor.intializeCrewMember(victor.getSerialNumber());
-        logVictor.getLogCrewMember().setStatus(CrewMemberStatus.STATUS_ACTIVE);
-
-        LogTank logVictim = new LogTank(2);
-        logVictim.setCrashedInSight(true);
-        logVictim.setName(victim.getNameAndRank());
-        logVictim.setCrewMemberSerialNumber(victim.getSerialNumber());
-        logVictim.setVehicleType("Il-2 mod.1941");
-        logVictim.setCompanyId(10121312);
-        logVictim.intializeCrewMember(victim.getSerialNumber());
-        logVictim.getLogCrewMember().setStatus(CrewMemberStatus.STATUS_CAPTURED);
-
-        LogVictory logVictory = new LogVictory(10);
-        logVictory.setLocation(new Coordinate (100000, 0, 100000));
-        logVictory.setVictim(logVictim);
-        logVictory.setVictor(logVictor);
-
-        VictoryBuilder victoryBuilder = new VictoryBuilder(campaign);
-        Victory victory = victoryBuilder.buildVictory(DateUtils.getDateYYYYMMDD("19421103"), logVictory);
-        
-        Assertions.assertTrue (victory.getVictor().getCrewMemberName().equals(victor.getNameAndRank()));
-        Assertions.assertTrue (victory.getVictim().getCrewMemberName().equals(victim.getNameAndRank()));
-        
-        VictoryDescription victoryDescription = new VictoryDescription(campaign, victory);
-        String victoryDescriptionText = victoryDescription.createVictoryDescription();
-        
-        String verificationSegment =  "A Il-2 mod.1941 of 621st Ground Attack Air Regiment was brought down by Ofw Hans Schmidt";
+        String verificationSegment =  "A KV1 was destroyed by Ofw Hans Schmidt";
 
         assert(victoryDescriptionText.contains(verificationSegment));
     }
 
     @Test
-    public void buildVictoryPlaneGround () throws PWCGException
+    public void buildVictoryTankGround () throws PWCGException
     {
         LogTank logVictor = new LogTank(1);
-        logVictor.setCrashedInSight(true);
         logVictor.setName(victor.getNameAndRank());
         logVictor.setCrewMemberSerialNumber(victor.getSerialNumber());
-        logVictor.setVehicleType("Bf109 F-2");
+        logVictor.setVehicleType("pziii-l");
         logVictor.setCompanyId(TestIdentifiers.TEST_GERMAN_COMPANY_ID);
         logVictor.intializeCrewMember(victor.getSerialNumber());
         logVictor.getLogCrewMember().setStatus(CrewMemberStatus.STATUS_ACTIVE);
@@ -174,54 +129,8 @@ public class VictoryBuilderTest
         VictoryDescription victoryDescription = new VictoryDescription(campaign, victory);
         String victoryDescriptionText = victoryDescription.createVictoryDescription();
         
-        String verificationSegment=  "A truck was destroyed by Ofw Hans Schmidt of Gross Deutschland Division, 1st Company";
+        String verificationSegment=  "A truck was destroyed by Ofw Hans Schmidt";
 
         assert(victoryDescriptionText.contains(verificationSegment));
-    }
-
-    @Test
-    public void buildVictoryGunnerPlane () throws PWCGException
-    {
-        Mockito.when(configManager.getIntConfigParam(ConfigItemKeys.DetailedVictoryDescriptionKey)).thenReturn(0);
-
-        LogTank logVictor = new LogTank(1);
-        logVictor.setCrashedInSight(true);
-        logVictor.setName(victor.getNameAndRank());
-        logVictor.setCrewMemberSerialNumber(victor.getSerialNumber());
-        logVictor.setVehicleType("Ju 88 A-4");
-        logVictor.setCompanyId(TestIdentifiers.TEST_GERMAN_COMPANY_ID);
-        logVictor.intializeCrewMember(victor.getSerialNumber());
-        logVictor.getLogCrewMember().setStatus(CrewMemberStatus.STATUS_ACTIVE);
-
-        AType12 atype12 = new AType12("200", "Turret_Ju88A4_1", "Turret_Ju88A4_1", logVictor.getCountry(), logVictor.getId(), new Coordinate(500000, 0, 50000));
-        LogTurret logVictorTurret = logVictor.createTurret(atype12);
-
-        LogTank logVictim = new LogTank(3);
-        logVictim.setCrashedInSight(true);
-        logVictim.setName(victim.getNameAndRank());
-        logVictim.setCrewMemberSerialNumber(victim.getSerialNumber());
-        logVictim.setVehicleType("Il-2 mod.1941");
-        logVictim.setCompanyId(10121312);
-        logVictim.intializeCrewMember(victim.getSerialNumber());
-        logVictim.getLogCrewMember().setStatus(CrewMemberStatus.STATUS_CAPTURED);
-
-        LogVictory logVictory = new LogVictory(10);
-        logVictory.setLocation(new Coordinate (100000, 0, 100000));
-        logVictory.setVictim(logVictim);
-        logVictory.setVictor(logVictorTurret);
-
-        VictoryBuilder victoryBuilder = new VictoryBuilder(campaign);
-        Victory victory = victoryBuilder.buildVictory(DateUtils.getDateYYYYMMDD("19421103"), logVictory);
-
-        Assertions.assertTrue (victory.getVictor().getCrewMemberName().equals(victor.getNameAndRank()));
-        Assertions.assertTrue (victory.getVictor().isGunner());
-        Assertions.assertTrue (victory.getVictim().getCrewMemberName().equals(victim.getNameAndRank()));
-
-        VictoryDescription victoryDescription = new VictoryDescription(campaign, victory);
-        String victoryDescriptionText = victoryDescription.createVictoryDescription();
-
-        String verificationSegment =  "A Il-2 mod.1941 of 621st Ground Attack Air Regiment was brought down by a gunner using with Ofw Hans Schmidt";
-
-        assert(!victoryDescriptionText.contains(verificationSegment));
     }
 }

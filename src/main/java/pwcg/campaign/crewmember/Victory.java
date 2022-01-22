@@ -18,7 +18,6 @@ public class Victory implements Comparable<Victory>
 
     private Date date = null;
     private String location = "";
-    private boolean crashedInSight = false;
 
     private VictoryEntity victim = new VictoryEntity();
     private VictoryEntity victor = new VictoryEntity();
@@ -79,20 +78,5 @@ public class Victory implements Comparable<Victory>
     public void setVictor(VictoryEntity victor)
     {
         this.victor = victor;
-    }
-
-    public boolean isCrashedInSight()
-    {
-        return crashedInSight;
-    }
-
-   public void setCrashedInSight(boolean crashedInSight)
-    {
-        this.crashedInSight = crashedInSight;
-    }
-
-    public boolean getCrashedInSight()
-    {
-        return crashedInSight;
     }
 }

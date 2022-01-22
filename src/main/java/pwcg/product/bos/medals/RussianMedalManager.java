@@ -19,7 +19,7 @@ public class RussianMedalManager extends BoSMedalManager
         
 	public static int WOUND_STRIPE = 99;
 
-	RussianMedalManager (Campaign campaign)
+	public RussianMedalManager (Campaign campaign)
     {
         super(campaign);
 

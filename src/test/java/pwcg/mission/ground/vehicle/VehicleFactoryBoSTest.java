@@ -7,38 +7,11 @@ import org.junit.jupiter.api.Test;
 import pwcg.campaign.api.ICountry;
 import pwcg.campaign.context.Country;
 import pwcg.campaign.factory.CountryFactory;
-import pwcg.campaign.group.airfield.staticobject.StaticObjectFactory;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 
 public class VehicleFactoryBoSTest
 {
-    public VehicleFactoryBoSTest() throws PWCGException
-    {
-        
-    }
-    
-    @Test
-    public void staticCreateTest() throws PWCGException
-    {
-        createStatic(CountryFactory.makeCountryByCountry(Country.RUSSIA), DateUtils.getDateYYYYMMDD("19411001"));
-        createStatic(CountryFactory.makeCountryByCountry(Country.GERMANY), DateUtils.getDateYYYYMMDD("19411001"));
-        createStatic(CountryFactory.makeCountryByCountry(Country.BRITAIN), DateUtils.getDateYYYYMMDD("19440901"));
-        createStatic(CountryFactory.makeCountryByCountry(Country.USA), DateUtils.getDateYYYYMMDD("19440901"));
-    }
-    
-    public void createStatic(ICountry country, Date date) throws PWCGException
-    {
-        for (VehicleClass vehicleClass: VehicleClass.getAllVehicleClasses())
-        {
-            if (vehicleClass.isStatic())
-            {
-                IVehicle vehicle = StaticObjectFactory.createStaticObject(country, date, vehicleClass);
-                assert(vehicle != null);
-            }
-        }
-    }
-
     @Test
     public void vehicleCreateTest() throws PWCGException
     {

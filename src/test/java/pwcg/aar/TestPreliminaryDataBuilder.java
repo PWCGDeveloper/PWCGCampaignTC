@@ -76,9 +76,8 @@ public class TestPreliminaryDataBuilder
     private void makeClaimData()
     {
         List<String> enemyTankTypesInMission = new ArrayList<>();
-        enemyTankTypesInMission.add("pe2s35");
-        enemyTankTypesInMission.add("yak1s69");
-        enemyTankTypesInMission.add("il2m41");
+        enemyTankTypesInMission.add("t34-76stz-41");
+        enemyTankTypesInMission.add("kv1-s");
         
         AARClaimPanelData claimPanelData = new AARClaimPanelData();
         claimPanelData.setEnemyTankTypesInMission(enemyTankTypesInMission);
@@ -107,12 +106,11 @@ public class TestPreliminaryDataBuilder
         
         missionHeader.setBase("My Airfield");
         missionHeader.setDate("10411101");
-        missionHeader.setCompany("I/JG51");
-        missionHeader.setVehicleType("Bf109 F-2");
+        missionHeader.setCompany("Gross Deutschland Division, 1st Company");
+        missionHeader.setVehicleType("_pziii-l");
 
         
-        missionHeader.setDuty("PATROL");
-        missionHeader.setAltitude(3000); 
+        missionHeader.setDuty("ASSAULT");
         
         missionHeader.setMapName(PWCGContext.getInstance().getCurrentMap().getMapName()); 
 

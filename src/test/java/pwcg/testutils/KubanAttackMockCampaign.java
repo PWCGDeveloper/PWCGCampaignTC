@@ -29,7 +29,6 @@ import pwcg.mission.MissionFlights;
 import pwcg.mission.MissionGroundUnitResourceManager;
 import pwcg.mission.MissionHumanParticipants;
 import pwcg.mission.platoon.PlatoonInformation;
-import pwcg.mission.platoon.PlatoonMissionType;
 
 public class KubanAttackMockCampaign
 {
@@ -81,15 +80,14 @@ public class KubanAttackMockCampaign
         Mockito.when(mission.getMissionBorders()).thenReturn(missionBorders);
         Mockito.when(mission.getCampaign()).thenReturn(campaign);
         
-        buildMockFlightInformation();
+        buildMockPlatoonInformation();
     }
     
-    public void buildMockFlightInformation()
+    public void buildMockPlatoonInformation()
     {
         Mockito.when(platoonInformation.getCampaign()).thenReturn(campaign);
         Mockito.when(platoonInformation.getMission()).thenReturn(mission);
         Mockito.when(platoonInformation.getCompany()).thenReturn(company);
-        Mockito.when(platoonInformation.getMissionType()).thenReturn(PlatoonMissionType.ASSAULT);
     }
 
 

@@ -3,9 +3,9 @@ package pwcg.campaign.crewmember;
 import java.util.Date;
 
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogAIEntity;
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogBalloon;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogCrewMember;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogGroundUnit;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTurret;
 import pwcg.campaign.company.Company;
@@ -33,12 +33,12 @@ public class VictoryEntity
         if (logEntity instanceof LogTank)
         {
             LogTank logPlane = (LogTank)logEntity;
-            initializeForPlane(victoryDate, logPlane, crewMemberName);
+            initializeForTank(victoryDate, logPlane, crewMemberName);
         }
-        else if (logEntity instanceof LogBalloon)
+        if (logEntity instanceof LogPlane)
         {
-            LogBalloon logBalloon = (LogBalloon)logEntity;
-            initializeForBalloon(logBalloon);
+            LogTank logPlane = (LogTank)logEntity;
+            initializeForPlane(victoryDate, logPlane, crewMemberName);
         }
         else if (logEntity instanceof LogGroundUnit)
         {
@@ -64,7 +64,6 @@ public class VictoryEntity
 
     private void initializeForPlane(Date victoryDate, LogTank logPlane, String crewMemberName) throws PWCGException
     {                    
-        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(logPlane.getCompanyId());
         LogCrewMember logCrewMember = logPlane.getLogCrewMember();
 
         airOrGround = Victory.AIRCRAFT;
@@ -72,15 +71,37 @@ public class VictoryEntity
         name = logPlane.getName();
         crewMemberStatus = logCrewMember.getStatus();
         crewMemberSerialNumber = logCrewMember.getSerialNumber();
-        companyName = company.determineDisplayName(victoryDate);
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(logPlane.getCompanyId());
+        if (company != null)
+        {
+            companyName = company.determineDisplayName(victoryDate);
+        }
+        else
+        {
+            companyName = "";
+        }
         this.crewMemberName = crewMemberName;
     }
 
-    private void initializeForBalloon(LogBalloon logBalloon) throws PWCGException
-    {
-        airOrGround = Victory.AIRCRAFT;
-        setType(logBalloon.getVehicleType());
-        name = logBalloon.getName();
+    private void initializeForTank(Date victoryDate, LogTank logPlane, String crewMemberName) throws PWCGException
+    {                    
+        LogCrewMember logCrewMember = logPlane.getLogCrewMember();
+
+        airOrGround = Victory.VEHICLE;
+        setType(logPlane.getVehicleType());
+        name = logPlane.getName();
+        crewMemberStatus = logCrewMember.getStatus();
+        crewMemberSerialNumber = logCrewMember.getSerialNumber();
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(logPlane.getCompanyId());
+        if (company != null)
+        {
+            companyName = company.determineDisplayName(victoryDate);
+        }
+        else
+        {
+            companyName = "";
+        }
+        this.crewMemberName = crewMemberName;
     }
 
     private void initializeForGround(LogGroundUnit logGrountUnit) throws PWCGException
@@ -96,7 +117,7 @@ public class VictoryEntity
             throw new PWCGException("Parent of turret is not a plane");
 
         LogTank logPlane = (LogTank) logTurret.getParent();
-        initializeForPlane(victoryDate, logPlane, crewMemberName);
+        initializeForTank(victoryDate, logPlane, crewMemberName);
         isGunner = true;
     }
 

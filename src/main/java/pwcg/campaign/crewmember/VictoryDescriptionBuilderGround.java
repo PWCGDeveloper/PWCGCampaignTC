@@ -19,6 +19,45 @@ public class VictoryDescriptionBuilderGround extends VictoryDescriptionBuilderBa
     {
         super(campaign, victory);
     }    
+    
+    // On <victory victory.getDate()> near <location>.
+    // A <victory.getVictim() plane Name> of <victory.getVictim() company name> was destroyed by <victory.getVictor() name> of <victory.getVictor() company name> 
+    // <victory.getVictim() crew 1> was <killed/captured>.  <victory.getVictim() crew 2> was <killed/captured>
+    // <victory.getVictor() crew 1> and <victory.getVictor() crew 1> were using a <victory.getVictor() plane Name>.
+    /**
+     * @return
+     * @throws PWCGException 
+     */
+    public String getVictoryDescriptionGroundToGroundFull() throws PWCGException
+    {
+        // Create the victory description
+        String victoryDesc = "";
+        
+        String victimTankType = getVehicleDescription(victory.getVictim().getType());
+        String victorTankType = getVehicleDescription(victory.getVictor().getType());
+
+        // Line 1
+        victoryDesc +=  "On " + DateUtils.getDateString(victory.getDate());
+        if (!victory.getLocation().isEmpty())
+        {
+            victoryDesc +=  " near " + victory.getLocation();
+        }
+        victoryDesc +=  ".";
+
+        // Line 2
+        victoryDesc +=  "\n";
+        victoryDesc +=  "A " + victimTankType + " was destroyed by ";
+        victoryDesc += describeVictor();
+        victoryDesc +=  ".";
+
+        // Line 3
+        victoryDesc +=  "\n";
+        victoryDesc +=  victory.getVictor().getCrewMemberName();
+        victoryDesc +=  " was using a " + victorTankType + ".";          
+        
+        return victoryDesc;
+    }
+
 
     // On <victory victory.getDate()> near <location>.
     // A <victory.getVictim() ground unit> was destroyed by by <victory.getVictor() name> of <victory.getVictor() company name> 
@@ -27,7 +66,7 @@ public class VictoryDescriptionBuilderGround extends VictoryDescriptionBuilderBa
     {
         String victoryDesc = "";
         
-        String victorTankType = getPlaneDescription(victory.getVictor().getType());
+        String victorTankType = getVehicleDescription(victory.getVictor().getType());
 
         // Line 1
         victoryDesc +=  "On " + DateUtils.getDateString(victory.getDate());
@@ -53,13 +92,13 @@ public class VictoryDescriptionBuilderGround extends VictoryDescriptionBuilderBa
     
 
     // On <victory victory.getDate()> near <location>.
-    // A <victory.getVictim() plane Name> of <victory.getVictim() company name> was brought down by a <ground unit name> 
+    // A <victory.getVictim() plane Name> of <victory.getVictim() company name> was destroyed by a <ground unit name> 
     // <victory.getVictim() crew 1> was <killed/captured>.  <victory.getVictim() crew 2> was <killed/captured>
     String createVictoryDescriptionGroundToAir() throws PWCGException
     {        
         String victoryDesc = "";
         
-        String victimTankType = getPlaneDescription(victory.getVictim().getType());
+        String victimPlaneType = getVehicleDescription(victory.getVictim().getType());
 
         if (!(victory.getVictim().getCrewMemberName().isEmpty()))
         {
@@ -73,16 +112,12 @@ public class VictoryDescriptionBuilderGround extends VictoryDescriptionBuilderBa
 
             // Line 2
             victoryDesc +=  "\n";
-            victoryDesc +=  "A " + victimTankType + " of " + victory.getVictim().getCompanyName() + " was brought down by a " + getGroundUnitName(victory.getVictor()) + ".";
-
-            // Line 3
-            String crewMemberFate = getCrewMemberFate();
-            victoryDesc += crewMemberFate;
+            victoryDesc +=  "A " + victimPlaneType + " was destroyed by a " + getGroundUnitName(victory.getVictor()) + ".";
         }
         // If we do not have all of the information
         else
         {
-            victoryDesc +=  victimTankType + " shot down by " + getGroundUnitName(victory.getVictor()) + "";
+            victoryDesc +=  victimPlaneType + " shot down by " + getGroundUnitName(victory.getVictor()) + "";
         }
         
         return victoryDesc;

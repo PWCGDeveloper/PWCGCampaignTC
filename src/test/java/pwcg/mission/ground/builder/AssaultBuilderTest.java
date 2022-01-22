@@ -16,15 +16,18 @@ import pwcg.campaign.company.Company;
 import pwcg.campaign.context.Country;
 import pwcg.campaign.context.FrontMapIdentifier;
 import pwcg.campaign.context.PWCGContext;
+import pwcg.campaign.factory.CountryFactory;
 import pwcg.core.config.ConfigItemKeys;
 import pwcg.core.config.ConfigManagerCampaign;
 import pwcg.core.config.ConfigSimple;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
+import pwcg.core.location.PWCGLocation;
 import pwcg.core.utils.DateUtils;
 import pwcg.core.utils.RandomNumberGenerator;
 import pwcg.mission.Mission;
 import pwcg.mission.MissionFlights;
+import pwcg.mission.MissionObjective;
 import pwcg.mission.flight.plane.PlaneMcu;
 import pwcg.mission.ground.org.GroundUnitCollection;
 import pwcg.mission.ground.org.IGroundUnit;
@@ -55,6 +58,16 @@ public class AssaultBuilderTest
         Mockito.when(campaign.getCampaignConfigManager()).thenReturn(configManager);
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19430401"));
         Mockito.when(configManager.getStringConfigParam(ConfigItemKeys.SimpleConfigGroundKey)).thenReturn(ConfigSimple.CONFIG_LEVEL_MED);
+        
+        PWCGLocation town = new PWCGLocation();
+        town.setName("Targetville");
+        town.setPosition(new Coordinate(60000, 0, 60000));
+        MissionObjective objective = new MissionObjective(town);
+        objective.setAssaultingCountry(CountryFactory.makeCountryByCountry(Country.GERMANY));
+        objective.setDefendingCountry(CountryFactory.makeCountryByCountry(Country.RUSSIA));
+        
+        Mockito.when(mission.getObjective()).thenReturn(objective);
+
     }
 
     @Test
@@ -73,8 +86,7 @@ public class AssaultBuilderTest
     
     public GroundUnitCollection createLargeAssaultTest () throws PWCGException 
     {
-        Coordinate assaultPosition = new Coordinate(150000, 0, 150000);
-        GroundUnitCollection groundUnitGroup = AssaultFixedUnitSegmentBuilder.generateAssault(mission, assaultPosition);
+        GroundUnitCollection groundUnitGroup = AssaultFixedUnitSegmentBuilder.generateAssault(mission);
         
         Assertions.assertTrue (groundUnitGroup.getGroundUnits().size() >= 10);
         groundUnitGroup.validate();

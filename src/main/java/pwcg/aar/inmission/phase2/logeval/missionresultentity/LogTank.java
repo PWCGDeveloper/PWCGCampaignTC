@@ -16,7 +16,6 @@ public class LogTank extends LogAIEntity
 {
     private Coordinate landAt = null;
     private Integer companyId;
-    private boolean crashedInSight = false;
     private LogCrewMember logCrewMember;
     private int crewMemberSerialNumber;
     private int tankSerialNumber;
@@ -146,16 +145,6 @@ public class LogTank extends LogAIEntity
     {
         return logCrewMember;
     }
-
-    public boolean isCrashedInSight()
-    {
-        return crashedInSight;
-    }
-
-    public void setCrashedInSight(boolean crashedInSight)
-    {
-        this.crashedInSight = crashedInSight;
-    }    
 
     public Integer getCompanyId()
     {

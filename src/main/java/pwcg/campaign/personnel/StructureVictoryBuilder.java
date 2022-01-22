@@ -69,9 +69,7 @@ public class StructureVictoryBuilder
 
     private void createVictoryHeader(Date date, Victory victory, Side enemySide) throws PWCGException
     {
-        victory.setDate(date);
-        victory.setCrashedInSight(true);
-   
+        victory.setDate(date);   
         String location = getEventLocation(enemySide, date);
         victory.setLocation(location);
     }

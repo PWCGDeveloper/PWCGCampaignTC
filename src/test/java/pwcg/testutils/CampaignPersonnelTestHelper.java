@@ -22,7 +22,6 @@ public class CampaignPersonnelTestHelper
             VictoryEntity victor = new VictoryEntity();
             
             Victory victory = new Victory();
-            victory.setCrashedInSight(true);
             victory.setDate(date);
             victory.setLocation("Somewhere");
             victory.setVictim(victim);

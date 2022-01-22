@@ -38,7 +38,6 @@ public class VictoryMaker
     public static Victory russianVictorGermanVictim(Date date)
     {
         Victory victory = new Victory();
-        victory.setCrashedInSight(true);
         victory.setDate(date);
         victory.setLocation("Near something");
         
@@ -63,7 +62,6 @@ public class VictoryMaker
     public static Victory germanVictorRussianVictim(Date date)
     {
         Victory victory = new Victory();
-        victory.setCrashedInSight(true);
         victory.setDate(date);
         victory.setLocation("Near something");
         
