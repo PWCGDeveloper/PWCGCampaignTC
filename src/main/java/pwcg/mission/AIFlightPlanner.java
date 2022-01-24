@@ -39,20 +39,49 @@ public class AIFlightPlanner
     private static List<FlightBuildInformation> createFlightBuildInformationForCountry(Mission mission, Side side, int numFlights) throws PWCGException
     {
         List<FlightBuildInformation> flightBuildInformatioForSide = new ArrayList<>();
-        for(int i = 0; i <numFlights; ++i)
+        if( mission.getSkirmish() != null)
         {
-            ICountry country= PWCGContext.getInstance().getCurrentMap().getGroundCountryForMapBySide(side);
-            FlightTypes flightType = determineFlightType(mission.getCampaign(), country);
-            PlaneType planeType = getPlaneTypeForMission(country, mission.getCampaign().getDate(), flightType);
-            
-            Airfield airfield = findHomeAirfield(mission, side);
-                    
-            FlightBuildInformation flightBuildInformation = new FlightBuildInformation(mission, country, flightType, planeType, airfield.getPosition());
+            return buildFlightInformationSkirmish(mission, side, flightBuildInformatioForSide);
+        }
+        else
+        {
+            return buildFlightInformationNormal(mission, side, numFlights, flightBuildInformatioForSide);
+        }
+    }
+
+    private static List<FlightBuildInformation> buildFlightInformationSkirmish(Mission mission, Side side,
+            List<FlightBuildInformation> flightBuildInformatioForSide) throws PWCGException
+    {
+        ICountry country= PWCGContext.getInstance().getCurrentMap().getGroundCountryForMapBySide(side);
+        for(FlightTypes flightType : mission.getSkirmish().getIconicFlightTypesForSide(side))
+        {
+            FlightBuildInformation flightBuildInformation = buildFlightINformation(mission, side, country, flightType);
             flightBuildInformatioForSide.add(flightBuildInformation);
         }
         return flightBuildInformatioForSide;
     }
-    
+
+    private static List<FlightBuildInformation> buildFlightInformationNormal(Mission mission, Side side, int numFlights,
+            List<FlightBuildInformation> flightBuildInformatioForSide) throws PWCGException
+    {
+        for(int i = 0; i <numFlights; ++i)
+        {
+            ICountry country= PWCGContext.getInstance().getCurrentMap().getGroundCountryForMapBySide(side);
+            FlightTypes flightType = determineFlightType(mission.getCampaign(), country);
+            FlightBuildInformation flightBuildInformation = buildFlightINformation(mission, side, country, flightType);
+            flightBuildInformatioForSide.add(flightBuildInformation);
+        }
+        return flightBuildInformatioForSide;
+    }
+
+    private static FlightBuildInformation buildFlightINformation(Mission mission, Side side, ICountry country, FlightTypes flightType) throws PWCGException
+    {
+        PlaneType planeType = getPlaneTypeForMission(country, mission.getCampaign().getDate(), flightType);
+        Airfield airfield = findHomeAirfield(mission, side);                        
+        FlightBuildInformation flightBuildInformation = new FlightBuildInformation(mission, country, flightType, planeType, airfield.getPosition());
+        return flightBuildInformation;
+    }
+
     private static Airfield findHomeAirfield(Mission mission, Side side) throws PWCGException
     {
         Airfield airfield = PWCGContext.getInstance().getCurrentMap().getAirfieldManager().getAirfieldFinder().findClosestAirfieldForSide(

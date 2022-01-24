@@ -11,7 +11,7 @@ import pwcg.core.utils.MathUtils;
 import pwcg.core.utils.RandomNumberGenerator;
 import pwcg.mission.Mission;
 import pwcg.mission.MissionObjective;
-import pwcg.mission.ground.BattleSize;
+import pwcg.mission.ground.builder.BattleSize;
 
 public class AssaultDefinitionGenerator
 {

@@ -10,7 +10,7 @@ import pwcg.campaign.api.Side;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.location.CoordinateBox;
-import pwcg.mission.ground.MissionBattleBuilder;
+import pwcg.mission.ground.builder.MissionBattleBuilder;
 import pwcg.mission.ground.org.GroundUnitCollection;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.CompanyTestProfile;

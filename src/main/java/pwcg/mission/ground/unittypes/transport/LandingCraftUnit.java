@@ -10,9 +10,7 @@ import pwcg.mission.ground.org.GroundUnit;
 import pwcg.mission.ground.vehicle.VehicleClass;
 
 public class LandingCraftUnit extends GroundUnit
-{
-    GroundUnitInformation groundUnitInformation;
-    
+{    
     public LandingCraftUnit(GroundUnitInformation groundUnitInformation)
     {
         super(VehicleClass.ShipLandingCraft, groundUnitInformation);

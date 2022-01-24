@@ -6,7 +6,7 @@ import pwcg.core.config.ConfigManagerCampaign;
 import pwcg.core.config.ConfigSimple;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.RandomNumberGenerator;
-import pwcg.mission.ground.BattleSize;
+import pwcg.mission.ground.builder.BattleSize;
 
 public class AssaultBattleSizeGenerator
 {

@@ -9,9 +9,9 @@ import pwcg.campaign.tank.payload.TankPayloadElement;
 import pwcg.core.exception.PWCGException;
 import pwcg.mission.platoon.ITankPlatoon;
 
-public class T34Early extends TankPayload implements ITankPayload
+public class T34EarlyPayload extends TankPayload implements ITankPayload
 {
-    public T34Early(TankTypeInformation tankType, Date date)
+    public T34EarlyPayload(TankTypeInformation tankType, Date date)
     {
         super(tankType, date);
     }
@@ -24,7 +24,7 @@ public class T34Early extends TankPayload implements ITankPayload
     @Override
     public ITankPayload copy()
     {
-        T34Early clone = new T34Early(getTankType(), getDate());
+        T34EarlyPayload clone = new T34EarlyPayload(getTankType(), getDate());
         return super.copy(clone);
     }
 

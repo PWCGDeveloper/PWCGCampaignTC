@@ -1,11 +1,9 @@
-package pwcg.mission.ground;
+package pwcg.mission.ground.builder;
 
 import pwcg.campaign.battle.AmphibiousAssault;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.core.exception.PWCGException;
 import pwcg.mission.Mission;
-import pwcg.mission.ground.builder.AmphibiousAssaultBuilder;
-import pwcg.mission.ground.builder.IBattleBuilder;
 
 public class MissionBattleBuilderFactory
 {   
@@ -18,5 +16,16 @@ public class MissionBattleBuilderFactory
         }
         
         return new MissionBattleBuilder(mission);
+    }
+
+    public static IMissionPlatoonBuilder getPlatoonBuilder(Mission mission) throws PWCGException
+    {
+        AmphibiousAssault amphibiousAssault = PWCGContext.getInstance().getCurrentMap().getAmphibiousAssaultManager().getActiveAmphibiousAssault(mission);
+        if (amphibiousAssault != null)
+        {
+            return new AmphibiousPlatoonBuilder(mission);
+        }
+        
+        return new MissionPlatoonBuilder(mission);
     }
 }

@@ -18,7 +18,7 @@
 				{
 					"side": "AXIS",
 					"flightType": "CARGO_DROP",
-					"maxForcedFlightTypes": 1
+					"maxForcedFlightTypes": 2
 				}
 			],
 			"profileType": "SKIRMISH_PROFILE_CARGO_DROP",

@@ -32,16 +32,6 @@ public class BriefingMapFlightMapper
         {
             mapPanel.makeMapPanelVirtualPoints(playerPlatoon);
         }
-
-        for (ITankPlatoon playerPlatoon : mission.getPlatoons().getAiUnits())
-        {
-            mapFlightAndLinkedFlights(playerPlatoon);
-        }
-    }
-
-    private void mapFlightAndLinkedFlights(ITankPlatoon playerPlatoon) throws PWCGException
-    {
-        mapPanel.makeMapPanelVirtualPoints(playerPlatoon);
     }
 
     private void mapFlightBox() throws PWCGException

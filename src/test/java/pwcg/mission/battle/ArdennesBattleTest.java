@@ -16,7 +16,6 @@ import pwcg.mission.Mission;
 import pwcg.mission.MissionGenerator;
 import pwcg.mission.flight.FlightTypes;
 import pwcg.mission.target.AssaultDefinition;
-import pwcg.mission.target.TargetType;
 import pwcg.mission.utils.MissionInformationUtils;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.CompanyTestProfile;
@@ -61,8 +60,7 @@ public class ArdennesBattleTest
 
         }
 
-        assert(MissionInformationUtils.verifyFlightTypeInMission(mission, FlightTypes.GROUND_ATTACK, attackingSide.getOppositeSide()));
-        assert(MissionInformationUtils.verifyFlightTypeInMission(mission, FlightTypes.LOW_ALT_CAP, attackingSide));
+        assert(MissionInformationUtils.verifyFlightTypeInMission(mission, FlightTypes.GROUND_ATTACK, attackingSide));
     }
 
     @Test
@@ -86,7 +84,6 @@ public class ArdennesBattleTest
         }
 
         assert(MissionInformationUtils.verifyFlightTypeInMission(mission, FlightTypes.CARGO_DROP, Side.ALLIED));
-        assert(MissionInformationUtils.verifyFlightTargets(mission, FlightTypes.GROUND_ATTACK, TargetType.TARGET_INFANTRY, Side.ALLIED));
     }
 
     @Test

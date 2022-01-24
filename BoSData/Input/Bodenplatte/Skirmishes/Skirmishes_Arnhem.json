@@ -18,7 +18,7 @@
 				{
 					"side": "ALLIED",
 					"flightType": "PARATROOP_DROP",
-					"maxForcedFlightTypes": 1
+					"maxForcedFlightTypes": 2
 				}
 			],
 			"profileType": "SKIRMISH_PROFILE_PARA_DROP",
@@ -43,7 +43,7 @@
 				{
 					"side": "ALLIED",
 					"flightType": "PARATROOP_DROP",
-					"maxForcedFlightTypes": 1
+					"maxForcedFlightTypes": 2
 				}
 			],
 			"profileType": "SKIRMISH_PROFILE_PARA_DROP",
@@ -68,7 +68,7 @@
 				{
 					"side": "ALLIED",
 					"flightType": "PARATROOP_DROP",
-					"maxForcedFlightTypes": 1
+					"maxForcedFlightTypes": 2
 				}
 			],
 			"profileType": "SKIRMISH_PROFILE_PARA_DROP",
@@ -94,7 +94,7 @@
 				{
 					"side": "ALLIED",
 					"flightType": "CARGO_DROP",
-					"maxForcedFlightTypes": 1
+					"maxForcedFlightTypes": 2
 				}
 			],
 			"profileType": "SKIRMISH_PROFILE_CARGO_DROP",
@@ -120,7 +120,7 @@
 				{
 					"side": "ALLIED",
 					"flightType": "CARGO_DROP",
-					"maxForcedFlightTypes": 1
+					"maxForcedFlightTypes": 2
 				}
 			],
 			"profileType": "SKIRMISH_PROFILE_CARGO_DROP",
@@ -146,7 +146,7 @@
 				{
 					"side": "ALLIED",
 					"flightType": "CARGO_DROP",
-					"maxForcedFlightTypes": 1
+					"maxForcedFlightTypes": 2
 				}
 			],
 			"profileType": "SKIRMISH_PROFILE_CARGO_DROP",

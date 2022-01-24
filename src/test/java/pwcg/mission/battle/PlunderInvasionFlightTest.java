@@ -42,9 +42,6 @@ public class PlunderInvasionFlightTest
         Assertions.assertTrue (mission.getSkirmish() != null);
         Assertions.assertTrue (mission.getSkirmish().getSkirmishName().contains("Plunder"));
 
-        boolean axisGroundAttackFlightFound = MissionInformationUtils.verifyFlightTypeInMission(mission, FlightTypes.GROUND_ATTACK, Side.AXIS);
-        Assertions.assertTrue (axisGroundAttackFlightFound);
-
         boolean alliedGroundAttackFlightFound = MissionInformationUtils.verifyFlightTypeInMission(mission, FlightTypes.GROUND_ATTACK, Side.ALLIED);
         Assertions.assertTrue (alliedGroundAttackFlightFound);
     }

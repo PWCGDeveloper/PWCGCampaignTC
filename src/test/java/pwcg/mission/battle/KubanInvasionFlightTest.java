@@ -3,7 +3,6 @@ package pwcg.mission.battle;
 import java.util.Date;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
@@ -16,7 +15,6 @@ import pwcg.mission.Mission;
 import pwcg.mission.MissionGenerator;
 import pwcg.mission.flight.FlightTypes;
 import pwcg.mission.target.AssaultDefinition;
-import pwcg.mission.target.TargetType;
 import pwcg.mission.utils.MissionInformationUtils;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.CompanyTestProfile;
@@ -25,18 +23,10 @@ import pwcg.testutils.TestMissionBuilderUtility;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class KubanInvasionFlightTest
 {
-    private Campaign campaign;    
-
-    @BeforeAll
-    public void setupSuite() throws PWCGException
-    {
-        
-        campaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
-    }
-
     @Test
-    public void hasDiveBombKerchInvasionTest() throws PWCGException
+    public void germanKerchInvasionTest() throws PWCGException
     {
+        Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_KUBAN_PROFILE);
         campaign.setDate(DateUtils.getDateYYYYMMDD("19431101"));
         MissionGenerator missionGenerator = new MissionGenerator(campaign);
         Mission mission = missionGenerator.makeMission(TestMissionBuilderUtility.buildTestParticipatingHumans(campaign));
@@ -50,18 +40,36 @@ public class KubanInvasionFlightTest
 
         }
 
-        boolean diveBombFlightFound = MissionInformationUtils.verifyFlightTypeInMission(mission, FlightTypes.DIVE_BOMB, Side.AXIS);
-        boolean groundAttackFlightFound = MissionInformationUtils.verifyFlightTypeInMission(mission, FlightTypes.GROUND_ATTACK, Side.AXIS);
+        boolean diveBombFlightFound = MissionInformationUtils.verifyFlightTypeInMission(mission, FlightTypes.GROUND_ATTACK, Side.AXIS);
+        boolean groundAttackFlightFound = MissionInformationUtils.verifyFlightTypeInMission(mission, FlightTypes.LOW_ALT_BOMB, Side.ALLIED);
         Assertions.assertTrue (diveBombFlightFound || groundAttackFlightFound);
+    }
 
-        boolean diveBombFlightTargetFound = MissionInformationUtils.verifyFlightTargets(mission, FlightTypes.DIVE_BOMB, TargetType.TARGET_SHIPPING, Side.AXIS);
-        boolean groundAttackFlightTargetFound = MissionInformationUtils.verifyFlightTargets(mission, FlightTypes.GROUND_ATTACK, TargetType.TARGET_SHIPPING, Side.AXIS);
-        Assertions.assertTrue (diveBombFlightTargetFound || groundAttackFlightTargetFound);
+    @Test
+    public void russianKerchInvasionTest() throws PWCGException
+    {
+        Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.TANK_DIVISION_147_PROFILE_KUBAN);
+        campaign.setDate(DateUtils.getDateYYYYMMDD("19431101"));
+        MissionGenerator missionGenerator = new MissionGenerator(campaign);
+        Mission mission = missionGenerator.makeMission(TestMissionBuilderUtility.buildTestParticipatingHumans(campaign));
+        mission.finalizeMission();
+
+        Assertions.assertTrue (mission.getSkirmish() != null);
+        Assertions.assertTrue (mission.getSkirmish().getSkirmishName().equals("Kerch Amphibious Assault"));
+        for (AssaultDefinition assaultDefinition : mission.getBattleManager().getMissionAssaultDefinitions())
+        {
+            Assertions.assertTrue (assaultDefinition.getAssaultingCountry().getCountry() == Country.RUSSIA);
+        }
+
+        boolean diveBombFlightFound = MissionInformationUtils.verifyFlightTypeInMission(mission, FlightTypes.GROUND_ATTACK, Side.AXIS);
+        boolean groundAttackFlightFound = MissionInformationUtils.verifyFlightTypeInMission(mission, FlightTypes.LOW_ALT_BOMB, Side.ALLIED);
+        Assertions.assertTrue (diveBombFlightFound || groundAttackFlightFound);
     }
 
     @Test
     public void hasDiveBombEltigenInvasionTest() throws PWCGException
     {
+        Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_KUBAN_PROFILE);
         campaign.setDate(DateUtils.getDateYYYYMMDD("19431110"));
         MissionGenerator missionGenerator = new MissionGenerator(campaign);
         Mission mission = missionGenerator.makeMission(TestMissionBuilderUtility.buildTestParticipatingHumans(campaign));
@@ -75,13 +83,9 @@ public class KubanInvasionFlightTest
 
         }
 
-        boolean diveBombFlightFound = MissionInformationUtils.verifyFlightTypeInMission(mission, FlightTypes.DIVE_BOMB, Side.AXIS);
-        boolean groundAttackFlightFound = MissionInformationUtils.verifyFlightTypeInMission(mission, FlightTypes.GROUND_ATTACK, Side.AXIS);
+        boolean diveBombFlightFound = MissionInformationUtils.verifyFlightTypeInMission(mission, FlightTypes.GROUND_ATTACK, Side.AXIS);
+        boolean groundAttackFlightFound = MissionInformationUtils.verifyFlightTypeInMission(mission, FlightTypes.LOW_ALT_BOMB, Side.ALLIED);
         Assertions.assertTrue (diveBombFlightFound || groundAttackFlightFound);
-
-        boolean diveBombFlightTargetFound = MissionInformationUtils.verifyFlightTargets(mission, FlightTypes.DIVE_BOMB, TargetType.TARGET_SHIPPING, Side.AXIS);
-        boolean groundAttackFlightTargetFound = MissionInformationUtils.verifyFlightTargets(mission, FlightTypes.GROUND_ATTACK, TargetType.TARGET_SHIPPING, Side.AXIS);
-        Assertions.assertTrue (diveBombFlightTargetFound || groundAttackFlightTargetFound);
     }
 
     @Test

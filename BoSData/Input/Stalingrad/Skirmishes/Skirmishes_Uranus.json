@@ -18,7 +18,7 @@
 				{
 					"side": "ALLIED",
 					"flightType": "GROUND_ATTACK",
-					"maxForcedFlightTypes": 1
+					"maxForcedFlightTypes": 2
 				}
 			],
 			"profileType": "SKIRMISH_PROFILE_ANTI_INFANTRY",
@@ -43,7 +43,7 @@
 				{
 					"side": "ALLIED",
 					"flightType": "GROUND_ATTACK",
-					"maxForcedFlightTypes": 1
+					"maxForcedFlightTypes": 2
 				}
 			],
 			"profileType": "SKIRMISH_PROFILE_ANTI_INFANTRY",

@@ -2,18 +2,12 @@ TC:
 Campaign creation:
 
 Mission:
-Tank payloads
-More opposition
 Not defense only
-More interesting opposition
-- more AT guns
-- more enemy tanks
 replace existing tank unit
 record AI tank types for AAR
-Do not create tank units as base ground units
- - Add tank units after the fact
- - 
- - 
+Current mission bugs
+- Soviet and US units included in same battle
+- Not matching ground units - related to above?
 
 AAR:
 Add out of mission for tank units

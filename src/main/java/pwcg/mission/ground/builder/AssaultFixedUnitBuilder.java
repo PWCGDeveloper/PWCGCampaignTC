@@ -6,7 +6,6 @@ import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.utils.MathUtils;
 import pwcg.mission.Mission;
-import pwcg.mission.ground.BattleSize;
 import pwcg.mission.ground.GroundUnitInformation;
 import pwcg.mission.ground.GroundUnitInformationFactory;
 import pwcg.mission.ground.org.GroundUnitCollection;
@@ -74,11 +73,11 @@ public class AssaultFixedUnitBuilder
 
     private void assaultingATGunScreen() throws PWCGException
     { 
-        Coordinate antiTankDefensePosition = MathUtils.calcNextCoord(
+        Coordinate antiTankAssaultPosition = MathUtils.calcNextCoord(
                 assaultDefinition.getDefensePosition(), 
                 assaultDefinition.getTowardsAttackerOrientation().getyOri(), AssaultDefinitionGenerator.DISTANCE_BETWEEN_COMBATANTS + 200);  
 
-        GroundUnitInformation groundUnitInformation = buildDefenseGroundUnitInformation(antiTankDefensePosition, "Anti Tank Gun", TargetType.TARGET_ANTI_TANK);
+        GroundUnitInformation groundUnitInformation = buildAssaultGroundUnitInformation(antiTankAssaultPosition, "Anti Tank Gun", TargetType.TARGET_ANTI_TANK);
         IGroundUnit assaultAntiTankUnit = assaultFactory.createAntiTankGunUnit (groundUnitInformation);
         battleSegmentUnitCollection.addGroundUnit(assaultAntiTankUnit);
     }
@@ -138,12 +137,9 @@ public class AssaultFixedUnitBuilder
     {
         defendingMachineGun();
         defendingATGunScreen();
-        if (assaultDefinition.getBattleSize() == BattleSize.BATTLE_SIZE_ASSAULT || assaultDefinition.getBattleSize() == BattleSize.BATTLE_SIZE_OFFENSIVE)
-        {
-            defendingArtillery();
-            defendingAAAMachineGun();
-            defendingAAAArty();        
-        }
+        defendingArtillery();
+        defendingAAAMachineGun();
+        defendingAAAArty();        
     }
 
     private void defendingMachineGun() throws PWCGException

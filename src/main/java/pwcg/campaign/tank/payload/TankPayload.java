@@ -1,5 +1,6 @@
 package pwcg.campaign.tank.payload;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -24,23 +25,19 @@ public abstract class TankPayload implements ITankPayload
         
 	    initialize();
 	    createStandardWeaponsPayload();
-        createWeaponsModAvailabilityDates();
-        loadAvailableStockModifications();
-        addStockModifications();
 	}
 
     @Override()
 	public int createWeaponsPayload(ITankPlatoon unit) throws PWCGException
 	{
-	    int selectedPayloadId = createWeaponsPayloadForTank(unit);
-        setSelectedPayload(selectedPayloadId);
-        return selectedPayloadId;
+	    int selectedPayloadId = 0;
+	    return selectedPayloadId;
 	}
 	
     @Override
     public List<TankPayloadDesignation> getAvailablePayloadDesignations(ITankPlatoon unit) throws PWCGException
     {
-        return getAvailablePayloadDesignationsForTank(unit);
+        return new ArrayList<TankPayloadDesignation>();
     }
 
     @Override
@@ -81,31 +78,6 @@ public abstract class TankPayload implements ITankPayload
     protected void setSelectedPayload(int payloadId)
     {
         payloads.setSelectedPayloadId(payloadId);
-    }
-
-    protected void createWeaponsModAvailabilityDates()
-    {
-    }
-
-    protected void registerStockModification(TankPayloadElement payloadElement)
-    {
-        modifications.registerStockModification(payloadElement);
-    }
-
-    protected void loadAvailableStockModifications()
-    {
-        for(TankPayloadElement modification : tankType.getStockModifications())
-        {
-            modifications.registerStockModification(modification);
-        }
-        
-        modifications.addStockModifications();
-    }
-    
-
-    private void addStockModifications()
-    {
-        modifications.addStockModifications();        
     }
 
     @Override

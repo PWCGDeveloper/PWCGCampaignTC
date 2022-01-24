@@ -2,7 +2,6 @@ package pwcg.mission.ground;
 
 import java.io.BufferedWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +16,7 @@ import pwcg.core.utils.PWCGLogger.LogLevel;
 import pwcg.core.utils.PositionFinder;
 import pwcg.mission.Mission;
 import pwcg.mission.ground.builder.IBattleBuilder;
+import pwcg.mission.ground.builder.MissionBattleBuilderFactory;
 import pwcg.mission.ground.org.GroundUnitCollection;
 import pwcg.mission.target.TargetType;
 
@@ -93,7 +93,6 @@ public class MissionGroundUnitBuilder
     
     private void eliminateDuplicateGroundUnits() throws PWCGException
     {
-        eliminateDuplicateGroundUnitsFromCollection(Arrays.asList(missionBattle));
         eliminateDuplicateGroundUnitsFromCollection(missionTrucks);
         eliminateDuplicateGroundUnitsFromCollection(missionTrains);
         eliminateDuplicateGroundUnitsFromCollection(missionDrifters);

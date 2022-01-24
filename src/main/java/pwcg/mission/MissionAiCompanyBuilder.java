@@ -18,6 +18,11 @@ public class MissionAiCompanyBuilder
     private Campaign campaign;
     private List<ICompanyMission> companies = new ArrayList<>();
 
+    public MissionAiCompanyBuilder(Campaign campaign)
+    {
+        this.campaign = campaign;
+    }
+
     public List<ICompanyMission> buildAiCompanies(ICountry country) throws PWCGException
     {
         if(country.getCountry() == Country.USA)
@@ -47,6 +52,7 @@ public class MissionAiCompanyBuilder
         List<String> companyNames = Arrays.asList("Able", "Baker", "Charlie", "Dog", "Easy", "Fox");
         
         int startingCompanyId = TCServiceManager.US_ARMY;
+        // TODO TC change hard coded coordinates to town close to battle.
         Coordinate companyPosition = PWCGContext.getInstance().getCurrentMap().getGroupManager().getTownLocations().getLocationsWithinRadiusBySide(
                 country.getSide(), campaign.getDate(), new Coordinate(75000, 0, 75000), 1000000).get(0).getPosition();
         addAiCOmpaniesForCountry(country, divisionNames, companyNames, startingCompanyId, companyPosition);

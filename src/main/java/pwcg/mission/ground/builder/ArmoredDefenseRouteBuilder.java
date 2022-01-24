@@ -25,26 +25,28 @@ public class ArmoredDefenseRouteBuilder
     {
         this.mission = mission;
         this.defenseFixedUnitCollection = mission.getGroundUnitBuilder().getAssault();
-        this.defendingSide = mission.getObjective().getAssaultingCountry().getSide();
+        this.defendingSide = mission.getObjective().getDefendingCountry().getSide();
     }
 
     public Map<Integer, List<Coordinate>> buildAssaultRoutesForArmor(List<ITankPlatoon> platoons) throws PWCGException
     {
         List<ITankPlatoon> defendingPlatoons = getDefendingPlatoons(platoons);
-        int numTankPlatoons = defendingPlatoons.size();
-        
-        List<Coordinate> startPositions = getStartPositions(numTankPlatoons);
-        List<Coordinate> objectivePositions = getFirstTargetPositions(startPositions);
-
-        for(int i = 0; i < numTankPlatoons; ++i)
+        if (!defendingPlatoons.isEmpty())
         {
-            List<Coordinate> defenseRoute = new ArrayList<>();
-            defenseRoute.add(startPositions.get(i));
-            defenseRoute.add(objectivePositions.get(i));
+            int numTankPlatoons = defendingPlatoons.size();
             
-            defenseRoutes.put(defendingPlatoons.get(i).getIndex(),  defenseRoute);
+            List<Coordinate> startPositions = getStartPositions(numTankPlatoons);
+            List<Coordinate> objectivePositions = getFirstTargetPositions(startPositions);
+    
+            for(int i = 0; i < numTankPlatoons; ++i)
+            {
+                List<Coordinate> defenseRoute = new ArrayList<>();
+                defenseRoute.add(startPositions.get(i));
+                defenseRoute.add(objectivePositions.get(i));
+                
+                defenseRoutes.put(defendingPlatoons.get(i).getIndex(),  defenseRoute);
+            }
         }
-        
         return defenseRoutes;
     }
 
@@ -64,7 +66,7 @@ public class ArmoredDefenseRouteBuilder
     private List<Coordinate> getStartPositions(int numTankPlatoons) throws PWCGException
     {
         ArmoredDefenseTargetFinder targetFinder = new ArmoredDefenseTargetFinder(
-                mission, defenseFixedUnitCollection, defendingSide, GroundUnitType.ANTI_TANK_UNIT);
+                mission, defenseFixedUnitCollection, GroundUnitType.ANTI_TANK_UNIT);
         
         List<Coordinate> startPositionsFriendlyAT = targetFinder.findInitialTargetForTankPlatoon(numTankPlatoons);        
         List<Coordinate> startPositions = moveStartPositionBackFromAT(startPositionsFriendlyAT, 400);

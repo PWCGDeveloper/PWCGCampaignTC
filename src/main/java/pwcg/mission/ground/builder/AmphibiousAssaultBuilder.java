@@ -6,6 +6,7 @@ import java.util.List;
 import pwcg.campaign.battle.AmphibiousAssault;
 import pwcg.campaign.battle.AmphibiousAssaultShipDefinition;
 import pwcg.core.exception.PWCGException;
+import pwcg.core.utils.RandomNumberGenerator;
 import pwcg.mission.Mission;
 import pwcg.mission.ground.org.GroundUnitCollection;
 
@@ -41,8 +42,7 @@ public class AmphibiousAssaultBuilder implements IBattleBuilder
     private void makeLandingCraft(List<AmphibiousAssaultShipDefinition> shipsForMission) throws PWCGException
     {
         AmphibiousAssaultShipBuilder amphibiousAssaultShipBuilder = new AmphibiousAssaultShipBuilder(mission, amphibiousAssault, shipsForMission);
-        GroundUnitCollection ships = amphibiousAssaultShipBuilder.generateAmphibiousAssautShips();
-        amphibiousAssaultUnits.merge(ships);
+        amphibiousAssaultUnits = amphibiousAssaultShipBuilder.generateAmphibiousAssautShips();
     }
 
     private void makeLanding(List<AmphibiousAssaultShipDefinition> shipsForMission) throws PWCGException
@@ -73,8 +73,13 @@ public class AmphibiousAssaultBuilder implements IBattleBuilder
 
     private List<AmphibiousAssaultShipDefinition> getLandingCraftForAssault() throws PWCGException
     {
-        int numLandingCraft = 12;        
-        amphibiousAssault.shuffleLandingCraft();;
+        int numLandingCraft = 8 + RandomNumberGenerator.getRandom(6);
+        if (numLandingCraft > amphibiousAssault.getShipDefinitions().size())
+        {
+            numLandingCraft = amphibiousAssault.getShipDefinitions().size();
+        }
+        
+        amphibiousAssault.shuffleLandingCraft();
         List<AmphibiousAssaultShipDefinition> shipsForMission = new ArrayList<>();
         for (int i = 0; i < numLandingCraft; ++ i)
         {

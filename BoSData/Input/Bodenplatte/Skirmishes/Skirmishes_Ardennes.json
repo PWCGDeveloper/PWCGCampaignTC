@@ -16,13 +16,8 @@
 			"stopDate": "19441224",
 			"iconicFlightTypes": [
 				{
-					"side": "ALLIED",
-					"flightType": "GROUND_ATTACK",
-					"maxForcedFlightTypes": 1
-				},
-				{
 					"side": "AXIS",
-					"flightType": "LOW_ALT_CAP",
+					"flightType": "GROUND_ATTACK",
 					"maxForcedFlightTypes": 1
 				}
 			],
@@ -48,12 +43,7 @@
 				{
 					"side": "ALLIED",
 					"flightType": "CARGO_DROP",
-					"maxForcedFlightTypes": 1
-				},
-				{
-					"side": "ALLIED",
-					"flightType": "GROUND_ATTACK",
-					"maxForcedFlightTypes": 1
+					"maxForcedFlightTypes": 2
 				}
 			],
 			"profileType": "SKIRMISH_PROFILE_CARGO_DROP",
@@ -76,14 +66,9 @@
 			"stopDate": "19441230",
 			"iconicFlightTypes": [
 				{
-					"side": "AXIS",
-					"flightType": "GROUND_ATTACK",
-					"maxForcedFlightTypes": 1
-				},
-				{
 					"side": "ALLIED",
-					"flightType": "LOW_ALT_CAP",
-					"maxForcedFlightTypes": 1
+					"flightType": "GROUND_ATTACK",
+					"maxForcedFlightTypes": 2
 				}
 			],
 			"profileType": "SKIRMISH_PROFILE_ANTI_INFANTRY",

@@ -6,7 +6,7 @@ import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.location.Orientation;
 import pwcg.core.utils.MathUtils;
-import pwcg.mission.ground.BattleSize;
+import pwcg.mission.ground.builder.BattleSize;
 
 public class AssaultDefinition
 {

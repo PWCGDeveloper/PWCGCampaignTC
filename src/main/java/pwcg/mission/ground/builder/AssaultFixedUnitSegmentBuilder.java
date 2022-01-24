@@ -38,6 +38,8 @@ public class AssaultFixedUnitSegmentBuilder
             GroundUnitCollection fixedBattleSegmentUnits = buildFixedUnits(mission, assaultDefinition, primaryAssaultSegmentGroundUnits);
             battleUnitCollection.merge(fixedBattleSegmentUnits);
         }
+        
+        battleUnitCollection.finishGroundUnitCollection();
 
         return battleUnitCollection;
     }

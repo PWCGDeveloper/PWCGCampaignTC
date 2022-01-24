@@ -17,6 +17,9 @@ import pwcg.core.location.CoordinateBox;
 import pwcg.core.utils.PWCGLogger;
 import pwcg.mission.data.PwcgGeneratedMission;
 import pwcg.mission.ground.MissionGroundUnitBuilder;
+import pwcg.mission.ground.MissionPlatoons;
+import pwcg.mission.ground.builder.IMissionPlatoonBuilder;
+import pwcg.mission.ground.builder.MissionBattleBuilderFactory;
 import pwcg.mission.ground.vehicle.VehicleSetBuilderComprehensive;
 import pwcg.mission.io.MissionDescriptionFile;
 import pwcg.mission.io.MissionFileFactory;
@@ -93,13 +96,13 @@ public class Mission
         validate();
         createStructuresBoxForMission();
         createGroundUnits();
-        createPlayerUnits();
+        createTankUnits();
         generateFlights();
     }
 
-    private void createPlayerUnits() throws PWCGException
+    private void createTankUnits() throws PWCGException
     {
-        MissionPlatoonBuilder platoonBuilder = new MissionPlatoonBuilder(this);
+        IMissionPlatoonBuilder platoonBuilder = MissionBattleBuilderFactory.getPlatoonBuilder(this);
         missionPlatoons = platoonBuilder.createPlatoons();
     }
 

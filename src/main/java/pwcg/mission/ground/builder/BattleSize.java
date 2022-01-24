@@ -1,4 +1,4 @@
-package pwcg.mission.ground;
+package pwcg.mission.ground.builder;
 
 public enum BattleSize
 {

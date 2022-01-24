@@ -26,10 +26,8 @@ public class AiTankMcuFactory
         List<TankMcu> tanksForPlatoon = new ArrayList<>();
         for (int index = 0; index < numTanks; ++index)
         {
-            List<TankTypeInformation> tankTypes = PWCGContext.getInstance().getAiTankTypeFactory().createActiveTankTypesForDateAndSide(
-                    platoonInformation.getCountry().getSide(), platoonInformation.getCampaign().getDate());
-            Collections.shuffle(tankTypes);
-            TankTypeInformation tankType = tankTypes.get(0);
+            TankTypeInformation tankType = PWCGContext.getInstance().getAiTankTypeFactory().findAnyTankTypeForCountryAndDate(
+                    platoonInformation.getCountry(), platoonInformation.getCampaign().getDate());
             
             VehicleDefinitionManager vehicleDefinitionManager = PWCGContext.getInstance().getVehicleDefinitionManager();
             VehicleDefinition vehicleDefinition = vehicleDefinitionManager.getVehicleDefinitionByVehicleType(tankType.getType());

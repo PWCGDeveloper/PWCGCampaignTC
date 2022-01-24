@@ -3,27 +3,25 @@ package pwcg.mission.platoon;
 import java.util.List;
 
 import pwcg.core.exception.PWCGException;
-import pwcg.core.utils.RandomNumberGenerator;
-import pwcg.mission.platoon.tank.AiTankMcuFactory;
+import pwcg.mission.platoon.tank.PlayerTankMcuFactory;
 import pwcg.mission.platoon.tank.TankMcu;
 
-public class AiTankPlatoon extends TankPlatoon
+public class PlayerPlatoon extends TankPlatoon
 {
-    public AiTankPlatoon(PlatoonInformation platoonInformation)
+    public PlayerPlatoon(PlatoonInformation platoonInformation)
     {
         super(platoonInformation);
     }
 
     protected void buildTanks() throws PWCGException
     {
-        int numTanks = 4;
-        int roll = RandomNumberGenerator.getRandom(100);
-        if(roll < 30)
+        int numTanks = platoonInformation.getParticipatingPlayersForCompany().size();
+        if(numTanks < 4)
         {
-            numTanks = 3;
+            numTanks = 4;
         }
                 
-        AiTankMcuFactory tankMcuFactory = new AiTankMcuFactory(platoonInformation);        
+        PlayerTankMcuFactory tankMcuFactory = new PlayerTankMcuFactory(platoonInformation);        
         List<TankMcu> tanks = tankMcuFactory.createTanksForUnit(numTanks);
         platoonVehicles.setTanks(tanks);
         platoonVehicles.setFuelForUnit(1.0);
@@ -32,6 +30,6 @@ public class AiTankPlatoon extends TankPlatoon
     @Override
     public boolean isPlayerPlatoon()
     {
-        return false;
+        return true;
     }
 }

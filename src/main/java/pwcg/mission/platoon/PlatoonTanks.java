@@ -38,7 +38,7 @@ public class PlatoonTanks
         List<TankMcu> playerVehicles = new ArrayList<>();
         for (TankMcu tank : tanks)
         {
-            if (tank.getTankCommander().isPlayer())
+            if (tank.isPlayer())
             {
                 playerVehicles.add(tank);
             }

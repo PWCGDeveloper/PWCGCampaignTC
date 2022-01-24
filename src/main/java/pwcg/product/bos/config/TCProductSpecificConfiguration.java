@@ -2,7 +2,7 @@
 
 import pwcg.core.utils.RandomNumberGenerator;
 import pwcg.mission.flight.FlightTypes;
-import pwcg.mission.ground.BattleSize;
+import pwcg.mission.ground.builder.BattleSize;
 
 public class TCProductSpecificConfiguration
 {

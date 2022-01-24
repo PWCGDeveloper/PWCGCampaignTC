@@ -31,33 +31,37 @@ public class ArmoredAssaultRouteBuilder
     public Map<Integer, List<Coordinate>> buildAssaultRoutesForArmor(List<ITankPlatoon> platoons) throws PWCGException
     {
         List<ITankPlatoon> assaultingPlatoons = getAssaultingCompanies(platoons);
-        int numTankPlatoons = assaultingPlatoons.size();
-        
-        List<Coordinate> startPositions = getStartPositions(numTankPlatoons);
-        List<Coordinate> firstTargetPositions = getFirstTargetPositions(numTankPlatoons);
-        List<Coordinate> secondTargetPositions = getSecondTargetPositions(numTankPlatoons);
-        List<Coordinate> objectivePositions = getObjectiveTargetPositions(numTankPlatoons, startPositions.get(0));
-
-        for(int i = 0; i < numTankPlatoons; ++i)
+        if (!assaultingPlatoons.isEmpty())
         {
-            List<Coordinate> assaultRoute = new ArrayList<>();
-            assaultRoute.add(startPositions.get(i));
-            assaultRoute.add(firstTargetPositions.get(i));
-            assaultRoute.add(secondTargetPositions.get(i));
-            assaultRoute.add(objectivePositions.get(i));
-            
-            assaultRoutes.put(assaultingPlatoons.get(i).getIndex(),  assaultRoute);
+            int numTankPlatoons = assaultingPlatoons.size();
+
+            List<Coordinate> startPositions = getStartPositions(numTankPlatoons);
+            List<Coordinate> firstTargetPositions = getFirstTargetPositions(numTankPlatoons);
+            List<Coordinate> secondTargetPositions = getSecondTargetPositions(numTankPlatoons);
+            List<Coordinate> objectivePositions = getObjectiveTargetPositions(numTankPlatoons, startPositions.get(0));
+
+            for (int i = 0; i < numTankPlatoons; ++i)
+            {
+                List<Coordinate> assaultRoute = new ArrayList<>();
+                assaultRoute.add(startPositions.get(i));
+                assaultRoute.add(firstTargetPositions.get(i));
+                assaultRoute.add(secondTargetPositions.get(i));
+                assaultRoute.add(objectivePositions.get(i));
+
+                assaultRoutes.put(assaultingPlatoons.get(i).getIndex(), assaultRoute);
+            }
+
         }
-        
+
         return assaultRoutes;
     }
 
     private List<ITankPlatoon> getAssaultingCompanies(List<ITankPlatoon> platoons)
     {
         List<ITankPlatoon> assaultingPlatoons = new ArrayList<>();
-        for(ITankPlatoon platoon : platoons)
+        for (ITankPlatoon platoon : platoons)
         {
-            if(platoon.getPlatoonInformation().getCountry().getSide() == assaultingSide)
+            if (platoon.getPlatoonInformation().getCountry().getSide() == assaultingSide)
             {
                 assaultingPlatoons.add(platoon);
             }
@@ -67,10 +71,9 @@ public class ArmoredAssaultRouteBuilder
 
     private List<Coordinate> getStartPositions(int numTankPlatoons) throws PWCGException
     {
-        ArmoredAssaultTargetFinder targetFinderInfantry = new ArmoredAssaultTargetFinder(
-                mission, assaultFixedUnitCollection, assaultingSide, GroundUnitType.ANTI_TANK_UNIT);
-        
-        List<Coordinate> startPositionsFriendlyAT = targetFinderInfantry.findInitialTargetForTankPlatoon(numTankPlatoons);        
+        ArmoredAssaultTargetFinder targetFinderInfantry = new ArmoredAssaultTargetFinder(mission, assaultFixedUnitCollection, GroundUnitType.ANTI_TANK_UNIT);
+
+        List<Coordinate> startPositionsFriendlyAT = targetFinderInfantry.findInitialTargetForTankPlatoon(numTankPlatoons);
         List<Coordinate> startPositions = moveStartPositionForwardFromAT(startPositionsFriendlyAT);
         return startPositions;
     }
@@ -78,7 +81,7 @@ public class ArmoredAssaultRouteBuilder
     private List<Coordinate> moveStartPositionForwardFromAT(List<Coordinate> startPositionsFriendlyAT) throws PWCGException
     {
         List<Coordinate> startPositions = new ArrayList<>();
-        for(Coordinate startPositiontAT : startPositionsFriendlyAT)
+        for (Coordinate startPositiontAT : startPositionsFriendlyAT)
         {
             Coordinate referenceObjectivePosition = mission.getObjective().getPosition().copy();
             double angleToObjective = MathUtils.calcAngle(startPositiontAT, referenceObjectivePosition);
@@ -90,15 +93,15 @@ public class ArmoredAssaultRouteBuilder
 
     private List<Coordinate> getFirstTargetPositions(int numTankPlatoons) throws PWCGException
     {
-        ArmoredAssaultTargetFinder targetFinderInfantry = new ArmoredAssaultTargetFinder(
-                mission, assaultFixedUnitCollection, assaultingSide.getOppositeSide(), GroundUnitType.INFANTRY_UNIT);
-        
+        ArmoredAssaultTargetFinder targetFinderInfantry = new ArmoredAssaultTargetFinder(mission, assaultFixedUnitCollection,
+                GroundUnitType.INFANTRY_UNIT);
+
         List<Coordinate> positionNearFriendlyATGuns = targetFinderInfantry.findInitialTargetForTankPlatoon(numTankPlatoons);
-        
+
         Coordinate referenceObjectivePosition = mission.getObjective().getPosition().copy();
         double angleTowardsObjective = MathUtils.calcAngle(positionNearFriendlyATGuns.get(0), referenceObjectivePosition);
         List<Coordinate> startPositions = new ArrayList<>();
-        for(Coordinate positionNearFriendlyATGun : positionNearFriendlyATGuns)
+        for (Coordinate positionNearFriendlyATGun : positionNearFriendlyATGuns)
         {
             Coordinate startPosition = MathUtils.calcNextCoord(positionNearFriendlyATGun, angleTowardsObjective, 50);
             startPositions.add(startPosition);
@@ -109,9 +112,9 @@ public class ArmoredAssaultRouteBuilder
 
     private List<Coordinate> getSecondTargetPositions(int numTankPlatoons) throws PWCGException
     {
-        ArmoredAssaultTargetFinder targetFinderInfantry = new ArmoredAssaultTargetFinder(
-                mission, assaultFixedUnitCollection, assaultingSide, GroundUnitType.ANTI_TANK_UNIT);
-        
+        ArmoredAssaultTargetFinder targetFinderInfantry = new ArmoredAssaultTargetFinder(mission, assaultFixedUnitCollection, 
+                GroundUnitType.ANTI_TANK_UNIT);
+
         List<Coordinate> targetPositions = targetFinderInfantry.findInitialTargetForTankPlatoon(numTankPlatoons);
         return targetPositions;
     }
@@ -126,12 +129,12 @@ public class ArmoredAssaultRouteBuilder
         double objectiveSpreadInMeters = (numTankPlatoons * 200 / 2);
         double angleLeftOfObjective = MathUtils.adjustAngle(angleBeyondObjective, 270);
         double angleRightOfObjective = MathUtils.adjustAngle(angleBeyondObjective, 90);
-        
+
         List<Coordinate> objectivePositions = new ArrayList<>();
         Coordinate firstObjectivePosition = MathUtils.calcNextCoord(referenceObjectivePosition, angleLeftOfObjective, objectiveSpreadInMeters);
         objectivePositions.add(firstObjectivePosition);
-        
-        for(int i = 1; i < numTankPlatoons; ++i)
+
+        for (int i = 1; i < numTankPlatoons; ++i)
         {
             Coordinate nextObjectivePosition = MathUtils.calcNextCoord(firstObjectivePosition, angleRightOfObjective, (objeciveSpacing * i));
             objectivePositions.add(nextObjectivePosition);

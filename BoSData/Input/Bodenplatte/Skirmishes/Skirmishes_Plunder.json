@@ -16,19 +16,9 @@
 			"stopDate": "19450323",
 			"iconicFlightTypes": [
 				{
-					"side": "AXIS",
-					"flightType": "GROUND_ATTACK",
-					"maxForcedFlightTypes": 1
-				},
-								{
 					"side": "ALLIED",
 					"flightType": "GROUND_ATTACK",
-					"maxForcedFlightTypes": 1
-				},
-				{
-					"side": "ALLIED",
-					"flightType": "LOW_ALT_CAP",
-					"maxForcedFlightTypes": 1
+					"maxForcedFlightTypes": 2
 				}
 			],
 			"profileType": "SKIRMISH_PROFILE_INVASION",
@@ -51,19 +41,9 @@
 			"stopDate": "19450323",
 			"iconicFlightTypes": [
 				{
-					"side": "AXIS",
-					"flightType": "GROUND_ATTACK",
-					"maxForcedFlightTypes": 1
-				},
-								{
 					"side": "ALLIED",
 					"flightType": "GROUND_ATTACK",
-					"maxForcedFlightTypes": 1
-				},
-				{
-					"side": "ALLIED",
-					"flightType": "LOW_ALT_CAP",
-					"maxForcedFlightTypes": 1
+					"maxForcedFlightTypes": 2
 				}
 			],
 			"profileType": "SKIRMISH_PROFILE_INVASION",
@@ -86,19 +66,9 @@
 			"stopDate": "19450323",
 			"iconicFlightTypes": [
 				{
-					"side": "AXIS",
-					"flightType": "GROUND_ATTACK",
-					"maxForcedFlightTypes": 1
-				},
-								{
 					"side": "ALLIED",
 					"flightType": "GROUND_ATTACK",
-					"maxForcedFlightTypes": 1
-				},
-				{
-					"side": "ALLIED",
-					"flightType": "LOW_ALT_CAP",
-					"maxForcedFlightTypes": 1
+					"maxForcedFlightTypes": 2
 				}
 			],
 			"profileType": "SKIRMISH_PROFILE_INVASION",

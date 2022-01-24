@@ -118,9 +118,7 @@ public class GroundUnitCollection
 
     private void createCheckZone() throws PWCGException
     {
-        
         int groundUnitSpawnDistance = campaign.getCampaignConfigManager().getIntConfigParam(ConfigItemKeys.GroundUnitSpawnDistanceKey);
-
         missionBeginUnit = new MissionBeginSelfDeactivatingCheckZone("Check Zone " + groundUnitName, getPosition(), groundUnitSpawnDistance);
         missionBeginUnit.setCheckZoneCoalitions(groundUnitCollectionData.getTriggerCoalitions());
     }

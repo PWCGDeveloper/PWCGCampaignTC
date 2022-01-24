@@ -9,9 +9,9 @@ import pwcg.campaign.tank.payload.TankPayloadElement;
 import pwcg.core.exception.PWCGException;
 import pwcg.mission.platoon.ITankPlatoon;
 
-public class Sdkfz184 extends TankPayload implements ITankPayload
+public class Sdkfz10Payload extends TankPayload implements ITankPayload
 {
-    public Sdkfz184(TankTypeInformation tankType, Date date)
+    public Sdkfz10Payload(TankTypeInformation tankType, Date date)
     {
         super(tankType, date);
     }
@@ -24,7 +24,7 @@ public class Sdkfz184 extends TankPayload implements ITankPayload
     @Override
     public ITankPayload copy()
     {
-        Sdkfz184 clone = new Sdkfz184(getTankType(), getDate());
+        Sdkfz10Payload clone = new Sdkfz10Payload(getTankType(), getDate());
         return super.copy(clone);
     }
 

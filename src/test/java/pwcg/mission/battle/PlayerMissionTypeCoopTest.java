@@ -49,7 +49,7 @@ public class PlayerMissionTypeCoopTest
         	Campaign campaign = campaigns.get(profile);
             PWCGContext.getInstance().setCampaign(campaign);
             Mission mission = generateMission(campaign, PlatoonMissionType.ASSAULT);
-            verifyEnemyFlights(campaign, mission);
+            verifyEnemyPlatoons(campaign, mission);
         }
     }
  
@@ -61,13 +61,13 @@ public class PlayerMissionTypeCoopTest
         return mission;
     }
     
-    private int verifyEnemyFlights(Campaign campaign,Mission mission) throws PWCGException 
+    private int verifyEnemyPlatoons(Campaign campaign,Mission mission) throws PWCGException 
     {
-        Side enemySide = mission.getPlatoons().getPlayerUnits().get(0).getCompany().determineEnemySide();
+        Side enemySide = mission.getPlatoons().getPlayerUnits().get(0).getCompany().getCountry().getSide().getOppositeSide();
         
         boolean enemyUnitFound = false;
         int numEnemyFlights = 0;
-        for (ITankPlatoon unit: mission.getPlatoons().getAiUnits())
+        for (ITankPlatoon unit: mission.getPlatoons().getPlatoons())
         {
             if(unit.getCompany().determineSide() == enemySide)
             {

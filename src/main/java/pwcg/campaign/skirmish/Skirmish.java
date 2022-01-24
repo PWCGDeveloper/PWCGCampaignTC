@@ -190,6 +190,22 @@ public class Skirmish
         return TargetType.TARGET_NONE;
     }
 
+    public List<FlightTypes> getIconicFlightTypesForSide(Side side) throws PWCGException
+    {
+        List<FlightTypes> iconicFlightTypesForSide = new ArrayList<>();
+        for (SkirmishIconicFlights iconicFlightType : iconicFlightTypes)
+        {
+            if (iconicFlightType.getSide() == side)
+            {
+                for (int i = 0; i <  iconicFlightType.getMaxForcedFlightTypes(); ++i)
+                {
+                    iconicFlightTypesForSide.add(iconicFlightType.getFlightType());
+                }
+            }
+        }
+        return iconicFlightTypesForSide;
+    }
+
     private SkirmishProfileAirAssociation getSkirmishProfileAirAssociationForSide(Side side)
     {
         if (attackerAir == side)

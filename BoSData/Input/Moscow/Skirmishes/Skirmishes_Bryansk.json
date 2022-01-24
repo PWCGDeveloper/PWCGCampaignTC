@@ -18,7 +18,7 @@
 				{
 					"side": "AXIS",
 					"flightType": "DIVE_BOMB",
-					"maxForcedFlightTypes": 1
+					"maxForcedFlightTypes": 2
 				}
 			],
 			"profileType": "SKIRMISH_PROFILE_ANTI_RAIL",
@@ -43,7 +43,7 @@
 				{
 					"side": "AXIS",
 					"flightType": "DIVE_BOMB",
-					"maxForcedFlightTypes": 1
+					"maxForcedFlightTypes": 2
 				}
 			],
 			"profileType": "SKIRMISH_PROFILE_ANTI_INFANTRY",
@@ -68,7 +68,7 @@
 				{
 					"side": "AXIS",
 					"flightType": "DIVE_BOMB",
-					"maxForcedFlightTypes": 1
+					"maxForcedFlightTypes": 2
 				}
 			],
 			"profileType": "SKIRMISH_PROFILE_ANTI_INFANTRY",
@@ -93,7 +93,7 @@
 				{
 					"side": "AXIS",
 					"flightType": "DIVE_BOMB",
-					"maxForcedFlightTypes": 1
+					"maxForcedFlightTypes": 2
 				}
 			],
 			"profileType": "SKIRMISH_PROFILE_ANTI_RAIL",
@@ -118,7 +118,7 @@
 				{
 					"side": "AXIS",
 					"flightType": "DIVE_BOMB",
-					"maxForcedFlightTypes": 1
+					"maxForcedFlightTypes": 2
 				}
 			],
 			"profileType": "SKIRMISH_PROFILE_ANTI_INFANTRY",

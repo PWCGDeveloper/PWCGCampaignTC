@@ -1,4 +1,4 @@
-package pwcg.mission;
+package pwcg.mission.ground;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,8 +7,9 @@ import java.util.Map;
 
 import pwcg.campaign.Campaign;
 import pwcg.core.exception.PWCGException;
+import pwcg.mission.Mission;
+import pwcg.mission.MissionUnitFinalizer;
 import pwcg.mission.platoon.ITankPlatoon;
-import pwcg.mission.platoon.PlayerTankPlatoon;
 import pwcg.mission.platoon.tank.TankMcu;
 
 public class MissionPlatoons
@@ -17,7 +18,7 @@ public class MissionPlatoons
     private Mission mission;
     private Campaign campaign;
 
-    MissionPlatoons(Mission mission)
+    public MissionPlatoons(Mission mission)
     {
         this.mission = mission;
         this.campaign = mission.getCampaign();
@@ -58,11 +59,6 @@ public class MissionPlatoons
             }
         }
         return playerPlatoons;
-    }
-
-    public List<PlayerTankPlatoon> getAiUnits()
-    {
-        return new ArrayList<>();
     }
 
     public ITankPlatoon getReferencePlayerUnit() throws PWCGException

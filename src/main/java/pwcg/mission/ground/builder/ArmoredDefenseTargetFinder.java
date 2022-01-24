@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import pwcg.campaign.api.Side;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.utils.MathUtils;
@@ -19,20 +18,18 @@ public class ArmoredDefenseTargetFinder
     private GroundUnitCollection assaultFixedUnitCollection;
     private Mission mission;
     private GroundUnitType groundUnitType;
-    private Side infantryTargetSide;
     private List<Coordinate> initialTargetPositions = new ArrayList<>();;
 
-    public ArmoredDefenseTargetFinder(Mission mission, GroundUnitCollection assaultFixedUnitCollection, Side side, GroundUnitType groundUnitType)
+    public ArmoredDefenseTargetFinder(Mission mission, GroundUnitCollection assaultFixedUnitCollection, GroundUnitType groundUnitType)
     {
         this.mission = mission;
         this.groundUnitType = groundUnitType;
         this.assaultFixedUnitCollection = assaultFixedUnitCollection;
-        this.infantryTargetSide = side;
     }
 
     public List<Coordinate> findInitialTargetForTankPlatoon(int numTankPlatoons) throws PWCGException
     {
-        List<IGroundUnit> targetUnitsForSide = assaultFixedUnitCollection.getGroundUnitsByTypeAndSide(groundUnitType, infantryTargetSide);
+        List<IGroundUnit> targetUnitsForSide = assaultFixedUnitCollection.getGroundUnitsByTypeAndSide(groundUnitType, mission.getObjective().getDefendingCountry().getSide());
         addFirstTarget(targetUnitsForSide);
         addNextTargets(targetUnitsForSide, numTankPlatoons);
         return initialTargetPositions;
@@ -69,7 +66,7 @@ public class ArmoredDefenseTargetFinder
             int index = i;
             if (index >= sortedTargetUnitsForSide.size())
             {
-                index = sortedTargetUnitsForSide.size() % i;
+                index = i % sortedTargetUnitsForSide.size();
             }
 
             initialTargetPositions.add(sortedTargetUnitsForSide.get(index).getPosition());

@@ -10,6 +10,7 @@ import pwcg.campaign.context.Country;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.factory.CountryFactory;
 import pwcg.core.exception.PWCGException;
+import pwcg.mission.ground.MissionPlatoonSize;
 
 public class MissionCompanyBuilder
 {
@@ -24,7 +25,7 @@ public class MissionCompanyBuilder
 
         int numAiPlatoons = MissionPlatoonSize.getNumAiPlatoonsForSide(mission, side, playerCompaniesInMission.size());
 
-        MissionAiCompanyBuilder aiCompanyBuilder = new MissionAiCompanyBuilder();
+        MissionAiCompanyBuilder aiCompanyBuilder = new MissionAiCompanyBuilder(mission.getCampaign());
         ICountry country = determineCountry(playerCompaniesInMission, side);
         List <ICompanyMission> aiCompaniesForMission = aiCompanyBuilder.buildAiCompanies(country);
         if (numAiPlatoons > 0)

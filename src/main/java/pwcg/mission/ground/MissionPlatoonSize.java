@@ -1,9 +1,10 @@
-package pwcg.mission;
+package pwcg.mission.ground;
 
 import pwcg.campaign.api.Side;
 import pwcg.core.config.ConfigItemKeys;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.RandomNumberGenerator;
+import pwcg.mission.Mission;
 
 public class MissionPlatoonSize
 {

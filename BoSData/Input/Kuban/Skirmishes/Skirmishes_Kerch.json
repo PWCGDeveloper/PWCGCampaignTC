@@ -17,12 +17,12 @@
 			"iconicFlightTypes": [
 				{
 					"side": "AXIS",
-					"flightType": "DIVE_BOMB",
+					"flightType": "GROUND_ATTACK",
 					"maxForcedFlightTypes": 1
 				},
 				{
 					"side": "ALLIED",
-					"flightType": "LOW_ALT_CAP",
+					"flightType": "LOW_ALT_BOMB",
 					"maxForcedFlightTypes": 1
 				}
 			],
@@ -52,7 +52,7 @@
 				},
 				{
 					"side": "ALLIED",
-					"flightType": "LOW_ALT_CAP",
+					"flightType": "LOW_ALT_BOMB",
 					"maxForcedFlightTypes": 1
 				}
 			],

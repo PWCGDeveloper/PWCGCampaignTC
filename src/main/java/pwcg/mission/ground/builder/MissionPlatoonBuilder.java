@@ -1,4 +1,4 @@
-package pwcg.mission;
+package pwcg.mission.ground.builder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,18 +10,20 @@ import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.location.Orientation;
 import pwcg.core.utils.MathUtils;
+import pwcg.mission.ICompanyMission;
+import pwcg.mission.Mission;
+import pwcg.mission.MissionCompanyBuilder;
 import pwcg.mission.flight.waypoint.WaypointFactory;
-import pwcg.mission.ground.builder.ArmoredAssaultRouteBuilder;
-import pwcg.mission.ground.builder.ArmoredDefenseRouteBuilder;
+import pwcg.mission.ground.MissionPlatoons;
 import pwcg.mission.mcu.McuWaypoint;
-import pwcg.mission.platoon.AiTankPlatoon;
+import pwcg.mission.platoon.AiPlatoon;
 import pwcg.mission.platoon.ITankPlatoon;
 import pwcg.mission.platoon.PlatoonInformation;
 import pwcg.mission.platoon.PlatoonMissionType;
 import pwcg.mission.platoon.PlatoonMissionTypeFactory;
-import pwcg.mission.platoon.PlayerTankPlatoon;
+import pwcg.mission.platoon.PlayerPlatoon;
 
-public class MissionPlatoonBuilder
+public class MissionPlatoonBuilder implements IMissionPlatoonBuilder
 {
     private Mission mission;
     private MissionPlatoons missionPlatoons;
@@ -31,6 +33,7 @@ public class MissionPlatoonBuilder
         this.mission = mission;
     }
 
+    @Override
     public MissionPlatoons createPlatoons() throws PWCGException
     {
         missionPlatoons = new MissionPlatoons(mission);
@@ -121,12 +124,12 @@ public class MissionPlatoonBuilder
         ITankPlatoon tankPlatoon = null;
         if (company.isPlayercompany())
         {
-            tankPlatoon = new PlayerTankPlatoon(platoonInformation);
+            tankPlatoon = new PlayerPlatoon(platoonInformation);
             tankPlatoon.createUnit();
         }
         else
         {
-            tankPlatoon = new AiTankPlatoon(platoonInformation);
+            tankPlatoon = new AiPlatoon(platoonInformation);
             tankPlatoon.createUnit();
         }
 
