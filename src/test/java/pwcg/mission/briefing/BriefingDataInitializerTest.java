@@ -30,7 +30,7 @@ import pwcg.core.utils.DateUtils;
 import pwcg.gui.rofmap.brief.BriefingDataInitializer;
 import pwcg.gui.rofmap.brief.model.BriefingCrewMemberAssignmentData;
 import pwcg.mission.Mission;
-import pwcg.mission.MissionPlatoons;
+import pwcg.mission.ground.MissionPlatoons;
 import pwcg.mission.platoon.ITankPlatoon;
 import pwcg.mission.platoon.PlatoonTanks;
 import pwcg.mission.platoon.tank.TankMcu;

@@ -38,7 +38,6 @@ public class TruckConvoyBuilderTest
         
         Mockito.when(campaign.getCampaignConfigManager()).thenReturn(configManager);
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19430401"));
-        Mockito.when(configManager.getStringConfigParam(ConfigItemKeys.SimpleConfigGroundKey)).thenReturn(ConfigSimple.CONFIG_LEVEL_MED);
         Mockito.when(bridge.getPosition()).thenReturn(new Coordinate (100000, 0, 100000));
         Mockito.when(bridge.getOrientation()).thenReturn(new Orientation (40));
     }
@@ -54,11 +53,11 @@ public class TruckConvoyBuilderTest
             Assertions.assertTrue (groundUnit.getCountry().getCountry() == Country.RUSSIA);
             if (groundUnit.getVehicleClass() == VehicleClass.Truck)
             {
-                Assertions.assertTrue (groundUnit.getVehicles().size() >= 3);
+                Assertions.assertTrue (groundUnit.getVehicles().size() > 0);
             }
             else if (groundUnit.getVehicleClass() == VehicleClass.TruckAAA)
             {
-                Assertions.assertTrue (groundUnit.getVehicles().size() == 2);
+                Assertions.assertTrue (groundUnit.getVehicles().size() > 0);
             }
             else if (groundUnit.getVehicleClass() == VehicleClass.TruckAmmo)
             {

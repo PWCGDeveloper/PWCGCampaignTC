@@ -1,4 +1,4 @@
-package pwcg.mission.flight.crew;
+package pwcg.mission.platoon.crew;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -19,9 +19,9 @@ import pwcg.testutils.CompanyTestProfile;
 
 @ExtendWith(MockitoExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class FlightCrewBuilderTest 
+public class PlatoonCrewBuilderTest 
 {
-    private Campaign campaign;
+    protected Campaign campaign;
 
     @BeforeAll
     public void setupSuite() throws PWCGException

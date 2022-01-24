@@ -38,7 +38,6 @@ public class TrainUnitBuilderTest
         
         Mockito.when(campaign.getCampaignConfigManager()).thenReturn(configManager);
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19430401"));
-        Mockito.when(configManager.getStringConfigParam(ConfigItemKeys.SimpleConfigGroundKey)).thenReturn(ConfigSimple.CONFIG_LEVEL_MED);
         Mockito.when(station.getPosition()).thenReturn(new Coordinate (100000, 0, 100000));
         Mockito.when(station.getOrientation()).thenReturn(new Orientation (40));
     }
