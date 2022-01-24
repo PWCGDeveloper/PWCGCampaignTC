@@ -16,64 +16,22 @@ public class ConfigSimple
     	this.campaign = campaign;
     }
 
-    public void setAirLow() throws PWCGException 
+    public void setPlatoonsLow() throws PWCGException 
     {
-        setParamForSimpleConfigChange(ConfigItemKeys.SimpleConfigAirKey, ConfigSimple.CONFIG_LEVEL_LOW);
-
         setParamForSimpleConfigChange(ConfigItemKeys.AlliedPlatoonsInMissionKey, "3");
         setParamForSimpleConfigChange(ConfigItemKeys.AxisPlatoonsInMissionKey, "2");
-        setParamForSimpleConfigChange(ConfigItemKeys.MaxVirtualEscortedFlightKey, "2");
-
-        setParamForSimpleConfigChange(ConfigItemKeys.PatrolMinimumKey, "2");
-        setParamForSimpleConfigChange(ConfigItemKeys.PatrolAdditionalKey, "2");
-        setParamForSimpleConfigChange(ConfigItemKeys.BombingMinimumKey, "2");
-        setParamForSimpleConfigChange(ConfigItemKeys.BombingAdditionalKey, "2");
-        setParamForSimpleConfigChange(ConfigItemKeys.StrategicBombingMinimumKey, "4");
-        setParamForSimpleConfigChange(ConfigItemKeys.StrategicBombingAdditionalKey, "2");
-        setParamForSimpleConfigChange(ConfigItemKeys.GroundAttackMinimumKey, "2");
-        setParamForSimpleConfigChange(ConfigItemKeys.GroundAttackAdditionalKey, "2");
-        setParamForSimpleConfigChange(ConfigItemKeys.TransportMinimumKey, "1");
-        setParamForSimpleConfigChange(ConfigItemKeys.TransportAdditionalKey, "2");
     }
 
-    public void setAirMed() throws PWCGException 
+    public void setPlatoonsMed() throws PWCGException 
     {
-        setParamForSimpleConfigChange(ConfigItemKeys.SimpleConfigAirKey, ConfigSimple.CONFIG_LEVEL_MED);
-
         setParamForSimpleConfigChange(ConfigItemKeys.AlliedPlatoonsInMissionKey, "6");
         setParamForSimpleConfigChange(ConfigItemKeys.AxisPlatoonsInMissionKey, "3");
-        setParamForSimpleConfigChange(ConfigItemKeys.MaxVirtualEscortedFlightKey, "2");
-
-        setParamForSimpleConfigChange(ConfigItemKeys.PatrolMinimumKey, "2");
-        setParamForSimpleConfigChange(ConfigItemKeys.PatrolAdditionalKey, "2");
-        setParamForSimpleConfigChange(ConfigItemKeys.BombingMinimumKey, "4");
-        setParamForSimpleConfigChange(ConfigItemKeys.BombingAdditionalKey, "3");
-        setParamForSimpleConfigChange(ConfigItemKeys.StrategicBombingMinimumKey, "6");
-        setParamForSimpleConfigChange(ConfigItemKeys.StrategicBombingAdditionalKey, "4");
-        setParamForSimpleConfigChange(ConfigItemKeys.GroundAttackMinimumKey, "2");
-        setParamForSimpleConfigChange(ConfigItemKeys.GroundAttackAdditionalKey, "4");
-        setParamForSimpleConfigChange(ConfigItemKeys.TransportMinimumKey, "1");
-        setParamForSimpleConfigChange(ConfigItemKeys.TransportAdditionalKey, "4");
     }
 
-    public void setAirHigh() throws PWCGException 
+    public void setPlatoonsHigh() throws PWCGException 
     {
-        setParamForSimpleConfigChange(ConfigItemKeys.SimpleConfigAirKey, ConfigSimple.CONFIG_LEVEL_HIGH);
-        
         setParamForSimpleConfigChange(ConfigItemKeys.AlliedPlatoonsInMissionKey, "12");
         setParamForSimpleConfigChange(ConfigItemKeys.AxisPlatoonsInMissionKey, "6");
-        setParamForSimpleConfigChange(ConfigItemKeys.MaxVirtualEscortedFlightKey, "2");
-
-        setParamForSimpleConfigChange(ConfigItemKeys.PatrolMinimumKey, "2");
-        setParamForSimpleConfigChange(ConfigItemKeys.PatrolAdditionalKey, "2");
-        setParamForSimpleConfigChange(ConfigItemKeys.BombingMinimumKey, "4");
-        setParamForSimpleConfigChange(ConfigItemKeys.BombingAdditionalKey, "6");
-        setParamForSimpleConfigChange(ConfigItemKeys.StrategicBombingMinimumKey, "8");
-        setParamForSimpleConfigChange(ConfigItemKeys.StrategicBombingAdditionalKey, "4");
-        setParamForSimpleConfigChange(ConfigItemKeys.GroundAttackMinimumKey, "2");
-        setParamForSimpleConfigChange(ConfigItemKeys.GroundAttackAdditionalKey, "6");
-        setParamForSimpleConfigChange(ConfigItemKeys.TransportMinimumKey, "1");
-        setParamForSimpleConfigChange(ConfigItemKeys.TransportAdditionalKey, "5");
     }
 
     public void setGroundLow() throws PWCGException 
@@ -89,21 +47,6 @@ public class ConfigSimple
     public void setGroundHigh() throws PWCGException 
     {
         setParamForSimpleConfigChange(ConfigItemKeys.SimpleConfigGroundKey, ConfigSimple.CONFIG_LEVEL_HIGH);
-    }
-    
-    public void setAALow() throws PWCGException 
-    {
-        setParamForSimpleConfigChange(ConfigItemKeys.SimpleConfigAAKey, ConfigSimple.CONFIG_LEVEL_LOW);
-    }
-    
-    public void setAAMed() throws PWCGException 
-    {
-        setParamForSimpleConfigChange(ConfigItemKeys.SimpleConfigAAKey, ConfigSimple.CONFIG_LEVEL_MED);
-    }
-    
-    public void setAAHigh() throws PWCGException 
-    {
-        setParamForSimpleConfigChange(ConfigItemKeys.SimpleConfigAAKey, ConfigSimple.CONFIG_LEVEL_HIGH);
     }
 
     public void setCpuAllowanceHigh() throws PWCGException 

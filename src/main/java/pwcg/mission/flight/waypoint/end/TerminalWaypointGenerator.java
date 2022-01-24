@@ -1,6 +1,5 @@
 package pwcg.mission.flight.waypoint.end;
 
-import pwcg.core.config.ConfigItemKeys;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.location.Orientation;
@@ -14,7 +13,7 @@ public class TerminalWaypointGenerator
 {
     public static McuWaypoint createTerminalWaypoint(IFlight flight) throws PWCGException  
     {        
-        int LandingApproachWaypointDistance = flight.getCampaign().getCampaignConfigManager().getIntConfigParam(ConfigItemKeys.LandingApproachWaypointDistanceKey);
+        int LandingApproachWaypointDistance = 10000;
         Coordinate approachCoords = MathUtils.calcNextCoord(flight.getFlightInformation().getHomePosition(), 0, LandingApproachWaypointDistance);
         
         approachCoords.setYPos(1000);

@@ -58,9 +58,7 @@ public class TCMissionAltitudeGenerator implements IMissionAltitudeGenerator
         int altitude = 4000;
 
         try
-        {
-            int RandomAdditionalAltitude = campaign.getCampaignConfigManager().getIntConfigParam(ConfigItemKeys.RandomAdditionalAltitudeKey);
-            
+        {            
             List<Integer> baseAltitudes = new ArrayList<Integer>();        
             baseAltitudes.add(campaign.getCampaignConfigManager().getIntConfigParam(ConfigItemKeys.BaseAltPeriod1Key));
             baseAltitudes.add(campaign.getCampaignConfigManager().getIntConfigParam(ConfigItemKeys.BaseAltPeriod2Key));
@@ -90,8 +88,7 @@ public class TCMissionAltitudeGenerator implements IMissionAltitudeGenerator
                 }
             }
             
-            int randomAlt = RandomNumberGenerator.getRandom(RandomAdditionalAltitude);
-            altitude = baseAlt + randomAlt;
+            altitude = baseAlt;
         }
         catch (Exception e)
         {

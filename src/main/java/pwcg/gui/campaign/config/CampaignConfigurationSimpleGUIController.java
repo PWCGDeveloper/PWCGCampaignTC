@@ -10,9 +10,7 @@ import pwcg.gui.utils.CommonUIActions;
 
 public class CampaignConfigurationSimpleGUIController
 {
-    static public final String ACTION_SET_AIR_DENSITY = "Air Density";
     static public final String ACTION_SET_GROUND_DENSITY = "Ground Density";
-    static public final String ACTION_SET_AA_DENSITY = "AA Density";
     static public final String ACTION_SET_CPU_ALOWANCE_DENSITY = "CPU Allowance";
     static public final String ACTION_SET_STRUCTURE_DENSITY = "Structure";
     
@@ -29,18 +27,10 @@ public class CampaignConfigurationSimpleGUIController
 	{
 		try
 		{
-			if (action.contains(ACTION_SET_AIR_DENSITY))
-			{
-				setAirDensity(action);
-			}
-            else if (action.contains(ACTION_SET_GROUND_DENSITY))
+            if (action.contains(ACTION_SET_GROUND_DENSITY))
             {
                 setGroundDensity(action);
             }
-            else if (action.contains(ACTION_SET_AA_DENSITY))
-            {
-                setAADensity(action);
-            }           
             else if (action.contains(ACTION_SET_CPU_ALOWANCE_DENSITY))
             {
                 setCpuAllowanceDensity(action);
@@ -69,23 +59,6 @@ public class CampaignConfigurationSimpleGUIController
 		}
 	}
 
-    private void setAirDensity(String action) throws PWCGException
-    {
-        ConfigSimple configSetSimpleConfig = new ConfigSimple(campaign);
-        if (action.contains(ConfigSimple.CONFIG_LEVEL_LOW))
-        {					
-        	configSetSimpleConfig.setAirLow();
-        }
-        else if (action.contains(ConfigSimple.CONFIG_LEVEL_MED))
-        {
-            configSetSimpleConfig.setAirMed();
-        }
-        else if (action.contains(ConfigSimple.CONFIG_LEVEL_HIGH))
-        {
-            configSetSimpleConfig.setAirHigh();
-        }
-    }
-
     private void setGroundDensity(String action) throws PWCGException
     {
         ConfigSimple configSetSimpleConfig = new ConfigSimple(campaign);
@@ -100,23 +73,6 @@ public class CampaignConfigurationSimpleGUIController
         else if (action.contains(ConfigSimple.CONFIG_LEVEL_HIGH))
         {
             configSetSimpleConfig.setGroundHigh();
-        }
-    }
-
-    private void setAADensity(String action) throws PWCGException
-    {
-        ConfigSimple configSetSimpleConfig = new ConfigSimple(campaign);
-        if (action.contains(ConfigSimple.CONFIG_LEVEL_LOW))
-        {
-            configSetSimpleConfig.setAALow();
-        }
-        else if (action.contains(ConfigSimple.CONFIG_LEVEL_MED))
-        {
-            configSetSimpleConfig.setAAMed();
-        }
-        else if (action.contains(ConfigSimple.CONFIG_LEVEL_HIGH))
-        {
-            configSetSimpleConfig.setAAHigh();
         }
     }
 

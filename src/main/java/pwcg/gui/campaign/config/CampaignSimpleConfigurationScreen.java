@@ -33,20 +33,11 @@ import pwcg.gui.utils.SpacerPanelFactory;
 public class CampaignSimpleConfigurationScreen extends ImageResizingPanel implements ActionListener
 {
     private static final long serialVersionUID = 1L;
-	private ButtonGroup airButtonGroup = new ButtonGroup();
-	private ButtonModel airLowButtonModel = null;
-	private ButtonModel airMedButtonModel = null;
-	private ButtonModel airHighButtonModel = null;
 
     private ButtonGroup groundButtonGroup = new ButtonGroup();
     private ButtonModel groundLowButtonModel = null;
     private ButtonModel groundMedButtonModel = null;
     private ButtonModel groundHighButtonModel = null;
-
-    private ButtonGroup aaButtonGroup = new ButtonGroup();
-    private ButtonModel aaLowButtonModel = null;
-    private ButtonModel aaMedButtonModel = null;
-    private ButtonModel aaHighButtonModel = null;
 
     private ButtonGroup cpuAllowanceButtonGroup = new ButtonGroup();
     private ButtonModel cpuAllowanceLowButtonModel = null;
@@ -84,21 +75,7 @@ public class CampaignSimpleConfigurationScreen extends ImageResizingPanel implem
 	private void initializeButtons() throws PWCGException 
 	{
 		ConfigManagerCampaign configManager = campaign.getCampaignConfigManager();
-		
-		String currentAirSetting = configManager.getStringConfigParam(ConfigItemKeys.SimpleConfigAirKey);
-		if (currentAirSetting.equals(ConfigSimple.CONFIG_LEVEL_LOW))
-		{
-			airButtonGroup.setSelected(airLowButtonModel, true);
-		}
-		else if (currentAirSetting.equals(ConfigSimple.CONFIG_LEVEL_MED))
-		{
-			airButtonGroup.setSelected(airMedButtonModel, true);
-		}
-		else if (currentAirSetting.equals(ConfigSimple.CONFIG_LEVEL_HIGH))
-		{
-			airButtonGroup.setSelected(airHighButtonModel, true);
-		}
-        
+		        
         String currentGroundSetting = configManager.getStringConfigParam(ConfigItemKeys.SimpleConfigGroundKey);
         if (currentGroundSetting.equals(ConfigSimple.CONFIG_LEVEL_LOW))
         {
@@ -111,20 +88,6 @@ public class CampaignSimpleConfigurationScreen extends ImageResizingPanel implem
         else if (currentGroundSetting.equals(ConfigSimple.CONFIG_LEVEL_HIGH))
         {
             groundButtonGroup.setSelected(groundHighButtonModel, true);
-        }
-        
-        String currentAASetting = configManager.getStringConfigParam(ConfigItemKeys.SimpleConfigAAKey);
-        if (currentAASetting.equals(ConfigSimple.CONFIG_LEVEL_LOW))
-        {
-            aaButtonGroup.setSelected(aaLowButtonModel, true);
-        }
-        else if (currentAASetting.equals(ConfigSimple.CONFIG_LEVEL_MED))
-        {
-            aaButtonGroup.setSelected(aaMedButtonModel, true);
-        }
-        else if (currentAASetting.equals(ConfigSimple.CONFIG_LEVEL_HIGH))
-        {
-            aaButtonGroup.setSelected(aaHighButtonModel, true);
         }
         
         String currentCpuAllowanceSetting = configManager.getStringConfigParam(ConfigItemKeys.SimpleConfigCpuAllowanceKey);
@@ -183,9 +146,7 @@ public class CampaignSimpleConfigurationScreen extends ImageResizingPanel implem
 
 	private JPanel makeConfigControlPanel() throws PWCGException
 	{
-		JPanel airButtonPanel = createAirConfigPanel();
         JPanel groundButtonPanel = createGroundConfigPanel();
-        JPanel aaButtonPanel = createAAConfigPanel();
         JPanel cpuAllowanceButtonPanel = createCpuAllowanceConfigPanel();
         JPanel structureButtonPanel = createStructureConfigPanel();
         
@@ -195,47 +156,12 @@ public class CampaignSimpleConfigurationScreen extends ImageResizingPanel implem
         simpleConfigButtonPanel.setLayout(new GridLayout(0,1));
         simpleConfigButtonPanel.setBorder(PwcgBorderFactory.createStandardDocumentBorder());
 
-		simpleConfigButtonPanel.add(airButtonPanel);
         simpleConfigButtonPanel.add(groundButtonPanel);
-        simpleConfigButtonPanel.add(aaButtonPanel);
         simpleConfigButtonPanel.add(cpuAllowanceButtonPanel);
         simpleConfigButtonPanel.add(structureButtonPanel);
 				
 		return simpleConfigButtonPanel;
 	}
-
-    private JPanel createAirConfigPanel() throws PWCGException
-    {
-        JPanel airButtonPanel = new JPanel(new BorderLayout());
-        airButtonPanel.setOpaque(false);
-
-        airButtonPanel.add(PWCGLabelFactory.makeDummyLabel(), BorderLayout.WEST);
-
-        JPanel airButtonPanelGrid = new JPanel(new GridLayout(0,1));
-        airButtonPanelGrid.setOpaque(false);
-        
-        JLabel airDensityLabel = PWCGLabelFactory.makePaperLabelLarge(CampaignConfigurationSimpleGUIController.ACTION_SET_AIR_DENSITY);
-        airButtonPanelGrid.add(airDensityLabel);
-
-        JRadioButton airLowDensity = PWCGButtonFactory.makeRadioButton("Low", "Low Air Density", "Fewer aircraft for average machines", null, ColorMap.PAPER_FOREGROUND, false, this);       
-        airButtonPanelGrid.add(airLowDensity);
-        airLowButtonModel = airLowDensity.getModel();
-        airButtonGroup.add(airLowDensity);
-
-        JRadioButton airMedDensity = PWCGButtonFactory.makeRadioButton("Med", "Med Air Density", "Medium number of aircraft - requires a pretty good machine", null, ColorMap.PAPER_FOREGROUND, false, this);        
-        airButtonPanelGrid.add(airMedDensity);
-        airMedButtonModel = airMedDensity.getModel();
-        airButtonGroup.add(airMedDensity);
-        
-        JRadioButton airHighDensity = PWCGButtonFactory.makeRadioButton("High", "High Air Density", "High number of aircraft - high end machines only", null, ColorMap.PAPER_FOREGROUND, false, this);       
-        airButtonPanelGrid.add(airHighDensity);
-        airHighButtonModel = airHighDensity.getModel();
-        airButtonGroup.add(airHighDensity);
-                
-        airButtonPanel.add(airButtonPanelGrid, BorderLayout.NORTH);
-
-        return airButtonPanel;
-    }
 
     private JPanel createGroundConfigPanel() throws PWCGException
     {
@@ -268,39 +194,6 @@ public class CampaignSimpleConfigurationScreen extends ImageResizingPanel implem
 		groundButtonPanel.add(groundDensityGrid, BorderLayout.NORTH);
         
         return groundButtonPanel;
-    }
-
-    private JPanel createAAConfigPanel() throws PWCGException
-    {
-        JPanel aaButtonPanel = new JPanel(new BorderLayout());
-        aaButtonPanel.setOpaque(false);
-
-        aaButtonPanel.add(PWCGLabelFactory.makeDummyLabel(), BorderLayout.WEST);
-
-        JPanel aaDensityGrid = new JPanel(new GridLayout(0,1));
-        aaDensityGrid.setOpaque(false);
-        
-        JLabel aaDensityLabel = PWCGLabelFactory.makePaperLabelLarge(CampaignConfigurationSimpleGUIController.ACTION_SET_AA_DENSITY);
-        aaDensityGrid.add(aaDensityLabel);
-
-        JRadioButton lowDensity = PWCGButtonFactory.makeRadioButton("Low", "Low AA Density", "Fewer AA units", null, ColorMap.PAPER_FOREGROUND, false, this);     
-        aaDensityGrid.add(lowDensity);
-        aaLowButtonModel = lowDensity.getModel();
-        aaButtonGroup.add(lowDensity);
-
-        JRadioButton medDensity = PWCGButtonFactory.makeRadioButton("Med", "Med AA Density", "Medium numbers of AA units", null, ColorMap.PAPER_FOREGROUND, false, this);     
-        aaDensityGrid.add(medDensity);
-        aaMedButtonModel = medDensity.getModel();
-        aaButtonGroup.add(medDensity);
-        
-        JRadioButton highDensity = PWCGButtonFactory.makeRadioButton("High", "High AA Density", "Large numbers of AA units", null, ColorMap.PAPER_FOREGROUND, false, this);       
-        aaDensityGrid.add(highDensity);
-        aaHighButtonModel = highDensity.getModel();
-        aaButtonGroup.add(highDensity);
-
-        aaButtonPanel.add(aaDensityGrid, BorderLayout.NORTH);
-        
-        return aaButtonPanel;
     }
     
     private JPanel createCpuAllowanceConfigPanel() throws PWCGException

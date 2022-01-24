@@ -7,9 +7,7 @@ public class ConfigSetSimple
 		ConfigSet configSet = new ConfigSet();
 		configSet.setConfigSetName(ConfigSetKeys.ConfigSetSimple);
 		
-        configSet.addConfigItem(ConfigItemKeys.SimpleConfigAirKey, new ConfigItem(ConfigSimple.CONFIG_LEVEL_LOW));
         configSet.addConfigItem(ConfigItemKeys.SimpleConfigGroundKey, new ConfigItem(ConfigSimple.CONFIG_LEVEL_MED));
-        configSet.addConfigItem(ConfigItemKeys.SimpleConfigAAKey, new ConfigItem(ConfigSimple.CONFIG_LEVEL_MED));
         configSet.addConfigItem(ConfigItemKeys.SimpleConfigCpuAllowanceKey, new ConfigItem(ConfigSimple.CONFIG_LEVEL_MED));
         configSet.addConfigItem(ConfigItemKeys.SimpleConfigStructuresKey, new ConfigItem(ConfigSimple.CONFIG_LEVEL_LOW));
 

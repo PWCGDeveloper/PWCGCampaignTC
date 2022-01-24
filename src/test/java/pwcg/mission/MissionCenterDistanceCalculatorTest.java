@@ -35,9 +35,7 @@ public class MissionCenterDistanceCalculatorTest
         MissionCenterDistanceCalculator missionCenterDistanceCalculator = new MissionCenterDistanceCalculator(campaign);
         int maxDistanceForMissionCenter = missionCenterDistanceCalculator.determineMaxDistanceForMissionCenter();
 
-        int missionCenterMinDistanceFromBase = campaign.getCampaignConfigManager().getIntConfigParam(ConfigItemKeys.MissionBoxMinDistanceFromBaseKey) * 1000;
         int missionCenterMaxDistanceFromBase = campaign.getCampaignConfigManager().getIntConfigParam(ConfigItemKeys.MissionBoxMaxDistanceFromBaseKey) * 1000;
-        assert(maxDistanceForMissionCenter >= missionCenterMinDistanceFromBase);
         assert(maxDistanceForMissionCenter <= missionCenterMaxDistanceFromBase);
     }
 }

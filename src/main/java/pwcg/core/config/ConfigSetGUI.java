@@ -31,7 +31,6 @@ public class ConfigSetGUI
         configSet.addConfigItem(ConfigItemKeys.ScreenSizeAutoKey, new ConfigItem("0"));
         configSet.addConfigItem(ConfigItemKeys.ScreenSizeHeightKey, new ConfigItem("1366"));
         configSet.addConfigItem(ConfigItemKeys.ScreenSizeWidthKey, new ConfigItem("768"));
-        configSet.addConfigItem(ConfigItemKeys.UseGenericUIKey, new ConfigItem("0"));
         configSet.addConfigItem(ConfigItemKeys.ShowFrontLineEditorKey, new ConfigItem("0"));
 		return configSet;
 	}

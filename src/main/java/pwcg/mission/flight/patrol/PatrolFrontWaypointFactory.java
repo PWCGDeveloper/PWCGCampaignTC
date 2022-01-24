@@ -3,8 +3,6 @@ package pwcg.mission.flight.patrol;
 import java.util.ArrayList;
 import java.util.List;
 
-import pwcg.campaign.Campaign;
-import pwcg.core.config.ConfigItemKeys;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.utils.RandomNumberGenerator;
@@ -64,10 +62,7 @@ public class PatrolFrontWaypointFactory
 
     private int calculatePatrolDistance() throws PWCGException
     {
-        Campaign campaign = flight.getCampaign();
-        int patrolDistanceBase = campaign.getCampaignConfigManager().getIntConfigParam(ConfigItemKeys.PatrolDistanceBaseKey) * 1000;
-        int patrolDistanceRandom = campaign.getCampaignConfigManager().getIntConfigParam(ConfigItemKeys.PatrolDistanceRandomKey) * 1000;
-        int patrolDistance = patrolDistanceBase + RandomNumberGenerator.getRandom(patrolDistanceRandom);
+        int patrolDistance = 100000;
         return patrolDistance;
     }
 

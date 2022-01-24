@@ -158,41 +158,9 @@ public class CampaignAdvancedConfigurationScreen extends ImageResizingPanel impl
 		{
 			configSet = configManager.getMergedConfigSet(ConfigSetKeys.ConfigSetFlight);				
 		}
-		else if (action.contains("Mission AI"))
-		{
-			configSet = configManager.getMergedConfigSet(ConfigSetKeys.ConfigSetMissionAi);				
-		}
 		else if (action.contains("Mission Ground Objects"))
 		{
 			configSet = configManager.getMergedConfigSet(ConfigSetKeys.ConfigSetGroundObjects);				
-		}
-        else if (action.contains("Fighter Mission Types"))
-        {
-            configSet = configManager.getMergedConfigSet(ConfigSetKeys.ConfigSetFighterMission);                
-        }
-        else if (action.contains("Ground Attack Mission Types"))
-        {
-            configSet = configManager.getMergedConfigSet(ConfigSetKeys.ConfigSetGroundAttackMission);                
-        }		
-        else if (action.contains("Bomber Mission Types"))
-        {
-            configSet = configManager.getMergedConfigSet(ConfigSetKeys.ConfigSetBomberMission);                
-        }
-        else if (action.contains("Recon Mission Types"))
-        {
-            configSet = configManager.getMergedConfigSet(ConfigSetKeys.ConfigSetReconMission);                
-        }
-        else if (action.contains("Transport Mission Types"))
-        {
-            configSet = configManager.getMergedConfigSet(ConfigSetKeys.ConfigSetTransportMission);                
-        }
-        else if (action.contains("Target Types"))
-        {
-            configSet = configManager.getMergedConfigSet(ConfigSetKeys.ConfigSetTarget);                
-        }
-		else if (action.contains("Aircraft Numbers"))
-		{
-			configSet = configManager.getMergedConfigSet(ConfigSetKeys.ConfigSetAircraftNumbers);				
 		}
 		else if (action.contains("Mission Limits"))
 		{

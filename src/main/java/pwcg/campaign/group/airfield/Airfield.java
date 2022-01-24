@@ -14,8 +14,6 @@ import pwcg.campaign.group.Block;
 import pwcg.campaign.group.FixedPosition;
 import pwcg.campaign.group.GroupManager;
 import pwcg.campaign.group.airfield.staticobject.AirfieldObjects;
-import pwcg.core.config.ConfigItemKeys;
-import pwcg.core.config.ConfigManagerCampaign;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.location.CoordinateBox;
@@ -194,82 +192,6 @@ public class Airfield extends FixedPosition implements Cloneable
             return this;
 
         return runway.getParkingLocation();
-    }
-
-    public PWCGLocation getFakeAirfieldLocation(Mission mission) throws PWCGException
-    {
-        ConfigManagerCampaign configManager = PWCGContext.getInstance().getCampaign().getCampaignConfigManager();
-        if (configManager.getIntConfigParam(ConfigItemKeys.AllowAirStartsKey) == 2)
-        {
-            // The game sometimes seems to go funny if the airfield location is on the runway when
-            // doing cold starts, so move to the parking area instead
-            return getParkingLocation(mission);
-        }
-        else
-        {
-            Runway runway = selectRunway(mission);
-
-            PWCGLocation loc = new PWCGLocation();
-            Coordinate pos = new Coordinate();
-            pos.setXPos((runway.getStartPos().getXPos() + runway.getEndPos().getXPos()) / 2.0);
-            pos.setYPos((runway.getStartPos().getYPos() + runway.getEndPos().getYPos()) / 2.0);
-            pos.setZPos((runway.getStartPos().getZPos() + runway.getEndPos().getZPos()) / 2.0);
-            loc.setPosition(pos);
-            double runwayOrientation = MathUtils.calcAngle(runway.getStartPos(), runway.getEndPos());
-            // BoX seems to like the runway orientation to be an odd integer
-            runwayOrientation = Math.rint(runwayOrientation);
-            if ((runwayOrientation % 2) == 0)
-                runwayOrientation = MathUtils.adjustAngle(runwayOrientation, 1.0);
-            loc.setOrientation(new Orientation(runwayOrientation));
-            return loc;
-        }
-    }
-
-    public String getChart(Mission mission) throws PWCGException
-    {
-        Runway runway = selectRunway(mission);
-
-        if (runway == null)
-            return "";
-
-        if (runway.getParkingLocation() == null)
-            return "";
-
-        String chart;
-
-        chart = "    Chart\n";
-        chart += "    {\n";
-        chart += getChartPoint(mission, 0, runway.getParkingLocation().getPosition());
-        for (Coordinate pos : runway.getTaxiToStart())
-            chart += getChartPoint(mission, 1, pos);
-        chart += getChartPoint(mission, 2, runway.getStartPos());
-        chart += getChartPoint(mission, 2, runway.getEndPos());
-        for (Coordinate pos : runway.getTaxiFromEnd())
-            chart += getChartPoint(mission, 1, pos);
-        chart += getChartPoint(mission, 0, runway.getParkingLocation().getPosition());
-        chart += "    }\n";
-
-        return chart;
-    }
-
-    private String getChartPoint(Mission mission, int ptype, Coordinate point) throws PWCGException
-    {
-        double xpos = point.getXPos() - getFakeAirfieldLocation(mission).getPosition().getXPos();
-        double ypos = point.getZPos() - getFakeAirfieldLocation(mission).getPosition().getZPos();
-
-        double angle = Math.toRadians(-getFakeAirfieldLocation(mission).getOrientation().getyOri());
-
-        double rxpos = Math.cos(angle) * xpos - Math.sin(angle) * ypos;
-        double rypos = Math.cos(angle) * ypos + Math.sin(angle) * xpos;
-
-        String pos;
-        pos = "      Point\n";
-        pos += "      {\n";
-        pos += "        Type = " + ptype + ";\n";
-        pos += "        X = " + Coordinate.format(rxpos) + ";\n";
-        pos += "        Y = " + Coordinate.format(rypos) + ";\n";
-        pos += "      }\n";
-        return pos;
     }
 
     private Runway selectRunway(Mission mission) throws PWCGException
