@@ -8,9 +8,7 @@ import pwcg.campaign.api.Side;
 public enum Coalition
 {
     COALITION_ALLIED(1, Side.ALLIED),
-    COALITION_AXIS(2, Side.AXIS),
-    COALITION_ENTENTE(3, Side.ALLIED),
-    COALITION_CENTRAL(4, Side.AXIS);
+    COALITION_AXIS(2, Side.AXIS);
 
     private int coalitionValue;
     private Side side;

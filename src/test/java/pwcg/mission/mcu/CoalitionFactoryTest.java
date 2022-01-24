@@ -30,13 +30,6 @@ public class CoalitionFactoryTest
 
         coalition = CoalitionFactory.getCoalitionBySide(Side.AXIS);
         assert(coalition == Coalition.COALITION_AXIS);
-
-        
-        coalition = CoalitionFactory.getCoalitionBySide(Side.ALLIED);
-        assert(coalition == Coalition.COALITION_ENTENTE);
-
-        coalition = CoalitionFactory.getCoalitionBySide(Side.AXIS);
-        assert(coalition == Coalition.COALITION_CENTRAL);
     }
     
     @Test
@@ -48,13 +41,6 @@ public class CoalitionFactoryTest
 
         coalition = CoalitionFactory.getFriendlyCoalition(germany);
         assert(coalition == Coalition.COALITION_AXIS);
-
-        
-        coalition = CoalitionFactory.getFriendlyCoalition(britain);
-        assert(coalition == Coalition.COALITION_ENTENTE);
-
-        coalition = CoalitionFactory.getFriendlyCoalition(germany);
-        assert(coalition == Coalition.COALITION_CENTRAL);
     }
     
     @Test
@@ -66,13 +52,6 @@ public class CoalitionFactoryTest
 
         coalition = CoalitionFactory.getEnemyCoalition(germany);
         assert(coalition == Coalition.COALITION_ALLIED);
-
-        
-        coalition = CoalitionFactory.getEnemyCoalition(britain);
-        assert(coalition == Coalition.COALITION_CENTRAL);
-
-        coalition = CoalitionFactory.getEnemyCoalition(germany);
-        assert(coalition == Coalition.COALITION_ENTENTE);
     }
     
     @Test
@@ -82,14 +61,5 @@ public class CoalitionFactoryTest
         List<Coalition> wwiiCoalitions = CoalitionFactory.getAllCoalitions();
         assert(wwiiCoalitions.contains(Coalition.COALITION_AXIS));
         assert(wwiiCoalitions.contains(Coalition.COALITION_ALLIED));
-        assert(!wwiiCoalitions.contains(Coalition.COALITION_CENTRAL));
-        assert(!wwiiCoalitions.contains(Coalition.COALITION_ENTENTE));
-
-        
-        List<Coalition> wwiCoalitions = CoalitionFactory.getAllCoalitions();
-        assert(wwiCoalitions.contains(Coalition.COALITION_CENTRAL));
-        assert(wwiCoalitions.contains(Coalition.COALITION_ENTENTE));
-        assert(!wwiCoalitions.contains(Coalition.COALITION_AXIS));
-        assert(!wwiCoalitions.contains(Coalition.COALITION_ALLIED));
     }
 }
