@@ -8,7 +8,7 @@ import java.util.Map;
 import pwcg.aar.ui.events.model.AAREvent;
 import pwcg.aar.ui.events.model.ClaimDeniedEvent;
 import pwcg.aar.ui.events.model.CrewMemberStatusEvent;
-import pwcg.aar.ui.events.model.PlaneStatusEvent;
+import pwcg.aar.ui.events.model.TankStatusEvent;
 import pwcg.aar.ui.events.model.VictoryEvent;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.CrewMembers;
@@ -19,7 +19,7 @@ public class AARCombatReportPanelData
     private MissionHeader missionHeader;
     private Map<Integer, CrewMember> crewsInMission = new HashMap<>();
     private Map<Integer, CrewMemberStatusEvent> crewMembersLostInMission = new HashMap<>();
-    private Map<Integer, PlaneStatusEvent> companyPlanesLostInMission = new HashMap<>();
+    private Map<Integer, TankStatusEvent> companyPlanesLostInMission = new HashMap<>();
     private List<VictoryEvent> victoriesForCrewMembersInMission = new ArrayList<>();
     private List<ClaimDeniedEvent> claimsDenied = new ArrayList<>();
     
@@ -53,7 +53,7 @@ public class AARCombatReportPanelData
         return crewMembersLostInMission;
     }
 
-    public Map<Integer, PlaneStatusEvent> getCompanyPlanesLostInMission()
+    public Map<Integer, TankStatusEvent> getCompanyPlanesLostInMission()
     {
         return companyPlanesLostInMission;
     }
@@ -89,7 +89,7 @@ public class AARCombatReportPanelData
         
     }
 
-    public void addPlaneLostInMission(PlaneStatusEvent planeLostEvent)
+    public void addPlaneLostInMission(TankStatusEvent planeLostEvent)
     {
         companyPlanesLostInMission.put(planeLostEvent.getPlaneSerialNumber(), planeLostEvent);        
     }

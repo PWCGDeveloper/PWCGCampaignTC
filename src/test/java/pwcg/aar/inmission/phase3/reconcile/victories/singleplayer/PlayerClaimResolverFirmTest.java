@@ -51,7 +51,7 @@ public class PlayerClaimResolverFirmTest
         resultVictory.setVictor(victor);
         
         PlayerVictoryDeclaration playerDeclaration = new PlayerVictoryDeclaration();
-        playerDeclaration.setAircraftType("se5a");
+        playerDeclaration.setTankType("se5a");
 
         PlayerClaimResolverFirm claimResolverFirm = new PlayerClaimResolverFirm();
         String planeDisplayName = claimResolverFirm.getShotDownPlaneDisplayNameAsFirm(player, playerDeclaration, resultVictory);
@@ -76,7 +76,7 @@ public class PlayerClaimResolverFirmTest
         resultVictory.setVictor(victor);
         
         PlayerVictoryDeclaration playerDeclaration = new PlayerVictoryDeclaration();
-        playerDeclaration.setAircraftType("sopcamel");
+        playerDeclaration.setTankType("sopcamel");
 
         PlayerClaimResolverFirm claimResolverFirm = new PlayerClaimResolverFirm();
         String planeDisplayName = claimResolverFirm.getShotDownPlaneDisplayNameAsFirm(player, playerDeclaration, resultVictory);
@@ -101,7 +101,7 @@ public class PlayerClaimResolverFirmTest
         resultVictory.setVictor(victor);
         
         PlayerVictoryDeclaration playerDeclaration = new PlayerVictoryDeclaration();
-        playerDeclaration.setAircraftType("se5a");
+        playerDeclaration.setTankType("se5a");
 
         PlayerClaimResolverFirm claimResolverFirm = new PlayerClaimResolverFirm();
         String planeDisplayName = claimResolverFirm.getShotDownPlaneDisplayNameAsFirm(player, playerDeclaration, resultVictory);
@@ -126,7 +126,7 @@ public class PlayerClaimResolverFirmTest
         resultVictory.setVictor(victor);
         
         PlayerVictoryDeclaration playerDeclaration = new PlayerVictoryDeclaration();
-        playerDeclaration.setAircraftType("notarealplane");
+        playerDeclaration.setTankType("notarealplane");
 
         PlayerClaimResolverFirm claimResolverFirm = new PlayerClaimResolverFirm();
         String planeDisplayName = claimResolverFirm.getShotDownPlaneDisplayNameAsFirm(player, playerDeclaration, resultVictory);
@@ -152,7 +152,7 @@ public class PlayerClaimResolverFirmTest
         resultVictory.setConfirmed(true);
         
         PlayerVictoryDeclaration playerDeclaration = new PlayerVictoryDeclaration();
-        playerDeclaration.setAircraftType("se5a");
+        playerDeclaration.setTankType("se5a");
 
         PlayerClaimResolverFirm claimResolverFirm = new PlayerClaimResolverFirm();
         String planeDisplayName = claimResolverFirm.getShotDownPlaneDisplayNameAsFirm(player, playerDeclaration, resultVictory);
@@ -178,7 +178,7 @@ public class PlayerClaimResolverFirmTest
         resultVictory.setVictor(victor);
         
         PlayerVictoryDeclaration playerDeclaration = new PlayerVictoryDeclaration();
-        playerDeclaration.setAircraftType("se5a");
+        playerDeclaration.setTankType("se5a");
 
         PlayerClaimResolverFirm claimResolverFirm = new PlayerClaimResolverFirm();
         String planeDisplayName = claimResolverFirm.getShotDownPlaneDisplayNameAsFirm(player, playerDeclaration, resultVictory);

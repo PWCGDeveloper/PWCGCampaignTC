@@ -80,9 +80,9 @@ public class AiDeclarationResolutionRandomTest
         createVictory(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1001, UnknownVictoryAssignments.UNKNOWN_ASSIGNMENT);
         createVictory(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1002, UnknownVictoryAssignments.RANDOM_ASSIGNMENT);
         
-        Mockito.when(victorySorter.getFirmAirVictories()).thenReturn(emptyList);
-        Mockito.when(victorySorter.getFirmBalloonVictories()).thenReturn(emptyList);
-        Mockito.when(victorySorter.getFuzzyAirVictories()).thenReturn(emptyList);
+        Mockito.when(victorySorter.getFirmTankVictories()).thenReturn(emptyList);
+        Mockito.when(victorySorter.getFirmPlaneVictories()).thenReturn(emptyList);
+        Mockito.when(victorySorter.getFuzzyTankVictories()).thenReturn(emptyList);
         Mockito.when(victorySorter.getAllUnconfirmed()).thenReturn(randomVictories);
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420801"));
 

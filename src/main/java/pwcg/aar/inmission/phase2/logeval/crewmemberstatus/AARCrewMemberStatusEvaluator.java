@@ -29,26 +29,32 @@ public class AARCrewMemberStatusEvaluator
         this.logEventData = logEventData;
         this.aarVehicleBuilder = aarVehicleBuilder;
 
-        crewMemberStatusDeadEvaluator = new AARCrewMemberStatusDeadEvaluator(campaign, destroyedStatusEvaluator);
+        crewMemberStatusDeadEvaluator = new AARCrewMemberStatusDeadEvaluator(destroyedStatusEvaluator);
         crewMemberStatusWoundedEvaluator = new AARCrewMemberStatusWoundedEvaluator();
     }
 
     public void determineFateOfCrewsInMission () throws PWCGException 
     {        
-        for (LogTank resultPlane : aarVehicleBuilder.getLogTanks().values())
-        {            
-            LogCrewMember resultCrewmember = resultPlane.getLogCrewMember();
-            determineCrewMemberStatus(resultPlane, resultCrewmember);
+        for (LogTank resultTank : aarVehicleBuilder.getLogTanks().values())
+        {
+            if (resultTank.isEquippedTank())
+            {
+                LogCrewMember resultCrewmember = resultTank.getLogCrewMember();
+                if (resultCrewmember.getSerialNumber() < SerialNumber.NO_SERIAL_NUMBER)
+                {
+                    determineCrewMemberStatus(resultTank, resultCrewmember);
+                }
+            }
         }
     }
 
 
     private void determineCrewMemberStatus(
-                    LogTank resultPlane,
+                    LogTank resultTank,
                     LogCrewMember resultCrewmember) throws PWCGException
     {
         setCrewMemberWounded(resultCrewmember);
-        setCrewMemberDead(resultPlane, resultCrewmember);
+        setCrewMemberDead(resultTank, resultCrewmember);
         adjustForPlayer(resultCrewmember);
     }
 
@@ -75,9 +81,8 @@ public class AARCrewMemberStatusEvaluator
         }
     }
 
-    private void setCrewMemberDead(LogTank resultPlane, LogCrewMember resultCrewmember) throws PWCGException 
+    private void setCrewMemberDead(LogTank resultTank, LogCrewMember resultCrewmember) throws PWCGException 
     {        
-        int oddsOfDeathDueToAiStupidity = 10;
         IAType3 destroyedEventForPlane = logEventData.getDestroyedEventForPlaneByBot(resultCrewmember.getBotId());
         if (destroyedEventForPlane == null)
         {
@@ -85,10 +90,8 @@ public class AARCrewMemberStatusEvaluator
         }
         
         crewMemberStatusDeadEvaluator.initialize(
-                        resultPlane.getLandAt(), 
                         resultCrewmember,
-                        destroyedEventForPlane, 
-                        oddsOfDeathDueToAiStupidity);
+                        destroyedEventForPlane);
 
         boolean isDead = crewMemberStatusDeadEvaluator.isCrewMemberDead();
         if (isDead)

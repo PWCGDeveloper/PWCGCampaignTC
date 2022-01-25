@@ -9,7 +9,7 @@ import javax.swing.JTabbedPane;
 
 import pwcg.aar.AARCoordinator;
 import pwcg.aar.ui.display.model.AAREquipmentLossPanelData;
-import pwcg.aar.ui.events.model.PlaneStatusEvent;
+import pwcg.aar.ui.events.model.TankStatusEvent;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.core.exception.PWCGException;
@@ -77,7 +77,7 @@ public class AAREquipmentChangePanel extends AARDocumentPanel
 	{
 	    AAREquipmentLossPanelData equipmentLossPanelData = aarCoordinator.getAarContext().getUiDebriefData().getEquipmentLossPanelData();
         HashMap<String, CampaignReportEquipmentStatusGUI> equipmentLostGuiList = new HashMap<>();
-        for (PlaneStatusEvent planeStatusEvent : equipmentLossPanelData.getEquipmentLost().values())
+        for (TankStatusEvent planeStatusEvent : equipmentLossPanelData.getEquipmentLost().values())
 		{
             CrewMember referencePlayer = campaign.findReferencePlayer();
             if (planeStatusEvent.getCompanyId() == referencePlayer.getCompanyId())

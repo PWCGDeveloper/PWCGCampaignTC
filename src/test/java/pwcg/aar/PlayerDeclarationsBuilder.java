@@ -18,10 +18,10 @@ public class PlayerDeclarationsBuilder
         Map<Integer, PlayerDeclarations> playerDeclarations = new HashMap<>();
         PlayerDeclarations playerDeclarationSet = new PlayerDeclarations();
         PlayerVictoryDeclaration victoryDeclaration1 = new PlayerVictoryDeclaration();
-        victoryDeclaration1.setAircraftType("yak1s69");
+        victoryDeclaration1.setTankType("yak1s69");
 
         PlayerVictoryDeclaration victoryDeclaration2 = new PlayerVictoryDeclaration();
-        victoryDeclaration2.setAircraftType("il2m41");
+        victoryDeclaration2.setTankType("il2m41");
         
         playerDeclarationSet.addDeclaration(victoryDeclaration1);
         playerDeclarationSet.addDeclaration(victoryDeclaration2);

@@ -28,7 +28,7 @@ public class BriefingMapFlightMapper
         Mission mission = briefingMissionHandler.getMission();
         mapPanel.clearVirtualPoints();
 
-        for (ITankPlatoon playerPlatoon : mission.getPlatoons().getPlayerUnits())
+        for (ITankPlatoon playerPlatoon : mission.getPlatoons().getPlayerPlatoons())
         {
             mapPanel.makeMapPanelVirtualPoints(playerPlatoon);
         }

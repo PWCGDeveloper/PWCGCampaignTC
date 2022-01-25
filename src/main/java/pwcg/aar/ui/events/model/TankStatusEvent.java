@@ -12,19 +12,19 @@ import pwcg.campaign.tank.EquippedTank;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 
-public class PlaneStatusEvent extends AARCrewMemberEvent
+public class TankStatusEvent extends AARCrewMemberEvent
 {
     private int crewMemberSerialNumber;
     private int tankSerialNumber;
     private String companyName;
-	private int planeStatus;
+	private int tankStatus;
 	
-    public PlaneStatusEvent(Campaign campaign, LogTank lostPlane, int planeStatus, boolean isNewsWorthy)
+    public TankStatusEvent(Campaign campaign, LogTank lostPlane, int planeStatus, boolean isNewsWorthy)
     {
         super(campaign, lostPlane.getCompanyId(), lostPlane.getCrewMemberSerialNumber(), campaign.getDate(), isNewsWorthy);
         this.crewMemberSerialNumber = lostPlane.getCrewMemberSerialNumber();
         this.tankSerialNumber = lostPlane.getTankSerialNumber();
-        this.planeStatus = planeStatus;
+        this.tankStatus = planeStatus;
         
         try
         {
@@ -42,55 +42,55 @@ public class PlaneStatusEvent extends AARCrewMemberEvent
         }
     }
 
-    public String getPlaneLostText(Campaign campaign) throws PWCGException
+    public String getTankLostText(Campaign campaign) throws PWCGException
     {
         CampaignEquipmentManager campaignEquipmentManager = campaign.getEquipmentManager();
-        EquippedTank shotDownPlane = campaignEquipmentManager.destroyTank(tankSerialNumber, campaign.getDate());
+        EquippedTank destroyedTank = campaignEquipmentManager.destroyTank(tankSerialNumber, campaign.getDate());
 
         CampaignPersonnelManager campaignPersonnelManager = campaign.getPersonnelManager();
-        CrewMember shotDownCrewMember = campaignPersonnelManager.getAnyCampaignMember(super.getCrewMemberSerialNumber());
+        CrewMember lostCrewMember = campaignPersonnelManager.getAnyCampaignMember(super.getCrewMemberSerialNumber());
 
         String prettyDate = DateUtils.getDateStringPretty(campaign.getDate());
         String planeEventText = 
-                "A " + shotDownPlane.getDisplayName() +
+                "A " + destroyedTank.getDisplayName() +
                 ",  serial number " + tankSerialNumber + 
-                ",  operated by " + shotDownCrewMember.getNameAndRank() + 
+                ",  operated by " + lostCrewMember.getNameAndRank() + 
                 " has been lost in combat on " + prettyDate + ".\n";    ;                
 
         return planeEventText;
     }
 
-    public String getPlaneAddedToDepotText(Campaign campaign) throws PWCGException
+    public String getTankAddedToDepotText(Campaign campaign) throws PWCGException
     {
         CampaignEquipmentManager campaignEquipmentManager = campaign.getEquipmentManager();
-        EquippedTank shotDownPlane = campaignEquipmentManager.destroyTank(tankSerialNumber, campaign.getDate());
+        EquippedTank destroyedTank = campaignEquipmentManager.destroyTank(tankSerialNumber, campaign.getDate());
 
         String prettyDate = DateUtils.getDateStringPretty(campaign.getDate());
         String planeEventText = 
-                "A " + shotDownPlane.getDisplayName() +
+                "A " + destroyedTank.getDisplayName() +
                 ",  serial number " + tankSerialNumber + 
                 " has been provided to the depot for distribution to front line units on " + prettyDate + ".\n";               
 
         return planeEventText;
     }
 
-    public String getPlaneWithdrawnFromServiceText(Campaign campaign) throws PWCGException
+    public String getTankWithdrawnFromServiceText(Campaign campaign) throws PWCGException
     {
         CampaignEquipmentManager campaignEquipmentManager = campaign.getEquipmentManager();
-        EquippedTank shotDownPlane = campaignEquipmentManager.destroyTank(tankSerialNumber, campaign.getDate());
+        EquippedTank destroyedTank = campaignEquipmentManager.destroyTank(tankSerialNumber, campaign.getDate());
 
         String prettyDate = DateUtils.getDateStringPretty(campaign.getDate());
         String planeEventText = 
-                "A " + shotDownPlane.getDisplayName() +
+                "A " + destroyedTank.getDisplayName() +
                 ",  serial number " + tankSerialNumber + 
                 " has been withdrawn from service on " + prettyDate + ".\n";                
 
         return planeEventText;
     }
 
-    public int getPlaneStatus()
+    public int getTankStatus()
     {
-        return planeStatus;
+        return tankStatus;
     }
 
     public int getPlaneSerialNumber()

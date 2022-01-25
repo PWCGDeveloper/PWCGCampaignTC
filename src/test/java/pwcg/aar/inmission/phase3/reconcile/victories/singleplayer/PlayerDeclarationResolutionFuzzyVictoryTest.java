@@ -82,8 +82,8 @@ public class PlayerDeclarationResolutionFuzzyVictoryTest
         players = new ArrayList<>();
         players.add(player);
         
-        Mockito.when(victorySorter.getFuzzyAirVictories()).thenReturn(fuzzyVictories);
-        Mockito.when(victorySorter.getFirmAirVictories()).thenReturn(emptyList);
+        Mockito.when(victorySorter.getFuzzyTankVictories()).thenReturn(fuzzyVictories);
+        Mockito.when(victorySorter.getFirmTankVictories()).thenReturn(emptyList);
 
         Mockito.when(personnelManager.getAnyCampaignMember(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER)).thenReturn(player);
 

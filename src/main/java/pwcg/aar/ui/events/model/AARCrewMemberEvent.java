@@ -7,6 +7,7 @@ import pwcg.campaign.company.Company;
 import pwcg.campaign.company.CompanyManager;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.crewmember.CrewMember;
+import pwcg.campaign.crewmember.SerialNumber;
 
 public class AARCrewMemberEvent extends AAREvent
 {
@@ -25,17 +26,20 @@ public class AARCrewMemberEvent extends AAREvent
         
         try
         {
-            CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
-            Company company = companyManager.getCompany(companyId);
-            if (company != null)
+            if (crewMemberSerialNumber > SerialNumber.NO_SERIAL_NUMBER)
             {
-                this.companyName = company.determineDisplayName(date);
-            }
+                CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
+                Company company = companyManager.getCompany(companyId);
+                if (company != null)
+                {
+                    this.companyName = company.determineDisplayName(date);
+                }
             
-            CrewMember crewMember = campaign.getPersonnelManager().getAnyCampaignMember(crewMemberSerialNumber);
-            if (crewMember != null)
-            {
-                this.crewMemberName = crewMember.getNameAndRank();
+                CrewMember crewMember = campaign.getPersonnelManager().getAnyCampaignMember(crewMemberSerialNumber);
+                if (crewMember != null)
+                {
+                    this.crewMemberName = crewMember.getNameAndRank();
+                }
             }
         }
         catch (Exception e)

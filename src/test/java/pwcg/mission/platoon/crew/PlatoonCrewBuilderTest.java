@@ -50,7 +50,7 @@ public class PlatoonCrewBuilderTest
         for (CrewMember player : participatingPlayers.getAllParticipatingPlayers())
         {
             boolean playerFound = false;
-            for (ITankPlatoon unit : mission.getPlatoons().getPlayerUnits())
+            for (ITankPlatoon unit : mission.getPlatoons().getPlayerPlatoons())
             {
                 for(TankMcu tank : unit.getTanks())
                 {

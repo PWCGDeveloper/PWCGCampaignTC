@@ -88,9 +88,9 @@ public class AiDeclarationResolutionFirmTest
         players = new ArrayList<>();
         players.add(player);
 
-        Mockito.when(victorySorter.getFirmAirVictories()).thenReturn(firmVictories);
-        Mockito.when(victorySorter.getFirmBalloonVictories()).thenReturn(emptyList);
-        Mockito.when(victorySorter.getFuzzyAirVictories()).thenReturn(emptyList);
+        Mockito.when(victorySorter.getFirmTankVictories()).thenReturn(firmVictories);
+        Mockito.when(victorySorter.getFirmPlaneVictories()).thenReturn(emptyList);
+        Mockito.when(victorySorter.getFuzzyTankVictories()).thenReturn(emptyList);
         Mockito.when(victorySorter.getAllUnconfirmed()).thenReturn(emptyList);
         Mockito.when(campaign.getCampaignData()).thenReturn(campaignData);
         Mockito.when(campaign.getPersonnelManager()).thenReturn(personnelManager);
@@ -127,8 +127,8 @@ public class AiDeclarationResolutionFirmTest
         Mockito.when(personnelManager.getAnyCampaignMember(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1)).thenReturn(ai);
         Mockito.when(personnelManager.getAnyCampaignMember(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1)).thenReturn(ai);
         
-        Mockito.when(victorySorter.getFirmAirVictories()).thenReturn(emptyList);
-        Mockito.when(victorySorter.getFirmBalloonVictories()).thenReturn(firmVictories);
+        Mockito.when(victorySorter.getFirmTankVictories()).thenReturn(emptyList);
+        Mockito.when(victorySorter.getFirmPlaneVictories()).thenReturn(firmVictories);
 
         AiDeclarationResolver declarationResolution = new AiDeclarationResolver(campaign, aarContext);
         ConfirmedVictories confirmedAiVictories = declarationResolution.determineAiAirResults(victorySorter);

@@ -40,7 +40,7 @@ public class PlayerClaimPlaneNameFinderTest
         LogVictory victory = new LogVictory(1);
          
         PlayerVictoryDeclaration playerDeclaration = new PlayerVictoryDeclaration();
-        playerDeclaration.setAircraftType("se5a");
+        playerDeclaration.setTankType("se5a");
 
         PlayerClaimPlaneNameFinder planeNameFinder = new PlayerClaimPlaneNameFinder();
         String planeDisplayName = planeNameFinder.getShotDownPlaneDisplayName(playerDeclaration, victory);

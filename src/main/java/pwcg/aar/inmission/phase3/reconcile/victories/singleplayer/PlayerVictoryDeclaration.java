@@ -28,7 +28,7 @@ public class PlayerVictoryDeclaration
         return aircraftType;
     }
 
-    public void setAircraftType(String type)
+    public void setTankType(String type)
     {
         this.aircraftType = type;
     }

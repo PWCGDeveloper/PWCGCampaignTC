@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import pwcg.campaign.Campaign;
+import pwcg.campaign.api.Side;
 import pwcg.core.exception.PWCGException;
 import pwcg.mission.Mission;
 import pwcg.mission.MissionUnitFinalizer;
@@ -32,9 +33,9 @@ public class MissionPlatoons
     public List<Integer> determinePlayerVehicleIds() throws PWCGException
     {
         List<Integer> playersInMission = new ArrayList<>();
-        for (ITankPlatoon unit : tankPlatoons.values())
+        for (ITankPlatoon platoon : tankPlatoons.values())
         {
-            for (TankMcu tank : unit.getUnitTanks().getPlayerTanks())
+            for (TankMcu tank : platoon.getUnitTanks().getPlayerTanks())
             {
                 if (tank.getTankCommander().isPlayer())
                 {
@@ -45,16 +46,16 @@ public class MissionPlatoons
         return playersInMission;
     }
 
-    public List<ITankPlatoon> getPlayerUnits() throws PWCGException
+    public List<ITankPlatoon> getPlayerPlatoons() throws PWCGException
     {
         List<ITankPlatoon> playerPlatoons = new ArrayList<>();
-        for (ITankPlatoon unit : tankPlatoons.values())
+        for (ITankPlatoon platoon : tankPlatoons.values())
         {
-            for (TankMcu tank : unit.getUnitTanks().getPlayerTanks())
+            for (TankMcu tank : platoon.getUnitTanks().getPlayerTanks())
             {
                 if (tank.getTankCommander().isPlayer())
                 {
-                    playerPlatoons.add(unit);
+                    playerPlatoons.add(platoon);
                 }
             }
         }
@@ -63,7 +64,7 @@ public class MissionPlatoons
 
     public ITankPlatoon getReferencePlayerUnit() throws PWCGException
     {
-        for (ITankPlatoon platoon : getPlayerUnits())
+        for (ITankPlatoon platoon : getPlayerPlatoons())
         {
             if (platoon.isPlayerPlatoon())
             {
@@ -76,13 +77,13 @@ public class MissionPlatoons
     
     public void finalizeMissionUnits() throws PWCGException
     {
-        MissionUnitFinalizer unitFinalizer = new MissionUnitFinalizer(campaign, mission);
-        unitFinalizer.finalizeMissionUnits();
+        MissionUnitFinalizer platoonFinalizer = new MissionUnitFinalizer(campaign, mission);
+        platoonFinalizer.finalizeMissionUnits();
     }
 
     public ITankPlatoon getPlayerUnitForCompany(int companyId) throws PWCGException
     {
-        for (ITankPlatoon platoon : getPlayerUnits())
+        for (ITankPlatoon platoon : getPlayerPlatoons())
         {
             if (platoon.getCompany().getCompanyId() == companyId)
             {
@@ -90,6 +91,19 @@ public class MissionPlatoons
             }
         }
         return null;
+    }
+
+    public List<ITankPlatoon> getPlatoonsForSide(Side side) throws PWCGException
+    {
+        List<ITankPlatoon> playerPlatoons = new ArrayList<>();
+        for (ITankPlatoon platoon : tankPlatoons.values())
+        {
+            if (platoon.getCompany().getCountry().getSide() == side)
+            {
+                playerPlatoons.add(platoon);
+            }
+        }
+        return playerPlatoons;
     }
 
     public ITankPlatoon getPlatoon(int index)

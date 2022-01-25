@@ -167,7 +167,7 @@ public class AARClaimPanel extends JPanel implements ActionListener
             {
                 if (tankType.getType().equalsIgnoreCase(tankType.getType()))
                 {
-                    declaration.setAircraftType(tankType.getType());
+                    declaration.setTankType(tankType.getType());
                     playerDeclarations.addDeclaration(declaration);
                 }
             }

@@ -32,17 +32,17 @@ public class AiDeclarationResolver  extends PlayerVictoryResolver
 
     public ConfirmedVictories determineAiAirResults  (VictorySorter victorySorter) throws PWCGException 
     {
-        for (LogVictory resultVictory : victorySorter.getFirmAirVictories())
+        for (LogVictory resultVictory : victorySorter.getFirmTankVictories())
         {
             resolveAiFirmClaim(resultVictory);
         }
         
-        for (LogVictory resultVictory : victorySorter.getFirmBalloonVictories())
+        for (LogVictory resultVictory : victorySorter.getFirmPlaneVictories())
         {
             resolveAiFirmClaim(resultVictory);
         }
         
-        for (LogVictory resultVictory : victorySorter.getFuzzyAirVictories())
+        for (LogVictory resultVictory : victorySorter.getFuzzyTankVictories())
         {
             resolveAiClaimByProximity(resultVictory);
         }

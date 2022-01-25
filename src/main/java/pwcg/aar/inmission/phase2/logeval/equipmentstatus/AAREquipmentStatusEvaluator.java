@@ -2,9 +2,6 @@ package pwcg.aar.inmission.phase2.logeval.equipmentstatus;
 
 import pwcg.aar.inmission.phase2.logeval.AARVehicleBuilder;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
-import pwcg.campaign.Campaign;
-import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.group.airfield.Airfield;
 import pwcg.campaign.tank.TankStatus;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.logfiles.LogEventData;
@@ -12,33 +9,14 @@ import pwcg.core.logfiles.event.IAType3;
 
 public class AAREquipmentStatusEvaluator
 {
-    private Campaign campaign;
-    private LogEventData logEventData;
-    private AARVehicleBuilder aarVehicleBuilder;
-
-    public AAREquipmentStatusEvaluator(Campaign campaign, LogEventData logEventData, AARVehicleBuilder aarVehicleBuilder)
-    {
-        this.campaign = campaign;
-        this.logEventData = logEventData;
-        this.aarVehicleBuilder = aarVehicleBuilder;
-    }
-
-    public void determineFateOfPlanesInMission () throws PWCGException 
+    public static void determineFateOfPlanesInMission (AARVehicleBuilder aarVehicleBuilder, LogEventData logEventData) throws PWCGException 
     {        
-        for (LogTank logPlane : aarVehicleBuilder.getLogTanks().values())
+        for (LogTank logTank : aarVehicleBuilder.getLogTanks().values())
         {
-            IAType3 destroyedEventForPlane = logEventData.getDestroyedEvent(logPlane.getId());
-            if (destroyedEventForPlane != null)
+            IAType3 destroyedEventForTank = logEventData.getDestroyedEvent(logTank.getId());
+            if (destroyedEventForTank != null)
             {
-                Airfield playerCompanyField = PWCGContext.getInstance().getCompanyManager().getCompany(logPlane.getCompanyId()).determineCurrentAirfieldAnyMap(campaign.getDate());
-                if (playerCompanyField != null)
-                {
-                    EquipmentSurvivalCalculator equipmentSurvivalCalculator = new EquipmentSurvivalCalculator(destroyedEventForPlane.getLocation(), playerCompanyField);
-                    if (equipmentSurvivalCalculator.isPlaneDestroyed())
-                    {
-                        logPlane.setTankStatus(TankStatus.STATUS_DESTROYED);
-                    }
-                }
+                logTank.setTankStatus(TankStatus.STATUS_DESTROYED);
             }
         }
     }

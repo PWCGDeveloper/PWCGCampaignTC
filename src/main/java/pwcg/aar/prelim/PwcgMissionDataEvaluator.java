@@ -51,24 +51,24 @@ public class PwcgMissionDataEvaluator
         return new ArrayList<String>(uniquePlanesForSide);
     }
 
-    public PwcgGeneratedMissionVehicleData getPlaneForCrewMemberBySerialNumber(Integer serialNumber) throws PWCGException
+    public PwcgGeneratedMissionVehicleData getTankForCrewMemberBySerialNumber(Integer serialNumber) throws PWCGException
     {
-        return aarPreliminarytData.getPwcgMissionData().getMissionPlane(serialNumber);
+        return aarPreliminarytData.getPwcgMissionData().getMissionTank(serialNumber);
     }
     
-    public PwcgGeneratedMissionVehicleData getPlaneForCrewMemberByName(String name) throws PWCGException
+    public PwcgGeneratedMissionVehicleData getTankForCrewMemberByName(String name) throws PWCGException
     {
-        List<PwcgGeneratedMissionVehicleData> missionPlanes = new ArrayList<>(aarPreliminarytData.getPwcgMissionData().getMissionPlanes().values());
-        for (PwcgGeneratedMissionVehicleData missionPlane : missionPlanes)
+        List<PwcgGeneratedMissionVehicleData> missionTanks = new ArrayList<>(aarPreliminarytData.getPwcgMissionData().getMissionPlanes().values());
+        for (PwcgGeneratedMissionVehicleData missionTank : missionTanks)
         {
-            CrewMember crewMember = campaign.getPersonnelManager().getAnyCampaignMember(missionPlane.getCrewMemberSerialNumber());
+            CrewMember crewMember = campaign.getPersonnelManager().getAnyCampaignMember(missionTank.getCrewMemberSerialNumber());
             if (crewMember.isCrewMemberName(name))
             {
-                return missionPlane;
+                return missionTank;
             }
         }
-        
-        throw new PWCGException("No missionPlane found for name " + name);
+
+        return null;
     }
 
     public boolean wasCrewMemberAssignedToMission(Integer serialNumber) throws PWCGException

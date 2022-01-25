@@ -33,9 +33,9 @@ public class AARFactory
     
     public static AARVehicleBuilder makeAARVehicleBuilder(Campaign campaign, AARPreliminaryData preliminaryData, LogEventData logEventData) throws PWCGException
     {
-        AARBotVehicleMapper botPlaneMapper = new AARBotVehicleMapper(logEventData);
+        AARBotVehicleMapper botTankMapper = new AARBotVehicleMapper(logEventData);
         PwcgMissionDataEvaluator pwcgMissionDataEvaluator = new PwcgMissionDataEvaluator(campaign, preliminaryData);
-        return new AARVehicleBuilder(botPlaneMapper, pwcgMissionDataEvaluator);
+        return new AARVehicleBuilder(botTankMapper, pwcgMissionDataEvaluator);
     }
 
     public static LogSetFinder makeLogSorter() throws PWCGException

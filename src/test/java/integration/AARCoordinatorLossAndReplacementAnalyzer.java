@@ -74,7 +74,7 @@ public class AARCoordinatorLossAndReplacementAnalyzer
             Map<Integer, CrewMember> allCampaignMembers = campaign.getPersonnelManager().getAllCampaignMembers();  
             CrewMembers activeAiCampaignMembers = CrewMemberFilter.filterActiveAI(allCampaignMembers, campaign.getDate());
             int numAiCrewMembers = activeAiCampaignMembers.getCrewMemberList().size();
-            int equipmentLosses = aarContext.getEquipmentLosses().getPlanesDestroyed().size();
+            int equipmentLosses = aarContext.getEquipmentLosses().getTanksDestroyed().size();
 
             totalAirVictories += airVictories;
             totalGroundVictories += groundVictories;
@@ -102,7 +102,7 @@ public class AARCoordinatorLossAndReplacementAnalyzer
             
             int alliedEquipmentLosses = 0;
             int axisEquipmentLosses = 0;
-            for (LogTank lostPlane : aarContext.getEquipmentLosses().getPlanesDestroyed().values())
+            for (LogTank lostPlane : aarContext.getEquipmentLosses().getTanksDestroyed().values())
             {
                 if (lostPlane.getCountry().getSide() == Side.ALLIED)
                 {

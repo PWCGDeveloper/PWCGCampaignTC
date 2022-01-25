@@ -44,7 +44,7 @@ public class MissionFinalizer
             mission.getGroundUnitBuilder().finalizeGroundUnits();
             
             frontLineIconBuilder.buildFrontLineIcons();
-            waypointIconBuilder.createWaypointIcons(mission.getPlatoons().getPlayerUnits());
+            waypointIconBuilder.createWaypointIcons(mission.getPlatoons().getPlayerPlatoons());
             assaultIconBuilder.createAssaultIcons(mission.getBattleManager().getMissionAssaultDefinitions());
             mission.getMissionBlocks().adjustBlockDamageAndSmoke();
 

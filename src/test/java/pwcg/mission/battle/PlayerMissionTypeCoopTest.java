@@ -63,7 +63,7 @@ public class PlayerMissionTypeCoopTest
     
     private int verifyEnemyPlatoons(Campaign campaign,Mission mission) throws PWCGException 
     {
-        Side enemySide = mission.getPlatoons().getPlayerUnits().get(0).getCompany().getCountry().getSide().getOppositeSide();
+        Side enemySide = mission.getPlatoons().getPlayerPlatoons().get(0).getCompany().getCountry().getSide().getOppositeSide();
         
         boolean enemyUnitFound = false;
         int numEnemyFlights = 0;

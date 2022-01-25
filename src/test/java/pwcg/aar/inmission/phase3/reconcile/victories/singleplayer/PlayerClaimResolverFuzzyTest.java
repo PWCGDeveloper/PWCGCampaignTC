@@ -37,7 +37,7 @@ public class PlayerClaimResolverFuzzyTest
         resultVictory.setVictor(victor);
         
         PlayerVictoryDeclaration playerDeclaration = new PlayerVictoryDeclaration();
-        playerDeclaration.setAircraftType("se5a");
+        playerDeclaration.setTankType("se5a");
 
         PlayerClaimResolverFuzzy claimResolverFuzzy = new PlayerClaimResolverFuzzy();
         String planeDisplayName = claimResolverFuzzy.getShotDownPlaneDisplayNameAsFuzzy(playerDeclaration, resultVictory);
@@ -63,7 +63,7 @@ public class PlayerClaimResolverFuzzyTest
         resultVictory.setVictor(victor);
         
         PlayerVictoryDeclaration playerDeclaration = new PlayerVictoryDeclaration();
-        playerDeclaration.setAircraftType("sopcamel");
+        playerDeclaration.setTankType("sopcamel");
 
         PlayerClaimResolverFuzzy claimResolverFuzzy = new PlayerClaimResolverFuzzy();
         String planeDisplayName = claimResolverFuzzy.getShotDownPlaneDisplayNameAsFuzzy(playerDeclaration, resultVictory);
@@ -88,7 +88,7 @@ public class PlayerClaimResolverFuzzyTest
         resultVictory.setVictor(victor);
         
         PlayerVictoryDeclaration playerDeclaration = new PlayerVictoryDeclaration();
-        playerDeclaration.setAircraftType("se5a");
+        playerDeclaration.setTankType("se5a");
 
         PlayerClaimResolverFuzzy claimResolverFuzzy = new PlayerClaimResolverFuzzy();
         String planeDisplayName = claimResolverFuzzy.getShotDownPlaneDisplayNameAsFuzzy(playerDeclaration, resultVictory);
@@ -113,7 +113,7 @@ public class PlayerClaimResolverFuzzyTest
         resultVictory.setVictor(victor);
         
         PlayerVictoryDeclaration playerDeclaration = new PlayerVictoryDeclaration();
-        playerDeclaration.setAircraftType("notarealplane");
+        playerDeclaration.setTankType("notarealplane");
 
         PlayerClaimResolverFuzzy claimResolverFuzzy = new PlayerClaimResolverFuzzy();
         String planeDisplayName = claimResolverFuzzy.getShotDownPlaneDisplayNameAsFuzzy(playerDeclaration, resultVictory);
@@ -139,7 +139,7 @@ public class PlayerClaimResolverFuzzyTest
         resultVictory.setConfirmed(true);
         
         PlayerVictoryDeclaration playerDeclaration = new PlayerVictoryDeclaration();
-        playerDeclaration.setAircraftType("se5a");
+        playerDeclaration.setTankType("se5a");
 
         PlayerClaimResolverFuzzy claimResolverFuzzy = new PlayerClaimResolverFuzzy();
         String planeDisplayName = claimResolverFuzzy.getShotDownPlaneDisplayNameAsFuzzy(playerDeclaration, resultVictory);
@@ -165,7 +165,7 @@ public class PlayerClaimResolverFuzzyTest
         resultVictory.setVictor(victor);
 
         PlayerVictoryDeclaration playerDeclaration = new PlayerVictoryDeclaration();
-        playerDeclaration.setAircraftType("se5a");
+        playerDeclaration.setTankType("se5a");
 
         PlayerClaimResolverFuzzy claimResolverFuzzy = new PlayerClaimResolverFuzzy();
         String planeDisplayName = claimResolverFuzzy.getShotDownPlaneDisplayNameAsFuzzy(playerDeclaration, resultVictory);

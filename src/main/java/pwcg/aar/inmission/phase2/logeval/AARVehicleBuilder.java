@@ -11,6 +11,7 @@ import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogGroundUnit;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTurret;
 import pwcg.aar.prelim.PwcgMissionDataEvaluator;
+import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.crewmember.SerialNumber;
 import pwcg.campaign.crewmember.SerialNumber.SerialNumberClassification;
 import pwcg.core.exception.PWCGException;
@@ -19,6 +20,8 @@ import pwcg.core.logfiles.event.IAType12;
 import pwcg.core.utils.PWCGLogger;
 import pwcg.core.utils.PWCGLogger.LogLevel;
 import pwcg.mission.data.PwcgGeneratedMissionVehicleData;
+import pwcg.mission.ground.vehicle.VehicleClass;
+import pwcg.mission.ground.vehicle.VehicleDefinition;
 
 public class AARVehicleBuilder
 {
@@ -26,7 +29,6 @@ public class AARVehicleBuilder
     private PwcgMissionDataEvaluator pwcgMissionDataEvaluator;
 
     private Map<String, LogTank> logTanks = new HashMap<>();
-    private Map<String, LogBalloon> logBalloons = new HashMap<>();
     private Map<String, LogGroundUnit> logGroundUnits = new HashMap<>();
     private Map<String, LogTurret> logTurrets = new HashMap<>();
 
@@ -53,10 +55,6 @@ public class AARVehicleBuilder
         {
             return logTanks.get(id);
         }
-        else if (logBalloons.containsKey(id))
-        {
-            return logBalloons.get(id);
-        }
         else if (logTurrets.containsKey(id))
         {
             return findEntityForTurret(id);
@@ -65,30 +63,17 @@ public class AARVehicleBuilder
         return null;
     }
 
-    public LogAIEntity getPlaneByName(Integer serialNumber) throws PWCGException
+    public List<LogTank> getPlayerLogTanks()
     {
-        for (LogTank logTank : logTanks.values())
-        {
-            if (logTank.isCrewMember(serialNumber))
-            {
-                return logTank;
-            }
-        }
-
-        return null;
-    }
-
-    public List<LogTank> getPlayerLogPlanes()
-    {
-        List<LogTank> playerLogPlanes = new ArrayList<>();
+        List<LogTank> playerLogTanks = new ArrayList<>();
         for (LogTank logTank : logTanks.values())
         {
             if (SerialNumber.getSerialNumberClassification(logTank.getCrewMemberSerialNumber()) == SerialNumberClassification.PLAYER)
             {
-                playerLogPlanes.add(logTank);
+                playerLogTanks.add(logTank);
             }
         }
-        return playerLogPlanes;
+        return playerLogTanks;
     }
 
     private void sortVehiclesByType(List<IAType12> vehicleList) throws PWCGException
@@ -106,9 +91,13 @@ public class AARVehicleBuilder
 
     private void sortLogEntity(IAType12 atype12) throws PWCGException
     {
-        if (pwcgMissionDataEvaluator.wasCrewMemberAssignedToMissionByName(atype12.getName()))
+        if (isTank(atype12))
         {
-            createLogPlane(atype12);
+            createLogTank(atype12);
+        }
+        else if (isPlane(atype12))
+        {
+            createLogTank(atype12);
         }
         else
         {
@@ -116,7 +105,31 @@ public class AARVehicleBuilder
         }
     }
 
-    private void createLogPlane(IAType12 atype12) throws PWCGException
+    private boolean isPlane(IAType12 atype12)
+    {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    private boolean isTank(IAType12 atype12) throws PWCGException
+    {
+        if (pwcgMissionDataEvaluator.wasCrewMemberAssignedToMissionByName(atype12.getName()))
+        {
+            return true;
+        }
+        else
+        {
+            VehicleDefinition vehicle = PWCGContext.getInstance().getVehicleDefinitionManager().getVehicleDefinitionByVehicleName(atype12.getName());
+            if (vehicle != null && vehicle.getVehicleClass() == VehicleClass.Tank)
+            {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+
+    private void createLogTank(IAType12 atype12) throws PWCGException
     {
         LogTank logTank = makeTankFromMissionAndLog(atype12);
 
@@ -126,10 +139,15 @@ public class AARVehicleBuilder
 
     private LogTank makeTankFromMissionAndLog(IAType12 atype12) throws PWCGException
     {
-        PwcgGeneratedMissionVehicleData missionPlane = pwcgMissionDataEvaluator.getPlaneForCrewMemberByName(atype12.getName());
         LogTank logTank = new LogTank(atype12.getSequenceNum());
         logTank.initializeEntityFromEvent(atype12);
-        logTank.initializeFromMissionPlane(missionPlane);
+
+        PwcgGeneratedMissionVehicleData missionTank = pwcgMissionDataEvaluator.getTankForCrewMemberByName(atype12.getName());
+        if (missionTank != null)
+        {
+            logTank.mapToEquippedTankFromMissionTank(missionTank);
+        }
+        
         return logTank;
     }
 
@@ -185,11 +203,6 @@ public class AARVehicleBuilder
     public Map<String, LogTank> getLogTanks()
     {
         return logTanks;
-    }
-
-    public Map<String, LogBalloon> getLogBalloons()
-    {
-        return logBalloons;
     }
 
     public Map<String, LogGroundUnit> getLogGroundUNits()

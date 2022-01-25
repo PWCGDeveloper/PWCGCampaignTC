@@ -26,11 +26,11 @@ import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.aar.tabulate.combatreport.AARCombatReportTabulator;
 import pwcg.aar.ui.display.model.AARCombatReportPanelData;
 import pwcg.aar.ui.events.CrewMemberStatusEventGenerator;
-import pwcg.aar.ui.events.PlaneStatusEventGenerator;
+import pwcg.aar.ui.events.TankStatusEventGenerator;
 import pwcg.aar.ui.events.VictoryEventGenerator;
 import pwcg.aar.ui.events.model.ClaimDeniedEvent;
 import pwcg.aar.ui.events.model.CrewMemberStatusEvent;
-import pwcg.aar.ui.events.model.PlaneStatusEvent;
+import pwcg.aar.ui.events.model.TankStatusEvent;
 import pwcg.aar.ui.events.model.VictoryEvent;
 import pwcg.campaign.company.Company;
 import pwcg.campaign.context.PWCGContext;
@@ -48,7 +48,7 @@ public class CombatReportTabulatorTest extends AARTestSetup
 {
     @Mock private CrewMembers campaignMembersInMission;
     @Mock private CrewMemberStatusEventGenerator crewMemberStatusEventGenerator;
-    @Mock private PlaneStatusEventGenerator planeStatusEventGenerator;
+    @Mock private TankStatusEventGenerator planeStatusEventGenerator;
     @Mock private VictoryEventGenerator victoryEventGenerator;
     @Mock private AARMissionEvaluationData missionEvaluationData;
     @Mock private AARPersonnelAcheivements personnelAcheivements;
@@ -106,22 +106,22 @@ public class CombatReportTabulatorTest extends AARTestSetup
 
         boolean isNewsworthy = true;
         LogTank logPlane = new LogTank(AARContextEventSequence.getNextOutOfMissionEventSequenceNumber());
-        logPlane.initializeFromOutOfMission(campaign, plane1, crewMember1);
-        PlaneStatusEvent planeStatusEvent = new PlaneStatusEvent(campaign, logPlane, TankStatus.STATUS_DESTROYED, isNewsworthy);
+        logPlane.mapToEquippedTankForTest(campaign, plane1, crewMember1);
+        TankStatusEvent planeStatusEvent = new TankStatusEvent(campaign, logPlane, TankStatus.STATUS_DESTROYED, isNewsworthy);
 
         LogTank logPlaneNotFromCompany = new LogTank(AARContextEventSequence.getNextOutOfMissionEventSequenceNumber());
-        logPlaneNotFromCompany.initializeFromOutOfMission(campaign, plane2, crewMember2);
-        PlaneStatusEvent planeStatusEventNotFromCompany = new PlaneStatusEvent(campaign, logPlane, TankStatus.STATUS_DESTROYED, isNewsworthy);
+        logPlaneNotFromCompany.mapToEquippedTankForTest(campaign, plane2, crewMember2);
+        TankStatusEvent planeStatusEventNotFromCompany = new TankStatusEvent(campaign, logPlane, TankStatus.STATUS_DESTROYED, isNewsworthy);
 
-        Map<Integer, PlaneStatusEvent> planesLost = new HashMap<>();
+        Map<Integer, TankStatusEvent> planesLost = new HashMap<>();
         planesLost.put(plane1.getSerialNumber(), planeStatusEvent);
         planesLost.put(plane2.getSerialNumber(), planeStatusEventNotFromCompany);
-        Mockito.when(planeStatusEventGenerator.createPlaneLossEvents(ArgumentMatchers.<AAREquipmentLosses>any())).thenReturn(planesLost);
+        Mockito.when(planeStatusEventGenerator.createTankLossEvents(ArgumentMatchers.<AAREquipmentLosses>any())).thenReturn(planesLost);
 
         Company company = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
         AARCombatReportTabulator combatReportPanelEventTabulator = new AARCombatReportTabulator(campaign, company, aarContext);
         combatReportPanelEventTabulator.setCrewMemberStatusEventGenerator(crewMemberStatusEventGenerator);
-        combatReportPanelEventTabulator.setPlaneStatusEventGenerator(planeStatusEventGenerator);
+        combatReportPanelEventTabulator.setTankStatusEventGenerator(planeStatusEventGenerator);
         combatReportPanelEventTabulator.setVictoryEventGenerator(victoryEventGenerator);
         AARCombatReportPanelData combatReportPanelData = combatReportPanelEventTabulator.tabulateForAARCombatReportPanel();
 

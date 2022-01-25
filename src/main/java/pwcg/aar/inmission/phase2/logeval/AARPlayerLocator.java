@@ -25,7 +25,7 @@ public class AARPlayerLocator
 
     public void evaluatePlayerLocation()
     {
-        playerPlanes = aarVehicleBuilder.getPlayerLogPlanes();
+        playerPlanes = aarVehicleBuilder.getPlayerLogTanks();
         
         for (IAType2 atype2 : logEventData.getDamageEvents())
         {

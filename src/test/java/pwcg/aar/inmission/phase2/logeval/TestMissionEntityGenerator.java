@@ -9,7 +9,6 @@ import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogCrewMember;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.campaign.context.Country;
 import pwcg.campaign.crewmember.SerialNumber;
-import pwcg.campaign.factory.CountryFactory;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.logfiles.LogEventData;
 import pwcg.core.logfiles.event.AType12;
@@ -28,8 +27,6 @@ public class TestMissionEntityGenerator
     public void makeMissionArtifacts(
                     int numFrenchPlanes, 
                     int numGermanPlanes,
-                    int numFrenchBalloons, 
-                    int numGermanBalloons,
                     int numFrenchTrucks, 
                     int numGermanTrucks) throws PWCGException
     {
@@ -44,8 +41,6 @@ public class TestMissionEntityGenerator
 
         makeFrenchFighters(numFrenchPlanes, frenchCrewMembersSerialNumbers, frenchPlaneSerialNumbers, frenchCrewMembers, frenchCrewMemberBotId);
         makeGermanFighters(numGermanPlanes, germanCrewMemberSerialNumbers, germanPlaneSerialNumbers, germanCrewMembers, germanCrewMemberBotId);
-        makeFrenchBalloons(numFrenchBalloons);
-        makeGermanBalloons(numGermanBalloons);
         makeFrenchTrucks(numFrenchTrucks);
         makeGermanTrucks(numGermanTrucks);
         
@@ -77,24 +72,6 @@ public class TestMissionEntityGenerator
             vehicles.add(germanPlane);
 
             makePwcgMissionPlaneFighter(germanCrewMembers[i], germanCrewMemberSerialNumbers[i], germanPlaneSerialNumbers[i], germanPlane);
-        }
-    }
-
-    private void makeFrenchBalloons(int numFrenchBalloons) throws PWCGException
-    {
-        for (int i = 0; i < numFrenchBalloons; ++i)
-        {
-            AType12 frenchBalloon  = TestATypeFactory.makeBalloon(CountryFactory.makeCountryByCountry(Country.FRANCE));
-            vehicles.add(frenchBalloon);
-        }
-    }
-
-    private void makeGermanBalloons(int numGermanBalloons) throws PWCGException
-    {
-        for (int i = 0; i < numGermanBalloons; ++i)
-        {
-            AType12 germanBalloon  = TestATypeFactory.makeBalloon(CountryFactory.makeCountryByCountry(Country.GERMANY));
-            vehicles.add(germanBalloon);
         }
     }
 
@@ -132,18 +109,18 @@ public class TestMissionEntityGenerator
 
     private void makeMissionResultPlaneFighter(String crewMemberName, Integer crewMemberSerialNumber, Integer tankSerialNumber, IAType12 plane) throws PWCGException
     {
-    	LogTank missionResultPlane = new LogTank(1);
-        missionResultPlane.setVehicleType(plane.getType());
-        missionResultPlane.setId(plane.getId());
-        missionResultPlane.setCrewMemberSerialNumber(crewMemberSerialNumber);
-        missionResultPlane.setTankSerialNumber(tankSerialNumber);
+    	LogTank logTank = new LogTank(1);
+        logTank.setVehicleType(plane.getType());
+        logTank.setId(plane.getId());
+        logTank.setCrewMemberSerialNumber(crewMemberSerialNumber);
+        logTank.setTankSerialNumber(tankSerialNumber);
 
         LogCrewMember crewMemberCrewMember = new LogCrewMember();
         crewMemberCrewMember.setSerialNumber(crewMemberSerialNumber);
         crewMemberCrewMember.setBotId("");
         
-        missionResultPlane.intializeCrewMember(crewMemberSerialNumber);;        
-        planeAiEntities.put(plane.getId(), missionResultPlane);
+        logTank.setCrewMemberSerialNumber(crewMemberSerialNumber);
+        planeAiEntities.put(plane.getId(), logTank);
     }
 
     public List<IAType12> getVehicles()

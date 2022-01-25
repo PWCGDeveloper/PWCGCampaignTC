@@ -63,7 +63,7 @@ public class PlayerDeclarationResolution
 
     private boolean resolveAsFirmVictory(Integer playerSerialNumber, PlayerVictoryDeclaration victoryDeclaration) throws PWCGException
     {
-        for (LogVictory resultVictory : victorySorter.getFirmAirVictories())
+        for (LogVictory resultVictory : victorySorter.getFirmTankVictories())
         {
             CrewMember player = campaign.getPersonnelManager().getAnyCampaignMember(playerSerialNumber);
             if (!VictoryResolverSameSideDetector.isSameSide(player, resultVictory))
@@ -85,7 +85,7 @@ public class PlayerDeclarationResolution
 
     private boolean resolveAsFirmVictoryNotExact(Integer playerSerialNumber, PlayerVictoryDeclaration victoryDeclaration) throws PWCGException
     {
-        for (LogVictory resultVictory : victorySorter.getFirmAirVictories())
+        for (LogVictory resultVictory : victorySorter.getFirmTankVictories())
         {
             CrewMember player = campaign.getPersonnelManager().getAnyCampaignMember(playerSerialNumber);
             if (!VictoryResolverSameSideDetector.isSameSide(player, resultVictory))
@@ -104,7 +104,7 @@ public class PlayerDeclarationResolution
 
     private boolean resolveAsFuzzyVictory(Integer playerSerialNumber, PlayerVictoryDeclaration victoryDeclaration) throws PWCGException
     {
-        for (LogVictory resultVictory : victorySorter.getFuzzyAirVictories())
+        for (LogVictory resultVictory : victorySorter.getFuzzyTankVictories())
         {
             CrewMember player = campaign.getPersonnelManager().getAnyCampaignMember(playerSerialNumber);
             if (didPlayerDamagePlane(playerSerialNumber, resultVictory))
@@ -126,7 +126,7 @@ public class PlayerDeclarationResolution
 
     private boolean resolveAsFuzzyVictoryNotExact(Integer playerSerialNumber, PlayerVictoryDeclaration victoryDeclaration) throws PWCGException
     {
-        for (LogVictory resultVictory : victorySorter.getFuzzyAirVictories())
+        for (LogVictory resultVictory : victorySorter.getFuzzyTankVictories())
         {
             CrewMember player = campaign.getPersonnelManager().getAnyCampaignMember(playerSerialNumber);
             if (didPlayerDamagePlane(playerSerialNumber, resultVictory))

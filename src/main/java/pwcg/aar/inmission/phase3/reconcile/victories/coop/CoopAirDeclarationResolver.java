@@ -16,7 +16,7 @@ public class CoopAirDeclarationResolver
     
     public ConfirmedVictories determineCoopAirResults()
     {
-        for (LogVictory resultVictory : victorySorter.getFirmAirVictories())
+        for (LogVictory resultVictory : victorySorter.getFirmTankVictories())
         {
             confirmedCoopAirVictories.addVictory(resultVictory);
         }

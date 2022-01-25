@@ -78,11 +78,6 @@ public class CampaignEquipmentManager
             equippedTank = getTankFromAnyDepo(serialNumber);
         }
         
-        if (equippedTank == null)
-        {
-            throw new PWCGException ("Unable to locate equipped tank for serial number anywhere" + serialNumber);
-        }
-        
         return equippedTank;
     }
 
@@ -134,10 +129,13 @@ public class CampaignEquipmentManager
 
     public EquippedTank destroyTank(int serialNumber, Date date) throws PWCGException
     {
-        EquippedTank destroyedPlane = getAnyTankWithPreference(serialNumber);
-        destroyedPlane.setTankStatus(TankStatus.STATUS_DESTROYED);
-        destroyedPlane.setDateRemovedFromService(date);
-        return destroyedPlane;
+        EquippedTank equippedTank = getAnyTankWithPreference(serialNumber);
+        if (equippedTank != null)
+        {
+            equippedTank.setTankStatus(TankStatus.STATUS_DESTROYED);
+            equippedTank.setDateRemovedFromService(date);
+        }
+        return equippedTank;
     }
     
 

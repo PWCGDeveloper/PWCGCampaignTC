@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogAIEntity;
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogBalloon;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogUnknown;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogVictory;
@@ -13,12 +13,12 @@ import pwcg.core.exception.PWCGException;
 
 public class VictorySorter
 {
-    private List<LogVictory> firmAirVictories = new ArrayList <LogVictory>();
+    private List<LogVictory> firmTankVictories = new ArrayList <LogVictory>();
     private List<LogVictory> firmGroundVictories = new ArrayList <LogVictory>();
-    private List<LogVictory> firmBalloonVictories = new ArrayList <LogVictory>();
+    private List<LogVictory> firmPlaneVictories = new ArrayList <LogVictory>();
 
-    private List<LogVictory> fuzzyAirVictories = new ArrayList <LogVictory>();
-    private List<LogVictory> fuzzyBalloonVictories = new ArrayList <LogVictory>();
+    private List<LogVictory> fuzzyTankVictories = new ArrayList <LogVictory>();
+    private List<LogVictory> fuzzyPlaneVictories = new ArrayList <LogVictory>();
     
     private enum VictoryState
     {
@@ -50,33 +50,33 @@ public class VictorySorter
 
     private void sortFirmVictory(LogVictory logVictory) throws PWCGException
     {
-        if (isVictimBalloon(logVictory))
+        if (isVictimPlane(logVictory))
         {
-            firmBalloonVictories.add(logVictory);
+            firmPlaneVictories.add(logVictory);
         }
         else if (logVictory.getVictim().getRoleCategory() == PwcgRoleCategory.GROUND_UNIT)
         {
             firmGroundVictories.add(logVictory);
         }
-        else if (isVictimPlane(logVictory))
+        else if (isVictimTank(logVictory))
         {
-            firmAirVictories.add(logVictory);
+            firmTankVictories.add(logVictory);
         }
     }
 
     private void sortFuzzyVictory(LogVictory logVictory) throws PWCGException
     {
-        if (isVictimBalloon(logVictory))
+        if (isVictimPlane(logVictory))
         {
-            fuzzyBalloonVictories.add(logVictory);
+            fuzzyPlaneVictories.add(logVictory);
         }
         else if (logVictory.getVictim().getRoleCategory() == PwcgRoleCategory.GROUND_UNIT)
         {
             // We don't do anything with fuzzy ground victories
         }
-        else if (isVictimPlane(logVictory))
+        else if (isVictimTank(logVictory))
         {
-            fuzzyAirVictories.add(logVictory);
+            fuzzyTankVictories.add(logVictory);
         }
     }
 
@@ -98,12 +98,12 @@ public class VictorySorter
         return VictoryState.FIRM;
     }
 
-    private boolean isVictimBalloon(LogVictory logVictory) throws PWCGException
+    private boolean isVictimPlane(LogVictory logVictory) throws PWCGException
     {
         LogAIEntity logVictim = logVictory.getVictim();               
         if (logVictim != null)
         {
-            if (logVictim instanceof LogBalloon)
+            if (logVictim instanceof LogPlane)
             {
                 return true;
             }
@@ -112,7 +112,7 @@ public class VictorySorter
         return false;
     }
 
-    private boolean isVictimPlane(LogVictory logVictory) throws PWCGException
+    private boolean isVictimTank(LogVictory logVictory) throws PWCGException
     {
         LogAIEntity logVictim = logVictory.getVictim();
         if (logVictim != null)
@@ -126,9 +126,9 @@ public class VictorySorter
         return false;
     }
 
-    public List<LogVictory> getFirmAirVictories()
+    public List<LogVictory> getFirmTankVictories()
     {
-        return firmAirVictories;
+        return firmTankVictories;
     }
 
     public List<LogVictory> getFirmGroundVictories()
@@ -136,28 +136,28 @@ public class VictorySorter
         return firmGroundVictories;
     }
 
-    public List<LogVictory> getFirmBalloonVictories()
+    public List<LogVictory> getFirmPlaneVictories()
     {
-        return firmBalloonVictories;
+        return firmPlaneVictories;
     }
 
-    public List<LogVictory> getFuzzyAirVictories()
+    public List<LogVictory> getFuzzyTankVictories()
     {
-        return fuzzyAirVictories;
+        return fuzzyTankVictories;
     }
 
-    public List<LogVictory> getFuzzyBalloonVictories()
+    public List<LogVictory> getFuzzyPlaneVictories()
     {
-        return fuzzyBalloonVictories;
+        return fuzzyPlaneVictories;
     }
 
     public List<LogVictory> getAllUnconfirmed()
     {
         List<LogVictory> unconfirmed = new ArrayList<LogVictory>();
-        extractUnconfirmed(firmAirVictories, unconfirmed);
-        extractUnconfirmed(firmBalloonVictories, unconfirmed);
-        extractUnconfirmed(fuzzyAirVictories, unconfirmed);
-        extractUnconfirmed(fuzzyBalloonVictories, unconfirmed);
+        extractUnconfirmed(firmTankVictories, unconfirmed);
+        extractUnconfirmed(firmPlaneVictories, unconfirmed);
+        extractUnconfirmed(fuzzyTankVictories, unconfirmed);
+        extractUnconfirmed(fuzzyPlaneVictories, unconfirmed);
         
         return unconfirmed;
     }

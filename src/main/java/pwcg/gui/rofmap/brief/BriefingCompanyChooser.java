@@ -54,7 +54,7 @@ public class BriefingCompanyChooser implements ActionListener
         platoonChooserButtonPanelGrid.add(spacerLabel3);
 
         Map<Integer, ICompanyMission> playerCompanysInMission = new HashMap<>();
-        for (ITankPlatoon playerPlatoon : mission.getPlatoons().getPlayerUnits())
+        for (ITankPlatoon playerPlatoon : mission.getPlatoons().getPlayerPlatoons())
         {
             ICompanyMission company = playerPlatoon.getCompany();
             playerCompanysInMission.put(company.getCompanyId(), company);

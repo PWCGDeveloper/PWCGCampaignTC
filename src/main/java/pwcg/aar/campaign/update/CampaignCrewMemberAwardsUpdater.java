@@ -9,6 +9,7 @@ import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.CrewMemberSkill;
 import pwcg.campaign.crewmember.CrewMembers;
 import pwcg.campaign.crewmember.HistoricalAce;
+import pwcg.campaign.crewmember.SerialNumber;
 import pwcg.campaign.crewmember.Victory;
 import pwcg.campaign.medals.Medal;
 import pwcg.campaign.personnel.CrewMemberFilter;
@@ -114,7 +115,7 @@ public class CampaignCrewMemberAwardsUpdater
 
     private void addAirVictory(Integer serialNumber, Victory victory) throws PWCGException
     {
-        if (serialNumber != 0)
+        if (serialNumber != SerialNumber.NO_SERIAL_NUMBER)
         {
             CrewMember crewMember = campaign.getPersonnelManager().getAnyCampaignMember(serialNumber);
             if (crewMember != null)

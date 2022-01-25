@@ -211,7 +211,7 @@ public class Mission
     {
         boolean hasPlayerAllied = false;
         boolean hasPlayerAxis = false;
-        for (ITankPlatoon unit : missionPlatoons.getPlayerUnits())
+        for (ITankPlatoon unit : missionPlatoons.getPlayerPlatoons())
         {
             if (unit.getPlatoonInformation().getCountry().getSide() == Side.ALLIED)
             {

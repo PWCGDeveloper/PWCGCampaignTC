@@ -12,7 +12,7 @@ public class PersonnelOutOfMissionStatusHandler
 {
     private AARPersonnelLosses outOfMissionPersonnelLosses = new AARPersonnelLosses();
 
-    public AARPersonnelLosses determineFateOfShotDownCrewMembers(Map<Integer, CrewMember> shotDownCrewMembers) throws PWCGException
+    public AARPersonnelLosses determineFateOfCrewMembers(Map<Integer, CrewMember> shotDownCrewMembers) throws PWCGException
     {
         for (CrewMember crewMember : shotDownCrewMembers.values())
         {

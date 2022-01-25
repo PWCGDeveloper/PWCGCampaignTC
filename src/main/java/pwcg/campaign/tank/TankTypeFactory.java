@@ -327,11 +327,11 @@ abstract class TankTypeFactory implements ITankTypeFactory
     {
         TankTypeInformation tank = null;
 
-        for (TankTypeInformation thisPlane : tankTypes.values())
+        for (TankTypeInformation thisTank : tankTypes.values())
         {
-            if (thisPlane.getDisplayName().equalsIgnoreCase(pwcgDesc))
+            if (thisTank.getDisplayName().equalsIgnoreCase(pwcgDesc))
             {
-                tank = thisPlane;
+                tank = thisTank;
                 break;
             }
         }

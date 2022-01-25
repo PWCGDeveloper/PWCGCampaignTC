@@ -61,11 +61,11 @@ public class VictorySorterTest
         VictorySorter victorySorter = new VictorySorter();
         victorySorter.sortVictories(logVictoryHelper.getLogVictories());
         
-        assert(victorySorter.getFirmBalloonVictories().size() == 1);
-        assert(victorySorter.getFirmAirVictories().size() == 3);
+        assert(victorySorter.getFirmPlaneVictories().size() == 1);
+        assert(victorySorter.getFirmTankVictories().size() == 3);
         assert(victorySorter.getFirmGroundVictories().size() == 2);
-        assert(victorySorter.getFuzzyAirVictories().size() == 2);
-        assert(victorySorter.getFuzzyBalloonVictories().size() == 1);
+        assert(victorySorter.getFuzzyTankVictories().size() == 2);
+        assert(victorySorter.getFuzzyPlaneVictories().size() == 1);
         
         testVictoryReassignment(victorySorter);
     }    
@@ -75,7 +75,7 @@ public class VictorySorterTest
         PlayerVictoryReassigner playerVictoryReassigner = new PlayerVictoryReassigner(campaign);
         playerVictoryReassigner.resetUnclamedPlayerVictoriesForAssignmentToOthers(victorySorter);
         
-        for (LogVictory victory : victorySorter.getFirmAirVictories())
+        for (LogVictory victory : victorySorter.getFirmTankVictories())
         {
             assert(victory.getVictor() instanceof LogUnknown);
         }

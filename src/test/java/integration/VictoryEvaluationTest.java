@@ -40,8 +40,8 @@ import pwcg.testutils.TestMissionBuilderUtility;
 
 public class VictoryEvaluationTest
 {
-    private int ENEMY_START_PLANE_ID = 101000;
-    private int GERMAN_START_PLANE_ID = 201000;
+    private int ENEMY_START_TANK_ID = 101000;
+    private int GERMAN_START_TANK_ID = 201000;
 
     private Campaign campaign;
     
@@ -66,19 +66,19 @@ public class VictoryEvaluationTest
         mission.write();
 
         BufferedWriter writer = makeLogFileWriter();
-        int playerAid = buildMissionEntities(writer, mission);
+        int playerTankAid = buildMissionEntities(writer, mission);
 
-        makeDestroyedEntry(writer, playerAid, ENEMY_START_PLANE_ID+1);
+        makeDestroyedEntry(writer, playerTankAid, ENEMY_START_TANK_ID+1);
         writer.close();
 
         PlayerVictoryDeclaration playerVictoryDeclaration1 = new PlayerVictoryDeclaration();
-        playerVictoryDeclaration1.setAircraftType("spad13");
+        playerVictoryDeclaration1.setTankType("kv1s");
         
         PlayerDeclarations playerDeclarations = new PlayerDeclarations();
         playerDeclarations.addDeclaration(playerVictoryDeclaration1);
 
         CrewMember player = mission.getParticipatingPlayers().getAllParticipatingPlayers().get(0);
-        Assertions.assertEquals(0, player.getCrewMemberVictories().getAirVictories().size());
+        Assertions.assertEquals(0, player.getCrewMemberVictories().getTankVictoryCount());
 
         Map<Integer, PlayerDeclarations> playerDeclarationMap = new HashMap<>();
         playerDeclarationMap.put(player.getSerialNumber(), playerDeclarations);
@@ -87,7 +87,7 @@ public class VictoryEvaluationTest
         AARCoordinator.getInstance().submitAAR(playerDeclarationMap);
     
         CrewMember playerAfter = mission.getParticipatingPlayers().getAllParticipatingPlayers().get(0);
-        Assertions.assertEquals(1, playerAfter.getCrewMemberVictories().getAirVictories().size());
+        Assertions.assertEquals(1, playerAfter.getCrewMemberVictories().getTankVictoryCount());
     }
 
     @Test
@@ -106,25 +106,25 @@ public class VictoryEvaluationTest
         BufferedWriter writer = makeLogFileWriter();
         int playerAid = buildMissionEntities(writer, mission);
 
-        makeDamageEntry(writer, playerAid, ENEMY_START_PLANE_ID);
-        makeDamageEntry(writer, playerAid, ENEMY_START_PLANE_ID+1);
+        makeDamageEntry(writer, playerAid, ENEMY_START_TANK_ID);
+        makeDamageEntry(writer, playerAid, ENEMY_START_TANK_ID+1);
 
-        makeDestroyedEntry(writer, playerAid, ENEMY_START_PLANE_ID);
-        makeDestroyedEntry(writer, -1, ENEMY_START_PLANE_ID+1);
+        makeDestroyedEntry(writer, playerAid, ENEMY_START_TANK_ID);
+        makeDestroyedEntry(writer, -1, ENEMY_START_TANK_ID+1);
         writer.close();
 
         PlayerVictoryDeclaration playerVictoryDeclaration1 = new PlayerVictoryDeclaration();
-        playerVictoryDeclaration1.setAircraftType("sopcamel");
+        playerVictoryDeclaration1.setTankType("kv1s");
 
         PlayerVictoryDeclaration playerVictoryDeclaration2 = new PlayerVictoryDeclaration();
-        playerVictoryDeclaration2.setAircraftType("sopcamel");
+        playerVictoryDeclaration2.setTankType("kv1s");
         
         PlayerDeclarations playerDeclarations = new PlayerDeclarations();
         playerDeclarations.addDeclaration(playerVictoryDeclaration1);
         playerDeclarations.addDeclaration(playerVictoryDeclaration2);
 
         CrewMember player = mission.getParticipatingPlayers().getAllParticipatingPlayers().get(0);
-        Assertions.assertEquals(0, player.getCrewMemberVictories().getAirVictories().size());
+        Assertions.assertEquals(0, player.getCrewMemberVictories().getTankVictoryCount());
 
         Map<Integer, PlayerDeclarations> playerDeclarationMap = new HashMap<>();
         playerDeclarationMap.put(player.getSerialNumber(), playerDeclarations);
@@ -133,7 +133,7 @@ public class VictoryEvaluationTest
         AARCoordinator.getInstance().submitAAR(playerDeclarationMap);
     
         CrewMember playerAfter = mission.getParticipatingPlayers().getAllParticipatingPlayers().get(0);
-        Assertions.assertEquals(2, playerAfter.getCrewMemberVictories().getAirVictories().size());
+        Assertions.assertEquals(2, playerAfter.getCrewMemberVictories().getTankVictoryCount());
     }
 
     @Test
@@ -152,22 +152,22 @@ public class VictoryEvaluationTest
         BufferedWriter writer = makeLogFileWriter();
         int playerAid = buildMissionEntities(writer, mission);
 
-        makeDestroyedEntry(writer, playerAid, ENEMY_START_PLANE_ID);
-        makeDestroyedEntry(writer, -1, ENEMY_START_PLANE_ID+1);
+        makeDestroyedEntry(writer, playerAid, ENEMY_START_TANK_ID);
+        makeDestroyedEntry(writer, -1, ENEMY_START_TANK_ID+1);
         writer.close();
 
         PlayerVictoryDeclaration playerVictoryDeclaration1 = new PlayerVictoryDeclaration();
-        playerVictoryDeclaration1.setAircraftType("sopcamel");
+        playerVictoryDeclaration1.setTankType("kv1s");
 
         PlayerVictoryDeclaration playerVictoryDeclaration2 = new PlayerVictoryDeclaration();
-        playerVictoryDeclaration2.setAircraftType("sopcamel");
+        playerVictoryDeclaration2.setTankType("kv1s");
         
         PlayerDeclarations playerDeclarations = new PlayerDeclarations();
         playerDeclarations.addDeclaration(playerVictoryDeclaration1);
         playerDeclarations.addDeclaration(playerVictoryDeclaration2);
 
         CrewMember player = mission.getParticipatingPlayers().getAllParticipatingPlayers().get(0);
-        Assertions.assertEquals(0, player.getCrewMemberVictories().getAirVictories().size());
+        Assertions.assertEquals(0, player.getCrewMemberVictories().getTankVictoryCount());
 
         Map<Integer, PlayerDeclarations> playerDeclarationMap = new HashMap<>();
         playerDeclarationMap.put(player.getSerialNumber(), playerDeclarations);
@@ -176,7 +176,7 @@ public class VictoryEvaluationTest
         AARCoordinator.getInstance().submitAAR(playerDeclarationMap);
     
         CrewMember playerAfter = mission.getParticipatingPlayers().getAllParticipatingPlayers().get(0);
-        Assertions.assertEquals(1, playerAfter.getCrewMemberVictories().getAirVictories().size());
+        Assertions.assertEquals(1, playerAfter.getCrewMemberVictories().getTankVictoryCount());
     }
 
     @Test
@@ -192,24 +192,24 @@ public class VictoryEvaluationTest
         mission.finalizeMission();
         mission.write();
         
-        List<TankMcu> playerTanks = mission.getUnits().getPlayerUnits().get(0).getTanks();
+        List<TankMcu> playerTanks = mission.getPlatoons().getPlayerPlatoons().get(0).getTanks();
         Map<Integer, Integer> playerVictories = new HashMap<>();
         for(TankMcu tank : playerTanks)
         {
-            playerVictories.put(tank.getTankCommander().getSerialNumber(), tank.getTankCommander().getCrewMemberVictories().getAirVictories().size());
+            playerVictories.put(tank.getTankCommander().getSerialNumber(), tank.getTankCommander().getCrewMemberVictories().getTankVictoryCount());
         }
 
 
         BufferedWriter writer = makeLogFileWriter();
         int playerAid = buildMissionEntities(writer, mission);
 
-        makeDestroyedEntry(writer, playerAid, ENEMY_START_PLANE_ID+1);
+        makeDestroyedEntry(writer, playerAid, ENEMY_START_TANK_ID+1);
         writer.close();
 
         PlayerDeclarations playerDeclarations = new PlayerDeclarations();
 
         CrewMember player = mission.getParticipatingPlayers().getAllParticipatingPlayers().get(0);
-        Assertions.assertEquals(0, player.getCrewMemberVictories().getAirVictories().size());
+        Assertions.assertEquals(0, player.getCrewMemberVictories().getTankVictoryCount());
 
         Map<Integer, PlayerDeclarations> playerDeclarationMap = new HashMap<>();
         playerDeclarationMap.put(player.getSerialNumber(), playerDeclarations);
@@ -218,14 +218,14 @@ public class VictoryEvaluationTest
         AARCoordinator.getInstance().submitAAR(playerDeclarationMap);
     
         CrewMember playerAfter = mission.getParticipatingPlayers().getAllParticipatingPlayers().get(0);
-        Assertions.assertEquals(0, playerAfter.getCrewMemberVictories().getAirVictories().size());
+        Assertions.assertEquals(0, playerAfter.getCrewMemberVictories().getTankVictoryCount());
         
         boolean wasAwardedToCrewMember = false;
         for (int serialNumber : playerVictories.keySet())
         {
             int numVictoriesBefore = playerVictories.get(serialNumber);
             CrewMember crewMember = campaign.getPersonnelManager().getAnyCampaignMember(serialNumber);
-            if (numVictoriesBefore < crewMember.getCrewMemberVictories().getAirVictories().size())
+            if (numVictoriesBefore < crewMember.getCrewMemberVictories().getTankVictoryCount())
             {
                 wasAwardedToCrewMember = true;
             }
@@ -236,9 +236,9 @@ public class VictoryEvaluationTest
     private int buildMissionEntities(BufferedWriter writer, Mission mission) throws Exception
     {
         formMissionheader(writer, mission);
-        makeEnemyPlanes(writer, mission);
-        int playerAid = makeGermanPlanes(writer, mission);
-        return playerAid;
+        makeEnemyTanks(writer, mission);
+        int playerTankAid = makeGermanTanks(writer, mission);
+        return playerTankAid;
     }
 
     private BufferedWriter makeLogFileWriter() throws Exception
@@ -268,29 +268,29 @@ public class VictoryEvaluationTest
         aType0.write(writer);
     }
 
-    private void makeEnemyPlanes(BufferedWriter writer, Mission mission) throws PWCGException
+    private void makeEnemyTanks(BufferedWriter writer, Mission mission) throws PWCGException
     {       
         Coordinate location = new Coordinate(500000, 0, 50000);
 
-        List<TankMcu> enemyPlanes = findEnemyCrewMembers(mission);
-        for (TankMcu enemyPlane : enemyPlanes)
+        List<TankMcu> enemyTanks = findEnemyCrewMembers(mission);
+        for (TankMcu enemyTank : enemyTanks)
         {
-            int tankId =  ENEMY_START_PLANE_ID + enemyPlane.getNumberInFormation() - 1;
+            int tankId =  ENEMY_START_TANK_ID + enemyTank.getNumberInFormation() - 1;
             int botId =  tankId +100 ;
             
-            AType12 aType12 = new AType12(Integer.valueOf(tankId).toString(), enemyPlane.getType(), enemyPlane.getName(), 
-                    enemyPlane.getCountry(), "-1", location);
+            AType12 aType12 = new AType12(Integer.valueOf(tankId).toString(), enemyTank.getType(), enemyTank.getName(), 
+                    enemyTank.getCountry(), "-1", location);
             aType12.write(writer);
 
-            AType12 aType1Bot = new AType12(Integer.valueOf(botId).toString(), "BotCrewMember_" + enemyPlane.getType(), "BotCrewMember_" + enemyPlane.getType(), 
-                    enemyPlane.getCountry(), Integer.valueOf(tankId).toString(), location);
+            AType12 aType1Bot = new AType12(Integer.valueOf(botId).toString(), "BotCrewMember_" + enemyTank.getType(), "BotCrewMember_" + enemyTank.getType(), 
+                    enemyTank.getCountry(), Integer.valueOf(tankId).toString(), location);
             aType1Bot.write(writer);
         }
     }
     
     private List<TankMcu> findEnemyCrewMembers(Mission mission) throws PWCGException
     {
-        for(ITankPlatoon unit : mission.getUnits().getUnitsForSide()(Side.ALLIED))
+        for(ITankPlatoon unit : mission.getPlatoons().getPlatoonsForSide(Side.ALLIED))
         {
             List<TankMcu> enemyTanks = unit.getTanks();
             if (enemyTanks.size() >= 2)
@@ -299,36 +299,36 @@ public class VictoryEvaluationTest
             }
         }
         
-        throw new PWCGException("No enemy flight large enough");
+        throw new PWCGException("No enemy platoon large enough");
     }
 
-    private int makeGermanPlanes(BufferedWriter writer, Mission mission) throws PWCGException
+    private int makeGermanTanks(BufferedWriter writer, Mission mission) throws PWCGException
     {        
-        int playerAid = -1;
+        int playerTankAid = -1;
         
         Coordinate location = new Coordinate(500000, 0, 50000);
-        List<TankMcu> playerFlightPlanes = mission.getFlights().getUnits().get(0).getFlightPlanes().getPlanes();
+        List<TankMcu> playerPlatoonTanks = mission.getPlatoons().getPlayerPlatoons().get(0).getTanks();
         
-        for (TankMcu friendlyPlane : playerFlightPlanes)
+        for (TankMcu friendlyTank : playerPlatoonTanks)
         {
-            int tankId =  GERMAN_START_PLANE_ID + friendlyPlane.getNumberInFormation() - 1;
+            int tankId =  GERMAN_START_TANK_ID + friendlyTank.getNumberInFormation() - 1;
             int botId =  tankId +100;
             
-            AType12 aType12 = new AType12(Integer.valueOf(tankId).toString(), friendlyPlane.getType(), friendlyPlane.getName(), 
+            AType12 aType12 = new AType12(Integer.valueOf(tankId).toString(), friendlyTank.getType(), friendlyTank.getName(), 
                     CountryFactory.makeCountryByCountry(Country.GERMANY), "-1", location);
             aType12.write(writer);
 
-            AType12 aType1Bot = new AType12(Integer.valueOf(botId).toString(), "BotCrewMember_" + friendlyPlane.getType(), "BotCrewMember_" + friendlyPlane.getType(), 
+            AType12 aType1Bot = new AType12(Integer.valueOf(botId).toString(), "BotCrewMember_" + friendlyTank.getType(), "BotCrewMember_" + friendlyTank.getType(), 
                     CountryFactory.makeCountryByCountry(Country.GERMANY), Integer.valueOf(tankId).toString(), location);
             aType1Bot.write(writer);
             
-            if (friendlyPlane.isActivePlayerPlane())
+            if (friendlyTank.isActivePlayerTank(campaign))
             {
-                playerAid = tankId;
+                playerTankAid = tankId;
             }            
         }
         
-        return playerAid;
+        return playerTankAid;
     }
 
     private void makeDamageEntry(BufferedWriter writer, int shooter, int victim) throws PWCGException

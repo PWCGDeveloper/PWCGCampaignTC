@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pwcg.aar.ui.events.model.CrewMemberStatusEvent;
-import pwcg.aar.ui.events.model.PlaneStatusEvent;
+import pwcg.aar.ui.events.model.TankStatusEvent;
 import pwcg.aar.ui.events.model.VictoryEvent;
 
 public class CampaignUpdateEvents
 {
     private List<CrewMemberStatusEvent> crewMembersLost = new ArrayList<>();
-    private List<PlaneStatusEvent> planesLost = new ArrayList<>();
+    private List<TankStatusEvent> planesLost = new ArrayList<>();
     private List<VictoryEvent> victories = new ArrayList<>();
 
     public List<CrewMemberStatusEvent> getCrewMembersLost()
@@ -18,7 +18,7 @@ public class CampaignUpdateEvents
         return crewMembersLost;
     }
 
-    public List<PlaneStatusEvent> getPlanesLost()
+    public List<TankStatusEvent> getPlanesLost()
     {
         return planesLost;
     }
@@ -39,7 +39,7 @@ public class CampaignUpdateEvents
         victories.add(victory);
     }
 
-    public void addPlaneLost(PlaneStatusEvent planeLostEvent)
+    public void addPlaneLost(TankStatusEvent planeLostEvent)
     {
         planesLost.add(planeLostEvent);        
     }

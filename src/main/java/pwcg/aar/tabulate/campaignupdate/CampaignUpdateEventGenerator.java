@@ -6,10 +6,10 @@ import java.util.Map;
 import pwcg.aar.data.AARContext;
 import pwcg.aar.ui.display.model.CampaignUpdateEvents;
 import pwcg.aar.ui.events.CrewMemberStatusEventGenerator;
-import pwcg.aar.ui.events.PlaneStatusEventGenerator;
+import pwcg.aar.ui.events.TankStatusEventGenerator;
 import pwcg.aar.ui.events.VictoryEventGenerator;
 import pwcg.aar.ui.events.model.CrewMemberStatusEvent;
-import pwcg.aar.ui.events.model.PlaneStatusEvent;
+import pwcg.aar.ui.events.model.TankStatusEvent;
 import pwcg.aar.ui.events.model.VictoryEvent;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.crewmember.Victory;
@@ -20,7 +20,7 @@ public class CampaignUpdateEventGenerator
     private AARContext aarContext;
     
     private CrewMemberStatusEventGenerator crewMemberStatusEventGenerator;
-    private PlaneStatusEventGenerator planeStatusEventGenerator;
+    private TankStatusEventGenerator tankStatusEventGenerator;
     private VictoryEventGenerator victoryEventGenerator;
     private CampaignUpdateEvents campaignUpdateEvents = new CampaignUpdateEvents();
     
@@ -29,7 +29,7 @@ public class CampaignUpdateEventGenerator
         this.aarContext = aarContext;
         
         crewMemberStatusEventGenerator = new CrewMemberStatusEventGenerator(campaign);
-        planeStatusEventGenerator = new PlaneStatusEventGenerator(campaign);
+        tankStatusEventGenerator = new TankStatusEventGenerator(campaign);
         victoryEventGenerator = new VictoryEventGenerator(campaign);
     }
         
@@ -52,10 +52,10 @@ public class CampaignUpdateEventGenerator
 
     private void createEquipmentLossEvents() throws PWCGException
     {
-        Map<Integer, PlaneStatusEvent> planesLostInMission = planeStatusEventGenerator.createPlaneLossEvents(aarContext.getEquipmentLosses());
-        for (PlaneStatusEvent planeLostEvent : planesLostInMission.values())
+        Map<Integer, TankStatusEvent> tanksLostInMission = tankStatusEventGenerator.createTankLossEvents(aarContext.getEquipmentLosses());
+        for (TankStatusEvent tankLostEvent : tanksLostInMission.values())
         {
-            campaignUpdateEvents.addPlaneLost(planeLostEvent);
+            campaignUpdateEvents.addPlaneLost(tankLostEvent);
         }
     }
 

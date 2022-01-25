@@ -33,7 +33,7 @@ public class PwcgMissionData
         return missionPlanes;
     }
 
-    public  PwcgGeneratedMissionVehicleData getMissionPlane(Integer crewMemberSerialNumber)
+    public  PwcgGeneratedMissionVehicleData getMissionTank(Integer crewMemberSerialNumber)
     {
         return missionPlanes.get(crewMemberSerialNumber);
     }

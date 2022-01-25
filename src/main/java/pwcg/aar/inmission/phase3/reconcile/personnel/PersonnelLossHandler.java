@@ -8,6 +8,7 @@ import pwcg.campaign.Campaign;
 import pwcg.campaign.CampaignPersonnelManager;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.CrewMemberStatus;
+import pwcg.campaign.crewmember.SerialNumber;
 import pwcg.core.exception.PWCGException;
 
 public class PersonnelLossHandler
@@ -26,6 +27,11 @@ public class PersonnelLossHandler
     {
         for (LogCrewMember crewMemberStatus : crewMemberStatusList)
         {
+            if (crewMemberStatus.getSerialNumber() == SerialNumber.NO_SERIAL_NUMBER)
+            {
+                continue;
+            }
+            
             CampaignPersonnelManager campaignPersonnelManager = campaign.getPersonnelManager();            
             CrewMember crewMember = campaignPersonnelManager.getAnyCampaignMember(crewMemberStatus.getSerialNumber());
 

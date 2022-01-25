@@ -20,30 +20,28 @@ public class AARCrewBuilder
         this.planeAiEntities = planeAiEntities;
     }
     
-    public List<LogCrewMember> buildCrewMembersFromLogPlanes() throws PWCGException
+    public List<LogCrewMember> buildCrewMembersFromLogTanks() throws PWCGException
     {
         List<LogCrewMember> crewMembersInMission = new ArrayList<LogCrewMember>();
-        for (LogTank logPlane : planeAiEntities.values())
+        for (LogTank logTank : planeAiEntities.values())
         {
-            crewMembersInMission.add(logPlane.getLogCrewMember());
-        }
-        
-        if (crewMembersInMission.isEmpty())
-        {
-            throw new PWCGException("No company members found for mission");
+            if (logTank.isEquippedTank())
+            {
+                crewMembersInMission.add(logTank.getLogCrewMember());
+            }
         }
         
         return crewMembersInMission;
      }
 
-    public List<LogCrewMember> buildAcesFromLogPlanes()
+    public List<LogCrewMember> buildAcesFromLogTanks() throws PWCGException
     {
         List<LogCrewMember> aceCrewsInMission = new ArrayList<LogCrewMember>();
-        for (LogTank logPlane : planeAiEntities.values())
+        for (LogTank logTank : planeAiEntities.values())
         {
-            if (SerialNumber.getSerialNumberClassification(logPlane.getCrewMemberSerialNumber()) == SerialNumberClassification.ACE)
+            if (SerialNumber.getSerialNumberClassification(logTank.getCrewMemberSerialNumber()) == SerialNumberClassification.ACE)
             {
-                aceCrewsInMission.add(logPlane.getLogCrewMember());
+                aceCrewsInMission.add(logTank.getLogCrewMember());
             }
         }
         

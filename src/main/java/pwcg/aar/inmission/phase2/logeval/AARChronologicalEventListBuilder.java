@@ -28,7 +28,6 @@ public class AARChronologicalEventListBuilder
     {
         addWaypointEventsToChronologicalList();
         addPlaneSpawnEventsToChronologicalList();
-        addBalloonSpawnEventsToChronologicalList();
         addConfirmedVictoriesEventsToChronologicalList();
         addDamageEventsToChronologicalList();
     }
@@ -49,15 +48,6 @@ public class AARChronologicalEventListBuilder
         {
             PWCGLogger.log(LogLevel.DEBUG, "" + logCrewMember.getSequenceNum() + ": " + "CrewMember: " + logCrewMember.getId());
             chronologicalEvents.put(logCrewMember.getSequenceNum(), logCrewMember);
-        }
-    }
-
-    private void addBalloonSpawnEventsToChronologicalList()
-    {
-        for (LogAIEntity logBalloon : evaluator.getAarVehicleBuilder().getLogBalloons().values())
-        {
-            PWCGLogger.log(LogLevel.DEBUG, "" + logBalloon.getSequenceNum() + ": " + "Balloon: " + logBalloon.getId());
-            chronologicalEvents.put(logBalloon.getSequenceNum(), logBalloon);
         }
     }
 

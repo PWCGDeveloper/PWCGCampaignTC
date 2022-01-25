@@ -73,7 +73,7 @@ public class AARCrewBuilderTest
     public void testCrewMembers () throws PWCGException
     {        
         AARCrewBuilder crewBuilder = new AARCrewBuilder(planeAiEntities);
-        List<LogCrewMember> inSquad = crewBuilder.buildCrewMembersFromLogPlanes();
+        List<LogCrewMember> inSquad = crewBuilder.buildCrewMembersFromLogTanks();
         assert(crewMemberIsInList(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER, inSquad) == true);
         assert(crewMemberIsInList(SerialNumber.ACE_STARTING_SERIAL_NUMBER+1, inSquad) == true);
         assert(crewMemberIsInList(SerialNumber.ACE_STARTING_SERIAL_NUMBER+2, inSquad) == true);
@@ -85,7 +85,7 @@ public class AARCrewBuilderTest
     public void testAcesMembers () throws PWCGException
     {        
         AARCrewBuilder crewBuilder = new AARCrewBuilder(planeAiEntities);
-        List<LogCrewMember> aces = crewBuilder.buildAcesFromLogPlanes();
+        List<LogCrewMember> aces = crewBuilder.buildAcesFromLogTanks();
         assert(crewMemberIsInList(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER, aces) == false);
         assert(crewMemberIsInList(SerialNumber.ACE_STARTING_SERIAL_NUMBER+1, aces) == true);
         assert(crewMemberIsInList(SerialNumber.ACE_STARTING_SERIAL_NUMBER+2, aces) == true);

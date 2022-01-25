@@ -42,7 +42,6 @@ public class AARChronologicalEventListBuilderTest
     {     
         int lastSequenceNumber = 1;
         lastSequenceNumber = mockDamage(lastSequenceNumber);
-        lastSequenceNumber = mockBalloonSpawn(lastSequenceNumber);
         lastSequenceNumber = mockPlaneSpawn(lastSequenceNumber);
         lastSequenceNumber = mockVictory(lastSequenceNumber);
         lastSequenceNumber = mockWaypoints(lastSequenceNumber);
@@ -73,21 +72,6 @@ public class AARChronologicalEventListBuilderTest
             planeAiEntities.put("" + i, planeSpawn);
         }
         Mockito.when(aarVehicleBuilder.getLogTanks()).thenReturn(planeAiEntities);
-        
-        return i;
-    }
-
-    private int mockBalloonSpawn(int lastSequenceNumber)
-    {
-        Map<String, LogBalloon> missionResultBalloons = new HashMap <>();
-
-        int i = lastSequenceNumber;
-        for (; i < lastSequenceNumber+2; ++i)
-        {
-            LogBalloon balloonSpawn = new LogBalloon(i);
-            missionResultBalloons.put("" + i, balloonSpawn);
-        }
-        Mockito.when(aarVehicleBuilder.getLogBalloons()).thenReturn(missionResultBalloons);
         
         return i;
     }

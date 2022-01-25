@@ -32,17 +32,13 @@ public class AARBotVehicleMapper
         {
             String tankId = logEventData.getPlaneIdByBot(atype12Bot);
 
-            LogTank tankResult = getMissionResultPlaneById(tankId);
+            LogTank tankResult = getMissionResultTankById(tankId);
             if (tankResult != null)
             {
-                if (atype12Bot.getType().contains("BotTank"))
+                if (atype12Bot.getType().contains("BotCrewMember"))
                 {
                     mapBotCrewMember(atype12Bot, tankResult);
                 }
-            }
-            else
-            {
-                PWCGLogger.log(LogLevel.ERROR, "While adding bot = No tank found for bot: " + atype12Bot.getId() + " for tank id: " + tankId);
             }
         }
     }
@@ -53,11 +49,11 @@ public class AARBotVehicleMapper
         tankResult.mapBotToCrew(atype12.getId());
     }
     
-    private LogTank getMissionResultPlaneById(String id)
+    private LogTank getMissionResultTankById(String id)
     {
         for (LogTank tankResult : tankAiEntities.values())
         {
-            if (tankResult.isWithPlane(id))
+            if (tankResult.isWithTank(id))
             {
                 return tankResult;
             }

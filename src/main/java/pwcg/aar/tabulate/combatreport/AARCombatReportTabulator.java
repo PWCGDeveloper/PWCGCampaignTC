@@ -6,10 +6,10 @@ import java.util.Map;
 import pwcg.aar.data.AARContext;
 import pwcg.aar.ui.display.model.AARCombatReportPanelData;
 import pwcg.aar.ui.events.CrewMemberStatusEventGenerator;
-import pwcg.aar.ui.events.PlaneStatusEventGenerator;
+import pwcg.aar.ui.events.TankStatusEventGenerator;
 import pwcg.aar.ui.events.VictoryEventGenerator;
 import pwcg.aar.ui.events.model.CrewMemberStatusEvent;
-import pwcg.aar.ui.events.model.PlaneStatusEvent;
+import pwcg.aar.ui.events.model.TankStatusEvent;
 import pwcg.aar.ui.events.model.VictoryEvent;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.company.Company;
@@ -26,7 +26,7 @@ public class AARCombatReportTabulator
     private AARContext aarContext;
     
     private CrewMemberStatusEventGenerator crewMemberStatusEventGenerator;
-    private PlaneStatusEventGenerator planeStatusEventGenerator;
+    private TankStatusEventGenerator tankStatusEventGenerator;
     private VictoryEventGenerator victoryEventGenerator;
     private AARCombatReportPanelData combatReportPanelData = new AARCombatReportPanelData();
     
@@ -37,7 +37,7 @@ public class AARCombatReportTabulator
         this.company = company;
         
         crewMemberStatusEventGenerator = new CrewMemberStatusEventGenerator(campaign);
-        planeStatusEventGenerator = new PlaneStatusEventGenerator(campaign);
+        tankStatusEventGenerator = new TankStatusEventGenerator(campaign);
         victoryEventGenerator = new VictoryEventGenerator(campaign);
     }
         
@@ -83,12 +83,12 @@ public class AARCombatReportTabulator
 
     private void createLossesForEquipmentInMission() throws PWCGException
     {
-        Map<Integer, PlaneStatusEvent> planesLostInMission = planeStatusEventGenerator.createPlaneLossEvents(aarContext.getEquipmentLosses());
-        for (PlaneStatusEvent planeLostEvent : planesLostInMission.values())
+        Map<Integer, TankStatusEvent> tanksLostInMission = tankStatusEventGenerator.createTankLossEvents(aarContext.getEquipmentLosses());
+        for (TankStatusEvent tankLostEvent : tanksLostInMission.values())
         {
-            if (isIncludeInCombatReport(planeLostEvent.getCompanyId(), planeLostEvent.getCrewMemberSerialNumber()))
+            if (isIncludeInCombatReport(tankLostEvent.getCompanyId(), tankLostEvent.getCrewMemberSerialNumber()))
             {
-                combatReportPanelData.addPlaneLostInMission(planeLostEvent);
+                combatReportPanelData.addPlaneLostInMission(tankLostEvent);
             }
         }
     }
@@ -119,9 +119,9 @@ public class AARCombatReportTabulator
         return false;
     }
 
-    public void setPlaneStatusEventGenerator(PlaneStatusEventGenerator planeStatusEventGenerator)
+    public void setTankStatusEventGenerator(TankStatusEventGenerator tankStatusEventGenerator)
     {
-        this.planeStatusEventGenerator = planeStatusEventGenerator;
+        this.tankStatusEventGenerator = tankStatusEventGenerator;
     }
 
     public void setCrewMemberStatusEventGenerator(CrewMemberStatusEventGenerator crewMemberStatusEventGenerator)

@@ -27,11 +27,14 @@ public class EquipmentUpdater
 
     private void equipmentRemovals() throws PWCGException
     {
-        for (Integer tankSerialNumber : campaignUpdateData.getEquipmentLosses().getPlanesDestroyed().keySet())
+        for (Integer tankSerialNumber : campaignUpdateData.getEquipmentLosses().getTanksDestroyed().keySet())
         {
             EquippedTank equippedTank = campaign.getEquipmentManager().getAnyTankWithPreference(tankSerialNumber);
-            equippedTank.setTankStatus(TankStatus.STATUS_DESTROYED);
-            equippedTank.setDateRemovedFromService(campaign.getDate());
+            if (equippedTank != null)
+            {
+                equippedTank.setTankStatus(TankStatus.STATUS_DESTROYED);
+                equippedTank.setDateRemovedFromService(campaign.getDate());
+            }
         }
     }
 

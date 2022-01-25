@@ -133,7 +133,7 @@ public class AARInMissionResultGeneratorTest
         for (int i = 0; i < 4; ++i)
         {
             PlayerVictoryDeclaration declaration = new PlayerVictoryDeclaration();
-            declaration.setAircraftType("albatrosd5");
+            declaration.setTankType("albatrosd5");
             playerDeclarationSet.addDeclaration(declaration);
         }
         

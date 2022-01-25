@@ -86,9 +86,9 @@ public class AiDeclarationResolutionFuzzyTest
         createVictory(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1001);
         createVictory(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1002);
         
-        Mockito.when(victorySorter.getFirmAirVictories()).thenReturn(emptyList);
-        Mockito.when(victorySorter.getFirmBalloonVictories()).thenReturn(emptyList);
-        Mockito.when(victorySorter.getFuzzyAirVictories()).thenReturn(fuzzyVictories);
+        Mockito.when(victorySorter.getFirmTankVictories()).thenReturn(emptyList);
+        Mockito.when(victorySorter.getFirmPlaneVictories()).thenReturn(emptyList);
+        Mockito.when(victorySorter.getFuzzyTankVictories()).thenReturn(fuzzyVictories);
         Mockito.when(victorySorter.getAllUnconfirmed()).thenReturn(emptyList);
         
         players = new ArrayList<>();

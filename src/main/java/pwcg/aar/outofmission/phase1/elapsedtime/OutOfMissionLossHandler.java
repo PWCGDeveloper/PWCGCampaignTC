@@ -24,12 +24,11 @@ public class OutOfMissionLossHandler
         this.aarContext = aarContext;
     }
 
-    public void lossesOutOfMission(Map<Integer, CrewMember> shotDownCrewMembers, Map<Integer, LogTank> shotDownPlanes) throws PWCGException
+    public void lossesOutOfMission(Map<Integer, CrewMember> shotDownCrewMembers, Map<Integer, LogTank> destroyedTanks) throws PWCGException
     {
         calculateHistoricalAceLosses();
-        calculateShotDownPersonnelLosses(shotDownCrewMembers);
-        calculateShotDownEquipmentLosses(shotDownPlanes);
-        calculateAAALosses();
+        calculateDestroyedPersonnelLosses(shotDownCrewMembers);
+        calculateDestroyedEquipmentLosses(destroyedTanks);
     }
 
     private void calculateHistoricalAceLosses() throws PWCGException, PWCGException
@@ -42,50 +41,24 @@ public class OutOfMissionLossHandler
         }
     }    
 
-    private void calculateShotDownPersonnelLosses(Map<Integer, CrewMember> shotDownCrewMembers) throws PWCGException
+    private void calculateDestroyedPersonnelLosses(Map<Integer, CrewMember> shotDownCrewMembers) throws PWCGException
     {
         PersonnelOutOfMissionStatusHandler personnelOutOfMissionHandler = new PersonnelOutOfMissionStatusHandler();
-        AARPersonnelLosses outOfMissionPersonnelLossesForTheDay = personnelOutOfMissionHandler.determineFateOfShotDownCrewMembers(shotDownCrewMembers);        
+        AARPersonnelLosses outOfMissionPersonnelLossesForTheDay = personnelOutOfMissionHandler.determineFateOfCrewMembers(shotDownCrewMembers);        
         outOfMissionPersonnelLosses.merge(outOfMissionPersonnelLossesForTheDay);
     }
 
-    private void calculateShotDownEquipmentLosses(Map<Integer, LogTank> shotDownPlanes)
-    {
-        mergePlaneLosses(shotDownPlanes);
-    }
-
-    private void calculateAAALosses() throws PWCGException
-    {
-        OutOfMissionAAAOddsCalculator oddsShotDownByAAACalculator = new OutOfMissionAAAOddsCalculator(campaign);
-        OutOfMissionAAALossCalculator aaaLossCalculator = new OutOfMissionAAALossCalculator(campaign, aarContext, oddsShotDownByAAACalculator);
-        aaaLossCalculator.lostToAAA();
-        
-        calculatePersonnelLossesToAAA(aaaLossCalculator);
-        calculateEquipmentLossesToAAA(aaaLossCalculator);
-    }
-
-    private void calculateEquipmentLossesToAAA(OutOfMissionAAALossCalculator aaaLossCalculator)
-    {
-        Map<Integer, LogTank> planeLossesDueToAAA = aaaLossCalculator.getPlanesLostDueToAAA();
-        mergePlaneLosses(planeLossesDueToAAA);
-    }
-
-    private void mergePlaneLosses(Map<Integer, LogTank> planeLossesDueToAAA)
+    private void calculateDestroyedEquipmentLosses(Map<Integer, LogTank> destroyedTanks)
     {
         AAREquipmentLosses equipmentLosses = new AAREquipmentLosses();
-        for (LogTank planeShotDown : planeLossesDueToAAA.values())
+        for (LogTank tankDestroyed : destroyedTanks.values())
         {
-            equipmentLosses.addPlaneDestroyed(planeShotDown);
+            if (tankDestroyed.isEquippedTank())
+            {
+                equipmentLosses.addTankDestroyed(tankDestroyed);
+            }
         }
         outOfMissionEquipmentLosses.merge(equipmentLosses);
-    }
-
-    private void calculatePersonnelLossesToAAA(OutOfMissionAAALossCalculator aaaLossCalculator) throws PWCGException
-    {
-        Map<Integer, CrewMember> crewMemberLossesDueToAAA = aaaLossCalculator.getCrewMembersLostDueToAAA();
-        PersonnelOutOfMissionStatusHandler personnelOutOfMissionHandler = new PersonnelOutOfMissionStatusHandler();
-        AARPersonnelLosses outOfMissionPersonnelLossesForDay = personnelOutOfMissionHandler.determineFateOfShotDownCrewMembers(crewMemberLossesDueToAAA);
-        outOfMissionPersonnelLosses.merge(outOfMissionPersonnelLossesForDay);
     }
 
 	public AARPersonnelLosses getOutOfMissionPersonnelLosses()

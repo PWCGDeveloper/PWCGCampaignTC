@@ -22,7 +22,7 @@ public class EquipmentResultsInMissionHandler
         {
             if (logPlane.getTankStatus() == TankStatus.STATUS_DESTROYED)
             {
-                equipmentLosses.addPlaneDestroyed(logPlane);
+                equipmentLosses.addTankDestroyed(logPlane);
             }
         }
 

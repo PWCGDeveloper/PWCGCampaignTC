@@ -79,9 +79,9 @@ public class PlayerDeclarationResolutionFirmVictoryTest
         players = new ArrayList<>();
         players.add(player);
 
-        Mockito.when(victorySorter.getFirmAirVictories()).thenReturn(firmVictories);
-        Mockito.when(victorySorter.getFirmBalloonVictories()).thenReturn(emptyList);
-        Mockito.when(victorySorter.getFuzzyAirVictories()).thenReturn(emptyList);
+        Mockito.when(victorySorter.getFirmTankVictories()).thenReturn(firmVictories);
+        Mockito.when(victorySorter.getFirmPlaneVictories()).thenReturn(emptyList);
+        Mockito.when(victorySorter.getFuzzyTankVictories()).thenReturn(emptyList);
         Mockito.when(campaign.getPersonnelManager()).thenReturn(personnelManager);
 
         Mockito.when(personnelManager.getAnyCampaignMember(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER)).thenReturn(player);

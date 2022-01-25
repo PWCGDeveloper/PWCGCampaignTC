@@ -21,7 +21,6 @@ public class AAREvaluator
     private AARVehicleBuilder aarVehicleBuilder;
     private AARVictoryEvaluator aarVictoryEvaluator;
     private AARCrewMemberStatusEvaluator aarCrewMemberStatusEvaluator;
-    private AAREquipmentStatusEvaluator aarEquipmentStatusEvaluator;
     private AARChronologicalEventListBuilder aarChronologicalEventListBuilder;
     private AARWaypointBuilder waypointBuilder;
     
@@ -49,8 +48,7 @@ public class AAREvaluator
                 campaign, aarDestroyedStatusEvaluator, aarContext.getLogEventData(), aarVehicleBuilder);
         aarCrewMemberStatusEvaluator.determineFateOfCrewsInMission();
         
-        aarEquipmentStatusEvaluator = new AAREquipmentStatusEvaluator(campaign, aarContext.getLogEventData(), aarVehicleBuilder);
-        aarEquipmentStatusEvaluator.determineFateOfPlanesInMission();
+        AAREquipmentStatusEvaluator.determineFateOfPlanesInMission(aarVehicleBuilder, aarContext.getLogEventData());
         
         aarVictoryEvaluator = createAARVictoryEvaluator();
         aarVictoryEvaluator.evaluateVictories();
@@ -70,7 +68,7 @@ public class AAREvaluator
         AARMissionEvaluationData evaluationData = new AARMissionEvaluationData();
         evaluationData.setPlaneAiEntities(aarVehicleBuilder.getLogTanks());
         evaluationData.setVictoryResults(aarVictoryEvaluator.getVictoryResults());
-        evaluationData.setCrewMembersInMission(crewBuilder.buildCrewMembersFromLogPlanes());
+        evaluationData.setCrewMembersInMission(crewBuilder.buildCrewMembersFromLogTanks());
         evaluationData.setChronologicalEvents(aarChronologicalEventListBuilder.getChronologicalEvents());
 
         return evaluationData;

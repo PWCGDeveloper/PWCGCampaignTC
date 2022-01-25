@@ -7,7 +7,7 @@ import java.util.Map;
 import pwcg.aar.AARCoordinator;
 import pwcg.aar.ui.events.model.ClaimDeniedEvent;
 import pwcg.aar.ui.events.model.CrewMemberStatusEvent;
-import pwcg.aar.ui.events.model.PlaneStatusEvent;
+import pwcg.aar.ui.events.model.TankStatusEvent;
 import pwcg.aar.ui.events.model.VictoryEvent;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.CombatReport;
@@ -130,16 +130,19 @@ public class CombatReportBuilder
 
     private String createEquipmentLostReport() throws PWCGException
     {
-        Map<Integer, PlaneStatusEvent> companyPlanesLostInMission = aarCoordinator.getAarContext()
+        Map<Integer, TankStatusEvent> companyPlanesLostInMission = aarCoordinator.getAarContext()
                     .findUiCombatReportDataForCompany(reportCrewMember.getCompanyId()).
                     getCombatReportPanelData().getCompanyPlanesLostInMission();
 
         String tanksLostStatement = "";
         String tanksLostAppend = "";        
-        for (PlaneStatusEvent tankLostEvent :companyPlanesLostInMission.values())
+        for (TankStatusEvent tankLostEvent :companyPlanesLostInMission.values())
         {
-            EquippedTank lostPlane = campaign.getEquipmentManager().getAnyTankWithPreference(tankLostEvent.getPlaneSerialNumber());
-            tanksLostAppend += "    " + lostPlane.getDisplayName() + "\n";
+            EquippedTank lostTank = campaign.getEquipmentManager().getAnyTankWithPreference(tankLostEvent.getPlaneSerialNumber());
+            if(lostTank != null)
+            {
+                tanksLostAppend += "    " + lostTank.getDisplayName() + "\n";
+            }
         }
         
         if (tanksLostAppend.length() > 0)

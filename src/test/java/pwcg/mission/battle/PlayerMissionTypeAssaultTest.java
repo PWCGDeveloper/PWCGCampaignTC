@@ -36,7 +36,7 @@ public class PlayerMissionTypeAssaultTest
     {
         MissionGenerator missionGenerator = new MissionGenerator(campaign);
         Mission mission = missionGenerator.makeTestMissionFromMissionType(TestMissionBuilderUtility.buildTestParticipatingHumans(campaign));
-        ITankPlatoon unit = mission.getPlatoons().getPlayerUnits().get(0);
+        ITankPlatoon unit = mission.getPlatoons().getPlayerPlatoons().get(0);
         mission.finalizeMission();
 
         for (TankMcu tank : unit.getUnitTanks().getTanks())

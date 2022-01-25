@@ -19,11 +19,9 @@ import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.api.ICountry;
 import pwcg.campaign.context.Country;
-import pwcg.campaign.crewmember.SerialNumber;
 import pwcg.campaign.factory.CountryFactory;
 import pwcg.campaign.tank.TankStatus;
 import pwcg.core.exception.PWCGException;
-import pwcg.core.location.Coordinate;
 import pwcg.core.logfiles.LogEventData;
 import pwcg.core.logfiles.event.AType3;
 import pwcg.core.utils.DateUtils;
@@ -53,35 +51,19 @@ public class AAREquipmentStatusEvaluatorTest
         AType3 atype3 = new AType3("T:54877 AType:3 AID:-1 TID:35839 POS(112150.266,93.277,111696.758)");
         Mockito.when(logEventData.getDestroyedEvent(ArgumentMatchers.<String>any())).thenReturn(atype3);
 
-        AAREquipmentStatusEvaluator aarEquipmentStatusEvaluator = new AAREquipmentStatusEvaluator(campaign, logEventData, aarVehicleBuilder);
-        aarEquipmentStatusEvaluator.determineFateOfPlanesInMission();        
-        runTestWithStatusCheck(aarEquipmentStatusEvaluator, TankStatus.STATUS_DESTROYED);
+        runTestWithStatusCheck(TankStatus.STATUS_DESTROYED);
     }
 
     @Test
     public void testNotPlaneDestroyed () throws PWCGException
     {
         Mockito.when(logEventData.getDestroyedEvent(ArgumentMatchers.<String>any())).thenReturn(null);
-
-        AAREquipmentStatusEvaluator aarEquipmentStatusEvaluator = new AAREquipmentStatusEvaluator(campaign, logEventData, aarVehicleBuilder);
-        aarEquipmentStatusEvaluator.determineFateOfPlanesInMission();        
-        runTestWithStatusCheck(aarEquipmentStatusEvaluator, TankStatus.STATUS_DEPLOYED);
+        runTestWithStatusCheck(TankStatus.STATUS_DEPLOYED);
     }
 
-    @Test
-    public void testPlaneSurvivedBecauseNearAirfield () throws PWCGException
+    private void runTestWithStatusCheck(int expectedStatus) throws PWCGException
     {
-        AType3 atype3 = new AType3("T:54877 AType:3 AID:-1 TID:35839 POS(230402.0,0.0,186710.0)");
-        Mockito.when(logEventData.getDestroyedEvent(ArgumentMatchers.<String>any())).thenReturn(atype3);
-
-        AAREquipmentStatusEvaluator aarEquipmentStatusEvaluator = new AAREquipmentStatusEvaluator(campaign, logEventData, aarVehicleBuilder);
-        aarEquipmentStatusEvaluator.determineFateOfPlanesInMission();        
-        runTestWithStatusCheck(aarEquipmentStatusEvaluator, TankStatus.STATUS_DEPLOYED);
-    }
-
-    private void runTestWithStatusCheck(AAREquipmentStatusEvaluator AAREquipmentStatusEvaluator, int expectedStatus) throws PWCGException
-    {
-        AAREquipmentStatusEvaluator.determineFateOfPlanesInMission();
+        AAREquipmentStatusEvaluator.determineFateOfPlanesInMission(aarVehicleBuilder, logEventData);        
         for (LogTank resultPlaneAfter : aarVehicleBuilder.getLogTanks().values())
         {
             Assertions.assertTrue (resultPlaneAfter.getTankStatus() == expectedStatus);
@@ -93,9 +75,7 @@ public class AAREquipmentStatusEvaluatorTest
         ICountry country = CountryFactory.makeCountryByCountry(Country.RUSSIA);
 
         LogTank resultPlane = new LogTank(1);
-        resultPlane.setLandAt(new Coordinate());
         resultPlane.setCountry(country);
-        resultPlane.intializeCrewMember(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
         resultPlane.setCompanyId(10131132);
         resultPlane.setTankStatus(TankStatus.STATUS_DEPLOYED);
 

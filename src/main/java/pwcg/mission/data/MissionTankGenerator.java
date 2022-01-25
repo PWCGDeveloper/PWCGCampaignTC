@@ -21,7 +21,7 @@ public class MissionTankGenerator
     
     public List<PwcgGeneratedMissionVehicleData> generateMissionTankData() throws PWCGException
     {
-        for (ITankPlatoon unit : mission.getPlatoons().getPlayerUnits())
+        for (ITankPlatoon unit : mission.getPlatoons().getPlayerPlatoons())
         {
             makeTankEntriesForPlatoon(unit);
         }

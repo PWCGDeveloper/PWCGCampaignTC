@@ -1,6 +1,6 @@
 package pwcg.gui.rofmap.event;
 
-import pwcg.aar.ui.events.model.PlaneStatusEvent;
+import pwcg.aar.ui.events.model.TankStatusEvent;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.tank.TankStatus;
 import pwcg.core.exception.PWCGException;
@@ -8,10 +8,10 @@ import pwcg.core.exception.PWCGException;
 public class CampaignReportEquipmentStatusGUI extends AARDocumentIconPanel
 {
 	private static final long serialVersionUID = 1L;
-    private PlaneStatusEvent equipmentStatusEvent;
+    private TankStatusEvent equipmentStatusEvent;
     private Campaign campaign;
 	
-	public CampaignReportEquipmentStatusGUI(Campaign campaign, PlaneStatusEvent crewMemberLostEvent) throws PWCGException
+	public CampaignReportEquipmentStatusGUI(Campaign campaign, TankStatusEvent crewMemberLostEvent) throws PWCGException
 	{
 		super();
         this.campaign = campaign;
@@ -22,15 +22,15 @@ public class CampaignReportEquipmentStatusGUI extends AARDocumentIconPanel
     protected String getHeaderText() throws PWCGException
     {
         String header = "";
-        if (equipmentStatusEvent.getPlaneStatus() == TankStatus.STATUS_DESTROYED)
+        if (equipmentStatusEvent.getTankStatus() == TankStatus.STATUS_DESTROYED)
         {
             header = "Notification of Aircraft Loss";
         }
-        if (equipmentStatusEvent.getPlaneStatus() == TankStatus.STATUS_DEPOT)
+        if (equipmentStatusEvent.getTankStatus() == TankStatus.STATUS_DEPOT)
         {
             header = "Notification of Aircraft Resupply";
         }
-        if (equipmentStatusEvent.getPlaneStatus() == TankStatus.STATUS_REMOVED_FROM_SERVICE)
+        if (equipmentStatusEvent.getTankStatus() == TankStatus.STATUS_REMOVED_FROM_SERVICE)
         {
             header = "Notification of Aircraft Removal From Service";
         }
@@ -41,17 +41,17 @@ public class CampaignReportEquipmentStatusGUI extends AARDocumentIconPanel
     protected String getBodyText() throws PWCGException
     {
         String planeEventText = "";
-        if (equipmentStatusEvent.getPlaneStatus() == TankStatus.STATUS_DESTROYED)
+        if (equipmentStatusEvent.getTankStatus() == TankStatus.STATUS_DESTROYED)
         {
-            planeEventText = equipmentStatusEvent.getPlaneLostText(campaign);
+            planeEventText = equipmentStatusEvent.getTankLostText(campaign);
         }
-        if (equipmentStatusEvent.getPlaneStatus() == TankStatus.STATUS_DEPOT)
+        if (equipmentStatusEvent.getTankStatus() == TankStatus.STATUS_DEPOT)
         {
-            planeEventText = equipmentStatusEvent.getPlaneAddedToDepotText(campaign);
+            planeEventText = equipmentStatusEvent.getTankAddedToDepotText(campaign);
         }
-        if (equipmentStatusEvent.getPlaneStatus() == TankStatus.STATUS_REMOVED_FROM_SERVICE)
+        if (equipmentStatusEvent.getTankStatus() == TankStatus.STATUS_REMOVED_FROM_SERVICE)
         {
-            planeEventText = equipmentStatusEvent.getPlaneWithdrawnFromServiceText(campaign);
+            planeEventText = equipmentStatusEvent.getTankWithdrawnFromServiceText(campaign);
         }
         
         

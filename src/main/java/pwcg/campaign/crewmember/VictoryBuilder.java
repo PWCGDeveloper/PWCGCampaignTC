@@ -41,7 +41,7 @@ public class VictoryBuilder
     
     private String getCrewMemberNameForLogEvent(LogAIEntity logEntity) throws PWCGException
     {
-        String companyMemberName = "Unknown";
+        String companyMemberName = LogAIEntity.UNKNOWN_CREW_NAME;
         if (logEntity instanceof LogTurret)
         {
             LogTurret logTurret = (LogTurret)logEntity;
@@ -50,11 +50,14 @@ public class VictoryBuilder
         
         if (logEntity instanceof LogTank)
         {
-            LogTank logPlane = (LogTank)logEntity;
-            CrewMember crewMember = logPlane.getCrewMemberForLogEvent(campaign);
-            if (crewMember != null)
+            LogTank logTank = (LogTank)logEntity;
+            if (logTank.isEquippedTank())
             {
-                companyMemberName = crewMember.getNameAndRank();
+                CrewMember crewMember = logTank.getCrewMemberForLogEvent(campaign);
+                if (crewMember != null)
+                {
+                    companyMemberName = crewMember.getNameAndRank();
+                }
             }
         }
         

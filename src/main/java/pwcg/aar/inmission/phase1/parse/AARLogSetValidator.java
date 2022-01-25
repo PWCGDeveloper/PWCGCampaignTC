@@ -31,9 +31,9 @@ public class AARLogSetValidator
         vehicleBuilder.buildVehicleListsByVehicleType(logEventData);
         
         boolean referencePlayerFound = false;
-        for (LogTank logPlane : vehicleBuilder.getLogTanks().values())
+        for (LogTank logTank : vehicleBuilder.getLogTanks().values())
         {
-            if (logPlane.getCrewMemberSerialNumber() == campaign.getReferencePlayer().getSerialNumber())
+            if (logTank.getCrewMemberSerialNumber() == campaign.getReferencePlayer().getSerialNumber())
             {
                 referencePlayerFound = true;
             }

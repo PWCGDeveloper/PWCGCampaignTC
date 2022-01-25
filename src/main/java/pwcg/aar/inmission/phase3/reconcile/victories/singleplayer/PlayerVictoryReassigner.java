@@ -19,12 +19,12 @@ class PlayerVictoryReassigner
 
     void resetUnclamedPlayerVictoriesForAssignmentToOthers(VictorySorter victorySorter) throws PWCGException
     {
-        for (LogVictory resultVictory : victorySorter.getFirmAirVictories())
+        for (LogVictory resultVictory : victorySorter.getFirmTankVictories())
         {
             forRandomAssignment(resultVictory);
         }
         
-        for (LogVictory resultVictory : victorySorter.getFirmBalloonVictories())
+        for (LogVictory resultVictory : victorySorter.getFirmPlaneVictories())
         {
             forRandomAssignment(resultVictory);
         }

@@ -10,7 +10,7 @@ import pwcg.aar.outofmission.phase4.ElapsedTIme.ElapsedTimeEvents;
 import pwcg.aar.ui.display.model.CampaignUpdateEvents;
 import pwcg.aar.ui.events.model.CompanyMoveEvent;
 import pwcg.aar.ui.events.model.CrewMemberStatusEvent;
-import pwcg.aar.ui.events.model.PlaneStatusEvent;
+import pwcg.aar.ui.events.model.TankStatusEvent;
 import pwcg.campaign.Campaign;
 import pwcg.core.exception.PWCGException;
 
@@ -54,7 +54,7 @@ public class CampaignLogGenerator
     
     private void createEquipmentLossEvents()
     {
-        campaignLogEvents.addEvents(new ArrayList<PlaneStatusEvent>(elapsedTimeCombatResultsData.getPlanesLost()));
+        campaignLogEvents.addEvents(new ArrayList<TankStatusEvent>(elapsedTimeCombatResultsData.getPlanesLost()));
     }
     
     private void createCrewMemberMedalEvents() throws PWCGException

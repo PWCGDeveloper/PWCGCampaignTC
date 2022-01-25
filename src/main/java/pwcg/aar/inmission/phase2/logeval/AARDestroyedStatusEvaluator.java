@@ -78,7 +78,7 @@ public class AARDestroyedStatusEvaluator
         }
     }
 
-    private void addDeadCrewMember(IAType3 atype3)
+    private void addDeadCrewMember(IAType3 atype3) throws PWCGException
     {
         LogCrewMember deadCrewMember = matchDeadBotToCrewMember(atype3);
         if (deadCrewMember != null)
@@ -87,11 +87,11 @@ public class AARDestroyedStatusEvaluator
         }
     }
 
-    private LogCrewMember matchDeadBotToCrewMember(IAType3 atype3)
+    private LogCrewMember matchDeadBotToCrewMember(IAType3 atype3) throws PWCGException
     {
-        for (LogTank planeEntity : vehicleBuilder.getLogTanks().values())
+        for (LogTank logTank : vehicleBuilder.getLogTanks().values())
         {
-            LogCrewMember crewMemberEntity = planeEntity.getLogCrewMember();
+            LogCrewMember crewMemberEntity = logTank.getLogCrewMember();
             if (crewMemberEntity.getBotId().equals(atype3.getVictim()))
             {
                 return crewMemberEntity;

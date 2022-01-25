@@ -33,7 +33,7 @@ public class TankUnitBuildTest
         Mission mission = missionGenerator.makeMission(TestMissionBuilderUtility.buildTestParticipatingHumans(campaign));
         mission.finalizeMission();
         mission.write();
-        ITankPlatoon unit = mission.getPlatoons().getPlayerUnits().get(0);
+        ITankPlatoon unit = mission.getPlatoons().getPlayerPlatoons().get(0);
         Assertions.assertNotNull(unit);
  	}
 }

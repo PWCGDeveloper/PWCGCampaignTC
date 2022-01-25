@@ -9,8 +9,10 @@ import pwcg.core.logfiles.event.IAType12;
 
 public abstract class LogAIEntity extends LogBase
 {
+    public static final String UNKNOWN_CREW_NAME = "Unknown";
+    
     protected String id = "";
-    protected String name;
+    protected String name = UNKNOWN_CREW_NAME;
     protected String vehicleType = "";
     protected PwcgRoleCategory roleCategory = PwcgRoleCategory.OTHER;
     protected ICountry country;

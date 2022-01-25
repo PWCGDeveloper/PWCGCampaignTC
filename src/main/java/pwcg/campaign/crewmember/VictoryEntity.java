@@ -19,7 +19,7 @@ public class VictoryEntity
     private String type = "";
     private String companyName = "";
     private Integer crewMemberSerialNumber = SerialNumber.NO_SERIAL_NUMBER;
-    private String crewMemberName ="Unknown";
+    private String crewMemberName = LogAIEntity.UNKNOWN_CREW_NAME;
     private int crewMemberStatus = CrewMemberStatus.STATUS_ACTIVE;
     private boolean isGunner = false;
 
@@ -37,7 +37,7 @@ public class VictoryEntity
         }
         if (logEntity instanceof LogPlane)
         {
-            LogTank logPlane = (LogTank)logEntity;
+            LogPlane logPlane = (LogPlane)logEntity;
             initializeForPlane(victoryDate, logPlane, crewMemberName);
         }
         else if (logEntity instanceof LogGroundUnit)
@@ -62,46 +62,31 @@ public class VictoryEntity
         return true;
     }
 
-    private void initializeForPlane(Date victoryDate, LogTank logPlane, String crewMemberName) throws PWCGException
+    private void initializeForPlane(Date victoryDate, LogPlane logPlane, String crewMemberName) throws PWCGException
     {                    
-        LogCrewMember logCrewMember = logPlane.getLogCrewMember();
-
         airOrGround = Victory.AIRCRAFT;
         setType(logPlane.getVehicleType());
         name = logPlane.getName();
-        crewMemberStatus = logCrewMember.getStatus();
-        crewMemberSerialNumber = logCrewMember.getSerialNumber();
-        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(logPlane.getCompanyId());
-        if (company != null)
-        {
-            companyName = company.determineDisplayName(victoryDate);
-        }
-        else
-        {
-            companyName = "";
-        }
-        this.crewMemberName = crewMemberName;
     }
 
-    private void initializeForTank(Date victoryDate, LogTank logPlane, String crewMemberName) throws PWCGException
+    private void initializeForTank(Date victoryDate, LogTank logTank, String crewMemberName) throws PWCGException
     {                    
-        LogCrewMember logCrewMember = logPlane.getLogCrewMember();
-
+        if (!crewMemberName.equals(LogAIEntity.UNKNOWN_CREW_NAME))
+        {
+            LogCrewMember logCrewMember = logTank.getLogCrewMember();
+            this.crewMemberName = crewMemberName;
+            this.crewMemberStatus = logCrewMember.getStatus();
+            this.crewMemberSerialNumber = logCrewMember.getSerialNumber();
+            Company company = PWCGContext.getInstance().getCompanyManager().getCompany(logTank.getCompanyId());
+            if (company != null)
+            {
+                this.companyName = company.determineDisplayName(victoryDate);
+            }
+        }
+        
         airOrGround = Victory.VEHICLE;
-        setType(logPlane.getVehicleType());
-        name = logPlane.getName();
-        crewMemberStatus = logCrewMember.getStatus();
-        crewMemberSerialNumber = logCrewMember.getSerialNumber();
-        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(logPlane.getCompanyId());
-        if (company != null)
-        {
-            companyName = company.determineDisplayName(victoryDate);
-        }
-        else
-        {
-            companyName = "";
-        }
-        this.crewMemberName = crewMemberName;
+        setType(logTank.getVehicleType());
+        name = logTank.getName();
     }
 
     private void initializeForGround(LogGroundUnit logGrountUnit) throws PWCGException

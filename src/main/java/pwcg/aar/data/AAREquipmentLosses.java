@@ -7,21 +7,21 @@ import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 
 public class AAREquipmentLosses
 {
-    private Map<Integer, LogTank> planesDestroyed = new HashMap<>();
+    private Map<Integer, LogTank> tanksDestroyed = new HashMap<>();
 
     public void merge(AAREquipmentLosses equipmentEvents)
     {
-        planesDestroyed.putAll(equipmentEvents.getPlanesDestroyed());
+        tanksDestroyed.putAll(equipmentEvents.getTanksDestroyed());
     }
 
-    public void addPlaneDestroyed(LogTank shotDownPlane)
+    public void addTankDestroyed(LogTank tank)
     {
-        this.planesDestroyed.put(shotDownPlane.getTankSerialNumber(), shotDownPlane);
+        this.tanksDestroyed.put(tank.getTankSerialNumber(), tank);
     }
 
-    public Map<Integer, LogTank> getPlanesDestroyed()
+    public Map<Integer, LogTank> getTanksDestroyed()
     {
-        return planesDestroyed;
+        return tanksDestroyed;
     }
     
     

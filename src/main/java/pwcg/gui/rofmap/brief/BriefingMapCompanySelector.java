@@ -70,7 +70,7 @@ public class BriefingMapCompanySelector implements ActionListener
         JButton checkBoxNone = PWCGButtonFactory.makeTranslucentMenuButton("No Companys", "" + NO_CompanyS, "Show unit path for only your company", this);
         companySelectorGrid.add(checkBoxNone);
 
-        for (ITankPlatoon aiunit : mission.getPlatoons().getPlayerUnits())
+        for (ITankPlatoon aiunit : mission.getPlatoons().getPlayerPlatoons())
         {
             ICompanyMission company = aiunit.getCompany();
             Side companySide = company.getCountry().getSide();

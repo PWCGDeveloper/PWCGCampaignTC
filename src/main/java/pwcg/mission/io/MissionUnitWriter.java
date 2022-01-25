@@ -18,7 +18,7 @@ public class MissionUnitWriter
 	
 	public void writeUnits(BufferedWriter writer) throws PWCGException
 	{
-        writePlayerUnits(mission.getPlatoons().getPlayerUnits(), writer);
+        writePlayerUnits(mission.getPlatoons().getPlayerPlatoons(), writer);
 	}
 
     private void writePlayerUnits(List<ITankPlatoon> units, BufferedWriter writer) throws PWCGException
