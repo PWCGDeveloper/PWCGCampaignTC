@@ -60,7 +60,7 @@ public class AARAceLeavePanelEventTabulatorTest extends AARTestSetup
     @Test
     public void noAcesOnLeave () throws PWCGException
     {             
-        transferRecords.add(new TransferRecord(ace, CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId(), CompanyTestProfile.JASTA_16_PROFILE.getCompanyId()));
+        transferRecords.add(new TransferRecord(ace, CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId(), CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId()));
 
         AceLeavePanelEventTabulator aceLeavePanelEventTabulator = new AceLeavePanelEventTabulator(campaign, aarContext);
         AARAceLeavePanelData aceLeavePanelData = aceLeavePanelEventTabulator.tabulateForAARAceLeavePanel();

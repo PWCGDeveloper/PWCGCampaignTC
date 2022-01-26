@@ -44,15 +44,14 @@ public class VictorySorterTest
         Mockito.when(player.getSerialNumber()).thenReturn(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
 
         logVictoryHelper = new LogVictoryHelper();
-        logVictoryHelper.createPlaneVictory();
-        logVictoryHelper.createPlaneVictory();
-        logVictoryHelper.createPlaneVictory();
-        logVictoryHelper.createBalloonVictory();
+        logVictoryHelper.createTankVictory();
+        logVictoryHelper.createTankVictory();
+        logVictoryHelper.createTankVictory();
         logVictoryHelper.createGroundVictory();
         logVictoryHelper.createGroundVictory();
+        logVictoryHelper.createFuzzyTankVictory();
+        logVictoryHelper.createFuzzyTankVictory();
         logVictoryHelper.createFuzzyPlaneVictory();
-        logVictoryHelper.createFuzzyPlaneVictory();
-        logVictoryHelper.createFuzzyBalloonVictory();
     }
     
     @Test

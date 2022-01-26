@@ -181,7 +181,7 @@ public class CampaignPersonnelManager
             if (crewMember != null)
             {
                 return crewMember;
-            }        
+            }
         }
         
         throw new PWCGException ("Unable to locate company member for serial number " + serialNumber);

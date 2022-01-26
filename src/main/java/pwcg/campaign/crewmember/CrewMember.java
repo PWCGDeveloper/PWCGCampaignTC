@@ -497,7 +497,7 @@ public class CrewMember implements Cloneable
         aiSkillLevel = AiSkillLevel.createAiSkilLLevel(skill);
     }
 
-    public void addVictory(Victory victory)
+    public void addAirVictory(Victory victory)
     {
         airVictories.add(victory);
     }

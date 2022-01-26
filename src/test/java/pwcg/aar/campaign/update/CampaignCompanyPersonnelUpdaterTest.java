@@ -213,7 +213,7 @@ public class CampaignCompanyPersonnelUpdaterTest
                 .filterActiveAIAndPlayerAndAces(crewMembers.getCrewMembers().getCrewMemberCollection(), campaign.getDate());
         for (CrewMember crewMember : activeCrewMembers.getCrewMemberList())
         {
-            if (crewMember.determineIsCrewMemberCommander() && !crewMember.isPlayer())
+            if (crewMember.determineIsCrewMemberCommander(campaign) && !crewMember.isPlayer())
             {
                 commander = crewMember;
             }

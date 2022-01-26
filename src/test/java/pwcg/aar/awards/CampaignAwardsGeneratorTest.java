@@ -70,7 +70,7 @@ public class CampaignAwardsGeneratorTest
     @Test
     public void testMedalAwardedForVictories () throws PWCGException
     {             
-        CrewMembers aiCrewMembers = CrewMemberFilter.filterActiveAINoWounded(campaign.getPersonnelManager().getAllCampaignMembers(), campaign.getDate());
+        CrewMembers aiCrewMembers = campaign.getPersonnelManager().getCompanyPersonnel(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId()).getActiveCrewMembers();
         CampaignPersonnelTestHelper.addVictories(aiCrewMembers.getCrewMemberList().get(1), campaign.getDate(), 20);
         
         List<Victory> victoriesToday = new ArrayList<>();

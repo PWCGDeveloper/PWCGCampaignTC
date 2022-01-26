@@ -27,7 +27,6 @@ import pwcg.campaign.context.Country;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.CrewMembers;
 import pwcg.campaign.crewmember.SerialNumber;
-import pwcg.campaign.tank.TankTypeFactory;
 import pwcg.core.exception.PWCGException;
 import pwcg.product.bos.country.BoSCountry;
 
@@ -44,7 +43,6 @@ public class PlayerDeclarationResolutionFirmVictoryTest
     @Mock private CrewMembers playerMembers;
     @Mock private CrewMember player;
     @Mock private CrewMember ai;
-    @Mock private TankTypeFactory planeFactory;
     
     private Map<Integer, PlayerDeclarations> playerDeclarations = new HashMap<>();
     private PlayerDeclarations playerDeclarationSet;
@@ -181,7 +179,7 @@ public class PlayerDeclarationResolutionFirmVictoryTest
     {        
         LogTank victim = new LogTank(3);
         victim.setCrewMemberSerialNumber(victimSerialNumber);
-        victim.setVehicleType("albatrosd5");
+        victim.setVehicleType("pziv-g");
         victim.setCountry(new BoSCountry(Country.GERMANY));
 
         LogTank victor = new LogTank(4);
@@ -221,7 +219,7 @@ public class PlayerDeclarationResolutionFirmVictoryTest
         for (int i = 0; i < numDeclarations; ++i)
         {
             PlayerVictoryDeclaration declaration = new PlayerVictoryDeclaration();
-            declaration.confirmDeclaration(true, "albatrosd5");
+            declaration.confirmDeclaration(true, "pziv-g");
             playerDeclarationSet.addDeclaration(declaration);
         }        
         

@@ -120,7 +120,7 @@ public class CampaignCrewMemberAwardsUpdater
             CrewMember crewMember = campaign.getPersonnelManager().getAnyCampaignMember(serialNumber);
             if (crewMember != null)
             {
-                crewMember.addVictory(victory);
+                crewMember.addAirVictory(victory);
                 addToHistoricalAceRecordForPersistence(serialNumber, victory);
             }
         }
@@ -145,7 +145,7 @@ public class CampaignCrewMemberAwardsUpdater
         HistoricalAce historicalAce = PWCGContext.getInstance().getAceManager().getHistoricalAceBySerialNumber(serialNumber);
         if (historicalAce != null)
         {
-            historicalAce.addVictory(victory);
+            historicalAce.addAirVictory(victory);
         }
     }
  }

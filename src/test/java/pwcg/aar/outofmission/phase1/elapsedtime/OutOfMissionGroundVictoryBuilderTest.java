@@ -26,7 +26,7 @@ import pwcg.testutils.CompanyTestProfile;
 public class OutOfMissionGroundVictoryBuilderTest
 {
     private Campaign campaign;
-    private static CrewMember crewMember;
+    private static CrewMember selectedCrewMember;
 
     @Mock private AARContext aarContext;
     @Mock private ArmedService service;
@@ -41,7 +41,7 @@ public class OutOfMissionGroundVictoryBuilderTest
         {
             if (crewMember.getCrewMemberActiveStatus() == CrewMemberStatus.STATUS_ACTIVE && !crewMember.isPlayer())
             {
-                crewMember = crewMember;
+                selectedCrewMember = crewMember;
                 break;
             }
         }
@@ -50,10 +50,10 @@ public class OutOfMissionGroundVictoryBuilderTest
     @Test
     public void testVictoryAwarded () throws PWCGException
     {     
-        GroundVictimGenerator duringCampaignVictimGenerator = new GroundVictimGenerator(campaign.getDate(), crewMember);
+        GroundVictimGenerator duringCampaignVictimGenerator = new GroundVictimGenerator(campaign.getDate(), selectedCrewMember);
         IVehicle victimVehicle = duringCampaignVictimGenerator.generateVictimVehicle();
 
-        AirToGroundVictoryBuilder victoryGenerator = new AirToGroundVictoryBuilder(crewMember, victimVehicle);
+        AirToGroundVictoryBuilder victoryGenerator = new AirToGroundVictoryBuilder(selectedCrewMember, victimVehicle);
         Victory victory = victoryGenerator.generateOutOfMissionVictory(campaign.getDate());
         
         Assertions.assertTrue (victory.getVictim().getAirOrGround() == Victory.VEHICLE);

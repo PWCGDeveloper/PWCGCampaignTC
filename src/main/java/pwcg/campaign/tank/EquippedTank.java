@@ -19,7 +19,7 @@ public class EquippedTank extends Vehicle
     protected boolean isEquipmentRequest = false;
     protected TankTypeInformation tankType;
 
-    // Equipped tank for depot
+    // Equipped tank for company
     public EquippedTank(VehicleDefinition vehicleDefinition, TankTypeInformation tankType, int serialNumber, Company company, int tankStatus)
     {
         super(vehicleDefinition, company.getCountry().getCountry());
@@ -39,14 +39,14 @@ public class EquippedTank extends Vehicle
         this.tankStatus = tankStatus;
     }
 
-    // Player Tank
+    // Player Tank from TankMcu
     public EquippedTank(EquippedTank equippedTank, Country country)
     {
         super(equippedTank.getVehicleDefinition(), country);
         this.copyFromTemplate(equippedTank);
     }
 
-    // AI Tank
+    // AI Tank from TankMcu
     public EquippedTank(VehicleDefinition vehicleDefinition, TankTypeInformation tankType, Country country)
     {
         super(vehicleDefinition, country);

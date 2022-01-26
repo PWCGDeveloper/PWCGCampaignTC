@@ -8,7 +8,6 @@ import java.util.Map;
 import pwcg.aar.prelim.AARPreliminaryData;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.api.ICountry;
-import pwcg.campaign.api.Side;
 import pwcg.campaign.context.Country;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.crewmember.CrewMember;
@@ -33,7 +32,6 @@ public class MissionLogEventsBuilder
     private Map<Integer, String> serialNumberToPlaneId = new HashMap<>();
     private List<String> destroyedPlanes = new ArrayList<>();
     private CrewMember companyMate;
-    private CrewMember friendlyCrewMemberFromDifferentCompany;
     private ExpectedResults expectedResults;
 
     public MissionLogEventsBuilder(Campaign campaign, AARPreliminaryData preliminaryData, ExpectedResults expectedResults)
@@ -46,7 +44,8 @@ public class MissionLogEventsBuilder
     public LogEventData makeLogEvents() throws PWCGException
     {
         makeCrewMembersForVictories();
-        makeTanks();
+        makePlayerCompanyTanks();
+        makeAiTanks();
         makeTrucks();
         makewaypointEvents();
         makePlayerDestroyedEvents();
@@ -59,50 +58,65 @@ public class MissionLogEventsBuilder
 
     private void makeCrewMembersForVictories() throws PWCGException
     {
-        CrewMember player = campaign.getPersonnelManager().getPlayersInMission().getCrewMemberList().get(0);
         for (CrewMember crewMember : preliminaryData.getCampaignMembersInMission().getCrewMemberCollection().values())
         {
-            if (crewMember.getCompanyId() != player.getCompanyId())
+            if (!crewMember.isPlayer())
             {
-                Side playerSide = player.determineCountry(campaign.getDate()).getSide();
-                Side crewMemberSide = crewMember.determineCountry(campaign.getDate()).getSide();
-                if (playerSide == crewMemberSide)
-                {
-                    friendlyCrewMemberFromDifferentCompany = crewMember;
-                    expectedResults.setCrewMemberCrewMemberSerialNumber(friendlyCrewMemberFromDifferentCompany.getSerialNumber());
-                }
-            }
-            else
-            {
-                if (!crewMember.isPlayer())
-                {
-                    companyMate = crewMember;
-                }
+                companyMate = crewMember;
             }
         }
     }
 
-    private void makeTanks() throws PWCGException
+    private void makePlayerCompanyTanks() throws PWCGException
     {
         for (CrewMember crewMember : preliminaryData.getCampaignMembersInMission().getCrewMemberCollection().values())
         {
-            CompanyTankAssignment planeAssignment = AARCoordinatorInMissionTest.getPlaneForCompany(crewMember.getCompanyId());
-            ITankTypeFactory planeTypeFactory = PWCGContext.getInstance().getFullTankTypeFactory();
-            List<TankTypeInformation> planeTypesForCompany = planeTypeFactory.createActiveTankTypesForArchType(planeAssignment.getArchType(), campaign.getDate());
-            int index = RandomNumberGenerator.getRandom(planeTypesForCompany.size());
-            TankTypeInformation planeType = planeTypesForCompany.get(index);
-            AType12 planeSpawn = new AType12(
+            CompanyTankAssignment tankAssignment = AARCoordinatorInMissionTest.getPlaneForCompany(crewMember.getCompanyId());
+            ITankTypeFactory tankTypeFactory = PWCGContext.getInstance().getFullTankTypeFactory();
+            List<TankTypeInformation> tankTypesForCompany = tankTypeFactory.createActiveTankTypesForArchType(tankAssignment.getArchType(), campaign.getDate());
+            int index = RandomNumberGenerator.getRandom(tankTypesForCompany.size());
+            TankTypeInformation tankType = tankTypesForCompany.get(index);
+            AType12 tankSpawn = new AType12(
                     makeNextId(),
-                    planeType.getDisplayName(),
+                    tankType.getDisplayName(),
                     crewMember.getNameAndRank(),
                     crewMember.determineCountry(campaign.getDate()),
                     "-1",
                     new Coordinate(500000, 0, 50000));
             
-            logEventData.addVehicle(planeSpawn.getId(), planeSpawn);
-            serialNumberToPlaneId.put(crewMember.getSerialNumber(), planeSpawn.getId());
+            logEventData.addVehicle(tankSpawn.getId(), tankSpawn);
+            serialNumberToPlaneId.put(crewMember.getSerialNumber(), tankSpawn.getId());
 
-            makeBot(planeSpawn);
+            makeBot(tankSpawn);
+        }
+    }
+
+    private void makeAiTanks() throws PWCGException
+    {
+        for(int i = 0; i < 4; ++i)
+        {
+            AType12 tankSpawn = new AType12(
+                    makeNextId(),
+                    "t34-76stz",
+                    "T34 76 STZ",
+                    CountryFactory.makeCountryByCountry(Country.RUSSIA),
+                    "-1",
+                    new Coordinate(500000, 0, 50000));
+
+            logEventData.addVehicle(tankSpawn.getId(), tankSpawn);
+        }
+        
+        for(int i = 0; i < 4; ++i)
+        {
+            AType12 tankSpawn = new AType12(
+                    makeNextId(),
+                    "bt7m",
+                    "BT-7",
+                    CountryFactory.makeCountryByCountry(Country.RUSSIA),
+                    "-1",
+                    new Coordinate(500000, 0, 50000));
+
+            logEventData.addVehicle(tankSpawn.getId(), tankSpawn);
         }
     }
 
@@ -123,14 +137,14 @@ public class MissionLogEventsBuilder
         }
     }
     
-    private void makeBot(AType12 planeSpawn) throws PWCGException
+    private void makeBot(AType12 tankSpawn) throws PWCGException
     {
         AType12 botSpawn = new AType12(
                 makeNextId(),
                 "BotCrewMember",
-                planeSpawn.getName(),
-                planeSpawn.getCountry(),
-                planeSpawn.getId(),
+                tankSpawn.getName(),
+                tankSpawn.getCountry(),
+                tankSpawn.getId(),
                 new Coordinate(500000, 0, 50000));
         
         logEventData.addBot(botSpawn.getId(), botSpawn);
@@ -148,10 +162,10 @@ public class MissionLogEventsBuilder
         String playerPlaneId = serialNumberToPlaneId.get(player.getSerialNumber());
         IAType12 playerPlane = logEventData.getVehicle(playerPlaneId);
 
-        IAType12 playerVictoryPlane1 = getPlaneVictimByType("LaGG-3 ser.29");
+        IAType12 playerVictoryPlane1 = getTankVictimByType("t34-76stz");
         AType3 playerVictoryPlaneEvent1 = new AType3(playerPlane.getId(), playerVictoryPlane1.getId(), crashLocation);
 
-        IAType12 playerVictoryPlane2 = getPlaneVictimByType("Il-2 mod.1941");
+        IAType12 playerVictoryPlane2 = getTankVictimByType("bt7m");
         AType3 playerVictoryPlaneEvent2 = new AType3(playerPlane.getId(), playerVictoryPlane2.getId(), crashLocation);
 
         IAType12 playerVictoryVehicle = getGroundVictim();
@@ -171,10 +185,10 @@ public class MissionLogEventsBuilder
     {
         Coordinate crashLocation = new Coordinate(100000, 0, 100000);
 
-        String friendlyCrewMemberPlaneId = serialNumberToPlaneId.get(friendlyCrewMemberFromDifferentCompany.getSerialNumber());
+        String friendlyCrewMemberPlaneId = serialNumberToPlaneId.get(companyMate.getSerialNumber());
         IAType12 friendlyCrewMemberPlane = logEventData.getVehicle(friendlyCrewMemberPlaneId);
         
-        IAType12 enemyPlaneLost = getPlaneVictimByType("Il-2 mod.1941");
+        IAType12 enemyPlaneLost = getTankVictimByType("bt7m");
         AType3 enemyPlaneLostEvent = new AType3(friendlyCrewMemberPlane.getId(), enemyPlaneLost.getId(), crashLocation);
 
         IAType12 enemyVehicleLost = getGroundVictim();
@@ -194,24 +208,24 @@ public class MissionLogEventsBuilder
         String companyMatePlaneId = serialNumberToPlaneId.get(companyMate.getSerialNumber());
         IAType12 companyMatePlane = logEventData.getVehicle(companyMatePlaneId);
 
-        IAType12 enemyVictoryPlane = getPlaneVictimByType("LaGG-3 ser.29");
+        IAType12 enemyVictoryPlane = getTankVictimByType("t34-76stz");
         AType3 companyMatePlaneDestroyedEvent = new AType3(enemyVictoryPlane.getId(), companyMatePlane.getId(), crashLocation);
 
         logEventData.addDestroyedEvent(companyMatePlaneDestroyedEvent);
     }
     
-    private IAType12 getPlaneVictimByType(String type) throws PWCGException
+    private IAType12 getTankVictimByType(String type) throws PWCGException
     {
-        for (IAType12 planeSpawn : logEventData.getVehicles())
+        for (IAType12 tankSpawn : logEventData.getVehicles())
         {
-            if (planeSpawn.getType().equals(type))
+            if (tankSpawn.getType().equals(type))
             {
-                if (!destroyedPlanes.contains(planeSpawn.getId()))
+                if (!destroyedPlanes.contains(tankSpawn.getId()))
                 {
-                    destroyedPlanes.add(planeSpawn.getId());
-                    killCrewMember(planeSpawn.getId());
+                    destroyedPlanes.add(tankSpawn.getId());
+                    killCrewMember(tankSpawn.getId());
                     
-                    return planeSpawn;
+                    return tankSpawn;
                 }
             }
         }
@@ -219,12 +233,12 @@ public class MissionLogEventsBuilder
         throw new PWCGException("failed to find spawn for type " + type);
     }
     
-    private void killCrewMember(String planeId) throws PWCGException
+    private void killCrewMember(String tankId) throws PWCGException
     {
         Coordinate crashLocation = new Coordinate(100000, 0, 100000);
         for (IAType12 botSpawn : logEventData.getBots())
         {
-            if (botSpawn.getPid().equals(planeId))
+            if (botSpawn.getPid().equals(tankId))
             {
                 AType3 crewMemberKilled = new AType3("-1", botSpawn.getId(), crashLocation);
                 logEventData.addDestroyedEvent(crewMemberKilled);
@@ -263,11 +277,4 @@ public class MissionLogEventsBuilder
         ++nextMissionLogId;
         return nextId;
     }
-
-    public CrewMember getCrewMemberFromDifferentCompany()
-    {
-        return friendlyCrewMemberFromDifferentCompany;
-    }
-    
-    
 }

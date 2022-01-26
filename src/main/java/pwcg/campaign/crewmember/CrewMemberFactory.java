@@ -13,7 +13,7 @@ import pwcg.campaign.factory.RankFactory;
 import pwcg.campaign.personnel.CampaignValidatorMedals;
 import pwcg.campaign.personnel.CompanyPersonnel;
 import pwcg.campaign.personnel.CrewMemberFilter;
-import pwcg.campaign.personnel.CrewMemberGroundInitialVictoryBuilder;
+import pwcg.campaign.personnel.CompanyInitialVictoryBuilder;
 import pwcg.campaign.personnel.CrewMemberPictureBuilder;
 import pwcg.campaign.tank.PwcgRoleCategory;
 import pwcg.core.constants.AiSkillLevel;
@@ -83,7 +83,7 @@ public class CrewMemberFactory
         PwcgRoleCategory companyPrimaryRoleCategory = company.determineCompanyPrimaryRoleCategory(campaign.getDate());
         if (GroundVictimGenerator.shouldUse(companyPrimaryRoleCategory))
         {
-            CrewMemberGroundInitialVictoryBuilder initialVictoryBuilder = new CrewMemberGroundInitialVictoryBuilder(campaign, company);
+            CompanyInitialVictoryBuilder initialVictoryBuilder = new CompanyInitialVictoryBuilder(campaign, company);
             initialVictoryBuilder.createCrewMemberVictories(newCrewMember, rankPos);            
         }
         

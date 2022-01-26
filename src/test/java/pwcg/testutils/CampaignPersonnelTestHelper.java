@@ -19,6 +19,8 @@ public class CampaignPersonnelTestHelper
         for (int i = 0; i < numVictories; ++i)
         {
             VictoryEntity victim = new VictoryEntity();
+            victim.setAirOrGround(Victory.VEHICLE);
+            victim.setType("pziv-g");
             VictoryEntity victor = new VictoryEntity();
             
             Victory victory = new Victory();
@@ -27,7 +29,7 @@ public class CampaignPersonnelTestHelper
             victory.setVictim(victim);
             victory.setVictor(victor);
             
-            crewMember.addVictory(victory);
+            crewMember.addGroundVictory(victory);
         }
     }
     

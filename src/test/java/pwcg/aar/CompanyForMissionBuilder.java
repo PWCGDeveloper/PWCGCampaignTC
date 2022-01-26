@@ -21,14 +21,14 @@ public class CompanyForMissionBuilder
 
     public List<Company> makeCompanysInMission() throws PWCGException
     {
-        Company jg51 = PWCGContext.getInstance().getCompanyManager().getCompany(20111051);
+        Company gd = PWCGContext.getInstance().getCompanyManager().getCompany(201001001);
         Company stg77 = PWCGContext.getInstance().getCompanyManager().getCompany(20121077);
         Company kg76 = PWCGContext.getInstance().getCompanyManager().getCompany(20132076);
         Company reg11 = PWCGContext.getInstance().getCompanyManager().getCompany(10111011);
         Company reg132 = PWCGContext.getInstance().getCompanyManager().getCompany(10131132);
         Company reg175 = PWCGContext.getInstance().getCompanyManager().getCompany(10121175);
         
-        companysInMission.add(jg51);
+        companysInMission.add(gd);
         companysInMission.add(stg77);
         companysInMission.add(kg76);
         companysInMission.add(reg11);

@@ -63,7 +63,7 @@ public class AcesKilledEventGeneratorTest
         for (int i = 0; i < AcesKilledEventGenerator.NUM_VICTORIES_FOR_ACE_TO_BE_NEWSWORTHY-1; ++i)
         {
             Victory victory = new Victory();
-            aceKilledInMission.addVictory(victory);
+            aceKilledInMission.addAirVictory(victory);
         }
 
         List<CrewMember> acesKilledInMissionAndElapsedTime = new ArrayList<>();

@@ -57,7 +57,7 @@ public class AceCsvReader
             victory.getVictim().setAirOrGround(Victory.AIRCRAFT);
             victory.setDate(DateUtils.getDateDDMMYYYY(entrySplit[1]));
             
-            historicalAce.addVictory(victory);
+            historicalAce.addAirVictory(victory);
         }
         
         HistoricalAceIOJson.writeJson(historicalAce);

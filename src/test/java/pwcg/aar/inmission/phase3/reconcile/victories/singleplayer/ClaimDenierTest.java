@@ -21,7 +21,6 @@ import pwcg.campaign.company.Company;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.CrewMembers;
 import pwcg.campaign.crewmember.SerialNumber;
-import pwcg.campaign.tank.TankTypeFactory;
 import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.core.exception.PWCGException;
 
@@ -36,8 +35,7 @@ public class ClaimDenierTest
     @Mock private CrewMember player;
     @Mock private CrewMember crewMember;
     @Mock private Company company;
-    @Mock private TankTypeFactory planeFactory;
-    @Mock private TankTypeInformation planeType;
+    @Mock private TankTypeInformation tankType;
    
     private List<CrewMember> players = new ArrayList<>();
 
@@ -58,34 +56,21 @@ public class ClaimDenierTest
     {
         Mockito.when(declaration.isConfirmed()).thenReturn(true);
 
-        ClaimDenier claimDenier = new ClaimDenier(campaign, planeFactory);
+        ClaimDenier claimDenier = new ClaimDenier(campaign);
         ClaimDeniedEvent claimDeniedEvent = claimDenier.determineClaimDenied(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER, declaration);
         Assertions.assertTrue (claimDeniedEvent == null);
     }
     
     @Test 
-    public void testClaimDeniedPlane() throws PWCGException
+    public void testClaimDenied() throws PWCGException
     {
 
         Mockito.when(declaration.isConfirmed()).thenReturn(false);
-        Mockito.when(declaration.getTankType()).thenReturn("Albatros D.III");
-        Mockito.when(planeFactory.createTankTypeByAnyName(ArgumentMatchers.<String>any())).thenReturn(planeType);
-        Mockito.when(planeType.getDisplayName()).thenReturn("Albatros D.III");
+        Mockito.when(declaration.getTankType()).thenReturn("pziv-g");
+        Mockito.when(tankType.getDisplayName()).thenReturn("PzKw Mk IV G");
         
-        ClaimDenier claimDenier = new ClaimDenier(campaign, planeFactory);
+        ClaimDenier claimDenier = new ClaimDenier(campaign);
         ClaimDeniedEvent claimDeniedEvent = claimDenier.determineClaimDenied(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER, declaration);
-        Assertions.assertTrue (claimDeniedEvent.getType().equals("Albatros D.III"));
-    }
-    
-    @Test 
-    public void testClaimDeniedBalloon() throws PWCGException
-    {
-
-        Mockito.when(declaration.isConfirmed()).thenReturn(false);
-        Mockito.when(declaration.getTankType()).thenReturn(TankTypeInformation.BALLOON);
-        
-        ClaimDenier claimDenier = new ClaimDenier(campaign, planeFactory);
-        ClaimDeniedEvent claimDeniedEvent = claimDenier.determineClaimDenied(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER, declaration);
-        Assertions.assertTrue (claimDeniedEvent.getType().equals(TankTypeInformation.BALLOON));
+        Assertions.assertTrue (claimDeniedEvent.getType().equals("PzKw Mk IV"));
     }
 }

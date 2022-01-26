@@ -12,7 +12,6 @@ import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 
 import pwcg.campaign.Campaign;
-import pwcg.campaign.PlaneMarkingManagerFactory;
 import pwcg.campaign.company.Company;
 import pwcg.campaign.crewmember.SerialNumber;
 import pwcg.campaign.resupply.equipment.WithdrawnEquipmentReplacer;
@@ -49,17 +48,16 @@ public class WithdrawnEquipmentReplacerTest
     {
         Date campaigndate = DateUtils.getDateYYYYMMDD("19420404");
         Mockito.when(campaign.getDate()).thenReturn(campaigndate);
-        Mockito.when(campaign.getPlaneMarkingManager()).thenReturn(PlaneMarkingManagerFactory.buildIPlaneMarkingManager());
 
         for (int i = 0; i < 6; ++i)
         {
-            EquippedTank equippedTank  = TankEquipmentFactory.makeTankForCompany(campaign, "bf109f2", 20111051);
+            EquippedTank equippedTank  = TankEquipmentFactory.makeTankForCompany(campaign, "bf109f2", company);
             equipment.addEquippedTankToCompany(campaign, 20111051, equippedTank);
         }
         
         for (int i = 0; i < 8; ++i)
         {
-            EquippedTank equippedTank  = TankEquipmentFactory.makeTankForCompany(campaign, "bf109f4", 20111051);
+            EquippedTank equippedTank  = TankEquipmentFactory.makeTankForCompany(campaign, "bf109f4", company);
             equipment.addEquippedTankToCompany(campaign, 20111051, equippedTank);
         }
 
@@ -78,17 +76,16 @@ public class WithdrawnEquipmentReplacerTest
     {
         Date campaigndate = DateUtils.getDateYYYYMMDD("19420801");
         Mockito.when(campaign.getDate()).thenReturn(campaigndate);
-        Mockito.when(campaign.getPlaneMarkingManager()).thenReturn(PlaneMarkingManagerFactory.buildIPlaneMarkingManager());
 
         for (int i = 0; i < 6; ++i)
         {
-            EquippedTank equippedTank  = TankEquipmentFactory.makeTankForCompany(campaign, "bf109f2", 20111051);
+            EquippedTank equippedTank  = TankEquipmentFactory.makeTankForCompany(campaign, "bf109f2", company);
             equipment.addEquippedTankToCompany(campaign, 20111051, equippedTank);
         }
         
         for (int i = 0; i < 8; ++i)
         {
-            EquippedTank equippedTank  = TankEquipmentFactory.makeTankForCompany(campaign, "bf109f4", 20111051);
+            EquippedTank equippedTank  = TankEquipmentFactory.makeTankForCompany(campaign, "bf109f4", company);
             equipment.addEquippedTankToCompany(campaign, 20111051, equippedTank);
         }
 
@@ -112,17 +109,16 @@ public class WithdrawnEquipmentReplacerTest
     {
         Date campaigndate = DateUtils.getDateYYYYMMDD("19420404");
         Mockito.when(campaign.getDate()).thenReturn(campaigndate);
-        Mockito.when(campaign.getPlaneMarkingManager()).thenReturn(PlaneMarkingManagerFactory.buildIPlaneMarkingManager());
 
         for (int i = 0; i < 3; ++i)
         {
-            EquippedTank equippedTank  = TankEquipmentFactory.makeTankForCompany(campaign, "bf109f2", 20111051);
+            EquippedTank equippedTank  = TankEquipmentFactory.makeTankForCompany(campaign, "bf109f2", company);
             equipment.addEquippedTankToCompany(campaign, 20111051, equippedTank);
         }
         
         for (int i = 0; i < 8; ++i)
         {
-            EquippedTank equippedTank  = TankEquipmentFactory.makeTankForCompany(campaign, "bf109f4", 20111051);
+            EquippedTank equippedTank  = TankEquipmentFactory.makeTankForCompany(campaign, "bf109f4", company);
             equipment.addEquippedTankToCompany(campaign, 20111051, equippedTank);
         }
 
@@ -148,18 +144,17 @@ public class WithdrawnEquipmentReplacerTest
     {
         Date campaigndate = DateUtils.getDateYYYYMMDD("19420404");
         Mockito.when(campaign.getDate()).thenReturn(campaigndate);
-        Mockito.when(campaign.getPlaneMarkingManager()).thenReturn(PlaneMarkingManagerFactory.buildIPlaneMarkingManager());
 
         for (int i = 0; i < 3; ++i)
         {
-            EquippedTank equippedTank  = TankEquipmentFactory.makeTankForCompany(campaign, "bf109f2", 20111051);
+            EquippedTank equippedTank  = TankEquipmentFactory.makeTankForCompany(campaign, "bf109f2", company);
             equippedTank.setEquipmentRequest(true);
             equipment.addEquippedTankToCompany(campaign, 20111051, equippedTank);
         }
         
         for (int i = 0; i < 8; ++i)
         {
-            EquippedTank equippedTank  = TankEquipmentFactory.makeTankForCompany(campaign, "bf109f4", 20111051);
+            EquippedTank equippedTank  = TankEquipmentFactory.makeTankForCompany(campaign, "bf109f4", company);
             equipment.addEquippedTankToCompany(campaign, 20111051, equippedTank);
         }
 
@@ -187,17 +182,16 @@ public class WithdrawnEquipmentReplacerTest
     {
         Date campaigndate = DateUtils.getDateYYYYMMDD("19420404");
         Mockito.when(campaign.getDate()).thenReturn(campaigndate);
-        Mockito.when(campaign.getPlaneMarkingManager()).thenReturn(PlaneMarkingManagerFactory.buildIPlaneMarkingManager());
 
         for (int i = 0; i < 3; ++i)
         {
-            EquippedTank equippedTank  = TankEquipmentFactory.makeTankForCompany(campaign, "bf109f2", 20111051);
+            EquippedTank equippedTank  = TankEquipmentFactory.makeTankForCompany(campaign, "bf109f2", company);
             equipment.addEquippedTankToCompany(campaign, 20111051, equippedTank);
         }
         
         for (int i = 0; i < 3; ++i)
         {
-            EquippedTank equippedTank  = TankEquipmentFactory.makeTankForCompany(campaign, "bf109f4", 20111051);
+            EquippedTank equippedTank  = TankEquipmentFactory.makeTankForCompany(campaign, "bf109f4", company);
             equipment.addEquippedTankToCompany(campaign, 20111051, equippedTank);
         }
 

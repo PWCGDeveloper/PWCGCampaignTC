@@ -24,7 +24,7 @@ public class TestATypeFactory
     static public AType12 makeGermanPlane(String germanCrewMemberName, String germanCrewMemberBotId) throws PWCGException
     {
         ++id;
-        AType12 aType12Parsed = new AType12("AType:12 ID:1488895 TYPE:albatrosd5 COUNTRY:101 NAME:Lt Pierre Trudeau PID:-1 POS(119648.406,152.195,44274.488)", Integer.valueOf(id).toString());
+        AType12 aType12Parsed = new AType12("AType:12 ID:1488895 TYPE:pziv-g COUNTRY:101 NAME:Lt Pierre Trudeau PID:-1 POS(119648.406,152.195,44274.488)", Integer.valueOf(id).toString());
         AType12 aType12 = new AType12(germanCrewMemberBotId, aType12Parsed.getType(), germanCrewMemberName, aType12Parsed.getCountry(), aType12Parsed.getPid(), new Coordinate(500000, 0, 50000));
         return aType12;
     }

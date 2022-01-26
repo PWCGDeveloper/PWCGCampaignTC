@@ -28,7 +28,7 @@ public class CampaignAwardsGenerator
         {
             if (!crewMember.isHistoricalAce())
             {                
-                int victoriesToday = getAirVictoryCountToday(crewMember);
+                int victoriesToday = getTankVictoryCountToday(crewMember);
                 AARPersonnelAwards personnelAwardsForCrewMember = awardsGenerator.generateAwards(crewMember, victoriesToday);
                 personnelAwards.merge(personnelAwardsForCrewMember);
             }
@@ -37,7 +37,7 @@ public class CampaignAwardsGenerator
         return personnelAwards;
     }
 
-    private int getAirVictoryCountToday(CrewMember crewMember)
+    private int getTankVictoryCountToday(CrewMember crewMember)
     {
         int airVictoriesToday = aarContext.getPersonnelAcheivements().getVictoryCountForCrewMember(crewMember.getSerialNumber());
         return airVictoriesToday;

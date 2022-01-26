@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -72,19 +71,6 @@ public class AARVehiclePlaneLandedTest
         logParserLandedEvents.add(logLandedEvent2);
         Mockito.when(logEventData.getLandingEvents()).thenReturn(logParserLandedEvents);
     }
-
-    @Test
-    public void testAssignLandingLocation () throws PWCGException
-    {  
-        AARVehiclePlaneLanded vehiclePlaneLanded = new AARVehiclePlaneLanded(logEventData);
-        vehiclePlaneLanded.buildLandedLocations(planeAiEntities);
-        
-        assert(planeAiEntities.get("11111").getLandAt().getXPos() == 200.0);
-        assert(planeAiEntities.get("22222").getLandAt().getXPos() == 300.0);
-        assert(planeAiEntities.get("99999").getLandAt() == null);
-        assert(planeAiEntities.get("44444").getLandAt().getXPos() == 500.0);
-    }
-
 
     private Map <String, LogTank> makePlaneEntities()
     {

@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogAIEntity;
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogBalloon;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogGroundUnit;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTurret;

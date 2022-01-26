@@ -26,7 +26,7 @@ import pwcg.testutils.CompanyTestProfile;
 public class OutOfMissionGroundVictoryEventGeneratorTest
 {
     private Campaign campaign;
-    private static CrewMember crewMember;
+    private static CrewMember selectedCrewMember;
     
     @Mock private AARContext aarContext;
     @Mock private ArmedService service;
@@ -41,7 +41,7 @@ public class OutOfMissionGroundVictoryEventGeneratorTest
         {
             if (crewMember.getCrewMemberActiveStatus() == CrewMemberStatus.STATUS_ACTIVE && !crewMember.isPlayer())
             {
-                crewMember = crewMember;
+                selectedCrewMember = crewMember;
                 break;
             }
         }
@@ -73,25 +73,25 @@ public class OutOfMissionGroundVictoryEventGeneratorTest
     
     public void testCrewMemberOutOfMissionVictory(AiSkillLevel aiSkillLevel) throws PWCGException
     {
-        crewMember.setAiSkillLevel(aiSkillLevel);
+        selectedCrewMember.setAiSkillLevel(aiSkillLevel);
         
         OutOfMissionVictoryData victoryData = new OutOfMissionVictoryData();
 
         int numMissionsInWar = 1000;
         for (int j = 0; j < numMissionsInWar; ++j)
         {
-            OutOfMissionGroundVictoryEventGenerator victoryGenerator = new OutOfMissionGroundVictoryEventGenerator(campaign, crewMember);
+            OutOfMissionGroundVictoryEventGenerator victoryGenerator = new OutOfMissionGroundVictoryEventGenerator(campaign, selectedCrewMember);
             OutOfMissionVictoryData victoriesOutOMission = victoryGenerator.outOfMissionVictoriesForCrewMember();    
             victoryData.merge(victoriesOutOMission);
         }
         
         assert(victoryData.getVictoryAwardsByCrewMember().size() > 0);
         
-        List<Victory> companyMemberVictories = victoryData.getVictoryAwardsByCrewMember().get(crewMember.getSerialNumber());
+        List<Victory> companyMemberVictories = victoryData.getVictoryAwardsByCrewMember().get(selectedCrewMember.getSerialNumber());
         assert(companyMemberVictories.size() > 0);
         
         Victory victory = companyMemberVictories.get(0);
-        assert(victory.getVictor().getCrewMemberSerialNumber() == crewMember.getSerialNumber());
+        assert(victory.getVictor().getCrewMemberSerialNumber() == selectedCrewMember.getSerialNumber());
         assert(victory.getVictim().getCrewMemberSerialNumber() == SerialNumber.NO_SERIAL_NUMBER);
     }
 

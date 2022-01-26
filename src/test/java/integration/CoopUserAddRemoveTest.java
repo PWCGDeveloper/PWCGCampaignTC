@@ -62,7 +62,7 @@ public class CoopUserAddRemoveTest
     private void createCoopPersonaCrewMember() throws Exception
     {
         CrewMemberReplacer companyMemberReplacer = new CrewMemberReplacer(coopCampaign);
-        newCrewMember = companyMemberReplacer.createPersona(personaName, "Leutnant", "II./St.G.77", coopuser);
+        newCrewMember = companyMemberReplacer.createPersona(personaName, "Leutnant", "Gross Deutschland Division, 1st Company", coopuser);
         coopCampaign.write();
         
         verifyNewCrewMember();        

@@ -63,7 +63,6 @@ public class AARCrewBuilderTest
         
         LogTank plane1 = new LogTank(1);
         plane1.setCrewMemberSerialNumber(crewMemberSerialNumber);
-        plane1.intializeCrewMember(crewMemberSerialNumber);
         
         String planeId = crewMemberSerialNumber.toString();
         planeAiEntities.put(planeId, plane1);

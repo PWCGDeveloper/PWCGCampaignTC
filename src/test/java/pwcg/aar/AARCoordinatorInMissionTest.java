@@ -66,8 +66,8 @@ public class AARCoordinatorInMissionTest
 
     private void makeCompanysInMission() throws PWCGException
     {
-        CompanyForMissionBuilder companyForMissionBuilder = new CompanyForMissionBuilder(campaign);
-        companysInMission = companyForMissionBuilder.makeCompanysInMission();
+        Company gd = PWCGContext.getInstance().getCompanyManager().getCompany(201001001);
+        companysInMission.add(gd);
     }
 
     private void makePreliminary() throws PWCGException

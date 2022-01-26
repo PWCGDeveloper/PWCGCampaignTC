@@ -15,14 +15,14 @@ import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.RandomNumberGenerator;
 import pwcg.mission.ground.vehicle.IVehicle;
 
-public class CrewMemberGroundInitialVictoryBuilder
+public class CompanyInitialVictoryBuilder
 {
     private Campaign campaign;
     private Company victorCompany;
     private int minVictories;
     private int maxVictories;
 
-    public CrewMemberGroundInitialVictoryBuilder(Campaign campaign, Company company)
+    public CompanyInitialVictoryBuilder(Campaign campaign, Company company)
     {
         this.campaign = campaign;
         this.victorCompany = company;
@@ -111,7 +111,7 @@ public class CrewMemberGroundInitialVictoryBuilder
             Victory victory = generateVictory(newCrewMember, victoryDate);
             if (victory != null)
             {
-                newCrewMember.addVictory(victory);
+                newCrewMember.addAirVictory(victory);
             }
         }
     }

@@ -41,7 +41,7 @@ public class PlayerClaimResolverFuzzyNotExactTest
         victim.setCountry(new BoSCountry(Country.BRITAIN));
 
         LogTank victor = new LogTank(2);
-        victor.setVehicleType("albatrosd5");
+        victor.setVehicleType("pziv-g");
         victor.setCrewMemberSerialNumber(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
         victor.setCountry(new BoSCountry(Country.GERMANY));
 
@@ -67,7 +67,7 @@ public class PlayerClaimResolverFuzzyNotExactTest
         victim.setCountry(new BoSCountry(Country.BRITAIN));
 
         LogTank victor = new LogTank(2);
-        victor.setVehicleType("albatrosd5");
+        victor.setVehicleType("pziv-g");
         victor.setCrewMemberSerialNumber(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
         victor.setCountry(new BoSCountry(Country.GERMANY));
 
@@ -92,7 +92,7 @@ public class PlayerClaimResolverFuzzyNotExactTest
         victim.setVehicleType("notarealplane");
 
         LogTank victor = new LogTank(2);
-        victor.setVehicleType("albatrosd5");
+        victor.setVehicleType("pziv-g");
         victor.setCrewMemberSerialNumber(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
 
         LogVictory resultVictory = new LogVictory(10);
@@ -116,7 +116,7 @@ public class PlayerClaimResolverFuzzyNotExactTest
         victim.setVehicleType("se5a");
 
         LogTank victor = new LogTank(2);
-        victor.setVehicleType("albatrosd5");
+        victor.setVehicleType("pziv-g");
         victor.setCrewMemberSerialNumber(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
 
         LogVictory resultVictory = new LogVictory(10);
@@ -140,7 +140,7 @@ public class PlayerClaimResolverFuzzyNotExactTest
         victim.setVehicleType("se5a");
 
         LogTank victor = new LogTank(2);
-        victor.setVehicleType("albatrosd5");
+        victor.setVehicleType("pziv-g");
         victor.setCrewMemberSerialNumber(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
 
         LogVictory resultVictory = new LogVictory(10);
@@ -163,11 +163,11 @@ public class PlayerClaimResolverFuzzyNotExactTest
     {   
         LogTank victim = new LogTank(1);
         victim.setRoleCategory(PwcgRoleCategory.FIGHTER);
-        victim.setVehicleType("albatrosd5");
+        victim.setVehicleType("pziv-g");
         victim.setCountry(new BoSCountry(Country.GERMANY));
 
         LogTank victor = new LogTank(2);
-        victor.setVehicleType("albatrosd5");
+        victor.setVehicleType("pziv-g");
         victor.setCrewMemberSerialNumber(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
         victim.setCountry(new BoSCountry(Country.GERMANY));
 

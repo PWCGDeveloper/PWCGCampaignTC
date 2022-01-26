@@ -79,12 +79,9 @@ public class ClaimResolverTest
             LogTank victor = new LogTank(10+1);
             victor.setCrewMemberSerialNumber(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
             victor.setCompanyId(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
-            victor.intializeCrewMember(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
+            victor.setCrewMemberSerialNumber(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
             
             LogTank victim = new LogTank(100+i);
-            victim.setCrewMemberSerialNumber(SerialNumber.AI_STARTING_SERIAL_NUMBER);
-            victim.setCompanyId(302056);
-            victim.intializeCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER);
 
             LogVictory missionResultVictory = new LogVictory(1000+i);
             missionResultVictory.setLocation(new Coordinate(100000.0, 0.0, 100000.0));

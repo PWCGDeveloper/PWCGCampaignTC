@@ -46,15 +46,13 @@ import pwcg.testutils.CompanyTestProfile;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class AARInMissionResultGeneratorTest
 {
-    private static final int GEORGES_GUYNEMER = 101064;
-    private static final int WERNER_VOSS = 101175;
     private Campaign campaign;
     private List<LogCrewMember> crewMemberStatusList;
     private List<LogVictory> firmVictories;        
-    private CrewMember sergentInFlight;
-    private CrewMember corporalInFlight;
-    private CrewMember sltInFlight;
-    private CrewMember ltInFlight;
+    private CrewMember corporalInPlatoon;
+    private CrewMember sergeantInPlatoon;
+    private CrewMember secondLtInPlatoon;
+    private CrewMember firstLtInPlatoon;
     private LogTank playerPlaneVictor = new LogTank(1);
     private LogTank aiPlaneVictor = new LogTank(2);
     private LogTank wernerVossPlaneVictor = new LogTank(3);
@@ -100,13 +98,10 @@ public class AARInMissionResultGeneratorTest
     public void testMixedToVerifyDataTransfer() throws PWCGException
     {
         addPlayerDeclarations();
-        createAcesInMission();
         
         createVictory(playerPlaneVictor, SerialNumber.AI_STARTING_SERIAL_NUMBER + 100, SerialNumber.TANK_STARTING_SERIAL_NUMBER + 100);
         createVictory(aiPlaneVictor, SerialNumber.AI_STARTING_SERIAL_NUMBER + 101, SerialNumber.TANK_STARTING_SERIAL_NUMBER + 101);
         createVictory(aiPlaneVictor, SerialNumber.AI_STARTING_SERIAL_NUMBER + 102, SerialNumber.TANK_STARTING_SERIAL_NUMBER + 102);
-        createVictory(playerPlaneVictor, WERNER_VOSS, SerialNumber.TANK_STARTING_SERIAL_NUMBER + 103);
-        createVictory(aiPlaneVictor, GEORGES_GUYNEMER, SerialNumber.TANK_STARTING_SERIAL_NUMBER + 104);
         
         AARContext aarContext = new AARContext(campaign);
         aarContext.setMissionEvaluationData(evaluationData);
@@ -133,23 +128,19 @@ public class AARInMissionResultGeneratorTest
         for (int i = 0; i < 4; ++i)
         {
             PlayerVictoryDeclaration declaration = new PlayerVictoryDeclaration();
-            declaration.setTankType("albatrosd5");
+            declaration.setTankType("pziv-g");
             playerDeclarationSet.addDeclaration(declaration);
         }
         
-        CrewMember playerInFlight = campaign.findReferencePlayer();
-        playerDeclarations.put(playerInFlight.getSerialNumber(), playerDeclarationSet);
+        CrewMember playerInPlatoon = campaign.findReferencePlayer();
+        playerDeclarations.put(playerInPlatoon.getSerialNumber(), playerDeclarationSet);
     }
 
     private void createVictory(LogTank victor, Integer crewMemberSerialNumber, Integer tankSerialNumber)
     {
         LogTank victim = new LogTank(3);
-        victim.setCrewMemberSerialNumber(crewMemberSerialNumber);
-        victim.setTankSerialNumber(tankSerialNumber);
-        victim.setVehicleType("albatrosd5");
+        victim.setVehicleType("pziv-g");
         victim.setCountry(new BoSCountry(Country.GERMANY));
-        victim.setCompanyId(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
-        victim.intializeCrewMember(crewMemberSerialNumber);
 
         LogVictory resultVictory = new LogVictory(10);
         resultVictory.setLocation(new Coordinate(100.0, 0.0, 100.0));
@@ -160,34 +151,24 @@ public class AARInMissionResultGeneratorTest
 
     private void createCampaignMembersInMission() throws PWCGException
     {        
-        CrewMember playerInFlight = campaign.findReferencePlayer();
-        addCompanyCrewMember(playerInFlight.getSerialNumber(), CrewMemberStatus.STATUS_WOUNDED);
-        playerPlaneVictor.setCrewMemberSerialNumber(playerInFlight.getSerialNumber());
+        CrewMember playerInPlatoon = campaign.findReferencePlayer();
+        addCompanyCrewMember(playerInPlatoon.getSerialNumber(), CrewMemberStatus.STATUS_WOUNDED);
+        playerPlaneVictor.setCrewMemberSerialNumber(playerInPlatoon.getSerialNumber());
         playerPlaneVictor.setCountry(new BoSCountry(Country.FRANCE));
-        playerPlaneVictor.intializeCrewMember(playerInFlight.getSerialNumber());
+        playerPlaneVictor.setCrewMemberSerialNumber(playerInPlatoon.getSerialNumber());
                 
-        sergentInFlight = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "Sergent");
-        addCompanyCrewMember(sergentInFlight.getSerialNumber(), CrewMemberStatus.STATUS_WOUNDED);
-        aiPlaneVictor.setCrewMemberSerialNumber(sergentInFlight.getSerialNumber());
-        aiPlaneVictor.setCountry(new BoSCountry(Country.FRANCE));
-        aiPlaneVictor.intializeCrewMember(sergentInFlight.getSerialNumber());
+        sergeantInPlatoon = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "Sergent");
+        aiPlaneVictor.setCountry(new BoSCountry(Country.BRITAIN));
 
-        corporalInFlight = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "Corporal");
-        addCompanyCrewMember(corporalInFlight.getSerialNumber(), CrewMemberStatus.STATUS_SERIOUSLY_WOUNDED);
+        corporalInPlatoon = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "Corporal");
+        addCompanyCrewMember(corporalInPlatoon.getSerialNumber(), CrewMemberStatus.STATUS_SERIOUSLY_WOUNDED);
         
-        sltInFlight = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "Sous Lieutenant");
-        addCompanyCrewMember(sltInFlight.getSerialNumber(), CrewMemberStatus.STATUS_KIA);
+        secondLtInPlatoon = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "Sous Lieutenant");
+        addCompanyCrewMember(secondLtInPlatoon.getSerialNumber(), CrewMemberStatus.STATUS_KIA);
         
-        ltInFlight = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "Lieutenant");
-        addCompanyCrewMember(ltInFlight.getSerialNumber(), CrewMemberStatus.STATUS_CAPTURED);
+        firstLtInPlatoon = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "Lieutenant");
+        addCompanyCrewMember(firstLtInPlatoon.getSerialNumber(), CrewMemberStatus.STATUS_CAPTURED);
     }
-    
-    private void createAcesInMission() throws PWCGException
-    {
-        addCompanyCrewMember(WERNER_VOSS, CrewMemberStatus.STATUS_KIA);
-        addCompanyCrewMember(GEORGES_GUYNEMER, CrewMemberStatus.STATUS_KIA);
-    }
-
     
     private void addCompanyCrewMember(int serialNumber, int status)
     {

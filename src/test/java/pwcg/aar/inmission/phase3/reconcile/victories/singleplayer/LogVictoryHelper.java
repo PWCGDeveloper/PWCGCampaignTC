@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogAIEntity;
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogBalloon;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogGroundUnit;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogUnknown;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogVictory;
@@ -19,16 +19,39 @@ public class LogVictoryHelper
 {
     private List<LogVictory> logVictories = new ArrayList<>();
 
-    public void createPlaneVictory()
+    public void createTankVictory()
     {
         LogTank victor = makeVictor();
         
         LogTank victim = new LogTank(1);
         victim.setCrewMemberSerialNumber(SerialNumber.AI_STARTING_SERIAL_NUMBER + 100);
-        victim.setVehicleType("albatrosd5");
+        victim.setVehicleType("pziv-g");
         victim.setCountry(new BoSCountry(Country.GERMANY));
         victim.setCompanyId(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
-        victim.intializeCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER + 100);
+        victim.setCrewMemberSerialNumber(SerialNumber.AI_STARTING_SERIAL_NUMBER + 100);
+
+        makeVictory(victor, victim);
+    }
+
+    public void createFuzzyTankVictory()
+    {
+        LogUnknown victor = new LogUnknown();
+        
+        LogTank victim = new LogTank(1);
+        victim.setCrewMemberSerialNumber(SerialNumber.AI_STARTING_SERIAL_NUMBER + 100);
+        victim.setVehicleType("pziv-g");
+        victim.setCountry(new BoSCountry(Country.RUSSIA));
+
+        makeVictory(victor, victim);
+    }
+
+    public void createPlaneVictory()
+    {
+        LogTank victor = makeVictor();
+        
+        LogPlane victim = new LogPlane(10000);
+        victim.setVehicleType("fw190a6");
+        victim.setCountry(new BoSCountry(Country.GERMANY));
 
         makeVictory(victor, victim);
     }
@@ -37,33 +60,8 @@ public class LogVictoryHelper
     {
         LogUnknown victor = new LogUnknown();
         
-        LogTank victim = new LogTank(1);
-        victim.setCrewMemberSerialNumber(SerialNumber.AI_STARTING_SERIAL_NUMBER + 100);
-        victim.setVehicleType("albatrosd5");
-        victim.setCountry(new BoSCountry(Country.GERMANY));
-        victim.setCompanyId(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
-        victim.intializeCrewMember(SerialNumber.AI_STARTING_SERIAL_NUMBER + 100);
-
-        makeVictory(victor, victim);
-    }
-
-    public void createBalloonVictory()
-    {
-        LogTank victor = makeVictor();
-        
-        LogBalloon victim = new LogBalloon(10000);
-        victim.setVehicleType("drachen");
-        victim.setCountry(new BoSCountry(Country.GERMANY));
-
-        makeVictory(victor, victim);
-    }
-
-    public void createFuzzyBalloonVictory()
-    {
-        LogUnknown victor = new LogUnknown();
-        
-        LogBalloon victim = new LogBalloon(10000);
-        victim.setVehicleType("drachen");
+        LogPlane victim = new LogPlane(10000);
+        victim.setVehicleType("fw190a6");
         victim.setCountry(new BoSCountry(Country.GERMANY));
 
         makeVictory(victor, victim);
@@ -84,10 +82,10 @@ public class LogVictoryHelper
     {
         LogTank victor = new LogTank(1);
         victor.setCrewMemberSerialNumber(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
-        victor.setVehicleType("spad13");
+        victor.setVehicleType("_pziv-g");
         victor.setCountry(new BoSCountry(Country.FRANCE));
         victor.setCompanyId(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
-        victor.intializeCrewMember(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
+        victor.setCrewMemberSerialNumber(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
         return victor;
     }
 

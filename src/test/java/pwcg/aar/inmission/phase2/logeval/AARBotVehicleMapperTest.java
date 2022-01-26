@@ -50,23 +50,21 @@ public class AARBotVehicleMapperTest
     @Test
     public void testMappingBotToPlaneForFighters () throws PWCGException
     {        
-        testInstanceMappingBotToPlaneForFIghters(0, 0, 1, 1, 3, 4);
-        testInstanceMappingBotToPlaneForFIghters(2, 1, 1, 1, 3, 4);
-        testInstanceMappingBotToPlaneForFIghters(0, 1, 1, 1, 3, 4);
-        testInstanceMappingBotToPlaneForFIghters(2, 0, 1, 1, 3, 4);
-        testInstanceMappingBotToPlaneForFIghters(2, 1, 0, 1, 3, 4);
-        testInstanceMappingBotToPlaneForFIghters(2, 1, 1, 0, 3, 4);
-        testInstanceMappingBotToPlaneForFIghters(2, 1, 0, 0, 3, 4);
-        testInstanceMappingBotToPlaneForFIghters(2, 1, 1, 1, 0, 4);
-        testInstanceMappingBotToPlaneForFIghters(2, 1, 1, 1, 3, 0);
-        testInstanceMappingBotToPlaneForFIghters(2, 1, 1, 1, 0, 0);
+        testInstanceMappingBotToPlaneForFIghters(0, 0, 3, 4);
+        testInstanceMappingBotToPlaneForFIghters(2, 1, 3, 4);
+        testInstanceMappingBotToPlaneForFIghters(0, 1, 3, 4);
+        testInstanceMappingBotToPlaneForFIghters(2, 0, 3, 4);
+        testInstanceMappingBotToPlaneForFIghters(2, 1, 3, 4);
+        testInstanceMappingBotToPlaneForFIghters(2, 1, 3, 4);
+        testInstanceMappingBotToPlaneForFIghters(2, 1, 3, 4);
+        testInstanceMappingBotToPlaneForFIghters(2, 1, 0, 4);
+        testInstanceMappingBotToPlaneForFIghters(2, 1, 3, 0);
+        testInstanceMappingBotToPlaneForFIghters(2, 1, 0, 0);
     }
 
     public void testInstanceMappingBotToPlaneForFIghters(
                     int numFrenchPlanes, 
                     int numGermanPlanes,
-                    int numFrenchBalloons, 
-                    int numGermanBalloons,
                     int numFrenchTrucks, 
                     int numGermanTrucks) throws PWCGException
     {
@@ -77,7 +75,7 @@ public class AARBotVehicleMapperTest
         Mockito.when(crewMember.isPlayer()).thenReturn(false);
 
         testMissionEntityGenerator = new TestMissionEntityGenerator();
-        testMissionEntityGenerator.makeMissionArtifacts(numFrenchPlanes, numGermanPlanes, numFrenchBalloons, numGermanBalloons, numFrenchTrucks, numGermanTrucks);
+        testMissionEntityGenerator.makeMissionArtifacts(numFrenchPlanes, numGermanPlanes, numFrenchTrucks, numGermanTrucks);
 
         PwcgMissionData pwcgMissionData = new PwcgMissionData();
         List<PwcgGeneratedMissionVehicleData> missionPlanes = new ArrayList<>(testMissionEntityGenerator.getMissionPlanes().values());

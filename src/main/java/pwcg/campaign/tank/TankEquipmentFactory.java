@@ -41,7 +41,7 @@ public class TankEquipmentFactory
         return equippedTank;
     }
 
-    public static EquippedTank makeTankForBeforeCampaign (Campaign campaign, Country country, Date date) throws PWCGException
+    public static EquippedTank makeVictimTankForBeforeCampaign (Campaign campaign, Country country, Date date) throws PWCGException
     {
         ITankTypeFactory tankTypeFactory = PWCGContext.getInstance().getFullTankTypeFactory();
         List<TankTypeInformation> tankTypes = tankTypeFactory.createActiveTankTypesForDateAndSide(CountryFactory.makeCountryByCountry(country).getSide(), date);
@@ -51,7 +51,7 @@ public class TankEquipmentFactory
         VehicleDefinitionManager vehicleDefinitionManager = PWCGContext.getInstance().getVehicleDefinitionManager();
         VehicleDefinition vehicleDefinition = vehicleDefinitionManager.getVehicleDefinitionByVehicleType(tankType.getType());
         
-        EquippedTank equippedTank = new EquippedTank(vehicleDefinition, tankType, campaign.getSerialNumber().getNextTankSerialNumber(), TankStatus.STATUS_DEPOT, country);
+        EquippedTank equippedTank = new EquippedTank(vehicleDefinition, tankType, campaign.getSerialNumber().getNextTankSerialNumber(), TankStatus.STATUS_DESTROYED, country);
         return equippedTank;
     }
 

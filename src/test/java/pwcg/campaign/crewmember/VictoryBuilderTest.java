@@ -70,7 +70,7 @@ public class VictoryBuilderTest
         logVictor.setCrewMemberSerialNumber(victor.getSerialNumber());
         logVictor.setVehicleType("pziii-l");
         logVictor.setCompanyId(TestIdentifiers.TEST_GERMAN_COMPANY_ID);
-        logVictor.intializeCrewMember(victor.getSerialNumber());
+        logVictor.setCrewMemberSerialNumber(victor.getSerialNumber());
         logVictor.getLogCrewMember().setStatus(CrewMemberStatus.STATUS_ACTIVE);
 
         LogTank logVictim = new LogTank(2);
@@ -78,7 +78,7 @@ public class VictoryBuilderTest
         logVictim.setCrewMemberSerialNumber(victim.getSerialNumber());
         logVictim.setVehicleType("kv1s");
         logVictim.setCompanyId(-1);
-        logVictim.intializeCrewMember(victim.getSerialNumber());
+        logVictim.setCrewMemberSerialNumber(victim.getSerialNumber());
         logVictim.getLogCrewMember().setStatus(CrewMemberStatus.STATUS_CAPTURED);
 
         LogVictory logVictory = new LogVictory(10);
@@ -108,7 +108,7 @@ public class VictoryBuilderTest
         logVictor.setCrewMemberSerialNumber(victor.getSerialNumber());
         logVictor.setVehicleType("pziii-l");
         logVictor.setCompanyId(TestIdentifiers.TEST_GERMAN_COMPANY_ID);
-        logVictor.intializeCrewMember(victor.getSerialNumber());
+        logVictor.setCrewMemberSerialNumber(victor.getSerialNumber());
         logVictor.getLogCrewMember().setStatus(CrewMemberStatus.STATUS_ACTIVE);
 
         LogGroundUnit logVictim = new LogGroundUnit(1000);

@@ -33,6 +33,11 @@ public class PromotionArbitrator implements IPromotionEventHandler
             return NO_PROMOTION;
         }
         
+        if (rankPosBeforePromotion == 1 && !crewMember.isPlayer())
+        {
+            return NO_PROMOTION;
+        }
+        
         int requiredMissionForNextRank = getRequiredMissionsForNextRank(rankPosBeforePromotion);
         int requiredVictoriesForNextRank = getRequiredVictoriesForNextRank(rankPosBeforePromotion);
         
