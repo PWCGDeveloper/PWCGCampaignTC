@@ -49,9 +49,9 @@ public class BriefingDataInitializerTest
     @Mock protected CompanyPersonnel companyPersonnel;
     @Mock protected CrewMembers crewMembers;
     @Mock protected Mission mission;
-    @Mock protected MissionPlatoons missionUnits;
-    @Mock protected ITankPlatoon unit;
-    @Mock protected PlatoonTanks unitTanks;
+    @Mock protected MissionPlatoons platoons;
+    @Mock protected ITankPlatoon platoon;
+    @Mock protected PlatoonTanks platoonTanks;
     @Mock protected TankMcu tank1;
     @Mock protected TankMcu tank2;
     @Mock protected TankMcu tank3;
@@ -66,7 +66,7 @@ public class BriefingDataInitializerTest
     @Mock protected CrewMember crewMember4;
 
     protected Map<Integer, CrewMember> companyPersonnelMap = new HashMap<>();
-    protected List<TankMcu> tanksInUnit = new ArrayList<>();
+    protected List<TankMcu> tanksInPlatoon = new ArrayList<>();
     protected Map<Integer, EquippedTank> equippedTanks = new HashMap<>();
     protected BriefingCrewMemberAssignmentData briefingAssignmentData = new BriefingCrewMemberAssignmentData();
 
@@ -75,12 +75,12 @@ public class BriefingDataInitializerTest
     {
         
         Mockito.when(mission.getCampaign()).thenReturn(campaign);
-        Mockito.when(mission.getPlatoons()).thenReturn(missionUnits);
+        Mockito.when(mission.getPlatoons()).thenReturn(platoons);
 
-        Mockito.when(missionUnits.getPlayerUnitForCompany(Mockito.anyInt())).thenReturn(unit);
+        Mockito.when(platoons.getPlayerUnitForCompany(Mockito.anyInt())).thenReturn(platoon);
 
-        Mockito.when(unit.getUnitTanks()).thenReturn(unitTanks);
-        Mockito.when(unitTanks.getTanks()).thenReturn(tanksInUnit);
+        Mockito.when(platoon.getPlatoonTanks()).thenReturn(platoonTanks);
+        Mockito.when(platoonTanks.getTanks()).thenReturn(tanksInPlatoon);
 
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420801"));
         Mockito.when(campaign.getPersonnelManager()).thenReturn(personnelManager);
@@ -122,8 +122,8 @@ public class BriefingDataInitializerTest
         Mockito.when(tank1.getSerialNumber()).thenReturn(SerialNumber.TANK_STARTING_SERIAL_NUMBER+1);
         Mockito.when(tank2.getSerialNumber()).thenReturn(SerialNumber.TANK_STARTING_SERIAL_NUMBER+2);
 
-        tanksInUnit.add(tank1);
-        tanksInUnit.add(tank2);
+        tanksInPlatoon.add(tank1);
+        tanksInPlatoon.add(tank2);
     }
 
     @Test

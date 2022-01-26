@@ -279,7 +279,7 @@ public class BriefingMapPanel extends MapPanelBase implements ActionListener
     {
         PlatoonMap platoonMap = new PlatoonMap();
         platoonMap.platoonType = platoon.getPlatoonMissionType().name();
-        platoonMap.tankType = platoon.getUnitTanks().getUnitLeader().getDisplayName();
+        platoonMap.tankType = platoon.getPlatoonTanks().getUnitLeader().getDisplayName();
         platoonMap.companyId = platoon.getCompany().getCompanyId();
         
         for (McuWaypoint waypoint : platoon.getWaypoints())

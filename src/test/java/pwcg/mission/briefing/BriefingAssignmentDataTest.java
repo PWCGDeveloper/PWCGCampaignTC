@@ -20,7 +20,7 @@ public class BriefingAssignmentDataTest extends BriefingDataInitializerTest
     public void setupTest() throws PWCGException
     {
         briefingAssignmentData.reset();        
-        unitTanks.clear();       
+        platoonTanks.clear();       
         
         super.setupTest();
         super.initializePayloadsFromMissionTest();

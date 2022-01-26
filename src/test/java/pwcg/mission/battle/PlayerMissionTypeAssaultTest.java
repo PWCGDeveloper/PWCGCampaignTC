@@ -39,7 +39,7 @@ public class PlayerMissionTypeAssaultTest
         ITankPlatoon unit = mission.getPlatoons().getPlayerPlatoons().get(0);
         mission.finalizeMission();
 
-        for (TankMcu tank : unit.getUnitTanks().getTanks())
+        for (TankMcu tank : unit.getPlatoonTanks().getTanks())
         {
             assert(tank.getTankPayload().getSelectedPayloadId() == 0);
         }

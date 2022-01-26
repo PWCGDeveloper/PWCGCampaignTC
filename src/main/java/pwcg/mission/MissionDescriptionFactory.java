@@ -14,7 +14,7 @@ public class MissionDescriptionFactory
 	    }
 	    else
 	    {
-            return new MissionDescriptionSinglePlayer(campaign, mission, mission.getPlatoons().getReferencePlayerUnit());
+            return new MissionDescriptionSinglePlayer(campaign, mission, mission.getPlatoons().getReferencePlayerPlatoon());
 	    }
 	}
 

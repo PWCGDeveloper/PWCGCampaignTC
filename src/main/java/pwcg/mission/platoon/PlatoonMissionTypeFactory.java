@@ -1,7 +1,5 @@
 package pwcg.mission.platoon;
 
-import java.util.List;
-
 import pwcg.campaign.tank.PwcgRole;
 import pwcg.core.exception.PWCGException;
 import pwcg.mission.ICompanyMission;
@@ -11,9 +9,9 @@ import pwcg.mission.platoon.tank.TankMcu;
 
 public class PlatoonMissionTypeFactory
 {
-    public static PlatoonMissionType getPlatoonMissionType(Mission mission, ICompanyMission company, List<TankMcu> tanks) throws PWCGException
+    public static PlatoonMissionType getPlatoonMissionType(Mission mission, ICompanyMission company, TankMcu tank) throws PWCGException
     {
-        PwcgRole missionRole = getMissionRole(mission, company, tanks);
+        PwcgRole missionRole = getMissionRole(mission, company, tank);
 
         if (mission.getObjective().getAssaultingCountry().getCountry() == company.getCountry().getCountry())
         {
@@ -25,7 +23,7 @@ public class PlatoonMissionTypeFactory
         }
     }
 
-    private static PwcgRole getMissionRole(Mission mission, ICompanyMission company, List<TankMcu> tanks) throws PWCGException
+    private static PwcgRole getMissionRole(Mission mission, ICompanyMission company, TankMcu tank) throws PWCGException
     {
         PwcgRole missionRole = PwcgRole.ROLE_NONE;
         if (company.getCompanyRoles() != null)
@@ -35,7 +33,7 @@ public class PlatoonMissionTypeFactory
         
         if (missionRole == PwcgRole.ROLE_NONE)
         {
-            missionRole = tanks.get(0).getRoleCategories().get(0).getDefaultRole();
+            missionRole = tank.getRoleCategories().get(0).getDefaultRole();
         }
         
         if (missionRole == PwcgRole.ROLE_NONE)

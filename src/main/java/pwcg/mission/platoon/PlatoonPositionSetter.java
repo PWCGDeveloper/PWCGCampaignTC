@@ -19,10 +19,10 @@ public class PlatoonPositionSetter
         resetStartFormation(tankPlatoon, startPosition, angleToObjective);
     }
 
-    private static void resetStartFormation(ITankPlatoon unit, Coordinate startCoordinate, double angleToObjective) throws PWCGException
+    private static void resetStartFormation(ITankPlatoon platoon, Coordinate startCoordinate, double angleToObjective) throws PWCGException
     {
-        setUnittOrientation(unit.getTanks(), angleToObjective);
-        setTankPositions(unit.getTanks(), startCoordinate, angleToObjective);
+        setUnittOrientation(platoon.getPlatoonTanks().getTanks(), angleToObjective);
+        setTankPositions(platoon.getPlatoonTanks().getTanks(), startCoordinate, angleToObjective);
     }
 
     private static void setUnittOrientation(List<TankMcu> tanks, double orientationAngle)

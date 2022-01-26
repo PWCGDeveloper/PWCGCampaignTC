@@ -101,7 +101,7 @@ public class BriefingUnitUpdater
         for (BriefingUnit briefingUnit : briefingData.getBriefingUnits())
         {
             ITankPlatoon playerPlatoon = mission.getPlatoons().getPlayerUnitForCompany(briefingUnit.getCompanyId());
-            playerPlatoon.getUnitTanks().setFuelForUnit(briefingUnit.getSelectedFuel());
+            playerPlatoon.getPlatoonTanks().setFuelForUnit(briefingUnit.getSelectedFuel());
         }
     }
 

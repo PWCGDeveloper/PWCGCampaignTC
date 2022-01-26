@@ -57,7 +57,7 @@ public class MissionPlatoonBuilder implements IMissionPlatoonBuilder
             
             createStartPosition(waypointCoordinates, platoon);
             
-            List<McuWaypoint> assaultWaypoints = createWaypoints(waypointCoordinates, platoon.getTanks().get(0).getCruisingSpeed());
+            List<McuWaypoint> assaultWaypoints = createWaypoints(waypointCoordinates, platoon.getLeadVehicle().getCruisingSpeed());
             platoon.setWaypoints(assaultWaypoints);
         }
     }
@@ -73,7 +73,7 @@ public class MissionPlatoonBuilder implements IMissionPlatoonBuilder
             
             createStartPosition(waypointCoordinates, platoon);
             
-            List<McuWaypoint> defenseWaypoints = createWaypoints(waypointCoordinates, platoon.getTanks().get(0).getCruisingSpeed());
+            List<McuWaypoint> defenseWaypoints = createWaypoints(waypointCoordinates, platoon.getLeadVehicle().getCruisingSpeed());
             platoon.setWaypoints(defenseWaypoints);
         }
     }
@@ -133,7 +133,7 @@ public class MissionPlatoonBuilder implements IMissionPlatoonBuilder
             tankPlatoon.createUnit();
         }
 
-        PlatoonMissionType platoonMissionType = PlatoonMissionTypeFactory.getPlatoonMissionType(mission, company, tankPlatoon.getTanks());
+        PlatoonMissionType platoonMissionType = PlatoonMissionTypeFactory.getPlatoonMissionType(mission, company, tankPlatoon.getLeadVehicle());
         tankPlatoon.setPlatoonMissionType(platoonMissionType);
         
         missionPlatoons.addPlatoon(tankPlatoon);

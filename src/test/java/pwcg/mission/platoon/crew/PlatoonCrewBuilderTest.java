@@ -50,9 +50,9 @@ public class PlatoonCrewBuilderTest
         for (CrewMember player : participatingPlayers.getAllParticipatingPlayers())
         {
             boolean playerFound = false;
-            for (ITankPlatoon unit : mission.getPlatoons().getPlayerPlatoons())
+            for (ITankPlatoon platoon : mission.getPlatoons().getPlayerPlatoons())
             {
-                for(TankMcu tank : unit.getTanks())
+                for(TankMcu tank : platoon.getPlatoonTanks().getTanks())
                 {
                     if (tank.getName().contains(player.getName()))
                     {

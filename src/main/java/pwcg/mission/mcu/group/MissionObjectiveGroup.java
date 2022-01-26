@@ -32,7 +32,7 @@ public class MissionObjectiveGroup
 
     public void createSuccessMissionObjective(Campaign campaign, Mission mission) throws PWCGException 
     {
-        ITankPlatoon playerPlatoon = mission.getPlatoons().getReferencePlayerUnit();
+        ITankPlatoon playerPlatoon = mission.getPlatoons().getReferencePlayerPlatoon();
         Coordinate companyLocation = playerPlatoon.getCompany().determinePosition(campaign.getDate());
         missionBeginUnit = new MissionBeginUnit(companyLocation.copy());            
                 
@@ -47,7 +47,7 @@ public class MissionObjectiveGroup
 
     public void createFailureMissionObjective(Campaign campaign, Mission mission) throws PWCGException 
     {
-        ITankPlatoon playerPlatoon = mission.getPlatoons().getReferencePlayerUnit();
+        ITankPlatoon playerPlatoon = mission.getPlatoons().getReferencePlayerPlatoon();
         Coordinate companyLocation = playerPlatoon.getCompany().determinePosition(campaign.getDate());
         missionBeginUnit = new MissionBeginUnit(companyLocation.copy());            
 
@@ -55,7 +55,7 @@ public class MissionObjectiveGroup
         missionObjective.setPosition(companyLocation);
         missionObjective.setSuccess(0);
 
-        TankMcu referenceVehicle = mission.getPlatoons().getReferencePlayerUnit().getTanks().get(0);
+        TankMcu referenceVehicle = mission.getPlatoons().getReferencePlayerPlatoon().getLeadVehicle();
         referenceVehicle.setOnMessages(
                         McuMessage.ONKILL,
                         missionBeginUnit.getStartTimeindex(),

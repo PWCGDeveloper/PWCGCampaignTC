@@ -47,7 +47,7 @@ public class BriefingCrewTankUpdater
 
     private void replaceTanksInPlayerUnit() throws PWCGException
     {
-        playerPlatoon.getUnitTanks().setTanks(updatedTankSet);
+        playerPlatoon.getPlatoonTanks().setTanks(updatedTankSet);
     }
 
     private void createTankBasedOnBriefingSelections(int numInFormation, CrewTankPayloadPairing crewTank) throws PWCGException
@@ -115,7 +115,7 @@ public class BriefingCrewTankUpdater
 
     private TankMcu updateFlightMember(CrewTankPayloadPairing crewTank) throws PWCGException
     {
-        TankMcu platoonMember = playerPlatoon.getUnitTanks().getUnitLeader();
+        TankMcu platoonMember = playerPlatoon.getPlatoonTanks().getUnitLeader();
         TankMcu updatedTankMcu = PlayerTankMcuFactory.createTankMcuByTankType(crewTank.getTank(), playerPlatoon.getPlatoonInformation().getCountry(), crewTank.getCrewMember());
         updatedTankMcu.setTarget(platoonMember.getLinkTrId());
         updatedTankMcu.setFuel(platoonMember.getFuel());
@@ -126,7 +126,7 @@ public class BriefingCrewTankUpdater
     private TankMcu updateLeader(CrewTankPayloadPairing crewTank) throws PWCGException
     {        
         TankMcu updatedPlatoonLeader = PlayerTankMcuFactory.createTankMcuByTankType(crewTank.getTank(), playerPlatoon.getPlatoonInformation().getCountry(), crewTank.getCrewMember());
-        TankMcu flightLeaderTankMcu = playerPlatoon.getUnitTanks().getUnitLeader();        
+        TankMcu flightLeaderTankMcu = playerPlatoon.getPlatoonTanks().getUnitLeader();        
         updatedPlatoonLeader.copyEntityIndexFromTank(flightLeaderTankMcu);
         updatedPlatoonLeader.setLinkTrId(flightLeaderTankMcu.getLinkTrId());
         updatedPlatoonLeader.copyEntityIndexFromTank(flightLeaderTankMcu);

@@ -35,7 +35,7 @@ public class MissionPlatoons
         List<Integer> playersInMission = new ArrayList<>();
         for (ITankPlatoon platoon : tankPlatoons.values())
         {
-            for (TankMcu tank : platoon.getUnitTanks().getPlayerTanks())
+            for (TankMcu tank : platoon.getPlatoonTanks().getPlayerTanks())
             {
                 if (tank.getTankCommander().isPlayer())
                 {
@@ -51,7 +51,7 @@ public class MissionPlatoons
         List<ITankPlatoon> playerPlatoons = new ArrayList<>();
         for (ITankPlatoon platoon : tankPlatoons.values())
         {
-            for (TankMcu tank : platoon.getUnitTanks().getPlayerTanks())
+            for (TankMcu tank : platoon.getPlatoonTanks().getPlayerTanks())
             {
                 if (tank.getTankCommander().isPlayer())
                 {
@@ -62,7 +62,7 @@ public class MissionPlatoons
         return playerPlatoons;
     }
 
-    public ITankPlatoon getReferencePlayerUnit() throws PWCGException
+    public ITankPlatoon getReferencePlayerPlatoon() throws PWCGException
     {
         for (ITankPlatoon platoon : getPlayerPlatoons())
         {

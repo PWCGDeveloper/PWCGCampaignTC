@@ -31,7 +31,7 @@ public class MissionTankGenerator
 
     private void makeTankEntriesForPlatoon(ITankPlatoon platoon)
     {
-        for (TankMcu vehicle : platoon.getTanks())
+        for (TankMcu vehicle : platoon.getPlatoonTanks().getTanks())
         {
             makeMissionTankEntry(platoon.getCompany(), vehicle);
         }

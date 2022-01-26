@@ -71,7 +71,7 @@ public class BriefingPayloadHelper
     private void assignPayloadsToCrewPlanes() throws PWCGException
     {
         ITankPlatoon playerPlatoon = mission.getPlatoons().getPlayerUnitForCompany(briefingAssignmentData.getCompany().getCompanyId());
-        for (TankMcu tank : playerPlatoon.getTanks())
+        for (TankMcu tank : playerPlatoon.getPlatoonTanks().getTanks())
         {
             CrewTankPayloadPairing crewTank = briefingAssignmentData.findAssignedCrewPairingByPlane(tank.getSerialNumber());
             if (crewTank != null)
@@ -84,7 +84,7 @@ public class BriefingPayloadHelper
     private void assignModificationsToCrewPlanes() throws PWCGException
     {
         ITankPlatoon playerPlatoon = mission.getPlatoons().getPlayerUnitForCompany(briefingAssignmentData.getCompany().getCompanyId());
-        for (TankMcu tank : playerPlatoon.getTanks())
+        for (TankMcu tank : playerPlatoon.getPlatoonTanks().getTanks())
         {
             CrewTankPayloadPairing crewPlane = briefingAssignmentData.findAssignedCrewPairingByPlane(tank.getSerialNumber());
             if (crewPlane != null)

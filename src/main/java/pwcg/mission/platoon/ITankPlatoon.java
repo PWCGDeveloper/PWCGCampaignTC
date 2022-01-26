@@ -16,15 +16,13 @@ public interface ITankPlatoon
 
     PlatoonInformation getPlatoonInformation();
 
-    List<TankMcu> getTanks();
-
     TankMcu getLeadVehicle();
 
     List<McuWaypoint> getWaypoints();
 
     ICompanyMission getCompany();
 
-    PlatoonTanks getUnitTanks();
+    PlatoonTanks getPlatoonTanks();
 
     void preparePlaneForCoop() throws PWCGException;
 

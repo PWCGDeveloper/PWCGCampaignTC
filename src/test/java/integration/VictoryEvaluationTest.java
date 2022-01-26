@@ -192,7 +192,7 @@ public class VictoryEvaluationTest
         mission.finalizeMission();
         mission.write();
         
-        List<TankMcu> playerTanks = mission.getPlatoons().getPlayerPlatoons().get(0).getTanks();
+        List<TankMcu> playerTanks = mission.getPlatoons().getPlayerPlatoons().get(0).getPlatoonTanks().getTanks();
         Map<Integer, Integer> playerVictories = new HashMap<>();
         for(TankMcu tank : playerTanks)
         {
@@ -292,7 +292,7 @@ public class VictoryEvaluationTest
     {
         for(ITankPlatoon unit : mission.getPlatoons().getPlatoonsForSide(Side.ALLIED))
         {
-            List<TankMcu> enemyTanks = unit.getTanks();
+            List<TankMcu> enemyTanks = unit.getPlatoonTanks().getTanks();
             if (enemyTanks.size() >= 2)
             {
                 return enemyTanks;                    
@@ -307,7 +307,7 @@ public class VictoryEvaluationTest
         int playerTankAid = -1;
         
         Coordinate location = new Coordinate(500000, 0, 50000);
-        List<TankMcu> playerPlatoonTanks = mission.getPlatoons().getPlayerPlatoons().get(0).getTanks();
+        List<TankMcu> playerPlatoonTanks = mission.getPlatoons().getPlayerPlatoons().get(0).getPlatoonTanks().getTanks();
         
         for (TankMcu friendlyTank : playerPlatoonTanks)
         {

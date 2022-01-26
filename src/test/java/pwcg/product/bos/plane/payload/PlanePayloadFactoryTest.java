@@ -5,17 +5,17 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import pwcg.campaign.context.PWCGContext;
+import pwcg.campaign.plane.PlaneType;
+import pwcg.campaign.plane.PlaneTypeFactory;
 import pwcg.campaign.plane.payload.IPlanePayload;
-import pwcg.campaign.tank.ITankTypeFactory;
-import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.mission.flight.plane.PlanePayloadFactory;
 
 @ExtendWith(MockitoExtension.class)
-public class BoSPayloadFactoryTest
+public class PlanePayloadFactoryTest
 {	
-	public BoSPayloadFactoryTest() throws PWCGException
+	public PlanePayloadFactoryTest() throws PWCGException
 	{
     	      
 	}
@@ -23,14 +23,14 @@ public class BoSPayloadFactoryTest
     @Test
     public void validatePayloadsForAllPlanes() throws PWCGException 
     {
-        PlanePayloadFactory bosPayloadFactory = new PlanePayloadFactory();
-        ITankTypeFactory planeTypeFactory = PWCGContext.getInstance().getFullTankTypeFactory();
+        PlanePayloadFactory planePayloadFactory = new PlanePayloadFactory();
+        PlaneTypeFactory planeTypeFactory = PWCGContext.getInstance().getPlaneTypeFactory();
 
-        for (TankTypeInformation bosTankType : planeTypeFactory.getAllTanks())
+        for (PlaneType bosTankType : planeTypeFactory.getAllPlanes())
         {
             System.out.println(bosTankType.getType());
             
-            IPlanePayload payload = bosPayloadFactory.createPayload(bosTankType.getType(), DateUtils.getDateYYYYMMDD("19420801"));
+            IPlanePayload payload = planePayloadFactory.createPayload(bosTankType.getType(), DateUtils.getDateYYYYMMDD("19420801"));
             assert(payload != null);
         }
     }

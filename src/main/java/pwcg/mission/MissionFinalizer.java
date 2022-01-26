@@ -64,8 +64,8 @@ public class MissionFinalizer
 
     private void setMissionScript(MissionOptions missionOptions) throws PWCGException
     {
-        List<TankMcu> playerVehicles = mission.getPlatoons().getReferencePlayerUnit().getTanks();
-        String playerScript = playerVehicles.get(0).getScript();
+        TankMcu playerVehicle = mission.getPlatoons().getReferencePlayerPlatoon().getPlatoonTanks().getPlayerTanks().get(0);
+        String playerScript = playerVehicle.getScript();
         missionOptions.setPlayerConfig(playerScript);
     }
 

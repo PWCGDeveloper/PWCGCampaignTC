@@ -43,12 +43,6 @@ public abstract class TankPlatoon implements ITankPlatoon
     }
 
     @Override
-    public List<TankMcu> getTanks()
-    {
-        return platoonVehicles.getTanks();
-    }
-
-    @Override
     public TankMcu getLeadVehicle()
     {
         return platoonVehicles.getUnitLeader();
@@ -72,7 +66,7 @@ public abstract class TankPlatoon implements ITankPlatoon
     }
 
     @Override
-    public PlatoonTanks getUnitTanks()
+    public PlatoonTanks getPlatoonTanks()
     {
         return platoonVehicles;
     }
