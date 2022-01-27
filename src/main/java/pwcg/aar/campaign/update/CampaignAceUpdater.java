@@ -53,7 +53,7 @@ public class CampaignAceUpdater
 			{
     			for (Victory victory : aceVictories.get(serialNumber)) 
     			{
-    				ace.addAirVictory(victory);
+    				ace.addGroundVictory(victory);
     			}
 			}
 		}

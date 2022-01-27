@@ -21,7 +21,7 @@ public class MissionEntityBuilder
         for (int i = 0; i < numVictories; ++i)
         {
             Victory victory = new Victory();
-            aceKilledInMission.addAirVictory(victory);
+            aceKilledInMission.addGroundVictory(victory);
         }
         return aceKilledInMission;
     }

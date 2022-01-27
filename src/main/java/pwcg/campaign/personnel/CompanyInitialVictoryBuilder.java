@@ -7,7 +7,7 @@ import pwcg.campaign.ArmedService;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.company.Company;
 import pwcg.campaign.context.Country;
-import pwcg.campaign.crewmember.AirToGroundVictoryBuilder;
+import pwcg.campaign.crewmember.TankVictoryBuilder;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.GroundVictimGenerator;
 import pwcg.campaign.crewmember.Victory;
@@ -47,7 +47,7 @@ public class CompanyInitialVictoryBuilder
         else if (rankPos == 2)
         {
             minVictories = 0;
-            maxVictories = 2;
+            maxVictories = 1;
         }
         else if (rankPos == 1)
         {
@@ -72,7 +72,7 @@ public class CompanyInitialVictoryBuilder
             if (rankPos == 2)
             {
                 minAdjustment = 0;
-                maxAdjustment = 3;
+                maxAdjustment = 2;
             }
             else if (rankPos == 1)
             {
@@ -111,7 +111,7 @@ public class CompanyInitialVictoryBuilder
             Victory victory = generateVictory(newCrewMember, victoryDate);
             if (victory != null)
             {
-                newCrewMember.addAirVictory(victory);
+                newCrewMember.addGroundVictory(victory);
             }
         }
     }
@@ -121,7 +121,7 @@ public class CompanyInitialVictoryBuilder
         GroundVictimGenerator duringCampaignVictimGenerator = new GroundVictimGenerator(victoryDate, newCrewMember);
         IVehicle victimVehicle = duringCampaignVictimGenerator.generateVictimVehicle();
 
-        AirToGroundVictoryBuilder outOfMissionVictoryGenerator = new AirToGroundVictoryBuilder(newCrewMember, victimVehicle);
+        TankVictoryBuilder outOfMissionVictoryGenerator = new TankVictoryBuilder(newCrewMember, victimVehicle);
         Victory victory = outOfMissionVictoryGenerator.generateOutOfMissionVictory(victoryDate);
         return victory;
     }

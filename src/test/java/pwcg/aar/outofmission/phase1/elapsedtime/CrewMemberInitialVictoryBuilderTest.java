@@ -1,6 +1,5 @@
 package pwcg.aar.outofmission.phase1.elapsedtime;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
@@ -22,41 +21,31 @@ import pwcg.testutils.CompanyTestProfile;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class CrewMemberInitialVictoryBuilderTest
 {
-    private Campaign germanCampaign;
-    private Campaign americanCampaign;
-    
-    @BeforeAll
-    public void setupSuite() throws PWCGException
-    {
-        
-        germanCampaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
-        americanCampaign = CampaignCache.makeCampaign(CompanyTestProfile.THIRD_DIVISION_PROFILE);
-    }
-
-
     @Test
-    public void testInitialVictoriesGermanFighter () throws PWCGException
+    public void testInitialVictoriesGerman () throws PWCGException
     {
-        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(20112052);
+        Campaign germanCampaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
+
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
         ArmedService service = company.determineServiceForCompany(germanCampaign.getDate());
         IRankHelper rankHelper = RankFactory.createRankHelper();
-        CompanyPersonnel jg52Personnel = germanCampaign.getPersonnelManager().getCompanyPersonnel(20112052);
+        CompanyPersonnel personnel = germanCampaign.getPersonnelManager().getCompanyPersonnel(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
 
-        CrewMembers crewMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(jg52Personnel.getCrewMembersWithAces().getCrewMemberCollection(), germanCampaign.getDate());
+        CrewMembers crewMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(personnel.getCrewMembersWithAces().getCrewMemberCollection(), germanCampaign.getDate());
         for (CrewMember crewMember : crewMembers.getCrewMemberCollection().values())
         {
             int rankPos = rankHelper.getRankPosByService(crewMember.getRank(), service);
             if (rankPos == 0)
             {
-                validateVictoryRange (crewMember, 6, 30);
+                validateVictoryRange (crewMember, 3, 8);
             }
             else  if (rankPos == 1)
             {
-                validateVictoryRange (crewMember, 3, 20);
+                validateVictoryRange (crewMember, 2, 5);
             }
             else  if (rankPos == 2)
             {
-                validateVictoryRange (crewMember, 0, 8);
+                validateVictoryRange (crewMember, 0, 3);
             }
             else
             {
@@ -67,98 +56,35 @@ public class CrewMemberInitialVictoryBuilderTest
     }
 
     @Test
-    public void testInitialVictoriesRussianFighter () throws PWCGException
+    public void testInitialVictoriesAmerican () throws PWCGException
     {
-        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(10111126);
-        ArmedService service = company.determineServiceForCompany(germanCampaign.getDate());
+        Campaign americanCampaign = CampaignCache.makeCampaign(CompanyTestProfile.THIRD_DIVISION_PROFILE);
+
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
+        ArmedService service = company.determineServiceForCompany(americanCampaign.getDate());
         IRankHelper rankHelper = RankFactory.createRankHelper();
         
-        CrewMembers crewMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(germanCampaign.getPersonnelManager().
-                        getCompanyPersonnel(10111126).getCrewMembersWithAces().getCrewMemberCollection(), germanCampaign.getDate());
+        CrewMembers crewMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(americanCampaign.getPersonnelManager().
+                        getCompanyPersonnel(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId()).getCrewMembersWithAces().getCrewMemberCollection(), americanCampaign.getDate());
         for (CrewMember crewMember : crewMembers.getCrewMemberCollection().values())
         {
             int rankPos = rankHelper.getRankPosByService(crewMember.getRank(), service);
             if (rankPos == 0)
             {
-                validateVictoryRange (crewMember, 0, 6);
+                validateVictoryRange (crewMember, 1, 3);
             }
             else  if (rankPos == 1)
+            {
+                validateVictoryRange (crewMember, 1, 2);
+            }
+            else  if (rankPos == 2)
             {
                 validateVictoryRange (crewMember, 0, 1);
             }
-            else  if (rankPos == 2)
-            {
-                validateVictoryRange (crewMember, 0, 0);
-            }
             else
             {
                 validateVictoryRange (crewMember, 0, 0);
             }
-        }
-    }
-
-    @Test
-    public void testInitialVictoriesGermanFighterWest () throws PWCGException
-    {
-        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(20112052);
-        ArmedService service = company.determineServiceForCompany(germanCampaign.getDate());
-        IRankHelper rankHelper = RankFactory.createRankHelper();
-        CompanyPersonnel jg52Personnel = germanCampaign.getPersonnelManager().getCompanyPersonnel(20112052);
-
-        CrewMembers crewMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(jg52Personnel.getCrewMembersWithAces().getCrewMemberCollection(), germanCampaign.getDate());
-        for (CrewMember crewMember : crewMembers.getCrewMemberCollection().values())
-        {
-            int rankPos = rankHelper.getRankPosByService(crewMember.getRank(), service);
-            if (rankPos == 0)
-            {
-                validateVictoryRange (crewMember, 6, 30);
-            }
-            else  if (rankPos == 1)
-            {
-                validateVictoryRange (crewMember, 1, 20);
-            }
-            else  if (rankPos == 2)
-            {
-                validateVictoryRange (crewMember, 0, 8);
-            }
-            else
-            {
-                validateVictoryRange (crewMember, 0, 0);
-            }
-
-        }
-    }
-
-    @Test
-    public void testInitialVictoriesAmericanFighterWest () throws PWCGException
-    {
-
-        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(102362377);
-        ArmedService service = company.determineServiceForCompany(americanCampaign.getDate());
-        IRankHelper rankHelper = RankFactory.createRankHelper();
-        CompanyPersonnel fg362Personnel = americanCampaign.getPersonnelManager().getCompanyPersonnel(102362377);
-
-        CrewMembers crewMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAces(fg362Personnel.getCrewMembersWithAces().getCrewMemberCollection(), americanCampaign.getDate());
-        for (CrewMember crewMember : crewMembers.getCrewMemberCollection().values())
-        {
-            int rankPos = rankHelper.getRankPosByService(crewMember.getRank(), service);
-            if (rankPos == 0)
-            {
-                validateVictoryRange (crewMember, 4, 17);
-            }
-            else  if (rankPos == 1)
-            {
-                validateVictoryRange (crewMember, 1, 10);
-            }
-            else  if (rankPos == 2)
-            {
-                validateVictoryRange (crewMember, 0, 7);
-            }
-            else
-            {
-                validateVictoryRange (crewMember, 0, 0);
-            }
-
         }
     }
 
@@ -169,7 +95,7 @@ public class CrewMemberInitialVictoryBuilderTest
             return;
         }
         
-        int numVictories = crewMember.getCrewMemberVictories().getAirToAirVictoryCount();
+        int numVictories = crewMember.getCrewMemberVictories().getTankVictoryCount();
         if (numVictories < min || numVictories > max)
         {
             System.out.println("Victoris not in range : " + numVictories + "     Min: " + min + "     Max: " + max);

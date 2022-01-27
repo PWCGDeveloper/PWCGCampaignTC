@@ -68,7 +68,7 @@ public class TankAce extends CrewMember
 
             if (!found)
             {
-                this.addAirVictory(historicalVictory);
+                this.addGroundVictory(historicalVictory);
             }
         }
         Collections.sort(getCrewMemberVictories().getAirVictories());

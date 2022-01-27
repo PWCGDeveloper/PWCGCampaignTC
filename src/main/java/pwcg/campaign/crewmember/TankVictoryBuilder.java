@@ -13,12 +13,12 @@ import pwcg.core.location.Coordinate;
 import pwcg.core.utils.PWCGLogger;
 import pwcg.mission.ground.vehicle.IVehicle;
 
-public class AirToGroundVictoryBuilder
+public class TankVictoryBuilder
 {
     private CrewMember victorCrewMember;
     private IVehicle victimVehicle;
 
-    public AirToGroundVictoryBuilder (CrewMember victorCrewMember, IVehicle victimVehicle)
+    public TankVictoryBuilder (CrewMember victorCrewMember, IVehicle victimVehicle)
     {
         this.victimVehicle = victimVehicle;
         this.victorCrewMember = victorCrewMember;
@@ -79,7 +79,7 @@ public class AirToGroundVictoryBuilder
             if (victorTankType != null)
             {
                 VictoryEntity victor = new VictoryEntity();
-                victor.setAirOrGround(Victory.AIRCRAFT);
+                victor.setAirOrGround(Victory.VEHICLE);
                 victor.setType(victorTankType.getDisplayName());
                 victor.setName(victorTankType.getDisplayName());
                 victor.setCompanyName(company.determineDisplayName(date));

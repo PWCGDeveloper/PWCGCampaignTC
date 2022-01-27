@@ -11,7 +11,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import pwcg.aar.data.AARContext;
 import pwcg.campaign.ArmedService;
 import pwcg.campaign.Campaign;
-import pwcg.campaign.crewmember.AirToGroundVictoryBuilder;
+import pwcg.campaign.crewmember.TankVictoryBuilder;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.CrewMemberStatus;
 import pwcg.campaign.crewmember.GroundVictimGenerator;
@@ -53,7 +53,7 @@ public class OutOfMissionGroundVictoryBuilderTest
         GroundVictimGenerator duringCampaignVictimGenerator = new GroundVictimGenerator(campaign.getDate(), selectedCrewMember);
         IVehicle victimVehicle = duringCampaignVictimGenerator.generateVictimVehicle();
 
-        AirToGroundVictoryBuilder victoryGenerator = new AirToGroundVictoryBuilder(selectedCrewMember, victimVehicle);
+        TankVictoryBuilder victoryGenerator = new TankVictoryBuilder(selectedCrewMember, victimVehicle);
         Victory victory = victoryGenerator.generateOutOfMissionVictory(campaign.getDate());
         
         Assertions.assertTrue (victory.getVictim().getAirOrGround() == Victory.VEHICLE);
