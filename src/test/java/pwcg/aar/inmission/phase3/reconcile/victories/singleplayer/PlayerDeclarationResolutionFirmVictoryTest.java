@@ -85,7 +85,7 @@ public class PlayerDeclarationResolutionFirmVictoryTest
         Mockito.when(personnelManager.getAnyCampaignMember(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER)).thenReturn(player);
         Mockito.when(personnelManager.getAnyCampaignMember(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1)).thenReturn(ai);
 
-        Mockito.when(evaluationData.getPlaneInMissionBySerialNumber(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER)).thenReturn(playerVictor);
+        Mockito.when(evaluationData.getTankInMissionBySerialNumber(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER)).thenReturn(playerVictor);
 
         Mockito.when(player.isPlayer()).thenReturn(true);
         Mockito.when(player.getCountry()).thenReturn(Country.FRANCE);
@@ -102,7 +102,7 @@ public class PlayerDeclarationResolutionFirmVictoryTest
         createVictory(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER, SerialNumber.AI_STARTING_SERIAL_NUMBER + 1003);
 
         PlayerDeclarationResolution declarationResolution = new PlayerDeclarationResolution(campaign, evaluationData, victorySorter, playerDeclarations);
-        ConfirmedVictories confirmedPlayerVictories = declarationResolution.determinePlayerAirResultsWithClaims();
+        ConfirmedVictories confirmedPlayerVictories = declarationResolution.determinePlayerResultsWithClaims();
         
         Assertions.assertTrue (confirmedPlayerVictories.getConfirmedVictories().size() == 1);
     }
@@ -117,7 +117,7 @@ public class PlayerDeclarationResolutionFirmVictoryTest
         createVictory(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER, SerialNumber.AI_STARTING_SERIAL_NUMBER + 1003);
 
         PlayerDeclarationResolution declarationResolution = new PlayerDeclarationResolution(campaign, evaluationData, victorySorter, playerDeclarations);
-        ConfirmedVictories confirmedPlayerVictories = declarationResolution.determinePlayerAirResultsWithClaims();
+        ConfirmedVictories confirmedPlayerVictories = declarationResolution.determinePlayerResultsWithClaims();
         
         Assertions.assertTrue (confirmedPlayerVictories.getConfirmedVictories().size() == 2);
     }
@@ -132,7 +132,7 @@ public class PlayerDeclarationResolutionFirmVictoryTest
         createVictory(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER, SerialNumber.AI_STARTING_SERIAL_NUMBER + 1003);
 
         PlayerDeclarationResolution declarationResolution = new PlayerDeclarationResolution(campaign, evaluationData, victorySorter, playerDeclarations);
-        ConfirmedVictories confirmedPlayerVictories = declarationResolution.determinePlayerAirResultsWithClaims();
+        ConfirmedVictories confirmedPlayerVictories = declarationResolution.determinePlayerResultsWithClaims();
         
         Assertions.assertTrue (confirmedPlayerVictories.getConfirmedVictories().size() == 1);
     }
@@ -146,7 +146,7 @@ public class PlayerDeclarationResolutionFirmVictoryTest
         createVictory(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1, SerialNumber.AI_STARTING_SERIAL_NUMBER + 1003);
 
         PlayerDeclarationResolution declarationResolution = new PlayerDeclarationResolution(campaign, evaluationData, victorySorter, playerDeclarations);
-        ConfirmedVictories confirmedPlayerVictories = declarationResolution.determinePlayerAirResultsWithClaims();
+        ConfirmedVictories confirmedPlayerVictories = declarationResolution.determinePlayerResultsWithClaims();
         
         Assertions.assertTrue (confirmedPlayerVictories.getConfirmedVictories().size() == 0);
     }
@@ -156,7 +156,7 @@ public class PlayerDeclarationResolutionFirmVictoryTest
     {   
         createPlayerDeclarations(2);
         PlayerDeclarationResolution declarationResolution = new PlayerDeclarationResolution(campaign, evaluationData, victorySorter, playerDeclarations);
-        ConfirmedVictories confirmedPlayerVictories = declarationResolution.determinePlayerAirResultsWithClaims();
+        ConfirmedVictories confirmedPlayerVictories = declarationResolution.determinePlayerResultsWithClaims();
         
         Assertions.assertTrue (confirmedPlayerVictories.getConfirmedVictories().size() == 0);
     }
@@ -169,7 +169,7 @@ public class PlayerDeclarationResolutionFirmVictoryTest
         createFriendlyVictory(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER, SerialNumber.AI_STARTING_SERIAL_NUMBER + 1001);
 
         PlayerDeclarationResolution declarationResolution = new PlayerDeclarationResolution(campaign, evaluationData, victorySorter, playerDeclarations);
-        ConfirmedVictories confirmedPlayerVictories = declarationResolution.determinePlayerAirResultsWithClaims();
+        ConfirmedVictories confirmedPlayerVictories = declarationResolution.determinePlayerResultsWithClaims();
         
         Assertions.assertTrue (confirmedPlayerVictories.getConfirmedVictories().size() == 0);
     }

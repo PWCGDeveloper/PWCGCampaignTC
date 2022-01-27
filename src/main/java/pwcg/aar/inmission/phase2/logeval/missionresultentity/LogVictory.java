@@ -56,7 +56,7 @@ public class LogVictory extends LogBase
         this.confirmed = confirmed;
     }
 
-    public boolean didCrewMemberDamagePlane(String victorId)
+    public boolean didCrewMemberDamageTank(String victorId)
     {
         if(damageInformation == null)
         {

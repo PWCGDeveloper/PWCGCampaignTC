@@ -251,7 +251,7 @@ public class DateUtils
 
     public static Date getBeginningOfGame() throws PWCGException
     {
-        return DateUtils.getDateYYYYMMDD("19420801");            
+        return DateUtils.getDateYYYYMMDD("19411001");            
     }
 
     public static Date getStartofWWIIUSA() throws PWCGException

@@ -18,7 +18,7 @@ public class AARMissionEvaluationData
     private List<LogCrewMember> crewMembersInMission = new ArrayList<>();
     private List<LogBase> chronologicalEvents = new ArrayList<>();
     
-    public LogTank getPlaneInMissionBySerialNumber(Integer serialNumber) throws PWCGException
+    public LogTank getTankInMissionBySerialNumber(Integer serialNumber) throws PWCGException
     {
         for (LogTank missionPlane : planeAiEntities.values())
         {

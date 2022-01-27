@@ -37,7 +37,7 @@ public class PlayerClaimResolverFuzzyNotExactTest
     {
         LogTank victim = new LogTank(1);
         victim.setRoleCategory(PwcgRoleCategory.FIGHTER);
-        victim.setVehicleType("se5a");
+        victim.setVehicleType("m4a2");
         victim.setCountry(new BoSCountry(Country.BRITAIN));
 
         LogTank victor = new LogTank(2);
@@ -50,12 +50,12 @@ public class PlayerClaimResolverFuzzyNotExactTest
         resultVictory.setVictor(victor);
         
         PlayerVictoryDeclaration playerDeclaration = new PlayerVictoryDeclaration();
-        playerDeclaration.setTankType("se5a");
+        playerDeclaration.setTankType("m4a2");
 
         PlayerClaimResolverFuzzy claimResolverFuzzy = new PlayerClaimResolverFuzzy();
-        String planeDisplayName = claimResolverFuzzy.getShotDownPlaneDisplayNameAsFuzzyNotExact(player, playerDeclaration, resultVictory);
+        String planeDisplayName = claimResolverFuzzy.getDestroyedTankDisplayNameAsFuzzyNotExact(player, playerDeclaration, resultVictory);
         
-        Assertions.assertTrue (planeDisplayName.equals("S.E.5a"));
+        Assertions.assertTrue (planeDisplayName.equals("M4-A2 Sherman"));
     }
 
     @Test
@@ -63,7 +63,7 @@ public class PlayerClaimResolverFuzzyNotExactTest
     {
         LogTank victim = new LogTank(1);
         victim.setRoleCategory(PwcgRoleCategory.FIGHTER);
-        victim.setVehicleType("se5a");
+        victim.setVehicleType("m4a2");
         victim.setCountry(new BoSCountry(Country.BRITAIN));
 
         LogTank victor = new LogTank(2);
@@ -76,12 +76,12 @@ public class PlayerClaimResolverFuzzyNotExactTest
         resultVictory.setVictor(victor);
         
         PlayerVictoryDeclaration playerDeclaration = new PlayerVictoryDeclaration();
-        playerDeclaration.setTankType("sopcamel");
+        playerDeclaration.setTankType("t34-76-43");
 
         PlayerClaimResolverFuzzy claimResolverFuzzy = new PlayerClaimResolverFuzzy();
-        String planeDisplayName = claimResolverFuzzy.getShotDownPlaneDisplayNameAsFuzzyNotExact(player, playerDeclaration, resultVictory);
+        String planeDisplayName = claimResolverFuzzy.getDestroyedTankDisplayNameAsFuzzyNotExact(player, playerDeclaration, resultVictory);
         
-        Assertions.assertTrue (planeDisplayName.equals("S.E.5a"));
+        Assertions.assertTrue (planeDisplayName.equals("M4-A2 Sherman"));
     }
 
     @Test
@@ -100,10 +100,10 @@ public class PlayerClaimResolverFuzzyNotExactTest
         resultVictory.setVictor(victor);
         
         PlayerVictoryDeclaration playerDeclaration = new PlayerVictoryDeclaration();
-        playerDeclaration.setTankType("se5a");
+        playerDeclaration.setTankType("m4a2");
 
         PlayerClaimResolverFuzzy claimResolverFuzzy = new PlayerClaimResolverFuzzy();
-        String planeDisplayName = claimResolverFuzzy.getShotDownPlaneDisplayNameAsFuzzyNotExact(player, playerDeclaration, resultVictory);
+        String planeDisplayName = claimResolverFuzzy.getDestroyedTankDisplayNameAsFuzzyNotExact(player, playerDeclaration, resultVictory);
         
         Assertions.assertTrue (planeDisplayName.isEmpty());
     }
@@ -113,7 +113,7 @@ public class PlayerClaimResolverFuzzyNotExactTest
     {
         LogTank victim = new LogTank(1);
         victim.setRoleCategory(PwcgRoleCategory.FIGHTER);
-        victim.setVehicleType("se5a");
+        victim.setVehicleType("m4a2");
 
         LogTank victor = new LogTank(2);
         victor.setVehicleType("pziv-g");
@@ -127,7 +127,7 @@ public class PlayerClaimResolverFuzzyNotExactTest
         playerDeclaration.setTankType("notarealplane");
 
         PlayerClaimResolverFuzzy claimResolverFuzzy = new PlayerClaimResolverFuzzy();
-        String planeDisplayName = claimResolverFuzzy.getShotDownPlaneDisplayNameAsFuzzyNotExact(player, playerDeclaration, resultVictory);
+        String planeDisplayName = claimResolverFuzzy.getDestroyedTankDisplayNameAsFuzzyNotExact(player, playerDeclaration, resultVictory);
         
         Assertions.assertTrue (planeDisplayName.isEmpty());
     }
@@ -137,7 +137,7 @@ public class PlayerClaimResolverFuzzyNotExactTest
     {
         LogTank victim = new LogTank(1);
         victim.setRoleCategory(PwcgRoleCategory.FIGHTER);
-        victim.setVehicleType("se5a");
+        victim.setVehicleType("m4a2");
 
         LogTank victor = new LogTank(2);
         victor.setVehicleType("pziv-g");
@@ -149,10 +149,10 @@ public class PlayerClaimResolverFuzzyNotExactTest
         resultVictory.setConfirmed(true);
         
         PlayerVictoryDeclaration playerDeclaration = new PlayerVictoryDeclaration();
-        playerDeclaration.setTankType("se5a");
+        playerDeclaration.setTankType("m4a2");
 
         PlayerClaimResolverFuzzy claimResolverFuzzy = new PlayerClaimResolverFuzzy();
-        String planeDisplayName = claimResolverFuzzy.getShotDownPlaneDisplayNameAsFuzzyNotExact(player, playerDeclaration, resultVictory);
+        String planeDisplayName = claimResolverFuzzy.getDestroyedTankDisplayNameAsFuzzyNotExact(player, playerDeclaration, resultVictory);
         
         Assertions.assertTrue (planeDisplayName.isEmpty());
     }
@@ -176,10 +176,10 @@ public class PlayerClaimResolverFuzzyNotExactTest
         resultVictory.setVictor(victor);
         
         PlayerVictoryDeclaration playerDeclaration = new PlayerVictoryDeclaration();
-        playerDeclaration.setTankType("se5a");
+        playerDeclaration.setTankType("m4a2");
 
         PlayerClaimResolverFuzzy claimResolverFuzzy = new PlayerClaimResolverFuzzy();
-        String planeDisplayName = claimResolverFuzzy.getShotDownPlaneDisplayNameAsFuzzyNotExact(player, playerDeclaration, resultVictory);
+        String planeDisplayName = claimResolverFuzzy.getDestroyedTankDisplayNameAsFuzzyNotExact(player, playerDeclaration, resultVictory);
         
         Assertions.assertTrue (planeDisplayName.isEmpty());
     }

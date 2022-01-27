@@ -54,13 +54,13 @@ public class VictorySorter
         {
             firmPlaneVictories.add(logVictory);
         }
-        else if (logVictory.getVictim().getRoleCategory() == PwcgRoleCategory.GROUND_UNIT)
-        {
-            firmGroundVictories.add(logVictory);
-        }
         else if (isVictimTank(logVictory))
         {
             firmTankVictories.add(logVictory);
+        }
+        else if (logVictory.getVictim().getRoleCategory() == PwcgRoleCategory.GROUND_UNIT)
+        {
+            firmGroundVictories.add(logVictory);
         }
     }
 
@@ -70,13 +70,13 @@ public class VictorySorter
         {
             fuzzyPlaneVictories.add(logVictory);
         }
-        else if (logVictory.getVictim().getRoleCategory() == PwcgRoleCategory.GROUND_UNIT)
-        {
-            // We don't do anything with fuzzy ground victories
-        }
         else if (isVictimTank(logVictory))
         {
             fuzzyTankVictories.add(logVictory);
+        }
+        else if (logVictory.getVictim().getRoleCategory() == PwcgRoleCategory.GROUND_UNIT)
+        {
+            // We don't do anything with fuzzy ground victories
         }
     }
 

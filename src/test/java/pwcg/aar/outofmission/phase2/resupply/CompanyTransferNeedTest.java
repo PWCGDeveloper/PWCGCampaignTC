@@ -77,7 +77,7 @@ public class CompanyTransferNeedTest
     @Test
     public void testResupplyWithActiveCrewMembers() throws PWCGException
     {
-        for (int i = 0; i < 9; ++i)
+        for (int i = 0; i < 11; ++i)
         {
             CrewMember crewMember = new CrewMember();
             crewMember.setSerialNumber(serialNumber.getNextCrewMemberSerialNumber());
@@ -89,7 +89,7 @@ public class CompanyTransferNeedTest
         companyResupplyNeed.determineResupplyNeeded();
         Assertions.assertTrue (companyResupplyNeed.needsResupply() == true);
         
-        for (int i = 0; i < 2; ++i)
+        for (int i = 0; i < 4; ++i)
         {
             companyResupplyNeed.noteResupply();
             Assertions.assertTrue (companyResupplyNeed.needsResupply() == true);
@@ -103,7 +103,7 @@ public class CompanyTransferNeedTest
     @Test
     public void testResupplyWithActiveAndInactiveCrewMembers() throws PWCGException
     {
-        for (int i = 0; i < 7; ++i)
+        for (int i = 0; i < 9; ++i)
         {
             CrewMember crewMember = new CrewMember();
             crewMember.setSerialNumber(serialNumber.getNextCrewMemberSerialNumber());
@@ -125,7 +125,7 @@ public class CompanyTransferNeedTest
         companyResupplyNeed.determineResupplyNeeded();
         Assertions.assertTrue (companyResupplyNeed.needsResupply() == true);
         
-        for (int i = 0; i < 2; ++i)
+        for (int i = 0; i < 4; ++i)
         {
             companyResupplyNeed.noteResupply();
             Assertions.assertTrue (companyResupplyNeed.needsResupply() == true);
@@ -138,7 +138,7 @@ public class CompanyTransferNeedTest
     @Test
     public void testNoResupplyNeeded() throws PWCGException
     {
-        for (int i = 0; i < 10; ++i)
+        for (int i = 0; i < 14; ++i)
         {
             CrewMember crewMember = new CrewMember();
             crewMember.setSerialNumber(serialNumber.getNextCrewMemberSerialNumber());

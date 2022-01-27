@@ -162,7 +162,7 @@ public class AiDeclarationResolver  extends PlayerVictoryResolver
     private void createAiVictory(LogVictory resultVictory, CrewMember crewMemberVictor) throws PWCGException
     {
         AARMissionEvaluationData evaluationData = aarContext.getMissionEvaluationData();
-        LogTank companyMemberPlane = evaluationData.getPlaneInMissionBySerialNumber(crewMemberVictor.getSerialNumber());
+        LogTank companyMemberPlane = evaluationData.getTankInMissionBySerialNumber(crewMemberVictor.getSerialNumber());
         if (companyMemberPlane != null)
         {
             resultVictory.setVictor(companyMemberPlane);

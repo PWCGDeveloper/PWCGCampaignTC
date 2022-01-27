@@ -51,6 +51,7 @@ public class VictorySorterTest
         logVictoryHelper.createGroundVictory();
         logVictoryHelper.createFuzzyTankVictory();
         logVictoryHelper.createFuzzyTankVictory();
+        logVictoryHelper.createPlaneVictory();
         logVictoryHelper.createFuzzyPlaneVictory();
     }
     

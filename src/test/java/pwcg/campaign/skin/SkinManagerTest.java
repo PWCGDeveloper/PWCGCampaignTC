@@ -25,7 +25,7 @@ public class SkinManagerTest
     {
         SkinManager skinManager = PWCGContext.getInstance().getSkinManager();
         List<Skin> testSkins;
-        String tankType = "bf109f4";
+        String tankType = "pziiif4";
         ICountry iCountry = CountryFactory.makeCountryByCountry(Country.GERMANY);
 
         testSkins = skinManager.getLooseSkinByTank(tankType);

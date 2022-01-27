@@ -53,9 +53,9 @@ public class EquipmentDepotReplenisherTest
     @BeforeEach
     public void setupTest() throws PWCGException
     {
-        Mockito.when(me109E7.getArchType()).thenReturn("bf109");
+        Mockito.when(me109E7.getArchType()).thenReturn("pziii");
         Mockito.when(me109E7.getGoodness()).thenReturn(10);
-        Mockito.when(me109K4.getArchType()).thenReturn("bf109");
+        Mockito.when(me109K4.getArchType()).thenReturn("pziii");
         Mockito.when(me109K4.getGoodness()).thenReturn(95);
     }
 
@@ -90,7 +90,7 @@ public class EquipmentDepotReplenisherTest
         EquipmentDepot equipmentDepot = campaign.getEquipmentManager().getEquipmentDepotForService(TCServiceManager.WEHRMACHT);
         EquipmentUpgradeRecord upgradeRecord = equipmentDepot.getUpgrade(me109E7);
         Assertions.assertTrue (upgradeRecord != null);
-        Assertions.assertTrue (upgradeRecord.getUpgrade().getArchType().equals("bf109"));
+        Assertions.assertTrue (upgradeRecord.getUpgrade().getArchType().equals("pziii"));
         Assertions.assertTrue (upgradeRecord.getUpgrade().getGoodness() > 10);
 
         int upgradeSerialNumber = upgradeRecord.getUpgrade().getSerialNumber();

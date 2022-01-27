@@ -98,11 +98,11 @@ public class AiDeclarationResolutionFuzzyTest
 
         Mockito.when(aiSquadMember1.getSerialNumber()).thenReturn(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1);
         Mockito.when(aiSquadMember1.determineCountry(ArgumentMatchers.<Date>any())).thenReturn(CountryFactory.makeCountryByCountry(Country.GERMANY));
-        Mockito.when(evaluationData.getPlaneInMissionBySerialNumber(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1)).thenReturn(aiVictorOne);
+        Mockito.when(evaluationData.getTankInMissionBySerialNumber(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1)).thenReturn(aiVictorOne);
 
         Mockito.when(aiSquadMember2.getSerialNumber()).thenReturn(SerialNumber.AI_STARTING_SERIAL_NUMBER + 2);
         Mockito.when(aiSquadMember2.determineCountry(ArgumentMatchers.<Date>any())).thenReturn(CountryFactory.makeCountryByCountry(Country.GERMANY));
-        Mockito.when(evaluationData.getPlaneInMissionBySerialNumber(SerialNumber.AI_STARTING_SERIAL_NUMBER + 2)).thenReturn(aiVictorTwo);
+        Mockito.when(evaluationData.getTankInMissionBySerialNumber(SerialNumber.AI_STARTING_SERIAL_NUMBER + 2)).thenReturn(aiVictorTwo);
         
         List<Company> playerCompanysInMission = new ArrayList<>();
         playerCompanysInMission.add(company);

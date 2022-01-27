@@ -37,9 +37,9 @@ public class HistoricalAceAwardsGeneratorTest
         HistoricalAceAwardsGenerator awardsGenerator = new HistoricalAceAwardsGenerator(campaign, newDate);
         HistoricalAceAwards historicalAceEvents = awardsGenerator.aceEvents();
         
-        Assertions.assertTrue (historicalAceEvents.getAceVictories().size() > 0);
-        Assertions.assertTrue (historicalAceEvents.getAceMedals().size() > 0);
-        Assertions.assertTrue (historicalAceEvents.getAcePromotions().size() > 0);
+        Assertions.assertTrue (historicalAceEvents.getAceVictories().size() == 0);
+        Assertions.assertTrue (historicalAceEvents.getAceMedals().size() == 0);
+        Assertions.assertTrue (historicalAceEvents.getAcePromotions().size() == 0);
     }
 
 

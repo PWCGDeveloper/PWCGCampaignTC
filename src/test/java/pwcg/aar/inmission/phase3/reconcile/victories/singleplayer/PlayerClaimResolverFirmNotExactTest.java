@@ -38,8 +38,8 @@ public class PlayerClaimResolverFirmNotExactTest
     public void testPlayerFirmNotExactVictoryFoundWithExactMatch() throws PWCGException
     {
         LogTank victim = new LogTank(1);
-        victim.setRoleCategory(PwcgRoleCategory.FIGHTER);
-        victim.setVehicleType("se5a");
+        victim.setRoleCategory(PwcgRoleCategory.MAIN_BATTLE_TANK);
+        victim.setVehicleType("m4a2");
         victim.setCountry(new BoSCountry(Country.BRITAIN));
 
         LogTank victor = new LogTank(2);
@@ -52,20 +52,20 @@ public class PlayerClaimResolverFirmNotExactTest
         resultVictory.setVictor(victor);
         
         PlayerVictoryDeclaration playerDeclaration = new PlayerVictoryDeclaration();
-        playerDeclaration.setTankType("se5a");
+        playerDeclaration.setTankType("m4a2");
 
         PlayerClaimResolverFirm claimResolverFirm = new PlayerClaimResolverFirm();
-        String planeDisplayName = claimResolverFirm.getShotDownPlaneDisplayNameAsFirmNotExact(player, playerDeclaration, resultVictory);
+        String planeDisplayName = claimResolverFirm.getDestroyedTankDisplayNameAsFirmNotExact(player, playerDeclaration, resultVictory);
         
-        Assertions.assertTrue (planeDisplayName.equals("S.E.5a"));
+        Assertions.assertTrue (planeDisplayName.equals("Sherman"));
     }
 
     @Test
     public void testPlayerFirmNotExactVictoryFoundWithNotExactMatch() throws PWCGException
     {
         LogTank victim = new LogTank(1);
-        victim.setRoleCategory(PwcgRoleCategory.FIGHTER);
-        victim.setVehicleType("se5a");
+        victim.setRoleCategory(PwcgRoleCategory.MAIN_BATTLE_TANK);
+        victim.setVehicleType("m4a2");
         victim.setCountry(new BoSCountry(Country.BRITAIN));
 
         LogTank victor = new LogTank(2);
@@ -78,19 +78,19 @@ public class PlayerClaimResolverFirmNotExactTest
         resultVictory.setVictor(victor);
         
         PlayerVictoryDeclaration playerDeclaration = new PlayerVictoryDeclaration();
-        playerDeclaration.setTankType("sopcamel");
+        playerDeclaration.setTankType("t34-76-43");
 
         PlayerClaimResolverFirm claimResolverFirm = new PlayerClaimResolverFirm();
-        String planeDisplayName = claimResolverFirm.getShotDownPlaneDisplayNameAsFirmNotExact(player, playerDeclaration, resultVictory);
+        String planeDisplayName = claimResolverFirm.getDestroyedTankDisplayNameAsFirmNotExact(player, playerDeclaration, resultVictory);
         
-        Assertions.assertTrue (planeDisplayName.equals("S.E.5a"));
+        Assertions.assertTrue (planeDisplayName.equals("Sherman"));
     }
 
     @Test
-    public void testPlayerFirmNotExactVictoryNotFoundBecauseRoleIsDifferent() throws PWCGException
+    public void testPlayerFirmNotExactVictoryFoundWithoutRole() throws PWCGException
     {
         LogTank victim = new LogTank(1);
-        victim.setRoleCategory(PwcgRoleCategory.BOMBER);
+        victim.setRoleCategory(PwcgRoleCategory.MAIN_BATTLE_TANK);
         victim.setVehicleType("notarealplane");
         victim.setCountry(new BoSCountry(Country.BRITAIN));
 
@@ -104,12 +104,12 @@ public class PlayerClaimResolverFirmNotExactTest
         resultVictory.setVictor(victor);
         
         PlayerVictoryDeclaration playerDeclaration = new PlayerVictoryDeclaration();
-        playerDeclaration.setTankType("se5a");
+        playerDeclaration.setTankType("m4a2");
 
         PlayerClaimResolverFirm claimResolverFirm = new PlayerClaimResolverFirm();
-        String planeDisplayName = claimResolverFirm.getShotDownPlaneDisplayNameAsFirmNotExact(player, playerDeclaration, resultVictory);
+        String planeDisplayName = claimResolverFirm.getDestroyedTankDisplayNameAsFirmNotExact(player, playerDeclaration, resultVictory);
         
-        Assertions.assertTrue (planeDisplayName.isEmpty());
+        Assertions.assertTrue (planeDisplayName.equals("Sherman"));
     }
 
     @Test
@@ -117,7 +117,7 @@ public class PlayerClaimResolverFirmNotExactTest
     {
         LogTank victim = new LogTank(1);
         victim.setRoleCategory(PwcgRoleCategory.FIGHTER);
-        victim.setVehicleType("se5a");
+        victim.setVehicleType("m4a2");
         victim.setCountry(new BoSCountry(Country.BRITAIN));
 
         LogTank victor = new LogTank(2);
@@ -133,7 +133,7 @@ public class PlayerClaimResolverFirmNotExactTest
         playerDeclaration.setTankType("notarealplane");
 
         PlayerClaimResolverFirm claimResolverFirm = new PlayerClaimResolverFirm();
-        String planeDisplayName = claimResolverFirm.getShotDownPlaneDisplayNameAsFirmNotExact(player, playerDeclaration, resultVictory);
+        String planeDisplayName = claimResolverFirm.getDestroyedTankDisplayNameAsFirmNotExact(player, playerDeclaration, resultVictory);
         
         Assertions.assertTrue (planeDisplayName.isEmpty());
     }
@@ -143,7 +143,7 @@ public class PlayerClaimResolverFirmNotExactTest
     {
         LogTank victim = new LogTank(1);
         victim.setRoleCategory(PwcgRoleCategory.FIGHTER);
-        victim.setVehicleType("se5a");
+        victim.setVehicleType("m4a2");
         victim.setCountry(new BoSCountry(Country.BRITAIN));
 
         LogTank victor = new LogTank(2);
@@ -157,10 +157,10 @@ public class PlayerClaimResolverFirmNotExactTest
         resultVictory.setConfirmed(true);
         
         PlayerVictoryDeclaration playerDeclaration = new PlayerVictoryDeclaration();
-        playerDeclaration.setTankType("se5a");
+        playerDeclaration.setTankType("m4a2");
 
         PlayerClaimResolverFirm claimResolverFirm = new PlayerClaimResolverFirm();
-        String planeDisplayName = claimResolverFirm.getShotDownPlaneDisplayNameAsFirmNotExact(player, playerDeclaration, resultVictory);
+        String planeDisplayName = claimResolverFirm.getDestroyedTankDisplayNameAsFirmNotExact(player, playerDeclaration, resultVictory);
         
         Assertions.assertTrue (planeDisplayName.isEmpty());
     }   
@@ -183,10 +183,10 @@ public class PlayerClaimResolverFirmNotExactTest
         resultVictory.setVictor(victor);
         
         PlayerVictoryDeclaration playerDeclaration = new PlayerVictoryDeclaration();
-        playerDeclaration.setTankType("se5a");
+        playerDeclaration.setTankType("m4a2");
 
         PlayerClaimResolverFirm claimResolverFirm = new PlayerClaimResolverFirm();
-        String planeDisplayName = claimResolverFirm.getShotDownPlaneDisplayNameAsFirmNotExact(player, playerDeclaration, resultVictory);
+        String planeDisplayName = claimResolverFirm.getDestroyedTankDisplayNameAsFirmNotExact(player, playerDeclaration, resultVictory);
         
         Assertions.assertTrue (planeDisplayName.isEmpty());
     }

@@ -168,16 +168,16 @@ public class WithdrawnEquipmentReplacerTest
         assert(numAdded == 0);
         assert(equipment.getActiveEquippedTanks().size() == 11);
         
-        int bf109F2Found = 0;
+        int pziiiF2Found = 0;
         for (EquippedTank equippedTank: equipment.getActiveEquippedTanks().values())
         {
             assert(equippedTank.getType().equals("_pziii-l") || equippedTank.getType().equals("_pziv-g") || equippedTank.getType().equals("_pzv-d"));
             if (equippedTank.getType().equals("_pziii-l"))
             {
-                ++bf109F2Found;
+                ++pziiiF2Found;
             }
         }
-        assert(bf109F2Found == 3);
+        assert(pziiiF2Found == 3);
     }
 
     @Test

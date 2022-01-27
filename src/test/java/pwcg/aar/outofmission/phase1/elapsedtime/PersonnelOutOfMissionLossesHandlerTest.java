@@ -51,8 +51,7 @@ public class PersonnelOutOfMissionLossesHandlerTest
     @BeforeEach
     public void setupTest() throws PWCGException
     {        
-        Mockito.when(aarContext.getNewDate()).thenReturn(DateUtils.getDateYYYYMMDD("19171001"));
-        Mockito.when(aarContext.getPreliminaryData()).thenReturn(preliminaryData);
+        Mockito.when(aarContext.getNewDate()).thenReturn(DateUtils.getDateYYYYMMDD(CompanyTestProfile.THIRD_DIVISION_PROFILE.getDateString()));
     }
 
     @Test
@@ -66,7 +65,7 @@ public class PersonnelOutOfMissionLossesHandlerTest
             OutOfMissionLossHandler outOfMissionLossesHandler = new OutOfMissionLossHandler(campaign, aarContext);
             outOfMissionLossesHandler.lossesOutOfMission(new HashMap<Integer, CrewMember>(), new HashMap<Integer, LogTank>());
             AARPersonnelLosses lossesInMissionDataTotal = outOfMissionLossesHandler.getOutOfMissionPersonnelLosses();
-            Assertions.assertTrue (lossesInMissionDataTotal.getAcesKilled(campaign).size() > 0);
+            Assertions.assertTrue (lossesInMissionDataTotal.getAcesKilled(campaign).size() == 0);
         }
     }
 

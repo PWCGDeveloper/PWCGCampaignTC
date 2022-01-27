@@ -33,7 +33,7 @@ public class VerifiedVictoryGenerator
         GroundDeclarationResolver groundDeclarationResolver = new GroundDeclarationResolver(victorySorter);
         
         ConfirmedVictories verifiedMissionResultVictorys = new ConfirmedVictories();
-        ConfirmedVictories verifiedPlayerMissionResultVictorys = playerClaimResolution.determinePlayerAirResultsWithClaims();
+        ConfirmedVictories verifiedPlayerMissionResultVictorys = playerClaimResolution.determinePlayerResultsWithClaims();
         ConfirmedVictories verifiedAIMissionResultVictorys = aiDeclarationResolution.determineAiAirResults(victorySorter);
         ConfirmedVictories verifiedGroundMissionResultVictorys = groundDeclarationResolver.determineGroundResults();
         

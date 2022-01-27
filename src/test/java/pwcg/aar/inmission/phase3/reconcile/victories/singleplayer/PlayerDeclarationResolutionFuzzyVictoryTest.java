@@ -85,7 +85,7 @@ public class PlayerDeclarationResolutionFuzzyVictoryTest
 
         Mockito.when(personnelManager.getAnyCampaignMember(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER)).thenReturn(player);
 
-        Mockito.when(evaluationData.getPlaneInMissionBySerialNumber(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER)).thenReturn(playerVictor);
+        Mockito.when(evaluationData.getTankInMissionBySerialNumber(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER)).thenReturn(playerVictor);
 
         Mockito.when(player.getCountry()).thenReturn(Country.GERMANY);
     }
@@ -95,12 +95,12 @@ public class PlayerDeclarationResolutionFuzzyVictoryTest
     {   
         
         createPlayerDeclarations(1);
-        createVictoryWithPlayerDamage(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1001, "se5a", PwcgRoleCategory.FIGHTER);
-        createVictoryWithPlayerDamage(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1002, "se5a", PwcgRoleCategory.FIGHTER);
-        createVictoryWithPlayerDamage(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1003, "se5a", PwcgRoleCategory.FIGHTER);
+        createVictoryWithPlayerDamage(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1001, "m4a2", PwcgRoleCategory.MAIN_BATTLE_TANK);
+        createVictoryWithPlayerDamage(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1002, "m4a2", PwcgRoleCategory.MAIN_BATTLE_TANK);
+        createVictoryWithPlayerDamage(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1003, "m4a2", PwcgRoleCategory.MAIN_BATTLE_TANK);
 
         PlayerDeclarationResolution declarationResolution = new PlayerDeclarationResolution(campaign, evaluationData, victorySorter, playerDeclarations);
-        ConfirmedVictories confirmedPlayerVictories = declarationResolution.determinePlayerAirResultsWithClaims();
+        ConfirmedVictories confirmedPlayerVictories = declarationResolution.determinePlayerResultsWithClaims();
         
         Assertions.assertTrue (confirmedPlayerVictories.getConfirmedVictories().size() == 1);
     }
@@ -110,12 +110,12 @@ public class PlayerDeclarationResolutionFuzzyVictoryTest
     {   
         
         createPlayerDeclarations(3);
-        createVictoryWithPlayerDamage(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1001, "se5a", PwcgRoleCategory.FIGHTER);
-        createVictoryWithPlayerDamage(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1002, "se5a", PwcgRoleCategory.FIGHTER);
-        createVictoryWithPlayerDamage(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1003, "se5a", PwcgRoleCategory.FIGHTER);
+        createVictoryWithPlayerDamage(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1001, "m4a2", PwcgRoleCategory.MAIN_BATTLE_TANK);
+        createVictoryWithPlayerDamage(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1002, "m4a2", PwcgRoleCategory.MAIN_BATTLE_TANK);
+        createVictoryWithPlayerDamage(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1003, "m4a2", PwcgRoleCategory.MAIN_BATTLE_TANK);
 
         PlayerDeclarationResolution declarationResolution = new PlayerDeclarationResolution(campaign, evaluationData, victorySorter, playerDeclarations);
-        ConfirmedVictories confirmedPlayerVictories = declarationResolution.determinePlayerAirResultsWithClaims();
+        ConfirmedVictories confirmedPlayerVictories = declarationResolution.determinePlayerResultsWithClaims();
         
         Assertions.assertTrue (confirmedPlayerVictories.getConfirmedVictories().size() == 3);
     }
@@ -125,29 +125,29 @@ public class PlayerDeclarationResolutionFuzzyVictoryTest
     {   
         
         createPlayerDeclarations(2);
-        createVictoryWithPlayerDamage(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1001, "se5a", PwcgRoleCategory.FIGHTER);
-        createVictoryWithPlayerDamage(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1002, "sopcamel", PwcgRoleCategory.FIGHTER);
-        createVictoryWithPlayerDamage(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1003, "sopcamel", PwcgRoleCategory.FIGHTER);
+        createVictoryWithPlayerDamage(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1001, "m4a2", PwcgRoleCategory.MAIN_BATTLE_TANK);
+        createVictoryWithPlayerDamage(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1002, "t34-76-43", PwcgRoleCategory.MAIN_BATTLE_TANK);
+        createVictoryWithPlayerDamage(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1003, "t34-76-43", PwcgRoleCategory.MAIN_BATTLE_TANK);
 
         PlayerDeclarationResolution declarationResolution = new PlayerDeclarationResolution(campaign, evaluationData, victorySorter, playerDeclarations);
-        ConfirmedVictories confirmedPlayerVictories = declarationResolution.determinePlayerAirResultsWithClaims();
+        ConfirmedVictories confirmedPlayerVictories = declarationResolution.determinePlayerResultsWithClaims();
         
         Assertions.assertTrue (confirmedPlayerVictories.getConfirmedVictories().size() == 2);
     }
     
     @Test
-    public void testPlayerTwoClaimsButWrongAircraftCategory () throws PWCGException
+    public void testPlayerTwoClaimsButWrongCategory () throws PWCGException
     {   
         
         createPlayerDeclarations(2);
-        createVictoryWithPlayerDamage(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1001, "re8", PwcgRoleCategory.BOMBER);
-        createVictoryWithPlayerDamage(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1002, "re8", PwcgRoleCategory.BOMBER);
-        createVictoryWithPlayerDamage(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1003, "re8", PwcgRoleCategory.BOMBER);
+        createVictoryWithPlayerDamage(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1001, "m4a2", PwcgRoleCategory.SELF_PROPELLED_GUN);
+        createVictoryWithPlayerDamage(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1002, "m4a2", PwcgRoleCategory.SELF_PROPELLED_GUN);
+        createVictoryWithPlayerDamage(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1003, "m4a2", PwcgRoleCategory.SELF_PROPELLED_GUN);
 
         PlayerDeclarationResolution declarationResolution = new PlayerDeclarationResolution(campaign, evaluationData, victorySorter, playerDeclarations);
-        ConfirmedVictories confirmedPlayerVictories = declarationResolution.determinePlayerAirResultsWithClaims();
+        ConfirmedVictories confirmedPlayerVictories = declarationResolution.determinePlayerResultsWithClaims();
         
-        Assertions.assertTrue (confirmedPlayerVictories.getConfirmedVictories().size() == 0);
+        Assertions.assertTrue (confirmedPlayerVictories.getConfirmedVictories().size() == 2);
     }
     
     @Test
@@ -155,14 +155,14 @@ public class PlayerDeclarationResolutionFuzzyVictoryTest
     {   
         
         createPlayerDeclarations(2);
-        createVictoryWithPlayerDamage(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1001, "re8", PwcgRoleCategory.BOMBER);
-        createVictoryWithPlayerDamage(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1002, "re8", PwcgRoleCategory.BOMBER);
-        createVictoryWithPlayerDamage(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1003, "sopcamel", PwcgRoleCategory.FIGHTER);
+        createVictoryWithPlayerDamage(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1001, "m4a2", PwcgRoleCategory.SELF_PROPELLED_GUN);
+        createVictoryWithPlayerDamage(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1002, "m4a2", PwcgRoleCategory.SELF_PROPELLED_GUN);
+        createVictoryWithPlayerDamage(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1003, "t34-76-43", PwcgRoleCategory.MAIN_BATTLE_TANK);
 
         PlayerDeclarationResolution declarationResolution = new PlayerDeclarationResolution(campaign, evaluationData, victorySorter, playerDeclarations);
-        ConfirmedVictories confirmedPlayerVictories = declarationResolution.determinePlayerAirResultsWithClaims();
+        ConfirmedVictories confirmedPlayerVictories = declarationResolution.determinePlayerResultsWithClaims();
         
-        Assertions.assertTrue (confirmedPlayerVictories.getConfirmedVictories().size() == 1);
+        Assertions.assertTrue (confirmedPlayerVictories.getConfirmedVictories().size() == 2);
     }
     
     @Test
@@ -170,12 +170,12 @@ public class PlayerDeclarationResolutionFuzzyVictoryTest
     {   
         
         createPlayerDeclarations(2);
-        createVictoryNoPlayerDamage(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1001, "re8", PwcgRoleCategory.BOMBER);
-        createVictoryNoPlayerDamage(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1002, "re8", PwcgRoleCategory.BOMBER);
-        createVictoryNoPlayerDamage(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1003, "sopcamel", PwcgRoleCategory.FIGHTER);
+        createVictoryNoPlayerDamage(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1001, "m4a2", PwcgRoleCategory.SELF_PROPELLED_GUN);
+        createVictoryNoPlayerDamage(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1002, "m4a2", PwcgRoleCategory.SELF_PROPELLED_GUN);
+        createVictoryNoPlayerDamage(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1003, "t34-76-43", PwcgRoleCategory.MAIN_BATTLE_TANK);
 
         PlayerDeclarationResolution declarationResolution = new PlayerDeclarationResolution(campaign, evaluationData, victorySorter, playerDeclarations);
-        ConfirmedVictories confirmedPlayerVictories = declarationResolution.determinePlayerAirResultsWithClaims();
+        ConfirmedVictories confirmedPlayerVictories = declarationResolution.determinePlayerResultsWithClaims();
         
         Assertions.assertTrue (confirmedPlayerVictories.getConfirmedVictories().size() == 0);
     }
@@ -187,7 +187,7 @@ public class PlayerDeclarationResolutionFuzzyVictoryTest
         createPlayerDeclarations(2);
 
         PlayerDeclarationResolution declarationResolution = new PlayerDeclarationResolution(campaign, evaluationData, victorySorter, playerDeclarations);
-        ConfirmedVictories confirmedPlayerVictories = declarationResolution.determinePlayerAirResultsWithClaims();
+        ConfirmedVictories confirmedPlayerVictories = declarationResolution.determinePlayerResultsWithClaims();
         
         Assertions.assertTrue (confirmedPlayerVictories.getConfirmedVictories().size() == 0);
     }
@@ -200,14 +200,14 @@ public class PlayerDeclarationResolutionFuzzyVictoryTest
         createFriendlyVictory(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER, SerialNumber.AI_STARTING_SERIAL_NUMBER + 1001);
 
         PlayerDeclarationResolution declarationResolution = new PlayerDeclarationResolution(campaign, evaluationData, victorySorter, playerDeclarations);
-        ConfirmedVictories confirmedPlayerVictories = declarationResolution.determinePlayerAirResultsWithClaims();
+        ConfirmedVictories confirmedPlayerVictories = declarationResolution.determinePlayerResultsWithClaims();
         
         Assertions.assertTrue (confirmedPlayerVictories.getConfirmedVictories().size() == 0);
     }
 
     private void createVictoryWithPlayerDamage(Integer victimSerialNumber, String aircraftType, PwcgRoleCategory approximateRole)
     {        
-        LogTank victim = createVictimPlane(victimSerialNumber, aircraftType, approximateRole);
+        LogTank victim = createVictimTank(victimSerialNumber, aircraftType, approximateRole);
 
         LogVictory resultVictory = new LogVictory(10);
         resultVictory.setVictim(victim);
@@ -221,14 +221,14 @@ public class PlayerDeclarationResolutionFuzzyVictoryTest
 
     private void createVictoryNoPlayerDamage(Integer victimSerialNumber, String aircraftType, PwcgRoleCategory approximateRole)
     {        
-        LogTank victim = createVictimPlane(victimSerialNumber, aircraftType, approximateRole);
+        LogTank victim = createVictimTank(victimSerialNumber, aircraftType, approximateRole);
 
         LogVictory resultVictory = new LogVictory(10);
         resultVictory.setVictim(victim);
         fuzzyVictories.add(resultVictory);
     }
 
-    private LogTank createVictimPlane(Integer victimSerialNumber, String aircraftType, PwcgRoleCategory approximateRole)
+    private LogTank createVictimTank(Integer victimSerialNumber, String aircraftType, PwcgRoleCategory approximateRole)
     {
         LogTank victim = new LogTank(1);
         victim.setCrewMemberSerialNumber(victimSerialNumber);
@@ -257,7 +257,7 @@ public class PlayerDeclarationResolutionFuzzyVictoryTest
         for (int i = 0; i < numDeclarations; ++i)
         {
             PlayerVictoryDeclaration declaration = new PlayerVictoryDeclaration();
-            declaration.confirmDeclaration(true, "S.E.5a");
+            declaration.confirmDeclaration(true, "m4a2");
             playerDeclarationSet.addDeclaration(declaration);
         }
         

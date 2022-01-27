@@ -38,10 +38,10 @@ public class PersonnelAceLossOutOfMissionHandlerTest
     @Test
     public void testAceLossesOutOfMission () throws PWCGException
     {     
-        Mockito.when(aarContext.getNewDate()).thenReturn(DateUtils.getDateYYYYMMDD("19171001"));
+        Mockito.when(aarContext.getNewDate()).thenReturn(DateUtils.getDateYYYYMMDD(CompanyTestProfile.THIRD_DIVISION_PROFILE.getDateString()));
         OutOfMissionAceLossCalculator aceLossOutOfMissionHandler = new OutOfMissionAceLossCalculator(campaign, aarContext);
         List<CrewMember> acesKilled = aceLossOutOfMissionHandler.acesKilledHistorically();
-        Assertions.assertTrue (acesKilled.size() == 5);
+        Assertions.assertTrue (acesKilled.size() == 0);
     }
 
 }

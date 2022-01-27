@@ -50,7 +50,7 @@ public class LogVictoryHelper
         LogTank victor = makeVictor();
         
         LogPlane victim = new LogPlane(10000);
-        victim.setVehicleType("fw190a6");
+        victim.setVehicleType("pziva6");
         victim.setCountry(new BoSCountry(Country.GERMANY));
 
         makeVictory(victor, victim);
@@ -61,7 +61,7 @@ public class LogVictoryHelper
         LogUnknown victor = new LogUnknown();
         
         LogPlane victim = new LogPlane(10000);
-        victim.setVehicleType("fw190a6");
+        victim.setVehicleType("pziva6");
         victim.setCountry(new BoSCountry(Country.GERMANY));
 
         makeVictory(victor, victim);

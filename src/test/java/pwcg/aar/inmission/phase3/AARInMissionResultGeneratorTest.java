@@ -90,8 +90,8 @@ public class AARInMissionResultGeneratorTest
         Mockito.when(evaluationData.getVictoryResults()).thenReturn(firmVictories);   
         
         createCampaignMembersInMission();
-        Mockito.when(evaluationData.getPlaneInMissionBySerialNumber(playerPlaneVictor.getCrewMemberSerialNumber())).thenReturn(playerPlaneVictor);   
-        Mockito.when(evaluationData.getPlaneInMissionBySerialNumber(aiPlaneVictor.getCrewMemberSerialNumber())).thenReturn(aiPlaneVictor);   
+        Mockito.when(evaluationData.getTankInMissionBySerialNumber(playerPlaneVictor.getCrewMemberSerialNumber())).thenReturn(playerPlaneVictor);   
+        Mockito.when(evaluationData.getTankInMissionBySerialNumber(aiPlaneVictor.getCrewMemberSerialNumber())).thenReturn(aiPlaneVictor);   
     }
 
     @Test

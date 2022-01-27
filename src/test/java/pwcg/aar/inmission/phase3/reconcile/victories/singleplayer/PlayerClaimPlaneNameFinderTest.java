@@ -21,7 +21,7 @@ public class PlayerClaimPlaneNameFinderTest
     public void testPlaneNameFoundByVictoryResult() throws PWCGException
     {
         LogTank victim = new LogTank(1);
-        victim.setVehicleType("se5a");
+        victim.setVehicleType("m4a2");
 
         LogVictory victory = new LogVictory(2);
         victory.setVictim(victim);
@@ -31,7 +31,7 @@ public class PlayerClaimPlaneNameFinderTest
         PlayerClaimPlaneNameFinder planeNameFinder = new PlayerClaimPlaneNameFinder();
         String planeDisplayName = planeNameFinder.getShotDownPlaneDisplayName(playerDeclaration, victory);
         
-        Assertions.assertTrue (planeDisplayName.equals("S.E.5a"));
+        Assertions.assertTrue (planeDisplayName.equals("Sherman"));
     }
 
     @Test
@@ -40,12 +40,12 @@ public class PlayerClaimPlaneNameFinderTest
         LogVictory victory = new LogVictory(1);
          
         PlayerVictoryDeclaration playerDeclaration = new PlayerVictoryDeclaration();
-        playerDeclaration.setTankType("se5a");
+        playerDeclaration.setTankType("m4a2");
 
         PlayerClaimPlaneNameFinder planeNameFinder = new PlayerClaimPlaneNameFinder();
         String planeDisplayName = planeNameFinder.getShotDownPlaneDisplayName(playerDeclaration, victory);
         
-        Assertions.assertTrue (planeDisplayName.equals("S.E.5a"));
+        Assertions.assertTrue (planeDisplayName.equals("Sherman"));
     }
 
     @Test

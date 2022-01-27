@@ -24,7 +24,7 @@ public class PlayerClaimResolverFuzzyTest
     public void testPlayerFuzzyVictoryFound() throws PWCGException
     {
         LogTank victim = new LogTank(1);
-        victim.setVehicleType("se5a");
+        victim.setVehicleType("m4a2");
         victim.setCountry(new BoSCountry(Country.BRITAIN));
 
         LogTank victor = new LogTank(2);
@@ -37,12 +37,12 @@ public class PlayerClaimResolverFuzzyTest
         resultVictory.setVictor(victor);
         
         PlayerVictoryDeclaration playerDeclaration = new PlayerVictoryDeclaration();
-        playerDeclaration.setTankType("se5a");
+        playerDeclaration.setTankType("m4a2");
 
         PlayerClaimResolverFuzzy claimResolverFuzzy = new PlayerClaimResolverFuzzy();
-        String planeDisplayName = claimResolverFuzzy.getShotDownPlaneDisplayNameAsFuzzy(playerDeclaration, resultVictory);
+        String planeDisplayName = claimResolverFuzzy.getDestroyedTankDisplayNameAsFuzzy(playerDeclaration, resultVictory);
         
-        Assertions.assertTrue (planeDisplayName.equals("S.E.5a"));
+        Assertions.assertTrue (planeDisplayName.equals("M4-A2 Sherman"));
     }
     
 
@@ -50,7 +50,7 @@ public class PlayerClaimResolverFuzzyTest
     public void testPlayerFuzzyVictoryNotFoundBecausePlaneMismatch() throws PWCGException
     {
         LogTank victim = new LogTank(1);
-        victim.setVehicleType("se5a");
+        victim.setVehicleType("m4a2");
         victim.setCountry(new BoSCountry(Country.BRITAIN));
 
         LogTank victor = new LogTank(2);
@@ -63,10 +63,10 @@ public class PlayerClaimResolverFuzzyTest
         resultVictory.setVictor(victor);
         
         PlayerVictoryDeclaration playerDeclaration = new PlayerVictoryDeclaration();
-        playerDeclaration.setTankType("sopcamel");
+        playerDeclaration.setTankType("t34-76-43");
 
         PlayerClaimResolverFuzzy claimResolverFuzzy = new PlayerClaimResolverFuzzy();
-        String planeDisplayName = claimResolverFuzzy.getShotDownPlaneDisplayNameAsFuzzy(playerDeclaration, resultVictory);
+        String planeDisplayName = claimResolverFuzzy.getDestroyedTankDisplayNameAsFuzzy(playerDeclaration, resultVictory);
         
         Assertions.assertTrue (planeDisplayName.isEmpty());
     }
@@ -88,10 +88,10 @@ public class PlayerClaimResolverFuzzyTest
         resultVictory.setVictor(victor);
         
         PlayerVictoryDeclaration playerDeclaration = new PlayerVictoryDeclaration();
-        playerDeclaration.setTankType("se5a");
+        playerDeclaration.setTankType("m4a2");
 
         PlayerClaimResolverFuzzy claimResolverFuzzy = new PlayerClaimResolverFuzzy();
-        String planeDisplayName = claimResolverFuzzy.getShotDownPlaneDisplayNameAsFuzzy(playerDeclaration, resultVictory);
+        String planeDisplayName = claimResolverFuzzy.getDestroyedTankDisplayNameAsFuzzy(playerDeclaration, resultVictory);
         
         Assertions.assertTrue (planeDisplayName.isEmpty());
     }
@@ -100,7 +100,7 @@ public class PlayerClaimResolverFuzzyTest
     public void testPlayerFuzzyVictoryNotFoundBecauseClaimPlaneNotFound() throws PWCGException
     {
         LogTank victim = new LogTank(1);
-        victim.setVehicleType("se5a");
+        victim.setVehicleType("m4a2");
         victim.setCountry(new BoSCountry(Country.BRITAIN));
 
         LogTank victor = new LogTank(2);
@@ -116,7 +116,7 @@ public class PlayerClaimResolverFuzzyTest
         playerDeclaration.setTankType("notarealplane");
 
         PlayerClaimResolverFuzzy claimResolverFuzzy = new PlayerClaimResolverFuzzy();
-        String planeDisplayName = claimResolverFuzzy.getShotDownPlaneDisplayNameAsFuzzy(playerDeclaration, resultVictory);
+        String planeDisplayName = claimResolverFuzzy.getDestroyedTankDisplayNameAsFuzzy(playerDeclaration, resultVictory);
         
         Assertions.assertTrue (planeDisplayName.isEmpty());
     }
@@ -125,7 +125,7 @@ public class PlayerClaimResolverFuzzyTest
     public void testPlayerFuzzyVictoryNotFoundBecauseVictoryAlreadyConfirmed() throws PWCGException
     {
         LogTank victim = new LogTank(1);
-        victim.setVehicleType("se5a");
+        victim.setVehicleType("m4a2");
         victim.setCountry(new BoSCountry(Country.BRITAIN));
 
         LogTank victor = new LogTank(2);
@@ -139,10 +139,10 @@ public class PlayerClaimResolverFuzzyTest
         resultVictory.setConfirmed(true);
         
         PlayerVictoryDeclaration playerDeclaration = new PlayerVictoryDeclaration();
-        playerDeclaration.setTankType("se5a");
+        playerDeclaration.setTankType("m4a2");
 
         PlayerClaimResolverFuzzy claimResolverFuzzy = new PlayerClaimResolverFuzzy();
-        String planeDisplayName = claimResolverFuzzy.getShotDownPlaneDisplayNameAsFuzzy(playerDeclaration, resultVictory);
+        String planeDisplayName = claimResolverFuzzy.getDestroyedTankDisplayNameAsFuzzy(playerDeclaration, resultVictory);
         
         Assertions.assertTrue (planeDisplayName.isEmpty());
     }
@@ -165,10 +165,10 @@ public class PlayerClaimResolverFuzzyTest
         resultVictory.setVictor(victor);
 
         PlayerVictoryDeclaration playerDeclaration = new PlayerVictoryDeclaration();
-        playerDeclaration.setTankType("se5a");
+        playerDeclaration.setTankType("m4a2");
 
         PlayerClaimResolverFuzzy claimResolverFuzzy = new PlayerClaimResolverFuzzy();
-        String planeDisplayName = claimResolverFuzzy.getShotDownPlaneDisplayNameAsFuzzy(playerDeclaration, resultVictory);
+        String planeDisplayName = claimResolverFuzzy.getDestroyedTankDisplayNameAsFuzzy(playerDeclaration, resultVictory);
         
         Assertions.assertTrue (planeDisplayName.isEmpty());
     }

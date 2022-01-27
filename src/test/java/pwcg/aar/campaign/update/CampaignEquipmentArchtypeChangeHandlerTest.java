@@ -24,32 +24,32 @@ public class CampaignEquipmentArchtypeChangeHandlerTest
     @Test
     public void testArchtypeReplacement() throws PWCGException 
     {
-        Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
-        assertTankArchType(campaign, "bf109");
-        assertNotTankArchType(campaign, "fw190");
-        int daysOff = DateUtils.daysDifference(campaign.getDate(), DateUtils.getDateYYYYMMDD("19420514"));
+        Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PZIV_PROFILE);
+        assertTankArchType(campaign, "pziv");
+        assertNotTankArchType(campaign, "tiger");
+        int daysOff = DateUtils.daysDifference(campaign.getDate(), DateUtils.getDateYYYYMMDD("19420801"));
         AARCoordinator aarCoordinator = AARCoordinator.getInstance();
         aarCoordinator.submitLeave(campaign, daysOff);
-        assertNotTankArchType(campaign, "bf109");
-        assertTankArchType(campaign, "fw190");
+        assertNotTankArchType(campaign, "pziv");
+        assertTankArchType(campaign, "tiger");
     }
     
     @Test
     public void testArchtypeNoReplacement() throws PWCGException 
     {
-        Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
-        assertTankArchType(campaign, "bf109");
-        assertNotTankArchType(campaign, "fw190");
-        int daysOff = DateUtils.daysDifference(campaign.getDate(), DateUtils.getDateYYYYMMDD("19420513"));
+        Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PZIV_PROFILE);
+        assertTankArchType(campaign, "pziv");
+        assertNotTankArchType(campaign, "tiger");
+        int daysOff = DateUtils.daysDifference(campaign.getDate(), DateUtils.getDateYYYYMMDD("19420702"));
         AARCoordinator aarCoordinator = AARCoordinator.getInstance();
         aarCoordinator.submitLeave(campaign, daysOff);
-        assertTankArchType(campaign, "bf109");
-        assertNotTankArchType(campaign, "fw190");
+        assertTankArchType(campaign, "pziv");
+        assertNotTankArchType(campaign, "tiger");
     }
     
     private void assertTankArchType(Campaign campaign, String planeArchTypeName)
     {
-    	Equipment equipment = campaign.getEquipmentManager().getEquipmentForCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
+    	Equipment equipment = campaign.getEquipmentManager().getEquipmentForCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PZIV_PROFILE.getCompanyId());
         for (EquippedTank plane : equipment.getActiveEquippedTanks().values())
         {
             assert(plane.getArchType().equals(planeArchTypeName));
@@ -58,7 +58,7 @@ public class CampaignEquipmentArchtypeChangeHandlerTest
     
     private void assertNotTankArchType(Campaign campaign, String planeArchTypeName)
     {
-    	Equipment equipment = campaign.getEquipmentManager().getEquipmentForCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
+    	Equipment equipment = campaign.getEquipmentManager().getEquipmentForCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PZIV_PROFILE.getCompanyId());
         for (EquippedTank plane : equipment.getActiveEquippedTanks().values())
         {
             assert(!(plane.getArchType().equals(planeArchTypeName)));

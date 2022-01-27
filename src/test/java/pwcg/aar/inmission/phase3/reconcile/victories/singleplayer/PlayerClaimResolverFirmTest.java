@@ -38,7 +38,7 @@ public class PlayerClaimResolverFirmTest
     public void testPlayerFirmVictoryFound() throws PWCGException
     {
         LogTank victim = new LogTank(1);
-        victim.setVehicleType("se5a");
+        victim.setVehicleType("m4a2");
         victim.setCountry(new BoSCountry(Country.BRITAIN));
 
         LogTank victor = new LogTank(2);
@@ -51,19 +51,19 @@ public class PlayerClaimResolverFirmTest
         resultVictory.setVictor(victor);
         
         PlayerVictoryDeclaration playerDeclaration = new PlayerVictoryDeclaration();
-        playerDeclaration.setTankType("se5a");
+        playerDeclaration.setTankType("m4a2");
 
         PlayerClaimResolverFirm claimResolverFirm = new PlayerClaimResolverFirm();
-        String planeDisplayName = claimResolverFirm.getShotDownPlaneDisplayNameAsFirm(player, playerDeclaration, resultVictory);
+        String planeDisplayName = claimResolverFirm.getDestroyedTankDisplayNameAsFirm(player, playerDeclaration, resultVictory);
         
-        Assertions.assertTrue (planeDisplayName.equals("S.E.5a"));
+        Assertions.assertTrue (planeDisplayName.equals("Sherman"));
     }
 
     @Test
     public void testPlayerFirmVictoryNotFoundBecausePlaneMismatch() throws PWCGException
     {
         LogTank victim = new LogTank(1);
-        victim.setVehicleType("se5a");
+        victim.setVehicleType("m4a2");
         victim.setCountry(new BoSCountry(Country.BRITAIN));
 
         LogTank victor = new LogTank(2);
@@ -76,10 +76,10 @@ public class PlayerClaimResolverFirmTest
         resultVictory.setVictor(victor);
         
         PlayerVictoryDeclaration playerDeclaration = new PlayerVictoryDeclaration();
-        playerDeclaration.setTankType("sopcamel");
+        playerDeclaration.setTankType("t34-76-43");
 
         PlayerClaimResolverFirm claimResolverFirm = new PlayerClaimResolverFirm();
-        String planeDisplayName = claimResolverFirm.getShotDownPlaneDisplayNameAsFirm(player, playerDeclaration, resultVictory);
+        String planeDisplayName = claimResolverFirm.getDestroyedTankDisplayNameAsFirm(player, playerDeclaration, resultVictory);
         
         Assertions.assertTrue (planeDisplayName.isEmpty());
     }
@@ -101,10 +101,10 @@ public class PlayerClaimResolverFirmTest
         resultVictory.setVictor(victor);
         
         PlayerVictoryDeclaration playerDeclaration = new PlayerVictoryDeclaration();
-        playerDeclaration.setTankType("se5a");
+        playerDeclaration.setTankType("m4a2");
 
         PlayerClaimResolverFirm claimResolverFirm = new PlayerClaimResolverFirm();
-        String planeDisplayName = claimResolverFirm.getShotDownPlaneDisplayNameAsFirm(player, playerDeclaration, resultVictory);
+        String planeDisplayName = claimResolverFirm.getDestroyedTankDisplayNameAsFirm(player, playerDeclaration, resultVictory);
         
         Assertions.assertTrue (planeDisplayName.isEmpty());
     }
@@ -113,7 +113,7 @@ public class PlayerClaimResolverFirmTest
     public void testPlayerFirmVictoryNotFoundBecauseClaimPlaneNotFound() throws PWCGException
     {
         LogTank victim = new LogTank(1);
-        victim.setVehicleType("se5a");
+        victim.setVehicleType("m4a2");
         victim.setCountry(new BoSCountry(Country.BRITAIN));
 
         LogTank victor = new LogTank(2);
@@ -129,7 +129,7 @@ public class PlayerClaimResolverFirmTest
         playerDeclaration.setTankType("notarealplane");
 
         PlayerClaimResolverFirm claimResolverFirm = new PlayerClaimResolverFirm();
-        String planeDisplayName = claimResolverFirm.getShotDownPlaneDisplayNameAsFirm(player, playerDeclaration, resultVictory);
+        String planeDisplayName = claimResolverFirm.getDestroyedTankDisplayNameAsFirm(player, playerDeclaration, resultVictory);
         
         Assertions.assertTrue (planeDisplayName.isEmpty());
     }
@@ -138,7 +138,7 @@ public class PlayerClaimResolverFirmTest
     public void testPlayerFirmVictoryNotFoundBecauseVictoryAlreadyConfirmed() throws PWCGException
     {
         LogTank victim = new LogTank(1);
-        victim.setVehicleType("se5a");
+        victim.setVehicleType("m4a2");
         victim.setCountry(new BoSCountry(Country.BRITAIN));
 
         LogTank victor = new LogTank(2);
@@ -152,10 +152,10 @@ public class PlayerClaimResolverFirmTest
         resultVictory.setConfirmed(true);
         
         PlayerVictoryDeclaration playerDeclaration = new PlayerVictoryDeclaration();
-        playerDeclaration.setTankType("se5a");
+        playerDeclaration.setTankType("m4a2");
 
         PlayerClaimResolverFirm claimResolverFirm = new PlayerClaimResolverFirm();
-        String planeDisplayName = claimResolverFirm.getShotDownPlaneDisplayNameAsFirm(player, playerDeclaration, resultVictory);
+        String planeDisplayName = claimResolverFirm.getDestroyedTankDisplayNameAsFirm(player, playerDeclaration, resultVictory);
         
         Assertions.assertTrue (planeDisplayName.isEmpty());
     }
@@ -178,10 +178,10 @@ public class PlayerClaimResolverFirmTest
         resultVictory.setVictor(victor);
         
         PlayerVictoryDeclaration playerDeclaration = new PlayerVictoryDeclaration();
-        playerDeclaration.setTankType("se5a");
+        playerDeclaration.setTankType("m4a2");
 
         PlayerClaimResolverFirm claimResolverFirm = new PlayerClaimResolverFirm();
-        String planeDisplayName = claimResolverFirm.getShotDownPlaneDisplayNameAsFirm(player, playerDeclaration, resultVictory);
+        String planeDisplayName = claimResolverFirm.getDestroyedTankDisplayNameAsFirm(player, playerDeclaration, resultVictory);
         
         Assertions.assertTrue (planeDisplayName.isEmpty());
     }

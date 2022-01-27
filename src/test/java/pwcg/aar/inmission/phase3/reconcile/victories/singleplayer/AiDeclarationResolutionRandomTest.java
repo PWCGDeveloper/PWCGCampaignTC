@@ -130,7 +130,7 @@ public class AiDeclarationResolutionRandomTest
         campaignMembersInmission.addToCrewMemberCollection(aiSquadMember);
 
 
-        Mockito.when(evaluationData.getPlaneInMissionBySerialNumber(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1)).thenReturn(aiVictor);
+        Mockito.when(evaluationData.getTankInMissionBySerialNumber(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1)).thenReturn(aiVictor);
         
         AiDeclarationResolver declarationResolution = new AiDeclarationResolver(campaign, aarContext);
         ConfirmedVictories confirmedAiVictories = declarationResolution.determineAiAirResults(victorySorter);

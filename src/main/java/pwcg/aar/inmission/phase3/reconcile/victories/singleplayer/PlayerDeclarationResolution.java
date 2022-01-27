@@ -30,7 +30,7 @@ public class PlayerDeclarationResolution
         this.playerDeclarations = playerDeclarations;
     }
 
-    ConfirmedVictories determinePlayerAirResultsWithClaims  () throws PWCGException 
+    ConfirmedVictories determinePlayerResultsWithClaims  () throws PWCGException 
     {
         for (Integer playerSerialNumber : playerDeclarations.keySet())
         {
@@ -70,10 +70,10 @@ public class PlayerDeclarationResolution
             {
                 if (!resultVictory.isConfirmed())
                 {
-                    String shotDownPlaneDisplayName = claimResolverFirm.getShotDownPlaneDisplayNameAsFirm(player, victoryDeclaration, resultVictory);
-                    if (!shotDownPlaneDisplayName.isEmpty())
+                    String destroyedTankDisplayName = claimResolverFirm.getDestroyedTankDisplayNameAsFirm(player, victoryDeclaration, resultVictory);
+                    if (!destroyedTankDisplayName.isEmpty())
                     {
-                        generatePlayerVictoryIfNotAlreadyConfirmed(playerSerialNumber, victoryDeclaration, resultVictory, shotDownPlaneDisplayName);
+                        generatePlayerVictoryIfNotAlreadyConfirmed(playerSerialNumber, victoryDeclaration, resultVictory, destroyedTankDisplayName);
                         return true;
                     }
                 }
@@ -90,10 +90,10 @@ public class PlayerDeclarationResolution
             CrewMember player = campaign.getPersonnelManager().getAnyCampaignMember(playerSerialNumber);
             if (!VictoryResolverSameSideDetector.isSameSide(player, resultVictory))
             {
-                String shotDownPlaneDisplayName = claimResolverFirm.getShotDownPlaneDisplayNameAsFirmNotExact(player, victoryDeclaration, resultVictory);
-                if (!shotDownPlaneDisplayName.isEmpty())
+                String destroyedTankDisplayName = claimResolverFirm.getDestroyedTankDisplayNameAsFirmNotExact(player, victoryDeclaration, resultVictory);
+                if (!destroyedTankDisplayName.isEmpty())
                 {
-                    generatePlayerVictoryIfNotAlreadyConfirmed(playerSerialNumber, victoryDeclaration, resultVictory, shotDownPlaneDisplayName);
+                    generatePlayerVictoryIfNotAlreadyConfirmed(playerSerialNumber, victoryDeclaration, resultVictory, destroyedTankDisplayName);
                     return true;
                 }
             }
@@ -107,14 +107,14 @@ public class PlayerDeclarationResolution
         for (LogVictory resultVictory : victorySorter.getFuzzyTankVictories())
         {
             CrewMember player = campaign.getPersonnelManager().getAnyCampaignMember(playerSerialNumber);
-            if (didPlayerDamagePlane(playerSerialNumber, resultVictory))
+            if (didPlayerDamageTank(playerSerialNumber, resultVictory))
             {
                 if (!VictoryResolverSameSideDetector.isSameSide(player, resultVictory))
                 {
-                    String shotDownPlaneDisplayName = claimResolverFuzzy.getShotDownPlaneDisplayNameAsFuzzy(victoryDeclaration, resultVictory);
-                    if (!shotDownPlaneDisplayName.isEmpty())
+                    String destroyedTankDisplayName = claimResolverFuzzy.getDestroyedTankDisplayNameAsFuzzy(victoryDeclaration, resultVictory);
+                    if (!destroyedTankDisplayName.isEmpty())
                     {
-                        generatePlayerVictoryIfNotAlreadyConfirmed(playerSerialNumber, victoryDeclaration, resultVictory, shotDownPlaneDisplayName);
+                        generatePlayerVictoryIfNotAlreadyConfirmed(playerSerialNumber, victoryDeclaration, resultVictory, destroyedTankDisplayName);
                         return true;
                     }
                 }
@@ -129,14 +129,14 @@ public class PlayerDeclarationResolution
         for (LogVictory resultVictory : victorySorter.getFuzzyTankVictories())
         {
             CrewMember player = campaign.getPersonnelManager().getAnyCampaignMember(playerSerialNumber);
-            if (didPlayerDamagePlane(playerSerialNumber, resultVictory))
+            if (didPlayerDamageTank(playerSerialNumber, resultVictory))
             {
                 if (!VictoryResolverSameSideDetector.isSameSide(player, resultVictory))
                 {
-                    String shotDownPlaneDisplayName = claimResolverFuzzy.getShotDownPlaneDisplayNameAsFuzzyNotExact(player, victoryDeclaration, resultVictory);
-                    if (!shotDownPlaneDisplayName.isEmpty())
+                    String destroyedTankDisplayName = claimResolverFuzzy.getDestroyedTankDisplayNameAsFuzzyNotExact(player, victoryDeclaration, resultVictory);
+                    if (!destroyedTankDisplayName.isEmpty())
                     {
-                        generatePlayerVictoryIfNotAlreadyConfirmed(playerSerialNumber, victoryDeclaration, resultVictory, shotDownPlaneDisplayName);
+                        generatePlayerVictoryIfNotAlreadyConfirmed(playerSerialNumber, victoryDeclaration, resultVictory, destroyedTankDisplayName);
                         return true;
                     }
                 }
@@ -146,23 +146,23 @@ public class PlayerDeclarationResolution
         return false;
     }
 
-    private boolean didPlayerDamagePlane(Integer playerSerialNumber, LogVictory resultVictory) throws PWCGException
+    private boolean didPlayerDamageTank(Integer playerSerialNumber, LogVictory resultVictory) throws PWCGException
     {
-        LogTank playerPlane = evaluationData.getPlaneInMissionBySerialNumber(playerSerialNumber);
-        boolean didPlayerDamagePlane = resultVictory.didCrewMemberDamagePlane(playerPlane.getId());
-        return didPlayerDamagePlane;
+        LogTank playerTank = evaluationData.getTankInMissionBySerialNumber(playerSerialNumber);
+        boolean didPlayerDamageTank = resultVictory.didCrewMemberDamageTank(playerTank.getId());
+        return didPlayerDamageTank;
     }
 
-    private void generatePlayerVictoryIfNotAlreadyConfirmed(Integer playerSerialNumber, PlayerVictoryDeclaration victoryDeclaration, LogVictory resultVictory, String shotDownPlaneName) throws PWCGException
+    private void generatePlayerVictoryIfNotAlreadyConfirmed(Integer playerSerialNumber, PlayerVictoryDeclaration victoryDeclaration, LogVictory resultVictory, String destroyedTankName) throws PWCGException
     {
         if (!resultVictory.isConfirmed())
         {
-            victoryDeclaration.confirmDeclaration(true, shotDownPlaneName);
+            victoryDeclaration.confirmDeclaration(true, destroyedTankName);
     
-            LogTank playerPlane = evaluationData.getPlaneInMissionBySerialNumber(playerSerialNumber);
-            if (playerPlane != null)
+            LogTank playerTank = evaluationData.getTankInMissionBySerialNumber(playerSerialNumber);
+            if (playerTank != null)
             {
-                resultVictory.setVictor(playerPlane);
+                resultVictory.setVictor(playerTank);
                 resultVictory.setConfirmed(true);
         
                 confirmedPlayerVictories.addVictory(resultVictory);

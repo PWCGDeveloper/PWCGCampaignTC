@@ -84,7 +84,7 @@ public class AARDestroyedStatusEvaluatorTest
         Assertions.assertTrue(vehiclesDestroyed.size() == 3);
         for (LogVictory victory : vehiclesDestroyed)
         {
-            Assertions.assertFalse(victory.didCrewMemberDamagePlane(VICTIM_1));
+            Assertions.assertFalse(victory.didCrewMemberDamageTank(VICTIM_1));
         }
     }
 
@@ -162,7 +162,7 @@ public class AARDestroyedStatusEvaluatorTest
         Assertions.assertTrue(vehiclesDestroyed.size() == 3);
         for (LogVictory victory : vehiclesDestroyed)
         {
-            Assertions.assertTrue(victory.didCrewMemberDamagePlane(VICTOR));
+            Assertions.assertTrue(victory.didCrewMemberDamageTank(VICTOR));
         }
     }
 }
