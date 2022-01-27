@@ -128,7 +128,7 @@ public class EquipmentReplacementWeightNeedTest
         Equipment gruppo21 = campaign.getEquipmentManager().getEquipmentForCompany(20115021);
         destroyPlanesInCompany(gruppo21, 3);
 
-        Equipment i_jg51 = campaign.getEquipmentManager().getEquipmentForCompany(20111051);
+        Equipment i_jg51 = campaign.getEquipmentManager().getEquipmentForCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
         destroyPlanesInCompany(i_jg51, 2);
 
         Equipment ii_jg52 = campaign.getEquipmentManager().getEquipmentForCompany(20112052);

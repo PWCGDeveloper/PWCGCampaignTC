@@ -37,7 +37,7 @@ public class SkirmishManagerTest
         SkirmishManager skirmishManager = new SkirmishManager(FrontMapIdentifier.BODENPLATTE_MAP);
         skirmishManager.initialize();
         
-        Assertions.assertTrue (skirmishManager.getSkirmishes().getSkirmishes().size() == 18);
+        Assertions.assertTrue (skirmishManager.getSkirmishes().getSkirmishes().size() == 13);
         
         List<Skirmish> skirmishesForDate = skirmishManager.getSkirmishesForDate(campaign, TestMissionBuilderUtility.buildTestParticipatingHumans(campaign));
         Assertions.assertTrue (skirmishesForDate.size() == 3);

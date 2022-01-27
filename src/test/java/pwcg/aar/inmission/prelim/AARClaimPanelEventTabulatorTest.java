@@ -73,7 +73,7 @@ public class AARClaimPanelEventTabulatorTest
        
         PwcgGeneratedMissionVehicleData axis109 = new PwcgGeneratedMissionVehicleData();
         axis109.setVehicleType("bf109f4");
-        axis109.setCompanyId(20111051);
+        axis109.setCompanyId(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
         axis109.setCrewMemberSerialNumber(SerialNumber.AI_STARTING_SERIAL_NUMBER + 4);
 
         missionPlanes.put(axis109.getCrewMemberSerialNumber(), axis109);

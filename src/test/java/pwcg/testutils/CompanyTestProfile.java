@@ -17,8 +17,8 @@ public enum CompanyTestProfile
     THIRD_DIVISION_PROFILE("3rd Armored Division", 102003005, "19440901", CampaignMode.CAMPAIGN_MODE_SINGLE, FrontMapIdentifier.BODENPLATTE_MAP, false),
     SEVENTH_DIVISION_PROFILE("3rd Armored Division", 103007001, "19440901", CampaignMode.CAMPAIGN_MODE_SINGLE, FrontMapIdentifier.BODENPLATTE_MAP, false),
 
-    COOP_COMPETITIVE_PROFILE("Gross Deutschland Coop",201001001, "19420801", CampaignMode.CAMPAIGN_MODE_COOP, FrontMapIdentifier.STALINGRAD_MAP, true),
-    COOP_COOPERATIVE_PROFILE("Gross Deutschland Competitive",201001001, "19420801", CampaignMode.CAMPAIGN_MODE_COOP, FrontMapIdentifier.STALINGRAD_MAP, false);
+    COOP_COMPETITIVE_PROFILE("Gross Deutschland Coop",CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId(), "19420801", CampaignMode.CAMPAIGN_MODE_COOP, FrontMapIdentifier.STALINGRAD_MAP, true),
+    COOP_COOPERATIVE_PROFILE("Gross Deutschland Competitive",CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId(), "19420801", CampaignMode.CAMPAIGN_MODE_COOP, FrontMapIdentifier.STALINGRAD_MAP, false);
 
    private int companyId;
    private String dateString;

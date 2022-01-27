@@ -29,7 +29,6 @@ import pwcg.testutils.CompanyTestProfile;
 public class ServiceTransferNeedTest
 {
     private Campaign campaign;
-    private static final int JASTA_16 = 401016;
     
     @BeforeAll
     public void setupSuite() throws PWCGException
@@ -53,7 +52,7 @@ public class ServiceTransferNeedTest
         while (serviceTransferNeed.hasNeedyCompany())
         {
             ICompanyNeed selectedCompanyNeed = serviceTransferNeed.chooseNeedyCompany();
-            if (selectedCompanyNeed.getCompanyId() == JASTA_16)
+            if (selectedCompanyNeed.getCompanyId() == CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId())
             {
                 jasta16Needs = true;
                 break;
@@ -65,9 +64,10 @@ public class ServiceTransferNeedTest
 
     private void deactivateCompanyPersonnel() throws PWCGException
     {
-        CrewMembers jasta16CrewMembers = CrewMemberFilter.filterActiveAI(campaign.getPersonnelManager().getCompanyPersonnel(JASTA_16).getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
+        CrewMembers crewMembers = CrewMemberFilter.filterActiveAI(campaign.getPersonnelManager().getCompanyPersonnel(
+                CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId()).getCrewMembersWithAces().getCrewMemberCollection(), campaign.getDate());
         int numInactivated = 0;
-        for (CrewMember crewMember : jasta16CrewMembers.getCrewMemberList())
+        for (CrewMember crewMember : crewMembers.getCrewMemberList())
         {
             if (!crewMember.isPlayer())
             {

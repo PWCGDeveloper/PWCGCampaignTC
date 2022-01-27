@@ -66,7 +66,7 @@ public class AARCoordinatorInMissionTest
 
     private void makeCompanysInMission() throws PWCGException
     {
-        Company gd = PWCGContext.getInstance().getCompanyManager().getCompany(201001001);
+        Company gd = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
         companysInMission.add(gd);
     }
 

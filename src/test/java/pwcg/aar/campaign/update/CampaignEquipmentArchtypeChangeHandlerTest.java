@@ -49,7 +49,7 @@ public class CampaignEquipmentArchtypeChangeHandlerTest
     
     private void assertTankArchType(Campaign campaign, String planeArchTypeName)
     {
-    	Equipment equipment = campaign.getEquipmentManager().getEquipmentForCompany(20111051);
+    	Equipment equipment = campaign.getEquipmentManager().getEquipmentForCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
         for (EquippedTank plane : equipment.getActiveEquippedTanks().values())
         {
             assert(plane.getArchType().equals(planeArchTypeName));
@@ -58,7 +58,7 @@ public class CampaignEquipmentArchtypeChangeHandlerTest
     
     private void assertNotTankArchType(Campaign campaign, String planeArchTypeName)
     {
-    	Equipment equipment = campaign.getEquipmentManager().getEquipmentForCompany(20111051);
+    	Equipment equipment = campaign.getEquipmentManager().getEquipmentForCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
         for (EquippedTank plane : equipment.getActiveEquippedTanks().values())
         {
             assert(!(plane.getArchType().equals(planeArchTypeName)));

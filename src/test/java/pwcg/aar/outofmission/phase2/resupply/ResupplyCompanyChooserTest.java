@@ -17,7 +17,6 @@ import pwcg.campaign.resupply.equipment.CompanyEquipmentNeed;
 import pwcg.core.exception.PWCGException;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.CompanyTestProfile;
-import pwcg.testutils.TestIdentifiers;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ResupplyCompanyChooserTest
@@ -40,7 +39,7 @@ public class ResupplyCompanyChooserTest
         {
             ICompanyNeed selectedCompanyNeed = resupplyCompanyChooser.getNeedyCompany();
             selectedCompanyNeed.noteResupply();
-            assert(selectedCompanyNeed.getCompanyId() == 20111051);
+            assert(selectedCompanyNeed.getCompanyId() == CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
         }
     }
 
@@ -55,11 +54,11 @@ public class ResupplyCompanyChooserTest
             selectedCompanyNeed.noteResupply();
             if (i < 2)
             {
-                assert(selectedCompanyNeed.getCompanyId() == 20111051);
+                assert(selectedCompanyNeed.getCompanyId() == CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
             }
             else
             {
-                assert(selectedCompanyNeed.getCompanyId() == TestIdentifiers.TEST_GERMAN_COMPANY_ID);
+                assert(selectedCompanyNeed.getCompanyId() == 201014001);
             }
         }
     }
@@ -70,54 +69,54 @@ public class ResupplyCompanyChooserTest
         Map<Integer, ICompanyNeed> needs = getCompanyNeeds(3, 2, 1);
         ResupplyCompanyChooser resupplyCompanyChooser = new ResupplyCompanyChooser(campaign, needs);
         
-        int i_jg51Count = 0;
-        int i_jg52Count = 0;
-        int ii_jg52Count = 0;
+        int gdPzCount = 0;
+        int fourteenPzCount = 0;
+        int sixteenPzCount = 0;
         for (int i = 0; i < 6; ++i)
         {
             ICompanyNeed selectedCompanyNeed = resupplyCompanyChooser.getNeedyCompany();
             selectedCompanyNeed.noteResupply();
-            if (selectedCompanyNeed.getCompanyId() == 20111051)
+            if (selectedCompanyNeed.getCompanyId() == CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId())
             {
-                ++i_jg51Count;
+                ++gdPzCount;
             }
-            else if (selectedCompanyNeed.getCompanyId() == TestIdentifiers.TEST_GERMAN_COMPANY_ID)
+            else if (selectedCompanyNeed.getCompanyId() == 201014001)
             {
-                ++i_jg52Count;
+                ++fourteenPzCount;
             }
-            else if (selectedCompanyNeed.getCompanyId() == 20112052)
+            else if (selectedCompanyNeed.getCompanyId() == 201016003)
             {
-                ++ii_jg52Count;
+                ++sixteenPzCount;
             }
         }
 
-        assert(i_jg51Count == 3);
-        assert(i_jg52Count == 2);
-        assert(ii_jg52Count == 1);
+        assert(gdPzCount == 3);
+        assert(fourteenPzCount == 2);
+        assert(sixteenPzCount == 1);
         
         ICompanyNeed selectedCompanyNeed = resupplyCompanyChooser.getNeedyCompany();
         assert(selectedCompanyNeed == null);        
     }
 
-    private Map<Integer, ICompanyNeed> getCompanyNeeds(int playerPlanesNeeded, int i_jg52PlanesNeeded, int ii_jg52PlanesNeeded) throws PWCGException
+    private Map<Integer, ICompanyNeed> getCompanyNeeds(int playerPlanesNeeded, int fourteenPzPlanesNeeded, int ifourteenPzPlanesNeeded) throws PWCGException
     {
         Map<Integer, ICompanyNeed> needs = new HashMap<>();
         CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
         
-        Company playerCompany = companyManager.getCompany(20111051);
+        Company playerCompany = companyManager.getCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
         CompanyEquipmentNeed playerCompanyEquipmentNeed = new CompanyEquipmentNeed(campaign, playerCompany);
         playerCompanyEquipmentNeed.setPlanesNeeded(playerPlanesNeeded);
         needs.put(playerCompany.getCompanyId(), playerCompanyEquipmentNeed);
         
-        Company i_jg52 = companyManager.getCompany(TestIdentifiers.TEST_GERMAN_COMPANY_ID);
-        CompanyEquipmentNeed i_jg52EquipmentNeed = new CompanyEquipmentNeed(campaign, i_jg52);
-        i_jg52EquipmentNeed.setPlanesNeeded(i_jg52PlanesNeeded);
-        needs.put(i_jg52.getCompanyId(), i_jg52EquipmentNeed);        
+        Company fourteenPz = companyManager.getCompany(201014001);
+        CompanyEquipmentNeed fourteenPzEquipmentNeed = new CompanyEquipmentNeed(campaign, fourteenPz);
+        fourteenPzEquipmentNeed.setPlanesNeeded(fourteenPzPlanesNeeded);
+        needs.put(fourteenPz.getCompanyId(), fourteenPzEquipmentNeed);        
         
-        Company ii_jg52 = companyManager.getCompany(20112052);
-        CompanyEquipmentNeed ii_jg52EquipmentNeed = new CompanyEquipmentNeed(campaign, ii_jg52);
-        ii_jg52EquipmentNeed.setPlanesNeeded(ii_jg52PlanesNeeded);
-        needs.put(ii_jg52.getCompanyId(), ii_jg52EquipmentNeed);        
+        Company ifourteenPz = companyManager.getCompany(201016003);
+        CompanyEquipmentNeed ifourteenPzEquipmentNeed = new CompanyEquipmentNeed(campaign, ifourteenPz);
+        ifourteenPzEquipmentNeed.setPlanesNeeded(ifourteenPzPlanesNeeded);
+        needs.put(ifourteenPz.getCompanyId(), ifourteenPzEquipmentNeed);        
         
         return needs;
     }
