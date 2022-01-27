@@ -7,6 +7,7 @@ import pwcg.campaign.Campaign;
 import pwcg.campaign.company.Company;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.core.exception.PWCGException;
+import pwcg.testutils.CompanyTestProfile;
 
 public class CompanyForMissionBuilder
 {

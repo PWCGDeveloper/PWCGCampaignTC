@@ -29,7 +29,7 @@ public class EquipmentDepot
         return equipment.getAvailableDepotTanks().size();
     }
     
-    public void addPlaneToDepot(EquippedTank equippedTank) throws PWCGException
+    public void addTankToDepot(EquippedTank equippedTank) throws PWCGException
     {
         equipment.addTankToDepot(equippedTank);
     }
@@ -39,12 +39,12 @@ public class EquipmentDepot
         return equipment.removeBestEquippedFromDepot(activeArchTypes); 
     }
 
-    public EquippedTank removeEquippedPlaneFromDepot(int tankSerialNumber)
+    public EquippedTank removeEquippedTankFromDepot(int tankSerialNumber)
     {
         return equipment.removeEquippedTank(tankSerialNumber);
     }
 
-    public EquippedTank getPlaneFromDepot(int tankSerialNumber)
+    public EquippedTank getTankFromDepot(int tankSerialNumber)
     {
         return equipment.getEquippedTank(tankSerialNumber);
     }
@@ -63,7 +63,7 @@ public class EquipmentDepot
         return sortedDepotForRole;
     }
 
-    public List<EquippedTank> getAllPlanesInDepot() throws PWCGException
+    public List<EquippedTank> getAllTanksInDepot() throws PWCGException
     {
         List<EquippedTank> allPlanesInDepot = new ArrayList<>();
         for (EquippedTank equippedTank : equipment.getAvailableDepotTanks().values())

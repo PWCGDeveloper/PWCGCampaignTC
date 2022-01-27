@@ -17,6 +17,7 @@ import pwcg.campaign.ArmedService;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.company.Company;
 import pwcg.campaign.context.Country;
+import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.resupply.depot.EquipmentDepot;
 import pwcg.campaign.resupply.equipment.EquipmentUpgradeHandler;
 import pwcg.campaign.tank.Equipment;
@@ -39,7 +40,7 @@ public class EquipmentUpgradeHandlerTest
     public void setupSuite() throws PWCGException
     {
         
-        campaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
+        campaign = CampaignCache.makeCampaign(CompanyTestProfile.PZ16_PROFILE);
     }
 
     @BeforeEach
@@ -53,78 +54,77 @@ public class EquipmentUpgradeHandlerTest
     {
         EquipmentDepot equipmentDepotBeforeTest = campaign.getEquipmentManager().getEquipmentDepotForService(armedService.getServiceId());
 
-        // Add good planes to the depo
-        List<Integer> veryGoodPlanesInDepot = new ArrayList<>();
+        // Add good tanks to the depo
+        List<Integer> veryGoodTanksInDepot = new ArrayList<>();
         for (int i = 0; i < 2; ++i)
         {
-            EquippedTank veryGoodTank = TankEquipmentFactory.makeTankForDepot(campaign, "_pzv-d", Country.GERMANY);
-            equipmentDepotBeforeTest.addPlaneToDepot(veryGoodTank);
-            veryGoodPlanesInDepot.add(veryGoodTank.getSerialNumber());
+            EquippedTank veryGoodTank = TankEquipmentFactory.makeTankForDepot(campaign, "_pziii-m", Country.GERMANY);
+            equipmentDepotBeforeTest.addTankToDepot(veryGoodTank);
+            veryGoodTanksInDepot.add(veryGoodTank.getSerialNumber());
         }
 
-        for (int veryGoodPlaneInDepot : veryGoodPlanesInDepot)
+        for (int veryGoodTankInDepot : veryGoodTanksInDepot)
         {
-            Assertions.assertTrue (equipmentDepotBeforeTest.getPlaneFromDepot(veryGoodPlaneInDepot) != null);
+            Assertions.assertTrue (equipmentDepotBeforeTest.getTankFromDepot(veryGoodTankInDepot) != null);
         }
 
-        // replace planes in company with different quality 109s, but all worse
-        // than the very good planes in the depot
+        // replace tanks in company with different quality 109s, but all worse
+        // than the very good tanks in the depot
         Company playerCompany = campaign.determinePlayerCompanies().get(0);
         Equipment equipmentForCompanyBeforeTest = campaign.getEquipmentManager().getEquipmentForCompany(playerCompany.getCompanyId());
-        for (EquippedTank planeInCompanyBeforeTest : equipmentForCompanyBeforeTest.getActiveEquippedTanks().values())
+        for (EquippedTank tankInCompanyBeforeTest : equipmentForCompanyBeforeTest.getActiveEquippedTanks().values())
         {
-            equipmentForCompanyBeforeTest.removeEquippedTank(planeInCompanyBeforeTest.getSerialNumber());
+            equipmentForCompanyBeforeTest.removeEquippedTank(tankInCompanyBeforeTest.getSerialNumber());
         }
 
-        List<Integer> planesThatShouldBeReplaced = new ArrayList<>();
+        List<Integer> tanksThatShouldBeReplaced = new ArrayList<>();
         for (int i = 0; i < 2; ++i)
         {
-            EquippedTank tankToReplace = TankEquipmentFactory.makeTankForDepot(campaign, "_pziii-l", Country.GERMANY);
+            EquippedTank tankToReplace = TankEquipmentFactory.makeTankForCompany(campaign, "_pziii-l", playerCompany);
             equipmentForCompanyBeforeTest.addEquippedTankToCompany(campaign, playerCompany.getCompanyId(), tankToReplace);
-            planesThatShouldBeReplaced.add(tankToReplace.getSerialNumber());
+            tanksThatShouldBeReplaced.add(tankToReplace.getSerialNumber());
         }
 
-        List<Integer> planesThatShouldNotBeReplaced = new ArrayList<>();
+        List<Integer> tanksThatShouldNotBeReplaced = new ArrayList<>();
         for (int i = 0; i < 10; ++i)
         {
-            EquippedTank tankToKeep = TankEquipmentFactory.makeTankForDepot(campaign, "_pziv-g", Country.GERMANY);
+            EquippedTank tankToKeep = TankEquipmentFactory.makeTankForCompany(campaign, "_pziii-m", playerCompany);
             equipmentForCompanyBeforeTest.addEquippedTankToCompany(campaign, playerCompany.getCompanyId(), tankToKeep);
-            planesThatShouldNotBeReplaced.add(tankToKeep.getSerialNumber());
+            tanksThatShouldNotBeReplaced.add(tankToKeep.getSerialNumber());
         }
 
-        // The better planes should be left in the company
-        for (int planeThatShouldNotBeReplaced : planesThatShouldNotBeReplaced)
+        // The better tanks should be left in the company
+        for (int tankThatShouldNotBeReplaced : tanksThatShouldNotBeReplaced)
         {
-            Assertions.assertTrue (equipmentForCompanyBeforeTest.getEquippedTank(planeThatShouldNotBeReplaced) != null);
+            Assertions.assertTrue (equipmentForCompanyBeforeTest.getEquippedTank(tankThatShouldNotBeReplaced) != null);
         }
 
         // Run the upgrade
         EquipmentUpgradeHandler equipmentUpgradeHandler = new EquipmentUpgradeHandler(campaign);
         equipmentUpgradeHandler.upgradeEquipment(armedService);
 
-        // The worst planes in the companys should be replaced and now be in
-        // the depot
+        // The worst tanks in the companys should be replaced and now be in the depot
         EquipmentDepot equipmentDepotAfterTest = campaign.getEquipmentManager().getEquipmentDepotForService(armedService.getServiceId());
         Equipment equipmentForCompanyAfterTest = campaign.getEquipmentManager().getEquipmentForCompany(playerCompany.getCompanyId());
-        for (int planeThatShouldBeReplaced : planesThatShouldBeReplaced)
+        for (int tankThatShouldBeReplaced : tanksThatShouldBeReplaced)
         {
-            Assertions.assertTrue (equipmentForCompanyAfterTest.getEquippedTank(planeThatShouldBeReplaced) == null);
-            Assertions.assertTrue (equipmentDepotAfterTest.getPlaneFromDepot(planeThatShouldBeReplaced) != null);
+            Assertions.assertTrue (equipmentForCompanyAfterTest.getEquippedTank(tankThatShouldBeReplaced) == null);
+            Assertions.assertTrue (equipmentDepotAfterTest.getTankFromDepot(tankThatShouldBeReplaced) != null);
         }
 
-        // The better planes should be left in the company
-        for (int planeThatShouldNotBeReplaced : planesThatShouldNotBeReplaced)
+        // The better tanks should be left in the company
+        for (int tankThatShouldNotBeReplaced : tanksThatShouldNotBeReplaced)
         {
-            Assertions.assertTrue (equipmentForCompanyAfterTest.getEquippedTank(planeThatShouldNotBeReplaced) != null);
-            Assertions.assertTrue (equipmentDepotAfterTest.getPlaneFromDepot(planeThatShouldNotBeReplaced) == null);
+            Assertions.assertTrue (equipmentForCompanyAfterTest.getEquippedTank(tankThatShouldNotBeReplaced) != null);
+            Assertions.assertTrue (equipmentDepotAfterTest.getTankFromDepot(tankThatShouldNotBeReplaced) == null);
         }
 
-        // The very good planes in the depot should be moved from the depot to
+        // The very good tanks in the depot should be moved from the depot to
         // the company
-        for (int veryGoodPlaneInDepot : veryGoodPlanesInDepot)
+        for (int veryGoodTankInDepot : veryGoodTanksInDepot)
         {
-            Assertions.assertTrue (equipmentForCompanyAfterTest.getEquippedTank(veryGoodPlaneInDepot) != null);
-            Assertions.assertTrue (equipmentDepotAfterTest.getPlaneFromDepot(veryGoodPlaneInDepot) == null);
+            Assertions.assertTrue (equipmentForCompanyAfterTest.getEquippedTank(veryGoodTankInDepot) != null);
+            Assertions.assertTrue (equipmentDepotAfterTest.getTankFromDepot(veryGoodTankInDepot) == null);
         }
     }
 
@@ -133,107 +133,107 @@ public class EquipmentUpgradeHandlerTest
     {
         EquipmentDepot equipmentDepotBeforeTest = campaign.getEquipmentManager().getEquipmentDepotForService(armedService.getServiceId());
 
-        // Add good planes to the depo
-        List<Integer> veryGoodPlanesInDepot = new ArrayList<>();
+        // Add good tanks to the depo
+        List<Integer> veryGoodTanksInDepot = new ArrayList<>();
         for (int i = 0; i < 2; ++i)
         {
-            EquippedTank veryGoodTank = TankEquipmentFactory.makeTankForDepot(campaign, "_pzv-d", Country.GERMANY);
-            equipmentDepotBeforeTest.addPlaneToDepot(veryGoodTank);
-            veryGoodPlanesInDepot.add(veryGoodTank.getSerialNumber());
+            EquippedTank veryGoodTank = TankEquipmentFactory.makeTankForDepot(campaign, "_pziii-m", Country.GERMANY);
+            equipmentDepotBeforeTest.addTankToDepot(veryGoodTank);
+            veryGoodTanksInDepot.add(veryGoodTank.getSerialNumber());
         }
 
-        for (int veryGoodPlaneInDepot : veryGoodPlanesInDepot)
+        for (int veryGoodTankInDepot : veryGoodTanksInDepot)
         {
-            Assertions.assertTrue (equipmentDepotBeforeTest.getPlaneFromDepot(veryGoodPlaneInDepot) != null);
+            Assertions.assertTrue (equipmentDepotBeforeTest.getTankFromDepot(veryGoodTankInDepot) != null);
         }
 
-        // replace planes in player company with very good quality 109s, to
+        // replace tanks in player company with very good quality panthers, to
         // avoid the need for replacement
-        Company playerCompany = campaign.determinePlayerCompanies().get(0);
-        Equipment equipmentForCompanyBeforeTest = campaign.getEquipmentManager().getEquipmentForCompany(playerCompany.getCompanyId());
-        for (EquippedTank planeInCompanyBeforeTest : equipmentForCompanyBeforeTest.getActiveEquippedTanks().values())
+        Company aiCompany = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyTestProfile.PZ14_PROFILE.getCompanyId());
+        Equipment equipmentForCompanyBeforeTest = campaign.getEquipmentManager().getEquipmentForCompany(aiCompany.getCompanyId());
+        for (EquippedTank tankInCompanyBeforeTest : equipmentForCompanyBeforeTest.getActiveEquippedTanks().values())
         {
-            equipmentForCompanyBeforeTest.removeEquippedTank(planeInCompanyBeforeTest.getSerialNumber());
+            equipmentForCompanyBeforeTest.removeEquippedTank(tankInCompanyBeforeTest.getSerialNumber());
         }
 
-        List<Integer> originalPlayerCompanyPlanes = new ArrayList<>();
+        List<Integer> originalPlayerCompanyTanks = new ArrayList<>();
         for (int i = 0; i < 16; ++i)
         {
-            EquippedTank tankToReplace = TankEquipmentFactory.makeTankForDepot(campaign, "_pziii-l", Country.GERMANY);
-            equipmentForCompanyBeforeTest.addEquippedTankToCompany(campaign, playerCompany.getCompanyId(), tankToReplace);
-            originalPlayerCompanyPlanes.add(tankToReplace.getSerialNumber());
+            EquippedTank tankToReplace = TankEquipmentFactory.makeTankForCompany(campaign, "_pziii-l", aiCompany);
+            equipmentForCompanyBeforeTest.addEquippedTankToCompany(campaign, aiCompany.getCompanyId(), tankToReplace);
+            originalPlayerCompanyTanks.add(tankToReplace.getSerialNumber());
         }
 
         // Run the upgrade
         EquipmentUpgradeHandler equipmentUpgradeHandler = new EquipmentUpgradeHandler(campaign);
         equipmentUpgradeHandler.upgradeEquipment(armedService);
 
-        // The planes in the depot should be removed and sent to companys
+        // The tanks in the depot should be removed and sent to companies
         EquipmentDepot equipmentDepotAfterTest = campaign.getEquipmentManager().getEquipmentDepotForService(armedService.getServiceId());
-        for (int depotPlane : veryGoodPlanesInDepot)
+        for (int depotTank : veryGoodTanksInDepot)
         {
-            Assertions.assertTrue (equipmentDepotAfterTest.getPlaneFromDepot(depotPlane) == null);
+            Assertions.assertTrue (equipmentDepotAfterTest.getTankFromDepot(depotTank) == null);
         }
 
-        // No planes should be replaced in the player company
-        Equipment equipmentForPlayerCompanyAfterTest = campaign.getEquipmentManager().getEquipmentForCompany(playerCompany.getCompanyId());
-        for (int depotPlane : veryGoodPlanesInDepot)
+        // No tanks should be replaced in the player company
+        Equipment equipmentForPlayerCompanyAfterTest = campaign.getEquipmentManager().getEquipmentForCompany(aiCompany.getCompanyId());
+        for (int depotTank : veryGoodTanksInDepot)
         {
-            Assertions.assertTrue (equipmentForPlayerCompanyAfterTest.getEquippedTank(depotPlane) == null);
+            Assertions.assertTrue (equipmentForPlayerCompanyAfterTest.getEquippedTank(depotTank) == null);
         }
 
-        // the planes should be in a company
-        for (int depotPlaneSerialNumber : veryGoodPlanesInDepot)
+        // the tanks should be in a company
+        for (int depotTankSerialNumber : veryGoodTanksInDepot)
         {
-            boolean planeIsInCompany = false;
+            boolean tankIsInCompany = false;
             for (Equipment companyEquipment : campaign.getEquipmentManager().getEquipmentAllCompanies().values())
             {
-                for (int companyPlaneSerialNumber : companyEquipment.getAvailableDepotTanks().keySet())
+                for (int companyTankSerialNumber : companyEquipment.getAvailableDepotTanks().keySet())
                 {
-                    if (depotPlaneSerialNumber == companyPlaneSerialNumber)
+                    if (depotTankSerialNumber == companyTankSerialNumber)
                     {
-                        planeIsInCompany = true;
+                        tankIsInCompany = true;
                     }
                 }
             }
-            Assertions.assertTrue (planeIsInCompany);
+            Assertions.assertTrue (tankIsInCompany);
         }
     }
 
     @Test
     public void testEquipmentUpgradeNotNeeded() throws PWCGException
     {
-        // Clear out the depot and replace with a couple of bad planes
+        // Clear out the depot and replace with a couple of bad tanks
         EquipmentDepot equipmentDepotBeforeTest = campaign.getEquipmentManager().getEquipmentDepotForService(armedService.getServiceId());
-        for (EquippedTank planeInCompanyBeforeTest : equipmentDepotBeforeTest.getAllPlanesInDepot())
+        for (EquippedTank tankInCompanyBeforeTest : equipmentDepotBeforeTest.getAllTanksInDepot())
         {
-            equipmentDepotBeforeTest.removeEquippedPlaneFromDepot(planeInCompanyBeforeTest.getSerialNumber());
+            equipmentDepotBeforeTest.removeEquippedTankFromDepot(tankInCompanyBeforeTest.getSerialNumber());
         }
 
-        List<Integer> badPlanesInDepot = new ArrayList<>();
+        List<Integer> badTanksInDepot = new ArrayList<>();
         for (int i = 0; i < 2; ++i)
         {
             EquippedTank badTankInDepot = TankEquipmentFactory.makeTankForDepot(campaign, "_pziii-l", Country.GERMANY);
-            equipmentDepotBeforeTest.addPlaneToDepot(badTankInDepot);
-            badPlanesInDepot.add(badTankInDepot.getSerialNumber());
+            equipmentDepotBeforeTest.addTankToDepot(badTankInDepot);
+            badTanksInDepot.add(badTankInDepot.getSerialNumber());
         }
 
-        // Clear out the company and add better planes than we have in the
+        // Clear out the company and add better tanks than we have in the
         // depot
         Company playerCompany = campaign.determinePlayerCompanies().get(0);
         Equipment equipmentForCompanyBeforeTest = campaign.getEquipmentManager().getEquipmentForCompany(playerCompany.getCompanyId());
 
-        for (EquippedTank planeInCompanyBeforeTest : equipmentForCompanyBeforeTest.getActiveEquippedTanks().values())
+        for (EquippedTank tankInCompanyBeforeTest : equipmentForCompanyBeforeTest.getActiveEquippedTanks().values())
         {
-            equipmentForCompanyBeforeTest.removeEquippedTank(planeInCompanyBeforeTest.getSerialNumber());
+            equipmentForCompanyBeforeTest.removeEquippedTank(tankInCompanyBeforeTest.getSerialNumber());
         }
 
-        List<Integer> goodPlanesInTheCompany = new ArrayList<>();
+        List<Integer> goodTanksInTheCompany = new ArrayList<>();
         for (int i = 0; i < 12; ++i)
         {
             EquippedTank goodTankInCompany = TankEquipmentFactory.makeTankForDepot(campaign, "_pzv-d", Country.GERMANY);
             equipmentForCompanyBeforeTest.addEquippedTankToCompany(campaign, playerCompany.getCompanyId(), goodTankInCompany);
-            goodPlanesInTheCompany.add(goodTankInCompany.getSerialNumber());
+            goodTanksInTheCompany.add(goodTankInCompany.getSerialNumber());
         }
 
         // Run the upgrade
@@ -243,18 +243,18 @@ public class EquipmentUpgradeHandlerTest
         EquipmentDepot equipmentDepotAfterTest = campaign.getEquipmentManager().getEquipmentDepotForService(armedService.getServiceId());
         Equipment equipmentForCompanyAfterTest = campaign.getEquipmentManager().getEquipmentForCompany(playerCompany.getCompanyId());
 
-        // Good planes in the company should stay in the company
-        for (int planeThatShouldNotBeReplaced : goodPlanesInTheCompany)
+        // Good tanks in the company should stay in the company
+        for (int tankThatShouldNotBeReplaced : goodTanksInTheCompany)
         {
-            Assertions.assertTrue (equipmentForCompanyAfterTest.getEquippedTank(planeThatShouldNotBeReplaced) != null);
-            Assertions.assertTrue (equipmentDepotAfterTest.getPlaneFromDepot(planeThatShouldNotBeReplaced) == null);
+            Assertions.assertTrue (equipmentForCompanyAfterTest.getEquippedTank(tankThatShouldNotBeReplaced) != null);
+            Assertions.assertTrue (equipmentDepotAfterTest.getTankFromDepot(tankThatShouldNotBeReplaced) == null);
         }
 
-        // Bad planes in the depot should stay in the depot
-        for (int badlaneInDepot : badPlanesInDepot)
+        // Bad tanks in the depot should stay in the depot
+        for (int badlaneInDepot : badTanksInDepot)
         {
             Assertions.assertTrue (equipmentForCompanyAfterTest.getEquippedTank(badlaneInDepot) == null);
-            Assertions.assertTrue (equipmentDepotAfterTest.getPlaneFromDepot(badlaneInDepot) != null);
+            Assertions.assertTrue (equipmentDepotAfterTest.getTankFromDepot(badlaneInDepot) != null);
         }
     }
 }

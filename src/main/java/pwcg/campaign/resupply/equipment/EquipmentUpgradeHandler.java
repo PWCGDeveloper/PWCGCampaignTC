@@ -60,17 +60,17 @@ public class EquipmentUpgradeHandler
         Equipment equipmentForCompany = campaign.getEquipmentManager().getEquipmentForCompany(company.getCompanyId());
         EquipmentDepot equipmentDepot = campaign.getEquipmentManager().getEquipmentDepotForService(company.getService());
 
-        List<EquippedTank> sortedPlanes = getPlanesForCompanyWorstToBest(equipmentForCompany);
-        for (EquippedTank equippedTank : sortedPlanes)
+        List<EquippedTank> sortedTanks = getTanksForCompanyWorstToBest(equipmentForCompany);
+        for (EquippedTank equippedTank : sortedTanks)
         {
             EquipmentUpgradeRecord equipmentUpgrade = equipmentDepot.getUpgrade(equippedTank);
             if (equipmentUpgrade != null)
             {
-                EquippedTank replacementPlane = equipmentDepot.removeEquippedPlaneFromDepot(equipmentUpgrade.getUpgrade().getSerialNumber());
+                EquippedTank replacementPlane = equipmentDepot.removeEquippedTankFromDepot(equipmentUpgrade.getUpgrade().getSerialNumber());
                 equipmentForCompany.addEquippedTankToCompany(campaign, company.getCompanyId(), replacementPlane);
                 
                 EquippedTank replacedPlane = equipmentForCompany.removeEquippedTank(equipmentUpgrade.getReplacedPlane().getSerialNumber());
-                equipmentDepot.addPlaneToDepot(replacedPlane);
+                equipmentDepot.addTankToDepot(replacedPlane);
 
                 EquipmentResupplyRecord equipmentResupplyRecord = new EquipmentResupplyRecord(replacementPlane, company.getCompanyId());
                 equipmentResupplyData.addEquipmentResupplyRecord(equipmentResupplyRecord);
@@ -78,11 +78,11 @@ public class EquipmentUpgradeHandler
         }        
     }
 
-    private List<EquippedTank> getPlanesForCompanyWorstToBest(Equipment equipmentForCompany) throws PWCGException
+    private List<EquippedTank> getTanksForCompanyWorstToBest(Equipment equipmentForCompany) throws PWCGException
     {
         Map<Integer, EquippedTank> planesForCompany = equipmentForCompany.getActiveEquippedTanks();
-        List<EquippedTank> sortedPlanes = TankSorter.sortEquippedTanksByGoodness(new ArrayList<EquippedTank>(planesForCompany.values()));
-        Collections.reverse(sortedPlanes);
-        return sortedPlanes;
+        List<EquippedTank> sortedTanks = TankSorter.sortEquippedTanksByGoodness(new ArrayList<EquippedTank>(planesForCompany.values()));
+        Collections.reverse(sortedTanks);
+        return sortedTanks;
     }
 }

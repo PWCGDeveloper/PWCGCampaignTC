@@ -27,6 +27,7 @@ import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.mission.data.MissionHeader;
 import pwcg.mission.data.PwcgGeneratedMissionVehicleData;
+import pwcg.testutils.CompanyTestProfile;
 
 @ExtendWith(MockitoExtension.class)
 public class AARClaimPanelEventTabulatorTest

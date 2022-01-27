@@ -45,7 +45,8 @@ public class EquipmentDepotInitializer
 
     private void makeReplacementTanksForCompany(EquipmentWeightCalculator equipmentWeightCalculator) throws PWCGException
     {
-        int numTanks = service.getDailyEquipmentReplacementRate(campaign.getDate()) / EquipmentDepot.NUM_POINTS_PER_PLANE;
+        int numReplacementPoints = service.getDailyEquipmentReplacementRate(campaign.getDate());
+        int numTanks = numReplacementPoints / EquipmentDepot.NUM_POINTS_PER_PLANE;
         if (numTanks < 1)
         {
             numTanks = 1;

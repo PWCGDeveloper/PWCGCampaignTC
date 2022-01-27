@@ -35,8 +35,8 @@ public class AmericanServiceBuilder
         usArmy.setServiceColorMap(new AmericanColorMap());
         usArmy.setGeneralRankForService("General");
         usArmy.setStartDate(DateUtils.getDateYYYYMMDD("19440901"));
-        usArmy.setDailyPersonnelReplacementRatePerCompany(3.0);
-        usArmy.setDailyEquipmentReplacementRatePerCompany(3.0);
+        usArmy.setDailyPersonnelReplacementRatePerCompany(4.0);
+        usArmy.setDailyEquipmentReplacementRatePerCompany(4.0);
 
         List<String> usArmyPics = new ArrayList<String>();
         usArmyPics.add("American");

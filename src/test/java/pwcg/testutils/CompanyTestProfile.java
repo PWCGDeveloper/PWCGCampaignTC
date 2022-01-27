@@ -5,7 +5,10 @@ import pwcg.campaign.context.FrontMapIdentifier;
 
 public enum CompanyTestProfile
 {
+    
     GROSS_DEUTSCHLAND_PROFILE("Gross Deutschland", 201001001, "19420801", CampaignMode.CAMPAIGN_MODE_SINGLE, FrontMapIdentifier.STALINGRAD_MAP, false),
+    PZ14_PROFILE("14th Pz Div", 201014001, "19430401", CampaignMode.CAMPAIGN_MODE_SINGLE, FrontMapIdentifier.STALINGRAD_MAP, false),
+    PZ16_PROFILE("16th Pz Div", 201016003, "19430401", CampaignMode.CAMPAIGN_MODE_SINGLE, FrontMapIdentifier.STALINGRAD_MAP, false),
     GROSS_DEUTSCHLAND_KUBAN_PROFILE("Gross Deutschland Kuban", 201001001, "19431101", CampaignMode.CAMPAIGN_MODE_SINGLE, FrontMapIdentifier.KUBAN_MAP, false),
     PANZER_LEHR_PROFILE("Panzer Lehr", 201011003, "19440901", CampaignMode.CAMPAIGN_MODE_SINGLE, FrontMapIdentifier.BODENPLATTE_MAP, false),
     

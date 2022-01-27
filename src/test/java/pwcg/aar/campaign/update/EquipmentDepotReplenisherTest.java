@@ -95,13 +95,13 @@ public class EquipmentDepotReplenisherTest
 
         int upgradeSerialNumber = upgradeRecord.getUpgrade().getSerialNumber();
 
-        EquippedTank planeInDepot = equipmentDepot.getPlaneFromDepot(upgradeSerialNumber);
+        EquippedTank planeInDepot = equipmentDepot.getTankFromDepot(upgradeSerialNumber);
         Assertions.assertTrue (planeInDepot != null);
 
-        planeInDepot = equipmentDepot.removeEquippedPlaneFromDepot(upgradeSerialNumber);
+        planeInDepot = equipmentDepot.removeEquippedTankFromDepot(upgradeSerialNumber);
         Assertions.assertTrue (planeInDepot != null);
 
-        planeInDepot = equipmentDepot.getPlaneFromDepot(upgradeSerialNumber);
+        planeInDepot = equipmentDepot.getTankFromDepot(upgradeSerialNumber);
         Assertions.assertTrue (planeInDepot == null);
     }
 

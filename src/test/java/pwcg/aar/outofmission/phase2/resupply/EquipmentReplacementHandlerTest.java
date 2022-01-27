@@ -45,7 +45,7 @@ public class EquipmentReplacementHandlerTest
     @BeforeEach
     public void setupTest() throws PWCGException
     {        
-        Mockito.when(armedService.getServiceId()).thenReturn(20101);
+        Mockito.when(armedService.getServiceId()).thenReturn(20111);
     }
 
     @Test
@@ -99,7 +99,8 @@ public class EquipmentReplacementHandlerTest
         deactivateCompanyEquipment();
       
         EquipmentResupplyData equipmentTransferData = companyTransferHandler.resupplyForLosses(armedService);
-        Assertions.assertTrue (equipmentTransferData.getTransferCount() == 3);
+        int numTransferredToPlayerCompany = equipmentTransferData.getEquipmentResuppliedToCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId()).size();
+        Assertions.assertTrue (numTransferredToPlayerCompany >= 1);
     }
 
     private void deactivateCompanyEquipment() throws PWCGException

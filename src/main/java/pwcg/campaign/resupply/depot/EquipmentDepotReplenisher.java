@@ -81,7 +81,7 @@ public class EquipmentDepotReplenisher
     {
         String planeTypeName = EquipmentReplacementUtils.getTypeForReplacement(campaign.getDate(), planeArchType);
         EquippedTank equippedTank = TankEquipmentFactory.makeTankForDepot(campaign, planeTypeName, service.getCountry().getCountry());
-        equipmentDepot.addPlaneToDepot(equippedTank);
+        equipmentDepot.addTankToDepot(equippedTank);
         equipmentDepot.setLastReplacementDate(campaign.getDate());
     }
 

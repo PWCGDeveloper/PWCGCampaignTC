@@ -57,28 +57,9 @@ public class EquipmentReplacementWeightNeedTest
         
         CompanyNeedFactory companyNeedFactory = new CompanyNeedFactory(CompanyNeedType.EQUIPMENT);
         EquipmentNeedForCompanysCalculator equipmentReplacementWeightNeed = new EquipmentNeedForCompanysCalculator(campaign, companyNeedFactory);
-        Map<String, Integer> aircraftNeedByArchType = equipmentReplacementWeightNeed.getAircraftNeedByArchType(companysForService);
+        Map<String, Integer> tankNeedByArchType = equipmentReplacementWeightNeed.getAircraftNeedByArchType(companysForService);
 
-        assert(aircraftNeedByArchType.containsKey("bf109"));
-        assert(aircraftNeedByArchType.containsKey("fw190"));
-        assert(aircraftNeedByArchType.containsKey("he111"));
-
-        assert(!aircraftNeedByArchType.containsKey("bf110"));
-        assert(!aircraftNeedByArchType.containsKey("ju87"));
-        assert(!aircraftNeedByArchType.containsKey("ju88"));
-        assert(!aircraftNeedByArchType.containsKey("ju52"));
-        assert(!aircraftNeedByArchType.containsKey("hs129"));
-        assert(!aircraftNeedByArchType.containsKey("yak"));
-        assert(!aircraftNeedByArchType.containsKey("il2"));
-        
-        int me109Weight = aircraftNeedByArchType.get("bf109");
-        assert(me109Weight == 1);
-
-        int fw190Weight = aircraftNeedByArchType.get("fw190");
-        assert(fw190Weight == 2);
-
-        int he111Weight = aircraftNeedByArchType.get("he111");
-        assert(he111Weight == 5);
+        assert(tankNeedByArchType.containsKey("tiger"));
     }
     
     @Test
@@ -90,58 +71,18 @@ public class EquipmentReplacementWeightNeedTest
         
         CompanyNeedFactory companyNeedFactory = new CompanyNeedFactory(CompanyNeedType.EQUIPMENT);
         EquipmentNeedForCompanysCalculator equipmentReplacementWeightNeed = new EquipmentNeedForCompanysCalculator(campaign, companyNeedFactory);
-        Map<String, Integer> aircraftNeedByArchType = equipmentReplacementWeightNeed.getAircraftNeedByArchType(companysForService);
+        Map<String, Integer> tankNeedByArchType = equipmentReplacementWeightNeed.getAircraftNeedByArchType(companysForService);
 
-        assert(aircraftNeedByArchType.containsKey("il2"));
-        
-        assert(!aircraftNeedByArchType.containsKey("i16"));
-        assert(!aircraftNeedByArchType.containsKey("lagg"));
-        assert(!aircraftNeedByArchType.containsKey("pe2"));
-        assert(!aircraftNeedByArchType.containsKey("mig3"));
-        assert(!aircraftNeedByArchType.containsKey("yak"));
-        assert(!aircraftNeedByArchType.containsKey("bf109"));
-        assert(!aircraftNeedByArchType.containsKey("he111"));
-        
-        int il2Weight = aircraftNeedByArchType.get("il2");
-        assert(il2Weight == 6);
-    }
-    
-    @Test
-    public void testItalianEquipmentNeed() throws PWCGException
-    {
-        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(20202);
-        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
-        List<Company> companysForService = companyManager.getActiveCompaniesForService(campaign.getDate(), service);
-        
-        CompanyNeedFactory companyNeedFactory = new CompanyNeedFactory(CompanyNeedType.EQUIPMENT);
-        EquipmentNeedForCompanysCalculator equipmentReplacementWeightNeed = new EquipmentNeedForCompanysCalculator(campaign, companyNeedFactory);
-        Map<String, Integer> aircraftNeedByArchType = equipmentReplacementWeightNeed.getAircraftNeedByArchType(companysForService);
-
-        assert(aircraftNeedByArchType.containsKey("mc200"));
-        
-        Integer numNeeded = aircraftNeedByArchType.get("mc200");
-        assert(numNeeded == 3);
+        assert(tankNeedByArchType.containsKey("t34"));
     }
     
     private void deactivateAircraft() throws PWCGException
     {
-        Equipment gruppo21 = campaign.getEquipmentManager().getEquipmentForCompany(20115021);
-        destroyPlanesInCompany(gruppo21, 3);
+         Equipment wehrGD = campaign.getEquipmentManager().getEquipmentForCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
+         destroyPlanesInCompany(wehrGD, 2);
 
-        Equipment i_jg51 = campaign.getEquipmentManager().getEquipmentForCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
-        destroyPlanesInCompany(i_jg51, 2);
-
-        Equipment ii_jg52 = campaign.getEquipmentManager().getEquipmentForCompany(20112052);
-        destroyPlanesInCompany(ii_jg52, 1);
-
-        Equipment i_kg53 = campaign.getEquipmentManager().getEquipmentForCompany(20131053);
-        destroyPlanesInCompany(i_kg53, 5);
-
-        Equipment vvs_312Reg = campaign.getEquipmentManager().getEquipmentForCompany(10121312);
-        destroyPlanesInCompany(vvs_312Reg, 4);
-
-        Equipment vvs_175Reg = campaign.getEquipmentManager().getEquipmentForCompany(10121175);
-        destroyPlanesInCompany(vvs_175Reg, 2);
+        Equipment ssv147 = campaign.getEquipmentManager().getEquipmentForCompany(CompanyTestProfile.TANK_DIVISION_147_PROFILE.getCompanyId());
+        destroyPlanesInCompany(ssv147, 2);
     }
 
 

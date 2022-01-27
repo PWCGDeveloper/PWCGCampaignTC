@@ -22,6 +22,7 @@ import pwcg.campaign.tank.EquippedTank;
 import pwcg.campaign.tank.TankEquipmentFactory;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
+import pwcg.testutils.CompanyTestProfile;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)

@@ -81,32 +81,19 @@ public class EquipmentReplacementWeightByNeedTest
         List<Company> companysForService = companyManager.getActiveCompaniesForService(earlyCampaign.getDate(), service);
         
         EquipmentReplacementWeightByNeed equipmentReplacementWeightUsage = new EquipmentReplacementWeightByNeed(earlyCampaign);
-        Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftNeedByArchType(companysForService);
+        Map<String, Integer> tankUsageByArchType = equipmentReplacementWeightUsage.getAircraftNeedByArchType(companysForService);
 
-        assert(aircraftUsageByArchType.containsKey("bf109"));
-        assert(aircraftUsageByArchType.containsKey("bf110"));
-        assert(aircraftUsageByArchType.containsKey("he111"));
-        assert(aircraftUsageByArchType.containsKey("ju87"));
-        assert(aircraftUsageByArchType.containsKey("ju88"));
-        assert(aircraftUsageByArchType.containsKey("ju52"));
+        assert(tankUsageByArchType.containsKey("pziii"));
+        assert(tankUsageByArchType.containsKey("pziv"));
+        assert(tankUsageByArchType.containsKey("tiger"));
 
-        assert(!aircraftUsageByArchType.containsKey("hs129"));
-        assert(!aircraftUsageByArchType.containsKey("fw190"));
-        assert(!aircraftUsageByArchType.containsKey("yak"));
-        assert(!aircraftUsageByArchType.containsKey("il2"));
-        assert(!aircraftUsageByArchType.containsKey("fw190d"));
-        assert(!aircraftUsageByArchType.containsKey("me262"));
+        assert(!tankUsageByArchType.containsKey("elefant"));
+        assert(!tankUsageByArchType.containsKey("panther"));
         
-        int me109Weight = aircraftUsageByArchType.get("bf109");
-        int me110Weight = aircraftUsageByArchType.get("bf110");
-        int ju52Weight = aircraftUsageByArchType.get("ju52");
-        int ju87Weight = aircraftUsageByArchType.get("ju87");
-        int ju88Weight = aircraftUsageByArchType.get("ju88");
-        int he111Weight = aircraftUsageByArchType.get("he111");
-        assert(me109Weight > ju88Weight);
-        assert(ju87Weight > he111Weight);
-        assert(he111Weight > ju52Weight);
-        assert(me110Weight == ju52Weight);
+        int pziiiWeight = tankUsageByArchType.get("pziii");
+        int tigerWeight = tankUsageByArchType.get("tiger");
+
+        assert(pziiiWeight > tigerWeight);
     }
 
     @Test
@@ -119,44 +106,17 @@ public class EquipmentReplacementWeightByNeedTest
         List<Company> companysForService = companyManager.getActiveCompaniesForService(earlyCampaign.getDate(), service);
         
         EquipmentReplacementWeightByNeed equipmentReplacementWeightUsage = new EquipmentReplacementWeightByNeed(earlyCampaign);
-        Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftNeedByArchType(companysForService);
+        Map<String, Integer> tankUsageByArchType = equipmentReplacementWeightUsage.getAircraftNeedByArchType(companysForService);
 
-        assert(aircraftUsageByArchType.containsKey("il2"));
-        assert(aircraftUsageByArchType.containsKey("i16"));
-        assert(aircraftUsageByArchType.containsKey("lagg"));
-        assert(aircraftUsageByArchType.containsKey("pe2"));
-        assert(aircraftUsageByArchType.containsKey("mig3"));
-        assert(aircraftUsageByArchType.containsKey("p40"));
+        assert(tankUsageByArchType.containsKey("t34"));
+        assert(tankUsageByArchType.containsKey("kv1"));
 
-        assert(!aircraftUsageByArchType.containsKey("yak"));
-        assert(!aircraftUsageByArchType.containsKey("bf109"));
-        assert(!aircraftUsageByArchType.containsKey("he111"));
+        assert(!tankUsageByArchType.containsKey("su152"));
         
-        int il2Weight = aircraftUsageByArchType.get("il2");
-        int i16Weight = aircraftUsageByArchType.get("i16");
-        int laggWeight = aircraftUsageByArchType.get("lagg");
-        int pe2Weight = aircraftUsageByArchType.get("pe2");
-        int mig3Weight = aircraftUsageByArchType.get("mig3");
-        int p40Weight = aircraftUsageByArchType.get("p40");
-        assert(il2Weight > i16Weight);
-        assert(mig3Weight > laggWeight);
-        assert(pe2Weight > p40Weight);
-    }
-    
-    @Test
-    public void testItalianReplacementArchTypes() throws PWCGException
-    {
-        removePlanesFromCampaign(earlyCampaign);
+        int t34Weight = tankUsageByArchType.get("t34");
+        int kv1Weight = tankUsageByArchType.get("kv1");
 
-        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(20202);
-        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
-        List<Company> companysForService = companyManager.getActiveCompaniesForService(earlyCampaign.getDate(), service);
-        
-        EquipmentReplacementWeightByNeed equipmentReplacementWeightUsage = new EquipmentReplacementWeightByNeed(earlyCampaign);
-        Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftNeedByArchType(companysForService);
-
-        assert(aircraftUsageByArchType.containsKey("mc200"));
-        assert(aircraftUsageByArchType.size() == 1);
+        assert(t34Weight > kv1Weight);
     }
     
     @Test
@@ -169,23 +129,19 @@ public class EquipmentReplacementWeightByNeedTest
         List<Company> companysForService = companyManager.getActiveCompaniesForService(lateCampaign.getDate(), service);
         
         EquipmentReplacementWeightByNeed equipmentReplacementWeightUsage = new EquipmentReplacementWeightByNeed(lateCampaign);
-        Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftNeedByArchType(companysForService);
+        Map<String, Integer> tankUsageByArchType = equipmentReplacementWeightUsage.getAircraftNeedByArchType(companysForService);
 
-        assert(aircraftUsageByArchType.containsKey("bf109"));
-        assert(aircraftUsageByArchType.containsKey("ju88"));
-        assert(aircraftUsageByArchType.containsKey("fw190"));
-        assert(aircraftUsageByArchType.containsKey("fw190d"));
-        assert(aircraftUsageByArchType.containsKey("me262"));
-        assert(aircraftUsageByArchType.containsKey("ju52"));
-        assert(aircraftUsageByArchType.containsKey("bf110"));        
-        assert(aircraftUsageByArchType.containsKey("he111"));
-        assert(aircraftUsageByArchType.containsKey("ju87"));
-        assert(aircraftUsageByArchType.containsKey("hs129"));        
+        assert(tankUsageByArchType.containsKey("pziv"));
+        assert(tankUsageByArchType.containsKey("tiger"));
+        assert(tankUsageByArchType.containsKey("elefant"));
+        assert(tankUsageByArchType.containsKey("panther"));
+
+        assert(!tankUsageByArchType.containsKey("pziii"));
+
+        int tigerWeight = tankUsageByArchType.get("tiger");
+        int pzivWeight = tankUsageByArchType.get("pziv");
         
-        int me109Weight = aircraftUsageByArchType.get("bf109");
-        int ju88Weight = aircraftUsageByArchType.get("ju88");
-        
-        assert(me109Weight > ju88Weight);
+        assert(pzivWeight > tigerWeight);
     }
 
     @Test
@@ -198,9 +154,9 @@ public class EquipmentReplacementWeightByNeedTest
         List<Company> companysForService = companyManager.getActiveCompaniesForService(lateCampaign.getDate(), service);
         
         EquipmentReplacementWeightByNeed equipmentReplacementWeightUsage = new EquipmentReplacementWeightByNeed(lateCampaign);
-        Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftNeedByArchType(companysForService);
+        Map<String, Integer> tankUsageByArchType = equipmentReplacementWeightUsage.getAircraftNeedByArchType(companysForService);
 
-        assert(aircraftUsageByArchType.containsKey("p47"));
+        assert(tankUsageByArchType.containsKey("sherman"));
     }
 
     @Test
@@ -213,8 +169,8 @@ public class EquipmentReplacementWeightByNeedTest
         List<Company> companysForService = companyManager.getActiveCompaniesForService(lateCampaign.getDate(), service);
         
         EquipmentReplacementWeightByNeed equipmentReplacementWeightUsage = new EquipmentReplacementWeightByNeed(lateCampaign);
-        Map<String, Integer> aircraftUsageByArchType = equipmentReplacementWeightUsage.getAircraftNeedByArchType(companysForService);
+        Map<String, Integer> tankUsageByArchType = equipmentReplacementWeightUsage.getAircraftNeedByArchType(companysForService);
 
-        assert(aircraftUsageByArchType.containsKey("spitfire"));
+        assert(tankUsageByArchType.containsKey("sherman"));
     }
 }

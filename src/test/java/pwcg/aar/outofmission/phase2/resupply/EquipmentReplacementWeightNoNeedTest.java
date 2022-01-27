@@ -64,18 +64,4 @@ public class EquipmentReplacementWeightNoNeedTest
 
         assert(aircraftNeedByArchType.size() == 0);
     }
-    
-    @Test
-    public void testItalianNeedNoLosses() throws PWCGException
-    {
-        ArmedService service = ArmedServiceFactory.createServiceManager().getArmedService(20202);
-        CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
-        List<Company> companysForService = companyManager.getActiveCompaniesForService(campaign.getDate(), service);
-        
-        CompanyNeedFactory companyNeedFactory = new CompanyNeedFactory(CompanyNeedType.EQUIPMENT);
-        EquipmentNeedForCompanysCalculator equipmentReplacementWeightNeed = new EquipmentNeedForCompanysCalculator(campaign, companyNeedFactory);
-        Map<String, Integer> aircraftNeedByArchType = equipmentReplacementWeightNeed.getAircraftNeedByArchType(companysForService);
-
-        assert(aircraftNeedByArchType.size() == 0);
-    }
 }
