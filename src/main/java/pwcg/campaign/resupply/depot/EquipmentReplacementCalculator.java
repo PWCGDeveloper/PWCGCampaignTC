@@ -24,7 +24,7 @@ public class EquipmentReplacementCalculator
         this.campaign = campaign;
     }
 
-    public void createArchTypeForReplacementPlane(List<Company> companysForService) throws PWCGException
+    public void createArchTypeForReplacementTank(List<Company> companysForService) throws PWCGException
     {
         loadWeightsByUsage(companysForService);        
         loadWeightsByNeed(companysForService);        

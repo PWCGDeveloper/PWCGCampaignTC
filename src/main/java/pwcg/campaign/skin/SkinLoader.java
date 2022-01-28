@@ -11,7 +11,7 @@ import pwcg.core.utils.PWCGLogger;
 
 public class SkinLoader
 {
-    private Map<String, SkinsForTank> skinsForPlanes = new HashMap<>();
+    private Map<String, SkinsForTank> skinsForTanks = new HashMap<>();
     
     public SkinLoader ()
     {
@@ -25,7 +25,7 @@ public class SkinLoader
         loadAceSkins();
         readLooseSkins();
         
-        return skinsForPlanes;
+        return skinsForTanks;
     }
 
     private void initialize()
@@ -36,7 +36,7 @@ public class SkinLoader
             for(TankTypeInformation plane : allPlanes)
             {
                 SkinsForTank skinsForPlane = new SkinsForTank();
-                skinsForPlanes.put(plane.getType(), skinsForPlane);
+                skinsForTanks.put(plane.getType(), skinsForPlane);
             }
         }
         catch (Exception exp)
@@ -49,7 +49,7 @@ public class SkinLoader
     {
         try
         {
-            ConfiguredSkinReader configuredSkinReader = new ConfiguredSkinReader(skinsForPlanes);
+            ConfiguredSkinReader configuredSkinReader = new ConfiguredSkinReader(skinsForTanks);
             configuredSkinReader.readConfiguredSkinsFromPlaneSkinFiles();
         }
         catch (PWCGException e)
@@ -62,7 +62,7 @@ public class SkinLoader
     {
         try
         {
-            CompanySkinLoader companySkinLoader = new CompanySkinLoader(skinsForPlanes);
+            CompanySkinLoader companySkinLoader = new CompanySkinLoader(skinsForTanks);
             companySkinLoader.loadCompanySkins();
         }
         catch (PWCGException e)
@@ -75,7 +75,7 @@ public class SkinLoader
     {
         try
         {
-            AceSkinLoader companySkinLoader = new AceSkinLoader(skinsForPlanes);
+            AceSkinLoader companySkinLoader = new AceSkinLoader(skinsForTanks);
             companySkinLoader.loadHistoricalAceSkins();;
         }
         catch (PWCGException e)
@@ -86,7 +86,7 @@ public class SkinLoader
 
     private void readLooseSkins()
     {
-        LooseSkinLoader looseSkinLoader = new LooseSkinLoader(skinsForPlanes);
+        LooseSkinLoader looseSkinLoader = new LooseSkinLoader(skinsForTanks);
         looseSkinLoader.readLooseSkins();
     }
 

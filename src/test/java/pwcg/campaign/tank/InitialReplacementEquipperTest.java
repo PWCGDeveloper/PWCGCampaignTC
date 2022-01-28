@@ -50,25 +50,25 @@ public class InitialReplacementEquipperTest
         boolean pantherFound = false;
         boolean tigerFound = false;
         
-        for (EquippedTank replacementPlane : equipment.getAvailableDepotTanks().values())
+        for (EquippedTank replacementTank : equipment.getAvailableDepotTanks().values())
         {
-            if (replacementPlane.getType().equals(TankAttributeMapping.PZKW_III_L.getTankType()))
+            if (replacementTank.getType().equals(TankAttributeMapping.PZKW_III_L.getTankType()))
             {
                 pziiilFound = true;
             }
-            else if (replacementPlane.getType().equals(TankAttributeMapping.PZKW_III_M.getTankType()))
+            else if (replacementTank.getType().equals(TankAttributeMapping.PZKW_III_M.getTankType()))
             {
                 pziiimFound = true;
             }
-            else if (replacementPlane.getType().equals(TankAttributeMapping.PZKW_IV_G.getTankType()))
+            else if (replacementTank.getType().equals(TankAttributeMapping.PZKW_IV_G.getTankType()))
             {
                 pzivgFound = true;
             }
-            else if (replacementPlane.getType().equals(TankAttributeMapping.PANTHER_D.getTankType()))
+            else if (replacementTank.getType().equals(TankAttributeMapping.PANTHER_D.getTankType()))
             {
                 pantherFound = true;
             }
-            else if (replacementPlane.getType().equals(TankAttributeMapping.TIGER_I.getTankType()))
+            else if (replacementTank.getType().equals(TankAttributeMapping.TIGER_I.getTankType()))
             {
                 tigerFound = true;
             }
@@ -102,25 +102,25 @@ public class InitialReplacementEquipperTest
         boolean pantherFound = false;
         boolean tigerFound = false;
         
-        for (EquippedTank replacementPlane : equipment.getAvailableDepotTanks().values())
+        for (EquippedTank replacementTank : equipment.getAvailableDepotTanks().values())
         {
-            if (replacementPlane.getType().equals(TankAttributeMapping.PZKW_III_L.getTankType()))
+            if (replacementTank.getType().equals(TankAttributeMapping.PZKW_III_L.getTankType()))
             {
                 pziiilFound = true;
             }
-            else if (replacementPlane.getType().equals(TankAttributeMapping.PZKW_III_M.getTankType()))
+            else if (replacementTank.getType().equals(TankAttributeMapping.PZKW_III_M.getTankType()))
             {
                 pziiimFound = true;
             }
-            else if (replacementPlane.getType().equals(TankAttributeMapping.PZKW_IV_G.getTankType()))
+            else if (replacementTank.getType().equals(TankAttributeMapping.PZKW_IV_G.getTankType()))
             {
                 pzivgFound = true;
             }
-            else if (replacementPlane.getType().equals(TankAttributeMapping.PANTHER_D.getTankType()))
+            else if (replacementTank.getType().equals(TankAttributeMapping.PANTHER_D.getTankType()))
             {
                 pantherFound = true;
             }
-            else if (replacementPlane.getType().equals(TankAttributeMapping.TIGER_I.getTankType()))
+            else if (replacementTank.getType().equals(TankAttributeMapping.TIGER_I.getTankType()))
             {
                 tigerFound = true;
             }
@@ -154,25 +154,25 @@ public class InitialReplacementEquipperTest
         boolean su122Found = false;
         boolean su152Found = false;
         
-        for (EquippedTank replacementPlane : equipment.getAvailableDepotTanks().values())
+        for (EquippedTank replacementTank : equipment.getAvailableDepotTanks().values())
         {
-            if (replacementPlane.getType().equals(TankAttributeMapping.T34_EARLY.getTankType()))
+            if (replacementTank.getType().equals(TankAttributeMapping.T34_EARLY.getTankType()))
             {
                 t34EarlyFound = true;
             }
-            else if (replacementPlane.getType().equals(TankAttributeMapping.T34_LATE.getTankType()))
+            else if (replacementTank.getType().equals(TankAttributeMapping.T34_LATE.getTankType()))
             {
                 t34LateFound = true;
             }
-            else if (replacementPlane.getType().equals(TankAttributeMapping.KV1_S.getTankType()))
+            else if (replacementTank.getType().equals(TankAttributeMapping.KV1_S.getTankType()))
             {
                 kv1Found = true;
             }
-            else if (replacementPlane.getType().equals(TankAttributeMapping.SU122.getTankType()))
+            else if (replacementTank.getType().equals(TankAttributeMapping.SU122.getTankType()))
             {
                 su122Found = true;
             }
-            else if (replacementPlane.getType().equals(TankAttributeMapping.SU152.getTankType()))
+            else if (replacementTank.getType().equals(TankAttributeMapping.SU152.getTankType()))
             {
                 su152Found = true;
             }
@@ -206,25 +206,25 @@ public class InitialReplacementEquipperTest
         boolean su122Found = false;
         boolean su152Found = false;
         
-        for (EquippedTank replacementPlane : equipment.getAvailableDepotTanks().values())
+        for (EquippedTank replacementTank : equipment.getAvailableDepotTanks().values())
         {
-            if (replacementPlane.getType().equals(TankAttributeMapping.T34_EARLY.getTankType()))
+            if (replacementTank.getType().equals(TankAttributeMapping.T34_EARLY.getTankType()))
             {
                 t34EarlyFound = true;
             }
-            else if (replacementPlane.getType().equals(TankAttributeMapping.T34_LATE.getTankType()))
+            else if (replacementTank.getType().equals(TankAttributeMapping.T34_LATE.getTankType()))
             {
                 t34LateFound = true;
             }
-            else if (replacementPlane.getType().equals(TankAttributeMapping.KV1_S.getTankType()))
+            else if (replacementTank.getType().equals(TankAttributeMapping.KV1_S.getTankType()))
             {
                 kv1Found = true;
             }
-            else if (replacementPlane.getType().equals(TankAttributeMapping.SU122.getTankType()))
+            else if (replacementTank.getType().equals(TankAttributeMapping.SU122.getTankType()))
             {
                 su122Found = true;
             }
-            else if (replacementPlane.getType().equals(TankAttributeMapping.SU152.getTankType()))
+            else if (replacementTank.getType().equals(TankAttributeMapping.SU152.getTankType()))
             {
                 su152Found = true;
             }

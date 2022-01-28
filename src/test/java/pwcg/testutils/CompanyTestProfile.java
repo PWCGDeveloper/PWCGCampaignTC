@@ -13,6 +13,7 @@ public enum CompanyTestProfile
     GROSS_DEUTSCHLAND_KUBAN_PROFILE("Gross Deutschland Kuban", 201001001, "19431101", CampaignMode.CAMPAIGN_MODE_SINGLE, FrontMapIdentifier.KUBAN_MAP, false),
     PANZER_LEHR_PROFILE("Panzer Lehr", 201011003, "19440901", CampaignMode.CAMPAIGN_MODE_SINGLE, FrontMapIdentifier.BODENPLATTE_MAP, false),
     
+    TANK_DIVISION_146_PROFILE("146th Tank Division", 101146002, "19420901", CampaignMode.CAMPAIGN_MODE_SINGLE, FrontMapIdentifier.STALINGRAD_MAP, false),
     TANK_DIVISION_147_PROFILE("147th Tank Division", 101147001, "19420901", CampaignMode.CAMPAIGN_MODE_SINGLE, FrontMapIdentifier.STALINGRAD_MAP, false),
     TANK_DIVISION_147_PROFILE_KUBAN("147th Tank Division Late", 101147001, "19431001", CampaignMode.CAMPAIGN_MODE_SINGLE, FrontMapIdentifier.KUBAN_MAP, false),
     TANK_DIVISION_147_PROFILE_LATE("147th Tank Division Late", 101147001, "19440901", CampaignMode.CAMPAIGN_MODE_SINGLE, FrontMapIdentifier.EAST1944_MAP, false),

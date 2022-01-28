@@ -61,13 +61,13 @@ public class AARResupplyCoordinator
         TCServiceManager serviceManager = ArmedServiceFactory.createServiceManager();
         for (ArmedService armedService : serviceManager.getAllActiveArmedServices(campaign.getDate()))
         {
-            replaceWithdrawnPlanes(armedService);
-            replaceLostPlanes(armedService);
-            upgradePlanes(armedService);
+            replaceWithdrawnTanks(armedService);
+            replaceLostTanks(armedService);
+            upgradeTanks(armedService);
         }
     }
 
-    private void replaceWithdrawnPlanes(ArmedService armedService) throws PWCGException
+    private void replaceWithdrawnTanks(ArmedService armedService) throws PWCGException
     {
         for (CompanyPersonnel companyPersonnel : campaign.getPersonnelManager().getAllCompanyPersonnel())
         {
@@ -81,7 +81,7 @@ public class AARResupplyCoordinator
         }        
     }
 
-    private void replaceLostPlanes(ArmedService armedService) throws PWCGException
+    private void replaceLostTanks(ArmedService armedService) throws PWCGException
     {
         ResupplyNeedBuilder equipmentNeedBuilder = new ResupplyNeedBuilder(campaign, armedService);
         EquipmentReplacementHandler equipmentResupplyHandler = new EquipmentReplacementHandler(campaign, equipmentNeedBuilder);
@@ -89,7 +89,7 @@ public class AARResupplyCoordinator
         resupplyData.getEquipmentResupplyData().merge(equipmentResupplyData);
     }
     
-    private void upgradePlanes(ArmedService armedService) throws PWCGException
+    private void upgradeTanks(ArmedService armedService) throws PWCGException
     {
         EquipmentUpgradeHandler equipmentUpgradeHandler = new EquipmentUpgradeHandler(campaign);
         EquipmentResupplyData equipmentResupplyData = equipmentUpgradeHandler.upgradeEquipment(armedService);

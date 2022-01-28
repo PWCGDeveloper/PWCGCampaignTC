@@ -35,8 +35,8 @@ public class BriefingDataInitializer
             briefingAssignmentData.addCrewMember(crewMember);
         }
         
-        Equipment companyPlanes = mission.getCampaign().getEquipmentManager().getEquipmentForCompany(company.getCompanyId());
-        for (EquippedTank companyPlane : companyPlanes.getActiveEquippedTanks().values())
+        Equipment companyTanks = mission.getCampaign().getEquipmentManager().getEquipmentForCompany(company.getCompanyId());
+        for (EquippedTank companyPlane : companyTanks.getActiveEquippedTanks().values())
         {
             briefingAssignmentData.addPlane(companyPlane);
         }

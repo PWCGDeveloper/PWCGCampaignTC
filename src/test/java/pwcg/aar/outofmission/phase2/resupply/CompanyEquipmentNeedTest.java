@@ -76,7 +76,7 @@ public class CompanyEquipmentNeedTest
     @Test
     public void testResupplyWithActiveEquipment() throws PWCGException
     {
-        for (int i = 0; i < 11; ++i)
+        for (int i = 0; i < 13; ++i)
         {
             activeEquippedPlaneCollection.put(serialNumber.getNextTankSerialNumber(), equippedTank);
         }
@@ -99,7 +99,7 @@ public class CompanyEquipmentNeedTest
     @Test
     public void testResupplyWithActiveAndInactiveEquipment() throws PWCGException
     {
-        for (int i = 0; i < 9; ++i)
+        for (int i = 0; i < 11; ++i)
         {
             activeEquippedPlaneCollection.put(serialNumber.getNextTankSerialNumber(), equippedTank);
         }
@@ -126,7 +126,7 @@ public class CompanyEquipmentNeedTest
     @Test
     public void testNoResupplyNeeded() throws PWCGException
     {
-        for (int i = 0; i < 10; ++i)
+        for (int i = 0; i < 12; ++i)
         {
             activeEquippedPlaneCollection.put(serialNumber.getNextTankSerialNumber(), equippedTank);
         }

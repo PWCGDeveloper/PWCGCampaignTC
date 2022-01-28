@@ -2,7 +2,6 @@ package pwcg.aar.awards;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.junit.jupiter.api.Assertions;
@@ -72,12 +71,9 @@ public class CampaignAwardsGeneratorTest
     {             
         CrewMembers aiCrewMembers = campaign.getPersonnelManager().getCompanyPersonnel(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId()).getActiveCrewMembers();
         CampaignPersonnelTestHelper.addVictories(aiCrewMembers.getCrewMemberList().get(1), campaign.getDate(), 20);
-        
-        List<Victory> victoriesToday = new ArrayList<>();
-        victoriesToday.add(victory1);
-        victoriesToday.add(victory2);
-        Map<Integer, List<Victory>> victoriesByAllCrewMembers = new HashMap<>();
-        victoriesByAllCrewMembers.put(aiCrewMembers.getCrewMemberList().get(1).getSerialNumber(), victoriesToday);
+ 
+        Mockito.when(personnelAcheivements.getVictoryCountForCrewMember(aiCrewMembers.getCrewMemberList().get(1).getSerialNumber())).thenReturn(2);
+        CampaignPersonnelTestHelper.addVictories(aiCrewMembers.getCrewMemberList().get(1), campaign.getDate(), 3);
 
         Map<Integer, CrewMember> crewMembersToEvaluate = new HashMap<>();
         crewMembersToEvaluate.put(aiCrewMembers.getCrewMemberList().get(1).getSerialNumber(), aiCrewMembers.getCrewMemberList().get(1));

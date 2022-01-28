@@ -12,8 +12,8 @@ public class AARClaimPanelData
         return enemyTankTypesInMission;
     }
     
-    public void setEnemyTankTypesInMission(List<String> enemyPlanesInMission)
+    public void setEnemyTankTypesInMission(List<String> enemyTanksInMission)
     {
-        this.enemyTankTypesInMission = enemyPlanesInMission;
+        this.enemyTankTypesInMission = enemyTanksInMission;
     }
 }

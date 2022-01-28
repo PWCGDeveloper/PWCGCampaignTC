@@ -37,7 +37,7 @@ public class EquipmentDepotReplenisher
         if (companysForService.size() > 0)
         {
             EquipmentDepot depo = campaign.getEquipmentManager().getEquipmentDepotForService(service.getServiceId());
-            addReplacementPlanesForService(service, companysForService, depo);
+            addReplacementTanksForService(service, companysForService, depo);
         }
     }
 
@@ -47,16 +47,16 @@ public class EquipmentDepotReplenisher
         return companyManager.getActiveCompaniesForService(campaign.getDate(), service);
     }
 
-    private void addReplacementPlanesForService(
+    private void addReplacementTanksForService(
             ArmedService service, 
             List<Company> companysForService, 
             EquipmentDepot depot) throws PWCGException
     {
-        replacePlanesInDepot(service, companysForService, depot);        
-        updatePlaneReplacementPoints(service, depot);
+        replaceTanksInDepot(service, companysForService, depot);        
+        updateTankReplacementPoints(service, depot);
     }
 
-    private void updatePlaneReplacementPoints(ArmedService service, EquipmentDepot depot) throws PWCGException
+    private void updateTankReplacementPoints(ArmedService service, EquipmentDepot depot) throws PWCGException
     {
         int newPoints = service.getDailyEquipmentReplacementRate(campaign.getDate());
         int remainingPoints = depot.getEquipmentPoints() % EquipmentDepot.NUM_POINTS_PER_PLANE;
@@ -64,40 +64,40 @@ public class EquipmentDepotReplenisher
         depot.setEquipmentPoints(updatedEquipmentPoints);
     }
 
-    private void replacePlanesInDepot(ArmedService service, List<Company> companysForService, EquipmentDepot equipmentDepot) throws PWCGException
+    private void replaceTanksInDepot(ArmedService service, List<Company> companysForService, EquipmentDepot equipmentDepot) throws PWCGException
     {
         EquipmentReplacementCalculator equipmentReplacementCalculator = new EquipmentReplacementCalculator(campaign);
-        equipmentReplacementCalculator.createArchTypeForReplacementPlane(companysForService);
+        equipmentReplacementCalculator.createArchTypeForReplacementTank(companysForService);
 
-        int numPlanes = equipmentDepot.getEquipmentPoints() / EquipmentDepot.NUM_POINTS_PER_PLANE;
-        for (int i = 0; i < numPlanes; ++i)
+        int numTanks = equipmentDepot.getEquipmentPoints() / EquipmentDepot.NUM_POINTS_PER_PLANE;
+        for (int i = 0; i < numTanks; ++i)
         {
-            TankArchType planeArchType = getArchTypeForReplacement(equipmentReplacementCalculator);
-            replacePlaneByArchType(service, equipmentDepot, planeArchType);
+            TankArchType tankArchType = getArchTypeForReplacement(equipmentReplacementCalculator);
+            replacePlaneByArchType(service, equipmentDepot, tankArchType);
         }
     }
 
-    private void replacePlaneByArchType(ArmedService service, EquipmentDepot equipmentDepot, TankArchType planeArchType) throws PWCGException
+    private void replacePlaneByArchType(ArmedService service, EquipmentDepot equipmentDepot, TankArchType tankArchType) throws PWCGException
     {
-        String planeTypeName = EquipmentReplacementUtils.getTypeForReplacement(campaign.getDate(), planeArchType);
-        EquippedTank equippedTank = TankEquipmentFactory.makeTankForDepot(campaign, planeTypeName, service.getCountry().getCountry());
+        String tankTypeName = EquipmentReplacementUtils.getTypeForReplacement(campaign.getDate(), tankArchType);
+        EquippedTank equippedTank = TankEquipmentFactory.makeTankForDepot(campaign, tankTypeName, service.getCountry().getCountry());
         equipmentDepot.addTankToDepot(equippedTank);
         equipmentDepot.setLastReplacementDate(campaign.getDate());
     }
 
     private TankArchType getArchTypeForReplacement(EquipmentReplacementCalculator equipmentReplacementCalculator) throws PWCGException
     {
-        String archTypeForReplacementPlane = "";
+        String archTypeForReplacementTank = "";
         if (equipmentReplacementCalculator.hasMoreForReplacement()) 
         {
-            archTypeForReplacementPlane = equipmentReplacementCalculator.chooseArchTypeForReplacementByNeed();
+            archTypeForReplacementTank = equipmentReplacementCalculator.chooseArchTypeForReplacementByNeed();
         }
         else
         {
-            archTypeForReplacementPlane = equipmentReplacementCalculator.chooseArchTypeForReplacementByUsage();
+            archTypeForReplacementTank = equipmentReplacementCalculator.chooseArchTypeForReplacementByUsage();
         }
 
-        TankArchType planeArchType = PWCGContext.getInstance().getPlayerTankTypeFactory().getTankArchType(archTypeForReplacementPlane);
-        return planeArchType;
+        TankArchType tankArchType = PWCGContext.getInstance().getPlayerTankTypeFactory().getTankArchType(archTypeForReplacementTank);
+        return tankArchType;
     }
 }

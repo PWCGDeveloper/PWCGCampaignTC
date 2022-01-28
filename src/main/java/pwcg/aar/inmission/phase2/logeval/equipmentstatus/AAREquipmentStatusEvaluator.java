@@ -9,7 +9,7 @@ import pwcg.core.logfiles.event.IAType3;
 
 public class AAREquipmentStatusEvaluator
 {
-    public static void determineFateOfPlanesInMission (AARVehicleBuilder aarVehicleBuilder, LogEventData logEventData) throws PWCGException 
+    public static void determineFateOfTanksInMission (AARVehicleBuilder aarVehicleBuilder, LogEventData logEventData) throws PWCGException 
     {        
         for (LogTank logTank : aarVehicleBuilder.getLogTanks().values())
         {

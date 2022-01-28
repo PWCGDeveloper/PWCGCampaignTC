@@ -66,13 +66,13 @@ public class EquipmentUpgradeHandler
             EquipmentUpgradeRecord equipmentUpgrade = equipmentDepot.getUpgrade(equippedTank);
             if (equipmentUpgrade != null)
             {
-                EquippedTank replacementPlane = equipmentDepot.removeEquippedTankFromDepot(equipmentUpgrade.getUpgrade().getSerialNumber());
-                equipmentForCompany.addEquippedTankToCompany(campaign, company.getCompanyId(), replacementPlane);
+                EquippedTank replacementTank = equipmentDepot.removeEquippedTankFromDepot(equipmentUpgrade.getUpgrade().getSerialNumber());
+                equipmentForCompany.addEquippedTankToCompany(campaign, company.getCompanyId(), replacementTank);
                 
                 EquippedTank replacedPlane = equipmentForCompany.removeEquippedTank(equipmentUpgrade.getReplacedPlane().getSerialNumber());
                 equipmentDepot.addTankToDepot(replacedPlane);
 
-                EquipmentResupplyRecord equipmentResupplyRecord = new EquipmentResupplyRecord(replacementPlane, company.getCompanyId());
+                EquipmentResupplyRecord equipmentResupplyRecord = new EquipmentResupplyRecord(replacementTank, company.getCompanyId());
                 equipmentResupplyData.addEquipmentResupplyRecord(equipmentResupplyRecord);
             }
         }        

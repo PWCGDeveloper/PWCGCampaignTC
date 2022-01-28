@@ -232,12 +232,12 @@ public class CampaignSkinConfigurationCrewMemberPanel extends ImageResizingPanel
         CrewMember referencePlayer = campaign.findReferencePlayer();
         Company company = referencePlayer.determineCompany();
 
-        List<TankTypeInformation> companyPlanes = company.determineCurrentTankList(campaign.getDate());
+        List<TankTypeInformation> companyTanks = company.determineCurrentTankList(campaign.getDate());
 
-        List<TankTypeInformation> companyPlanesByBest = TankSorter.sortTanksByGoodness(companyPlanes);
+        List<TankTypeInformation> companyTanksByBest = TankSorter.sortTanksByGoodness(companyTanks);
 
         boolean planeSelected = false;
-        for (TankTypeInformation plane : companyPlanesByBest)
+        for (TankTypeInformation plane : companyTanksByBest)
         {
             // Add this aircraft to the aircraft button group and panel
             JRadioButton aircraftButton = makeRadioButton(plane.getDisplayName(), "SelectPlane:" + plane.getType(), ColorMap.PAPER_FOREGROUND);

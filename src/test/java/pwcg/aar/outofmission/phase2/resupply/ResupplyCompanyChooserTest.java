@@ -98,24 +98,24 @@ public class ResupplyCompanyChooserTest
         assert(selectedCompanyNeed == null);        
     }
 
-    private Map<Integer, ICompanyNeed> getCompanyNeeds(int playerPlanesNeeded, int fourteenPzPlanesNeeded, int ifourteenPzPlanesNeeded) throws PWCGException
+    private Map<Integer, ICompanyNeed> getCompanyNeeds(int playerTanksNeeded, int fourteenPzPlanesNeeded, int ifourteenPzPlanesNeeded) throws PWCGException
     {
         Map<Integer, ICompanyNeed> needs = new HashMap<>();
         CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
         
         Company playerCompany = companyManager.getCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
         CompanyEquipmentNeed playerCompanyEquipmentNeed = new CompanyEquipmentNeed(campaign, playerCompany);
-        playerCompanyEquipmentNeed.setPlanesNeeded(playerPlanesNeeded);
+        playerCompanyEquipmentNeed.setTanksNeeded(playerTanksNeeded);
         needs.put(playerCompany.getCompanyId(), playerCompanyEquipmentNeed);
         
         Company fourteenPz = companyManager.getCompany(201014001);
         CompanyEquipmentNeed fourteenPzEquipmentNeed = new CompanyEquipmentNeed(campaign, fourteenPz);
-        fourteenPzEquipmentNeed.setPlanesNeeded(fourteenPzPlanesNeeded);
+        fourteenPzEquipmentNeed.setTanksNeeded(fourteenPzPlanesNeeded);
         needs.put(fourteenPz.getCompanyId(), fourteenPzEquipmentNeed);        
         
         Company ifourteenPz = companyManager.getCompany(201016003);
         CompanyEquipmentNeed ifourteenPzEquipmentNeed = new CompanyEquipmentNeed(campaign, ifourteenPz);
-        ifourteenPzEquipmentNeed.setPlanesNeeded(ifourteenPzPlanesNeeded);
+        ifourteenPzEquipmentNeed.setTanksNeeded(ifourteenPzPlanesNeeded);
         needs.put(ifourteenPz.getCompanyId(), ifourteenPzEquipmentNeed);        
         
         return needs;

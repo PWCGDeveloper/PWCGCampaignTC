@@ -30,7 +30,7 @@ public class CampaignMembersInMissionTest
     private PwcgMissionData pwcgMissionData;
     
     private Campaign campaign;
-    private Map<Integer, PwcgGeneratedMissionVehicleData> missionPlanes  = new HashMap<>();
+    private Map<Integer, PwcgGeneratedMissionVehicleData> missionTanks  = new HashMap<>();
 
     @BeforeAll
     public void setupSuite() throws PWCGException
@@ -43,15 +43,15 @@ public class CampaignMembersInMissionTest
     @Test
     public void testAceRetrieval() throws PWCGException
     {
-        missionPlanes.clear();
+        missionTanks.clear();
         for (int i = 0; i < 50; ++i)
         {
             PwcgGeneratedMissionVehicleData planeData = new PwcgGeneratedMissionVehicleData();
             planeData.setCrewMemberSerialNumber(SerialNumber.AI_STARTING_SERIAL_NUMBER + (i * 2) + 1);
-            missionPlanes.put(planeData.getCrewMemberSerialNumber(), planeData);
+            missionTanks.put(planeData.getCrewMemberSerialNumber(), planeData);
         }
         
-        Mockito.when(pwcgMissionData.getMissionPlanes()).thenReturn(missionPlanes);
+        Mockito.when(pwcgMissionData.getMissionTanks()).thenReturn(missionTanks);
         
         CampaignMembersInMissionFinder campaignMembersInMissionHandler = new CampaignMembersInMissionFinder();
         CrewMembers crewMembersInMission = campaignMembersInMissionHandler.determineCampaignMembersInMission(campaign, pwcgMissionData);

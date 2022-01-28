@@ -109,8 +109,8 @@ public class EquipmentDepotReplenisherTest
     public void testUpgradeWithBetterPlane() throws PWCGException
     {
         EquipmentDepot equipmentDepo = campaign.getEquipmentManager().getEquipmentDepotForService(TCServiceManager.WEHRMACHT);
-        EquipmentUpgradeRecord replacementPlane = equipmentDepo.getUpgrade(me109K4);
-        Assertions.assertTrue (replacementPlane == null);
+        EquipmentUpgradeRecord replacementTank = equipmentDepo.getUpgrade(me109K4);
+        Assertions.assertTrue (replacementTank == null);
     }
 
     private Map<Integer, Integer> determineReplacementsAvailableByService() throws PWCGException

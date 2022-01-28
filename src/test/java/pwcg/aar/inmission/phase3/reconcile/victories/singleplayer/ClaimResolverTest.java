@@ -56,7 +56,7 @@ public class ClaimResolverTest
         for (int i = 0; i < 3; ++i)
         {
             PlayerVictoryDeclaration declaration = new PlayerVictoryDeclaration();
-            declaration.confirmDeclaration(true, "SE.5a");
+            declaration.confirmDeclaration(true, "m4a2");
             playerDeclarationSet.addDeclaration(declaration);
         }
         
@@ -68,6 +68,7 @@ public class ClaimResolverTest
         Mockito.when(personnelManager.getAnyCampaignMember(ArgumentMatchers.<Integer>any())).thenReturn(crewMember);
         Mockito.when(personnelManager.getAnyCampaignMember(ArgumentMatchers.<Integer>any())).thenReturn(crewMember);
         Mockito.when(crewMember.getSerialNumber()).thenReturn(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
+        Mockito.when(crewMember.getNameAndRank()).thenReturn("Ofw Hans Schmidt");
         Mockito.when(verifiedVictoryGenerator.createVerifiedictories(playerDeclarations)).thenReturn(verifiedVictories);
     }
 

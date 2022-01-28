@@ -18,7 +18,7 @@ public class CampaignUpdateEvents
         return crewMembersLost;
     }
 
-    public List<TankStatusEvent> getPlanesLost()
+    public List<TankStatusEvent> getTanksLost()
     {
         return planesLost;
     }

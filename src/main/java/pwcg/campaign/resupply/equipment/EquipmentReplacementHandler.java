@@ -49,7 +49,7 @@ public class EquipmentReplacementHandler
             Company company = PWCGContext.getInstance().getCompanyManager().getCompany(selectedCompanyNeed.getCompanyId());
             List<String> activeArchTypes = company.getActiveArchTypes(campaign.getDate());
             
-            EquippedTank replacement = equipmentDepo.removeBestPlaneFromDepot(activeArchTypes);        
+            EquippedTank replacement = equipmentDepo.removeBestTankFromDepot(activeArchTypes);        
             if (replacement != null)
             {
                 EquipmentResupplyRecord equipmentResupplyRecord = new EquipmentResupplyRecord(replacement, selectedCompanyNeed.getCompanyId());

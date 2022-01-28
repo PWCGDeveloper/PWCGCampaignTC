@@ -1,9 +1,7 @@
 package pwcg.aar.inmission.prelim;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.junit.jupiter.api.Assertions;
@@ -21,7 +19,6 @@ import pwcg.aar.prelim.claims.AARClaimPanelData;
 import pwcg.aar.prelim.claims.AARClaimPanelEventTabulator;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.api.Side;
-import pwcg.campaign.company.Company;
 import pwcg.campaign.crewmember.SerialNumber;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
@@ -33,53 +30,50 @@ import pwcg.testutils.CompanyTestProfile;
 public class AARClaimPanelEventTabulatorTest
 {
     @Mock private Campaign campaign;
-    @Mock private Company company;
     @Mock private PwcgMissionDataEvaluator pwcgMissionDataEvaluator;
     @Mock private AARPreliminaryData aarPreliminarytData;
     @Mock private PwcgMissionData pwcgMissionData;
     @Mock private MissionHeader missionHeader;
 
-    private Map<Integer, PwcgGeneratedMissionVehicleData> missionPlanes  = new HashMap<>();    
+    private Map<Integer, PwcgGeneratedMissionVehicleData> missionTanks  = new HashMap<>();    
     private Date campaignDate;
     
     @BeforeEach
     public void setupTest() throws PWCGException
     {
         
-        campaignDate = DateUtils.getDateYYYYMMDD("19420420");
+        campaignDate = DateUtils.getDateYYYYMMDD("19420801");
         Mockito.when(campaign.getDate()).thenReturn(campaignDate);
-        List<Company> playerCompanys = new ArrayList<>();
-        playerCompanys.add(company);
         
         Mockito.when(aarPreliminarytData.getPwcgMissionData()).thenReturn(pwcgMissionData);
 
-        PwcgGeneratedMissionVehicleData alliedYak = new PwcgGeneratedMissionVehicleData();
-        alliedYak.setVehicleType("yak1s69");
-        alliedYak.setCompanyId(10111011);
-        alliedYak.setCrewMemberSerialNumber(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1);
+        PwcgGeneratedMissionVehicleData alliedTank1 = new PwcgGeneratedMissionVehicleData();
+        alliedTank1.setVehicleType("t34-76stz");
+        alliedTank1.setCompanyId(CompanyTestProfile.TANK_DIVISION_147_PROFILE.getCompanyId());
+        alliedTank1.setCrewMemberSerialNumber(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1);
 
-        PwcgGeneratedMissionVehicleData alliedYak2 = new PwcgGeneratedMissionVehicleData();
-        alliedYak2.setVehicleType("yak1s69");
-        alliedYak2.setCompanyId(10111011);
-        alliedYak2.setCrewMemberSerialNumber(SerialNumber.AI_STARTING_SERIAL_NUMBER + 2);
+        PwcgGeneratedMissionVehicleData alliedTank2 = new PwcgGeneratedMissionVehicleData();
+        alliedTank2.setVehicleType("t34-76stz");
+        alliedTank2.setCompanyId(CompanyTestProfile.TANK_DIVISION_147_PROFILE.getCompanyId());
+        alliedTank2.setCrewMemberSerialNumber(SerialNumber.AI_STARTING_SERIAL_NUMBER + 2);
 
-        PwcgGeneratedMissionVehicleData alliedIL2 = new PwcgGeneratedMissionVehicleData();
-        alliedIL2.setVehicleType("il2m42");
-        alliedIL2.setCompanyId(10121503);
-        alliedIL2.setCrewMemberSerialNumber(SerialNumber.AI_STARTING_SERIAL_NUMBER + 3);
+        PwcgGeneratedMissionVehicleData alliedTank3 = new PwcgGeneratedMissionVehicleData();
+        alliedTank3.setVehicleType("kv1-s");
+        alliedTank3.setCompanyId(CompanyTestProfile.TANK_DIVISION_146_PROFILE.getCompanyId());
+        alliedTank3.setCrewMemberSerialNumber(SerialNumber.AI_STARTING_SERIAL_NUMBER + 3);
 
-        missionPlanes.put(alliedYak.getCrewMemberSerialNumber(), alliedYak);
-        missionPlanes.put(alliedYak2.getCrewMemberSerialNumber(), alliedYak2);
-        missionPlanes.put(alliedIL2.getCrewMemberSerialNumber(), alliedIL2);
+        missionTanks.put(alliedTank1.getCrewMemberSerialNumber(), alliedTank1);
+        missionTanks.put(alliedTank2.getCrewMemberSerialNumber(), alliedTank2);
+        missionTanks.put(alliedTank3.getCrewMemberSerialNumber(), alliedTank3);
        
-        PwcgGeneratedMissionVehicleData axis109 = new PwcgGeneratedMissionVehicleData();
-        axis109.setVehicleType("pziiif4");
-        axis109.setCompanyId(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
-        axis109.setCrewMemberSerialNumber(SerialNumber.AI_STARTING_SERIAL_NUMBER + 4);
+        PwcgGeneratedMissionVehicleData axisTank = new PwcgGeneratedMissionVehicleData();
+        axisTank.setVehicleType("pziiif4");
+        axisTank.setCompanyId(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
+        axisTank.setCrewMemberSerialNumber(SerialNumber.AI_STARTING_SERIAL_NUMBER + 4);
 
-        missionPlanes.put(axis109.getCrewMemberSerialNumber(), axis109);
+        missionTanks.put(axisTank.getCrewMemberSerialNumber(), axisTank);
 
-        Mockito.when(pwcgMissionData.getMissionPlanes()).thenReturn(missionPlanes);
+        Mockito.when(pwcgMissionData.getMissionTanks()).thenReturn(missionTanks);
     }
     
     @Test

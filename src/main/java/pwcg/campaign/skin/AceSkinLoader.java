@@ -9,11 +9,11 @@ import pwcg.core.exception.PWCGException;
 
 public class AceSkinLoader
 {
-    private Map<String, SkinsForTank> skinsForPlanes;
+    private Map<String, SkinsForTank> skinsForTanks;
     
-    public AceSkinLoader (Map<String, SkinsForTank> skinsForPlanes)
+    public AceSkinLoader (Map<String, SkinsForTank> skinsForTanks)
     {
-        this.skinsForPlanes = skinsForPlanes;
+        this.skinsForTanks = skinsForTanks;
     }
 
     public void loadHistoricalAceSkins() throws PWCGException
@@ -30,7 +30,7 @@ public class AceSkinLoader
     {
         for (Skin aceSkin : ace.getSkins())
         {
-            SkinsForTank skinsForPlane = skinsForPlanes.get(aceSkin.getPlane());
+            SkinsForTank skinsForPlane = skinsForTanks.get(aceSkin.getPlane());
             if (skinsForPlane != null)
             {
                 skinsForPlane.addAceSkin(aceSkin);

@@ -55,21 +55,19 @@ public class PersonnelCompanyLossHandlerTest
         CrewMember playerInFlight = campaign.findReferencePlayer();
         addCrewMember(playerInFlight.getSerialNumber(), CrewMemberStatus.STATUS_KIA);
 
-        CrewMember SergentInFlight = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "Sergent");
-        addCrewMember(SergentInFlight.getSerialNumber(), CrewMemberStatus.STATUS_KIA);
+        CrewMember SergeantInFlight = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "Sergeant");
+        addCrewMember(SergeantInFlight.getSerialNumber(), CrewMemberStatus.STATUS_KIA);
 
         CrewMember corporalInFlight = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "Corporal");
         addCrewMember(corporalInFlight.getSerialNumber(), CrewMemberStatus.STATUS_KIA);
 
-        CrewMember sltInFlight = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "Sous Lieutenant");
+        CrewMember sltInFlight = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "2nd Lieutenant");
         addCrewMember(sltInFlight.getSerialNumber(), CrewMemberStatus.STATUS_KIA);
-
-        addCrewMember(101064, CrewMemberStatus.STATUS_KIA);
 
         PersonnelLossHandler crewMemberLossInMissionHandler = new PersonnelLossHandler(campaign);
         AARPersonnelLosses personnelLosses = crewMemberLossInMissionHandler.crewMembersShotDown(crewMemberStatusList);
 
-        Assertions.assertTrue (personnelLosses.getPersonnelKilled().size() == 5);
+        Assertions.assertTrue (personnelLosses.getPersonnelKilled().size() == 4);
         Assertions.assertTrue (personnelLosses.getPersonnelCaptured().size() == 0);
         Assertions.assertTrue (personnelLosses.getPersonnelMaimed().size() == 0);
     }
@@ -80,23 +78,21 @@ public class PersonnelCompanyLossHandlerTest
         CrewMember playerInFlight = campaign.findReferencePlayer();
         addCrewMember(playerInFlight.getSerialNumber(), CrewMemberStatus.STATUS_WOUNDED);
 
-        CrewMember sergentInFlight = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "Sergent");
+        CrewMember sergentInFlight = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "Sergeant");
         addCrewMember(sergentInFlight.getSerialNumber(), CrewMemberStatus.STATUS_WOUNDED);
 
         CrewMember corporalInFlight = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "Corporal");
         addCrewMember(corporalInFlight.getSerialNumber(), CrewMemberStatus.STATUS_SERIOUSLY_WOUNDED);
 
-        CrewMember sltInFlight = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "Sous Lieutenant");
+        CrewMember sltInFlight = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "2nd Lieutenant");
         addCrewMember(sltInFlight.getSerialNumber(), CrewMemberStatus.STATUS_KIA);
-
-        addCrewMember(101064, CrewMemberStatus.STATUS_SERIOUSLY_WOUNDED);
 
         PersonnelLossHandler crewMemberLossInMissionHandler = new PersonnelLossHandler(campaign);
         AARPersonnelLosses personnelLosses = crewMemberLossInMissionHandler.crewMembersShotDown(crewMemberStatusList);
 
         Assertions.assertTrue (personnelLosses.getPersonnelKilled().size() == 1);
         Assertions.assertTrue (personnelLosses.getPersonnelCaptured().size() == 0);
-        Assertions.assertTrue (personnelLosses.getPersonnelMaimed().size() == 2);
+        Assertions.assertTrue (personnelLosses.getPersonnelMaimed().size() == 1);
         Assertions.assertTrue (personnelLosses.getPersonnelWounded().size() == 2);
     }
 
@@ -106,22 +102,20 @@ public class PersonnelCompanyLossHandlerTest
         CrewMember playerInFlight = campaign.findReferencePlayer();
         addCrewMember(playerInFlight.getSerialNumber(), CrewMemberStatus.STATUS_CAPTURED);
 
-        CrewMember sergentInFlight = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "Sergent");
+        CrewMember sergentInFlight = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "Sergeant");
         addCrewMember(sergentInFlight.getSerialNumber(), CrewMemberStatus.STATUS_ACTIVE);
 
         CrewMember corporalInFlight = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "Corporal");
         addCrewMember(corporalInFlight.getSerialNumber(), CrewMemberStatus.STATUS_SERIOUSLY_WOUNDED);
 
-        CrewMember sltInFlight = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "Sous Lieutenant");
+        CrewMember sltInFlight = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "2nd Lieutenant");
         addCrewMember(sltInFlight.getSerialNumber(), CrewMemberStatus.STATUS_CAPTURED);
-
-        addCrewMember(101064, CrewMemberStatus.STATUS_CAPTURED);
 
         PersonnelLossHandler crewMemberLossInMissionHandler = new PersonnelLossHandler(campaign);
         AARPersonnelLosses personnelLosses = crewMemberLossInMissionHandler.crewMembersShotDown(crewMemberStatusList);
 
         Assertions.assertTrue (personnelLosses.getPersonnelKilled().size() == 0);
-        Assertions.assertTrue (personnelLosses.getPersonnelCaptured().size() == 3);
+        Assertions.assertTrue (personnelLosses.getPersonnelCaptured().size() == 2);
         Assertions.assertTrue (personnelLosses.getPersonnelMaimed().size() == 1);
     }
 

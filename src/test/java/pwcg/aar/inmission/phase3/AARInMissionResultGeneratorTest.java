@@ -163,7 +163,7 @@ public class AARInMissionResultGeneratorTest
         corporalInPlatoon = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "Corporal");
         addCompanyCrewMember(corporalInPlatoon.getSerialNumber(), CrewMemberStatus.STATUS_SERIOUSLY_WOUNDED);
         
-        secondLtInPlatoon = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "Sous Lieutenant");
+        secondLtInPlatoon = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "2nd Lieutenant");
         addCompanyCrewMember(secondLtInPlatoon.getSerialNumber(), CrewMemberStatus.STATUS_KIA);
         
         firstLtInPlatoon = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "Lieutenant");

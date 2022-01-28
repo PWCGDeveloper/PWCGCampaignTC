@@ -48,7 +48,7 @@ public class AAREvaluator
                 campaign, aarDestroyedStatusEvaluator, aarContext.getLogEventData(), aarVehicleBuilder);
         aarCrewMemberStatusEvaluator.determineFateOfCrewsInMission();
         
-        AAREquipmentStatusEvaluator.determineFateOfPlanesInMission(aarVehicleBuilder, aarContext.getLogEventData());
+        AAREquipmentStatusEvaluator.determineFateOfTanksInMission(aarVehicleBuilder, aarContext.getLogEventData());
         
         aarVictoryEvaluator = createAARVictoryEvaluator();
         aarVictoryEvaluator.evaluateVictories();

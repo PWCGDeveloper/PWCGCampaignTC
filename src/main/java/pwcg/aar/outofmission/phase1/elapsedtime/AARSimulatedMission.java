@@ -32,13 +32,13 @@ public class AARSimulatedMission
         OutOfMissionVictoryData victoriesOutOMission = victoryEventHandler.generateOutOfMissionVictories();
 
         aarContext.getPersonnelAcheivements().mergeVictories(victoriesOutOMission.getVictoryAwardsByCrewMember());
-        outOfMissionLosses(victoriesOutOMission.getShotDownCrewMembers(), victoriesOutOMission.getShotDownPlanes());
+        outOfMissionLosses(victoriesOutOMission.getShotDownCrewMembers(), victoriesOutOMission.getDestroyedTanks());
     }
 
-    private void outOfMissionLosses(Map<Integer, CrewMember> shotDownCrewMembers, Map<Integer, LogTank> shotDownPlanes) throws PWCGException 
+    private void outOfMissionLosses(Map<Integer, CrewMember> shotDownCrewMembers, Map<Integer, LogTank> destroyedTanks) throws PWCGException 
     {
         OutOfMissionLossHandler lossHandler = new  OutOfMissionLossHandler(campaign, aarContext);
-        lossHandler.lossesOutOfMission(shotDownCrewMembers, shotDownPlanes);
+        lossHandler.lossesOutOfMission(shotDownCrewMembers, destroyedTanks);
         
         AARPersonnelLosses personnelLosses = lossHandler.getOutOfMissionPersonnelLosses();
         aarContext.getPersonnelLosses().merge(personnelLosses);

@@ -34,7 +34,7 @@ public class EquipmentDepot
         equipment.addTankToDepot(equippedTank);
     }
     
-    public EquippedTank removeBestPlaneFromDepot(List<String> activeArchTypes)
+    public EquippedTank removeBestTankFromDepot(List<String> activeArchTypes)
     {
         return equipment.removeBestEquippedFromDepot(activeArchTypes); 
     }
@@ -51,26 +51,26 @@ public class EquipmentDepot
 
     public List<EquippedTank> getDepotAircraftForRole(PwcgRoleCategory roleCategory) throws PWCGException
     {
-        List<EquippedTank> planesInDepotForRole = new ArrayList<>();
+        List<EquippedTank> tanksInDepotForRole = new ArrayList<>();
         for (EquippedTank equippedTank : equipment.getAvailableDepotTanks().values())
         {
             if (equippedTank.determinePrimaryRoleCategory() == roleCategory)
             {
-                planesInDepotForRole.add(equippedTank);
+                tanksInDepotForRole.add(equippedTank);
             }
         }
-        List<EquippedTank> sortedDepotForRole = TankSorter.sortEquippedTanksByGoodness(planesInDepotForRole);
+        List<EquippedTank> sortedDepotForRole = TankSorter.sortEquippedTanksByGoodness(tanksInDepotForRole);
         return sortedDepotForRole;
     }
 
     public List<EquippedTank> getAllTanksInDepot() throws PWCGException
     {
-        List<EquippedTank> allPlanesInDepot = new ArrayList<>();
+        List<EquippedTank> allTanksInDepot = new ArrayList<>();
         for (EquippedTank equippedTank : equipment.getAvailableDepotTanks().values())
         {
-            allPlanesInDepot.add(equippedTank);
+            allTanksInDepot.add(equippedTank);
         }
-        return allPlanesInDepot;
+        return allTanksInDepot;
     }
 
     public EquippedTank getAnyTankInDepot(int tankSerialNumber) throws PWCGException
@@ -100,26 +100,26 @@ public class EquipmentDepot
 
     public EquipmentUpgradeRecord getUpgrade(EquippedTank equippedTank) throws PWCGException
     {
-        List<EquippedTank> sortedPlanes = getPlanesForFromDepotBestToWorst(equipment.getAvailableDepotTanks());
-        for (EquippedTank depotPlane : sortedPlanes)
+        List<EquippedTank> sortedTanks = getTanksForFromDepotBestToWorst(equipment.getAvailableDepotTanks());
+        for (EquippedTank depotTank : sortedTanks)
         {
-            if (isUpgradePlane(depotPlane, equippedTank))
+            if (isUpgradeTank(depotTank, equippedTank))
             {
-                EquipmentUpgradeRecord upgradeRecord = new EquipmentUpgradeRecord(depotPlane, equippedTank);
+                EquipmentUpgradeRecord upgradeRecord = new EquipmentUpgradeRecord(depotTank, equippedTank);
                 return upgradeRecord;
             }
         }
         return null;
     }
     
-    private boolean isUpgradePlane(EquippedTank depotPlane, EquippedTank equippedTank)
+    private boolean isUpgradeTank(EquippedTank depotTank, EquippedTank equippedTank)
     {
-        if (!(depotPlane.getArchType().equals(equippedTank.getArchType())))
+        if (!(depotTank.getArchType().equals(equippedTank.getArchType())))
         {
             return false;
         }
         
-        if (!(depotPlane.getGoodness() > equippedTank.getGoodness()))
+        if (!(depotTank.getGoodness() > equippedTank.getGoodness()))
         {
             return false;
         }
@@ -132,9 +132,9 @@ public class EquipmentDepot
         return true;
     }
 
-    private List<EquippedTank> getPlanesForFromDepotBestToWorst(Map<Integer, EquippedTank> planesForCompany) throws PWCGException
+    private List<EquippedTank> getTanksForFromDepotBestToWorst(Map<Integer, EquippedTank> tanksForCompany) throws PWCGException
     {
-        List<EquippedTank> sortedPlanes = TankSorter.sortEquippedTanksByGoodness(new ArrayList<EquippedTank>(planesForCompany.values()));
-        return sortedPlanes;
+        List<EquippedTank> sortedTanks = TankSorter.sortEquippedTanksByGoodness(new ArrayList<EquippedTank>(tanksForCompany.values()));
+        return sortedTanks;
     }
 }

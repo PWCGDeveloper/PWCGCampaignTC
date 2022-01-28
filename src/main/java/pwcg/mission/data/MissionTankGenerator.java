@@ -12,7 +12,7 @@ import pwcg.mission.platoon.tank.TankMcu;
 public class MissionTankGenerator
 {
     private Mission mission;
-    private List<PwcgGeneratedMissionVehicleData> missionPlanes = new ArrayList<>();
+    private List<PwcgGeneratedMissionVehicleData> missionTanks = new ArrayList<>();
     
     public MissionTankGenerator(Mission mission)
     {
@@ -26,7 +26,7 @@ public class MissionTankGenerator
             makeTankEntriesForPlatoon(unit);
         }
         
-        return missionPlanes;
+        return missionTanks;
     }
 
     private void makeTankEntriesForPlatoon(ITankPlatoon platoon)
@@ -39,13 +39,13 @@ public class MissionTankGenerator
 
     private void makeMissionTankEntry(ICompanyMission iCompanyMission, TankMcu vehicle)
     {
-        PwcgGeneratedMissionVehicleData missionPlaneData = new PwcgGeneratedMissionVehicleData();
-        missionPlaneData.setCrewMemberName(vehicle.getTankCommander().getNameAndRank());
-        missionPlaneData.setCrewMemberSerialNumber(vehicle.getTankCommander().getSerialNumber());
-        missionPlaneData.setVehicleSerialNumber(vehicle.getSerialNumber());
-        missionPlaneData.setCompanyId(iCompanyMission.getCompanyId());
-        missionPlaneData.setVehicleType(vehicle.getType());
+        PwcgGeneratedMissionVehicleData missionTankData = new PwcgGeneratedMissionVehicleData();
+        missionTankData.setCrewMemberName(vehicle.getTankCommander().getNameAndRank());
+        missionTankData.setCrewMemberSerialNumber(vehicle.getTankCommander().getSerialNumber());
+        missionTankData.setVehicleSerialNumber(vehicle.getSerialNumber());
+        missionTankData.setCompanyId(iCompanyMission.getCompanyId());
+        missionTankData.setVehicleType(vehicle.getType());
         
-        missionPlanes.add(missionPlaneData);
+        missionTanks.add(missionTankData);
     }
 }

@@ -21,7 +21,7 @@ public class TestMissionEntityGenerator
     private LogEventData logEventData;    
     private List<IAType12> vehicles = new ArrayList<>();
     private Map<String, IAType12> crewMemberBots = new HashMap<>();
-    private Map<Integer, PwcgGeneratedMissionVehicleData> missionPlanes = new HashMap<>();
+    private Map<Integer, PwcgGeneratedMissionVehicleData> missionTanks = new HashMap<>();
     private Map <String, LogTank> planeAiEntities = new HashMap<>();
 
     public void makeMissionArtifacts(
@@ -99,7 +99,7 @@ public class TestMissionEntityGenerator
         pwcgMissionPlane.setVehicleType(plane.getType());
         pwcgMissionPlane.setCrewMemberSerialNumber(crewMemberSerialNumber);
         pwcgMissionPlane.setVehicleSerialNumber(tankSerialNumber);
-        missionPlanes.put(crewMemberSerialNumber, pwcgMissionPlane);
+        missionTanks.put(crewMemberSerialNumber, pwcgMissionPlane);
         
         AType12 crewMemberBot = TestATypeFactory.makeCrewMemberBot(plane);
         crewMemberBots.put(crewMemberBot.getId(), crewMemberBot);
@@ -130,12 +130,12 @@ public class TestMissionEntityGenerator
 
     public Map<Integer, PwcgGeneratedMissionVehicleData> getMissionPlanes()
     {
-        return missionPlanes;
+        return missionTanks;
     }
 
     public PwcgGeneratedMissionVehicleData getMissionPlane(Integer key)
     {
-        return missionPlanes.get(key);
+        return missionTanks.get(key);
     }
 
     public Map<String, LogTank> getPlaneAiEntities()

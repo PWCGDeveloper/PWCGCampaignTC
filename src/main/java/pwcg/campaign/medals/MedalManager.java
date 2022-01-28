@@ -83,7 +83,7 @@ public abstract class MedalManager implements IMedalManager
             if (medal == null)
             {
                 Company company =  crewMember.determineCompany();
-                if (company != null && !company.isCompanyThisRole(campaign.getDate(), PwcgRole.ROLE_SELF_PROPELLED_AAA))
+                if (company != null && company.isCompanyThisRole(campaign.getDate(), PwcgRole.ROLE_SELF_PROPELLED_AAA))
                 {
                     medal = awardAAA(crewMember, service, victoriesThisMission);
                 }

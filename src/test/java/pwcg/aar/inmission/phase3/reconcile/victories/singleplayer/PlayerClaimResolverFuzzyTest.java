@@ -42,7 +42,7 @@ public class PlayerClaimResolverFuzzyTest
         PlayerClaimResolverFuzzy claimResolverFuzzy = new PlayerClaimResolverFuzzy();
         String planeDisplayName = claimResolverFuzzy.getDestroyedTankDisplayNameAsFuzzy(playerDeclaration, resultVictory);
         
-        Assertions.assertTrue (planeDisplayName.equals("M4-A2 Sherman"));
+        Assertions.assertTrue (planeDisplayName.equals("Sherman"));
     }
     
 

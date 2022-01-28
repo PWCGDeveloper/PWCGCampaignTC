@@ -40,7 +40,8 @@ public class ClaimResolverCoopTest
         Mockito.when(personnelManager.getAnyCampaignMember(ArgumentMatchers.<Integer>any())).thenReturn(crewMember);
         Mockito.when(personnelManager.getAnyCampaignMember(ArgumentMatchers.<Integer>any())).thenReturn(crewMember);
         Mockito.when(crewMember.getSerialNumber()).thenReturn(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
-        
+        Mockito.when(crewMember.getNameAndRank()).thenReturn("Ofw Hans Schmidt");
+
         logVictoryHelper = new LogVictoryHelper();
         logVictoryHelper.createTankVictory();
         logVictoryHelper.createTankVictory();

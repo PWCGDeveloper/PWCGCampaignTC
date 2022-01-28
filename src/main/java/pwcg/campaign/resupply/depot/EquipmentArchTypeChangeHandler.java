@@ -67,32 +67,32 @@ public class EquipmentArchTypeChangeHandler
         for (Company company : companysToEquip)
         {
             Equipment companyEquipment = campaign.getEquipmentManager().getEquipmentForCompany(company.getCompanyId());
-            int numPlanesNeeded = Company.COMPANY_EQUIPMENT_SIZE - companyEquipment.getActiveEquippedTanks().size();
+            int numTanksNeeded = Company.COMPANY_EQUIPMENT_SIZE - companyEquipment.getActiveEquippedTanks().size();
 
             TankTypeInformation bestTankType = getBestTankTypeForCompany(company);
-            for (int i = 0; i < numPlanesNeeded; ++i)
+            for (int i = 0; i < numTanksNeeded; ++i)
             {
-                EquippedTank replacementPlane = TankEquipmentFactory.makeTankForCompany(campaign, bestTankType.getType(), company);
-                companyEquipment.addEquippedTankToCompany(campaign, company.getCompanyId(), replacementPlane);
+                EquippedTank replacementTank = TankEquipmentFactory.makeTankForCompany(campaign, bestTankType.getType(), company);
+                companyEquipment.addEquippedTankToCompany(campaign, company.getCompanyId(), replacementTank);
             }
         }
     }
     
     private TankTypeInformation getBestTankTypeForCompany(Company company) throws PWCGException
     {
-        List<TankTypeInformation> planeTypesForCompany = new ArrayList<>();
+        List<TankTypeInformation> tankTypesForCompany = new ArrayList<>();
         for (TankArchType archType : company.determineCurrentTankArchTypes(newDate))
         {
-            List<TankTypeInformation> planeTypesForArchType = archType.getActiveMemberTankTypes(newDate);
-            planeTypesForCompany.addAll(planeTypesForArchType);
+            List<TankTypeInformation> tankTypesForArchType = archType.getActiveMemberTankTypes(newDate);
+            tankTypesForCompany.addAll(tankTypesForArchType);
         }
         
-        TankTypeInformation bestTankType = planeTypesForCompany.get(0);
-        for (TankTypeInformation planeType : planeTypesForCompany)
+        TankTypeInformation bestTankType = tankTypesForCompany.get(0);
+        for (TankTypeInformation tankType : tankTypesForCompany)
         {
-            if (planeType.getGoodness() > bestTankType.getGoodness())
+            if (tankType.getGoodness() > bestTankType.getGoodness())
             {
-                bestTankType = planeType;
+                bestTankType = tankType;
             }
         }
         

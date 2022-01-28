@@ -43,10 +43,10 @@ public class EquipmentUpdater
         for (EquipmentResupplyRecord equipmentResupplyRecord : campaignUpdateData.getResupplyData().getEquipmentResupplyData().getEquipmentResupplied())
         {
             Equipment equipment = campaign.getEquipmentManager().getEquipmentForCompany(equipmentResupplyRecord.getTransferTo());
-            EquippedTank replacementPlane = equipmentResupplyRecord.getEquippedPlane();
-            replacementPlane.setCompanyId(equipmentResupplyRecord.getTransferTo());
-            replacementPlane.setTankStatus(TankStatus.STATUS_DEPLOYED);
-            equipment.addEquippedTankToCompany(campaign, equipmentResupplyRecord.getTransferTo(), replacementPlane);
+            EquippedTank replacementTank = equipmentResupplyRecord.getEquippedPlane();
+            replacementTank.setCompanyId(equipmentResupplyRecord.getTransferTo());
+            replacementTank.setTankStatus(TankStatus.STATUS_DEPLOYED);
+            equipment.addEquippedTankToCompany(campaign, equipmentResupplyRecord.getTransferTo(), replacementTank);
         }
     }
  }

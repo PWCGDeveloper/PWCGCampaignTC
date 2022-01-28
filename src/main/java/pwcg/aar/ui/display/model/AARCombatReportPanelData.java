@@ -19,7 +19,7 @@ public class AARCombatReportPanelData
     private MissionHeader missionHeader;
     private Map<Integer, CrewMember> crewsInMission = new HashMap<>();
     private Map<Integer, CrewMemberStatusEvent> crewMembersLostInMission = new HashMap<>();
-    private Map<Integer, TankStatusEvent> companyPlanesLostInMission = new HashMap<>();
+    private Map<Integer, TankStatusEvent> companyTanksLostInMission = new HashMap<>();
     private List<VictoryEvent> victoriesForCrewMembersInMission = new ArrayList<>();
     private List<ClaimDeniedEvent> claimsDenied = new ArrayList<>();
     
@@ -53,9 +53,9 @@ public class AARCombatReportPanelData
         return crewMembersLostInMission;
     }
 
-    public Map<Integer, TankStatusEvent> getCompanyPlanesLostInMission()
+    public Map<Integer, TankStatusEvent> getCompanyTanksLostInMission()
     {
-        return companyPlanesLostInMission;
+        return companyTanksLostInMission;
     }
 
     public List<VictoryEvent> getVictoriesForCrewMembersInMission()
@@ -91,6 +91,6 @@ public class AARCombatReportPanelData
 
     public void addPlaneLostInMission(TankStatusEvent planeLostEvent)
     {
-        companyPlanesLostInMission.put(planeLostEvent.getPlaneSerialNumber(), planeLostEvent);        
+        companyTanksLostInMission.put(planeLostEvent.getPlaneSerialNumber(), planeLostEvent);        
     }
 }

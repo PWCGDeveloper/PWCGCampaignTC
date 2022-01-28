@@ -13,11 +13,11 @@ import pwcg.core.utils.PWCGLogger.LogLevel;
 
 public class CompanySkinLoader
 {
-    private Map<String, SkinsForTank> skinsForPlanes;
+    private Map<String, SkinsForTank> skinsForTanks;
     
-    public CompanySkinLoader (Map<String, SkinsForTank> skinsForPlanes)
+    public CompanySkinLoader (Map<String, SkinsForTank> skinsForTanks)
     {
-        this.skinsForPlanes = skinsForPlanes;
+        this.skinsForTanks = skinsForTanks;
     }
 
     public void loadCompanySkins() throws PWCGException
@@ -36,7 +36,7 @@ public class CompanySkinLoader
         {
             if (!companySkin.getPlane().equals(""))
             {
-                SkinsForTank skinsForPlane = skinsForPlanes.get(companySkin.getPlane());
+                SkinsForTank skinsForPlane = skinsForTanks.get(companySkin.getPlane());
                 if (skinsForPlane != null)
                 {
                     skinsForPlane.addCompanySkin(companySkin);
@@ -55,7 +55,7 @@ public class CompanySkinLoader
                     String planeName = planeType.getType();
                     Skin planeSkin = companySkin.copy();
                     planeSkin.setPlane(planeName);
-                    SkinsForTank skinsForPlane = skinsForPlanes.get(planeName);
+                    SkinsForTank skinsForPlane = skinsForTanks.get(planeName);
                     skinsForPlane.addCompanySkin(planeSkin);
                 }
             }

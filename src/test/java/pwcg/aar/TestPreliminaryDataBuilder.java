@@ -90,11 +90,11 @@ public class TestPreliminaryDataBuilder
         PwcgMissionData pwcgMissionData = new PwcgMissionData();
         
         MissionHeader missionHeader = makePwcgMissionDataHeader();
-        Map<Integer, PwcgGeneratedMissionVehicleData> missionPlanes = makePwcgMissionDataPlanes();
+        Map<Integer, PwcgGeneratedMissionVehicleData> missionTanks = makePwcgMissionDataPlanes();
 
         pwcgMissionData.setMissionHeader(missionHeader);
         pwcgMissionData.setMissionDescription("A test mission");
-        pwcgMissionData.setMissionPlanes(missionPlanes);
+        pwcgMissionData.setMissionTanks(missionTanks);
         
         preliminaryData.setPwcgMissionData(pwcgMissionData);
     }
@@ -122,7 +122,7 @@ public class TestPreliminaryDataBuilder
 
     private Map<Integer, PwcgGeneratedMissionVehicleData> makePwcgMissionDataPlanes() throws PWCGException
     {
-        Map<Integer, PwcgGeneratedMissionVehicleData> missionPlanes  = new HashMap<>();
+        Map<Integer, PwcgGeneratedMissionVehicleData> missionTanks  = new HashMap<>();
         
         CrewMembers crewMembersInMission = preliminaryData.getCampaignMembersInMission();
         for (CrewMember crewMember : crewMembersInMission.getCrewMemberCollection().values())
@@ -132,17 +132,17 @@ public class TestPreliminaryDataBuilder
             int planeIndex = RandomNumberGenerator.getRandom(planesForCompany.size());
             EquippedTank equippedTank = planesForCompany.get(planeIndex);
 
-            PwcgGeneratedMissionVehicleData missionPlaneData = new PwcgGeneratedMissionVehicleData();
-            missionPlaneData.setVehicleType(equippedTank.getType());
-            missionPlaneData.setCompanyId(crewMember.getCompanyId());
-            missionPlaneData.setCrewMemberName(crewMember.getName());
-            missionPlaneData.setCrewMemberSerialNumber(crewMember.getSerialNumber());
-            missionPlaneData.setVehicleSerialNumber(equippedTank.getSerialNumber());
+            PwcgGeneratedMissionVehicleData missionTankData = new PwcgGeneratedMissionVehicleData();
+            missionTankData.setVehicleType(equippedTank.getType());
+            missionTankData.setCompanyId(crewMember.getCompanyId());
+            missionTankData.setCrewMemberName(crewMember.getName());
+            missionTankData.setCrewMemberSerialNumber(crewMember.getSerialNumber());
+            missionTankData.setVehicleSerialNumber(equippedTank.getSerialNumber());
             
-            missionPlanes.put(crewMember.getSerialNumber(), missionPlaneData);
+            missionTanks.put(crewMember.getSerialNumber(), missionTankData);
         }
         
-        return missionPlanes;
+        return missionTanks;
     }
 
 }

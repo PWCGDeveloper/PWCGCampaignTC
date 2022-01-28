@@ -39,9 +39,9 @@ public class CrewMemberSkinInfo
         Company company = referencePlayer.determineCompany();
         
         // Make an entry for each plane initialized to "No Skin"
-        List<TankTypeInformation> companyPlanes = company.determineCurrentTankList(campaign.getDate());
-        List<TankTypeInformation> companyPlanesByBest = TankSorter.sortTanksByGoodness(companyPlanes);
-        for (TankTypeInformation plane : companyPlanesByBest)
+        List<TankTypeInformation> companyTanks = company.determineCurrentTankList(campaign.getDate());
+        List<TankTypeInformation> companyTanksByBest = TankSorter.sortTanksByGoodness(companyTanks);
+        for (TankTypeInformation plane : companyTanksByBest)
         {
             updateSkinForPlane(plane.getType(), null);
         }        

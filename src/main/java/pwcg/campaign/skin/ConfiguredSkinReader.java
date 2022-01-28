@@ -7,11 +7,11 @@ import pwcg.core.exception.PWCGException;
 
 public class ConfiguredSkinReader
 {
-    private Map<String, SkinsForTank> skinsForPlanes;
+    private Map<String, SkinsForTank> skinsForTanks;
     
-    public ConfiguredSkinReader (Map<String, SkinsForTank> skinsForPlanes)
+    public ConfiguredSkinReader (Map<String, SkinsForTank> skinsForTanks)
     {
-        this.skinsForPlanes = skinsForPlanes;
+        this.skinsForTanks = skinsForTanks;
     }
 
     public void readConfiguredSkinsFromPlaneSkinFiles() throws PWCGException
@@ -19,9 +19,9 @@ public class ConfiguredSkinReader
         Map<String, SkinSet>  configuredSkinSets = SkinIOJson.readSkinSet(SkinSetType.SKIN_CONFIGURED.getSkinSetName());
         Map<String, SkinSet>  doNotUseSkinSets = SkinIOJson.readSkinSet(SkinSetType.SKIN_DO_NOT_USE.getSkinSetName());
 
-        for (String planeType : skinsForPlanes.keySet())
+        for (String planeType : skinsForTanks.keySet())
         {
-            SkinsForTank skinsForPlane = skinsForPlanes.get(planeType);
+            SkinsForTank skinsForPlane = skinsForTanks.get(planeType);
             if (configuredSkinSets.containsKey(planeType))
             {
                 SkinSet configuredSkins = configuredSkinSets.get(planeType);

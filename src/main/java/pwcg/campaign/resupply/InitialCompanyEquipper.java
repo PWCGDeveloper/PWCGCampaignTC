@@ -19,7 +19,7 @@ public class InitialCompanyEquipper
     private Campaign campaign;
     private Company company;
     private Equipment equipment = new Equipment();
-    private int planesNeeded = Company.COMPANY_EQUIPMENT_SIZE;
+    private int tanksNeeded = Company.COMPANY_EQUIPMENT_SIZE;
     private EquipmentWeightCalculator equipmentWeightCalculator;
 
 	public InitialCompanyEquipper(Campaign campaign, Company company, EquipmentWeightCalculator equipmentWeightCalculator) 
@@ -43,8 +43,8 @@ public class InitialCompanyEquipper
         List<TankTypeInformation> planeTypesInCompany = new ArrayList<>();
         for (TankArchType planeArchType : currentAircraftArchTypes)
         {
-            List<TankTypeInformation> planeTypesForArchType = PWCGContext.getInstance().getPlayerTankTypeFactory().createActiveTankTypesForArchType(planeArchType.getTankArchTypeName(), campaign.getDate());
-            planeTypesInCompany.addAll(planeTypesForArchType);
+            List<TankTypeInformation> tankTypesForArchType = PWCGContext.getInstance().getPlayerTankTypeFactory().createActiveTankTypesForArchType(planeArchType.getTankArchTypeName(), campaign.getDate());
+            planeTypesInCompany.addAll(tankTypesForArchType);
         }
         
         equipmentWeightCalculator.determineTankWeightsForTanks(planeTypesInCompany);
@@ -53,7 +53,7 @@ public class InitialCompanyEquipper
     private void generateTanksForCompany() throws PWCGException 
     {       
         
-        for (int i = 0; i < planesNeeded; ++i)
+        for (int i = 0; i < tanksNeeded; ++i)
         {
             String planeTypeName = equipmentWeightCalculator.getTankTypeFromWeight();
             

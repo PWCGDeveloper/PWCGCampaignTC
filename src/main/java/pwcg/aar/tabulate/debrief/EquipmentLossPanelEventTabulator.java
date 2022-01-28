@@ -24,9 +24,9 @@ public class EquipmentLossPanelEventTabulator
         
     public AAREquipmentLossPanelData tabulateForAAREquipmentLossPanel() throws PWCGException
     {
-        TankStatusEventGenerator planeLossEventGenerator = new TankStatusEventGenerator(campaign);
-        Map<Integer, TankStatusEvent> allPlanesLost = planeLossEventGenerator.createTankLossEvents(aarContext.getEquipmentLosses());
-        equipmentLossPanelData.setEquipmentLost(allPlanesLost);
+        TankStatusEventGenerator tankLossEventGenerator = new TankStatusEventGenerator(campaign);
+        Map<Integer, TankStatusEvent> allTanksLost = tankLossEventGenerator.createTankLossEvents(aarContext.getEquipmentLosses());
+        equipmentLossPanelData.setEquipmentLost(allTanksLost);
                 
         return equipmentLossPanelData;
     }

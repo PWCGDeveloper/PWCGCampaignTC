@@ -78,10 +78,10 @@ public class AARBotVehicleMapperTest
         testMissionEntityGenerator.makeMissionArtifacts(numFrenchPlanes, numGermanPlanes, numFrenchTrucks, numGermanTrucks);
 
         PwcgMissionData pwcgMissionData = new PwcgMissionData();
-        List<PwcgGeneratedMissionVehicleData> missionPlanes = new ArrayList<>(testMissionEntityGenerator.getMissionPlanes().values());
-        for (PwcgGeneratedMissionVehicleData missionPlane : missionPlanes)
+        List<PwcgGeneratedMissionVehicleData> missionTanks = new ArrayList<>(testMissionEntityGenerator.getMissionPlanes().values());
+        for (PwcgGeneratedMissionVehicleData missionTank : missionTanks)
         {
-            pwcgMissionData.addMissionPlanes(missionPlane);
+            pwcgMissionData.addMissionTanks(missionTank);
         }
         
         LogEventData logEventData = testMissionEntityGenerator.getAARLogEventData();

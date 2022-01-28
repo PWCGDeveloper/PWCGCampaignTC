@@ -14,7 +14,7 @@ public class AARPlayerLocator
 {
     private AARVehicleBuilder aarVehicleBuilder = null;
     private LogEventData logEventData = null;
-    private List<LogTank> playerPlanes = new ArrayList<>();
+    private List<LogTank> playerTanks = new ArrayList<>();
     private List<Coordinate> playerLocations = new ArrayList<>();
 
     public AARPlayerLocator(LogEventData logEventData, AARVehicleBuilder aarVehicleBuilder)
@@ -25,7 +25,7 @@ public class AARPlayerLocator
 
     public void evaluatePlayerLocation()
     {
-        playerPlanes = aarVehicleBuilder.getPlayerLogTanks();
+        playerTanks = aarVehicleBuilder.getPlayerLogTanks();
         
         for (IAType2 atype2 : logEventData.getDamageEvents())
         {
@@ -53,7 +53,7 @@ public class AARPlayerLocator
 
     private boolean isPlayerPlane(String planeId)
     {
-        for (LogTank playerLogPlane : playerPlanes)
+        for (LogTank playerLogPlane : playerTanks)
         {
             if (playerLogPlane.getId().equals(planeId))
             {

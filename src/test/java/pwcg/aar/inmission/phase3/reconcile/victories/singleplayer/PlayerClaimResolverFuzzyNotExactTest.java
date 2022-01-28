@@ -55,14 +55,14 @@ public class PlayerClaimResolverFuzzyNotExactTest
         PlayerClaimResolverFuzzy claimResolverFuzzy = new PlayerClaimResolverFuzzy();
         String planeDisplayName = claimResolverFuzzy.getDestroyedTankDisplayNameAsFuzzyNotExact(player, playerDeclaration, resultVictory);
         
-        Assertions.assertTrue (planeDisplayName.equals("M4-A2 Sherman"));
+        Assertions.assertTrue (planeDisplayName.equals("Sherman"));
     }
 
     @Test
     public void testPlayerFuzzyNotExactVictoryFoundWithNotExactMatch() throws PWCGException
     {
         LogTank victim = new LogTank(1);
-        victim.setRoleCategory(PwcgRoleCategory.FIGHTER);
+        victim.setRoleCategory(PwcgRoleCategory.MAIN_BATTLE_TANK);
         victim.setVehicleType("m4a2");
         victim.setCountry(new BoSCountry(Country.BRITAIN));
 
@@ -81,7 +81,7 @@ public class PlayerClaimResolverFuzzyNotExactTest
         PlayerClaimResolverFuzzy claimResolverFuzzy = new PlayerClaimResolverFuzzy();
         String planeDisplayName = claimResolverFuzzy.getDestroyedTankDisplayNameAsFuzzyNotExact(player, playerDeclaration, resultVictory);
         
-        Assertions.assertTrue (planeDisplayName.equals("M4-A2 Sherman"));
+        Assertions.assertTrue (planeDisplayName.equals("Sherman"));
     }
 
     @Test

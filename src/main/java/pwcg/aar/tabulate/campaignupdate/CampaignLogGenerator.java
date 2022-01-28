@@ -54,7 +54,7 @@ public class CampaignLogGenerator
     
     private void createEquipmentLossEvents()
     {
-        campaignLogEvents.addEvents(new ArrayList<TankStatusEvent>(elapsedTimeCombatResultsData.getPlanesLost()));
+        campaignLogEvents.addEvents(new ArrayList<TankStatusEvent>(elapsedTimeCombatResultsData.getTanksLost()));
     }
     
     private void createCrewMemberMedalEvents() throws PWCGException

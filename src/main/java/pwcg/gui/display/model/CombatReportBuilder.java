@@ -130,13 +130,13 @@ public class CombatReportBuilder
 
     private String createEquipmentLostReport() throws PWCGException
     {
-        Map<Integer, TankStatusEvent> companyPlanesLostInMission = aarCoordinator.getAarContext()
+        Map<Integer, TankStatusEvent> companyTanksLostInMission = aarCoordinator.getAarContext()
                     .findUiCombatReportDataForCompany(reportCrewMember.getCompanyId()).
-                    getCombatReportPanelData().getCompanyPlanesLostInMission();
+                    getCombatReportPanelData().getCompanyTanksLostInMission();
 
         String tanksLostStatement = "";
         String tanksLostAppend = "";        
-        for (TankStatusEvent tankLostEvent :companyPlanesLostInMission.values())
+        for (TankStatusEvent tankLostEvent :companyTanksLostInMission.values())
         {
             EquippedTank lostTank = campaign.getEquipmentManager().getAnyTankWithPreference(tankLostEvent.getPlaneSerialNumber());
             if(lostTank != null)

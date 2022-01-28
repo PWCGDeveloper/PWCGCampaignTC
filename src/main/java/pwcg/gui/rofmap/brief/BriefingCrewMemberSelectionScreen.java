@@ -449,8 +449,8 @@ public class BriefingCrewMemberSelectionScreen extends ImageResizingPanel implem
         }
 
         ITankPlatoon playerPlatoon = briefingData.getSelectedUnit();
-        List<TankMcu> playerPlanes = playerPlatoon.getPlatoonTanks().getPlayerTanks();
-        for (TankMcu playerPlane : playerPlanes)
+        List<TankMcu> playerTanks = playerPlatoon.getPlatoonTanks().getPlayerTanks();
+        for (TankMcu playerPlane : playerTanks)
         {
             CrewMember crewMember = playerPlane.getTankCommander();
             if (crewMember.isPlayer())

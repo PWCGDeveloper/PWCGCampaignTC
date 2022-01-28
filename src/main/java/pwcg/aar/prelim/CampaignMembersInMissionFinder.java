@@ -11,9 +11,9 @@ public class CampaignMembersInMissionFinder
     public CrewMembers determineCampaignMembersInMission(Campaign campaign, PwcgMissionData pwcgMissionData) throws PWCGException
     {
         CrewMembers campaignMembersInMission = new CrewMembers();
-        for (PwcgGeneratedMissionVehicleData missionPlane : pwcgMissionData.getMissionPlanes().values())
+        for (PwcgGeneratedMissionVehicleData missionTank : pwcgMissionData.getMissionTanks().values())
         {
-            CrewMember crewMember = campaign.getPersonnelManager().getAnyCampaignMember(missionPlane.getCrewMemberSerialNumber());
+            CrewMember crewMember = campaign.getPersonnelManager().getAnyCampaignMember(missionTank.getCrewMemberSerialNumber());
             if (crewMember != null)
             {
                 campaignMembersInMission.addToCrewMemberCollection(crewMember);

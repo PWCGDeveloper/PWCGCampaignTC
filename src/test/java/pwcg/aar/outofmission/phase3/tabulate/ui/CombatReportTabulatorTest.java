@@ -129,7 +129,7 @@ public class CombatReportTabulatorTest extends AARTestSetup
         Assertions.assertTrue (combatReportPanelData.getCrewsInMission().size() == 1);
         Assertions.assertTrue (combatReportPanelData.getMissionHeader().getMissionFileName().equals("MissionFileName"));
         Assertions.assertTrue (combatReportPanelData.getCrewMembersLostInMission().size() == 1);
-        Assertions.assertTrue (combatReportPanelData.getCompanyPlanesLostInMission().size() == 1);
+        Assertions.assertTrue (combatReportPanelData.getCompanyTanksLostInMission().size() == 1);
         Assertions.assertTrue (combatReportPanelData.getVictoriesForCrewMembersInMission().size() == 1);
 
     }

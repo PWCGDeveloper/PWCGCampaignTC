@@ -10,7 +10,7 @@ public class CompanyEquipmentNeed implements ICompanyNeed
 {
     private Campaign campaign;
     private Company company;
-    private int planesNeeded = 0;
+    private int tanksNeeded = 0;
 
     public CompanyEquipmentNeed(Campaign campaign, Company company)
     {
@@ -25,7 +25,7 @@ public class CompanyEquipmentNeed implements ICompanyNeed
         int activeCompanySize = equipment.getActiveEquippedTanks().size();
         int recentlyInactive = equipment.getRecentlyInactiveEquippedTanks(campaign.getDate()).size();
       
-        planesNeeded = Company.COMPANY_EQUIPMENT_SIZE - activeCompanySize - recentlyInactive;
+        tanksNeeded = Company.COMPANY_EQUIPMENT_SIZE - activeCompanySize - recentlyInactive;
 
     }
 
@@ -38,23 +38,23 @@ public class CompanyEquipmentNeed implements ICompanyNeed
     @Override
     public boolean needsResupply()
     {
-        return (planesNeeded > 0);
+        return (tanksNeeded > 0);
     }
 
     @Override
     public void noteResupply()
     {
-        --planesNeeded;
+        --tanksNeeded;
     }
 
     @Override
     public int getNumNeeded()
     {
-        return planesNeeded;
+        return tanksNeeded;
     }
 
-    public void setPlanesNeeded(int planesNeeded)
+    public void setTanksNeeded(int tanksNeeded)
     {
-        this.planesNeeded = planesNeeded;
+        this.tanksNeeded = tanksNeeded;
     }
 }

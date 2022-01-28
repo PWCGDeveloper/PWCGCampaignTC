@@ -12,7 +12,7 @@ public class PwcgMissionData
 {
     private MissionHeader missionHeader = new MissionHeader();
     private String missionDescription = "";
-	private Map<Integer, PwcgGeneratedMissionVehicleData> missionPlanes  = new HashMap<>();
+	private Map<Integer, PwcgGeneratedMissionVehicleData> missionTanks  = new HashMap<>();
 
     public PwcgMissionData ()
     {
@@ -28,19 +28,19 @@ public class PwcgMissionData
         this.missionHeader = missionHeader;
     }
 
-    public  Map<Integer, PwcgGeneratedMissionVehicleData> getMissionPlanes()
+    public  Map<Integer, PwcgGeneratedMissionVehicleData> getMissionTanks()
     {
-        return missionPlanes;
+        return missionTanks;
     }
 
     public  PwcgGeneratedMissionVehicleData getMissionTank(Integer crewMemberSerialNumber)
     {
-        return missionPlanes.get(crewMemberSerialNumber);
+        return missionTanks.get(crewMemberSerialNumber);
     }
 
-    public void addMissionPlanes(PwcgGeneratedMissionVehicleData  missionPlane) throws PWCGException
+    public void addMissionTanks(PwcgGeneratedMissionVehicleData  missionTank) throws PWCGException
     {
-        missionPlanes.put(missionPlane.getCrewMemberSerialNumber(), missionPlane);
+        missionTanks.put(missionTank.getCrewMemberSerialNumber(), missionTank);
     }
 
     public String getMissionDescription()
@@ -53,9 +53,9 @@ public class PwcgMissionData
         this.missionDescription = missionDescription;
     }
 
-    public void setMissionPlanes(Map<Integer, PwcgGeneratedMissionVehicleData> missionPlanes)
+    public void setMissionTanks(Map<Integer, PwcgGeneratedMissionVehicleData> missionTanks)
     {
-        this.missionPlanes = missionPlanes;
+        this.missionTanks = missionTanks;
     }
     
     public FrontMapIdentifier getMapId()

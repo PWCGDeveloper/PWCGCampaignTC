@@ -20,11 +20,11 @@ public class AARMissionEvaluationData
     
     public LogTank getTankInMissionBySerialNumber(Integer serialNumber) throws PWCGException
     {
-        for (LogTank missionPlane : planeAiEntities.values())
+        for (LogTank missionTank : planeAiEntities.values())
         {
-            if (missionPlane.isCrewMember(serialNumber))
+            if (missionTank.isCrewMember(serialNumber))
             {
-                return missionPlane;
+                return missionTank;
             }
         }
 
@@ -33,9 +33,9 @@ public class AARMissionEvaluationData
     
     public boolean wasCrewMemberInMission(Integer serialNumber) throws PWCGException
     {
-        for (LogTank missionPlane : planeAiEntities.values())
+        for (LogTank missionTank : planeAiEntities.values())
         {
-            if (missionPlane.isCrewMember(serialNumber))
+            if (missionTank.isCrewMember(serialNumber))
             {
                 return true;
             }

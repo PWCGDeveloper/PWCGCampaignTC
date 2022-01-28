@@ -15,27 +15,27 @@ public class PwcgGeneratedMissionPlaneMapper
     private Map<String, String> alliedPlaneMap = new HashMap<String, String>();
     private Map<String, String> axisPlaneMap = new HashMap<String, String>();
 
-    public void createPlaneMapforFlight(Campaign campaign, List<PwcgGeneratedMissionVehicleData> missionPlanes) throws PWCGException
+    public void createPlaneMapforFlight(Campaign campaign, List<PwcgGeneratedMissionVehicleData> missionTanks) throws PWCGException
     {
-        for (PwcgGeneratedMissionVehicleData missionPlaneData : missionPlanes)
+        for (PwcgGeneratedMissionVehicleData missionTankData : missionTanks)
         {
-            Side side = determinePlaneSide(campaign, missionPlaneData);
+            Side side = determinePlaneSide(campaign, missionTankData);
 
             if (side == Side.AXIS)
             {
-                axisPlaneMap.put(missionPlaneData.getVehicleType(), missionPlaneData.getVehicleType());
+                axisPlaneMap.put(missionTankData.getVehicleType(), missionTankData.getVehicleType());
             }
             else
             {
-                alliedPlaneMap.put(missionPlaneData.getVehicleType(), missionPlaneData.getVehicleType());
+                alliedPlaneMap.put(missionTankData.getVehicleType(), missionTankData.getVehicleType());
             }
 
         }
     }
 
-    private Side determinePlaneSide(Campaign campaign, PwcgGeneratedMissionVehicleData missionPlane) throws PWCGException
+    private Side determinePlaneSide(Campaign campaign, PwcgGeneratedMissionVehicleData missionTank) throws PWCGException
     {
-        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(missionPlane.getCompanyId());
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(missionTank.getCompanyId());
         Side side = company.determineCompanyCountry(campaign.getDate()).getSide();
         return side;
     }

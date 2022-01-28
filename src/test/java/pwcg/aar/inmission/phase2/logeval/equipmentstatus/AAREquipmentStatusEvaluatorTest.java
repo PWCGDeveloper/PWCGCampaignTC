@@ -63,7 +63,7 @@ public class AAREquipmentStatusEvaluatorTest
 
     private void runTestWithStatusCheck(int expectedStatus) throws PWCGException
     {
-        AAREquipmentStatusEvaluator.determineFateOfPlanesInMission(aarVehicleBuilder, logEventData);        
+        AAREquipmentStatusEvaluator.determineFateOfTanksInMission(aarVehicleBuilder, logEventData);        
         for (LogTank resultPlaneAfter : aarVehicleBuilder.getLogTanks().values())
         {
             Assertions.assertTrue (resultPlaneAfter.getTankStatus() == expectedStatus);

@@ -37,18 +37,18 @@ public class PwcgMissionDataEvaluator
 
     private List<String> determineTankTypesForSide(Side side) throws PWCGException
     {
-        Set<String> uniquePlanesForSide = new HashSet<>();
+        Set<String> uniqueTanksForSide = new HashSet<>();
 
-        for (PwcgGeneratedMissionVehicleData missionPlane : aarPreliminarytData.getPwcgMissionData().getMissionPlanes().values())
+        for (PwcgGeneratedMissionVehicleData missionTank : aarPreliminarytData.getPwcgMissionData().getMissionTanks().values())
         {
-            Company company = PWCGContext.getInstance().getCompanyManager().getCompany(missionPlane.getCompanyId());            
+            Company company = PWCGContext.getInstance().getCompanyManager().getCompany(missionTank.getCompanyId());            
             if (company.determineCompanyCountry(campaign.getDate()).getSide() == side)
             {
-                uniquePlanesForSide.add(missionPlane.getVehicleType());
+                uniqueTanksForSide.add(missionTank.getVehicleType());
             }
         }
 
-        return new ArrayList<String>(uniquePlanesForSide);
+        return new ArrayList<String>(uniqueTanksForSide);
     }
 
     public PwcgGeneratedMissionVehicleData getTankForCrewMemberBySerialNumber(Integer serialNumber) throws PWCGException
@@ -58,7 +58,7 @@ public class PwcgMissionDataEvaluator
     
     public PwcgGeneratedMissionVehicleData getTankForCrewMemberByName(String name) throws PWCGException
     {
-        List<PwcgGeneratedMissionVehicleData> missionTanks = new ArrayList<>(aarPreliminarytData.getPwcgMissionData().getMissionPlanes().values());
+        List<PwcgGeneratedMissionVehicleData> missionTanks = new ArrayList<>(aarPreliminarytData.getPwcgMissionData().getMissionTanks().values());
         for (PwcgGeneratedMissionVehicleData missionTank : missionTanks)
         {
             CrewMember crewMember = campaign.getPersonnelManager().getAnyCampaignMember(missionTank.getCrewMemberSerialNumber());

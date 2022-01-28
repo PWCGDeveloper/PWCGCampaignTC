@@ -13,11 +13,11 @@ import pwcg.core.utils.FileUtils;
 
 public class SkinIOJson 
 {	
-    public static void writeJson(Map<String, SkinsForTank> skinsForPlanes) throws PWCGException
+    public static void writeJson(Map<String, SkinsForTank> skinsForTanks) throws PWCGException
 	{
-		for (String planeType : skinsForPlanes.keySet())
+		for (String planeType : skinsForTanks.keySet())
 		{
-			SkinsForTank skinsForPlane = skinsForPlanes.get(planeType);
+			SkinsForTank skinsForPlane = skinsForTanks.get(planeType);
 			writeJson(planeType, skinsForPlane.getConfiguredSkins());
 			writeJson(planeType, skinsForPlane.getDoNotUse());
 		}

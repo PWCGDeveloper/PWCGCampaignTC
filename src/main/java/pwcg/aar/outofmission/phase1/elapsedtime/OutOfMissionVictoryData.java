@@ -13,7 +13,7 @@ public class OutOfMissionVictoryData
 {
     private Map<Integer, List<Victory>> victoryAwardsByCrewMember = new HashMap<>();
     private Map<Integer, CrewMember> shotDownCrewMembers = new HashMap<>();
-    private Map<Integer, LogTank> shotDownPlanes = new HashMap<>();
+    private Map<Integer, LogTank> destroyedTanks = new HashMap<>();
     
     public void merge(OutOfMissionVictoryData victoryData)
     {
@@ -31,7 +31,7 @@ public class OutOfMissionVictoryData
             addShotDownCrewMember(shotDownCrewMember);
         }
         
-        for (LogTank shotDownPlane : victoryData.getShotDownPlanes().values())
+        for (LogTank shotDownPlane : victoryData.getDestroyedTanks().values())
         {
             addShotDownPlane(shotDownPlane);
         }
@@ -61,7 +61,7 @@ public class OutOfMissionVictoryData
 
     public void addShotDownPlane(LogTank shotDownPlane)
     {
-        shotDownPlanes.put(shotDownPlane.getTankSerialNumber(), shotDownPlane);
+        destroyedTanks.put(shotDownPlane.getTankSerialNumber(), shotDownPlane);
     }
     
     public Map<Integer, CrewMember> getShotDownCrewMembers()
@@ -74,8 +74,8 @@ public class OutOfMissionVictoryData
         return victoryAwardsByCrewMember;
     }
 
-    public Map<Integer, LogTank> getShotDownPlanes()
+    public Map<Integer, LogTank> getDestroyedTanks()
     {
-        return shotDownPlanes;
+        return destroyedTanks;
     }
 }
