@@ -41,7 +41,7 @@ public class ClaimDenier
     private String getPlaneDescription(PlayerVictoryDeclaration playerDeclaration) throws PWCGException
     {
         String tankDesc = "Unknown";
-        VehicleDefinition vehicleDefinition = PWCGContext.getInstance().getVehicleDefinitionManager().getVehicleDefinitionByVehicleType(playerDeclaration.getTankType());
+        VehicleDefinition vehicleDefinition = PWCGContext.getInstance().getVehicleDefinitionManager().getVehicleDefinition(playerDeclaration.getTankType());
         if (vehicleDefinition != null)
         {
             tankDesc = vehicleDefinition.getDisplayName();

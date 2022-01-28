@@ -2,6 +2,7 @@ package pwcg.aar.awards;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.junit.jupiter.api.Assertions;
@@ -70,23 +71,24 @@ public class CampaignAwardsGeneratorTest
     public void testMedalAwardedForVictories () throws PWCGException
     {             
         CrewMembers aiCrewMembers = campaign.getPersonnelManager().getCompanyPersonnel(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId()).getActiveCrewMembers();
-        CampaignPersonnelTestHelper.addVictories(aiCrewMembers.getCrewMemberList().get(1), campaign.getDate(), 20);
+        List<CrewMember> sortedCrewmembers = aiCrewMembers.sortCrewMembers(campaign.getDate());
+        
+        CampaignPersonnelTestHelper.addVictories(sortedCrewmembers.get(15), campaign.getDate(), 20);
  
-        Mockito.when(personnelAcheivements.getVictoryCountForCrewMember(aiCrewMembers.getCrewMemberList().get(1).getSerialNumber())).thenReturn(2);
-        CampaignPersonnelTestHelper.addVictories(aiCrewMembers.getCrewMemberList().get(1), campaign.getDate(), 3);
+        CampaignPersonnelTestHelper.addVictories(sortedCrewmembers.get(15), campaign.getDate(), 3);
 
         Map<Integer, CrewMember> crewMembersToEvaluate = new HashMap<>();
-        crewMembersToEvaluate.put(aiCrewMembers.getCrewMemberList().get(1).getSerialNumber(), aiCrewMembers.getCrewMemberList().get(1));
-        crewMembersToEvaluate.put(aiCrewMembers.getCrewMemberList().get(2).getSerialNumber(), aiCrewMembers.getCrewMemberList().get(2));
-        crewMembersToEvaluate.put(aiCrewMembers.getCrewMemberList().get(3).getSerialNumber(), aiCrewMembers.getCrewMemberList().get(3));
+        crewMembersToEvaluate.put(sortedCrewmembers.get(15).getSerialNumber(), sortedCrewmembers.get(15));
+        crewMembersToEvaluate.put(sortedCrewmembers.get(2).getSerialNumber(), sortedCrewmembers.get(2));
+        crewMembersToEvaluate.put(sortedCrewmembers.get(3).getSerialNumber(), sortedCrewmembers.get(3));
 
         CampaignAwardsGenerator awardsGenerator = new CampaignAwardsGenerator(campaign, aarContext);
         AARPersonnelAwards campaignMemberAwards = awardsGenerator.createCampaignMemberAwards(new ArrayList<>(crewMembersToEvaluate.values()));
         
-        Assertions.assertTrue (campaignMemberAwards.getCampaignMemberMedals().size() == 1);
-        Assertions.assertTrue (campaignMemberAwards.getCampaignMemberMedals().containsKey(aiCrewMembers.getCrewMemberList().get(1).getSerialNumber()));
-        Assertions.assertTrue (!campaignMemberAwards.getCampaignMemberMedals().containsKey(aiCrewMembers.getCrewMemberList().get(2).getSerialNumber()));
-        Assertions.assertTrue (!campaignMemberAwards.getCampaignMemberMedals().containsKey(aiCrewMembers.getCrewMemberList().get(3).getSerialNumber()));
+        Assertions.assertTrue (campaignMemberAwards.getCampaignMemberMedals().size() >= 1);
+        Assertions.assertTrue (campaignMemberAwards.getCampaignMemberMedals().containsKey(sortedCrewmembers.get(15).getSerialNumber()));
+        Assertions.assertTrue (!campaignMemberAwards.getCampaignMemberMedals().containsKey(sortedCrewmembers.get(2).getSerialNumber()));
+        Assertions.assertTrue (!campaignMemberAwards.getCampaignMemberMedals().containsKey(sortedCrewmembers.get(3).getSerialNumber()));
     }
 
     @Test

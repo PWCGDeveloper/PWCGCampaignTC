@@ -38,8 +38,23 @@ public class VehicleDefinitionManager
     {
         return allVehiclesDefinitions;
     }
+        
+    public VehicleDefinition getVehicleDefinition(String identifier) throws PWCGException
+    {
+        VehicleDefinition definition = getVehicleDefinitionByVehicleType(identifier);
+        if (definition == null)
+        {
+            definition = getVehicleDefinitionByVehicleName(identifier);
+            if (definition == null)
+            {
+                definition = getVehicleDefinitionByVehicleDisplayName(identifier);
+            }
+        }
+        
+        return definition;
+    }
     
-    public VehicleDefinition getVehicleDefinitionByVehicleType(String vehicleType) throws PWCGException
+    private VehicleDefinition getVehicleDefinitionByVehicleType(String vehicleType) throws PWCGException
     {
         for (VehicleDefinition definition : allVehiclesDefinitions)
         {
@@ -52,7 +67,7 @@ public class VehicleDefinitionManager
         return null;
     }
     
-    public VehicleDefinition getVehicleDefinitionByVehicleName(String vehicleName) throws PWCGException
+    private VehicleDefinition getVehicleDefinitionByVehicleName(String vehicleName) throws PWCGException
     {
         for (VehicleDefinition definition : allVehiclesDefinitions)
         {
@@ -65,7 +80,7 @@ public class VehicleDefinitionManager
         return getVehicleDefinitionByVehicleType(vehicleName);
     }
     
-    public VehicleDefinition getVehicleDefinitionByVehicleDisplayName(String vehicleName) throws PWCGException
+    private VehicleDefinition getVehicleDefinitionByVehicleDisplayName(String vehicleName) throws PWCGException
     {
         for (VehicleDefinition definition : allVehiclesDefinitions)
         {

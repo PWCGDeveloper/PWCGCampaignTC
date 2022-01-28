@@ -118,7 +118,7 @@ public class AARVehicleBuilder
         }
         else
         {
-            VehicleDefinition vehicle = PWCGContext.getInstance().getVehicleDefinitionManager().getVehicleDefinitionByVehicleName(atype12.getName());
+            VehicleDefinition vehicle = PWCGContext.getInstance().getVehicleDefinitionManager().getVehicleDefinition(atype12.getName());
             if (vehicle != null && vehicle.getVehicleClass() == VehicleClass.Tank)
             {
                 return true;

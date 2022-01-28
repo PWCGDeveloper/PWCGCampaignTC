@@ -36,7 +36,7 @@ public class VehicleFactory
         ICountry country = pwcgGroundUnitInformation.getCountry();
         Date date = pwcgGroundUnitInformation.getDate();
 
-        VehicleDefinition vehicleDefinition = PWCGContext.getInstance().getVehicleDefinitionManager().getVehicleDefinitionByVehicleType(pwcgGroundUnitInformation.getRequestedUnitType());
+        VehicleDefinition vehicleDefinition = PWCGContext.getInstance().getVehicleDefinitionManager().getVehicleDefinition(pwcgGroundUnitInformation.getRequestedUnitType());
         
         IVehicle vehicle = createVehicleFromDefinition(country, date, vehicleDefinition);
         return vehicle;

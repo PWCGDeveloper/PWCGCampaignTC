@@ -29,7 +29,7 @@ public class AiTankMcuFactory
                     platoonInformation.getCountry(), platoonInformation.getCampaign().getDate());
             
             VehicleDefinitionManager vehicleDefinitionManager = PWCGContext.getInstance().getVehicleDefinitionManager();
-            VehicleDefinition vehicleDefinition = vehicleDefinitionManager.getVehicleDefinitionByVehicleType(tankType.getType());
+            VehicleDefinition vehicleDefinition = vehicleDefinitionManager.getVehicleDefinition(tankType.getType());
 
             TankMcu tank = new TankMcu(vehicleDefinition, tankType, platoonInformation.getCountry());            
             if (index > 0)

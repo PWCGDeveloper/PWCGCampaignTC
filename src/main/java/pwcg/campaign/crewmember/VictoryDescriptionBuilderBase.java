@@ -43,7 +43,7 @@ public abstract class VictoryDescriptionBuilderBase
             return plane.getDisplayName();
         }
 
-        VehicleDefinition vehicleDefinition = PWCGContext.getInstance().getVehicleDefinitionManager().getVehicleDefinitionByVehicleType(vehicleType);
+        VehicleDefinition vehicleDefinition = PWCGContext.getInstance().getVehicleDefinitionManager().getVehicleDefinition(vehicleType);
         if (vehicleDefinition != null)
         {
             return vehicleDefinition.getDisplayName();

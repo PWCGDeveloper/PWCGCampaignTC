@@ -18,7 +18,7 @@ public class TankEquipmentFactory
     public static EquippedTank makeTankForCompany (Campaign campaign, String tankTypeName, Company company) throws PWCGException
     {
         VehicleDefinitionManager vehicleDefinitionManager = PWCGContext.getInstance().getVehicleDefinitionManager();
-        VehicleDefinition vehicleDefinition = vehicleDefinitionManager.getVehicleDefinitionByVehicleType(tankTypeName);
+        VehicleDefinition vehicleDefinition = vehicleDefinitionManager.getVehicleDefinition(tankTypeName);
 
         ITankTypeFactory tankTypeFactory = PWCGContext.getInstance().getPlayerTankTypeFactory();
         TankTypeInformation tankType = tankTypeFactory.createTankTypeByType(tankTypeName);   
@@ -31,7 +31,7 @@ public class TankEquipmentFactory
     public static EquippedTank makeTankForDepot (Campaign campaign, String tankTypeName, Country country) throws PWCGException
     {
         VehicleDefinitionManager vehicleDefinitionManager = PWCGContext.getInstance().getVehicleDefinitionManager();
-        VehicleDefinition vehicleDefinition = vehicleDefinitionManager.getVehicleDefinitionByVehicleType(tankTypeName);
+        VehicleDefinition vehicleDefinition = vehicleDefinitionManager.getVehicleDefinition(tankTypeName);
 
         ITankTypeFactory tankTypeFactory = PWCGContext.getInstance().getPlayerTankTypeFactory();
         TankTypeInformation tankType = tankTypeFactory.createTankTypeByType(tankTypeName);   
@@ -49,7 +49,7 @@ public class TankEquipmentFactory
         TankTypeInformation tankType = tankTypes.get(index);
         
         VehicleDefinitionManager vehicleDefinitionManager = PWCGContext.getInstance().getVehicleDefinitionManager();
-        VehicleDefinition vehicleDefinition = vehicleDefinitionManager.getVehicleDefinitionByVehicleType(tankType.getType());
+        VehicleDefinition vehicleDefinition = vehicleDefinitionManager.getVehicleDefinition(tankType.getType());
         
         EquippedTank equippedTank = new EquippedTank(vehicleDefinition, tankType, campaign.getSerialNumber().getNextTankSerialNumber(), TankStatus.STATUS_DESTROYED, country);
         return equippedTank;

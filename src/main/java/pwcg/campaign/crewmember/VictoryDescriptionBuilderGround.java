@@ -207,13 +207,13 @@ public class VictoryDescriptionBuilderGround extends VictoryDescriptionBuilderBa
 
     private String getVehicleName(String vehicleDescriptor) throws PWCGException
     {
-        VehicleDefinition vehicleDefinitionByName = PWCGContext.getInstance().getVehicleDefinitionManager().getVehicleDefinitionByVehicleName(vehicleDescriptor);
+        VehicleDefinition vehicleDefinitionByName = PWCGContext.getInstance().getVehicleDefinitionManager().getVehicleDefinition(vehicleDescriptor);
         if (vehicleDefinitionByName != null)
         {
             return vehicleDefinitionByName.getDisplayName();
         }
 
-        VehicleDefinition vehicleDefinitionByDisplayName = PWCGContext.getInstance().getVehicleDefinitionManager().getVehicleDefinitionByVehicleDisplayName(vehicleDescriptor);
+        VehicleDefinition vehicleDefinitionByDisplayName = PWCGContext.getInstance().getVehicleDefinitionManager().getVehicleDefinition(vehicleDescriptor);
         if (vehicleDefinitionByDisplayName != null)
         {
             return vehicleDefinitionByDisplayName.getDisplayName();

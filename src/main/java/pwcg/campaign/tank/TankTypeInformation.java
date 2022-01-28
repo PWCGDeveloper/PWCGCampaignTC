@@ -235,7 +235,7 @@ public class TankTypeInformation implements Cloneable
 
     public String getDisplayName() throws PWCGException
     {
-        VehicleDefinition vehicleDefinition = PWCGContext.getInstance().getVehicleDefinitionManager().getVehicleDefinitionByVehicleType(type);
+        VehicleDefinition vehicleDefinition = PWCGContext.getInstance().getVehicleDefinitionManager().getVehicleDefinition(type);
         return vehicleDefinition.getDisplayName();
     }
 

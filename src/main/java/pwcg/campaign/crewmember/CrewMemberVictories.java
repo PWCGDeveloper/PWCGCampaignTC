@@ -37,7 +37,7 @@ public class CrewMemberVictories
             
             if (victory.getVictim().getAirOrGround() == Victory.VEHICLE)
             {
-                VehicleDefinition vehicleDefinitionByName = PWCGContext.getInstance().getVehicleDefinitionManager().getVehicleDefinitionByVehicleName(victory.getVictim().getName());
+                VehicleDefinition vehicleDefinitionByName = PWCGContext.getInstance().getVehicleDefinitionManager().getVehicleDefinition(victory.getVictim().getType());
                 if (vehicleDefinitionByName != null && vehicleDefinitionByName.getVehicleClass() == VehicleClass.Tank)
                 {
                     tankVictories.add(victory);
