@@ -34,7 +34,7 @@ public class CampaignUpdateNewCompanyStafferTest
     @Test
     public void testCompanyAdded() throws PWCGException
     {
-        Date newDate = DateUtils.getDateYYYYMMDD("19420801");
+        Date newDate = DateUtils.getDateYYYYMMDD("19430601");
         campaign.setDate(newDate);
         
         CampaignUpdateNewCompanyStaffer newCompanyStaffer = new CampaignUpdateNewCompanyStaffer(campaign);

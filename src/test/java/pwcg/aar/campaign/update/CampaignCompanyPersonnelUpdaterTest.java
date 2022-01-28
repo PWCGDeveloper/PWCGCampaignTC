@@ -6,7 +6,6 @@ import java.util.Map;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -25,7 +24,6 @@ import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.CrewMemberStatus;
 import pwcg.campaign.crewmember.CrewMembers;
-import pwcg.campaign.crewmember.TankAce;
 import pwcg.campaign.factory.RankFactory;
 import pwcg.campaign.personnel.CompanyPersonnel;
 import pwcg.campaign.personnel.CrewMemberFilter;
@@ -50,19 +48,13 @@ public class CampaignCompanyPersonnelUpdaterTest
     private Campaign campaign;
     private static AARContext aarContext;
 
-    @BeforeAll
-    public void setupSuite() throws PWCGException
-    {
-        
-
-        campaign = CampaignCache.makeCampaign(CompanyTestProfile.THIRD_DIVISION_PROFILE);
-        aarContext = new AARContext(campaign);
-        aarContext.setNewDate(DateUtils.advanceTimeDays(campaign.getDate(), 3));
-    }
-
     @BeforeEach
     public void setupTest() throws PWCGException
     {
+        campaign = CampaignCache.makeCampaign(CompanyTestProfile.THIRD_DIVISION_PROFILE);
+        aarContext = new AARContext(campaign);
+        aarContext.setNewDate(DateUtils.advanceTimeDays(campaign.getDate(), 3));
+
         squadMembersKilled.clear();
         squadMembersMaimed.clear();
         squadMembersCaptured.clear();
@@ -267,47 +259,4 @@ public class CampaignCompanyPersonnelUpdaterTest
 
         Assertions.assertTrue(companyMemberAfterUpdate.getCompanyId() != CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
     }
-
-    @Test
-    public void testCompanyAceKilled() throws PWCGException
-    {
-        TankAce guynemerInCampaign = campaign.getPersonnelManager().getCampaignAces().retrieveAceBySerialNumber(101064);
-        acesKilled.put(101064, guynemerInCampaign);
-
-        AARCampaignUpdateTabulator campaignUpdateTabulator = new AARCampaignUpdateTabulator(campaign, aarContext);
-        CampaignUpdateData campaignUpdateData = campaignUpdateTabulator.tabulateAARForCampaignUpdate();
-
-        for (CrewMember crewMember : acesKilled.values())
-        {
-            campaignUpdateData.getPersonnelLosses().addPersonnelKilled(crewMember);
-        }
-
-        PersonnelUpdater personellUpdater = new PersonnelUpdater(campaign, campaignUpdateData);
-        personellUpdater.personnelUpdates();
-
-        TankAce aceAfterUpdate = campaign.getPersonnelManager().getCampaignAces().retrieveAceBySerialNumber(101064);
-        Assertions.assertTrue(aceAfterUpdate.getCrewMemberActiveStatus() == CrewMemberStatus.STATUS_KIA);
-    }
-
-    @Test
-    public void testNonCompanyAceKilled() throws PWCGException
-    {
-        TankAce vossInCampaign = campaign.getPersonnelManager().getCampaignAces().retrieveAceBySerialNumber(101175);
-        acesKilled.put(101175, vossInCampaign);
-
-        AARCampaignUpdateTabulator campaignUpdateTabulator = new AARCampaignUpdateTabulator(campaign, aarContext);
-        CampaignUpdateData campaignUpdateData = campaignUpdateTabulator.tabulateAARForCampaignUpdate();
-
-        for (CrewMember crewMember : acesKilled.values())
-        {
-            campaignUpdateData.getPersonnelLosses().addPersonnelKilled(crewMember);
-        }
-
-        PersonnelUpdater personellUpdater = new PersonnelUpdater(campaign, campaignUpdateData);
-        personellUpdater.personnelUpdates();
-
-        TankAce aceAfterUpdate = campaign.getPersonnelManager().getCampaignAces().retrieveAceBySerialNumber(101175);
-        Assertions.assertTrue(aceAfterUpdate.getCrewMemberActiveStatus() == CrewMemberStatus.STATUS_KIA);
-    }
-
 }
