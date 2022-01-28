@@ -64,10 +64,10 @@ public class PlayerDeclarationResolutionFirmVictoryTest
         Mockito.when(campaign.getPersonnelManager()).thenReturn(personnelManager);
 
         playerVictor.setCrewMemberSerialNumber(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
-        playerVictor.setCountry(new BoSCountry(Country.FRANCE));
+        playerVictor.setCountry(new BoSCountry(Country.USA));
         
         aiVictor.setCrewMemberSerialNumber(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1);
-        aiVictor.setCountry(new BoSCountry(Country.FRANCE));
+        aiVictor.setCountry(new BoSCountry(Country.USA));
         
         createMocks();
     }
@@ -88,7 +88,7 @@ public class PlayerDeclarationResolutionFirmVictoryTest
         Mockito.when(evaluationData.getTankInMissionBySerialNumber(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER)).thenReturn(playerVictor);
 
         Mockito.when(player.isPlayer()).thenReturn(true);
-        Mockito.when(player.getCountry()).thenReturn(Country.FRANCE);
+        Mockito.when(player.getCountry()).thenReturn(Country.USA);
         Mockito.when(player.getSerialNumber()).thenReturn(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
     }
     
@@ -183,9 +183,9 @@ public class PlayerDeclarationResolutionFirmVictoryTest
         victim.setCountry(new BoSCountry(Country.GERMANY));
 
         LogTank victor = new LogTank(4);
-        victor.setVehicleType("spad13");
+        victor.setVehicleType("m4a2");
         victor.setCrewMemberSerialNumber(victorSerialNumber);
-        victor.setCountry(new BoSCountry(Country.FRANCE));
+        victor.setCountry(new BoSCountry(Country.USA));
 
         LogVictory resultVictory = new LogVictory(10);
         resultVictory.setVictor(victor);
@@ -198,13 +198,13 @@ public class PlayerDeclarationResolutionFirmVictoryTest
     {        
         LogTank victim = new LogTank(3);
         victim.setCrewMemberSerialNumber(victimSerialNumber);
-        victim.setVehicleType("spad13");
-        victim.setCountry(new BoSCountry(Country.FRANCE));
+        victim.setVehicleType("m4a2");
+        victim.setCountry(new BoSCountry(Country.USA));
 
         LogTank victor = new LogTank(4);
-        victor.setVehicleType("spad13");
+        victor.setVehicleType("m4a2");
         victor.setCrewMemberSerialNumber(victorSerialNumber);
-        victor.setCountry(new BoSCountry(Country.FRANCE));
+        victor.setCountry(new BoSCountry(Country.USA));
 
         LogVictory resultVictory = new LogVictory(10);
         resultVictory.setVictor(victor);

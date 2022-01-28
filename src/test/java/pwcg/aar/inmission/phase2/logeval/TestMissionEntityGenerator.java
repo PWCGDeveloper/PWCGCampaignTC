@@ -22,26 +22,26 @@ public class TestMissionEntityGenerator
     private List<IAType12> vehicles = new ArrayList<>();
     private Map<String, IAType12> crewMemberBots = new HashMap<>();
     private Map<Integer, PwcgGeneratedMissionVehicleData> missionTanks = new HashMap<>();
-    private Map <String, LogTank> planeAiEntities = new HashMap<>();
+    private Map <String, LogTank> tankAiEntities = new HashMap<>();
 
     public void makeMissionArtifacts(
-                    int numFrenchPlanes, 
+                    int numRussianPlanes, 
                     int numGermanPlanes,
-                    int numFrenchTrucks, 
+                    int numRussianTrucks, 
                     int numGermanTrucks) throws PWCGException
     {
-        String[] frenchCrewMembers = new String[] { "French CrewMemberA","French CrewMemberB"};
+        String[] alliedCrewMembers = new String[] { "Russian CrewMemberA","Russian CrewMemberB"};
         String[] germanCrewMembers = new String[] { "German CrewMemberA","German CrewMemberB"};
-        Integer[] frenchCrewMembersSerialNumbers= new Integer[] { SerialNumber.AI_STARTING_SERIAL_NUMBER + 1, SerialNumber.AI_STARTING_SERIAL_NUMBER + 2};
-        Integer[] frenchPlaneSerialNumbers= new Integer[] { SerialNumber.TANK_STARTING_SERIAL_NUMBER + 1, SerialNumber.TANK_STARTING_SERIAL_NUMBER + 2};
+        Integer[] alliedCrewMembersSerialNumbers= new Integer[] { SerialNumber.AI_STARTING_SERIAL_NUMBER + 1, SerialNumber.AI_STARTING_SERIAL_NUMBER + 2};
+        Integer[] alliedPlaneSerialNumbers= new Integer[] { SerialNumber.TANK_STARTING_SERIAL_NUMBER + 1, SerialNumber.TANK_STARTING_SERIAL_NUMBER + 2};
         Integer[] germanCrewMemberSerialNumbers = new Integer[] { SerialNumber.AI_STARTING_SERIAL_NUMBER + 100, SerialNumber.AI_STARTING_SERIAL_NUMBER + 200};
         Integer[] germanPlaneSerialNumbers= new Integer[] { SerialNumber.TANK_STARTING_SERIAL_NUMBER + 100, SerialNumber.TANK_STARTING_SERIAL_NUMBER + 200};
-        String[] frenchCrewMemberBotId = new String[] { "1001","1002"};
+        String[] alliedCrewMemberBotId = new String[] { "1001","1002"};
         String[] germanCrewMemberBotId = new String[] { "2001","2002"};
 
-        makeFrenchFighters(numFrenchPlanes, frenchCrewMembersSerialNumbers, frenchPlaneSerialNumbers, frenchCrewMembers, frenchCrewMemberBotId);
-        makeGermanFighters(numGermanPlanes, germanCrewMemberSerialNumbers, germanPlaneSerialNumbers, germanCrewMembers, germanCrewMemberBotId);
-        makeFrenchTrucks(numFrenchTrucks);
+        makeRussianTanks(numRussianPlanes, alliedCrewMembersSerialNumbers, alliedPlaneSerialNumbers, alliedCrewMembers, alliedCrewMemberBotId);
+        makeGermanTanks(numGermanPlanes, germanCrewMemberSerialNumbers, germanPlaneSerialNumbers, germanCrewMembers, germanCrewMemberBotId);
+        makeRussianTrucks(numRussianTrucks);
         makeGermanTrucks(numGermanTrucks);
         
         formAARLogParser();
@@ -53,34 +53,34 @@ public class TestMissionEntityGenerator
         logEventData.setBots(crewMemberBots);
     }
 
-    private void makeFrenchFighters(int numFrenchPlanes, Integer[] frenchCrewMembersSerialNumbers, Integer[] frenchPlaneSerialNumbers, String[] frenchCrewMembers, String[] frenchCrewMemberBotId) throws PWCGException
+    private void makeRussianTanks(int numRussianPlanes, Integer[] alliedCrewMembersSerialNumbers, Integer[] alliedPlaneSerialNumbers, String[] alliedCrewMembers, String[] alliedCrewMemberBotId) throws PWCGException
     {
-        for (int i = 0; i < numFrenchPlanes; ++i)
+        for (int i = 0; i < numRussianPlanes; ++i)
         {            
-            AType12 frenchPlane  = TestATypeFactory.makeFrenchPlane(frenchCrewMembers[i], frenchCrewMemberBotId[i]);
-            vehicles.add(frenchPlane);
+            AType12 alliedPlane  = TestATypeFactory.makeRussianTank(alliedCrewMembers[i], alliedCrewMemberBotId[i]);
+            vehicles.add(alliedPlane);
             
-            makePwcgMissionPlaneFighter(frenchCrewMembers[i], frenchCrewMembersSerialNumbers[i], frenchPlaneSerialNumbers[i], frenchPlane);
+            makePwcgMissionTank(alliedCrewMembers[i], alliedCrewMembersSerialNumbers[i], alliedPlaneSerialNumbers[i], alliedPlane);
         }
     }
 
-    private void makeGermanFighters(int numGermanPlanes, Integer[] germanCrewMemberSerialNumbers, Integer[] germanPlaneSerialNumbers, String[] germanCrewMembers, String[] germanCrewMemberBotId) throws PWCGException
+    private void makeGermanTanks(int numGermanPlanes, Integer[] germanCrewMemberSerialNumbers, Integer[] germanPlaneSerialNumbers, String[] germanCrewMembers, String[] germanCrewMemberBotId) throws PWCGException
     {
         for (int i = 0; i < numGermanPlanes; ++i)
         {
-            AType12 germanPlane  = TestATypeFactory.makeGermanPlane(germanCrewMembers[i], germanCrewMemberBotId[i]);
+            AType12 germanPlane  = TestATypeFactory.makeGermanTank(germanCrewMembers[i], germanCrewMemberBotId[i]);
             vehicles.add(germanPlane);
 
-            makePwcgMissionPlaneFighter(germanCrewMembers[i], germanCrewMemberSerialNumbers[i], germanPlaneSerialNumbers[i], germanPlane);
+            makePwcgMissionTank(germanCrewMembers[i], germanCrewMemberSerialNumbers[i], germanPlaneSerialNumbers[i], germanPlane);
         }
     }
 
-    private void makeFrenchTrucks(int numFrenchTrucks) throws PWCGException
+    private void makeRussianTrucks(int numRussianTrucks) throws PWCGException
     {
-        for (int i = 0; i < numFrenchTrucks; ++i)
+        for (int i = 0; i < numRussianTrucks; ++i)
         {
-            AType12 frenchTruck  = TestATypeFactory.makeTruck(Country.FRANCE);
-            vehicles.add(frenchTruck);
+            AType12 alliedTruck  = TestATypeFactory.makeTruck(Country.RUSSIA);
+            vehicles.add(alliedTruck);
         }
     }
 
@@ -93,7 +93,7 @@ public class TestMissionEntityGenerator
         }
     }
 
-    private void makePwcgMissionPlaneFighter(String crewMemberName, Integer crewMemberSerialNumber, Integer tankSerialNumber, IAType12 plane) throws PWCGException
+    private void makePwcgMissionTank(String crewMemberName, Integer crewMemberSerialNumber, Integer tankSerialNumber, IAType12 plane) throws PWCGException
     {
         PwcgGeneratedMissionVehicleData pwcgMissionPlane = new PwcgGeneratedMissionVehicleData();
         pwcgMissionPlane.setVehicleType(plane.getType());
@@ -104,23 +104,24 @@ public class TestMissionEntityGenerator
         AType12 crewMemberBot = TestATypeFactory.makeCrewMemberBot(plane);
         crewMemberBots.put(crewMemberBot.getId(), crewMemberBot);
         
-        makeMissionResultPlaneFighter(crewMemberName, crewMemberSerialNumber, tankSerialNumber, plane);
+        makeMissionResultTank(crewMemberName, crewMemberSerialNumber, tankSerialNumber, plane);
     }
 
-    private void makeMissionResultPlaneFighter(String crewMemberName, Integer crewMemberSerialNumber, Integer tankSerialNumber, IAType12 plane) throws PWCGException
+    private void makeMissionResultTank(String crewMemberName, Integer crewMemberSerialNumber, Integer tankSerialNumber, IAType12 plane) throws PWCGException
     {
     	LogTank logTank = new LogTank(1);
         logTank.setVehicleType(plane.getType());
         logTank.setId(plane.getId());
         logTank.setCrewMemberSerialNumber(crewMemberSerialNumber);
         logTank.setTankSerialNumber(tankSerialNumber);
+        logTank.setCompanyId(1);
 
         LogCrewMember crewMemberCrewMember = new LogCrewMember();
         crewMemberCrewMember.setSerialNumber(crewMemberSerialNumber);
         crewMemberCrewMember.setBotId("");
         
         logTank.setCrewMemberSerialNumber(crewMemberSerialNumber);
-        planeAiEntities.put(plane.getId(), logTank);
+        tankAiEntities.put(plane.getId(), logTank);
     }
 
     public List<IAType12> getVehicles()
@@ -128,19 +129,19 @@ public class TestMissionEntityGenerator
         return vehicles;
     }
 
-    public Map<Integer, PwcgGeneratedMissionVehicleData> getMissionPlanes()
+    public Map<Integer, PwcgGeneratedMissionVehicleData> getMissionTanks()
     {
         return missionTanks;
     }
 
-    public PwcgGeneratedMissionVehicleData getMissionPlane(Integer key)
+    public PwcgGeneratedMissionVehicleData getMissionTank(Integer key)
     {
         return missionTanks.get(key);
     }
 
-    public Map<String, LogTank> getPlaneAiEntities()
+    public Map<String, LogTank> getTankAiEntities()
     {
-        return planeAiEntities;
+        return tankAiEntities;
     }
 
     public LogEventData getAARLogEventData()

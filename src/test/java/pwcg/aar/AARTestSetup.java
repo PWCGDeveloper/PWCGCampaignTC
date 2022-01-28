@@ -107,9 +107,9 @@ public abstract class AARTestSetup
         Mockito.when(personnelManager.getAnyCampaignMember(SerialNumber.AI_STARTING_SERIAL_NUMBER+2)).thenReturn(crewMember2);
         Mockito.when(personnelManager.getAnyCampaignMember(SerialNumber.AI_STARTING_SERIAL_NUMBER+3)).thenReturn(crewMember3);
         
-        Mockito.when(frenchAirForce.getCountry()).thenReturn(CountryFactory.makeCountryByCountry(Country.FRANCE));
+        Mockito.when(frenchAirForce.getCountry()).thenReturn(CountryFactory.makeCountryByCountry(Country.RUSSIA));
         Mockito.when(germanAirForce.getCountry()).thenReturn(CountryFactory.makeCountryByCountry(Country.GERMANY));
-        Mockito.when(frenchAirForce.getNameCountry()).thenReturn(CountryFactory.makeCountryByCountry(Country.FRANCE));
+        Mockito.when(frenchAirForce.getNameCountry()).thenReturn(CountryFactory.makeCountryByCountry(Country.RUSSIA));
         Mockito.when(germanAirForce.getNameCountry()).thenReturn(CountryFactory.makeCountryByCountry(Country.GERMANY));
     }
 
@@ -148,7 +148,7 @@ public abstract class AARTestSetup
         Mockito.when(player.getSerialNumber()).thenReturn(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
         Mockito.when(player.getCompanyId()).thenReturn(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
         Mockito.when(player.determineService(ArgumentMatchers.any())).thenReturn(frenchAirForce);
-        Mockito.when(player.getCountry()).thenReturn(Country.FRANCE);
+        Mockito.when(player.getCountry()).thenReturn(Country.RUSSIA);
         Mockito.when(player.determineCompany()).thenReturn(companyEsc103);
 
 
@@ -163,9 +163,9 @@ public abstract class AARTestSetup
         Mockito.when(crewMember3.getCompanyId()).thenReturn(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
 
         Mockito.when(enemyCrewMember1.getCountry()).thenReturn(Country.GERMANY);
-        Mockito.when(crewMember1.getCountry()).thenReturn(Country.FRANCE);
-        Mockito.when(crewMember2.getCountry()).thenReturn(Country.FRANCE);
-        Mockito.when(crewMember3.getCountry()).thenReturn(Country.FRANCE);
+        Mockito.when(crewMember1.getCountry()).thenReturn(Country.RUSSIA);
+        Mockito.when(crewMember2.getCountry()).thenReturn(Country.RUSSIA);
+        Mockito.when(crewMember3.getCountry()).thenReturn(Country.RUSSIA);
         
         Mockito.when(enemyCrewMember1.determineService(ArgumentMatchers.any())).thenReturn(germanAirForce);
         Mockito.when(crewMember1.determineService(ArgumentMatchers.any())).thenReturn(frenchAirForce);
@@ -193,10 +193,10 @@ public abstract class AARTestSetup
         Mockito.when(ace3.determineCompany()).thenReturn(companyEsc103);
         Mockito.when(ace4.determineCompany()).thenReturn(companyEsc103);
 
-        Mockito.when(ace1.getCountry()).thenReturn(Country.FRANCE);
-        Mockito.when(ace2.getCountry()).thenReturn(Country.FRANCE);
-        Mockito.when(ace3.getCountry()).thenReturn(Country.FRANCE);
-        Mockito.when(ace4.getCountry()).thenReturn(Country.FRANCE);
+        Mockito.when(ace1.getCountry()).thenReturn(Country.RUSSIA);
+        Mockito.when(ace2.getCountry()).thenReturn(Country.RUSSIA);
+        Mockito.when(ace3.getCountry()).thenReturn(Country.RUSSIA);
+        Mockito.when(ace4.getCountry()).thenReturn(Country.RUSSIA);
         
         Mockito.when(enemyPlane1.getCompanyId()).thenReturn(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
         Mockito.when(plane1.getCompanyId()).thenReturn(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());

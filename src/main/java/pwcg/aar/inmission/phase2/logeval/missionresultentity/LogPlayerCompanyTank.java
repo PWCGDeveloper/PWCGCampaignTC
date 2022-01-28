@@ -11,13 +11,12 @@ public class LogPlayerCompanyTank
 {
     private Integer companyId = Company.AI;
     private LogCrewMember logCrewMember= new LogCrewMember();
-    private int crewMemberSerialNumber = SerialNumber.NO_SERIAL_NUMBER;
     private int tankSerialNumber = SerialNumber.NO_SERIAL_NUMBER;
     
     public void initializeFromMissionTank(PwcgGeneratedMissionVehicleData missionTank)
     {        
         this.companyId = missionTank.getCompanyId();
-        this.crewMemberSerialNumber = missionTank.getCrewMemberSerialNumber();
+        this.logCrewMember.setSerialNumber(missionTank.getCrewMemberSerialNumber());
         this.tankSerialNumber = missionTank.getVehicleSerialNumber();
         intializeCrewMember(missionTank.getCrewMemberSerialNumber());
     }
@@ -25,15 +24,15 @@ public class LogPlayerCompanyTank
     public void initializeFromOutOfMission(EquippedTank tank, CrewMember crewMember) throws PWCGException
     {
         this.companyId = crewMember.getCompanyId();
-        this.crewMemberSerialNumber = crewMember.getSerialNumber();
+        this.logCrewMember.setSerialNumber(crewMember.getSerialNumber());
         this.tankSerialNumber = tank.getSerialNumber();
     }
 
 
-    private void intializeCrewMember(int serialNumber)
+    private void intializeCrewMember(int crewMemberSerialNumber)
     {
-        logCrewMember = new LogCrewMember();
-        logCrewMember.setSerialNumber(serialNumber);
+        this.logCrewMember = new LogCrewMember();
+        this.logCrewMember.setSerialNumber(crewMemberSerialNumber);
     }
     
     public void mapBotToCrew(String botId) throws PWCGException
@@ -63,7 +62,7 @@ public class LogPlayerCompanyTank
 
     public int getCrewMemberSerialNumber()
     {
-        return crewMemberSerialNumber;
+        return logCrewMember.getSerialNumber();
     }
 
     public int getTankSerialNumber()
@@ -83,7 +82,7 @@ public class LogPlayerCompanyTank
 
     public void setCrewMemberSerialNumber(int crewMemberSerialNumber)
     {
-        this.crewMemberSerialNumber = crewMemberSerialNumber;
+        this.logCrewMember.setSerialNumber(crewMemberSerialNumber);
     }
 
     public void setTankSerialNumber(int tankSerialNumber)

@@ -83,7 +83,7 @@ public class LogVictoryHelper
         LogTank victor = new LogTank(1);
         victor.setCrewMemberSerialNumber(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
         victor.setVehicleType("_pziv-g");
-        victor.setCountry(new BoSCountry(Country.FRANCE));
+        victor.setCountry(new BoSCountry(Country.USA));
         victor.setCompanyId(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
         victor.setCrewMemberSerialNumber(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
         return victor;

@@ -50,22 +50,22 @@ public class AARBotVehicleMapperTest
     @Test
     public void testMappingBotToPlaneForFighters () throws PWCGException
     {        
-        testInstanceMappingBotToPlaneForFIghters(0, 0, 3, 4);
-        testInstanceMappingBotToPlaneForFIghters(2, 1, 3, 4);
-        testInstanceMappingBotToPlaneForFIghters(0, 1, 3, 4);
-        testInstanceMappingBotToPlaneForFIghters(2, 0, 3, 4);
-        testInstanceMappingBotToPlaneForFIghters(2, 1, 3, 4);
-        testInstanceMappingBotToPlaneForFIghters(2, 1, 3, 4);
-        testInstanceMappingBotToPlaneForFIghters(2, 1, 3, 4);
-        testInstanceMappingBotToPlaneForFIghters(2, 1, 0, 4);
-        testInstanceMappingBotToPlaneForFIghters(2, 1, 3, 0);
-        testInstanceMappingBotToPlaneForFIghters(2, 1, 0, 0);
+        testInstanceMappingBotToTank(0, 0, 3, 4);
+        testInstanceMappingBotToTank(2, 1, 3, 4);
+        testInstanceMappingBotToTank(0, 1, 3, 4);
+        testInstanceMappingBotToTank(2, 0, 3, 4);
+        testInstanceMappingBotToTank(2, 1, 3, 4);
+        testInstanceMappingBotToTank(2, 1, 3, 4);
+        testInstanceMappingBotToTank(2, 1, 3, 4);
+        testInstanceMappingBotToTank(2, 1, 0, 4);
+        testInstanceMappingBotToTank(2, 1, 3, 0);
+        testInstanceMappingBotToTank(2, 1, 0, 0);
     }
 
-    public void testInstanceMappingBotToPlaneForFIghters(
-                    int numFrenchPlanes, 
-                    int numGermanPlanes,
-                    int numFrenchTrucks, 
+    public void testInstanceMappingBotToTank(
+                    int numRussianTanks, 
+                    int numGermanTanks,
+                    int numRussianTrucks, 
                     int numGermanTrucks) throws PWCGException
     {
         Mockito.when(campaign.getPersonnelManager()).thenReturn(campaignPersonnelManager);
@@ -75,10 +75,10 @@ public class AARBotVehicleMapperTest
         Mockito.when(crewMember.isPlayer()).thenReturn(false);
 
         testMissionEntityGenerator = new TestMissionEntityGenerator();
-        testMissionEntityGenerator.makeMissionArtifacts(numFrenchPlanes, numGermanPlanes, numFrenchTrucks, numGermanTrucks);
+        testMissionEntityGenerator.makeMissionArtifacts(numRussianTanks, numGermanTanks, numRussianTrucks, numGermanTrucks);
 
         PwcgMissionData pwcgMissionData = new PwcgMissionData();
-        List<PwcgGeneratedMissionVehicleData> missionTanks = new ArrayList<>(testMissionEntityGenerator.getMissionPlanes().values());
+        List<PwcgGeneratedMissionVehicleData> missionTanks = new ArrayList<>(testMissionEntityGenerator.getMissionTanks().values());
         for (PwcgGeneratedMissionVehicleData missionTank : missionTanks)
         {
             pwcgMissionData.addMissionTanks(missionTank);
@@ -87,28 +87,28 @@ public class AARBotVehicleMapperTest
         LogEventData logEventData = testMissionEntityGenerator.getAARLogEventData();
         AARBotVehicleMapper aarBotVehicleMapper = new AARBotVehicleMapper(logEventData);
 
-        Map <String, LogTank> planeAiEntities = testMissionEntityGenerator.getPlaneAiEntities();
-        aarBotVehicleMapper.mapBotsToCrews(planeAiEntities);
+        Map <String, LogTank> aiEntities = testMissionEntityGenerator.getTankAiEntities();
+        aarBotVehicleMapper.mapBotsToCrews(aiEntities);
                 
-        assert(planeAiEntities.size() == numFrenchPlanes + numGermanPlanes);
-        for (LogTank missionResultPlane : planeAiEntities.values())
+        assert(aiEntities.size() == numRussianTanks + numGermanTanks);
+        for (LogTank logTank : aiEntities.values())
         {
-            assert(missionResultPlane.getLogCrewMember() != null);
-            if (missionResultPlane.getId().equals("1001"))
+            assert(logTank.getLogCrewMember() != null);
+            if (logTank.getId().equals("1001"))
             {
-                assert(missionResultPlane.getLogCrewMember().getSerialNumber() == SerialNumber.AI_STARTING_SERIAL_NUMBER + 1);
+                assert(logTank.getLogCrewMember().getSerialNumber() == SerialNumber.AI_STARTING_SERIAL_NUMBER + 1);
             }
-            if (missionResultPlane.getId().equals("1002"))
+            if (logTank.getId().equals("1002"))
             {
-                assert(missionResultPlane.getLogCrewMember().getSerialNumber() == SerialNumber.AI_STARTING_SERIAL_NUMBER + 2);
+                assert(logTank.getLogCrewMember().getSerialNumber() == SerialNumber.AI_STARTING_SERIAL_NUMBER + 2);
             }
-            if (missionResultPlane.getId().equals("2001"))
+            if (logTank.getId().equals("2001"))
             {
-                assert(missionResultPlane.getLogCrewMember().getSerialNumber() == SerialNumber.AI_STARTING_SERIAL_NUMBER + 100);
+                assert(logTank.getLogCrewMember().getSerialNumber() == SerialNumber.AI_STARTING_SERIAL_NUMBER + 100);
             }
-            if (missionResultPlane.getId().equals("2002"))
+            if (logTank.getId().equals("2002"))
             {
-                assert(missionResultPlane.getLogCrewMember().getSerialNumber() == SerialNumber.AI_STARTING_SERIAL_NUMBER + 200);
+                assert(logTank.getLogCrewMember().getSerialNumber() == SerialNumber.AI_STARTING_SERIAL_NUMBER + 200);
             }
         }
     }

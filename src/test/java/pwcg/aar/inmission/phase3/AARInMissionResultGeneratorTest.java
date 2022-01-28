@@ -154,7 +154,7 @@ public class AARInMissionResultGeneratorTest
         CrewMember playerInPlatoon = campaign.findReferencePlayer();
         addCompanyCrewMember(playerInPlatoon.getSerialNumber(), CrewMemberStatus.STATUS_WOUNDED);
         playerPlaneVictor.setCrewMemberSerialNumber(playerInPlatoon.getSerialNumber());
-        playerPlaneVictor.setCountry(new BoSCountry(Country.FRANCE));
+        playerPlaneVictor.setCountry(new BoSCountry(Country.RUSSIA));
         playerPlaneVictor.setCrewMemberSerialNumber(playerInPlatoon.getSerialNumber());
                 
         sergeantInPlatoon = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "Sergent");

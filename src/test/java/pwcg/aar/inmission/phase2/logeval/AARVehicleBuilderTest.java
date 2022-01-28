@@ -113,10 +113,10 @@ public class AARVehicleBuilderTest
         Mockito.when(pwcgMissionDataEvaluator.wasCrewMemberAssignedToMissionByName("German CrewMemberA")).thenReturn(true);
         Mockito.when(pwcgMissionDataEvaluator.wasCrewMemberAssignedToMissionByName("German CrewMemberB")).thenReturn(true);
         
-        Mockito.when(pwcgMissionDataEvaluator.getTankForCrewMemberByName("French CrewMemberA")).thenReturn(testMissionEntityGenerator.getMissionPlane(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1));
-        Mockito.when(pwcgMissionDataEvaluator.getTankForCrewMemberByName("French CrewMemberB")).thenReturn(testMissionEntityGenerator.getMissionPlane(SerialNumber.AI_STARTING_SERIAL_NUMBER + 2));
-        Mockito.when(pwcgMissionDataEvaluator.getTankForCrewMemberByName("German CrewMemberA")).thenReturn(testMissionEntityGenerator.getMissionPlane(SerialNumber.AI_STARTING_SERIAL_NUMBER + 100));
-        Mockito.when(pwcgMissionDataEvaluator.getTankForCrewMemberByName("German CrewMemberB")).thenReturn(testMissionEntityGenerator.getMissionPlane(SerialNumber.AI_STARTING_SERIAL_NUMBER + 200));
+        Mockito.when(pwcgMissionDataEvaluator.getTankForCrewMemberByName("French CrewMemberA")).thenReturn(testMissionEntityGenerator.getMissionTank(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1));
+        Mockito.when(pwcgMissionDataEvaluator.getTankForCrewMemberByName("French CrewMemberB")).thenReturn(testMissionEntityGenerator.getMissionTank(SerialNumber.AI_STARTING_SERIAL_NUMBER + 2));
+        Mockito.when(pwcgMissionDataEvaluator.getTankForCrewMemberByName("German CrewMemberA")).thenReturn(testMissionEntityGenerator.getMissionTank(SerialNumber.AI_STARTING_SERIAL_NUMBER + 100));
+        Mockito.when(pwcgMissionDataEvaluator.getTankForCrewMemberByName("German CrewMemberB")).thenReturn(testMissionEntityGenerator.getMissionTank(SerialNumber.AI_STARTING_SERIAL_NUMBER + 200));
 
         return new AARVehicleBuilder(botPlaneMapper, pwcgMissionDataEvaluator);
     }

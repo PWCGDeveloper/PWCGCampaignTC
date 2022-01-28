@@ -13,18 +13,18 @@ public class TestATypeFactory
 {
     static public int id = 100;
     
-    static public AType12 makeFrenchPlane(String frenchCrewMemberName, String frenchCrewMemberBotId) throws PWCGException
+    static public AType12 makeRussianTank(String russianCrewMemberName, String russianCrewMemberBotId) throws PWCGException
     {
         ++id;
-        AType12 aType12Parsed = new AType12("AType:12 ID:1488895 TYPE:spad13 COUNTRY:101 NAME:Lt Pierre Trudeau PID:-1 POS(119648.406,152.195,44274.488)", Integer.valueOf(id).toString());
-        AType12 aType12 = new AType12(frenchCrewMemberBotId, aType12Parsed.getType(), frenchCrewMemberName, aType12Parsed.getCountry(), aType12Parsed.getPid(), new Coordinate(500000, 0, 50000));
+        AType12 aType12Parsed = new AType12("AType:12 ID:1488895 TYPE:t34-76stz COUNTRY:101 NAME:Lt Pierre Trudeau PID:-1 POS(119648.406,152.195,44274.488)", Integer.valueOf(id).toString());
+        AType12 aType12 = new AType12(russianCrewMemberBotId, aType12Parsed.getType(), russianCrewMemberName, aType12Parsed.getCountry(), aType12Parsed.getPid(), new Coordinate(500000, 0, 50000));
         return aType12;
     }
     
-    static public AType12 makeGermanPlane(String germanCrewMemberName, String germanCrewMemberBotId) throws PWCGException
+    static public AType12 makeGermanTank(String germanCrewMemberName, String germanCrewMemberBotId) throws PWCGException
     {
         ++id;
-        AType12 aType12Parsed = new AType12("AType:12 ID:1488895 TYPE:pziv-g COUNTRY:101 NAME:Lt Pierre Trudeau PID:-1 POS(119648.406,152.195,44274.488)", Integer.valueOf(id).toString());
+        AType12 aType12Parsed = new AType12("AType:12 ID:1488895 TYPE:pziv-g COUNTRY:201 NAME:Lt Hans Schmidt PID:-1 POS(119648.406,152.195,44274.488)", Integer.valueOf(id).toString());
         AType12 aType12 = new AType12(germanCrewMemberBotId, aType12Parsed.getType(), germanCrewMemberName, aType12Parsed.getCountry(), aType12Parsed.getPid(), new Coordinate(500000, 0, 50000));
         return aType12;
     }
@@ -40,9 +40,9 @@ public class TestATypeFactory
     {
         ++id;        
         ICountry country;
-        if (countryCode == Country.FRANCE)
+        if (countryCode == Country.RUSSIA)
         {
-            country = new BoSCountry(Country.FRANCE);            
+            country = new BoSCountry(Country.RUSSIA);            
         }
         else
         {
@@ -55,7 +55,7 @@ public class TestATypeFactory
     static public AType12 makeCrewMemberBot(IAType12 plane) throws PWCGException
     {
         ++id;
-        AType12 aType12 = new AType12(Integer.valueOf (id).toString(), "Common Bot", "Bot", plane.getCountry(), plane.getId(), new Coordinate(500000, 0, 50000));
+        AType12 aType12 = new AType12(Integer.valueOf (id).toString(), "BotCrewMember", "Bot", plane.getCountry(), plane.getId(), new Coordinate(500000, 0, 50000));
         return aType12;
     }
 }

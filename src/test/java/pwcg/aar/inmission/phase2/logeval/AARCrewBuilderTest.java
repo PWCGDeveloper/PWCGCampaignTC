@@ -42,13 +42,13 @@ public class AARCrewBuilderTest
     @Mock
     private CrewMember aiNotInCompany;
 
-    private static Map <String, LogTank> planeAiEntities = new HashMap <>();
+    private static Map <String, LogTank> tankAiEntities = new HashMap <>();
     
     public AARCrewBuilderTest() throws PWCGException
     {        
         
 
-        planeAiEntities = new HashMap <>();
+        tankAiEntities = new HashMap <>();
         addPlane(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
         addPlane(SerialNumber.ACE_STARTING_SERIAL_NUMBER+1);
         addPlane(SerialNumber.ACE_STARTING_SERIAL_NUMBER+2);
@@ -65,13 +65,13 @@ public class AARCrewBuilderTest
         plane1.setCrewMemberSerialNumber(crewMemberSerialNumber);
         
         String planeId = crewMemberSerialNumber.toString();
-        planeAiEntities.put(planeId, plane1);
+        tankAiEntities.put(planeId, plane1);
     }
 
     @Test
     public void testCrewMembers () throws PWCGException
     {        
-        AARCrewBuilder crewBuilder = new AARCrewBuilder(planeAiEntities);
+        AARCrewBuilder crewBuilder = new AARCrewBuilder(tankAiEntities);
         List<LogCrewMember> inSquad = crewBuilder.buildCrewMembersFromLogTanks();
         assert(crewMemberIsInList(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER, inSquad) == true);
         assert(crewMemberIsInList(SerialNumber.ACE_STARTING_SERIAL_NUMBER+1, inSquad) == true);
@@ -83,7 +83,7 @@ public class AARCrewBuilderTest
     @Test
     public void testAcesMembers () throws PWCGException
     {        
-        AARCrewBuilder crewBuilder = new AARCrewBuilder(planeAiEntities);
+        AARCrewBuilder crewBuilder = new AARCrewBuilder(tankAiEntities);
         List<LogCrewMember> aces = crewBuilder.buildAcesFromLogTanks();
         assert(crewMemberIsInList(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER, aces) == false);
         assert(crewMemberIsInList(SerialNumber.ACE_STARTING_SERIAL_NUMBER+1, aces) == true);

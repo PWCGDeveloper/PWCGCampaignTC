@@ -90,10 +90,6 @@ public class LogTank extends LogAIEntity
 
     public LogCrewMember getLogCrewMember() throws PWCGException
     {
-        if (!isEquippedTank())
-        {
-            throw new PWCGException("Attempt to get crew for AI tank");
-        }
         return playerCompanyTank.getLogCrewMember();
     }
 
