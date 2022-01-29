@@ -67,12 +67,13 @@ public class AARInMissionResultGeneratorTest
     private Map<Integer, PlayerDeclarations> playerDeclarations = new HashMap<>();
     private PlayerDeclarations playerDeclarationSet;
 
+    private int aiCrewmemberSerialNumber1 = SerialNumber.AI_STARTING_SERIAL_NUMBER + 1;
+    private int aiCrewmemberSerialNumber2 = SerialNumber.AI_STARTING_SERIAL_NUMBER + 2;
+
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        
         campaign = CampaignCache.makeCampaign(CompanyTestProfile.THIRD_DIVISION_PROFILE);
-        
     }
 
     @BeforeEach
@@ -87,11 +88,11 @@ public class AARInMissionResultGeneratorTest
         playerTankVictor.setTankSerialNumber(SerialNumber.TANK_STARTING_SERIAL_NUMBER + 100);
 
         aiMemberTankVictor1.setCompanyId(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
-        aiMemberTankVictor1.setCrewMemberSerialNumber(SerialNumber.AI_STARTING_SERIAL_NUMBER + 101);
+        aiMemberTankVictor1.setCrewMemberSerialNumber(aiCrewmemberSerialNumber1);
         aiMemberTankVictor1.setTankSerialNumber(SerialNumber.TANK_STARTING_SERIAL_NUMBER + 101);
 
         aiMemberTankVictor2.setCompanyId(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
-        aiMemberTankVictor2.setCrewMemberSerialNumber(SerialNumber.AI_STARTING_SERIAL_NUMBER + 102);
+        aiMemberTankVictor2.setCrewMemberSerialNumber(aiCrewmemberSerialNumber2);
         aiMemberTankVictor2.setTankSerialNumber(SerialNumber.TANK_STARTING_SERIAL_NUMBER + 102);
 
         nonMemberTankVictor.setCompanyId(Company.AI);
