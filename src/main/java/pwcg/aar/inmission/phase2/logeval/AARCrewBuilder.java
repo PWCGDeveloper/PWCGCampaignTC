@@ -13,17 +13,17 @@ import pwcg.core.exception.PWCGException;
 
 public class AARCrewBuilder
 {
-    private Map <String, LogTank> planeAiEntities = new HashMap <>();
+    private Map <String, LogTank> tankAiEntities = new HashMap <>();
 
     public AARCrewBuilder(Map <String, LogTank> planeAiEntities)
     {
-        this.planeAiEntities = planeAiEntities;
+        this.tankAiEntities = planeAiEntities;
     }
     
     public List<LogCrewMember> buildCrewMembersFromLogTanks() throws PWCGException
     {
         List<LogCrewMember> crewMembersInMission = new ArrayList<LogCrewMember>();
-        for (LogTank logTank : planeAiEntities.values())
+        for (LogTank logTank : tankAiEntities.values())
         {
             if (logTank.isEquippedTank())
             {
@@ -37,7 +37,7 @@ public class AARCrewBuilder
     public List<LogCrewMember> buildAcesFromLogTanks() throws PWCGException
     {
         List<LogCrewMember> aceCrewsInMission = new ArrayList<LogCrewMember>();
-        for (LogTank logTank : planeAiEntities.values())
+        for (LogTank logTank : tankAiEntities.values())
         {
             if (SerialNumber.getSerialNumberClassification(logTank.getCrewMemberSerialNumber()) == SerialNumberClassification.ACE)
             {

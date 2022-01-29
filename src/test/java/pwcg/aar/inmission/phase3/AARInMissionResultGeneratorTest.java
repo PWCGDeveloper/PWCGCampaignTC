@@ -28,6 +28,7 @@ import pwcg.aar.prelim.AARPreliminaryData;
 import pwcg.aar.prelim.PwcgMissionData;
 import pwcg.aar.ui.events.model.ClaimDeniedEvent;
 import pwcg.campaign.Campaign;
+import pwcg.campaign.company.Company;
 import pwcg.campaign.context.Country;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.CrewMemberStatus;
@@ -53,10 +54,10 @@ public class AARInMissionResultGeneratorTest
     private CrewMember sergeantInPlatoon;
     private CrewMember secondLtInPlatoon;
     private CrewMember firstLtInPlatoon;
-    private LogTank playerPlaneVictor = new LogTank(1);
-    private LogTank aiPlaneVictor = new LogTank(2);
-    private LogTank wernerVossPlaneVictor = new LogTank(3);
-    private LogTank gerogesGuynemerPlaneVictor = new LogTank(4);
+    private LogTank playerTankVictor = new LogTank(1);
+    private LogTank aiMemberTankVictor1 = new LogTank(2);
+    private LogTank aiMemberTankVictor2 = new LogTank(3);
+    private LogTank nonMemberTankVictor = new LogTank(4);
 
     @Mock private AARMissionEvaluationData evaluationData;
     @Mock private LogFileSet missionLogFileSet;
@@ -81,17 +82,29 @@ public class AARInMissionResultGeneratorTest
         firmVictories = new ArrayList<>();
         playerDeclarationSet = new PlayerDeclarations();
 
-        playerPlaneVictor.setCompanyId(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
-        aiPlaneVictor.setCompanyId(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
-        wernerVossPlaneVictor.setCompanyId(401010);
-        gerogesGuynemerPlaneVictor.setCompanyId(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
-        
+        playerTankVictor.setCompanyId(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
+        playerTankVictor.setCrewMemberSerialNumber(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
+        playerTankVictor.setTankSerialNumber(SerialNumber.TANK_STARTING_SERIAL_NUMBER + 100);
+
+        aiMemberTankVictor1.setCompanyId(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
+        aiMemberTankVictor1.setCrewMemberSerialNumber(SerialNumber.AI_STARTING_SERIAL_NUMBER + 101);
+        aiMemberTankVictor1.setTankSerialNumber(SerialNumber.TANK_STARTING_SERIAL_NUMBER + 101);
+
+        aiMemberTankVictor2.setCompanyId(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
+        aiMemberTankVictor2.setCrewMemberSerialNumber(SerialNumber.AI_STARTING_SERIAL_NUMBER + 102);
+        aiMemberTankVictor2.setTankSerialNumber(SerialNumber.TANK_STARTING_SERIAL_NUMBER + 102);
+
+        nonMemberTankVictor.setCompanyId(Company.AI);
+        nonMemberTankVictor.setCrewMemberSerialNumber(SerialNumber.NO_SERIAL_NUMBER);
+        nonMemberTankVictor.setTankSerialNumber(SerialNumber.NO_SERIAL_NUMBER);
+
         Mockito.when(evaluationData.getCrewMembersInMission()).thenReturn(crewMemberStatusList);
         Mockito.when(evaluationData.getVictoryResults()).thenReturn(firmVictories);   
         
         createCampaignMembersInMission();
-        Mockito.when(evaluationData.getTankInMissionBySerialNumber(playerPlaneVictor.getCrewMemberSerialNumber())).thenReturn(playerPlaneVictor);   
-        Mockito.when(evaluationData.getTankInMissionBySerialNumber(aiPlaneVictor.getCrewMemberSerialNumber())).thenReturn(aiPlaneVictor);   
+        Mockito.when(evaluationData.getTankInMissionBySerialNumber(playerTankVictor.getCrewMemberSerialNumber())).thenReturn(playerTankVictor);   
+        Mockito.when(evaluationData.getTankInMissionBySerialNumber(aiMemberTankVictor1.getCrewMemberSerialNumber())).thenReturn(aiMemberTankVictor1);   
+        Mockito.when(evaluationData.getTankInMissionBySerialNumber(aiMemberTankVictor2.getCrewMemberSerialNumber())).thenReturn(aiMemberTankVictor2);   
     }
 
     @Test
@@ -99,9 +112,11 @@ public class AARInMissionResultGeneratorTest
     {
         addPlayerDeclarations();
         
-        createVictory(playerPlaneVictor, SerialNumber.AI_STARTING_SERIAL_NUMBER + 100, SerialNumber.TANK_STARTING_SERIAL_NUMBER + 100);
-        createVictory(aiPlaneVictor, SerialNumber.AI_STARTING_SERIAL_NUMBER + 101, SerialNumber.TANK_STARTING_SERIAL_NUMBER + 101);
-        createVictory(aiPlaneVictor, SerialNumber.AI_STARTING_SERIAL_NUMBER + 102, SerialNumber.TANK_STARTING_SERIAL_NUMBER + 102);
+        createVictory(playerTankVictor);
+        createVictory(aiMemberTankVictor1);
+        createVictory(aiMemberTankVictor2);
+        createVictory(aiMemberTankVictor2);
+        createVictory(nonMemberTankVictor);
         
         AARContext aarContext = new AARContext(campaign);
         aarContext.setMissionEvaluationData(evaluationData);
@@ -109,23 +124,25 @@ public class AARInMissionResultGeneratorTest
         AARInMissionResultGenerator coordinatorInMission = new AARInMissionResultGenerator(campaign, aarContext);
         coordinatorInMission.generateInMissionResults(playerDeclarations);
         
-        assert(aarContext.getPersonnelLosses().getPersonnelKilled().size() == 3);
+        assert(aarContext.getPersonnelLosses().getPersonnelKilled().size() == 1);
         assert(aarContext.getPersonnelLosses().getPersonnelCaptured().size() == 1);
         assert(aarContext.getPersonnelLosses().getPersonnelMaimed().size() == 1);
-        assert(aarContext.getPersonnelLosses().getPersonnelWounded().size() == 2);
-        assert(aarContext.getPersonnelLosses().getAcesKilled(campaign).size() == 2);
+        assert(aarContext.getPersonnelLosses().getPersonnelWounded().size() == 1);
+        assert(aarContext.getPersonnelLosses().getAcesKilled(campaign).size() == 0);
 
-        List<Victory> aiCrewMemberVictories = aarContext.getPersonnelAcheivements().getVictoryAwardsForCrewMember(aiPlaneVictor.getCrewMemberSerialNumber());
-        List<Victory> playerVictories = aarContext.getPersonnelAcheivements().getVictoryAwardsForCrewMember(playerPlaneVictor.getCrewMemberSerialNumber());
+        List<Victory> ai1CrewMemberVictories = aarContext.getPersonnelAcheivements().getVictoryAwardsForCrewMember(aiMemberTankVictor1.getCrewMemberSerialNumber());
+        List<Victory> ai2CrewMemberVictories = aarContext.getPersonnelAcheivements().getVictoryAwardsForCrewMember(aiMemberTankVictor2.getCrewMemberSerialNumber());
+        List<Victory> playerVictories = aarContext.getPersonnelAcheivements().getVictoryAwardsForCrewMember(playerTankVictor.getCrewMemberSerialNumber());
         List<ClaimDeniedEvent> playerClaimsDenied = aarContext.getPersonnelAcheivements().getPlayerClaimsDenied();
-        Assertions.assertTrue (aiCrewMemberVictories.size() == 3);
-        Assertions.assertTrue (playerVictories.size() == 2);
-        Assertions.assertTrue (playerClaimsDenied.size() == 2);
+        Assertions.assertTrue (ai1CrewMemberVictories.size() == 1);
+        Assertions.assertTrue (ai2CrewMemberVictories.size() == 2);
+        Assertions.assertTrue (playerVictories.size() == 1);
+        Assertions.assertTrue (playerClaimsDenied.size() == 1);
     }
     
     private void addPlayerDeclarations() throws PWCGException
     {
-        for (int i = 0; i < 4; ++i)
+        for (int i = 0; i < 2; ++i)
         {
             PlayerVictoryDeclaration declaration = new PlayerVictoryDeclaration();
             declaration.setTankType("pziv-g");
@@ -136,12 +153,13 @@ public class AARInMissionResultGeneratorTest
         playerDeclarations.put(playerInPlatoon.getSerialNumber(), playerDeclarationSet);
     }
 
-    private void createVictory(LogTank victor, Integer crewMemberSerialNumber, Integer tankSerialNumber)
+    private void createVictory(LogTank victor)
     {
         LogTank victim = new LogTank(3);
         victim.setVehicleType("pziv-g");
         victim.setCountry(new BoSCountry(Country.GERMANY));
-
+        victim.setCompanyId(Company.AI);
+        
         LogVictory resultVictory = new LogVictory(10);
         resultVictory.setLocation(new Coordinate(100.0, 0.0, 100.0));
         resultVictory.setVictor(victor);
@@ -153,12 +171,13 @@ public class AARInMissionResultGeneratorTest
     {        
         CrewMember playerInPlatoon = campaign.findReferencePlayer();
         addCompanyCrewMember(playerInPlatoon.getSerialNumber(), CrewMemberStatus.STATUS_WOUNDED);
-        playerPlaneVictor.setCrewMemberSerialNumber(playerInPlatoon.getSerialNumber());
-        playerPlaneVictor.setCountry(new BoSCountry(Country.RUSSIA));
-        playerPlaneVictor.setCrewMemberSerialNumber(playerInPlatoon.getSerialNumber());
+        playerTankVictor.setCrewMemberSerialNumber(playerInPlatoon.getSerialNumber());
+        playerTankVictor.setCountry(new BoSCountry(Country.USA));
+        playerTankVictor.setCrewMemberSerialNumber(playerInPlatoon.getSerialNumber());
                 
-        sergeantInPlatoon = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "Sergent");
-        aiPlaneVictor.setCountry(new BoSCountry(Country.BRITAIN));
+        sergeantInPlatoon = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "Sergeant");
+        addCompanyCrewMember(sergeantInPlatoon.getSerialNumber(), CrewMemberStatus.STATUS_ACTIVE);
+        aiMemberTankVictor1.setCountry(new BoSCountry(Country.USA));
 
         corporalInPlatoon = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "Corporal");
         addCompanyCrewMember(corporalInPlatoon.getSerialNumber(), CrewMemberStatus.STATUS_SERIOUSLY_WOUNDED);
@@ -166,7 +185,7 @@ public class AARInMissionResultGeneratorTest
         secondLtInPlatoon = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "2nd Lieutenant");
         addCompanyCrewMember(secondLtInPlatoon.getSerialNumber(), CrewMemberStatus.STATUS_KIA);
         
-        firstLtInPlatoon = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "Lieutenant");
+        firstLtInPlatoon = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "1st Lieutenant");
         addCompanyCrewMember(firstLtInPlatoon.getSerialNumber(), CrewMemberStatus.STATUS_CAPTURED);
     }
     

@@ -13,10 +13,12 @@ import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogCrewMember;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.CampaignPersonnelManager;
+import pwcg.campaign.company.Company;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.SerialNumber;
 import pwcg.campaign.crewmember.TankAce;
 import pwcg.core.exception.PWCGException;
+import pwcg.testutils.CompanyTestProfile;
 
 @ExtendWith(MockitoExtension.class)
 public class AARCrewBuilderTest
@@ -49,28 +51,33 @@ public class AARCrewBuilderTest
         
 
         tankAiEntities = new HashMap <>();
-        addPlane(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
-        addPlane(SerialNumber.ACE_STARTING_SERIAL_NUMBER+1);
-        addPlane(SerialNumber.ACE_STARTING_SERIAL_NUMBER+2);
-        addPlane(SerialNumber.AI_STARTING_SERIAL_NUMBER+1);
-        addPlane(SerialNumber.AI_STARTING_SERIAL_NUMBER+2);
+        addTank(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
+        addTank(SerialNumber.ACE_STARTING_SERIAL_NUMBER+1);
+        addTank(SerialNumber.ACE_STARTING_SERIAL_NUMBER+2);
+        addTank(SerialNumber.AI_STARTING_SERIAL_NUMBER+1);
+        addTank(SerialNumber.AI_STARTING_SERIAL_NUMBER+2);
     }
 
-    private static void addPlane(Integer crewMemberSerialNumber)
+    private static void addTank(Integer crewMemberSerialNumber)
     {
         LogCrewMember crewMember = new LogCrewMember();
         crewMember.setSerialNumber(crewMemberSerialNumber);
         
-        LogTank plane1 = new LogTank(1);
-        plane1.setCrewMemberSerialNumber(crewMemberSerialNumber);
+        LogTank tank = new LogTank(1);
+        tank.setCrewMemberSerialNumber(crewMemberSerialNumber);
         
-        String planeId = crewMemberSerialNumber.toString();
-        tankAiEntities.put(planeId, plane1);
+        String tankId = crewMemberSerialNumber.toString();
+        tankAiEntities.put(tankId, tank);
     }
 
     @Test
     public void testCrewMembers () throws PWCGException
     {        
+        for (LogTank tank : tankAiEntities.values())
+        {
+            tank.setCompanyId(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
+        }
+        
         AARCrewBuilder crewBuilder = new AARCrewBuilder(tankAiEntities);
         List<LogCrewMember> inSquad = crewBuilder.buildCrewMembersFromLogTanks();
         assert(crewMemberIsInList(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER, inSquad) == true);
@@ -78,6 +85,24 @@ public class AARCrewBuilderTest
         assert(crewMemberIsInList(SerialNumber.ACE_STARTING_SERIAL_NUMBER+2, inSquad) == true);
         assert(crewMemberIsInList(SerialNumber.AI_STARTING_SERIAL_NUMBER+1, inSquad) == true);
         assert(crewMemberIsInList(SerialNumber.AI_STARTING_SERIAL_NUMBER+2, inSquad) == true);
+    }
+
+    @Test
+    public void testCrewMembersNotInCompany () throws PWCGException
+    {        
+        for (LogTank tank : tankAiEntities.values())
+        {
+            tank.setCompanyId(Company.AI);
+        }
+        
+
+        AARCrewBuilder crewBuilder = new AARCrewBuilder(tankAiEntities);
+        List<LogCrewMember> inSquad = crewBuilder.buildCrewMembersFromLogTanks();
+        assert(crewMemberIsInList(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER, inSquad) == false);
+        assert(crewMemberIsInList(SerialNumber.ACE_STARTING_SERIAL_NUMBER+1, inSquad) == false);
+        assert(crewMemberIsInList(SerialNumber.ACE_STARTING_SERIAL_NUMBER+2, inSquad) == false);
+        assert(crewMemberIsInList(SerialNumber.AI_STARTING_SERIAL_NUMBER+1, inSquad) == false);
+        assert(crewMemberIsInList(SerialNumber.AI_STARTING_SERIAL_NUMBER+2, inSquad) == false);
     }
 
     @Test

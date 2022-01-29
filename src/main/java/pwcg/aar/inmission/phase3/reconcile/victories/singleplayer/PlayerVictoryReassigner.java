@@ -21,12 +21,18 @@ class PlayerVictoryReassigner
     {
         for (LogVictory resultVictory : victorySorter.getFirmTankVictories())
         {
-            forRandomAssignment(resultVictory);
+            if(VictoryAssignDecision.isAssignPlayer(resultVictory))
+            {
+                forRandomAssignment(resultVictory);
+            }
         }
         
         for (LogVictory resultVictory : victorySorter.getFirmPlaneVictories())
         {
-            forRandomAssignment(resultVictory);
+            if(VictoryAssignDecision.isAssignPlayer(resultVictory))
+            {
+                forRandomAssignment(resultVictory);
+            }
         }
     }
 
@@ -36,8 +42,8 @@ class PlayerVictoryReassigner
         {
             if (resultVictory.getVictor() instanceof LogTank)
             {
-                LogTank victorPlanePlane = (LogTank)resultVictory.getVictor();
-                CrewMember crewMember = campaign.getPersonnelManager().getAnyCampaignMember(victorPlanePlane.getCrewMemberSerialNumber());
+                LogTank victorTank = (LogTank)resultVictory.getVictor();
+                CrewMember crewMember = campaign.getPersonnelManager().getAnyCampaignMember(victorTank.getCrewMemberSerialNumber());
                 if (PlayerVictoryResolver.isPlayerVictory(crewMember, resultVictory.getVictor()))
                 {
                     LogUnknown markedForAssignment = new LogUnknown();

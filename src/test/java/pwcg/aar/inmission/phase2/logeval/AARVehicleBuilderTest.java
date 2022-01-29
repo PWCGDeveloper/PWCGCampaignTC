@@ -72,7 +72,7 @@ public class AARVehicleBuilderTest
     }
 
     @Test
-    public void testSortVehiclesNoPlanes () throws PWCGException
+    public void testSortVehiclesNoTanks () throws PWCGException
     {        
         assertThrows(PWCGException.class, () -> 
         {
@@ -80,8 +80,8 @@ public class AARVehicleBuilderTest
         });
     }
 
-    public void runTest(int numFrenchPlanes, int numGermanPlanes,
-                    int numFrenchTrucks, int numGermanTrucks) throws PWCGException
+    public void runTest(int numRussianPlanes, int numGermanPlanes,
+                    int numRussianTrucks, int numGermanTrucks) throws PWCGException
     {
         Mockito.when(campaign.getPersonnelManager()).thenReturn(campaignPersonnelManager);
         Mockito.when(campaignPersonnelManager.getAnyCampaignMember(ArgumentMatchers.<Integer>any())).thenReturn(crewMember);        
@@ -91,7 +91,7 @@ public class AARVehicleBuilderTest
         Mockito.when(crewMember.isPlayer()).thenReturn(false);
 
         testMissionEntityGenerator = new TestMissionEntityGenerator();
-        testMissionEntityGenerator.makeMissionArtifacts(numFrenchPlanes, numGermanPlanes, numFrenchTrucks, numGermanTrucks);
+        testMissionEntityGenerator.makeMissionArtifacts(numRussianPlanes, numGermanPlanes, numRussianTrucks, numGermanTrucks);
         
         List<IAType12> vehiclesSpawnEvents = testMissionEntityGenerator.getVehicles();
         Mockito.when(logEventData.getVehicles()).thenReturn(vehiclesSpawnEvents);
@@ -99,8 +99,8 @@ public class AARVehicleBuilderTest
         AARVehicleBuilder aarVehicleBuilder = createAARVehicleBuilder(); 
         aarVehicleBuilder.buildVehicleListsByVehicleType(logEventData);
         
-        assert(aarVehicleBuilder.getLogTanks().size() == numFrenchPlanes + numGermanPlanes);
-        assert(aarVehicleBuilder.getLogGroundUNits().size() == numFrenchTrucks + numGermanTrucks);
+        assert(aarVehicleBuilder.getLogTanks().size() == (numRussianPlanes + numGermanPlanes));
+        assert(aarVehicleBuilder.getLogGroundUNits().size() == (numRussianTrucks + numGermanTrucks));
     }
     
     
@@ -108,13 +108,13 @@ public class AARVehicleBuilderTest
     {
         AARBotVehicleMapper botPlaneMapper = new AARBotVehicleMapper(logEventData);
 
-        Mockito.when(pwcgMissionDataEvaluator.wasCrewMemberAssignedToMissionByName("French CrewMemberA")).thenReturn(true);
-        Mockito.when(pwcgMissionDataEvaluator.wasCrewMemberAssignedToMissionByName("French CrewMemberB")).thenReturn(true);
+        Mockito.when(pwcgMissionDataEvaluator.wasCrewMemberAssignedToMissionByName("Russian CrewMemberA")).thenReturn(true);
+        Mockito.when(pwcgMissionDataEvaluator.wasCrewMemberAssignedToMissionByName("Russian CrewMemberB")).thenReturn(true);
         Mockito.when(pwcgMissionDataEvaluator.wasCrewMemberAssignedToMissionByName("German CrewMemberA")).thenReturn(true);
         Mockito.when(pwcgMissionDataEvaluator.wasCrewMemberAssignedToMissionByName("German CrewMemberB")).thenReturn(true);
         
-        Mockito.when(pwcgMissionDataEvaluator.getTankForCrewMemberByName("French CrewMemberA")).thenReturn(testMissionEntityGenerator.getMissionTank(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1));
-        Mockito.when(pwcgMissionDataEvaluator.getTankForCrewMemberByName("French CrewMemberB")).thenReturn(testMissionEntityGenerator.getMissionTank(SerialNumber.AI_STARTING_SERIAL_NUMBER + 2));
+        Mockito.when(pwcgMissionDataEvaluator.getTankForCrewMemberByName("Russian CrewMemberA")).thenReturn(testMissionEntityGenerator.getMissionTank(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1));
+        Mockito.when(pwcgMissionDataEvaluator.getTankForCrewMemberByName("Russian CrewMemberB")).thenReturn(testMissionEntityGenerator.getMissionTank(SerialNumber.AI_STARTING_SERIAL_NUMBER + 2));
         Mockito.when(pwcgMissionDataEvaluator.getTankForCrewMemberByName("German CrewMemberA")).thenReturn(testMissionEntityGenerator.getMissionTank(SerialNumber.AI_STARTING_SERIAL_NUMBER + 100));
         Mockito.when(pwcgMissionDataEvaluator.getTankForCrewMemberByName("German CrewMemberB")).thenReturn(testMissionEntityGenerator.getMissionTank(SerialNumber.AI_STARTING_SERIAL_NUMBER + 200));
 

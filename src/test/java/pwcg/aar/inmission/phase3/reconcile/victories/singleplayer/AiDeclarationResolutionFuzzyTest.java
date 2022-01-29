@@ -135,7 +135,7 @@ public class AiDeclarationResolutionFuzzyTest
         campaignMembersInmission.addToCrewMemberCollection(aiSquadMember1);
 
         AiDeclarationResolver declarationResolution = new AiDeclarationResolver(campaign, aarContext);
-        ConfirmedVictories confirmedAiVictories = declarationResolution.determineAiAirResults(victorySorter);
+        ConfirmedVictories confirmedAiVictories = declarationResolution.determineAiTankResults(victorySorter);
 
         Assertions.assertTrue (confirmedAiVictories.getConfirmedVictories().size() == 1);
     }
@@ -148,7 +148,7 @@ public class AiDeclarationResolutionFuzzyTest
         campaignMembersInmission.addToCrewMemberCollection(aiSquadMember2);
 
         AiDeclarationResolver declarationResolution = new AiDeclarationResolver(campaign, aarContext);
-        ConfirmedVictories confirmedAiVictories = declarationResolution.determineAiAirResults(victorySorter);
+        ConfirmedVictories confirmedAiVictories = declarationResolution.determineAiTankResults(victorySorter);
         
         Assertions.assertTrue (confirmedAiVictories.getConfirmedVictories().size() == 2);
     }
@@ -159,7 +159,7 @@ public class AiDeclarationResolutionFuzzyTest
         campaignMembersInmission.addToCrewMemberCollection(player);
 
         AiDeclarationResolver declarationResolution = new AiDeclarationResolver(campaign, aarContext);
-        ConfirmedVictories confirmedAiVictories = declarationResolution.determineAiAirResults(victorySorter);
+        ConfirmedVictories confirmedAiVictories = declarationResolution.determineAiTankResults(victorySorter);
         
         Assertions.assertTrue (confirmedAiVictories.getConfirmedVictories().size() == 0);
     }
@@ -177,7 +177,7 @@ public class AiDeclarationResolutionFuzzyTest
         }
         
         AiDeclarationResolver declarationResolution = new AiDeclarationResolver(campaign, aarContext);
-        ConfirmedVictories confirmedAiVictories = declarationResolution.determineAiAirResults(victorySorter);
+        ConfirmedVictories confirmedAiVictories = declarationResolution.determineAiTankResults(victorySorter);
         
         Assertions.assertTrue (confirmedAiVictories.getConfirmedVictories().size() == 0);
     }
@@ -193,7 +193,7 @@ public class AiDeclarationResolutionFuzzyTest
         Mockito.when(aiSquadMember2.getCompanyId()).thenReturn(501004);
 
         AiDeclarationResolver declarationResolution = new AiDeclarationResolver(campaign, aarContext);
-        ConfirmedVictories confirmedAiVictories = declarationResolution.determineAiAirResults(victorySorter);
+        ConfirmedVictories confirmedAiVictories = declarationResolution.determineAiTankResults(victorySorter);
         
         Assertions.assertTrue (confirmedAiVictories.getConfirmedVictories().size() == 0);
     }
@@ -212,7 +212,7 @@ public class AiDeclarationResolutionFuzzyTest
         aiVictorTwo.setCountry(CountryFactory.makeCountryByCountry(Country.RUSSIA));
 
         AiDeclarationResolver declarationResolution = new AiDeclarationResolver(campaign, aarContext);
-        ConfirmedVictories confirmedAiVictories = declarationResolution.determineAiAirResults(victorySorter);
+        ConfirmedVictories confirmedAiVictories = declarationResolution.determineAiTankResults(victorySorter);
         
         Assertions.assertTrue (confirmedAiVictories.getConfirmedVictories().size() == 0);
     }

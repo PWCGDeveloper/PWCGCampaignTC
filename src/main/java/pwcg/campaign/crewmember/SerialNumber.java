@@ -3,7 +3,7 @@ package pwcg.campaign.crewmember;
 public class SerialNumber
 {
     public static final int NO_SERIAL_NUMBER = 0;
-    public static final int ACE_STARTING_SERIAL_NUMBER = 100000;
+    public static final int ACE_STARTING_SERIAL_NUMBER = 20000;
     public static final int PLAYER_STARTING_SERIAL_NUMBER = 1000000;
     public static final int AI_STARTING_SERIAL_NUMBER = 3000000;
     public static final int TANK_STARTING_SERIAL_NUMBER = 5000000;
@@ -18,7 +18,7 @@ public class SerialNumber
         PLAYER,
         ACE,
         AI, 
-        PLANE
+        TANK
     }
 
     public static SerialNumberClassification getSerialNumberClassification (int serialNumber)
@@ -41,7 +41,7 @@ public class SerialNumber
         }
         else
         {
-            return SerialNumberClassification.PLANE;
+            return SerialNumberClassification.TANK;
         }
     }
 

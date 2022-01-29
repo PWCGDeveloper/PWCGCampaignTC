@@ -27,6 +27,7 @@ import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.CrewMembers;
 import pwcg.campaign.crewmember.SerialNumber;
 import pwcg.core.exception.PWCGException;
+import pwcg.testutils.CompanyTestProfile;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
@@ -51,33 +52,35 @@ public class AiDeclarationResolutionFirmTest
     private List<LogVictory> emptyList = new ArrayList<>();        
     private List<CrewMember> players = new ArrayList<>();
 
-    private LogTank playerVictor = new LogTank(1);
-    private LogTank aiVictor = new LogTank(2);
+    private LogTank playerTankVictor = new LogTank(1);
+    private LogTank aiMemberTankVictor1 = new LogTank(2);
+    
+    private int aiCrewmemberSerialNumber = SerialNumber.AI_STARTING_SERIAL_NUMBER + 1;
 
     @BeforeEach
     public void setupTest() throws PWCGException
     {
-        
-        
         firmVictories.clear();
         
         Mockito.when(aarContext.getMissionEvaluationData()).thenReturn(evaluationData);
         Mockito.when(campaign.getPersonnelManager()).thenReturn(personnelManager);   
 
-        playerVictor.setCrewMemberSerialNumber(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
-        playerVictor.setTankSerialNumber(SerialNumber.TANK_STARTING_SERIAL_NUMBER + 1);
-        aiVictor.setCrewMemberSerialNumber(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1);
-        aiVictor.setTankSerialNumber(SerialNumber.TANK_STARTING_SERIAL_NUMBER + 2);
+        playerTankVictor.setCompanyId(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
+        playerTankVictor.setCrewMemberSerialNumber(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
+        playerTankVictor.setTankSerialNumber(SerialNumber.TANK_STARTING_SERIAL_NUMBER + 1);
 
-        createVictory(playerVictor, SerialNumber.AI_STARTING_SERIAL_NUMBER + 1000);
-        createVictory(aiVictor, SerialNumber.AI_STARTING_SERIAL_NUMBER + 1001);
-        createVictory(aiVictor, SerialNumber.AI_STARTING_SERIAL_NUMBER + 1002);
+        aiMemberTankVictor1.setCompanyId(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId());
+        aiMemberTankVictor1.setCrewMemberSerialNumber(aiCrewmemberSerialNumber);
+        aiMemberTankVictor1.setTankSerialNumber(SerialNumber.TANK_STARTING_SERIAL_NUMBER + 2);
+
+        createVictory(playerTankVictor);
+        createVictory(aiMemberTankVictor1);
+        createVictory(aiMemberTankVictor1);
     }
 
-    private void createVictory(LogTank victor, Integer victimSerialNumber) throws PWCGException
+    private void createVictory(LogTank victor) throws PWCGException
     {        
         LogTank victim = new LogTank(3);
-        victim.setCrewMemberSerialNumber(victimSerialNumber);
         victim.setTankSerialNumber(SerialNumber.TANK_STARTING_SERIAL_NUMBER + 100);
         
         LogVictory resultVictory = new LogVictory(10);
@@ -98,7 +101,7 @@ public class AiDeclarationResolutionFirmTest
 
         Mockito.when(player.isPlayer()).thenReturn(true);
         Mockito.when(player.getSerialNumber()).thenReturn(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER);
-        Mockito.when(ai.getSerialNumber()).thenReturn(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1);
+        Mockito.when(ai.getSerialNumber()).thenReturn(aiCrewmemberSerialNumber);
     }
     
     @Test
@@ -107,12 +110,12 @@ public class AiDeclarationResolutionFirmTest
         Mockito.when(personnelManager.getAnyCampaignMember(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER)).thenReturn(player);
         Mockito.when(personnelManager.getAnyCampaignMember(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER)).thenReturn(player);
 
-        Mockito.when(evaluationData.getTankInMissionBySerialNumber(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1)).thenReturn(aiVictor);
-        Mockito.when(personnelManager.getAnyCampaignMember(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1)).thenReturn(ai);
-        Mockito.when(personnelManager.getAnyCampaignMember(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1)).thenReturn(ai);
+        Mockito.when(evaluationData.getTankInMissionBySerialNumber(aiCrewmemberSerialNumber)).thenReturn(aiMemberTankVictor1);
+        Mockito.when(personnelManager.getAnyCampaignMember(aiCrewmemberSerialNumber)).thenReturn(ai);
+        Mockito.when(personnelManager.getAnyCampaignMember(aiCrewmemberSerialNumber)).thenReturn(ai);
         
         AiDeclarationResolver declarationResolution = new AiDeclarationResolver(campaign, aarContext);
-        ConfirmedVictories confirmedAiVictories = declarationResolution.determineAiAirResults(victorySorter);
+        ConfirmedVictories confirmedAiVictories = declarationResolution.determineAiTankResults(victorySorter);
         
         Assertions.assertTrue (confirmedAiVictories.getConfirmedVictories().size() == 2);
     }
@@ -123,15 +126,15 @@ public class AiDeclarationResolutionFirmTest
         Mockito.when(personnelManager.getAnyCampaignMember(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER)).thenReturn(player);
         Mockito.when(personnelManager.getAnyCampaignMember(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER)).thenReturn(player);
 
-        Mockito.when(evaluationData.getTankInMissionBySerialNumber(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1)).thenReturn(aiVictor);
-        Mockito.when(personnelManager.getAnyCampaignMember(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1)).thenReturn(ai);
-        Mockito.when(personnelManager.getAnyCampaignMember(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1)).thenReturn(ai);
+        Mockito.when(evaluationData.getTankInMissionBySerialNumber(aiCrewmemberSerialNumber)).thenReturn(aiMemberTankVictor1);
+        Mockito.when(personnelManager.getAnyCampaignMember(aiCrewmemberSerialNumber)).thenReturn(ai);
+        Mockito.when(personnelManager.getAnyCampaignMember(aiCrewmemberSerialNumber)).thenReturn(ai);
         
         Mockito.when(victorySorter.getFirmTankVictories()).thenReturn(emptyList);
         Mockito.when(victorySorter.getFirmPlaneVictories()).thenReturn(firmVictories);
 
         AiDeclarationResolver declarationResolution = new AiDeclarationResolver(campaign, aarContext);
-        ConfirmedVictories confirmedAiVictories = declarationResolution.determineAiAirResults(victorySorter);
+        ConfirmedVictories confirmedAiVictories = declarationResolution.determineAiTankResults(victorySorter);
         
         Assertions.assertTrue (confirmedAiVictories.getConfirmedVictories().size() == 2);
     }
@@ -143,11 +146,10 @@ public class AiDeclarationResolutionFirmTest
         Mockito.when(personnelManager.getAnyCampaignMember(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER)).thenReturn(player);
         Mockito.when(personnelManager.getAnyCampaignMember(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER)).thenReturn(player);
 
-        Mockito.when(personnelManager.getAnyCampaignMember(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1)).thenReturn(null);
-        Mockito.when(personnelManager.getAnyCampaignMember(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1)).thenReturn(null);
+        Mockito.when(personnelManager.getAnyCampaignMember(aiCrewmemberSerialNumber)).thenReturn(null);
         
         AiDeclarationResolver declarationResolution = new AiDeclarationResolver(campaign, aarContext);
-        ConfirmedVictories confirmedAiVictories = declarationResolution.determineAiAirResults(victorySorter);
+        ConfirmedVictories confirmedAiVictories = declarationResolution.determineAiTankResults(victorySorter);
         
         Assertions.assertTrue (confirmedAiVictories.getConfirmedVictories().size() == 0);
     }

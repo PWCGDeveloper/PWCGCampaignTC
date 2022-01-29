@@ -48,7 +48,7 @@ public class PromotionEventHandlerTest
     }
 
     @Test
-    public void promoteCorporalToSergent () throws PWCGException
+    public void promoteCorporalToSergeant () throws PWCGException
     {     
         Mockito.when(crewMember.determineService(ArgumentMatchers.<Date>any())).thenReturn(campaign.determinePlayerCompanies().get(0).determineServiceForCompany(campaign.getDate()));
         Mockito.when(crewMember.getBattlesFought()).thenReturn(30);
@@ -63,7 +63,7 @@ public class PromotionEventHandlerTest
     }
 
     @Test
-    public void promoteCorporalToSergentFailedDueToDifferentRole () throws PWCGException
+    public void promoteCorporalToSergeantFailedDueToDifferentRole () throws PWCGException
     {     
         Mockito.when(crewMember.determineService(ArgumentMatchers.<Date>any())).thenReturn(campaign.determinePlayerCompanies().get(0).determineServiceForCompany(campaign.getDate()));
         Mockito.when(crewMember.getBattlesFought()).thenReturn(10);

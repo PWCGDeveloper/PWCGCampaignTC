@@ -3,6 +3,7 @@ package pwcg.aar.inmission.phase2.logeval.missionresultentity;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.company.Company;
 import pwcg.campaign.crewmember.CrewMember;
+import pwcg.campaign.crewmember.SerialNumber;
 import pwcg.campaign.tank.EquippedTank;
 import pwcg.campaign.tank.TankStatus;
 import pwcg.core.exception.PWCGException;
@@ -13,7 +14,9 @@ public class LogTank extends LogAIEntity
 {
     private int tankStatus = TankStatus.STATUS_DEPLOYED;
     private LogTurrets turrets = new LogTurrets();
-    private LogPlayerCompanyTank playerCompanyTank = new LogPlayerCompanyTank();
+    private int tankSerialNumber = SerialNumber.NO_SERIAL_NUMBER;
+    private LogCrewMember logCrewMember= new LogCrewMember();
+    private Integer companyId = Company.AI;
 
     public LogTank(int sequenceNumber)
     {
@@ -22,12 +25,17 @@ public class LogTank extends LogAIEntity
 
     public void mapToEquippedTankFromMissionTank(PwcgGeneratedMissionVehicleData missionTank)
     {        
-        playerCompanyTank.initializeFromMissionTank(missionTank);
+        this.logCrewMember.setSerialNumber(missionTank.getCrewMemberSerialNumber());
+        this.tankSerialNumber = missionTank.getVehicleSerialNumber();
+        this.logCrewMember.setSerialNumber(missionTank.getCrewMemberSerialNumber());
+        this.companyId = missionTank.getCompanyId();
     }
 
     public void mapToEquippedTankForTest(Campaign campaign, EquippedTank tank, CrewMember crewMember) throws PWCGException
     {
-        playerCompanyTank.initializeFromOutOfMission(tank, crewMember);
+        this.logCrewMember.setSerialNumber(crewMember.getSerialNumber());
+        this.tankSerialNumber = tank.getSerialNumber();
+        this.companyId = crewMember.getCompanyId();
 
         super.setId(""+super.getSequenceNum());
         super.setCountry(crewMember.determineCountry(campaign.getDate()));
@@ -38,7 +46,7 @@ public class LogTank extends LogAIEntity
     
     public void mapBotToCrew(String botId) throws PWCGException
     {
-        playerCompanyTank.mapBotToCrew(botId);
+        logCrewMember.setBotId(botId);
     }
 
     public LogTurret createTurret(IAType12 atype12) throws PWCGException
@@ -68,7 +76,7 @@ public class LogTank extends LogAIEntity
     public boolean isBot(String botId)
     {
         
-        if (playerCompanyTank.getLogCrewMember().getBotId().equals(botId))
+        if (logCrewMember.getBotId().equals(botId))
         {
             return true;
         }
@@ -78,7 +86,12 @@ public class LogTank extends LogAIEntity
 
     public boolean isCrewMember(int serialNumber)
     {
-        return playerCompanyTank.isCrewMember(serialNumber);
+        if (logCrewMember.getSerialNumber() == serialNumber)
+        {
+            return true;
+        }
+        
+        return false;
     }
     
     public CrewMember getCrewMemberForLogEvent(Campaign campaign) throws PWCGException
@@ -90,37 +103,37 @@ public class LogTank extends LogAIEntity
 
     public LogCrewMember getLogCrewMember() throws PWCGException
     {
-        return playerCompanyTank.getLogCrewMember();
+        return logCrewMember;
     }
 
     public Integer getCompanyId()
     {
-        return playerCompanyTank.getCompanyId();
+        return companyId;
     }
 
     public void setCompanyId(Integer companyId)
     {
-        playerCompanyTank.setCompanyId(companyId);
+        this.companyId = companyId;
     }
 
     public int getCrewMemberSerialNumber()
     {
-        return playerCompanyTank.getCrewMemberSerialNumber();
+        return logCrewMember.getSerialNumber();
     }
 
     public void setCrewMemberSerialNumber(int crewMemberSerialNumber)
     {
-        playerCompanyTank.setCrewMemberSerialNumber(crewMemberSerialNumber);
+        logCrewMember.setSerialNumber(crewMemberSerialNumber);
     }
 
     public int getTankSerialNumber()
     {
-        return playerCompanyTank.getTankSerialNumber();
+        return tankSerialNumber;
     }
 
     public void setTankSerialNumber(int tankSerialNumber)
     {
-        playerCompanyTank.setTankSerialNumber(tankSerialNumber);
+        this.tankSerialNumber = tankSerialNumber;
     }
 
     public int getTankStatus()
@@ -135,7 +148,7 @@ public class LogTank extends LogAIEntity
 
     public boolean isEquippedTank()
     {
-        if (playerCompanyTank.getCompanyId() != Company.AI)
+        if (companyId != Company.AI)
         {
             return true;
         }

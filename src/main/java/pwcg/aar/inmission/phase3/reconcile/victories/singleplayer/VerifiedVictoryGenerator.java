@@ -27,16 +27,17 @@ public class VerifiedVictoryGenerator
 
         VictorySorter victorySorter = new VictorySorter();
         victorySorter.sortVictories(evaluationData.getVictoryResults());
+
         PlayerDeclarationResolution playerClaimResolution = new PlayerDeclarationResolution(campaign, evaluationData, victorySorter, playerDeclarations);
+        ConfirmedVictories verifiedPlayerMissionResultVictorys = playerClaimResolution.determinePlayerResultsWithClaims();
         
         AiDeclarationResolver aiDeclarationResolution = createAiDeclarationResolver();        
+        ConfirmedVictories verifiedAIMissionResultVictorys = aiDeclarationResolution.determineAiTankResults(victorySorter);
+
         GroundDeclarationResolver groundDeclarationResolver = new GroundDeclarationResolver(victorySorter);
-        
-        ConfirmedVictories verifiedMissionResultVictorys = new ConfirmedVictories();
-        ConfirmedVictories verifiedPlayerMissionResultVictorys = playerClaimResolution.determinePlayerResultsWithClaims();
-        ConfirmedVictories verifiedAIMissionResultVictorys = aiDeclarationResolution.determineAiAirResults(victorySorter);
         ConfirmedVictories verifiedGroundMissionResultVictorys = groundDeclarationResolver.determineGroundResults();
         
+        ConfirmedVictories verifiedMissionResultVictorys = new ConfirmedVictories();
         verifiedMissionResultVictorys.addConfirmedVictories(verifiedPlayerMissionResultVictorys);
         verifiedMissionResultVictorys.addConfirmedVictories(verifiedAIMissionResultVictorys);
         verifiedMissionResultVictorys.addConfirmedVictories(verifiedGroundMissionResultVictorys);

@@ -30,7 +30,7 @@ public class AiDeclarationResolver  extends PlayerVictoryResolver
         this.aarContext = aarContext;
     }
 
-    public ConfirmedVictories determineAiAirResults  (VictorySorter victorySorter) throws PWCGException 
+    public ConfirmedVictories determineAiTankResults  (VictorySorter victorySorter) throws PWCGException 
     {
         for (LogVictory resultVictory : victorySorter.getFirmTankVictories())
         {
@@ -59,15 +59,18 @@ public class AiDeclarationResolver  extends PlayerVictoryResolver
     {
         if (resultVictory.getVictor() instanceof LogTank)
         {
-            LogTank victorPlanePlane = (LogTank)resultVictory.getVictor();
-            CrewMember companyMemberVictor = campaign.getPersonnelManager().getAnyCampaignMember(victorPlanePlane.getCrewMemberSerialNumber());
-            if (companyMemberVictor != null)
+            if (VictoryAssignDecision.isAssignAi(resultVictory))
             {
-                if (!PlayerVictoryResolver.isPlayerVictory(companyMemberVictor, resultVictory.getVictor()))
+                LogTank victorTank = (LogTank)resultVictory.getVictor();
+                CrewMember companyMemberVictor = campaign.getPersonnelManager().getAnyCampaignMember(victorTank.getCrewMemberSerialNumber());
+                if (companyMemberVictor != null)
                 {
-                    if (!resultVictory.isConfirmed())
+                    if (!PlayerVictoryResolver.isPlayerVictory(companyMemberVictor, resultVictory.getVictor()))
                     {
-                        createAiVictory(resultVictory, companyMemberVictor);
+                        if (!resultVictory.isConfirmed())
+                        {
+                            createAiVictory(resultVictory, companyMemberVictor);
+                        }
                     }
                 }
             }

@@ -67,7 +67,7 @@ public class PersonnelResultsInMissionHandlerTest
         CrewMember playerInFlight = campaign.findReferencePlayer();
         addCompanyCrewMember(playerInFlight.getSerialNumber(), CrewMemberStatus.STATUS_WOUNDED);
 
-        CrewMember sergentInFlight = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "Sergent");
+        CrewMember sergentInFlight = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "Sergeant");
         addCompanyCrewMember(sergentInFlight.getSerialNumber(), CrewMemberStatus.STATUS_WOUNDED);
 
         CrewMember corporalInFlight = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "Corporal");
@@ -76,7 +76,7 @@ public class PersonnelResultsInMissionHandlerTest
         CrewMember sltInFlight = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "2nd Lieutenant");
         addCompanyCrewMember(sltInFlight.getSerialNumber(), CrewMemberStatus.STATUS_KIA);
         
-        CrewMember ltInFlight = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "Lieutenant");
+        CrewMember ltInFlight = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "1st Lieutenant");
         addCompanyCrewMember(ltInFlight.getSerialNumber(), CrewMemberStatus.STATUS_CAPTURED);
     }
     

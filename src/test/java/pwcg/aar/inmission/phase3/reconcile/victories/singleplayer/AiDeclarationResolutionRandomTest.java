@@ -133,7 +133,7 @@ public class AiDeclarationResolutionRandomTest
         Mockito.when(evaluationData.getTankInMissionBySerialNumber(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1)).thenReturn(aiVictor);
         
         AiDeclarationResolver declarationResolution = new AiDeclarationResolver(campaign, aarContext);
-        ConfirmedVictories confirmedAiVictories = declarationResolution.determineAiAirResults(victorySorter);
+        ConfirmedVictories confirmedAiVictories = declarationResolution.determineAiTankResults(victorySorter);
         
         Assertions.assertTrue (confirmedAiVictories.getConfirmedVictories().size() == 1);
     }
@@ -147,7 +147,7 @@ public class AiDeclarationResolutionRandomTest
 
         
         AiDeclarationResolver declarationResolution = new AiDeclarationResolver(campaign, aarContext);
-        ConfirmedVictories confirmedAiVictories = declarationResolution.determineAiAirResults(victorySorter);
+        ConfirmedVictories confirmedAiVictories = declarationResolution.determineAiTankResults(victorySorter);
         
         Assertions.assertTrue (confirmedAiVictories.getConfirmedVictories().size() == 0);
     }

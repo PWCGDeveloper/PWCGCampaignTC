@@ -7,7 +7,8 @@ import pwcg.campaign.crewmember.CrewMemberStatus;
 
 public class LogCrewMember
 {
-    private int serialNumber;
+    public static final int NOT_CREW_MEMBER = -1;
+    private int serialNumber = NOT_CREW_MEMBER;
     private String botId = "";
     private double damageLevel = 0.0;
     private int status = CrewMemberStatus.STATUS_ACTIVE;

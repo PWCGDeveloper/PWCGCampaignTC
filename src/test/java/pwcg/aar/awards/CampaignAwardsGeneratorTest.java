@@ -59,7 +59,6 @@ public class CampaignAwardsGeneratorTest
     @BeforeEach
     public void setupTest() throws PWCGException
     {        
-        
         campaign = CampaignCache.makeCampaign(CompanyTestProfile.THIRD_DIVISION_PROFILE);        
 
         Mockito.when(aarContext.getPersonnelAcheivements()).thenReturn(personnelAcheivements);
@@ -70,15 +69,17 @@ public class CampaignAwardsGeneratorTest
     @Test
     public void testMedalAwardedForVictories () throws PWCGException
     {             
+        final int lowRankingCrewMemberIndex = 13;
+        
         CrewMembers aiCrewMembers = campaign.getPersonnelManager().getCompanyPersonnel(CompanyTestProfile.THIRD_DIVISION_PROFILE.getCompanyId()).getActiveCrewMembers();
         List<CrewMember> sortedCrewmembers = aiCrewMembers.sortCrewMembers(campaign.getDate());
         
-        CampaignPersonnelTestHelper.addVictories(sortedCrewmembers.get(15), campaign.getDate(), 20);
+        CampaignPersonnelTestHelper.addVictories(sortedCrewmembers.get(lowRankingCrewMemberIndex), campaign.getDate(), 20);
  
-        CampaignPersonnelTestHelper.addVictories(sortedCrewmembers.get(15), campaign.getDate(), 3);
+        CampaignPersonnelTestHelper.addVictories(sortedCrewmembers.get(lowRankingCrewMemberIndex), campaign.getDate(), 3);
 
         Map<Integer, CrewMember> crewMembersToEvaluate = new HashMap<>();
-        crewMembersToEvaluate.put(sortedCrewmembers.get(15).getSerialNumber(), sortedCrewmembers.get(15));
+        crewMembersToEvaluate.put(sortedCrewmembers.get(lowRankingCrewMemberIndex).getSerialNumber(), sortedCrewmembers.get(lowRankingCrewMemberIndex));
         crewMembersToEvaluate.put(sortedCrewmembers.get(2).getSerialNumber(), sortedCrewmembers.get(2));
         crewMembersToEvaluate.put(sortedCrewmembers.get(3).getSerialNumber(), sortedCrewmembers.get(3));
 
@@ -86,7 +87,7 @@ public class CampaignAwardsGeneratorTest
         AARPersonnelAwards campaignMemberAwards = awardsGenerator.createCampaignMemberAwards(new ArrayList<>(crewMembersToEvaluate.values()));
         
         Assertions.assertTrue (campaignMemberAwards.getCampaignMemberMedals().size() >= 1);
-        Assertions.assertTrue (campaignMemberAwards.getCampaignMemberMedals().containsKey(sortedCrewmembers.get(15).getSerialNumber()));
+        Assertions.assertTrue (campaignMemberAwards.getCampaignMemberMedals().containsKey(sortedCrewmembers.get(lowRankingCrewMemberIndex).getSerialNumber()));
         Assertions.assertTrue (!campaignMemberAwards.getCampaignMemberMedals().containsKey(sortedCrewmembers.get(2).getSerialNumber()));
         Assertions.assertTrue (!campaignMemberAwards.getCampaignMemberMedals().containsKey(sortedCrewmembers.get(3).getSerialNumber()));
     }
