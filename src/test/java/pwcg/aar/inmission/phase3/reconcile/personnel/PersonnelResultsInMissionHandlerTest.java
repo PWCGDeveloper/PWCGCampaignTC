@@ -50,16 +50,14 @@ public class PersonnelResultsInMissionHandlerTest
     public void testMixedStatusWithMaimed() throws PWCGException
     {
         createCrewMembersInMission();
-        createAcesInMission();
         
         PersonnelLossesInMissionHandler inMissionHandler = new PersonnelLossesInMissionHandler(campaign, evaluationData);
         inMissionHandler.personellChanges();
         
-        assert(inMissionHandler.personellChanges().getPersonnelKilled().size() == 3);
+        assert(inMissionHandler.personellChanges().getPersonnelKilled().size() == 1);
         assert(inMissionHandler.personellChanges().getPersonnelCaptured().size() == 1);
         assert(inMissionHandler.personellChanges().getPersonnelMaimed().size() == 1);
         assert(inMissionHandler.personellChanges().getPersonnelWounded().size() == 2);
-        assert(inMissionHandler.personellChanges().getAcesKilled(campaign).size() == 2);
     }
 
     private void createCrewMembersInMission() throws PWCGException
@@ -78,20 +76,6 @@ public class PersonnelResultsInMissionHandlerTest
         
         CrewMember ltInFlight = CampaignPersonnelTestHelper.getCrewMemberByRank(campaign, "1st Lieutenant");
         addCompanyCrewMember(ltInFlight.getSerialNumber(), CrewMemberStatus.STATUS_CAPTURED);
-    }
-    
-    private void createAcesInMission() throws PWCGException
-    {
-        LogCrewMember wernerVoss = new LogCrewMember();
-        wernerVoss.setSerialNumber(101175);
-        wernerVoss.setStatus(CrewMemberStatus.STATUS_KIA);
-        
-        LogCrewMember georgesGuynemer = new LogCrewMember();
-        georgesGuynemer.setSerialNumber(101064);
-        georgesGuynemer.setStatus(CrewMemberStatus.STATUS_KIA);
-
-        crewMemberStatusList.add(wernerVoss);
-        crewMemberStatusList.add(georgesGuynemer);
     }
     
     private void addCompanyCrewMember(int serialNumber, int status)

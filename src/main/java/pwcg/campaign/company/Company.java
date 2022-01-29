@@ -671,7 +671,7 @@ public class Company implements ICompanyMission
         return namesUsed;
     }
 
-	public List<CompanyTankAssignment> getPlaneAssignments() 
+	public List<CompanyTankAssignment> getTankAssignments() 
 	{
 		return tankAssignments;
 	}

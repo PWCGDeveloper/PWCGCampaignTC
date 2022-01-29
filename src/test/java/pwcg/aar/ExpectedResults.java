@@ -13,7 +13,7 @@ public class ExpectedResults
     private Campaign campaign;
     private int companyMemberCrewMemberSerialNumber;
     private List<Integer> lostCrewMembers = new ArrayList<>();
-    private int playerAirVictories = 0;
+    private int playerTankVictories = 0;
     private int playerGroundVictories = 0;
     private int companyMemberAirVictories = 0;
     private int companyMemberGroundVictories = 0;
@@ -64,14 +64,14 @@ public class ExpectedResults
         return lostCrewMembers;
     }
 
-    public int getPlayerAirVictories()
+    public int getPlayerTankVictories()
     {
-        return playerAirVictories;
+        return playerTankVictories;
     }
 
-    public void addPlayerAirVictories()
+    public void addPlayerTankVictories()
     {
-        ++playerAirVictories;
+        ++playerTankVictories;
     }
 
     public void addEnemyAirVictories()

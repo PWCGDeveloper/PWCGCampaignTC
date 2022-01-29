@@ -10,11 +10,11 @@
 		{
 			"archType": "pziii",
 			"introduction": "19400101",
-			"withdrawal": "19430501"
+			"withdrawal": "19430201"
 		},
 		{
 			"archType": "pziv",
-			"introduction": "19430301",
+			"introduction": "19430101",
 			"withdrawal": "19450601"
 		}
 	],

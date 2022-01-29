@@ -39,7 +39,7 @@ public class EquipmentDepotReplenisherTest
     private Campaign campaign;
 
     @Mock
-    EquippedTank me109E7;
+    EquippedTank pziii;
     @Mock
     EquippedTank me109K4;
 
@@ -53,9 +53,9 @@ public class EquipmentDepotReplenisherTest
     @BeforeEach
     public void setupTest() throws PWCGException
     {
-        Mockito.when(me109E7.getArchType()).thenReturn("pziii");
-        Mockito.when(me109E7.getGoodness()).thenReturn(10);
-        Mockito.when(me109K4.getArchType()).thenReturn("pziii");
+        Mockito.when(pziii.getArchType()).thenReturn("pziii");
+        Mockito.when(pziii.getGoodness()).thenReturn(10);
+        Mockito.when(me109K4.getArchType()).thenReturn("pziv");
         Mockito.when(me109K4.getGoodness()).thenReturn(95);
     }
 
@@ -65,10 +65,14 @@ public class EquipmentDepotReplenisherTest
         CompanyManager companymanager = PWCGContext.getInstance().getCompanyManager();
         for (Company company : companymanager.getAllCompanies())
         {
-            for (CompanyTankAssignment planeAssignment : company.getPlaneAssignments())
+            for (CompanyTankAssignment tankAssignment : company.getTankAssignments())
             {
-                TankArchType planeArchType = PWCGContext.getInstance().getPlayerTankTypeFactory().getTankArchType(planeAssignment.getArchType());
-                String selectedTankType = EquipmentReplacementUtils.getTypeForReplacement(planeAssignment.getCompanyWithdrawal(), planeArchType);
+                TankArchType tankArchType = PWCGContext.getInstance().getPlayerTankTypeFactory().getTankArchType(tankAssignment.getArchType());
+                String selectedTankType = EquipmentReplacementUtils.getTypeForReplacement(tankAssignment.getCompanyWithdrawal(), tankArchType);
+                if(selectedTankType.length() == 0)
+                {
+                    System.out.println("No tank for tank arch type " + tankArchType.getTankArchTypeName());
+                }
                 Assertions.assertTrue (selectedTankType.length() > 0);
             }
         }
@@ -85,28 +89,28 @@ public class EquipmentDepotReplenisherTest
     }
 
     @Test
-    public void testUpgradeWithWorsePlane() throws PWCGException
+    public void testUpgradeWithWorseTank() throws PWCGException
     {
         EquipmentDepot equipmentDepot = campaign.getEquipmentManager().getEquipmentDepotForService(TCServiceManager.WEHRMACHT);
-        EquipmentUpgradeRecord upgradeRecord = equipmentDepot.getUpgrade(me109E7);
+        EquipmentUpgradeRecord upgradeRecord = equipmentDepot.getUpgrade(pziii);
         Assertions.assertTrue (upgradeRecord != null);
         Assertions.assertTrue (upgradeRecord.getUpgrade().getArchType().equals("pziii"));
         Assertions.assertTrue (upgradeRecord.getUpgrade().getGoodness() > 10);
 
         int upgradeSerialNumber = upgradeRecord.getUpgrade().getSerialNumber();
 
-        EquippedTank planeInDepot = equipmentDepot.getTankFromDepot(upgradeSerialNumber);
-        Assertions.assertTrue (planeInDepot != null);
+        EquippedTank tankInDepot = equipmentDepot.getTankFromDepot(upgradeSerialNumber);
+        Assertions.assertTrue (tankInDepot != null);
 
-        planeInDepot = equipmentDepot.removeEquippedTankFromDepot(upgradeSerialNumber);
-        Assertions.assertTrue (planeInDepot != null);
+        tankInDepot = equipmentDepot.removeEquippedTankFromDepot(upgradeSerialNumber);
+        Assertions.assertTrue (tankInDepot != null);
 
-        planeInDepot = equipmentDepot.getTankFromDepot(upgradeSerialNumber);
-        Assertions.assertTrue (planeInDepot == null);
+        tankInDepot = equipmentDepot.getTankFromDepot(upgradeSerialNumber);
+        Assertions.assertTrue (tankInDepot == null);
     }
 
     @Test
-    public void testUpgradeWithBetterPlane() throws PWCGException
+    public void testUpgradeWithBetterTank() throws PWCGException
     {
         EquipmentDepot equipmentDepo = campaign.getEquipmentManager().getEquipmentDepotForService(TCServiceManager.WEHRMACHT);
         EquipmentUpgradeRecord replacementTank = equipmentDepo.getUpgrade(me109K4);

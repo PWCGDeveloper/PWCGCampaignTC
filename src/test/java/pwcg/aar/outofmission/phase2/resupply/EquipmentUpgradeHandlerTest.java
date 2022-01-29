@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -31,17 +30,8 @@ import pwcg.testutils.CompanyTestProfile;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class EquipmentUpgradeHandlerTest
 {
-    private Campaign campaign;
-
     @Mock
     private ArmedService armedService;
-
-    @BeforeAll
-    public void setupSuite() throws PWCGException
-    {
-        
-        campaign = CampaignCache.makeCampaign(CompanyTestProfile.PZ16_PROFILE);
-    }
 
     @BeforeEach
     public void setupTest() throws PWCGException
@@ -52,6 +42,8 @@ public class EquipmentUpgradeHandlerTest
     @Test
     public void testEquipmentUpgradeForPlayer() throws PWCGException
     {
+        Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.PZ16_PROFILE);
+
         EquipmentDepot equipmentDepotBeforeTest = campaign.getEquipmentManager().getEquipmentDepotForService(armedService.getServiceId());
 
         // Add good tanks to the depo
@@ -131,6 +123,8 @@ public class EquipmentUpgradeHandlerTest
     @Test
     public void testEquipmentUpgradeForAI() throws PWCGException
     {
+        Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
+
         EquipmentDepot equipmentDepotBeforeTest = campaign.getEquipmentManager().getEquipmentDepotForService(armedService.getServiceId());
 
         // Add good tanks to the depo
@@ -156,12 +150,12 @@ public class EquipmentUpgradeHandlerTest
             equipmentForCompanyBeforeTest.removeEquippedTank(tankInCompanyBeforeTest.getSerialNumber());
         }
 
-        List<Integer> originalPlayerCompanyTanks = new ArrayList<>();
+        List<Integer> originalCompanyTanks = new ArrayList<>();
         for (int i = 0; i < 16; ++i)
         {
             EquippedTank tankToReplace = TankEquipmentFactory.makeTankForCompany(campaign, "_pziii-l", aiCompany);
             equipmentForCompanyBeforeTest.addEquippedTankToCompany(campaign, aiCompany.getCompanyId(), tankToReplace);
-            originalPlayerCompanyTanks.add(tankToReplace.getSerialNumber());
+            originalCompanyTanks.add(tankToReplace.getSerialNumber());
         }
 
         // Run the upgrade
@@ -176,7 +170,7 @@ public class EquipmentUpgradeHandlerTest
         }
 
         // No tanks should be replaced in the player company
-        Equipment equipmentForPlayerCompanyAfterTest = campaign.getEquipmentManager().getEquipmentForCompany(aiCompany.getCompanyId());
+        Equipment equipmentForPlayerCompanyAfterTest = campaign.getEquipmentManager().getEquipmentForCompany(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
         for (int depotTank : veryGoodTanksInDepot)
         {
             Assertions.assertTrue (equipmentForPlayerCompanyAfterTest.getEquippedTank(depotTank) == null);
@@ -203,6 +197,8 @@ public class EquipmentUpgradeHandlerTest
     @Test
     public void testEquipmentUpgradeNotNeeded() throws PWCGException
     {
+        Campaign campaign = CampaignCache.makeCampaign(CompanyTestProfile.PZ16_PROFILE);
+
         // Clear out the depot and replace with a couple of bad tanks
         EquipmentDepot equipmentDepotBeforeTest = campaign.getEquipmentManager().getEquipmentDepotForService(armedService.getServiceId());
         for (EquippedTank tankInCompanyBeforeTest : equipmentDepotBeforeTest.getAllTanksInDepot())

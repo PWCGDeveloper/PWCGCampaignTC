@@ -21,7 +21,7 @@ public class AARResultValidator
     {
         CrewMember player = campaign.findReferencePlayer();
         assert(campaign.getDate().after(DateUtils.getDateYYYYMMDD("19411101")));
-        assert(player.getCrewMemberVictories().getAirToAirVictoryCount() == expectedResults.getPlayerAirVictories());
+        assert(player.getCrewMemberVictories().getTankVictoryCount() == expectedResults.getPlayerTankVictories());
         assert(player.getCrewMemberVictories().getGroundVictoryCount() == expectedResults.getPlayerGroundVictories());
         
         CrewMember otherCrewMember = campaign.getPersonnelManager().getAnyCampaignMember(expectedResults.getCrewMemberCrewMemberSerialNumber());        

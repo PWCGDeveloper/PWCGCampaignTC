@@ -95,7 +95,7 @@ public class AARCoordinatorInMissionTest
     public static CompanyTankAssignment getPlaneForCompany(int CompanyId) throws PWCGException
     {
         Company company = PWCGContext.getInstance().getCompanyManager().getCompany(CompanyId);
-        List<CompanyTankAssignment> companyPlaneAssignments = company.getPlaneAssignments();
+        List<CompanyTankAssignment> companyPlaneAssignments = company.getTankAssignments();
         return companyPlaneAssignments.get(0);
     }
 

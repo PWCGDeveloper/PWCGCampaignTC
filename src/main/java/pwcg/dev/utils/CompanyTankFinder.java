@@ -44,7 +44,7 @@ public class CompanyTankFinder
         for (Company company : allSq)
         {
             boolean hasPlane = false;
-            for (CompanyTankAssignment planeAssignment : company.getPlaneAssignments())
+            for (CompanyTankAssignment planeAssignment : company.getTankAssignments())
             {
                 if (planeAssignment.getArchType().equals(planeId))
                 {
@@ -70,7 +70,7 @@ public class CompanyTankFinder
         {
             PWCGLogger.log(LogLevel.DEBUG, "Company: " + company.getCompanyId());
             boolean hasPlane = false;
-            for (CompanyTankAssignment planeAssignment : company.getPlaneAssignments())
+            for (CompanyTankAssignment planeAssignment : company.getTankAssignments())
             {
                 for (TankTypeInformation plane : planeTypeFactory.createTankTypesForArchType(planeAssignment.getArchType()))
                 {

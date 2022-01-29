@@ -40,7 +40,7 @@ public class CompanyTankAssignmentTest
     {
         boolean success = true;
         Date lastEndDate = null;
-        List<CompanyTankAssignment> planeAssignments = company.getPlaneAssignments();
+        List<CompanyTankAssignment> planeAssignments = company.getTankAssignments();
         for (CompanyTankAssignment planeAssignment : planeAssignments)
         {
             if (lastEndDate == null)

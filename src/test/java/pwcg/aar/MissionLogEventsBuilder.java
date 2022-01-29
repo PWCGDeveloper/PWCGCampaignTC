@@ -163,19 +163,19 @@ public class MissionLogEventsBuilder
         IAType12 playerPlane = logEventData.getVehicle(playerPlaneId);
 
         IAType12 playerVictoryPlane1 = getTankVictimByType("t34-76stz");
-        AType3 playerVictoryPlaneEvent1 = new AType3(playerPlane.getId(), playerVictoryPlane1.getId(), crashLocation);
+        AType3 playerVictoryTankEvent1 = new AType3(playerPlane.getId(), playerVictoryPlane1.getId(), crashLocation);
 
         IAType12 playerVictoryPlane2 = getTankVictimByType("bt7m");
-        AType3 playerVictoryPlaneEvent2 = new AType3(playerPlane.getId(), playerVictoryPlane2.getId(), crashLocation);
+        AType3 playerVictoryTankEvent2 = new AType3(playerPlane.getId(), playerVictoryPlane2.getId(), crashLocation);
 
         IAType12 playerVictoryVehicle = getGroundVictim();
         AType3 playerVictoryVehicleEvent = new AType3(playerPlane.getId(), playerVictoryVehicle.getId(), crashLocation);
 
-        logEventData.addDestroyedEvent(playerVictoryPlaneEvent1);
-        expectedResults.addPlayerAirVictories();
+        logEventData.addDestroyedEvent(playerVictoryTankEvent1);
+        expectedResults.addPlayerTankVictories();
         
-        logEventData.addDestroyedEvent(playerVictoryPlaneEvent2);
-        expectedResults.addPlayerAirVictories();
+        logEventData.addDestroyedEvent(playerVictoryTankEvent2);
+        expectedResults.addPlayerTankVictories();
 
         logEventData.addDestroyedEvent(playerVictoryVehicleEvent);
         expectedResults.addPlayerGroundVictories();
