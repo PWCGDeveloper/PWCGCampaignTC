@@ -11,13 +11,12 @@ import pwcg.campaign.crewmember.CrewMember;
 public class ExpectedResults
 {
     private Campaign campaign;
-    private int companyMemberCrewMemberSerialNumber;
     private List<Integer> lostCrewMembers = new ArrayList<>();
     private int playerTankVictories = 0;
     private int playerGroundVictories = 0;
-    private int companyMemberAirVictories = 0;
+    private int companyMemberTankVictories = 0;
     private int companyMemberGroundVictories = 0;
-    private int enemyAirVictories = 0;
+    private int enemyTankVictories = 0;
 
     public ExpectedResults (Campaign campaign)
     {
@@ -49,16 +48,6 @@ public class ExpectedResults
         this.campaign = campaign;
     }
 
-    public int getCrewMemberCrewMemberSerialNumber()
-    {
-        return companyMemberCrewMemberSerialNumber;
-    }
-
-    public void setCrewMemberCrewMemberSerialNumber(int companyMemberCrewMemberSerialNumber)
-    {
-        this.companyMemberCrewMemberSerialNumber = companyMemberCrewMemberSerialNumber;
-    }
-
     public List<Integer> getLostCrewMembers()
     {
         return lostCrewMembers;
@@ -74,14 +63,14 @@ public class ExpectedResults
         ++playerTankVictories;
     }
 
-    public void addEnemyAirVictories()
+    public void addEnemyTankVictories()
     {
-        ++enemyAirVictories;
+        ++enemyTankVictories;
     }
 
-    public int getEnemyAirVictories()
+    public int getEnemyTankVictories()
     {
-        return enemyAirVictories;
+        return enemyTankVictories;
     }
 
     public int getPlayerGroundVictories()
@@ -94,14 +83,14 @@ public class ExpectedResults
         ++playerGroundVictories;
     }
 
-    public int getCrewMemberAirVictories()
+    public int getCrewMemberTankVictories()
     {
-        return companyMemberAirVictories;
+        return companyMemberTankVictories;
     }
 
-    public void addCrewMemberAirVictories()
+    public void addCrewMemberTankVictories()
     {
-        ++companyMemberAirVictories;
+        ++companyMemberTankVictories;
     }
 
     public int getCrewMemberGroundVictories()

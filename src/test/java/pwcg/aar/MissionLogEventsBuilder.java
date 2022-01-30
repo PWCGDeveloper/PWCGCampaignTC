@@ -31,6 +31,7 @@ public class MissionLogEventsBuilder
     private int nextMissionLogId = 400000;
     private Map<Integer, String> serialNumberToPlaneId = new HashMap<>();
     private List<String> destroyedPlanes = new ArrayList<>();
+    private CrewMember player;
     private CrewMember companyMate;
     private ExpectedResults expectedResults;
 
@@ -158,7 +159,7 @@ public class MissionLogEventsBuilder
     {
         Coordinate crashLocation = new Coordinate(100000, 0, 100000);
 
-        CrewMember player = campaign.getPersonnelManager().getPlayersInMission().getCrewMemberList().get(0);
+        player = campaign.getPersonnelManager().getPlayersInMission().getCrewMemberList().get(0);
         String playerPlaneId = serialNumberToPlaneId.get(player.getSerialNumber());
         IAType12 playerPlane = logEventData.getVehicle(playerPlaneId);
 
@@ -195,7 +196,7 @@ public class MissionLogEventsBuilder
         AType3 enemyVehicleLostEvent = new AType3(friendlyCrewMemberPlane.getId(), enemyVehicleLost.getId(), crashLocation);
 
         logEventData.addDestroyedEvent(enemyPlaneLostEvent);
-        expectedResults.addCrewMemberAirVictories();
+        expectedResults.addCrewMemberTankVictories();
 
         logEventData.addDestroyedEvent(enemyVehicleLostEvent);
         expectedResults.addCrewMemberGroundVictories();
@@ -277,4 +278,16 @@ public class MissionLogEventsBuilder
         ++nextMissionLogId;
         return nextId;
     }
+
+    public CrewMember getPlayer()
+    {
+        return player;
+    }
+
+    public CrewMember getCompanyMate()
+    {
+        return companyMate;
+    }
+    
+    
 }

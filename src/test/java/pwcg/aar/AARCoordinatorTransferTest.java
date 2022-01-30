@@ -7,7 +7,10 @@ import org.junit.jupiter.api.TestInstance;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.context.FrontMapIdentifier;
 import pwcg.campaign.context.PWCGContext;
+import pwcg.campaign.crewmember.CrewMember;
+import pwcg.campaign.crewmember.CrewMemberStatus;
 import pwcg.core.exception.PWCGException;
+import pwcg.core.utils.DateUtils;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.CompanyTestProfile;
 
@@ -34,8 +37,20 @@ public class AARCoordinatorTransferTest
     {
         aarCoordinator.submitLeave(campaign, 20);
         expectedResults.buildExpectedResultsFromAARContext(aarCoordinator.getAarContext());
+        validateLeave();
+    }
 
-        AARResultValidator resultValidator = new AARResultValidator(expectedResults);
-        resultValidator.validateLeave();
+    public void validateLeave() throws PWCGException
+    {
+        CrewMember player = campaign.findReferencePlayer();
+        assert(campaign.getDate().after(DateUtils.getDateYYYYMMDD("19411101")));
+        assert(player.getCrewMemberVictories().getAirToAirVictoryCount() == 0);
+        assert(player.getCrewMemberVictories().getGroundVictoryCount() == 0);
+        
+        for (Integer serialNumber : expectedResults.getLostCrewMembers())
+        {
+            CrewMember lostCrewMember = campaign.getPersonnelManager().getAnyCampaignMember(serialNumber);
+            assert(lostCrewMember.getCrewMemberActiveStatus() <= CrewMemberStatus.STATUS_WOUNDED);
+        }
     }
 }
