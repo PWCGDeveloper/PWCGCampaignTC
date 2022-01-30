@@ -66,6 +66,18 @@ public class TownFinder
         return townsForSide;
     }
 
+    public PWCGLocation getTown (String townName) throws PWCGException 
+    {       
+        for (PWCGLocation town : townLocations.getLocations())
+        {
+            if (town.getName().equals(townName))
+            {
+                return town;
+            }
+        }
+        return null;
+    }
+
     public LocationSet getTownLocations()
     {
         return townLocations;

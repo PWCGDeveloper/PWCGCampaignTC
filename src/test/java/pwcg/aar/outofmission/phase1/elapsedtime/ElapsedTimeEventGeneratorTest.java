@@ -66,8 +66,8 @@ public class ElapsedTimeEventGeneratorTest
         newDate = DateUtils.getDateYYYYMMDD("19420902");
         Mockito.when(aarContext.getNewDate()).thenReturn(newDate);
  
-        Mockito.when(company.determineCurrentAirfieldName(campaignDate)).thenReturn("Tuzov");
-        Mockito.when(company.determineCurrentAirfieldName(newDate)).thenReturn("Tuzov");
+        Mockito.when(company.determineBaseName(campaignDate)).thenReturn("Tuzov");
+        Mockito.when(company.determineBaseName(newDate)).thenReturn("Tuzov");
 
         ElapsedTimeEventGenerator elapsedTimeEventGenerator = new ElapsedTimeEventGenerator(campaign, aarContext);
         ElapsedTimeEvents elapsedTimeEvents = elapsedTimeEventGenerator.createElapsedTimeEvents();
@@ -84,8 +84,8 @@ public class ElapsedTimeEventGeneratorTest
         Mockito.when(aarContext.getNewDate()).thenReturn(newDate);
         Mockito.when(company.determineCurrentBaseAnyMap(newDate)).thenReturn(newAirfield);
 
-        Mockito.when(company.determineCurrentAirfieldName(campaignDate)).thenReturn("Tuzov");
-        Mockito.when(company.determineCurrentAirfieldName(newDate)).thenReturn("Kalach");
+        Mockito.when(company.determineBaseName(campaignDate)).thenReturn("Tuzov");
+        Mockito.when(company.determineBaseName(newDate)).thenReturn("Kalach");
 
         ElapsedTimeEventGenerator elapsedTimeEventGenerator = new ElapsedTimeEventGenerator(campaign, aarContext);
         ElapsedTimeEvents elapsedTimeEvents = elapsedTimeEventGenerator.createElapsedTimeEvents();

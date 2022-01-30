@@ -27,7 +27,7 @@ public class CampaignDescriptionBuilderSinglePlayer implements ICampaignDescript
         
         Company company =  PWCGContext.getInstance().getCompanyManager().getCompany(referencePlayer.getCompanyId());
         campaignDescription += "     " + company.determineDisplayName(campaign.getDate());
-        campaignDescription += "     " + company.determineCurrentAirfieldName(campaign.getDate());
+        campaignDescription += "     " + company.determineBaseName(campaign.getDate());
 
         return campaignDescription;
     }

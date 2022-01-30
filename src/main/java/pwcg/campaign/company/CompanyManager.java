@@ -157,7 +157,7 @@ public class CompanyManager
     {
         for (Company company : companyMap.values())
         {
-            String currentFieldNameForSquad = company.determineCurrentAirfieldName(date);
+            String currentFieldNameForSquad = company.determineBaseName(date);
             if (currentFieldNameForSquad != null)
             {
                 Airfield currentFieldForSquad =  PWCGContext.getInstance().getCurrentMap().getAirfieldManager().getAirfield(currentFieldNameForSquad);

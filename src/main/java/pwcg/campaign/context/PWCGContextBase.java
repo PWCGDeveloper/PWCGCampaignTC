@@ -19,6 +19,7 @@ import pwcg.campaign.tank.FullTankTypeFactory;
 import pwcg.campaign.tank.ITankTypeFactory;
 import pwcg.campaign.tank.PlayerTankTypeFactory;
 import pwcg.core.exception.PWCGException;
+import pwcg.core.location.PWCGLocation;
 import pwcg.mission.ground.vehicle.VehicleDefinitionManager;
 
 public abstract class PWCGContextBase
@@ -166,7 +167,6 @@ public abstract class PWCGContextBase
     public Airfield getAirfieldAllMaps(String airfieldName)
     {
         Airfield airfield = null;
-
         for (PWCGMap map : pwcgMaps.values())
         {
             AirfieldManager airfieldManager = map.getAirfieldManager();
@@ -182,6 +182,14 @@ public abstract class PWCGContextBase
         }
 
         return airfield;
+    }
+
+    public PWCGLocation getTownAllMaps(String townName) throws PWCGException
+    {
+        List<FrontMapIdentifier> mapId = MapForBaseFinder.getMapForBase(townName);
+        PWCGMap map = pwcgMaps.get(mapId.get(0));
+        PWCGLocation town = map.getGroupManager().getTownFinder().getTown(townName);
+        return town;
     }
 
     public void setCurrentMap(FrontMapIdentifier mapIdentifier) throws PWCGException

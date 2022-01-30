@@ -1,87 +1,86 @@
 {
-	"country": "RUSSIA",
-	"companyId": 101214001,
-	"name": "214th AntiAircraft Regiment, 1st Company",
-	"fileName": "214th AntiAircraft Regiment 1 Co.json",
-	"skill": 30,
-	"unitIdCode": "",
-	"subUnitIdCode": "",
-	"tankAssignments": [
-		{
-			"archType": "t34",
-			"introduction": "19400101",
-			"withdrawal": "19450601"
-		}
-	],
-	"bases": {
-		"19411001": "Gorstovo",
-		"19411020": "Nikolskoye",
-		"19411110": "Solodilovo",
-		"19411120": "Nesterovo",
-		"19411215": "Solodilovo",
-		"19420110": "Sloboda",
-		"19420301": "Kumovka",
-		"19420601": "Novotitarovskaya",
-		"19420624": "Gelenjik-2",
-		"19420709": "Gelenjik-1",
-		"19420721": "Lazarevskoe",
-		"19420801": "Pitomnik",
-		"19420906": "Plesovskiy",
-		"19421011": "Raygorod",
-		"19421123": "Mal. Chapurniki",
-		"19421223": "Mal. Chapurniki",
-		"19430120": "Pitomnik",
-		"19430301": "Korenovskaya",
-		"19430330": "Novotitarovskaya",
-		"19430418": "Slavyanskaya",
-		"19430918": "Anastasievskaya",
-		"19430927": "Anastasievskaya",
-		"19431004": "Anastasievskaya",
-		"19431008": "Zaporojskaya",
-		"19440101": "Raygorod",
-		"19440201": "Raygorod",
-		"19440301": "Mal. Chapurniki",
-		"19440401": "Mal. Chapurniki",
-		"19440501": "Zety",
-		"19440601": "Mal. Orlovka",
-		"19440701": "Pitomnik",
-		"19440801": "Marinovka",
-		"19440901": "Gromoslavka",
-		"19441001": "Gromoslavka",
-		"19441101": "Gromoslavka",
-		"19441201": "Gromoslavka",
-		"19450101": "ef_Rheine",
-		"19450201": "ef_Dortmund",
-		"19450301": "ef_Limburg-Linter",
-		"19450401": "ef_Rips",
-		"19450501": "ef_Woensdrecht"
-	},
-	"skins": [
-	],
-	"serviceId": 10112,
-	"companyRoles": {
-		"companyRolePeriods": [
-			{
-				"startDate": "19400101",
-				"weightedRoles": [
-					{
-						"role": "ROLE_SELF_PROPELLED_AAA",
-						"weight": 100
-					}
-				]
-			}
-		]
-	},
-	"nightMissionOdds": {
-		"nightMissionPeriods": [
-			{
-				"startDate": "19440901",
-				"endDate": "19450601",
-				"nightMissionOdds": 3
-			}
-		]
-	},
-	"conversionPeriods": [],
-	"callsigns": {
-	}
+  "country": "RUSSIA",
+  "companyId": 101214001,
+  "name": "214th AntiAircraft Regiment, 1st Company",
+  "fileName": "214th AntiAircraft Regiment 1 Co.json",
+  "skill": 30,
+  "unitIdCode": "",
+  "subUnitIdCode": "",
+  "tankAssignments": [
+    {
+      "archType": "t34",
+      "introduction": "19400101",
+      "withdrawal": "19450601"
+    }
+  ],
+  "bases": {
+    "19411001": "Koshnyaki",
+    "19411005": "Peredel",
+    "19411016": "Tishnevo",
+    "19411020": "Akulovo",
+    "19411110": "Kolyubakovo",
+    "19411120": "Rogachevko",
+    "19411215": "Tarasovo",
+    "19420110": "Scherbinki",
+    "19420301": "Kumovka",
+    "19420601": "Verhnij Bvlyklej",
+    "19420624": "Zavarykin",
+    "19420709": "Gelenjik-1",
+    "19420721": "Lazarevskoe",
+    "19420801": "Pitomnik",
+    "19420906": "Aleksandrovka",
+    "19421011": "Rajgorod",
+    "19421123": "Malye Capurniki",
+    "19421223": "Malye Capurniki",
+    "19430120": "Pitomnik",
+    "19430301": "Korenovskaya",
+    "19430330": "Novotitarovskaya",
+    "19430418": "Slavyanskaya",
+    "19430918": "Anastasievskaya",
+    "19430927": "Anastasievskaya",
+    "19431004": "Anastasievskaya",
+    "19431008": "Kuchugury",
+    "19440101": "Rajgorod",
+    "19440201": "Rajgorod",
+    "19440301": "Malye Capurniki",
+    "19440401": "Malye Capurniki",
+    "19440501": "Zety",
+    "19440601": "Malaja Orlovka",
+    "19440701": "Talovoj",
+    "19440801": "Marinovka",
+    "19440901": "Huy",
+    "19441001": "Huy",
+    "19441101": "Manhay",
+    "19441201": "Manhay",
+    "19450101": "Rheine",
+    "19450201": "Dortmund",
+    "19450301": "Limburg",
+    "19450401": "Deurne",
+    "19450501": "Bergen op Zoom"
+  },
+  "skins": [],
+  "serviceId": 10112,
+  "companyRoles": {
+    "companyRolePeriods": [
+      {
+        "startDate": "19400101",
+        "weightedRoles": [
+          {
+            "role": "ROLE_SELF_PROPELLED_AAA",
+            "weight": 100
+          }
+        ]
+      }
+    ]
+  },
+  "nightMissionOdds": {
+    "nightMissionPeriods": [
+      {
+        "startDate": "19440901",
+        "nightMissionOdds": 3
+      }
+    ]
+  },
+  "conversionPeriods": [],
+  "callsigns": {}
 }

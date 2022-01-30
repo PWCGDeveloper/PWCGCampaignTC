@@ -60,7 +60,7 @@ public class IntelMapGUI extends MapGUI implements ActionListener
 			setOpaque(false);
 			setBackground(bg);
 
-	        List<FrontMapIdentifier> airfieldMaps = AirfieldManager.getMapIdForAirfield(campaign.findReferencePlayer().determineCompany().determineCurrentAirfieldName(campaign.getDate()));
+	        List<FrontMapIdentifier> airfieldMaps = AirfieldManager.getMapIdForAirfield(campaign.findReferencePlayer().determineCompany().determineBaseName(campaign.getDate()));
             PWCGContext.getInstance().changeContext(airfieldMaps.get(0));
 								
 			this.add(BorderLayout.EAST, makeRightPanel(-1));

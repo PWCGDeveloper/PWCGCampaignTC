@@ -68,11 +68,11 @@ public class CampaignHomeCompanyPlaque extends JPanel
         descGridPanel.add(lSquad);
 
         String airfieldAtString = InternationalizationManager.getTranslation("Stationed at");
-        airfieldAtString += " " + company.determineCurrentAirfieldName(campaign.getDate());
+        airfieldAtString += " " + company.determineBaseName(campaign.getDate());
         JLabel lAirfieldAt = PWCGLabelFactory.makeTransparentLabel(airfieldAtString, ColorMap.PLAQUE_GOLD, font, SwingConstants.LEFT);
         descGridPanel.add(lAirfieldAt);
 
-        String airfieldString = spacing + company.determineCurrentAirfieldName(campaign.getDate());
+        String airfieldString = spacing + company.determineBaseName(campaign.getDate());
         JLabel lAirfield = PWCGLabelFactory.makeTransparentLabel(airfieldString, ColorMap.PLAQUE_GOLD, font, SwingConstants.LEFT);
         descGridPanel.add(lAirfield);
         

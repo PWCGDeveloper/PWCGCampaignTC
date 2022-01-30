@@ -33,7 +33,5 @@ public class InfoMapCompanyMover
     public void setCompanyIdToMove(Integer companyIdToMove)
     {
         this.companyIdToMove = companyIdToMove;
-    }
-
-    
+    }    
 }

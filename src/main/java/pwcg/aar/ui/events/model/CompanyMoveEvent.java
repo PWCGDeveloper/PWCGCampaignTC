@@ -12,17 +12,15 @@ public class CompanyMoveEvent  extends AAREvent
     private String newAirfield;
     private String lastAirfield;
     private int companyId;
-    private boolean needsFerryMission;
     private String companyName = "";
 
     
-    public CompanyMoveEvent(String lastAirfield, String newAirfield, int companyId, boolean needsFerryMission, Date date, boolean isNewsWorthy)
+    public CompanyMoveEvent(String lastAirfield, String newAirfield, int companyId, Date date, boolean isNewsWorthy)
     {
         super(date, isNewsWorthy);
         this.lastAirfield = lastAirfield;
         this.newAirfield = newAirfield;
         this.companyId = companyId;
-        this.needsFerryMission = needsFerryMission;
         
         try
         {
@@ -53,11 +51,6 @@ public class CompanyMoveEvent  extends AAREvent
     public int getCompanyId()
     {
         return companyId;
-    }
-
-    public boolean isNeedsFerryMission()
-    {
-        return needsFerryMission;
     }
 
     public String getCompanyName()

@@ -3,30 +3,25 @@ package pwcg.campaign.context;
 import java.util.ArrayList;
 import java.util.List;
 
-import pwcg.campaign.group.AirfieldManager;
-import pwcg.campaign.group.airfield.Airfield;
+import pwcg.core.exception.PWCGException;
+import pwcg.core.location.PWCGLocation;
 
-public class MapForAirfieldFinder
+public class MapForBaseFinder
 {
 
-    public static List<FrontMapIdentifier> getMapForAirfield(String airfieldName)
+    public static List<FrontMapIdentifier> getMapForBase(String baseName) throws PWCGException
     {
-        List<FrontMapIdentifier> mapsForAirfield = new ArrayList<>();
+        List<FrontMapIdentifier> mapsForBase = new ArrayList<>();
         for (PWCGMap map : PWCGContext.getInstance().getMaps())
         {
-            AirfieldManager airfieldManager = map.getAirfieldManager();
-            if (airfieldManager != null)
+            PWCGLocation town = map.getGroupManager().getTownFinder().getTown(baseName);
+            if (town != null)
             {
-                Airfield airfield = airfieldManager.getAirfield(airfieldName);
-                
-                if (airfield != null)
-                {
-                    mapsForAirfield.add(map.getMapIdentifier());
-                }
+                mapsForBase.add(map.getMapIdentifier());
             }
         }
 
-        return mapsForAirfield;
+        return mapsForBase;
     }
 
 }

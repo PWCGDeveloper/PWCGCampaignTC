@@ -17,6 +17,7 @@ import pwcg.campaign.api.ICountry;
 import pwcg.campaign.api.Side;
 import pwcg.campaign.company.Company;
 import pwcg.campaign.company.CompanyManager;
+import pwcg.campaign.context.CountryDesignator;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.factory.CountryFactory;
 import pwcg.campaign.group.AirfieldManager;
@@ -93,7 +94,7 @@ public class InfoMapPanel extends MapPanelBase
 		        Map<String, Airfield> allAF = airfieldData.getAllAirfields();
 		        for (Airfield af : allAF.values())
 		        {
-		            drawPointsByCountry(g, af.getPosition(), af.determineCountryOnDate(parent.getMapDate()));
+		            drawPointsByCountry(g, af.getPosition(), null);
 		        }        
 			}
 			
@@ -103,7 +104,8 @@ public class InfoMapPanel extends MapPanelBase
 		        List<PWCGLocation> mapLegends = groupData.getTownLocations().getLocations();
 		        for (PWCGLocation mapLegend : mapLegends)
 		        {
-		            drawPointsByCountry(g, mapLegend.getPosition(), null);
+		            ICountry country =  CountryDesignator.determineCountry(mapLegend.getPosition(), parent.getMapDate());
+		            drawPointsByCountry(g, mapLegend.getPosition(), country);
 		        }        
 			}
             
@@ -113,7 +115,7 @@ public class InfoMapPanel extends MapPanelBase
                 List<Block> railroads = groupData.getRailroadList();
                 for (Block railroad : railroads)
                 {
-                    drawPointsByCountry(g, railroad.getPosition(), railroad.determineCountryOnDate(parent.getMapDate()));
+                    drawPointsByCountry(g, railroad.getPosition(), null);
                 }        
             }
             
@@ -123,7 +125,7 @@ public class InfoMapPanel extends MapPanelBase
                 List<Bridge> bridges = groupData.getBridgeFinder().findAllBridges();
                 for (Bridge bridge : bridges)
                 {
-                    drawPointsByCountry(g, bridge.getPosition(), bridge.determineCountryOnDate(parent.getMapDate()));
+                    drawPointsByCountry(g, bridge.getPosition(), null);
                 }        
             }
             
@@ -340,7 +342,7 @@ public class InfoMapPanel extends MapPanelBase
             {
                 if (enableEditing)
                 {
-                    showEditAirfieldLocation(e, town);
+                    showEditBaseLocation(e, town);
                 }
                 else
                 {
@@ -354,7 +356,7 @@ public class InfoMapPanel extends MapPanelBase
         return false;
     }
 
-    private void showEditAirfieldLocation(MouseEvent e, PWCGLocation town)
+    private void showEditBaseLocation(MouseEvent e, PWCGLocation town)
     {
         InfoTownSelectPopup menu = new InfoTownSelectPopup(this, town.getName());
         menu.show(e.getComponent(), e.getX(), e.getY());
@@ -405,11 +407,11 @@ public class InfoMapPanel extends MapPanelBase
             {
                 // Is the company based near a field that was clicked on
                 Coordinate clickCoord = this.pointToCoordinate(clickPoint);
-                Airfield nearbyField = PWCGContext.getInstance().getCurrentMap().getAirfieldManager().getAirfieldFinder().getNearbyAirfield(clickCoord, 5000.0);
-                if (nearbyField != null)
+                PWCGLocation nearbyTown = PWCGContext.getInstance().getCurrentMap().getGroupManager().getTownFinder().getNearbyTown(clickCoord, 5000.0);
+                if (nearbyTown != null)
                 {
-                    String companyFieldName = company.determineCurrentAirfieldName(parent.getMapDate());
-                    if (companyFieldName.equals(nearbyField.getName()))
+                    String companyFieldName = company.determineBaseName(parent.getMapDate());
+                    if (companyFieldName.equals(nearbyTown.getName()))
                     {
                         selectedCompanys.add(company);
                     }
@@ -424,7 +426,7 @@ public class InfoMapPanel extends MapPanelBase
         String displayString = "";
         for (Company company : selectedCompanys)
         {                    
-            String fieldName = company.determineCurrentAirfieldName(parent.getMapDate());
+            String fieldName = company.determineBaseName(parent.getMapDate());
             String companyName = company.determineDisplayName(parent.getMapDate());
                 
             String info = companyName + " at " + fieldName;
@@ -472,7 +474,7 @@ public class InfoMapPanel extends MapPanelBase
                 int companyId = Integer.valueOf(parts[1]);
                 companyMover.setCompanyIdToMove(companyId);
             }
-            if (action.contains("Select Target Airfield:"))
+            if (action.contains("Select Town:"))
             {
                 String[] parts = action.split(":");
                 String town = parts[1];

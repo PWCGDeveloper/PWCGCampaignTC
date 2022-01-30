@@ -24,7 +24,7 @@ public class MissionHeaderGenerator
         String missionFileName = MissionFileNameBuilder.buildMissionFileName(campaign) ;
         missionHeader.setMissionFileName(missionFileName);
         
-        missionHeader.setBase(myCompany.determineCurrentAirfieldName(campaign.getDate()));
+        missionHeader.setBase(myCompany.determineBaseName(campaign.getDate()));
         missionHeader.setDate(DateUtils.getDateStringYYYYMMDD(campaign.getDate()));
         missionHeader.setCompany(myCompany.determineDisplayName(campaign.getDate()));
         missionHeader.setVehicleType(myPlatoon.getLeadVehicle().getDisplayName());

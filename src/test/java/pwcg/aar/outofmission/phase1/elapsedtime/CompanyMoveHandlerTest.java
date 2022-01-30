@@ -45,49 +45,12 @@ public class CompanyMoveHandlerTest
     @Test
     public void noCompanyMove () throws PWCGException
     {             
-        Mockito.when(company.determineCurrentAirfieldName(campaignDate)).thenReturn("Ivanskoe");
-        Mockito.when(company.determineCurrentAirfieldName(newDate)).thenReturn("Ivanskoe");
+        Mockito.when(company.determineBaseName(campaignDate)).thenReturn("Ivanskoe");
+        Mockito.when(company.determineBaseName(newDate)).thenReturn("Ivanskoe");
 
         CompanyMoveHandler companyMoveHandler = new CompanyMoveHandler(campaign);
         CompanyMoveEvent companyMoveEvent = companyMoveHandler.companyMoves(newDate, company);
         Assertions.assertTrue (companyMoveEvent == null);
         
-    }
-
-    @Test
-    public void companyMoveNoFerryBecuaseSameMap () throws PWCGException
-    {             
-        Mockito.when(company.determineCurrentBaseAnyMap(newDate)).thenReturn(newAirfield);
-        Mockito.when(company.determineCurrentBaseAnyMap(campaignDate)).thenReturn(currentAirfield);
-        Mockito.when(company.determineCurrentAirfieldName(campaignDate)).thenReturn("Ivanskoe");
-        Mockito.when(company.determineCurrentAirfieldName(newDate)).thenReturn("Mozhaysk");
-        Mockito.when(currentAirfield.getName()).thenReturn("Ivanskoe");
-        Mockito.when(newAirfield.getName()).thenReturn("Mozhaysk");
-
-        CompanyMoveHandler companyMoveHandler = new CompanyMoveHandler(campaign);
-        CompanyMoveEvent companyMoveEvent = companyMoveHandler.companyMoves(newDate, company);
-        Assertions.assertTrue (companyMoveEvent.getLastAirfield().equals("Ivanskoe"));
-        Assertions.assertTrue (companyMoveEvent.getNewAirfield().equals("Mozhaysk"));
-        Assertions.assertTrue (companyMoveEvent.getDate().equals(newDate));
-        Assertions.assertTrue (companyMoveEvent.isNeedsFerryMission() == true);
-        
-    }
-
-    @Test
-    public void companyMoveNoFerryBecuaseDifferentMap () throws PWCGException
-    {             
-        Mockito.when(company.determineCurrentBaseAnyMap(newDate)).thenReturn(newAirfield);
-        Mockito.when(company.determineCurrentBaseAnyMap(campaignDate)).thenReturn(currentAirfield);
-        Mockito.when(company.determineCurrentAirfieldName(campaignDate)).thenReturn("Ivanskoe");
-        Mockito.when(company.determineCurrentAirfieldName(newDate)).thenReturn("Surovikino");
-        Mockito.when(currentAirfield.getName()).thenReturn("Ivanskoe");
-        Mockito.when(newAirfield.getName()).thenReturn("Surovikino");
-
-        CompanyMoveHandler companyMoveHandler = new CompanyMoveHandler(campaign);
-        CompanyMoveEvent companyMoveEvent = companyMoveHandler.companyMoves(newDate, company);
-        Assertions.assertTrue (companyMoveEvent.getLastAirfield().equals("Ivanskoe"));
-        Assertions.assertTrue (companyMoveEvent.getNewAirfield().equals("Surovikino"));
-        Assertions.assertTrue (companyMoveEvent.getDate().equals(newDate));
-        Assertions.assertTrue (companyMoveEvent.isNeedsFerryMission() == false);
     }
 }

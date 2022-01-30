@@ -44,10 +44,9 @@ public class InfoMapGUI extends MapGUI implements ActionListener
     private JComboBox<String> cbDate = new JComboBox<String>();
     private ButtonGroup mapButtonGroup = new ButtonGroup();
 
-    private JCheckBox displayFighterCompanys = null;
-    private JCheckBox displayAttackCompanys = null;
-    private JCheckBox displayBomberCompanys = null;
-    private JCheckBox displayReconCompanys = null;
+    private JCheckBox displayTankCompanys = null;
+    private JCheckBox displayAssaultGunCompanys = null;
+    private JCheckBox displayAAACompanys = null;
     private JCheckBox displayAirfields = null;
     private JCheckBox displayTowns = null;
     private JCheckBox displayRailroadStations = null;
@@ -259,17 +258,14 @@ public class InfoMapGUI extends MapGUI implements ActionListener
         JLabel roleLabel = PWCGLabelFactory.makeMenuLabelLarge("Choose Aircraft Role");
         roleGrid.add(roleLabel);
 
-        displayFighterCompanys = makeCheckBoxButton("Fighter", "Fighter");
-        roleGrid.add(displayFighterCompanys);
+        displayTankCompanys = makeCheckBoxButton("Tank", "Tank");
+        roleGrid.add(displayTankCompanys);
 
-        displayAttackCompanys = makeCheckBoxButton("Attack", "Attack");
-        roleGrid.add(displayAttackCompanys);
+        displayAssaultGunCompanys = makeCheckBoxButton("Assault Gun", "Assault Gun");
+        roleGrid.add(displayAssaultGunCompanys);
 
-        displayBomberCompanys = makeCheckBoxButton("Bomber", "Bomber");
-        roleGrid.add(displayBomberCompanys);
-
-        displayReconCompanys = makeCheckBoxButton("Recon", "Recon");
-        roleGrid.add(displayReconCompanys);
+        displayAAACompanys = makeCheckBoxButton("AAA", "AAA");
+        roleGrid.add(displayAAACompanys);
 
         JLabel spaceLabel2 = PWCGLabelFactory.makePaperLabelMedium(" ");
         roleGrid.add(spaceLabel2);
@@ -331,9 +327,9 @@ public class InfoMapGUI extends MapGUI implements ActionListener
             infoMapPanel.setWhatToDisplay(InfoMapPanel.DISPLAY_RAILROADS, displayRailroadStations.isSelected());
             infoMapPanel.setWhatToDisplay(InfoMapPanel.DISPLAY_BRIDGES, displayBridges.isSelected());
             
-            infoMapPanel.setWhatToDisplay(InfoMapPanel.DISPLAY_TANK, displayFighterCompanys.isSelected());
-            infoMapPanel.setWhatToDisplay(InfoMapPanel.DISPLAY_ASSAULT_GUN, displayAttackCompanys.isSelected());
-            infoMapPanel.setWhatToDisplay(InfoMapPanel.DISPLAY_AAA, displayBomberCompanys.isSelected());
+            infoMapPanel.setWhatToDisplay(InfoMapPanel.DISPLAY_TANK, displayTankCompanys.isSelected());
+            infoMapPanel.setWhatToDisplay(InfoMapPanel.DISPLAY_ASSAULT_GUN, displayAssaultGunCompanys.isSelected());
+            infoMapPanel.setWhatToDisplay(InfoMapPanel.DISPLAY_AAA, displayAAACompanys.isSelected());
         }
         catch (Exception e)
         {

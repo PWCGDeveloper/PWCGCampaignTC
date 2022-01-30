@@ -10,6 +10,7 @@ import pwcg.campaign.context.FrontMapIdentifier;
 import pwcg.campaign.group.airfield.Airfield;
 import pwcg.campaign.tank.PwcgRoleCategory;
 import pwcg.core.exception.PWCGException;
+import pwcg.core.location.PWCGLocation;
 import pwcg.core.utils.MathUtils;
 import pwcg.core.utils.PWCGLogger;
 import pwcg.core.utils.PWCGLogger.LogLevel;
@@ -19,7 +20,7 @@ public class AirfieldBestMMatchFinder
 {
     public static Airfield recommendBestMatch(Company company, Date date) throws PWCGException
     {        
-        Airfield companyField = company.determineCurrentBaseAnyMap(date);
+        PWCGLocation companyField = company.determineCurrentBaseCurrentMap(date);
 
         double closest = 100000000.0;
         Airfield bestField = null;

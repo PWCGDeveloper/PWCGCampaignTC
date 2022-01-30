@@ -246,7 +246,7 @@ public class IntelMapPanel extends MapPanelBase
 
 	private void addCompanyPoint(Company company) throws PWCGException 
 	{
-		String fieldName = company.determineCurrentAirfieldName(parent.getMapDate());
+		String fieldName = company.determineBaseName(parent.getMapDate());
 		Airfield field =  PWCGContext.getInstance().getCurrentMap().getAirfieldManager().getAirfield(fieldName);
 
 		if (field != null)

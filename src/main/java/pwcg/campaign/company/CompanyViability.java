@@ -10,11 +10,11 @@ import pwcg.campaign.ArmedService;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.api.ICountry;
 import pwcg.campaign.api.Side;
-import pwcg.campaign.group.airfield.Airfield;
 import pwcg.campaign.personnel.CompanyPersonnel;
 import pwcg.campaign.tank.Equipment;
 import pwcg.campaign.tank.PwcgRole;
 import pwcg.core.exception.PWCGException;
+import pwcg.core.location.PWCGLocation;
 import pwcg.core.utils.DateUtils;
 
 public class CompanyViability
@@ -118,8 +118,8 @@ public class CompanyViability
         List<Company> listForMap = new ArrayList<Company>();
         for (Company company : companies)
         {
-            Airfield field = company.determineCurrentAirfieldCurrentMap(date);
-            if (field != null)
+            PWCGLocation base = company.determineCurrentBaseCurrentMap(date);
+            if (base != null)
             {
                 listForMap.add(company);
             }

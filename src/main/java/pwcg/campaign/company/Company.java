@@ -17,7 +17,7 @@ import pwcg.campaign.api.Side;
 import pwcg.campaign.context.Country;
 import pwcg.campaign.context.FrontLinePoint;
 import pwcg.campaign.context.FrontMapIdentifier;
-import pwcg.campaign.context.MapForAirfieldFinder;
+import pwcg.campaign.context.MapForBaseFinder;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.context.PWCGMap;
 import pwcg.campaign.crewmember.CrewMember;
@@ -26,7 +26,6 @@ import pwcg.campaign.crewmember.TankAce;
 import pwcg.campaign.factory.ArmedServiceFactory;
 import pwcg.campaign.factory.CountryFactory;
 import pwcg.campaign.factory.RankFactory;
-import pwcg.campaign.group.airfield.Airfield;
 import pwcg.campaign.personnel.CompanyPersonnel;
 import pwcg.campaign.personnel.CrewMemberFilter;
 import pwcg.campaign.skin.Skin;
@@ -39,6 +38,7 @@ import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.core.constants.Callsign;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
+import pwcg.core.location.PWCGLocation;
 import pwcg.core.utils.DateUtils;
 import pwcg.core.utils.MathUtils;
 import pwcg.mission.ICompanyMission;
@@ -152,81 +152,59 @@ public class Company implements ICompanyMission
         return isActiveArchType;
     }
 
-	public String determineCurrentAirfieldName(Date campaignDate)
-	{
-        String currentAirFieldName = null;
-        
-        for (Date airfieldStartDate : bases.keySet())
-        {
-            if (!airfieldStartDate.after(campaignDate))
-            {
-                currentAirFieldName = bases.get(airfieldStartDate);
-            }
-            else
-            {
-                break;
-            }
-        }
-        
-        return currentAirFieldName;
-	}
-
     public void assignBase(Date assignmentDate, String town) throws PWCGException 
     {
         bases.put(assignmentDate, town);
         TreeMap<Date, String> baseModified = new TreeMap<>();
-        for (Date fieldDate : bases.keySet())
+        for (Date townDate : bases.keySet())
         {
-            baseModified.put(fieldDate, (bases.get(fieldDate)));
+            baseModified.put(townDate, (bases.get(townDate)));
         }
         bases = baseModified;
     }
 
-    public Airfield determineCurrentBaseAnyMap(Date campaignDate) throws PWCGException 
+    public PWCGLocation determineCurrentBaseAnyMap(Date campaignDate) throws PWCGException 
     {
-        Airfield field = null;
-        
-        String airfieldName = determineCurrentAirfieldName(campaignDate);
-        if (airfieldName != null)
+        PWCGLocation town = null;
+        String townName = determineBaseName(campaignDate);
+        if (townName != null)
         {
-            field =  PWCGContext.getInstance().getAirfieldAllMaps(airfieldName);
+            town =  PWCGContext.getInstance().getTownAllMaps(townName);
         }
         
-        return field;
+        return town;
     }
 
-    public Airfield determineCurrentAirfieldCurrentMap(Date campaignDate)
-    {
-        Airfield field = null;
-        
-        String airfieldName = determineCurrentAirfieldName(campaignDate);
-        if (airfieldName != null)
+    public PWCGLocation determineCurrentBaseCurrentMap(Date campaignDate) throws PWCGException
+    {        
+        String townName = determineBaseName(campaignDate);
+        if (townName != null)
         {
-            field =  PWCGContext.getInstance().getCurrentMap().getAirfieldManager().getAirfield(airfieldName);
+            return PWCGContext.getInstance().getCurrentMap().getGroupManager().getTownFinder().getTown(townName);
         }
-        
-        return field;
+        throw new PWCGException("No town for base on  " + DateUtils.getDateStringDashDelimitedYYYYMMDD(campaignDate));
     }
 
     public Coordinate determineCurrentPosition(Date campaignDate) throws PWCGException 
     {
-        Airfield field = determineCurrentBaseAnyMap(campaignDate);
-        if (field != null)
+        PWCGLocation town = determineCurrentBaseAnyMap(campaignDate);
+        if (town != null)
         {
-            return field.getPosition().copy();
+            return town.getPosition().copy();
         }
+        
         return null;
     }
 
     public Date determineActivetDate() throws PWCGException 
     {
         Date firstPlane = determineFirstAircraftDate();
-        Date firstAirfield = determineFirstAirfieldDate();
+        Date firstAirtown = determineFirstAirtownDate();
 
         Date earliest = firstPlane;
-        if (firstPlane.before(firstAirfield))
+        if (firstPlane.before(firstAirtown))
         {
-            earliest = firstAirfield;
+            earliest = firstAirtown;
         }
         
         if (earliest.before(DateUtils.getBeginningOfGame()))
@@ -251,11 +229,11 @@ public class Company implements ICompanyMission
         return firstPlaneDate;
     }
 
-    public Date determineFirstAirfieldDate() throws PWCGException 
+    public Date determineFirstAirtownDate() throws PWCGException 
     {
-        for (Date airfieldAssignmentDate : bases.keySet())
+        for (Date airtownAssignmentDate : bases.keySet())
         {
-            return airfieldAssignmentDate;
+            return airtownAssignmentDate;
         }
         
         return null;
@@ -323,8 +301,8 @@ public class Company implements ICompanyMission
         }
 
 		companyDescription += "Stationed at: ";
-		String fieldName = determineCurrentAirfieldName(date);
-		companyDescription += fieldName + "\n\n";
+		String townName = determineBaseName(date);
+		companyDescription += townName + "\n\n";
 		
 		List<TankTypeInformation> tanks = determineCurrentTankList(date);
 		companyDescription += "Operating the:\n";
@@ -346,29 +324,14 @@ public class Company implements ICompanyMission
 		return companyDescription;
 	}
 
-	public List<Date> determineDatesCompanyAtField(Airfield field)
-	{
-		List<Date> datesCompanyAtField = new ArrayList<Date>();
-		
-		for (String airfieldName : bases.values())
-		{
-			if (airfieldName.equals(field.getName()))
-			{
-				datesCompanyAtField.add(field.getStartDate());
-			}
-		}
-		
-		return datesCompanyAtField;
-	}
-
     public ICountry determineEnemyCountry(Date date) throws PWCGException
     {
         List<Company> companys = null;
         
         ICountry companyCountry = CountryFactory.makeCountryByCountry(country);
         Side enemySide = companyCountry.getSideNoNeutral().getOppositeSide();
-        Airfield field = determineCurrentAirfieldCurrentMap(date);
-        companys =  PWCGContext.getInstance().getCompanyManager().getActiveCompaniesBySideAndProximity(enemySide, date, field.getPosition(), 30000);
+        PWCGLocation town = determineCurrentBaseCurrentMap(date);
+        companys =  PWCGContext.getInstance().getCompanyManager().getActiveCompaniesBySideAndProximity(enemySide, date, town.getPosition(), 30000);
 
         // Use an enemy company as a reference country.
         // If no enemy company use the enemy map reference nation
@@ -510,11 +473,11 @@ public class Company implements ICompanyMission
         return companyInfo.toString();
     }
 
-    public PWCGMap getMapForBase(Date campaignDate)
+    public PWCGMap getMapForField(Date campaignDate) throws PWCGException
     {
-        String airfieldName = determineCurrentAirfieldName(campaignDate);
-    	List<FrontMapIdentifier> airfieldMapIdentifiers = MapForAirfieldFinder.getMapForAirfield(airfieldName);
-    	PWCGMap map = PWCGContext.getInstance().getMapByMapId(airfieldMapIdentifiers.get(0));
+        String townName = determineBaseName(campaignDate);
+    	List<FrontMapIdentifier> airtownMapIdentifiers = MapForBaseFinder.getMapForBase(townName);
+    	PWCGMap map = PWCGContext.getInstance().getMapByMapId(airtownMapIdentifiers.get(0));
         return map;
     }
 
@@ -788,7 +751,20 @@ public class Company implements ICompanyMission
     @Override
     public String determineBaseName(Date campaignDate)
     {
-        return this.determineCurrentAirfieldName(campaignDate);
+        String currenttownName = null;
+        for (Date baseStartDate : bases.keySet())
+        {
+            if (!baseStartDate.after(campaignDate))
+            {
+                currenttownName = bases.get(baseStartDate);
+            }
+            else
+            {
+                break;
+            }
+        }
+        
+        return currenttownName;
     }
 
     @Override

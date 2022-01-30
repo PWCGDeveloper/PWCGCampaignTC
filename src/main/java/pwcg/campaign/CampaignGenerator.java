@@ -4,12 +4,12 @@ import java.util.List;
 
 import pwcg.campaign.company.Company;
 import pwcg.campaign.context.FrontMapIdentifier;
-import pwcg.campaign.context.MapForAirfieldFinder;
+import pwcg.campaign.context.MapForBaseFinder;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.factory.ArmedServiceFactory;
-import pwcg.campaign.group.airfield.Airfield;
 import pwcg.core.exception.PWCGException;
+import pwcg.core.location.PWCGLocation;
 
 public class CampaignGenerator 
 {
@@ -88,8 +88,8 @@ public class CampaignGenerator
     private void setMapForNewCampaign() throws PWCGException
     {
         Company company = PWCGContext.getInstance().getCompanyManager().getCompanyByName(generatorModel.getCompanyName(), generatorModel.getCampaignDate());
-        Airfield airfield = company.determineCurrentBaseAnyMap(generatorModel.getCampaignDate());
-        List<FrontMapIdentifier> airfieldMaps = MapForAirfieldFinder.getMapForAirfield(airfield.getName());
+        PWCGLocation base = company.determineCurrentBaseAnyMap(generatorModel.getCampaignDate());
+        List<FrontMapIdentifier> airfieldMaps = MapForBaseFinder.getMapForBase(base.getName());
         FrontMapIdentifier initialAirfieldMap = airfieldMaps.get(0);
 
         PWCGContext.getInstance().changeContext(initialAirfieldMap);

@@ -10,7 +10,7 @@ import pwcg.campaign.company.Company;
 import pwcg.campaign.company.CompanyManager;
 import pwcg.campaign.context.AceManager;
 import pwcg.campaign.context.FrontMapIdentifier;
-import pwcg.campaign.context.MapForAirfieldFinder;
+import pwcg.campaign.context.MapForBaseFinder;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.crewmember.TankAce;
 import pwcg.campaign.tank.PwcgRoleCategory;
@@ -98,8 +98,8 @@ public class CampaignGeneratorCompanyFilter
 			return false;
 		}
 		
-    	String airfieldName = company.determineCurrentAirfieldName(campaignDate);
-    	List<FrontMapIdentifier> airfieldMaps = MapForAirfieldFinder.getMapForAirfield(airfieldName);
+    	String airfieldName = company.determineBaseName(campaignDate);
+    	List<FrontMapIdentifier> airfieldMaps = MapForBaseFinder.getMapForBase(airfieldName);
     	
     	for (FrontMapIdentifier airfieldMap : airfieldMaps)
     	{

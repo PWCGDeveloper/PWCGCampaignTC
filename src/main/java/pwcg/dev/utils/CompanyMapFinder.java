@@ -6,8 +6,8 @@ import java.util.TreeMap;
 import pwcg.campaign.company.Company;
 import pwcg.campaign.context.FrontMapIdentifier;
 import pwcg.campaign.context.PWCGContext;
-import pwcg.campaign.group.airfield.Airfield;
 import pwcg.core.exception.PWCGException;
+import pwcg.core.location.PWCGLocation;
 import pwcg.core.utils.DateUtils;
 import pwcg.core.utils.PWCGLogger;
 import pwcg.core.utils.PWCGLogger.LogLevel;
@@ -35,13 +35,13 @@ public class CompanyMapFinder
         
         TreeMap<Integer, String> airfieldsOnMapSorted = new TreeMap<>();
         
-        List<Company> allSq =  PWCGContext.getInstance().getCompanyManager().getAllCompanies();
-        for (Company company : allSq)
+        List<Company> alLCompanies =  PWCGContext.getInstance().getCompanyManager().getAllCompanies();
+        for (Company company : alLCompanies)
         {
-            Airfield airfield = company.determineCurrentAirfieldCurrentMap(DateUtils.getDateYYYYMMDD("19430801"));
-            if (airfield != null)
+            PWCGLocation base = company.determineCurrentBaseCurrentMap(DateUtils.getDateYYYYMMDD("19430801"));
+            if (base != null)
             {
-                airfieldsOnMapSorted.put(company.getCompanyId(), airfield.getName());
+                airfieldsOnMapSorted.put(company.getCompanyId(), base.getName());
             }
         }
 

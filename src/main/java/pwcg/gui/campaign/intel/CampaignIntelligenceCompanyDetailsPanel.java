@@ -149,7 +149,7 @@ public class CampaignIntelligenceCompanyDetailsPanel extends JPanel
         intelBuffer.append("\n");
         intelBuffer.append("        "  + company.determineDisplayName(campaign.getDate()));          
         intelBuffer.append("\n");
-        intelBuffer.append("        " + stationedAtText + ": " + company.determineCurrentAirfieldName(campaign.getDate()));          
+        intelBuffer.append("        " + stationedAtText + ": " + company.determineBaseName(campaign.getDate()));          
         intelBuffer.append("\n");
         intelBuffer.append("        " + callSignText + ": " + company.determineCurrentCallsign(campaign.getDate()));
         intelBuffer.append("\n");

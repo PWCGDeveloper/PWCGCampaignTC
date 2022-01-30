@@ -11,10 +11,10 @@ import pwcg.campaign.ArmedService;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.api.ICountry;
 import pwcg.campaign.api.Side;
-import pwcg.campaign.group.airfield.Airfield;
 import pwcg.campaign.tank.PwcgRole;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
+import pwcg.core.location.PWCGLocation;
 import pwcg.core.utils.MathUtils;
 
 public class CompanyReducer
@@ -51,8 +51,8 @@ public class CompanyReducer
         List<Company> companiesForMap = new ArrayList<>();
         for (Company company : companies)
         {
-            Airfield field = company.determineCurrentAirfieldCurrentMap(date);
-            if (field != null)
+            PWCGLocation base = company.determineCurrentBaseCurrentMap(date);
+            if (base != null)
             {
                 companiesForMap.add(company);
             }

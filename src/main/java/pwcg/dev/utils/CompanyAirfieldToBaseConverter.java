@@ -57,17 +57,18 @@ public class CompanyAirfieldToBaseConverter
             Airfield field =  PWCGContext.getInstance().getAirfieldAllMaps(airfieldName);
             if (field == null)
             {
-                throw new PWCGException(company.determineBaseName(baseDate) + "field not found" + airfieldName);
+                throw new PWCGException(company.determineDisplayName(baseDate) + " field not found " + airfieldName);
             }
             else
             {
                 String closestTown = findClosestTown(company, field.getPosition(), baseDate);
                 baseMap.put(baseDate, closestTown);
                 System.out.println("best town is " + closestTown);
-                company.setBases(baseMap);
-                CompanyIOJson.writeJson(company);
             }
         }         
+
+        company.setBases(baseMap);
+        CompanyIOJson.writeJson(company);
     }
 
     private String findClosestTown(Company company, Coordinate position, Date baseDate) throws PWCGException
