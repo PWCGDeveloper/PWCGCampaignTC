@@ -145,7 +145,7 @@ public class FrontDatesForMap
             else
             {
                 Date endDate = dateRange.getEndDate();
-                if (endDate.before(latestMapDate))
+                if (endDate.after(latestMapDate))
                 {
                     latestMapDate = endDate;
                 }
