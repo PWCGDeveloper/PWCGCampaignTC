@@ -17,8 +17,6 @@ public class CompanyTankFinder
 {
 	static public void main (String[] args)
 	{
-        UserDir.setUserDir();
-
         try
 		{
 			CompanyTankFinder finder = new CompanyTankFinder();

@@ -57,8 +57,8 @@ public class CompanyMoveHandlerTest
     @Test
     public void companyMoveNoFerryBecuaseSameMap () throws PWCGException
     {             
-        Mockito.when(company.determineCurrentAirfieldAnyMap(newDate)).thenReturn(newAirfield);
-        Mockito.when(company.determineCurrentAirfieldAnyMap(campaignDate)).thenReturn(currentAirfield);
+        Mockito.when(company.determineCurrentBaseAnyMap(newDate)).thenReturn(newAirfield);
+        Mockito.when(company.determineCurrentBaseAnyMap(campaignDate)).thenReturn(currentAirfield);
         Mockito.when(company.determineCurrentAirfieldName(campaignDate)).thenReturn("Ivanskoe");
         Mockito.when(company.determineCurrentAirfieldName(newDate)).thenReturn("Mozhaysk");
         Mockito.when(currentAirfield.getName()).thenReturn("Ivanskoe");
@@ -76,8 +76,8 @@ public class CompanyMoveHandlerTest
     @Test
     public void companyMoveNoFerryBecuaseDifferentMap () throws PWCGException
     {             
-        Mockito.when(company.determineCurrentAirfieldAnyMap(newDate)).thenReturn(newAirfield);
-        Mockito.when(company.determineCurrentAirfieldAnyMap(campaignDate)).thenReturn(currentAirfield);
+        Mockito.when(company.determineCurrentBaseAnyMap(newDate)).thenReturn(newAirfield);
+        Mockito.when(company.determineCurrentBaseAnyMap(campaignDate)).thenReturn(currentAirfield);
         Mockito.when(company.determineCurrentAirfieldName(campaignDate)).thenReturn("Ivanskoe");
         Mockito.when(company.determineCurrentAirfieldName(newDate)).thenReturn("Surovikino");
         Mockito.when(currentAirfield.getName()).thenReturn("Ivanskoe");

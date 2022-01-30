@@ -88,7 +88,7 @@ public class CampaignGenerator
     private void setMapForNewCampaign() throws PWCGException
     {
         Company company = PWCGContext.getInstance().getCompanyManager().getCompanyByName(generatorModel.getCompanyName(), generatorModel.getCampaignDate());
-        Airfield airfield = company.determineCurrentAirfieldAnyMap(generatorModel.getCampaignDate());
+        Airfield airfield = company.determineCurrentBaseAnyMap(generatorModel.getCampaignDate());
         List<FrontMapIdentifier> airfieldMaps = MapForAirfieldFinder.getMapForAirfield(airfield.getName());
         FrontMapIdentifier initialAirfieldMap = airfieldMaps.get(0);
 

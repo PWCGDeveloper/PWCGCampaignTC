@@ -331,9 +331,9 @@ public class InfoMapGUI extends MapGUI implements ActionListener
             infoMapPanel.setWhatToDisplay(InfoMapPanel.DISPLAY_RAILROADS, displayRailroadStations.isSelected());
             infoMapPanel.setWhatToDisplay(InfoMapPanel.DISPLAY_BRIDGES, displayBridges.isSelected());
             
-            infoMapPanel.setWhatToDisplay(InfoMapPanel.DISPLAY_FIGHTER, displayFighterCompanys.isSelected());
-            infoMapPanel.setWhatToDisplay(InfoMapPanel.DISPLAY_ATTACK, displayAttackCompanys.isSelected());
-            infoMapPanel.setWhatToDisplay(InfoMapPanel.DISPLAY_BOMBER, displayBomberCompanys.isSelected());
+            infoMapPanel.setWhatToDisplay(InfoMapPanel.DISPLAY_TANK, displayFighterCompanys.isSelected());
+            infoMapPanel.setWhatToDisplay(InfoMapPanel.DISPLAY_ASSAULT_GUN, displayAttackCompanys.isSelected());
+            infoMapPanel.setWhatToDisplay(InfoMapPanel.DISPLAY_AAA, displayBomberCompanys.isSelected());
         }
         catch (Exception e)
         {

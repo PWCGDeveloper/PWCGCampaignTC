@@ -10,8 +10,6 @@ public class AceCompanyCommandChecker
 {
     public static void main (String[] args)
     {
-        UserDir.setUserDir();
-
         try
         {
             AceCompanyCommandChecker checker = new AceCompanyCommandChecker();

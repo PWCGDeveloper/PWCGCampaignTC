@@ -16,8 +16,6 @@ public class CompanyMapFinder
 {
 	static public void main (String[] args)
 	{
-        UserDir.setUserDir();
-
         try
 		{
 			CompanyMapFinder finder = new CompanyMapFinder();

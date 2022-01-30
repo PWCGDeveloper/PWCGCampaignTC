@@ -31,7 +31,7 @@ public class CompanyViability
             return false;
         }
         
-        if (company.determineCurrentAirfieldAnyMap(date) == null)
+        if (company.determineCurrentBaseAnyMap(date) == null)
         {
             return false;
         }

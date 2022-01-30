@@ -3,15 +3,15 @@ package pwcg.gui.rofmap.infoMap;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
-public class InfoAirfieldSelectPopup extends JPopupMenu
+public class InfoTownSelectPopup extends JPopupMenu
 {
     private static final long serialVersionUID = 1L;
 
-    public InfoAirfieldSelectPopup(InfoMapPanel parent, String airfield)
+    public InfoTownSelectPopup(InfoMapPanel parent, String airfield)
     {
-        JMenuItem airfieldMenuItem = new JMenuItem("Select Target Airfield:"+airfield);
-        airfieldMenuItem.addActionListener(parent);
-        add(airfieldMenuItem);
+        JMenuItem townMenuItem = new JMenuItem("Select Town:"+airfield);
+        townMenuItem.addActionListener(parent);
+        add(townMenuItem);
         
         JMenuItem cancelWpItem = new JMenuItem("Cancel");
         add(cancelWpItem);

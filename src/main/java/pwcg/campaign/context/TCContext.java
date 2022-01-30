@@ -1,6 +1,9 @@
 package pwcg.campaign.context;
 
+import java.util.Date;
+
 import pwcg.core.exception.PWCGException;
+import pwcg.core.utils.DateUtils;
 
 public class TCContext extends PWCGContextBase
 { 
@@ -76,5 +79,19 @@ public class TCContext extends PWCGContextBase
     public PWCGDirectoryProductManager getDirectoryManager()
     {
         return new PWCGDirectoryProductManager(PWCGProduct.TC);
+    }
+
+    public FrontMapIdentifier getMapForDate(Date date) throws PWCGException
+    {
+        for(FrontMapIdentifier mapId : pwcgMaps.keySet())
+        {
+            PWCGMap map = pwcgMaps.get(mapId);
+            if(map.getFrontDatesForMap().isMapActive(date))
+            {
+                return mapId;
+            }
+        }
+        
+        throw new PWCGException("No active mapfor date " + DateUtils.getDateStringDashDelimitedYYYYMMDD(date));
     }
 }

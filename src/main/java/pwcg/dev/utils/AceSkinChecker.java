@@ -16,8 +16,6 @@ public class AceSkinChecker
 {
     public static void main (String[] args)
     {
-        UserDir.setUserDir();
-
         try
         {
             AceSkinChecker checker = new AceSkinChecker();

@@ -19,7 +19,7 @@ public class AirfieldBestMMatchFinder
 {
     public static Airfield recommendBestMatch(Company company, Date date) throws PWCGException
     {        
-        Airfield companyField = company.determineCurrentAirfieldAnyMap(date);
+        Airfield companyField = company.determineCurrentBaseAnyMap(date);
 
         double closest = 100000000.0;
         Airfield bestField = null;

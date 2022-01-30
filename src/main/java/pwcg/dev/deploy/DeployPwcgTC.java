@@ -4,7 +4,7 @@ import pwcg.campaign.utils.TestDriver;
 import pwcg.core.utils.PWCGLogger;
 import pwcg.core.utils.PWCGLogger.LogLevel;
 
-public class DeployPwcg extends DeployBase
+public class DeployPwcgTC extends DeployBase
 {
     static public void main (String[] args)
     {

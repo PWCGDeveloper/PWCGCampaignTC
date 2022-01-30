@@ -32,9 +32,7 @@ public class AirfieldDistanceEvaluator
     AirfieldDistanceOrganizer airfieldDistanceOrganizer = new AirfieldDistanceOrganizer();
     
     public static void main(String[] args) throws PWCGException
-    {
-	    UserDir.setUserDir();
-	    
+    {	    
 	    
         AirfieldDistanceEvaluator airfieldReporter = new AirfieldDistanceEvaluator();
         airfieldReporter.process();
@@ -81,7 +79,7 @@ public class AirfieldDistanceEvaluator
         {
             boolean bad = false;
             
-            Airfield companyField = company.determineCurrentAirfieldAnyMap(dateNow);
+            Airfield companyField = company.determineCurrentBaseAnyMap(dateNow);
             
             if (company.determineCompanyCountry(dateNow).getSide() != sideCompanys)
             {

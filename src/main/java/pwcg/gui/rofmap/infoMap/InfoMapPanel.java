@@ -42,9 +42,9 @@ public class InfoMapPanel extends MapPanelBase
     public static int DISPLAY_RAILROADS = 3;
     public static int DISPLAY_BRIDGES = 4;
     
-    public static int DISPLAY_FIGHTER = 5;
-    public static int DISPLAY_ATTACK = 6;
-    public static int DISPLAY_BOMBER = 7;
+    public static int DISPLAY_TANK = 5;
+    public static int DISPLAY_ASSAULT_GUN = 6;
+    public static int DISPLAY_AAA = 7;
     
 	private static final long serialVersionUID = 1L;
 	
@@ -127,43 +127,42 @@ public class InfoMapPanel extends MapPanelBase
                 }        
             }
             
-            if (whatToDisplay[DISPLAY_FIGHTER])
+            if (whatToDisplay[DISPLAY_TANK])
             {
                 CompanyManager companyManager =  PWCGContext.getInstance().getCompanyManager();
                 List<Company> allCompanys = companyManager.getActiveCompaniesForCurrentMap(parent.getMapDate());
                 for (Company company : allCompanys)
                 {
                     PwcgRoleCategory companyPrimaryRole = company.determineCompanyPrimaryRoleCategory(parent.getMapDate());
-                    if (companyPrimaryRole == PwcgRoleCategory.FIGHTER)
+                    if (companyPrimaryRole == PwcgRoleCategory.MAIN_BATTLE_TANK)
                     {
                         drawPointsByCompany(g, company);
                     }
                 }        
             }
             
-            if (whatToDisplay[DISPLAY_BOMBER])
+            if (whatToDisplay[DISPLAY_AAA])
             {
                 CompanyManager companyManager =  PWCGContext.getInstance().getCompanyManager();
                 List<Company> allCompanys = companyManager.getActiveCompaniesForCurrentMap(parent.getMapDate());
                 for (Company company : allCompanys)
                 {
                     PwcgRoleCategory companyRole = company.determineCompanyPrimaryRoleCategory(parent.getMapDate());
-                    if ((companyRole == PwcgRoleCategory.BOMBER) || 
-                        (companyRole == PwcgRoleCategory.TRANSPORT))
+                    if (companyRole == PwcgRoleCategory.SELF_PROPELLED_AAA)
                     {
                         drawPointsByCompany(g, company);
                     }
                 }        
             }
             
-            if (whatToDisplay[DISPLAY_ATTACK])
+            if (whatToDisplay[DISPLAY_ASSAULT_GUN])
             {
                 CompanyManager companyManager =  PWCGContext.getInstance().getCompanyManager();
                 List<Company> allCompanys = companyManager.getActiveCompaniesForCurrentMap(parent.getMapDate());
                 for (Company company : allCompanys)
                 {
                     PwcgRoleCategory companyPrimaryRole = company.determineCompanyPrimaryRoleCategory(parent.getMapDate());
-                    if (companyPrimaryRole == PwcgRoleCategory.ATTACK)
+                    if (companyPrimaryRole == PwcgRoleCategory.SELF_PROPELLED_GUN || companyPrimaryRole == PwcgRoleCategory.TANK_DESTROYER)
                     {
                         drawPointsByCompany(g, company);
                     }
@@ -323,34 +322,29 @@ public class InfoMapPanel extends MapPanelBase
 
     private boolean showAirfieldName(MouseEvent e, Point clickPoint)
     {
-        if (whatToDisplay[DISPLAY_AIRFIELDS] == true)
+        if (whatToDisplay[DISPLAY_TOWNS] == true)
         {
-            Airfield field = null;
+            PWCGLocation town = null;
             try
             {
                 Coordinate clickCoord = this.pointToCoordinate(clickPoint);
 
-               field = PWCGContext.getInstance().getCurrentMap().getAirfieldManager().getAirfieldFinder().getNearbyAirfield(clickCoord, 5000.0);
-                if (field == null)
-                {
-                    field = PWCGContext.getInstance().getCurrentMap().getAirfieldManager().getAirfieldFinder().getNearbyAirfield(clickCoord, 5000.0);
-                }
-                    
+               town = PWCGContext.getInstance().getCurrentMap().getGroupManager().getTownFinder().getNearbyTown(clickCoord, 5000.0);
             }
             catch (PWCGException e1)
             {
                 e1.printStackTrace();
             }
             
-            if (field != null)
+            if (town != null)
             {
                 if (enableEditing)
                 {
-                    showEditAirfieldLocation(e, field);
+                    showEditAirfieldLocation(e, town);
                 }
                 else
                 {
-                    showAirfieldInfo(e, field);
+                    showTownInfo(e, town);
                 }
 
                 return true;
@@ -360,15 +354,15 @@ public class InfoMapPanel extends MapPanelBase
         return false;
     }
 
-    private void showEditAirfieldLocation(MouseEvent e, Airfield field)
+    private void showEditAirfieldLocation(MouseEvent e, PWCGLocation town)
     {
-        InfoAirfieldSelectPopup menu = new InfoAirfieldSelectPopup(this, field.getName());
+        InfoTownSelectPopup menu = new InfoTownSelectPopup(this, town.getName());
         menu.show(e.getComponent(), e.getX(), e.getY());
     }
 
-    private void showAirfieldInfo(MouseEvent e, Airfield field)
+    private void showTownInfo(MouseEvent e, PWCGLocation town)
     {
-        InfoMapPopup menu = new InfoMapPopup(this, field.getName());
+        InfoMapPopup menu = new InfoMapPopup(this, town.getName());
         menu.show(e.getComponent(), e.getX(), e.getY());
         
     }
@@ -404,10 +398,10 @@ public class InfoMapPanel extends MapPanelBase
         {
             PwcgRoleCategory companyPrimaryRole = company.determineCompanyPrimaryRoleCategory(parent.getMapDate());
 
-            if ((whatToDisplay[DISPLAY_FIGHTER] == true && companyPrimaryRole == PwcgRoleCategory.FIGHTER)    || 
-                (whatToDisplay[DISPLAY_BOMBER] == true && companyPrimaryRole == PwcgRoleCategory.BOMBER)      || 
-                (whatToDisplay[DISPLAY_BOMBER] == true && companyPrimaryRole == PwcgRoleCategory.TRANSPORT)   || 
-                (whatToDisplay[DISPLAY_ATTACK] == true && companyPrimaryRole == PwcgRoleCategory.ATTACK))
+            if ((whatToDisplay[DISPLAY_TANK] == true && companyPrimaryRole == PwcgRoleCategory.MAIN_BATTLE_TANK)    || 
+                (whatToDisplay[DISPLAY_AAA] == true && companyPrimaryRole == PwcgRoleCategory.SELF_PROPELLED_AAA)      || 
+                (whatToDisplay[DISPLAY_ASSAULT_GUN] == true && companyPrimaryRole == PwcgRoleCategory.SELF_PROPELLED_GUN)   || 
+                (whatToDisplay[DISPLAY_ASSAULT_GUN] == true && companyPrimaryRole == PwcgRoleCategory.TANK_DESTROYER))
             {
                 // Is the company based near a field that was clicked on
                 Coordinate clickCoord = this.pointToCoordinate(clickPoint);
@@ -481,8 +475,8 @@ public class InfoMapPanel extends MapPanelBase
             if (action.contains("Select Target Airfield:"))
             {
                 String[] parts = action.split(":");
-                String airfield = parts[1];
-                companyMover.moveCompany(airfield, parent.getMapDate());
+                String town = parts[1];
+                companyMover.moveCompany(town, parent.getMapDate());
                 InfoMapGUI infoMapGUI = (InfoMapGUI)parent;
                 infoMapGUI.refreshCompanyPlacement();
             }

@@ -64,7 +64,8 @@ public class KubanMap extends PWCGMap
     @Override
     protected void configureTransitionDates() throws PWCGException
     {
-        this.frontDatesForMap.addMapDateRange(DateUtils.getDateYYYYMMDD("19420601"), DateUtils.getDateYYYYMMDD("19431231"));
+        this.frontDatesForMap.addMapDateRange(DateUtils.getDateYYYYMMDD("19420601"), DateUtils.getDateYYYYMMDD("19420731"));
+        this.frontDatesForMap.addMapDateRange(DateUtils.getDateYYYYMMDD("19430301"), DateUtils.getDateYYYYMMDD("19431231"));
         
         this.frontDatesForMap.addFrontDate("19420601");
         this.frontDatesForMap.addFrontDate("19420624");

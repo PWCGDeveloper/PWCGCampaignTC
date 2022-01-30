@@ -56,7 +56,7 @@ public class MoscowMap extends PWCGMap
     @Override
     protected void configureTransitionDates() throws PWCGException
     {
-        this.frontDatesForMap.addMapDateRange(DateUtils.getDateYYYYMMDD("19411001"), DateUtils.getDateYYYYMMDD("19420301"));
+        this.frontDatesForMap.addMapDateRange(DateUtils.getDateYYYYMMDD("19411001"), DateUtils.getDateYYYYMMDD("19420228"));
 
         this.frontDatesForMap.addFrontDate("19411001");
         this.frontDatesForMap.addFrontDate("19411005");

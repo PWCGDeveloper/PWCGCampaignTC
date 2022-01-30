@@ -70,4 +70,11 @@ public class TownFinder
     {
         return townLocations;
     }
+
+    public PWCGLocation getNearbyTown(Coordinate referenceLocation, double radius) throws PWCGException
+    {
+        PositionFinder<PWCGLocation> positionFinder = new PositionFinder<>();
+        PWCGLocation closestTown = positionFinder.selectPositionWithinExpandingRadius(townLocations.getLocations(), referenceLocation, radius, radius);
+        return closestTown;
+    }
 }

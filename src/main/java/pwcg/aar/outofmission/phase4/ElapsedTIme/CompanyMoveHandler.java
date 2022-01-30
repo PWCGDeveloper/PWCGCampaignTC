@@ -31,8 +31,8 @@ public class CompanyMoveHandler
         
         if (!airfieldNameNext.equalsIgnoreCase(airfieldNameNow))
         {
-            String lastAirfield = company.determineCurrentAirfieldAnyMap(campaign.getDate()).getName();
-            String newAirfield = company.determineCurrentAirfieldAnyMap(newDate).getName();
+            String lastAirfield = company.determineCurrentBaseAnyMap(campaign.getDate()).getName();
+            String newAirfield = company.determineCurrentBaseAnyMap(newDate).getName();
             boolean needsFerry = needsFerryMission(airfieldNameNow, airfieldNameNext);
             boolean isNewsworthy = true;
             companyMoveEvent = new CompanyMoveEvent(lastAirfield, newAirfield, company.getCompanyId(), needsFerry, newDate, isNewsworthy);

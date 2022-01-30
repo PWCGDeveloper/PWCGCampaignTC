@@ -11,14 +11,14 @@ public class InfoMapCompanyMover
 {
     private Integer companyIdToMove = -1;
 
-    public void moveCompany (String targetAirfield, Date assignmentDate) throws PWCGException
+    public void moveCompany (String targetTown, Date assignmentDate) throws PWCGException
     {
         if (companyIdToMove > 0)
         {
             Company company = PWCGContext.getInstance().getCompanyManager().getCompany(companyIdToMove);
             if (company != null)
             {
-                company.assignAirfield(assignmentDate, targetAirfield);
+                company.assignBase(assignmentDate, targetTown);
                 CompanyIOJson.writeJson(company);
                 companyIdToMove = -1;
             }

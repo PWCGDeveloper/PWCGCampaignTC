@@ -25,8 +25,6 @@ public class AirfieldDistanceOrganizer
 
     public static void main(String[] args)
     {
-		System.setProperty( "user.dir", "E:\\PWCG\\workspacePWCGGradle\\PwcgCampaign" );
-
         AirfieldDistanceOrganizer airfieldReporter = new AirfieldDistanceOrganizer();
         
         Date startDate;

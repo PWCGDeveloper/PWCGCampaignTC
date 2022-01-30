@@ -1,13 +1,15 @@
 TC:
 Campaign creation:
 
+Base companies near towns
+
 Mission:
 Not defense only
-replace existing tank unit
 record AI tank types for AAR
 Current mission bugs
 - Soviet and US units included in same battle
 - Not matching ground units - related to above?
+
 
 AAR:
 Add out of mission for tank units

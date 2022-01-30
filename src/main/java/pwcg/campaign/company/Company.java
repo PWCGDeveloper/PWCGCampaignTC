@@ -171,18 +171,18 @@ public class Company implements ICompanyMission
         return currentAirFieldName;
 	}
 
-    public void assignAirfield(Date assignmentDate, String airfield) throws PWCGException 
+    public void assignBase(Date assignmentDate, String town) throws PWCGException 
     {
-        bases.put(assignmentDate, airfield);
-        TreeMap<Date, String> airfieldModified = new TreeMap<>();
+        bases.put(assignmentDate, town);
+        TreeMap<Date, String> baseModified = new TreeMap<>();
         for (Date fieldDate : bases.keySet())
         {
-            airfieldModified.put(fieldDate, (bases.get(fieldDate)));
+            baseModified.put(fieldDate, (bases.get(fieldDate)));
         }
-        bases = airfieldModified;
+        bases = baseModified;
     }
 
-    public Airfield determineCurrentAirfieldAnyMap(Date campaignDate) throws PWCGException 
+    public Airfield determineCurrentBaseAnyMap(Date campaignDate) throws PWCGException 
     {
         Airfield field = null;
         
@@ -210,7 +210,7 @@ public class Company implements ICompanyMission
 
     public Coordinate determineCurrentPosition(Date campaignDate) throws PWCGException 
     {
-        Airfield field = determineCurrentAirfieldAnyMap(campaignDate);
+        Airfield field = determineCurrentBaseAnyMap(campaignDate);
         if (field != null)
         {
             return field.getPosition().copy();
@@ -676,34 +676,19 @@ public class Company implements ICompanyMission
 		return tankAssignments;
 	}
 
-	public Map<Date, String> getAirfields() 
+	public Map<Date, String> getBases() 
 	{
 		return bases;
-	}
-
-	public void setAirfields(Map<Date, String> airfields) 
-	{
-		this.bases = airfields;
 	}
 
 	public CompanyHistory getSquadHistory() 
 	{
 		return companyHistory;
 	}
-
-	public void setSquadHistory(CompanyHistory companyHistory) 
-	{
-		this.companyHistory = companyHistory;
-	}
-
+	
 	public int getService() 
 	{
 		return serviceId;
-	}
-
-	public void setService(int serviceId) 
-	{
-		this.serviceId = serviceId;
 	}
 
     public int getNightOdds(Date date)
@@ -810,5 +795,10 @@ public class Company implements ICompanyMission
     public boolean isPlayercompany()
     {
         return true;
+    }
+
+    public void setBases(Map<Date, String> baseMap)
+    {
+        this.bases = baseMap;
     }
 }
