@@ -2,7 +2,7 @@
   "locationSetName": "MapLocations",
   "locations": [
     {
-      "name": "Nikolaevskaja",
+      "name": "ef-Nikolaevskaja",
       "position": {
         "xPos": 16048.0,
         "yPos": 0.0,
@@ -15,7 +15,7 @@
       }
     },
     {
-      "name": "Pirozok",
+      "name": "ef-Pirozok",
       "position": {
         "xPos": 5731.0,
         "yPos": 0.0,
@@ -28,7 +28,7 @@
       }
     },
     {
-      "name": "Savelev",
+      "name": "ef-Savelev",
       "position": {
         "xPos": 25605.0,
         "yPos": 0.0,
@@ -41,7 +41,7 @@
       }
     },
     {
-      "name": "Kargalsko- Beljanskij",
+      "name": "ef-Kargalsko- Beljanskij",
       "position": {
         "xPos": 30733.0,
         "yPos": 0.0,
@@ -54,7 +54,7 @@
       }
     },
     {
-      "name": "Gorelovskij",
+      "name": "ef-Gorelovskij",
       "position": {
         "xPos": 43825.0,
         "yPos": 0.0,
@@ -67,7 +67,7 @@
       }
     },
     {
-      "name": "Trofimov",
+      "name": "ef-Trofimov",
       "position": {
         "xPos": 45368.0,
         "yPos": 0.0,
@@ -80,7 +80,7 @@
       }
     },
     {
-      "name": "Krylov",
+      "name": "ef-Krylov",
       "position": {
         "xPos": 74197.0,
         "yPos": 0.0,
@@ -93,7 +93,7 @@
       }
     },
     {
-      "name": "Tacinskaja",
+      "name": "ef-Tacinskaja",
       "position": {
         "xPos": 80511.0,
         "yPos": 0.0,
@@ -106,7 +106,7 @@
       }
     },
     {
-      "name": "Nikolaev",
+      "name": "ef-Nikolaev",
       "position": {
         "xPos": 76208.0,
         "yPos": 0.0,
@@ -119,7 +119,7 @@
       }
     },
     {
-      "name": "Medvedevka",
+      "name": "ef-Medvedevka",
       "position": {
         "xPos": 72515.0,
         "yPos": 0.0,
@@ -132,7 +132,7 @@
       }
     },
     {
-      "name": "Visnevka",
+      "name": "ef-Visnevka",
       "position": {
         "xPos": 81410.0,
         "yPos": 0.0,
@@ -145,7 +145,7 @@
       }
     },
     {
-      "name": "Siroko-Atamanskij ",
+      "name": "ef-Siroko-Atamanskij ",
       "position": {
         "xPos": 85623.0,
         "yPos": 0.0,
@@ -158,7 +158,7 @@
       }
     },
     {
-      "name": "Morozovskaja",
+      "name": "ef-Morozovskaja",
       "position": {
         "xPos": 97195.0,
         "yPos": 0.0,
@@ -171,7 +171,7 @@
       }
     },
     {
-      "name": "Russko - Vlasovskij",
+      "name": "ef-Russko - Vlasovskij",
       "position": {
         "xPos": 99662.0,
         "yPos": 0.0,
@@ -184,7 +184,7 @@
       }
     },
     {
-      "name": "Obsij",
+      "name": "ef-Obsij",
       "position": {
         "xPos": 107407.0,
         "yPos": 0.0,
@@ -197,7 +197,7 @@
       }
     },
     {
-      "name": "Agro-Proletarskaja",
+      "name": "ef-Agro-Proletarskaja",
       "position": {
         "xPos": 127354.0,
         "yPos": 0.0,
@@ -210,7 +210,7 @@
       }
     },
     {
-      "name": "Lesnoj ",
+      "name": "ef-Lesnoj ",
       "position": {
         "xPos": 112156.0,
         "yPos": 0.0,
@@ -223,7 +223,7 @@
       }
     },
     {
-      "name": "Gusarovskij",
+      "name": "ef-Gusarovskij",
       "position": {
         "xPos": 124121.0,
         "yPos": 0.0,
@@ -236,7 +236,7 @@
       }
     },
     {
-      "name": "Uspenskij",
+      "name": "ef-Uspenskij",
       "position": {
         "xPos": 129281.0,
         "yPos": 0.0,
@@ -249,7 +249,7 @@
       }
     },
     {
-      "name": "Lobacev",
+      "name": "ef-Lobacev",
       "position": {
         "xPos": 120640.0,
         "yPos": 0.0,
@@ -262,7 +262,7 @@
       }
     },
     {
-      "name": "Borisovka",
+      "name": "ef-Borisovka",
       "position": {
         "xPos": 135170.0,
         "yPos": 0.0,
@@ -275,7 +275,7 @@
       }
     },
     {
-      "name": "Pervomajskoe",
+      "name": "ef-Pervomajskoe",
       "position": {
         "xPos": 152092.0,
         "yPos": 0.0,
@@ -288,7 +288,7 @@
       }
     },
     {
-      "name": "Varlamov",
+      "name": "ef-Varlamov",
       "position": {
         "xPos": 155349.0,
         "yPos": 0.0,
@@ -301,7 +301,7 @@
       }
     },
     {
-      "name": "Sazonovskij",
+      "name": "ef-Sazonovskij",
       "position": {
         "xPos": 156281.0,
         "yPos": 0.0,
@@ -314,7 +314,7 @@
       }
     },
     {
-      "name": "Alekseev",
+      "name": "ef-Alekseev",
       "position": {
         "xPos": 170599.0,
         "yPos": 0.0,
@@ -327,7 +327,7 @@
       }
     },
     {
-      "name": "Ponomarev",
+      "name": "ef-Ponomarev",
       "position": {
         "xPos": 176313.0,
         "yPos": 0.0,
@@ -340,7 +340,7 @@
       }
     },
     {
-      "name": "Smolin",
+      "name": "ef-Smolin",
       "position": {
         "xPos": 172504.0,
         "yPos": 0.0,
@@ -353,7 +353,7 @@
       }
     },
     {
-      "name": "Novo-Kalinovka ",
+      "name": "ef-Novo-Kalinovka ",
       "position": {
         "xPos": 181412.0,
         "yPos": 0.0,
@@ -366,7 +366,7 @@
       }
     },
     {
-      "name": "Cerepiëvka",
+      "name": "ef-Cerepiëvka",
       "position": {
         "xPos": 194676.0,
         "yPos": 0.0,
@@ -379,7 +379,7 @@
       }
     },
     {
-      "name": "Popovka",
+      "name": "ef-Popovka",
       "position": {
         "xPos": 197082.0,
         "yPos": 0.0,
@@ -392,7 +392,7 @@
       }
     },
     {
-      "name": "Stojanov",
+      "name": "ef-Stojanov",
       "position": {
         "xPos": 199900.0,
         "yPos": 0.0,
@@ -405,7 +405,7 @@
       }
     },
     {
-      "name": "Vjaznenskij",
+      "name": "ef-Vjaznenskij",
       "position": {
         "xPos": 202255.0,
         "yPos": 0.0,
@@ -418,7 +418,7 @@
       }
     },
     {
-      "name": "Donskoj",
+      "name": "ef-Donskoj",
       "position": {
         "xPos": 212906.0,
         "yPos": 0.0,
@@ -431,7 +431,7 @@
       }
     },
     {
-      "name": "Botanovskij",
+      "name": "ef-Botanovskij",
       "position": {
         "xPos": 211500.0,
         "yPos": 0.0,
@@ -444,7 +444,7 @@
       }
     },
     {
-      "name": "Poctovyj",
+      "name": "ef-Poctovyj",
       "position": {
         "xPos": 213872.0,
         "yPos": 0.0,
@@ -457,7 +457,7 @@
       }
     },
     {
-      "name": "Jablonevyj",
+      "name": "ef-Jablonevyj",
       "position": {
         "xPos": 206206.0,
         "yPos": 0.0,
@@ -470,7 +470,7 @@
       }
     },
     {
-      "name": "Verbovka",
+      "name": "ef-Verbovka",
       "position": {
         "xPos": 186667.0,
         "yPos": 0.0,
@@ -483,7 +483,7 @@
       }
     },
     {
-      "name": "Krasnaja zvezda",
+      "name": "ef-Krasnaja zvezda",
       "position": {
         "xPos": 199550.0,
         "yPos": 0.0,
@@ -496,7 +496,7 @@
       }
     },
     {
-      "name": "Gusinka",
+      "name": "ef-Gusinka",
       "position": {
         "xPos": 207340.0,
         "yPos": 0.0,
@@ -509,7 +509,7 @@
       }
     },
     {
-      "name": "Verhne-Gracevskij",
+      "name": "ef-Verhne-Gracevskij",
       "position": {
         "xPos": 215322.0,
         "yPos": 0.0,
@@ -522,7 +522,7 @@
       }
     },
     {
-      "name": "Translator Icon",
+      "name": "ef-Translator Icon",
       "position": {
         "xPos": 219205.0,
         "yPos": 0.0,
@@ -535,7 +535,7 @@
       }
     },
     {
-      "name": "Rogozkino",
+      "name": "ef-Rogozkino",
       "position": {
         "xPos": 214503.0,
         "yPos": 0.0,
@@ -548,7 +548,7 @@
       }
     },
     {
-      "name": "Kalinovskij",
+      "name": "ef-Kalinovskij",
       "position": {
         "xPos": 205079.0,
         "yPos": 0.0,
@@ -561,7 +561,7 @@
       }
     },
     {
-      "name": "Rubaskin",
+      "name": "ef-Rubaskin",
       "position": {
         "xPos": 213622.0,
         "yPos": 0.0,
@@ -574,7 +574,7 @@
       }
     },
     {
-      "name": "Dubovskoj",
+      "name": "ef-Dubovskoj",
       "position": {
         "xPos": 212317.0,
         "yPos": 0.0,
@@ -587,7 +587,7 @@
       }
     },
     {
-      "name": "Belavin",
+      "name": "ef-Belavin",
       "position": {
         "xPos": 201004.0,
         "yPos": 0.0,
@@ -600,7 +600,7 @@
       }
     },
     {
-      "name": "Kalmykovskij",
+      "name": "ef-Kalmykovskij",
       "position": {
         "xPos": 215549.0,
         "yPos": 0.0,
@@ -613,7 +613,7 @@
       }
     },
     {
-      "name": "Kotovskij",
+      "name": "ef-Kotovskij",
       "position": {
         "xPos": 214471.0,
         "yPos": 0.0,
@@ -626,7 +626,7 @@
       }
     },
     {
-      "name": "Bol soj",
+      "name": "ef-Bol soj",
       "position": {
         "xPos": 209471.0,
         "yPos": 0.0,
@@ -639,7 +639,7 @@
       }
     },
     {
-      "name": "Klinovoj",
+      "name": "ef-Klinovoj",
       "position": {
         "xPos": 208094.0,
         "yPos": 0.0,
@@ -652,7 +652,7 @@
       }
     },
     {
-      "name": "Karasev",
+      "name": "ef-Karasev",
       "position": {
         "xPos": 195711.0,
         "yPos": 0.0,
@@ -665,7 +665,7 @@
       }
     },
     {
-      "name": "Berezjanka",
+      "name": "ef-Berezjanka",
       "position": {
         "xPos": 175971.0,
         "yPos": 0.0,
@@ -678,7 +678,7 @@
       }
     },
     {
-      "name": "Leont evskij",
+      "name": "ef-Leont evskij",
       "position": {
         "xPos": 171261.0,
         "yPos": 0.0,
@@ -691,7 +691,7 @@
       }
     },
     {
-      "name": "Cernysevskaja",
+      "name": "ef-Cernysevskaja",
       "position": {
         "xPos": 168675.0,
         "yPos": 0.0,
@@ -704,7 +704,7 @@
       }
     },
     {
-      "name": "Paramonov",
+      "name": "ef-Paramonov",
       "position": {
         "xPos": 166687.0,
         "yPos": 0.0,
@@ -717,7 +717,7 @@
       }
     },
     {
-      "name": "Arzanovskij",
+      "name": "ef-Arzanovskij",
       "position": {
         "xPos": 158052.0,
         "yPos": 0.0,
@@ -730,7 +730,7 @@
       }
     },
     {
-      "name": "Novo-Stepanovka ",
+      "name": "ef-Novo-Stepanovka ",
       "position": {
         "xPos": 140192.0,
         "yPos": 0.0,
@@ -743,7 +743,7 @@
       }
     },
     {
-      "name": "Gusynka",
+      "name": "ef-Gusynka",
       "position": {
         "xPos": 136677.0,
         "yPos": 0.0,
@@ -756,7 +756,7 @@
       }
     },
     {
-      "name": "Karaicev",
+      "name": "ef-Karaicev",
       "position": {
         "xPos": 124737.0,
         "yPos": 0.0,
@@ -769,7 +769,7 @@
       }
     },
     {
-      "name": "Soloneckij",
+      "name": "ef-Soloneckij",
       "position": {
         "xPos": 116226.0,
         "yPos": 0.0,
@@ -782,7 +782,7 @@
       }
     },
     {
-      "name": "Nesterkin",
+      "name": "ef-Nesterkin",
       "position": {
         "xPos": 128714.0,
         "yPos": 0.0,
@@ -795,7 +795,7 @@
       }
     },
     {
-      "name": "Frolov",
+      "name": "ef-Frolov",
       "position": {
         "xPos": 125170.0,
         "yPos": 0.0,
@@ -808,7 +808,7 @@
       }
     },
     {
-      "name": "Oblivskaja",
+      "name": "ef-Oblivskaja",
       "position": {
         "xPos": 115762.0,
         "yPos": 0.0,
@@ -821,7 +821,7 @@
       }
     },
     {
-      "name": "Kovylinskij",
+      "name": "ef-Kovylinskij",
       "position": {
         "xPos": 117525.0,
         "yPos": 0.0,
@@ -834,7 +834,7 @@
       }
     },
     {
-      "name": "Sekretev",
+      "name": "ef-Sekretev",
       "position": {
         "xPos": 121079.0,
         "yPos": 0.0,
@@ -847,7 +847,7 @@
       }
     },
     {
-      "name": "Star. Derbanovskij",
+      "name": "ef-Star. Derbanovskij",
       "position": {
         "xPos": 118556.0,
         "yPos": 0.0,
@@ -860,7 +860,7 @@
       }
     },
     {
-      "name": "Nov. Derbenovskij",
+      "name": "ef-Nov. Derbenovskij",
       "position": {
         "xPos": 116027.0,
         "yPos": 0.0,
@@ -873,7 +873,7 @@
       }
     },
     {
-      "name": "Dubovyj",
+      "name": "ef-Dubovyj",
       "position": {
         "xPos": 124875.0,
         "yPos": 0.0,
@@ -886,7 +886,7 @@
       }
     },
     {
-      "name": "Niz. Osinovskij",
+      "name": "ef-Niz. Osinovskij",
       "position": {
         "xPos": 124747.0,
         "yPos": 0.0,
@@ -899,7 +899,7 @@
       }
     },
     {
-      "name": "Surovikino",
+      "name": "ef-Surovikino",
       "position": {
         "xPos": 121941.0,
         "yPos": 0.0,
@@ -912,7 +912,7 @@
       }
     },
     {
-      "name": "Astakovskij",
+      "name": "ef-Astakovskij",
       "position": {
         "xPos": 189177.0,
         "yPos": 0.0,
@@ -925,7 +925,7 @@
       }
     },
     {
-      "name": "Nizne-Verbovskij ",
+      "name": "ef-Nizne-Verbovskij ",
       "position": {
         "xPos": 104685.0,
         "yPos": 0.0,
@@ -938,7 +938,7 @@
       }
     },
     {
-      "name": "Cernysevskij",
+      "name": "ef-Cernysevskij",
       "position": {
         "xPos": 103929.0,
         "yPos": 0.0,
@@ -951,7 +951,7 @@
       }
     },
     {
-      "name": "Volockij",
+      "name": "ef-Volockij",
       "position": {
         "xPos": 97124.0,
         "yPos": 0.0,
@@ -964,7 +964,7 @@
       }
     },
     {
-      "name": "Pokrovskij",
+      "name": "ef-Pokrovskij",
       "position": {
         "xPos": 90902.0,
         "yPos": 0.0,
@@ -977,7 +977,7 @@
       }
     },
     {
-      "name": "Sokolov",
+      "name": "ef-Sokolov",
       "position": {
         "xPos": 86132.0,
         "yPos": 0.0,
@@ -990,7 +990,7 @@
       }
     },
     {
-      "name": "Verhnegnutov",
+      "name": "ef-Verhnegnutov",
       "position": {
         "xPos": 82792.0,
         "yPos": 0.0,
@@ -1003,7 +1003,7 @@
       }
     },
     {
-      "name": "Sevast janov",
+      "name": "ef-Sevast janov",
       "position": {
         "xPos": 63514.0,
         "yPos": 0.0,
@@ -1016,7 +1016,7 @@
       }
     },
     {
-      "name": "Zemljanika",
+      "name": "ef-Zemljanika",
       "position": {
         "xPos": 53730.0,
         "yPos": 0.0,
@@ -1029,7 +1029,7 @@
       }
     },
     {
-      "name": "Certkovskaja",
+      "name": "ef-Certkovskaja",
       "position": {
         "xPos": 43520.0,
         "yPos": 0.0,
@@ -1042,7 +1042,7 @@
       }
     },
     {
-      "name": "Nov.Cymljanskaja",
+      "name": "ef-Nov.Cymljanskaja",
       "position": {
         "xPos": 46534.0,
         "yPos": 0.0,
@@ -1055,7 +1055,7 @@
       }
     },
     {
-      "name": "Karnauhovskaja",
+      "name": "ef-Karnauhovskaja",
       "position": {
         "xPos": 33333.0,
         "yPos": 0.0,
@@ -1068,7 +1068,7 @@
       }
     },
     {
-      "name": "Terëhin",
+      "name": "ef-Terëhin",
       "position": {
         "xPos": 29073.0,
         "yPos": 0.0,
@@ -1081,7 +1081,7 @@
       }
     },
     {
-      "name": "Cekalov",
+      "name": "ef-Cekalov",
       "position": {
         "xPos": 24998.0,
         "yPos": 0.0,
@@ -1094,7 +1094,7 @@
       }
     },
     {
-      "name": "Filipovskaja",
+      "name": "ef-Filipovskaja",
       "position": {
         "xPos": 25160.0,
         "yPos": 0.0,
@@ -1107,7 +1107,7 @@
       }
     },
     {
-      "name": "Krasnojarskij",
+      "name": "ef-Krasnojarskij",
       "position": {
         "xPos": 16618.0,
         "yPos": 0.0,
@@ -1120,7 +1120,7 @@
       }
     },
     {
-      "name": "Paramonov",
+      "name": "ef-Paramonov",
       "position": {
         "xPos": 6884.0,
         "yPos": 0.0,
@@ -1133,7 +1133,7 @@
       }
     },
     {
-      "name": "Darhanov",
+      "name": "ef-Darhanov",
       "position": {
         "xPos": 29243.0,
         "yPos": 0.0,
@@ -1146,7 +1146,7 @@
       }
     },
     {
-      "name": "Majorskij",
+      "name": "ef-Majorskij",
       "position": {
         "xPos": 19002.0,
         "yPos": 0.0,
@@ -1159,7 +1159,7 @@
       }
     },
     {
-      "name": "Semicnyj",
+      "name": "ef-Semicnyj",
       "position": {
         "xPos": 13333.0,
         "yPos": 0.0,
@@ -1172,7 +1172,7 @@
       }
     },
     {
-      "name": "Kotel nikovskij",
+      "name": "ef-Kotel nikovskij",
       "position": {
         "xPos": 13815.0,
         "yPos": 0.0,
@@ -1185,7 +1185,7 @@
       }
     },
     {
-      "name": "Kotel nikovo",
+      "name": "ef-Kotel nikovo",
       "position": {
         "xPos": 14502.0,
         "yPos": 0.0,
@@ -1198,7 +1198,7 @@
       }
     },
     {
-      "name": "Karaicev",
+      "name": "ef-Karaicev",
       "position": {
         "xPos": 14070.0,
         "yPos": 0.0,
@@ -1211,7 +1211,7 @@
       }
     },
     {
-      "name": "Novo-Aksaj",
+      "name": "ef-Novo-Aksaj",
       "position": {
         "xPos": 31754.0,
         "yPos": 0.0,
@@ -1224,7 +1224,7 @@
       }
     },
     {
-      "name": "Safronov",
+      "name": "ef-Safronov",
       "position": {
         "xPos": 33375.0,
         "yPos": 0.0,
@@ -1237,7 +1237,7 @@
       }
     },
     {
-      "name": "Niznij jablocnyj",
+      "name": "ef-Niznij jablocnyj",
       "position": {
         "xPos": 37618.0,
         "yPos": 0.0,
@@ -1250,7 +1250,7 @@
       }
     },
     {
-      "name": "Generalovskij",
+      "name": "ef-Generalovskij",
       "position": {
         "xPos": 55524.0,
         "yPos": 0.0,
@@ -1263,7 +1263,7 @@
       }
     },
     {
-      "name": "Poselok  Im. 8 Marta",
+      "name": "ef-Poselok  Im. 8 Marta",
       "position": {
         "xPos": 62745.0,
         "yPos": 0.0,
@@ -1276,7 +1276,7 @@
       }
     },
     {
-      "name": "Podstepenskij",
+      "name": "ef-Podstepenskij",
       "position": {
         "xPos": 65964.0,
         "yPos": 0.0,
@@ -1289,7 +1289,7 @@
       }
     },
     {
-      "name": "Morskoj",
+      "name": "ef-Morskoj",
       "position": {
         "xPos": 65433.0,
         "yPos": 0.0,
@@ -1302,7 +1302,7 @@
       }
     },
     {
-      "name": "Popov",
+      "name": "ef-Popov",
       "position": {
         "xPos": 74069.0,
         "yPos": 0.0,
@@ -1315,7 +1315,7 @@
       }
     },
     {
-      "name": "Zaharov",
+      "name": "ef-Zaharov",
       "position": {
         "xPos": 73118.0,
         "yPos": 0.0,
@@ -1328,7 +1328,7 @@
       }
     },
     {
-      "name": "Tormosin",
+      "name": "ef-Tormosin",
       "position": {
         "xPos": 73292.0,
         "yPos": 0.0,
@@ -1341,7 +1341,7 @@
       }
     },
     {
-      "name": "Aleskinskij",
+      "name": "ef-Aleskinskij",
       "position": {
         "xPos": 82686.0,
         "yPos": 0.0,
@@ -1354,7 +1354,7 @@
       }
     },
     {
-      "name": "Verhne-Aksenovskij",
+      "name": "ef-Verhne-Aksenovskij",
       "position": {
         "xPos": 94191.0,
         "yPos": 0.0,
@@ -1367,7 +1367,7 @@
       }
     },
     {
-      "name": "Peserskij",
+      "name": "ef-Peserskij",
       "position": {
         "xPos": 93028.0,
         "yPos": 0.0,
@@ -1380,7 +1380,7 @@
       }
     },
     {
-      "name": "Suvorovskij",
+      "name": "ef-Suvorovskij",
       "position": {
         "xPos": 79667.0,
         "yPos": 0.0,
@@ -1393,7 +1393,7 @@
       }
     },
     {
-      "name": "Verh.  Rubeznyj",
+      "name": "ef-Verh.  Rubeznyj",
       "position": {
         "xPos": 81823.0,
         "yPos": 0.0,
@@ -1406,7 +1406,7 @@
       }
     },
     {
-      "name": "Kamysn",
+      "name": "ef-Kamysn",
       "position": {
         "xPos": 89050.0,
         "yPos": 0.0,
@@ -1419,7 +1419,7 @@
       }
     },
     {
-      "name": "Nizne Cirskaja",
+      "name": "ef-Nizne Cirskaja",
       "position": {
         "xPos": 95295.0,
         "yPos": 0.0,
@@ -1432,7 +1432,7 @@
       }
     },
     {
-      "name": "Verhne Cirskaja",
+      "name": "ef-Verhne Cirskaja",
       "position": {
         "xPos": 103202.0,
         "yPos": 0.0,
@@ -1445,7 +1445,7 @@
       }
     },
     {
-      "name": "Novomaksimovskij",
+      "name": "ef-Novomaksimovskij",
       "position": {
         "xPos": 107528.0,
         "yPos": 0.0,
@@ -1458,7 +1458,7 @@
       }
     },
     {
-      "name": "Nemkovskij",
+      "name": "ef-Nemkovskij",
       "position": {
         "xPos": 99492.0,
         "yPos": 0.0,
@@ -1471,7 +1471,7 @@
       }
     },
     {
-      "name": "Logovskij",
+      "name": "ef-Logovskij",
       "position": {
         "xPos": 101097.0,
         "yPos": 0.0,
@@ -1484,7 +1484,7 @@
       }
     },
     {
-      "name": "sabalinskij",
+      "name": "ef-sabalinskij",
       "position": {
         "xPos": 84206.0,
         "yPos": 0.0,
@@ -1497,7 +1497,7 @@
       }
     },
     {
-      "name": "Cernomorov",
+      "name": "ef-Cernomorov",
       "position": {
         "xPos": 80867.0,
         "yPos": 0.0,
@@ -1510,7 +1510,7 @@
       }
     },
     {
-      "name": "Tuzov",
+      "name": "ef-Tuzov",
       "position": {
         "xPos": 119553.0,
         "yPos": 0.0,
@@ -1523,7 +1523,7 @@
       }
     },
     {
-      "name": "Zrjaninskij",
+      "name": "ef-Zrjaninskij",
       "position": {
         "xPos": 124371.0,
         "yPos": 0.0,
@@ -1536,7 +1536,7 @@
       }
     },
     {
-      "name": "Pobeda oktjabrja",
+      "name": "ef-Pobeda oktjabrja",
       "position": {
         "xPos": 131466.0,
         "yPos": 0.0,
@@ -1549,7 +1549,7 @@
       }
     },
     {
-      "name": "Berezovskij",
+      "name": "ef-Berezovskij",
       "position": {
         "xPos": 144036.0,
         "yPos": 0.0,
@@ -1562,7 +1562,7 @@
       }
     },
     {
-      "name": "Skvorin",
+      "name": "ef-Skvorin",
       "position": {
         "xPos": 144544.0,
         "yPos": 0.0,
@@ -1575,7 +1575,7 @@
       }
     },
     {
-      "name": "Majorovskij",
+      "name": "ef-Majorovskij",
       "position": {
         "xPos": 153671.0,
         "yPos": 0.0,
@@ -1588,7 +1588,7 @@
       }
     },
     {
-      "name": "Suhanovskij",
+      "name": "ef-Suhanovskij",
       "position": {
         "xPos": 156227.0,
         "yPos": 0.0,
@@ -1601,7 +1601,7 @@
       }
     },
     {
-      "name": "Evseev",
+      "name": "ef-Evseev",
       "position": {
         "xPos": 158739.0,
         "yPos": 0.0,
@@ -1614,7 +1614,7 @@
       }
     },
     {
-      "name": "Lobakin",
+      "name": "ef-Lobakin",
       "position": {
         "xPos": 143543.0,
         "yPos": 0.0,
@@ -1627,7 +1627,7 @@
       }
     },
     {
-      "name": "Novosibirskij",
+      "name": "ef-Novosibirskij",
       "position": {
         "xPos": 144705.0,
         "yPos": 0.0,
@@ -1640,7 +1640,7 @@
       }
     },
     {
-      "name": "Karaicev",
+      "name": "ef-Karaicev",
       "position": {
         "xPos": 160141.0,
         "yPos": 0.0,
@@ -1653,7 +1653,7 @@
       }
     },
     {
-      "name": "Srednjaja Gusynka ",
+      "name": "ef-Srednjaja Gusynka ",
       "position": {
         "xPos": 162943.0,
         "yPos": 0.0,
@@ -1666,7 +1666,7 @@
       }
     },
     {
-      "name": "Kalac-Kurtlak ",
+      "name": "ef-Kalac-Kurtlak ",
       "position": {
         "xPos": 166191.0,
         "yPos": 0.0,
@@ -1679,7 +1679,7 @@
       }
     },
     {
-      "name": "Kalmykov",
+      "name": "ef-Kalmykov",
       "position": {
         "xPos": 167180.0,
         "yPos": 0.0,
@@ -1692,7 +1692,7 @@
       }
     },
     {
-      "name": "Manojli",
+      "name": "ef-Manojli",
       "position": {
         "xPos": 166776.0,
         "yPos": 0.0,
@@ -1705,7 +1705,7 @@
       }
     },
     {
-      "name": "Perelazovskij",
+      "name": "ef-Perelazovskij",
       "position": {
         "xPos": 181824.0,
         "yPos": 0.0,
@@ -1718,7 +1718,7 @@
       }
     },
     {
-      "name": "zirki",
+      "name": "ef-zirki",
       "position": {
         "xPos": 196701.0,
         "yPos": 0.0,
@@ -1731,7 +1731,7 @@
       }
     },
     {
-      "name": "Zaharov",
+      "name": "ef-Zaharov",
       "position": {
         "xPos": 185456.0,
         "yPos": 0.0,
@@ -1744,7 +1744,7 @@
       }
     },
     {
-      "name": "Bobrovskij 2",
+      "name": "ef-Bobrovskij 2",
       "position": {
         "xPos": 220253.0,
         "yPos": 0.0,
@@ -1757,7 +1757,7 @@
       }
     },
     {
-      "name": "Bazkovskij",
+      "name": "ef-Bazkovskij",
       "position": {
         "xPos": 213637.0,
         "yPos": 0.0,
@@ -1770,7 +1770,7 @@
       }
     },
     {
-      "name": "Raspopinskaja",
+      "name": "ef-Raspopinskaja",
       "position": {
         "xPos": 211257.0,
         "yPos": 0.0,
@@ -1783,7 +1783,7 @@
       }
     },
     {
-      "name": "Glubokovskij",
+      "name": "ef-Glubokovskij",
       "position": {
         "xPos": 217521.0,
         "yPos": 0.0,
@@ -1796,7 +1796,7 @@
       }
     },
     {
-      "name": "Kozinovskij",
+      "name": "ef-Kozinovskij",
       "position": {
         "xPos": 205000.0,
         "yPos": 0.0,
@@ -1809,7 +1809,7 @@
       }
     },
     {
-      "name": "Podlesinskij",
+      "name": "ef-Podlesinskij",
       "position": {
         "xPos": 212495.0,
         "yPos": 0.0,
@@ -1822,7 +1822,7 @@
       }
     },
     {
-      "name": "Podniznij",
+      "name": "ef-Podniznij",
       "position": {
         "xPos": 201255.0,
         "yPos": 0.0,
@@ -1835,7 +1835,7 @@
       }
     },
     {
-      "name": "Kletskaja",
+      "name": "ef-Kletskaja",
       "position": {
         "xPos": 199987.0,
         "yPos": 0.0,
@@ -1848,7 +1848,7 @@
       }
     },
     {
-      "name": "Molo-Kletskij",
+      "name": "ef-Molo-Kletskij",
       "position": {
         "xPos": 198505.0,
         "yPos": 0.0,
@@ -1861,7 +1861,7 @@
       }
     },
     {
-      "name": "Kozinovskij",
+      "name": "ef-Kozinovskij",
       "position": {
         "xPos": 206971.0,
         "yPos": 0.0,
@@ -1874,7 +1874,7 @@
       }
     },
     {
-      "name": "Perekopskaja",
+      "name": "ef-Perekopskaja",
       "position": {
         "xPos": 209527.0,
         "yPos": 0.0,
@@ -1887,7 +1887,7 @@
       }
     },
     {
-      "name": "Kremenskaja",
+      "name": "ef-Kremenskaja",
       "position": {
         "xPos": 217974.0,
         "yPos": 0.0,
@@ -1900,7 +1900,7 @@
       }
     },
     {
-      "name": "Viltov",
+      "name": "ef-Viltov",
       "position": {
         "xPos": 212656.0,
         "yPos": 0.0,
@@ -1913,7 +1913,7 @@
       }
     },
     {
-      "name": "Novo-Grigor evskaja",
+      "name": "ef-Novo-Grigor evskaja",
       "position": {
         "xPos": 210940.0,
         "yPos": 0.0,
@@ -1926,7 +1926,7 @@
       }
     },
     {
-      "name": "Staro-Grigor evskaja",
+      "name": "ef-Staro-Grigor evskaja",
       "position": {
         "xPos": 205195.0,
         "yPos": 0.0,
@@ -1939,7 +1939,7 @@
       }
     },
     {
-      "name": "Osinki",
+      "name": "ef-Osinki",
       "position": {
         "xPos": 194694.0,
         "yPos": 0.0,
@@ -1952,7 +1952,7 @@
       }
     },
     {
-      "name": "Vency",
+      "name": "ef-Vency",
       "position": {
         "xPos": 185483.0,
         "yPos": 0.0,
@@ -1965,7 +1965,7 @@
       }
     },
     {
-      "name": "Perekopskij",
+      "name": "ef-Perekopskij",
       "position": {
         "xPos": 183586.0,
         "yPos": 0.0,
@@ -1978,7 +1978,7 @@
       }
     },
     {
-      "name": "Verhne-Buzinovka",
+      "name": "ef-Verhne-Buzinovka",
       "position": {
         "xPos": 171883.0,
         "yPos": 0.0,
@@ -1991,7 +1991,7 @@
       }
     },
     {
-      "name": "Zimovskoj",
+      "name": "ef-Zimovskoj",
       "position": {
         "xPos": 187945.0,
         "yPos": 0.0,
@@ -2004,7 +2004,7 @@
       }
     },
     {
-      "name": "Evlampievskij",
+      "name": "ef-Evlampievskij",
       "position": {
         "xPos": 162663.0,
         "yPos": 0.0,
@@ -2017,7 +2017,7 @@
       }
     },
     {
-      "name": "Bol se-Nabatov",
+      "name": "ef-Bol se-Nabatov",
       "position": {
         "xPos": 158376.0,
         "yPos": 0.0,
@@ -2030,7 +2030,7 @@
       }
     },
     {
-      "name": "Malogolubaja",
+      "name": "ef-Malogolubaja",
       "position": {
         "xPos": 153401.0,
         "yPos": 0.0,
@@ -2043,7 +2043,7 @@
       }
     },
     {
-      "name": "Golubinskij",
+      "name": "ef-Golubinskij",
       "position": {
         "xPos": 147896.0,
         "yPos": 0.0,
@@ -2056,7 +2056,7 @@
       }
     },
     {
-      "name": "Rjumino-Krasnojarskij",
+      "name": "ef-Rjumino-Krasnojarskij",
       "position": {
         "xPos": 143373.0,
         "yPos": 0.0,
@@ -2069,7 +2069,7 @@
       }
     },
     {
-      "name": "Translator Icon",
+      "name": "ef-Translator Icon",
       "position": {
         "xPos": 134786.0,
         "yPos": 0.0,
@@ -2082,7 +2082,7 @@
       }
     },
     {
-      "name": "Kalac",
+      "name": "ef-Kalac",
       "position": {
         "xPos": 130145.0,
         "yPos": 0.0,
@@ -2095,7 +2095,7 @@
       }
     },
     {
-      "name": "Kumovka",
+      "name": "ef-Kumovka",
       "position": {
         "xPos": 122967.0,
         "yPos": 0.0,
@@ -2108,7 +2108,7 @@
       }
     },
     {
-      "name": "Cerkasov",
+      "name": "ef-Cerkasov",
       "position": {
         "xPos": 127240.0,
         "yPos": 0.0,
@@ -2121,7 +2121,7 @@
       }
     },
     {
-      "name": "Il evka",
+      "name": "ef-Il evka",
       "position": {
         "xPos": 124742.0,
         "yPos": 0.0,
@@ -2134,7 +2134,7 @@
       }
     },
     {
-      "name": "Kolpacki",
+      "name": "ef-Kolpacki",
       "position": {
         "xPos": 120300.0,
         "yPos": 0.0,
@@ -2147,7 +2147,7 @@
       }
     },
     {
-      "name": "Stalindorf",
+      "name": "ef-Stalindorf",
       "position": {
         "xPos": 117773.0,
         "yPos": 0.0,
@@ -2160,7 +2160,7 @@
       }
     },
     {
-      "name": "Ljapicev",
+      "name": "ef-Ljapicev",
       "position": {
         "xPos": 110476.0,
         "yPos": 0.0,
@@ -2173,7 +2173,7 @@
       }
     },
     {
-      "name": "Verbovskij - Verbovka",
+      "name": "ef-Verbovskij - Verbovka",
       "position": {
         "xPos": 110665.0,
         "yPos": 0.0,
@@ -2186,7 +2186,7 @@
       }
     },
     {
-      "name": "Graci",
+      "name": "ef-Graci",
       "position": {
         "xPos": 111962.0,
         "yPos": 0.0,
@@ -2199,7 +2199,7 @@
       }
     },
     {
-      "name": "Novo-Petrovskij",
+      "name": "ef-Novo-Petrovskij",
       "position": {
         "xPos": 105890.0,
         "yPos": 0.0,
@@ -2212,7 +2212,7 @@
       }
     },
     {
-      "name": "Cilekov",
+      "name": "ef-Cilekov",
       "position": {
         "xPos": 35747.0,
         "yPos": 0.0,
@@ -2225,7 +2225,7 @@
       }
     },
     {
-      "name": "Darganov",
+      "name": "ef-Darganov",
       "position": {
         "xPos": 19591.0,
         "yPos": 0.0,
@@ -2238,7 +2238,7 @@
       }
     },
     {
-      "name": "zutov 2",
+      "name": "ef-zutov 2",
       "position": {
         "xPos": 32015.0,
         "yPos": 0.0,
@@ -2251,7 +2251,7 @@
       }
     },
     {
-      "name": "zutovo",
+      "name": "ef-zutovo",
       "position": {
         "xPos": 49246.0,
         "yPos": 0.0,
@@ -2264,7 +2264,7 @@
       }
     },
     {
-      "name": "Aksaj",
+      "name": "ef-Aksaj",
       "position": {
         "xPos": 47494.0,
         "yPos": 0.0,
@@ -2277,7 +2277,7 @@
       }
     },
     {
-      "name": "selestovo",
+      "name": "ef-selestovo",
       "position": {
         "xPos": 51362.0,
         "yPos": 0.0,
@@ -2290,7 +2290,7 @@
       }
     },
     {
-      "name": "Goncarovskij",
+      "name": "ef-Goncarovskij",
       "position": {
         "xPos": 54030.0,
         "yPos": 0.0,
@@ -2303,7 +2303,7 @@
       }
     },
     {
-      "name": "Abganerovo",
+      "name": "ef-Abganerovo",
       "position": {
         "xPos": 61073.0,
         "yPos": 0.0,
@@ -2316,7 +2316,7 @@
       }
     },
     {
-      "name": "zD uzel Abganerovo",
+      "name": "ef-zD uzel Abganerovo",
       "position": {
         "xPos": 68401.0,
         "yPos": 0.0,
@@ -2329,7 +2329,7 @@
       }
     },
     {
-      "name": "Kakpinka",
+      "name": "ef-Kakpinka",
       "position": {
         "xPos": 68932.0,
         "yPos": 0.0,
@@ -2342,7 +2342,7 @@
       }
     },
     {
-      "name": "Vasil evka",
+      "name": "ef-Vasil evka",
       "position": {
         "xPos": 68108.0,
         "yPos": 0.0,
@@ -2355,7 +2355,7 @@
       }
     },
     {
-      "name": "Translator Icon",
+      "name": "ef-Translator Icon",
       "position": {
         "xPos": 74632.0,
         "yPos": 0.0,
@@ -2368,7 +2368,7 @@
       }
     },
     {
-      "name": "Gromoslavka",
+      "name": "ef-Gromoslavka",
       "position": {
         "xPos": 75679.0,
         "yPos": 0.0,
@@ -2381,7 +2381,7 @@
       }
     },
     {
-      "name": "Erik",
+      "name": "ef-Erik",
       "position": {
         "xPos": 89165.0,
         "yPos": 0.0,
@@ -2394,7 +2394,7 @@
       }
     },
     {
-      "name": "Zety",
+      "name": "ef-Zety",
       "position": {
         "xPos": 88972.0,
         "yPos": 0.0,
@@ -2407,7 +2407,7 @@
       }
     },
     {
-      "name": "Verh. Caricinskij",
+      "name": "ef-Verh. Caricinskij",
       "position": {
         "xPos": 97293.0,
         "yPos": 0.0,
@@ -2420,7 +2420,7 @@
       }
     },
     {
-      "name": "Rubeznyj",
+      "name": "ef-Rubeznyj",
       "position": {
         "xPos": 101333.0,
         "yPos": 0.0,
@@ -2433,7 +2433,7 @@
       }
     },
     {
-      "name": "Tridovoj poselok ?3",
+      "name": "ef-Tridovoj poselok ?3",
       "position": {
         "xPos": 106057.0,
         "yPos": 0.0,
@@ -2446,7 +2446,7 @@
       }
     },
     {
-      "name": "Buzinovka",
+      "name": "ef-Buzinovka",
       "position": {
         "xPos": 108811.0,
         "yPos": 0.0,
@@ -2459,7 +2459,7 @@
       }
     },
     {
-      "name": "Stalinskij",
+      "name": "ef-Stalinskij",
       "position": {
         "xPos": 117957.0,
         "yPos": 0.0,
@@ -2472,7 +2472,7 @@
       }
     },
     {
-      "name": "Sovetskij",
+      "name": "ef-Sovetskij",
       "position": {
         "xPos": 126529.0,
         "yPos": 0.0,
@@ -2485,7 +2485,7 @@
       }
     },
     {
-      "name": "Platonov",
+      "name": "ef-Platonov",
       "position": {
         "xPos": 128895.0,
         "yPos": 0.0,
@@ -2498,7 +2498,7 @@
       }
     },
     {
-      "name": "Marinovka",
+      "name": "ef-Marinovka",
       "position": {
         "xPos": 129598.0,
         "yPos": 0.0,
@@ -2511,7 +2511,7 @@
       }
     },
     {
-      "name": "Karpovka",
+      "name": "ef-Karpovka",
       "position": {
         "xPos": 131549.0,
         "yPos": 0.0,
@@ -2524,7 +2524,7 @@
       }
     },
     {
-      "name": "zirnokleevka",
+      "name": "ef-zirnokleevka",
       "position": {
         "xPos": 131093.0,
         "yPos": 0.0,
@@ -2537,7 +2537,7 @@
       }
     },
     {
-      "name": "Basargino",
+      "name": "ef-Basargino",
       "position": {
         "xPos": 128504.0,
         "yPos": 0.0,
@@ -2550,7 +2550,7 @@
       }
     },
     {
-      "name": "Bol saja Rossoska",
+      "name": "ef-Bol saja Rossoska",
       "position": {
         "xPos": 145066.0,
         "yPos": 0.0,
@@ -2563,7 +2563,7 @@
       }
     },
     {
-      "name": "Peskovatka",
+      "name": "ef-Peskovatka",
       "position": {
         "xPos": 154583.0,
         "yPos": 0.0,
@@ -2576,7 +2576,7 @@
       }
     },
     {
-      "name": "Vertjacij",
+      "name": "ef-Vertjacij",
       "position": {
         "xPos": 157928.0,
         "yPos": 0.0,
@@ -2589,7 +2589,7 @@
       }
     },
     {
-      "name": "Pan sino",
+      "name": "ef-Pan sino",
       "position": {
         "xPos": 168617.0,
         "yPos": 0.0,
@@ -2602,7 +2602,7 @@
       }
     },
     {
-      "name": "Trehostrovskaja",
+      "name": "ef-Trehostrovskaja",
       "position": {
         "xPos": 174124.0,
         "yPos": 0.0,
@@ -2615,7 +2615,7 @@
       }
     },
     {
-      "name": "Kacalinskaja",
+      "name": "ef-Kacalinskaja",
       "position": {
         "xPos": 176002.0,
         "yPos": 0.0,
@@ -2628,7 +2628,7 @@
       }
     },
     {
-      "name": "Hlebnyj",
+      "name": "ef-Hlebnyj",
       "position": {
         "xPos": 180356.0,
         "yPos": 0.0,
@@ -2641,7 +2641,7 @@
       }
     },
     {
-      "name": "Kuznecov",
+      "name": "ef-Kuznecov",
       "position": {
         "xPos": 183795.0,
         "yPos": 0.0,
@@ -2654,7 +2654,7 @@
       }
     },
     {
-      "name": "sisikin",
+      "name": "ef-sisikin",
       "position": {
         "xPos": 185355.0,
         "yPos": 0.0,
@@ -2667,7 +2667,7 @@
       }
     },
     {
-      "name": "Zavarykin",
+      "name": "ef-Zavarykin",
       "position": {
         "xPos": 189820.0,
         "yPos": 0.0,
@@ -2680,7 +2680,7 @@
       }
     },
     {
-      "name": "Illarionovskij",
+      "name": "ef-Illarionovskij",
       "position": {
         "xPos": 194015.0,
         "yPos": 0.0,
@@ -2693,7 +2693,7 @@
       }
     },
     {
-      "name": "Illarionovskij",
+      "name": "ef-Illarionovskij",
       "position": {
         "xPos": 198053.0,
         "yPos": 0.0,
@@ -2706,7 +2706,7 @@
       }
     },
     {
-      "name": "Lebedev",
+      "name": "ef-Lebedev",
       "position": {
         "xPos": 199464.0,
         "yPos": 0.0,
@@ -2719,7 +2719,7 @@
       }
     },
     {
-      "name": "Verhne-Pescanskij ",
+      "name": "ef-Verhne-Pescanskij ",
       "position": {
         "xPos": 202898.0,
         "yPos": 0.0,
@@ -2732,7 +2732,7 @@
       }
     },
     {
-      "name": " Ozerki",
+      "name": "ef- Ozerki",
       "position": {
         "xPos": 209183.0,
         "yPos": 0.0,
@@ -2745,7 +2745,7 @@
       }
     },
     {
-      "name": "Log (Logovskoj)",
+      "name": "ef-Log (Logovskoj)",
       "position": {
         "xPos": 217928.0,
         "yPos": 0.0,
@@ -2758,7 +2758,7 @@
       }
     },
     {
-      "name": "sirjaëvskij",
+      "name": "ef-sirjaëvskij",
       "position": {
         "xPos": 227931.0,
         "yPos": 0.0,
@@ -2771,7 +2771,7 @@
       }
     },
     {
-      "name": "Jutaev",
+      "name": "ef-Jutaev",
       "position": {
         "xPos": 212268.0,
         "yPos": 0.0,
@@ -2784,7 +2784,7 @@
       }
     },
     {
-      "name": "Cernozubovka",
+      "name": "ef-Cernozubovka",
       "position": {
         "xPos": 218126.0,
         "yPos": 0.0,
@@ -2797,7 +2797,7 @@
       }
     },
     {
-      "name": "Bol saja Vorobcovka",
+      "name": "ef-Bol saja Vorobcovka",
       "position": {
         "xPos": 220720.0,
         "yPos": 0.0,
@@ -2810,7 +2810,7 @@
       }
     },
     {
-      "name": "Malaja Vorobcovka",
+      "name": "ef-Malaja Vorobcovka",
       "position": {
         "xPos": 218945.0,
         "yPos": 0.0,
@@ -2823,7 +2823,7 @@
       }
     },
     {
-      "name": "Bol saja Ivanovka",
+      "name": "ef-Bol saja Ivanovka",
       "position": {
         "xPos": 215126.0,
         "yPos": 0.0,
@@ -2836,7 +2836,7 @@
       }
     },
     {
-      "name": "Stalino",
+      "name": "ef-Stalino",
       "position": {
         "xPos": 214558.0,
         "yPos": 0.0,
@@ -2849,7 +2849,7 @@
       }
     },
     {
-      "name": "Aleksandrovka",
+      "name": "ef-Aleksandrovka",
       "position": {
         "xPos": 227682.0,
         "yPos": 0.0,
@@ -2862,7 +2862,7 @@
       }
     },
     {
-      "name": "Semenovka",
+      "name": "ef-Semenovka",
       "position": {
         "xPos": 221321.0,
         "yPos": 0.0,
@@ -2875,7 +2875,7 @@
       }
     },
     {
-      "name": "Ust  pogoz e",
+      "name": "ef-Ust pogoz e",
       "position": {
         "xPos": 216051.0,
         "yPos": 0.0,
@@ -2888,7 +2888,7 @@
       }
     },
     {
-      "name": "Mal. Ivanovka",
+      "name": "ef-Mal. Ivanovka",
       "position": {
         "xPos": 203060.0,
         "yPos": 0.0,
@@ -2901,7 +2901,7 @@
       }
     },
     {
-      "name": "Loznoe",
+      "name": "ef-Loznoe",
       "position": {
         "xPos": 195902.0,
         "yPos": 0.0,
@@ -2914,7 +2914,7 @@
       }
     },
     {
-      "name": "Davydovka",
+      "name": "ef-Davydovka",
       "position": {
         "xPos": 197326.0,
         "yPos": 0.0,
@@ -2927,7 +2927,7 @@
       }
     },
     {
-      "name": "Prjamaja balka",
+      "name": "ef-Prjamaja balka",
       "position": {
         "xPos": 189594.0,
         "yPos": 0.0,
@@ -2940,7 +2940,7 @@
       }
     },
     {
-      "name": "Kotluban ",
+      "name": "ef-Kotluban ",
       "position": {
         "xPos": 164777.0,
         "yPos": 0.0,
@@ -2953,7 +2953,7 @@
       }
     },
     {
-      "name": "Samofalovka",
+      "name": "ef-Samofalovka",
       "position": {
         "xPos": 157970.0,
         "yPos": 0.0,
@@ -2966,7 +2966,7 @@
       }
     },
     {
-      "name": "Kuz mici",
+      "name": "ef-Kuz mici",
       "position": {
         "xPos": 152724.0,
         "yPos": 0.0,
@@ -2979,7 +2979,7 @@
       }
     },
     {
-      "name": "Pitomnik",
+      "name": "ef-Pitomnik",
       "position": {
         "xPos": 134522.0,
         "yPos": 0.0,
@@ -2992,7 +2992,7 @@
       }
     },
     {
-      "name": "Cybenko",
+      "name": "ef-Cybenko",
       "position": {
         "xPos": 118104.0,
         "yPos": 0.0,
@@ -3005,7 +3005,7 @@
       }
     },
     {
-      "name": "Varvarovka",
+      "name": "ef-Varvarovka",
       "position": {
         "xPos": 113635.0,
         "yPos": 0.0,
@@ -3018,7 +3018,7 @@
       }
     },
     {
-      "name": "Gavrilovka",
+      "name": "ef-Gavrilovka",
       "position": {
         "xPos": 109836.0,
         "yPos": 0.0,
@@ -3031,7 +3031,7 @@
       }
     },
     {
-      "name": "Tinguta",
+      "name": "ef-Tinguta",
       "position": {
         "xPos": 84673.0,
         "yPos": 0.0,
@@ -3044,7 +3044,7 @@
       }
     },
     {
-      "name": "Tinguta",
+      "name": "ef-Tinguta",
       "position": {
         "xPos": 76867.0,
         "yPos": 0.0,
@@ -3057,7 +3057,7 @@
       }
     },
     {
-      "name": "Plodovitoe",
+      "name": "ef-Plodovitoe",
       "position": {
         "xPos": 68446.0,
         "yPos": 0.0,
@@ -3070,7 +3070,7 @@
       }
     },
     {
-      "name": "Privol zskij",
+      "name": "ef-Privol zskij",
       "position": {
         "xPos": 79676.0,
         "yPos": 0.0,
@@ -3083,7 +3083,7 @@
       }
     },
     {
-      "name": "Dubovyj ovrag",
+      "name": "ef-Dubovyj ovrag",
       "position": {
         "xPos": 89917.0,
         "yPos": 0.0,
@@ -3096,7 +3096,7 @@
       }
     },
     {
-      "name": "Caca",
+      "name": "ef-Caca",
       "position": {
         "xPos": 74073.0,
         "yPos": 0.0,
@@ -3109,7 +3109,7 @@
       }
     },
     {
-      "name": "Vasil ev",
+      "name": "ef-Vasil ev",
       "position": {
         "xPos": 56841.0,
         "yPos": 0.0,
@@ -3122,7 +3122,7 @@
       }
     },
     {
-      "name": "Frolov",
+      "name": "ef-Frolov",
       "position": {
         "xPos": 53515.0,
         "yPos": 0.0,
@@ -3135,7 +3135,7 @@
       }
     },
     {
-      "name": "Malye Derbety",
+      "name": "ef-Malye Derbety",
       "position": {
         "xPos": 46712.0,
         "yPos": 0.0,
@@ -3148,7 +3148,7 @@
       }
     },
     {
-      "name": "Tundutovo",
+      "name": "ef-Tundutovo",
       "position": {
         "xPos": 46095.0,
         "yPos": 0.0,
@@ -3161,7 +3161,7 @@
       }
     },
     {
-      "name": "Korobkin",
+      "name": "ef-Korobkin",
       "position": {
         "xPos": 32070.0,
         "yPos": 0.0,
@@ -3174,7 +3174,7 @@
       }
     },
     {
-      "name": "Sadovoe",
+      "name": "ef-Sadovoe",
       "position": {
         "xPos": 28042.0,
         "yPos": 0.0,
@@ -3187,7 +3187,7 @@
       }
     },
     {
-      "name": "Tolockin",
+      "name": "ef-Tolockin",
       "position": {
         "xPos": 26145.0,
         "yPos": 0.0,
@@ -3200,7 +3200,7 @@
       }
     },
     {
-      "name": "Umancevo",
+      "name": "ef-Umancevo",
       "position": {
         "xPos": 23615.0,
         "yPos": 0.0,
@@ -3213,7 +3213,7 @@
       }
     },
     {
-      "name": "Balanov",
+      "name": "ef-Balanov",
       "position": {
         "xPos": 16750.0,
         "yPos": 0.0,
@@ -3226,7 +3226,7 @@
       }
     },
     {
-      "name": "Kanukovo",
+      "name": "ef-Kanukovo",
       "position": {
         "xPos": 9620.0,
         "yPos": 0.0,
@@ -3239,7 +3239,7 @@
       }
     },
     {
-      "name": "Har-Gota",
+      "name": "ef-Har-Gota",
       "position": {
         "xPos": 38949.0,
         "yPos": 0.0,
@@ -3252,7 +3252,7 @@
       }
     },
     {
-      "name": "Utnur",
+      "name": "ef-Utnur",
       "position": {
         "xPos": 16683.0,
         "yPos": 0.0,
@@ -3265,7 +3265,7 @@
       }
     },
     {
-      "name": "Zurgan",
+      "name": "ef-Zurgan",
       "position": {
         "xPos": 11855.0,
         "yPos": 0.0,
@@ -3278,7 +3278,7 @@
       }
     },
     {
-      "name": "Batrak",
+      "name": "ef-Batrak",
       "position": {
         "xPos": 9422.0,
         "yPos": 0.0,
@@ -3291,7 +3291,7 @@
       }
     },
     {
-      "name": "Galuta",
+      "name": "ef-Galuta",
       "position": {
         "xPos": 9822.0,
         "yPos": 0.0,
@@ -3304,7 +3304,7 @@
       }
     },
     {
-      "name": "Bol soj Caryn",
+      "name": "ef-Bol soj Caryn",
       "position": {
         "xPos": 36189.0,
         "yPos": 0.0,
@@ -3317,7 +3317,7 @@
       }
     },
     {
-      "name": "Krasnyj Pahar ",
+      "name": "ef-Krasnyj Pahar ",
       "position": {
         "xPos": 50575.0,
         "yPos": 0.0,
@@ -3330,7 +3330,7 @@
       }
     },
     {
-      "name": "Iki-Malan",
+      "name": "ef-Iki-Malan",
       "position": {
         "xPos": 54873.0,
         "yPos": 0.0,
@@ -3343,7 +3343,7 @@
       }
     },
     {
-      "name": "Karpov",
+      "name": "ef-Karpov",
       "position": {
         "xPos": 65333.0,
         "yPos": 0.0,
@@ -3356,7 +3356,7 @@
       }
     },
     {
-      "name": "Syrmolotov",
+      "name": "ef-Syrmolotov",
       "position": {
         "xPos": 71594.0,
         "yPos": 0.0,
@@ -3369,7 +3369,7 @@
       }
     },
     {
-      "name": "Homicev",
+      "name": "ef-Homicev",
       "position": {
         "xPos": 72903.0,
         "yPos": 0.0,
@@ -3382,7 +3382,7 @@
       }
     },
     {
-      "name": "Trudoljubie",
+      "name": "ef-Trudoljubie",
       "position": {
         "xPos": 80095.0,
         "yPos": 0.0,
@@ -3395,7 +3395,7 @@
       }
     },
     {
-      "name": "Epihin",
+      "name": "ef-Epihin",
       "position": {
         "xPos": 81015.0,
         "yPos": 0.0,
@@ -3408,7 +3408,7 @@
       }
     },
     {
-      "name": "Pady",
+      "name": "ef-Pady",
       "position": {
         "xPos": 81717.0,
         "yPos": 0.0,
@@ -3421,7 +3421,7 @@
       }
     },
     {
-      "name": "Stupino",
+      "name": "ef-Stupino",
       "position": {
         "xPos": 86709.0,
         "yPos": 0.0,
@@ -3434,7 +3434,7 @@
       }
     },
     {
-      "name": "Vjazovka",
+      "name": "ef-Vjazovka",
       "position": {
         "xPos": 87332.0,
         "yPos": 0.0,
@@ -3447,7 +3447,7 @@
       }
     },
     {
-      "name": "Dujkovo",
+      "name": "ef-Dujkovo",
       "position": {
         "xPos": 95413.0,
         "yPos": 0.0,
@@ -3460,7 +3460,7 @@
       }
     },
     {
-      "name": "Kamennyj",
+      "name": "ef-Kamennyj",
       "position": {
         "xPos": 102022.0,
         "yPos": 0.0,
@@ -3473,7 +3473,7 @@
       }
     },
     {
-      "name": "Graci",
+      "name": "ef-Graci",
       "position": {
         "xPos": 104565.0,
         "yPos": 0.0,
@@ -3486,7 +3486,7 @@
       }
     },
     {
-      "name": "Myskin",
+      "name": "ef-Myskin",
       "position": {
         "xPos": 99873.0,
         "yPos": 0.0,
@@ -3499,7 +3499,7 @@
       }
     },
     {
-      "name": "Dubovka",
+      "name": "ef-Dubovka",
       "position": {
         "xPos": 97958.0,
         "yPos": 0.0,
@@ -3512,7 +3512,7 @@
       }
     },
     {
-      "name": "Solodniki",
+      "name": "ef-Solodniki",
       "position": {
         "xPos": 97677.0,
         "yPos": 0.0,
@@ -3525,7 +3525,7 @@
       }
     },
     {
-      "name": "Korsavityj",
+      "name": "ef-Korsavityj",
       "position": {
         "xPos": 103316.0,
         "yPos": 0.0,
@@ -3538,7 +3538,7 @@
       }
     },
     {
-      "name": "h.Gluhoj",
+      "name": "ef-h.Gluhoj",
       "position": {
         "xPos": 105202.0,
         "yPos": 0.0,
@@ -3551,7 +3551,7 @@
       }
     },
     {
-      "name": "Zubarevka",
+      "name": "ef-Zubarevka",
       "position": {
         "xPos": 108704.0,
         "yPos": 0.0,
@@ -3564,7 +3564,7 @@
       }
     },
     {
-      "name": "Usakovka",
+      "name": "ef-Usakovka",
       "position": {
         "xPos": 100180.0,
         "yPos": 0.0,
@@ -3577,7 +3577,7 @@
       }
     },
     {
-      "name": "h.Perevaev",
+      "name": "ef-h.Perevaev",
       "position": {
         "xPos": 108572.0,
         "yPos": 0.0,
@@ -3590,7 +3590,7 @@
       }
     },
     {
-      "name": "Pokrovka",
+      "name": "ef-Pokrovka",
       "position": {
         "xPos": 105767.0,
         "yPos": 0.0,
@@ -3603,7 +3603,7 @@
       }
     },
     {
-      "name": "Rajgorod",
+      "name": "ef-Rajgorod",
       "position": {
         "xPos": 99576.0,
         "yPos": 0.0,
@@ -3616,7 +3616,7 @@
       }
     },
     {
-      "name": "Svetlyj Jar",
+      "name": "ef-Svetlyj Jar",
       "position": {
         "xPos": 105636.0,
         "yPos": 0.0,
@@ -3629,7 +3629,7 @@
       }
     },
     {
-      "name": "Bol sie Capurniki",
+      "name": "ef-Bol sie Capurniki",
       "position": {
         "xPos": 99127.0,
         "yPos": 0.0,
@@ -3642,7 +3642,7 @@
       }
     },
     {
-      "name": "Malye Capurniki",
+      "name": "ef-Malye Capurniki",
       "position": {
         "xPos": 102284.0,
         "yPos": 0.0,
@@ -3655,7 +3655,7 @@
       }
     },
     {
-      "name": "Krasnoarmejsk",
+      "name": "ef-Krasnoarmejsk",
       "position": {
         "xPos": 109420.0,
         "yPos": 0.0,
@@ -3668,7 +3668,7 @@
       }
     },
     {
-      "name": "Soljanka",
+      "name": "ef-Soljanka",
       "position": {
         "xPos": 100931.0,
         "yPos": 0.0,
@@ -3681,7 +3681,7 @@
       }
     },
     {
-      "name": "Ivanovka",
+      "name": "ef-Ivanovka",
       "position": {
         "xPos": 105138.0,
         "yPos": 0.0,
@@ -3694,7 +3694,7 @@
       }
     },
     {
-      "name": "Beketovka",
+      "name": "ef-Beketovka",
       "position": {
         "xPos": 117284.0,
         "yPos": 0.0,
@@ -3707,7 +3707,7 @@
       }
     },
     {
-      "name": "Pescanka 3",
+      "name": "ef-Pescanka 3",
       "position": {
         "xPos": 126255.0,
         "yPos": 0.0,
@@ -3720,7 +3720,7 @@
       }
     },
     {
-      "name": "Voroponovo",
+      "name": "ef-Voroponovo",
       "position": {
         "xPos": 128545.0,
         "yPos": 0.0,
@@ -3733,7 +3733,7 @@
       }
     },
     {
-      "name": "Soljanka",
+      "name": "ef-Soljanka",
       "position": {
         "xPos": 110344.0,
         "yPos": 0.0,
@@ -3746,7 +3746,7 @@
       }
     },
     {
-      "name": "Kapustin Jar",
+      "name": "ef-Kapustin Jar",
       "position": {
         "xPos": 116596.0,
         "yPos": 0.0,
@@ -3759,7 +3759,7 @@
       }
     },
     {
-      "name": "Stupino",
+      "name": "ef-Stupino",
       "position": {
         "xPos": 121354.0,
         "yPos": 0.0,
@@ -3772,7 +3772,7 @@
       }
     },
     {
-      "name": "Belokosov",
+      "name": "ef-Belokosov",
       "position": {
         "xPos": 125760.0,
         "yPos": 0.0,
@@ -3785,7 +3785,7 @@
       }
     },
     {
-      "name": "Konsitucija",
+      "name": "ef-Konsitucija",
       "position": {
         "xPos": 126414.0,
         "yPos": 0.0,
@@ -3798,7 +3798,7 @@
       }
     },
     {
-      "name": "Gracev",
+      "name": "ef-Gracev",
       "position": {
         "xPos": 135769.0,
         "yPos": 0.0,
@@ -3811,7 +3811,7 @@
       }
     },
     {
-      "name": "Rastegaev",
+      "name": "ef-Rastegaev",
       "position": {
         "xPos": 142103.0,
         "yPos": 0.0,
@@ -3824,7 +3824,7 @@
       }
     },
     {
-      "name": "Budenyj",
+      "name": "ef-Budenyj",
       "position": {
         "xPos": 155963.0,
         "yPos": 0.0,
@@ -3837,7 +3837,7 @@
       }
     },
     {
-      "name": "Put  Il ica",
+      "name": "ef-Put  Il ica",
       "position": {
         "xPos": 155925.0,
         "yPos": 0.0,
@@ -3850,7 +3850,7 @@
       }
     },
     {
-      "name": "Bol sevik",
+      "name": "ef-Bol sevik",
       "position": {
         "xPos": 167439.0,
         "yPos": 0.0,
@@ -3863,7 +3863,7 @@
       }
     },
     {
-      "name": "Stogov",
+      "name": "ef-Stogov",
       "position": {
         "xPos": 169455.0,
         "yPos": 0.0,
@@ -3876,7 +3876,7 @@
       }
     },
     {
-      "name": "Im. Vorosilova",
+      "name": "ef-Im. Vorosilova",
       "position": {
         "xPos": 175738.0,
         "yPos": 0.0,
@@ -3889,7 +3889,7 @@
       }
     },
     {
-      "name": "Traktorstroj",
+      "name": "ef-Traktorstroj",
       "position": {
         "xPos": 169711.0,
         "yPos": 0.0,
@@ -3902,7 +3902,7 @@
       }
     },
     {
-      "name": "Krasnaja zarja",
+      "name": "ef-Krasnaja zarja",
       "position": {
         "xPos": 167991.0,
         "yPos": 0.0,
@@ -3915,7 +3915,7 @@
       }
     },
     {
-      "name": "Kul kin",
+      "name": "ef-Kul kin",
       "position": {
         "xPos": 167255.0,
         "yPos": 0.0,
@@ -3928,7 +3928,7 @@
       }
     },
     {
-      "name": "Korunov",
+      "name": "ef-Korunov",
       "position": {
         "xPos": 182350.0,
         "yPos": 0.0,
@@ -3941,7 +3941,7 @@
       }
     },
     {
-      "name": "h. Seleznev",
+      "name": "ef-h. Seleznev",
       "position": {
         "xPos": 188094.0,
         "yPos": 0.0,
@@ -3954,7 +3954,7 @@
       }
     },
     {
-      "name": "Demidov",
+      "name": "ef-Demidov",
       "position": {
         "xPos": 188955.0,
         "yPos": 0.0,
@@ -3967,7 +3967,7 @@
       }
     },
     {
-      "name": "Fedorovka",
+      "name": "ef-Fedorovka",
       "position": {
         "xPos": 198439.0,
         "yPos": 0.0,
@@ -3980,7 +3980,7 @@
       }
     },
     {
-      "name": "Stoljarov",
+      "name": "ef-Stoljarov",
       "position": {
         "xPos": 197241.0,
         "yPos": 0.0,
@@ -3993,7 +3993,7 @@
       }
     },
     {
-      "name": "Blagodarnyj",
+      "name": "ef-Blagodarnyj",
       "position": {
         "xPos": 205735.0,
         "yPos": 0.0,
@@ -4006,7 +4006,7 @@
       }
     },
     {
-      "name": "Krasnaja Zvezda",
+      "name": "ef-Krasnaja Zvezda",
       "position": {
         "xPos": 193627.0,
         "yPos": 0.0,
@@ -4019,7 +4019,7 @@
       }
     },
     {
-      "name": "Orut",
+      "name": "ef-Orut",
       "position": {
         "xPos": 210498.0,
         "yPos": 0.0,
@@ -4032,7 +4032,7 @@
       }
     },
     {
-      "name": "Zelënyj Lug",
+      "name": "ef-Zelënyj Lug",
       "position": {
         "xPos": 214360.0,
         "yPos": 0.0,
@@ -4045,7 +4045,7 @@
       }
     },
     {
-      "name": "Soldatsko-stepnoe",
+      "name": "ef-Soldatsko-stepnoe",
       "position": {
         "xPos": 222674.0,
         "yPos": 0.0,
@@ -4058,7 +4058,7 @@
       }
     },
     {
-      "name": "Klh.im.Kaganovica",
+      "name": "ef-Klh.im.Kaganovica",
       "position": {
         "xPos": 150152.0,
         "yPos": 0.0,
@@ -4071,7 +4071,7 @@
       }
     },
     {
-      "name": "Smutnev",
+      "name": "ef-Smutnev",
       "position": {
         "xPos": 143129.0,
         "yPos": 0.0,
@@ -4084,7 +4084,7 @@
       }
     },
     {
-      "name": "Kolobovka",
+      "name": "ef-Kolobovka",
       "position": {
         "xPos": 125017.0,
         "yPos": 0.0,
@@ -4097,7 +4097,7 @@
       }
     },
     {
-      "name": "Solodovka",
+      "name": "ef-Solodovka",
       "position": {
         "xPos": 127881.0,
         "yPos": 0.0,
@@ -4110,7 +4110,7 @@
       }
     },
     {
-      "name": "Carëv",
+      "name": "ef-Carëv",
       "position": {
         "xPos": 126382.0,
         "yPos": 0.0,
@@ -4123,7 +4123,7 @@
       }
     },
     {
-      "name": "Maljaevka",
+      "name": "ef-Maljaevka",
       "position": {
         "xPos": 129071.0,
         "yPos": 0.0,
@@ -4136,7 +4136,7 @@
       }
     },
     {
-      "name": "Leninsk",
+      "name": "ef-Leninsk",
       "position": {
         "xPos": 131599.0,
         "yPos": 0.0,
@@ -4149,7 +4149,7 @@
       }
     },
     {
-      "name": "Bahtijarovka",
+      "name": "ef-Bahtijarovka",
       "position": {
         "xPos": 130365.0,
         "yPos": 0.0,
@@ -4162,7 +4162,7 @@
       }
     },
     {
-      "name": "Zaplavnoe",
+      "name": "ef-Zaplavnoe",
       "position": {
         "xPos": 129498.0,
         "yPos": 0.0,
@@ -4175,7 +4175,7 @@
       }
     },
     {
-      "name": "Verhnij Bvlyklej",
+      "name": "ef-Verhnij Bvlyklej",
       "position": {
         "xPos": 223591.0,
         "yPos": 0.0,
@@ -4188,7 +4188,7 @@
       }
     },
     {
-      "name": "Gornyj Balyklej",
+      "name": "ef-Gornyj Balyklej",
       "position": {
         "xPos": 224126.0,
         "yPos": 0.0,
@@ -4201,7 +4201,7 @@
       }
     },
     {
-      "name": "Niznij Balyklej",
+      "name": "ef-Niznij Balyklej",
       "position": {
         "xPos": 218892.0,
         "yPos": 0.0,
@@ -4214,7 +4214,7 @@
       }
     },
     {
-      "name": "Stepano-razinskaja",
+      "name": "ef-Stepano-razinskaja",
       "position": {
         "xPos": 212758.0,
         "yPos": 0.0,
@@ -4227,7 +4227,7 @@
       }
     },
     {
-      "name": "Bol saja balka",
+      "name": "ef-Bol saja balka",
       "position": {
         "xPos": 206283.0,
         "yPos": 0.0,
@@ -4240,7 +4240,7 @@
       }
     },
     {
-      "name": "Gornaja prolejka",
+      "name": "ef-Gornaja prolejka",
       "position": {
         "xPos": 204763.0,
         "yPos": 0.0,
@@ -4253,7 +4253,7 @@
       }
     },
     {
-      "name": "Lugovaja prolejka",
+      "name": "ef-Lugovaja prolejka",
       "position": {
         "xPos": 203576.0,
         "yPos": 0.0,
@@ -4266,7 +4266,7 @@
       }
     },
     {
-      "name": "Kalmyckaja balka ",
+      "name": "ef-Kalmyckaja balka ",
       "position": {
         "xPos": 201523.0,
         "yPos": 0.0,
@@ -4279,7 +4279,7 @@
       }
     },
     {
-      "name": "Strel no-sirokoe",
+      "name": "ef-Strel no-sirokoe",
       "position": {
         "xPos": 198601.0,
         "yPos": 0.0,
@@ -4292,7 +4292,7 @@
       }
     },
     {
-      "name": "Rodniki",
+      "name": "ef-Rodniki",
       "position": {
         "xPos": 197920.0,
         "yPos": 0.0,
@@ -4305,7 +4305,7 @@
       }
     },
     {
-      "name": "Lugo-sirokoe ",
+      "name": "ef-Lugo-sirokoe ",
       "position": {
         "xPos": 195917.0,
         "yPos": 0.0,
@@ -4318,7 +4318,7 @@
       }
     },
     {
-      "name": "Rahinskij",
+      "name": "ef-Rahinskij",
       "position": {
         "xPos": 182745.0,
         "yPos": 0.0,
@@ -4331,7 +4331,7 @@
       }
     },
     {
-      "name": "Lugo-Vodjanoe",
+      "name": "ef-Lugo-Vodjanoe",
       "position": {
         "xPos": 192328.0,
         "yPos": 0.0,
@@ -4344,7 +4344,7 @@
       }
     },
     {
-      "name": "Gorno-vodnoe",
+      "name": "ef-Gorno-vodnoe",
       "position": {
         "xPos": 192067.0,
         "yPos": 0.0,
@@ -4357,7 +4357,7 @@
       }
     },
     {
-      "name": "Ekaterinovka",
+      "name": "ef-Ekaterinovka",
       "position": {
         "xPos": 185764.0,
         "yPos": 0.0,
@@ -4370,7 +4370,7 @@
       }
     },
     {
-      "name": "Altuhov",
+      "name": "ef-Altuhov",
       "position": {
         "xPos": 185274.0,
         "yPos": 0.0,
@@ -4383,7 +4383,7 @@
       }
     },
     {
-      "name": "Novonikol skoe",
+      "name": "ef-Novonikol skoe",
       "position": {
         "xPos": 179144.0,
         "yPos": 0.0,
@@ -4396,7 +4396,7 @@
       }
     },
     {
-      "name": "Olen e",
+      "name": "ef-Olen e",
       "position": {
         "xPos": 183514.0,
         "yPos": 0.0,
@@ -4409,7 +4409,7 @@
       }
     },
     {
-      "name": "Peskovatka 2",
+      "name": "ef-Peskovatka 2",
       "position": {
         "xPos": 176803.0,
         "yPos": 0.0,
@@ -4422,7 +4422,7 @@
       }
     },
     {
-      "name": "Dubovka",
+      "name": "ef-Dubovka",
       "position": {
         "xPos": 169946.0,
         "yPos": 0.0,
@@ -4435,7 +4435,7 @@
       }
     },
     {
-      "name": "Rahinka",
+      "name": "ef-Rahinka",
       "position": {
         "xPos": 165444.0,
         "yPos": 0.0,
@@ -4448,7 +4448,7 @@
       }
     },
     {
-      "name": "Celjuskin",
+      "name": "ef-Celjuskin",
       "position": {
         "xPos": 168674.0,
         "yPos": 0.0,
@@ -4461,7 +4461,7 @@
       }
     },
     {
-      "name": "zeltuhin",
+      "name": "ef-zeltuhin",
       "position": {
         "xPos": 166232.0,
         "yPos": 0.0,
@@ -4474,7 +4474,7 @@
       }
     },
     {
-      "name": "Verhne-Pogromnoe ",
+      "name": "ef-Verhne-Pogromnoe ",
       "position": {
         "xPos": 159942.0,
         "yPos": 0.0,
@@ -4487,7 +4487,7 @@
       }
     },
     {
-      "name": "Picuga",
+      "name": "ef-Picuga",
       "position": {
         "xPos": 162068.0,
         "yPos": 0.0,
@@ -4500,7 +4500,7 @@
       }
     },
     {
-      "name": "Erzovka",
+      "name": "ef-Erzovka",
       "position": {
         "xPos": 156477.0,
         "yPos": 0.0,
@@ -4513,7 +4513,7 @@
       }
     },
     {
-      "name": "Sred. Pogromnoe",
+      "name": "ef-Sred. Pogromnoe",
       "position": {
         "xPos": 153378.0,
         "yPos": 0.0,
@@ -4526,7 +4526,7 @@
       }
     },
     {
-      "name": "Akatovka",
+      "name": "ef-Akatovka",
       "position": {
         "xPos": 152727.0,
         "yPos": 0.0,
@@ -4539,7 +4539,7 @@
       }
     },
     {
-      "name": "Niz. Pogromnoe",
+      "name": "ef-Niz. Pogromnoe",
       "position": {
         "xPos": 149840.0,
         "yPos": 0.0,
@@ -4552,7 +4552,7 @@
       }
     },
     {
-      "name": "Vinnovka",
+      "name": "ef-Vinnovka",
       "position": {
         "xPos": 149865.0,
         "yPos": 0.0,
@@ -4565,7 +4565,7 @@
       }
     },
     {
-      "name": "Osadnaja balka",
+      "name": "ef-Osadnaja balka",
       "position": {
         "xPos": 143907.0,
         "yPos": 0.0,
@@ -4578,7 +4578,7 @@
       }
     },
     {
-      "name": "Rynok",
+      "name": "ef-Rynok",
       "position": {
         "xPos": 144869.0,
         "yPos": 0.0,
@@ -4591,7 +4591,7 @@
       }
     },
     {
-      "name": "Malaja Orlovka",
+      "name": "ef-Malaja Orlovka",
       "position": {
         "xPos": 146590.0,
         "yPos": 0.0,
@@ -4604,7 +4604,7 @@
       }
     },
     {
-      "name": "Gorodise",
+      "name": "ef-Gorodise",
       "position": {
         "xPos": 141355.0,
         "yPos": 0.0,
@@ -4617,7 +4617,7 @@
       }
     },
     {
-      "name": "Aleksandrovka",
+      "name": "ef-Aleksandrovka",
       "position": {
         "xPos": 139639.0,
         "yPos": 0.0,
@@ -4630,7 +4630,7 @@
       }
     },
     {
-      "name": "Gumrak",
+      "name": "ef-Gumrak",
       "position": {
         "xPos": 138680.0,
         "yPos": 0.0,
@@ -4643,7 +4643,7 @@
       }
     },
     {
-      "name": "Opytnaja stancija",
+      "name": "ef-Opytnaja stancija",
       "position": {
         "xPos": 134183.0,
         "yPos": 0.0,
@@ -4656,7 +4656,7 @@
       }
     },
     {
-      "name": "Talovoj",
+      "name": "ef-Talovoj",
       "position": {
         "xPos": 135015.0,
         "yPos": 0.0,
@@ -4669,7 +4669,7 @@
       }
     },
     {
-      "name": "Poljakovka",
+      "name": "ef-Poljakovka",
       "position": {
         "xPos": 132261.0,
         "yPos": 0.0,
@@ -4682,7 +4682,7 @@
       }
     },
     {
-      "name": "Tat janka",
+      "name": "ef-Tat janka",
       "position": {
         "xPos": 111188.0,
         "yPos": 0.0,
@@ -4695,7 +4695,7 @@
       }
     },
     {
-      "name": "sutovka",
+      "name": "ef-sutovka",
       "position": {
         "xPos": 114656.0,
         "yPos": 0.0,
@@ -4708,7 +4708,7 @@
       }
     },
     {
-      "name": " Capaevec",
+      "name": "ef- Capaevec",
       "position": {
         "xPos": 117641.0,
         "yPos": 0.0,
@@ -4721,7 +4721,7 @@
       }
     },
     {
-      "name": "Suc e",
+      "name": "ef-Suc e",
       "position": {
         "xPos": 117553.0,
         "yPos": 0.0,
@@ -4734,7 +4734,7 @@
       }
     },
     {
-      "name": "Verhnjaja Ahtuba",
+      "name": "ef-Verhnjaja Ahtuba",
       "position": {
         "xPos": 139178.0,
         "yPos": 0.0,
@@ -4747,7 +4747,7 @@
       }
     },
     {
-      "name": "Kiljakovskij",
+      "name": "ef-Kiljakovskij",
       "position": {
         "xPos": 134490.0,
         "yPos": 0.0,
@@ -4760,7 +4760,7 @@
       }
     },
     {
-      "name": "Srednjaja Ahtuba",
+      "name": "ef-Srednjaja Ahtuba",
       "position": {
         "xPos": 131395.0,
         "yPos": 0.0,
@@ -4773,7 +4773,7 @@
       }
     },
     {
-      "name": "Krasnyj Sad",
+      "name": "ef-Krasnyj Sad",
       "position": {
         "xPos": 127744.0,
         "yPos": 0.0,
@@ -4786,7 +4786,7 @@
       }
     },
     {
-      "name": "Im. Kujbyseva",
+      "name": "ef-Im. Kujbyseva",
       "position": {
         "xPos": 128220.0,
         "yPos": 0.0,
@@ -4799,7 +4799,7 @@
       }
     },
     {
-      "name": "Vjazovka",
+      "name": "ef-Vjazovka",
       "position": {
         "xPos": 125215.0,
         "yPos": 0.0,
@@ -4812,7 +4812,7 @@
       }
     },
     {
-      "name": "Stahanovec",
+      "name": "ef-Stahanovec",
       "position": {
         "xPos": 126695.0,
         "yPos": 0.0,
@@ -4825,7 +4825,7 @@
       }
     },
     {
-      "name": "Priverh",
+      "name": "ef-Priverh",
       "position": {
         "xPos": 142689.0,
         "yPos": 0.0,
@@ -4838,7 +4838,7 @@
       }
     },
     {
-      "name": "Obuhov",
+      "name": "ef-Obuhov",
       "position": {
         "xPos": 140260.0,
         "yPos": 0.0,
@@ -4851,7 +4851,7 @@
       }
     },
     {
-      "name": "Im. Kirova",
+      "name": "ef-Im. Kirova",
       "position": {
         "xPos": 138162.0,
         "yPos": 0.0,
@@ -4864,7 +4864,7 @@
       }
     },
     {
-      "name": "Staren kij",
+      "name": "ef-Staren kij",
       "position": {
         "xPos": 135757.0,
         "yPos": 0.0,
@@ -4877,7 +4877,7 @@
       }
     },
     {
-      "name": "Burkovskij",
+      "name": "ef-Burkovskij",
       "position": {
         "xPos": 131168.0,
         "yPos": 0.0,
@@ -4890,7 +4890,7 @@
       }
     },
     {
-      "name": "Bobrov",
+      "name": "ef-Bobrov",
       "position": {
         "xPos": 132551.0,
         "yPos": 0.0,
@@ -4903,7 +4903,7 @@
       }
     },
     {
-      "name": "Bobyli",
+      "name": "ef-Bobyli",
       "position": {
         "xPos": 123689.0,
         "yPos": 0.0,
@@ -4916,7 +4916,7 @@
       }
     },
     {
-      "name": "Rybovodnyj",
+      "name": "ef-Rybovodnyj",
       "position": {
         "xPos": 118820.0,
         "yPos": 0.0,
@@ -4929,7 +4929,7 @@
       }
     },
     {
-      "name": "Pavlovskij",
+      "name": "ef-Pavlovskij",
       "position": {
         "xPos": 117558.0,
         "yPos": 0.0,
@@ -4942,7 +4942,7 @@
       }
     },
     {
-      "name": "Pescanyj",
+      "name": "ef-Pescanyj",
       "position": {
         "xPos": 120688.0,
         "yPos": 0.0,
@@ -4955,7 +4955,7 @@
       }
     },
     {
-      "name": "Krestovyj",
+      "name": "ef-Krestovyj",
       "position": {
         "xPos": 114277.0,
         "yPos": 0.0,
@@ -4968,7 +4968,7 @@
       }
     },
     {
-      "name": "Volgostroj",
+      "name": "ef-Volgostroj",
       "position": {
         "xPos": 113289.0,
         "yPos": 0.0,
@@ -4981,7 +4981,7 @@
       }
     },
     {
-      "name": "Verhne-Pescanyj",
+      "name": "ef-Verhne-Pescanyj",
       "position": {
         "xPos": 128131.0,
         "yPos": 0.0,
@@ -4994,7 +4994,7 @@
       }
     },
     {
-      "name": "Jamy",
+      "name": "ef-Jamy",
       "position": {
         "xPos": 125550.0,
         "yPos": 0.0,
@@ -5007,7 +5007,7 @@
       }
     },
     {
-      "name": "Zakutskie",
+      "name": "ef-Zakutskie",
       "position": {
         "xPos": 126095.0,
         "yPos": 0.0,
@@ -5020,7 +5020,7 @@
       }
     },
     {
-      "name": "Rybacij",
+      "name": "ef-Rybacij",
       "position": {
         "xPos": 131142.0,
         "yPos": 0.0,
@@ -5033,7 +5033,7 @@
       }
     },
     {
-      "name": "Novyj",
+      "name": "ef-Novyj",
       "position": {
         "xPos": 131668.0,
         "yPos": 0.0,
@@ -5046,7 +5046,7 @@
       }
     },
     {
-      "name": "Kolhoznaja Ahtuba",
+      "name": "ef-Kolhoznaja Ahtuba",
       "position": {
         "xPos": 132060.0,
         "yPos": 0.0,
@@ -5059,7 +5059,7 @@
       }
     },
     {
-      "name": "Novyj Rogancik",
+      "name": "ef-Novyj Rogancik",
       "position": {
         "xPos": 126777.0,
         "yPos": 0.0,
@@ -5072,7 +5072,7 @@
       }
     },
     {
-      "name": "Zajciki - 319",
+      "name": "ef-Zajciki - 319",
       "position": {
         "xPos": 121634.0,
         "yPos": 0.0,
@@ -5085,7 +5085,7 @@
       }
     },
     {
-      "name": "Vyravnivanie vysoty",
+      "name": "ef-Vyravnivanie vysoty",
       "position": {
         "xPos": 25100.0,
         "yPos": 0.0,
@@ -5098,7 +5098,7 @@
       }
     },
     {
-      "name": "Komarov 1",
+      "name": "ef-Komarov 1",
       "position": {
         "xPos": 44430.0,
         "yPos": 0.0,

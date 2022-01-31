@@ -19,16 +19,16 @@
     }
   ],
   "bases": {
-    "19440901": "Gilze",
-    "19440925": "Volkel",
-    "19440928": "Apeldoorn",
-    "19441101": "Krefeld",
-    "19441220": "Dusseldorf",
-    "19441225": "Koln",
-    "19441229": "Koln",
-    "19450207": "Krefeld",
-    "19450310": "Kleve",
-    "19450404": "Sint-Truiden"
+    "19440901": "Turnhout",
+    "19440925": "Veghel",
+    "19440928": "Gennep",
+    "19441101": "Emmerich",
+    "19441220": "Zulpich",
+    "19441225": "Houffalize",
+    "19441229": "Prum",
+    "19450207": "Ulmen",
+    "19450310": "Siegburg",
+    "19450404": "Lippstadt"
   },
   "skins": [],
   "serviceId": 20111,

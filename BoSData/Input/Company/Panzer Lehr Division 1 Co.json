@@ -24,16 +24,16 @@
     }
   ],
   "bases": {
-    "19440901": "Gilze",
-    "19440925": "Volkel",
-    "19440928": "Apeldoorn",
+    "19440901": "Genk",
+    "19440925": "Ac",
+    "19440928": "Weert",
     "19441101": "Krefeld",
-    "19441220": "Dusseldorf",
-    "19441225": "Koln",
-    "19441229": "Koln",
+    "19441220": "Houffalize",
+    "19441225": "Givet",
+    "19441229": "Zulpich",
     "19450207": "Krefeld",
-    "19450310": "Kleve",
-    "19450404": "Sint-Truiden"
+    "19450310": "Essen",
+    "19450404": "Gutersloh"
   },
   "skins": [],
   "serviceId": 20111,

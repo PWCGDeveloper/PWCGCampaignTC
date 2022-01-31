@@ -1,87 +1,74 @@
 {
-  "country": "RUSSIA",
-  "companyId": 101146002,
-  "name": "146th Tank Division, 2nd Company",
-  "fileName": "146th Tank Division 2 Co.json",
-  "skill": 30,
-  "unitIdCode": "",
-  "subUnitIdCode": "",
-  "tankAssignments": [
-    {
-      "archType": "t34",
-      "introduction": "19400101",
-      "withdrawal": "19450601"
-    }
-  ],
-  "bases": {
-    "19411001": "Mjatlevo",
-    "19411016": "Mashkino",
-    "19411020": "Naro Fominsk",
-    "19411110": "Tuchkovo",
-    "19411120": "Novoselki",
-    "19411215": "Stepancevo",
-    "19420110": "Durykino",
-    "19420301": "Osinki",
-    "19420601": "Staro_Mishatovskaya",
-    "19420624": "Vorontsovskaya",
-    "19420630": "Novovelichkovskaya",
-    "19420709": "Dinskaya",
-    "19420721": "Defanovka",
-    "19420801": "sisikin",
-    "19420906": "Kuz mici",
-    "19421011": "Zavarykin",
-    "19421123": "Buzinovka",
-    "19421223": "Verh. Caricinskij",
-    "19430120": "Kotluban ",
-    "19430301": "Dinskaya",
-    "19430330": "Dneprovskaya",
-    "19430418": "Kabardinka",
-    "19430918": "Kievskoe",
-    "19430927": "Anapskaya",
-    "19431004": "Dzhiginskoye",
-    "19431008": "Zaporojskaya",
-    "19431101": "Kerch-1",
-    "19440101": "Rajgorod",
-    "19440201": "Rajgorod",
-    "19440301": "Malye Capurniki",
-    "19440401": "Malye Capurniki",
-    "19440501": "Zety",
-    "19440601": "Malaja Orlovka",
-    "19440701": "Talovoj",
-    "19440801": "Marinovka",
-    "19440901": "Huy",
-    "19441001": "Huy",
-    "19441101": "Manhay",
-    "19441201": "Manhay",
-    "19450101": "Rheine",
-    "19450201": "Dortmund",
-    "19450301": "Limburg",
-    "19450401": "Deurne",
-    "19450501": "Bergen op Zoom"
-  },
-  "skins": [],
-  "serviceId": 10112,
-  "companyRoles": {
-    "companyRolePeriods": [
-      {
-        "startDate": "19400101",
-        "weightedRoles": [
-          {
-            "role": "ROLE_MAIN_BATTLE_TANK",
-            "weight": 100
-          }
-        ]
-      }
-    ]
-  },
-  "nightMissionOdds": {
-    "nightMissionPeriods": [
-      {
-        "startDate": "19440901",
-        "nightMissionOdds": 3
-      }
-    ]
-  },
-  "conversionPeriods": [],
-  "callsigns": {}
+	"country": "RUSSIA",
+	"companyId": 101146002,
+	"name": "146th Tank Division, 2nd Company",
+	"fileName": "146th Tank Division 2 Co.json",
+	"skill": 30,
+	"unitIdCode": "",
+	"subUnitIdCode": "",
+	"tankAssignments": [
+		{
+			"archType": "t34",
+			"introduction": "19400101",
+			"withdrawal": "19450601"
+		}
+	],
+	"bases": {
+		"19411001": "Mjatlevo",
+		"19411016": "Mashkino",
+		"19411020": "Naro Fominsk",
+		"19411110": "Tuchkovo",
+		"19411120": "Novoselki",
+		"19411215": "Stepancevo",
+		"19420110": "Durykino",
+		"19420301": "Osinki",
+		"19420601": "Staro_Mishatovskaya",
+		"19420624": "Vorontsovskaya",
+		"19420630": "Novovelichkovskaya",
+		"19420709": "Dinskaya",
+		"19420721": "Defanovka",
+		"19420801": "sisikin",
+		"19420906": "Kuz mici",
+		"19421011": "Zavarykin",
+		"19421123": "Buzinovka",
+		"19421223": "Verh. Caricinskij",
+		"19430120": "Kotluban ",
+		"19430301": "Dinskaya",
+		"19430330": "Dneprovskaya",
+		"19430418": "Kabardinka",
+		"19430918": "Kievskoe",
+		"19430927": "Anapskaya",
+		"19431004": "Dzhiginskoye",
+		"19431008": "Zaporojskaya",
+		"19431101": "Kerch-1",
+		"19440101": "ef-Strel no-sirokoe",
+		"19450101": "ef-Rheine"
+	},
+	"skins": [],
+	"serviceId": 10112,
+	"companyRoles": {
+		"companyRolePeriods": [
+			{
+				"startDate": "19400101",
+				"weightedRoles": [
+					{
+						"role": "ROLE_MAIN_BATTLE_TANK",
+						"weight": 100
+					}
+				]
+			}
+		]
+	},
+	"nightMissionOdds": {
+		"nightMissionPeriods": [
+			{
+				"startDate": "19440901",
+				"nightMissionOdds": 3
+			}
+		]
+	},
+	"conversionPeriods": [],
+	"callsigns": {
+		
+	}
 }

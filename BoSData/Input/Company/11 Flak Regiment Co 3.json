@@ -14,16 +14,15 @@
     }
   ],
   "bases": {
-    "19440901": "Gilze",
-    "19440925": "Volkel",
-    "19440928": "Apeldoorn",
-    "19441101": "Krefeld",
-    "19441220": "Dusseldorf",
-    "19441225": "Koln",
-    "19441229": "Koln",
-    "19450207": "Krefeld",
-    "19450310": "Kleve",
-    "19450404": "Sint-Truiden"
+    "19440901": "Kleine-Brogel",
+    "19440925": "Weert",
+    "19440928": "Meijel",
+    "19441101": "Wesel",
+    "19441220": "Dumpelfeld",
+    "19441225": "Nettersheim",
+    "19441229": "Gelsdorf",
+    "19450310": "Huckeswagen",
+    "19450404": "Padenborn"
   },
   "skins": [],
   "serviceId": 20111,

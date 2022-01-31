@@ -14,15 +14,15 @@
     }
   ],
   "bases": {
-    "19440901": "Diest",
-    "19440928": "Sint-Truiden",
-    "19441101": "Ac",
-    "19441220": "Ac",
-    "19441225": "Ac",
-    "19441229": "Ac",
-    "19450207": "Bochum",
-    "19450310": "Krefeld",
-    "19450404": "Merzhausen"
+    "19440901": "Tongeren",
+    "19440928": "Eindhoven",
+    "19441101": "Venray",
+    "19441220": "Monschau",
+    "19441225": "Bastogne",
+    "19441229": "Houffalize",
+    "19450207": "Snow-Eifel",
+    "19450310": "Gelsdorf",
+    "19450404": "Meschede"
   },
   "skins": [],
   "serviceId": 10113,

@@ -14,15 +14,17 @@
     }
   ],
   "bases": {
-    "19440901": "Diest",
-    "19440928": "Sint-Truiden",
-    "19441101": "Ac",
-    "19441220": "Ac",
-    "19441225": "Ac",
-    "19441229": "Ac",
-    "19450207": "Bochum",
-    "19450310": "Krefeld",
-    "19450404": "Merzhausen"
+    "19440901": "Geel",
+    "19440925": "Eindhoven",
+    "19440928": "Volkel",
+    "19441101": "Gennep",
+    "19441220": "Eschweiler",
+    "19441225": "Monschau",
+    "19441229": "Eschweiler",
+    "19450207": "Venray",
+    "19450310": "Geldern",
+    "19450323": "Emmerich",
+    "19450404": "Handorf"
   },
   "skins": [],
   "serviceId": 10114,

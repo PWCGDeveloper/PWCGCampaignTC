@@ -1,88 +1,75 @@
 {
-  "country": "RUSSIA",
-  "companyId": 101139003,
-  "name": "139th Tank Division, 3rd Company",
-  "fileName": "139th Tank Division 3 Co.json",
-  "skill": 30,
-  "unitIdCode": "",
-  "subUnitIdCode": "",
-  "tankAssignments": [
-    {
-      "archType": "t34",
-      "introduction": "19400101",
-      "withdrawal": "19450601"
-    }
-  ],
-  "bases": {
-    "19411001": "Shevnevo",
-    "19411005": "Peredel",
-    "19411011": "Boboli",
-    "19411020": "Dorohovo",
-    "19411110": "Dorohovo",
-    "19411120": "Borscheva",
-    "19411215": "Kuzyaevo",
-    "19420110": "Bykova",
-    "19420301": "Evlampievskij",
-    "19420601": "Ivanovskaya",
-    "19420624": "Mingrelskaya",
-    "19420630": "Novovelichkovskaya",
-    "19420709": "Starokorsunskaya",
-    "19420721": "Dakhovskaya",
-    "19420801": "Buzinovka",
-    "19420906": "Ivanovka",
-    "19421011": "Pescanyj",
-    "19421123": "Rubeznyj",
-    "19421223": "Zety",
-    "19430120": "Bol saja Rossoska",
-    "19430301": "Platnirovskaya",
-    "19430330": "Fedorovskoe",
-    "19430418": "Hankov",
-    "19430918": "Natuchaevskaya",
-    "19430927": "Temruk",
-    "19431004": "Chaykino",
-    "19431008": "Taman",
-    "19431101": "Eltigen",
-    "19440101": "Rajgorod",
-    "19440201": "Rajgorod",
-    "19440301": "Malye Capurniki",
-    "19440401": "Malye Capurniki",
-    "19440501": "Zety",
-    "19440601": "Malaja Orlovka",
-    "19440701": "Talovoj",
-    "19440801": "Marinovka",
-    "19440901": "Huy",
-    "19441001": "Huy",
-    "19441101": "Manhay",
-    "19441201": "Manhay",
-    "19450101": "Rheine",
-    "19450201": "Dortmund",
-    "19450301": "Limburg",
-    "19450401": "Deurne",
-    "19450501": "Bergen op Zoom"
-  },
-  "skins": [],
-  "serviceId": 10112,
-  "companyRoles": {
-    "companyRolePeriods": [
-      {
-        "startDate": "19400101",
-        "weightedRoles": [
-          {
-            "role": "ROLE_MAIN_BATTLE_TANK",
-            "weight": 100
-          }
-        ]
-      }
-    ]
-  },
-  "nightMissionOdds": {
-    "nightMissionPeriods": [
-      {
-        "startDate": "19440901",
-        "nightMissionOdds": 3
-      }
-    ]
-  },
-  "conversionPeriods": [],
-  "callsigns": {}
+	"country": "RUSSIA",
+	"companyId": 101139003,
+	"name": "139th Tank Division, 3rd Company",
+	"fileName": "139th Tank Division 3 Co.json",
+	"skill": 30,
+	"unitIdCode": "",
+	"subUnitIdCode": "",
+	"tankAssignments": [
+		{
+			"archType": "t34",
+			"introduction": "19400101",
+			"withdrawal": "19450601"
+		}
+	],
+	"bases": {
+		"19411001": "Shevnevo",
+		"19411005": "Peredel",
+		"19411011": "Boboli",
+		"19411020": "Dorohovo",
+		"19411110": "Dorohovo",
+		"19411120": "Borscheva",
+		"19411215": "Kuzyaevo",
+		"19420110": "Bykova",
+		"19420301": "Evlampievskij",
+		"19420601": "Ivanovskaya",
+		"19420624": "Mingrelskaya",
+		"19420630": "Novovelichkovskaya",
+		"19420709": "Starokorsunskaya",
+		"19420721": "Dakhovskaya",
+		"19420801": "Buzinovka",
+		"19420906": "Ivanovka",
+		"19421011": "Pescanyj",
+		"19421123": "Rubeznyj",
+		"19421223": "Zety",
+		"19430120": "Bol saja Rossoska",
+		"19430301": "Platnirovskaya",
+		"19430330": "Fedorovskoe",
+		"19430418": "Hankov",
+		"19430918": "Natuchaevskaya",
+		"19430927": "Temruk",
+		"19431004": "Chaykino",
+		"19431008": "Taman",
+		"19431101": "Eltigen",
+		"19440101": "ef-Strel no-sirokoe",
+		"19450101": "ef-Rheine"
+	},
+	"skins": [],
+	"serviceId": 10112,
+	"companyRoles": {
+		"companyRolePeriods": [
+			{
+				"startDate": "19400101",
+				"weightedRoles": [
+					{
+						"role": "ROLE_MAIN_BATTLE_TANK",
+						"weight": 100
+					}
+				]
+			}
+		]
+	},
+	"nightMissionOdds": {
+		"nightMissionPeriods": [
+			{
+				"startDate": "19440901",
+				"nightMissionOdds": 3
+			}
+		]
+	},
+	"conversionPeriods": [],
+	"callsigns": {
+		
+	}
 }

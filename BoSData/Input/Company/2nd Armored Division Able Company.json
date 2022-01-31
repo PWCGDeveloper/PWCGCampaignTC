@@ -14,15 +14,17 @@
     }
   ],
   "bases": {
-    "19440901": "Diest",
-    "19440928": "Sint-Truiden",
-    "19441101": "Ac",
-    "19441220": "Ac",
-    "19441225": "Ac",
-    "19441229": "Ac",
-    "19450207": "Bochum",
-    "19450310": "Krefeld",
-    "19450404": "Merzhausen"
+    "19440901": "Sint-Truiden",
+    "19440925": "Korspel",
+    "19440928": "Lommel",
+    "19441101": "Wassenberg",
+    "19441220": "Manhay",
+    "19441225": "Barvaux",
+    "19441229": "Monschau",
+    "19450207": "Eschweiler",
+    "19450310": "Grevenbroich",
+    "19450323": "Bonninghardt",
+    "19450404": "Sendenhorst"
   },
   "skins": [],
   "serviceId": 10113,

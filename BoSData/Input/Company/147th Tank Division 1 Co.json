@@ -1,88 +1,75 @@
 {
-  "country": "RUSSIA",
-  "companyId": 101147001,
-  "name": "147th Tank Division, 1st Company",
-  "fileName": "147th Tank Division 1 Co.json",
-  "skill": 30,
-  "unitIdCode": "",
-  "subUnitIdCode": "",
-  "tankAssignments": [
-    {
-      "archType": "t34",
-      "introduction": "19400101",
-      "withdrawal": "19450601"
-    }
-  ],
-  "bases": {
-    "19411001": "Zenino",
-    "19411011": "Detchino",
-    "19411016": "Peredel",
-    "19411020": "Machihino",
-    "19411110": "Akulovo",
-    "19411120": "Tolstyakovo",
-    "19411215": "Kuminskoe",
-    "19420110": "Egore",
-    "19420301": "Zimovskoj",
-    "19420601": "Slavyanskaya",
-    "19420624": "Novovelichkovskaya",
-    "19420630": "Novovelichkovskaya",
-    "19420709": "Platnirovskaya",
-    "19420721": "Dakhovskaya",
-    "19420801": "Karpovka",
-    "19420906": "Soljanka",
-    "19421011": "Priverh",
-    "19421123": "Zety",
-    "19421223": "Bol saja Rossoska",
-    "19430120": "Zavarykin",
-    "19430301": "Korenovskaya",
-    "19430330": "Vorontsovskaya",
-    "19430418": "Abinskaya",
-    "19430918": "Anastasievskaya",
-    "19430927": "Gostagaevskaya",
-    "19431004": "Gostagayka",
-    "19431008": "Sennaya",
-    "19431101": "Eltigen",
-    "19440101": "Rajgorod",
-    "19440201": "Rajgorod",
-    "19440301": "Malye Capurniki",
-    "19440401": "Malye Capurniki",
-    "19440501": "Zety",
-    "19440601": "Malaja Orlovka",
-    "19440701": "Talovoj",
-    "19440801": "Marinovka",
-    "19440901": "Huy",
-    "19441001": "Huy",
-    "19441101": "Manhay",
-    "19441201": "Manhay",
-    "19450101": "Rheine",
-    "19450201": "Dortmund",
-    "19450301": "Limburg",
-    "19450401": "Deurne",
-    "19450501": "Bergen op Zoom"
-  },
-  "skins": [],
-  "serviceId": 10112,
-  "companyRoles": {
-    "companyRolePeriods": [
-      {
-        "startDate": "19400101",
-        "weightedRoles": [
-          {
-            "role": "ROLE_MAIN_BATTLE_TANK",
-            "weight": 100
-          }
-        ]
-      }
-    ]
-  },
-  "nightMissionOdds": {
-    "nightMissionPeriods": [
-      {
-        "startDate": "19440901",
-        "nightMissionOdds": 3
-      }
-    ]
-  },
-  "conversionPeriods": [],
-  "callsigns": {}
+	"country": "RUSSIA",
+	"companyId": 101147001,
+	"name": "147th Tank Division, 1st Company",
+	"fileName": "147th Tank Division 1 Co.json",
+	"skill": 30,
+	"unitIdCode": "",
+	"subUnitIdCode": "",
+	"tankAssignments": [
+		{
+			"archType": "t34",
+			"introduction": "19400101",
+			"withdrawal": "19450601"
+		}
+	],
+	"bases": {
+		"19411001": "Zenino",
+		"19411011": "Detchino",
+		"19411016": "Peredel",
+		"19411020": "Machihino",
+		"19411110": "Akulovo",
+		"19411120": "Tolstyakovo",
+		"19411215": "Kuminskoe",
+		"19420110": "Egore",
+		"19420301": "Zimovskoj",
+		"19420601": "Slavyanskaya",
+		"19420624": "Novovelichkovskaya",
+		"19420630": "Novovelichkovskaya",
+		"19420709": "Platnirovskaya",
+		"19420721": "Dakhovskaya",
+		"19420801": "Karpovka",
+		"19420906": "Soljanka",
+		"19421011": "Priverh",
+		"19421123": "Zety",
+		"19421223": "Bol saja Rossoska",
+		"19430120": "Zavarykin",
+		"19430301": "Korenovskaya",
+		"19430330": "Vorontsovskaya",
+		"19430418": "Abinskaya",
+		"19430918": "Anastasievskaya",
+		"19430927": "Gostagaevskaya",
+		"19431004": "Gostagayka",
+		"19431008": "Sennaya",
+		"19431101": "Eltigen",
+		"19440101": "ef-Strel no-sirokoe",
+		"19450101": "ef-Rheine"
+	},
+	"skins": [],
+	"serviceId": 10112,
+	"companyRoles": {
+		"companyRolePeriods": [
+			{
+				"startDate": "19400101",
+				"weightedRoles": [
+					{
+						"role": "ROLE_MAIN_BATTLE_TANK",
+						"weight": 100
+					}
+				]
+			}
+		]
+	},
+	"nightMissionOdds": {
+		"nightMissionPeriods": [
+			{
+				"startDate": "19440901",
+				"nightMissionOdds": 3
+			}
+		]
+	},
+	"conversionPeriods": [],
+	"callsigns": {
+		
+	}
 }

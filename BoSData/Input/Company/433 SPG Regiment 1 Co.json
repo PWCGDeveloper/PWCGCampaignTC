@@ -1,74 +1,61 @@
 {
-  "country": "RUSSIA",
-  "companyId": 101433001,
-  "name": "433rd SPG Regiment, 1st Company",
-  "fileName": "433 SPG Regiment 1 Co.json",
-  "skill": 30,
-  "unitIdCode": "",
-  "subUnitIdCode": "",
-  "tankAssignments": [
-    {
-      "archType": "su122",
-      "introduction": "19420601",
-      "withdrawal": "19450601"
-    }
-  ],
-  "bases": {
-    "19420801": "Bol saja Rossoska",
-    "19420906": "Beketovka",
-    "19421011": "zeltuhin",
-    "19421123": "Verh. Caricinskij",
-    "19421223": "Kotluban ",
-    "19430120": "Zety",
-    "19430301": "Ryazanskaya",
-    "19430330": "Novovelichkovskaya",
-    "19430418": "Slavyanskaya",
-    "19430918": "Moldavanskoe",
-    "19430927": "Gladkovskaya",
-    "19431004": "Chekon",
-    "19431008": "Ilich",
-    "19431101": "Kerch",
-    "19440101": "Srednjaja Ahtuba",
-    "19440201": "Rahinskij",
-    "19440301": "Smutnev",
-    "19440401": "zD uzel Abganerovo",
-    "19440501": "Srednjaja Ahtuba",
-    "19440601": "Voroponovo",
-    "19440701": "Voroponovo",
-    "19440801": "Abganerovo",
-    "19440901": "Sint-Truiden",
-    "19441001": "Sint-Truiden",
-    "19441101": "Tongeren",
-    "19441201": "Tongeren",
-    "19450101": "Werl",
-    "19450201": "Dortmund",
-    "19450301": "Bonninghardt",
-    "19450401": "Veghel",
-    "19450501": "Diest"
-  },
-  "skins": [],
-  "serviceId": 10112,
-  "companyRoles": {
-    "companyRolePeriods": [
-      {
-        "startDate": "19400101",
-        "weightedRoles": [
-          {
-            "role": "ROLE_SELF_PROPELLED_GUN",
-            "weight": 100
-          }
-        ]
-      }
-    ]
-  },
-  "nightMissionOdds": {
-    "nightMissionPeriods": [
-      {
-        "startDate": "19440901",
-        "nightMissionOdds": 3
-      }
-    ]
-  },
-  "conversionPeriods": [],
-  "callsigns": {}
+	"country": "RUSSIA",
+	"companyId": 101433001,
+	"name": "433rd SPG Regiment, 1st Company",
+	"fileName": "433 SPG Regiment 1 Co.json",
+	"skill": 30,
+	"unitIdCode": "",
+	"subUnitIdCode": "",
+	"tankAssignments": [
+		{
+			"archType": "su122",
+			"introduction": "19420601",
+			"withdrawal": "19450601"
+		}
+	],
+	"bases": {
+		"19420801": "Bol saja Rossoska",
+		"19420906": "Beketovka",
+		"19421011": "zeltuhin",
+		"19421123": "Verh. Caricinskij",
+		"19421223": "Kotluban ",
+		"19430120": "Zety",
+		"19430301": "Ryazanskaya",
+		"19430330": "Novovelichkovskaya",
+		"19430418": "Slavyanskaya",
+		"19430918": "Moldavanskoe",
+		"19430927": "Gladkovskaya",
+		"19431004": "Chekon",
+		"19431008": "Ilich",
+		"19431101": "Kerch",
+		"19440101": "ef-Strel no-sirokoe",
+		"19450101": "ef-Rheine"
+	},
+	"skins": [],
+	"serviceId": 10112,
+	"companyRoles": {
+		"companyRolePeriods": [
+			{
+				"startDate": "19400101",
+				"weightedRoles": [
+					{
+						"role": "ROLE_SELF_PROPELLED_GUN",
+						"weight": 100
+					}
+				]
+			}
+		]
+	},
+	"nightMissionOdds": {
+		"nightMissionPeriods": [
+			{
+				"startDate": "19440901",
+				"nightMissionOdds": 3
+			}
+		]
+	},
+	"conversionPeriods": [],
+	"callsigns": {
+		
+	}
 }

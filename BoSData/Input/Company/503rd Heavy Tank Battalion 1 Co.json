@@ -14,16 +14,17 @@
     }
   ],
   "bases": {
-    "19440901": "Gilze",
-    "19440925": "Volkel",
-    "19440928": "Apeldoorn",
-    "19441101": "Krefeld",
-    "19441220": "Dusseldorf",
-    "19441225": "Koln",
-    "19441229": "Koln",
-    "19450207": "Krefeld",
-    "19450310": "Kleve",
-    "19450404": "Sint-Truiden"
+    "19440901": "Lommel",
+    "19440925": "Deurne",
+    "19440928": "Venray",
+    "19441101": "Bonninghardt",
+    "19441220": "Nettersheim",
+    "19441225": "Manhay",
+    "19441229": "Nettersheim",
+    "19450207": "Gymnich",
+    "19450310": "Gladbach",
+    "19450323": "Dorsten",
+    "19450404": "Versmold"
   },
   "skins": [],
   "serviceId": 20111,

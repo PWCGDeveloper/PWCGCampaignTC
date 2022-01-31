@@ -1,87 +1,74 @@
 {
-  "country": "RUSSIA",
-  "companyId": 101010002,
-  "name": "10th Tank Division, 2nd Company",
-  "fileName": "10th Tank Division 2 Co.json",
-  "skill": 30,
-  "unitIdCode": "",
-  "subUnitIdCode": "",
-  "tankAssignments": [
-    {
-      "archType": "kv1",
-      "introduction": "19400101",
-      "withdrawal": "19450601"
-    }
-  ],
-  "bases": {
-    "19411001": "Kostino",
-    "19411011": "Kremenskoe",
-    "19411020": "Oblyanishevo",
-    "19411110": "Ruza",
-    "19411120": "Solnechnogorsk",
-    "19411215": "Teyaeva Sloboda",
-    "19420110": "Peski",
-    "19420301": "Pobeda oktjabrja",
-    "19420601": "Novovelichkovskaya",
-    "19420624": "Kievskaya",
-    "19420630": "Novovelichkovskaya",
-    "19420709": "Ryazanskaya",
-    "19420721": "Induk",
-    "19420801": "Kotluban ",
-    "19420906": "Pitomnik",
-    "19421011": "Verhne-Pescanyj",
-    "19421123": "Marinovka",
-    "19421223": "Samofalovka",
-    "19430120": "Buzinovka",
-    "19430301": "Starokorsunskaya",
-    "19430330": "Mingrelskaya",
-    "19430418": "Anastasievskaya",
-    "19430918": "Gladkovskaya",
-    "19430927": "Varenikovskaya",
-    "19431004": "Pilenkovo",
-    "19431008": "Bugaz",
-    "19431101": "Eltigen",
-    "19440101": "Rajgorod",
-    "19440201": "Rajgorod",
-    "19440301": "Malye Capurniki",
-    "19440401": "Malye Capurniki",
-    "19440501": "Zety",
-    "19440601": "Malaja Orlovka",
-    "19440701": "Talovoj",
-    "19440801": "Marinovka",
-    "19440901": "Huy",
-    "19441001": "Huy",
-    "19441101": "Manhay",
-    "19441201": "Manhay",
-    "19450101": "Rheine",
-    "19450201": "Dortmund",
-    "19450301": "Limburg",
-    "19450401": "Deurne",
-    "19450501": "Bergen op Zoom"
-  },
-  "skins": [],
-  "serviceId": 10112,
-  "companyRoles": {
-    "companyRolePeriods": [
-      {
-        "startDate": "19400101",
-        "weightedRoles": [
-          {
-            "role": "ROLE_MAIN_BATTLE_TANK",
-            "weight": 100
-          }
-        ]
-      }
-    ]
-  },
-  "nightMissionOdds": {
-    "nightMissionPeriods": [
-      {
-        "startDate": "19440901",
-        "nightMissionOdds": 3
-      }
-    ]
-  },
-  "conversionPeriods": [],
-  "callsigns": {}
+	"country": "RUSSIA",
+	"companyId": 101010002,
+	"name": "10th Tank Division, 2nd Company",
+	"fileName": "10th Tank Division 2 Co.json",
+	"skill": 30,
+	"unitIdCode": "",
+	"subUnitIdCode": "",
+	"tankAssignments": [
+		{
+			"archType": "kv1",
+			"introduction": "19400101",
+			"withdrawal": "19450601"
+		}
+	],
+	"bases": {
+		"19411001": "Kostino",
+		"19411011": "Kremenskoe",
+		"19411020": "Oblyanishevo",
+		"19411110": "Ruza",
+		"19411120": "Solnechnogorsk",
+		"19411215": "Teyaeva Sloboda",
+		"19420110": "Peski",
+		"19420301": "Pobeda oktjabrja",
+		"19420601": "Novovelichkovskaya",
+		"19420624": "Kievskaya",
+		"19420630": "Novovelichkovskaya",
+		"19420709": "Ryazanskaya",
+		"19420721": "Induk",
+		"19420801": "Kotluban ",
+		"19420906": "Pitomnik",
+		"19421011": "Verhne-Pescanyj",
+		"19421123": "Marinovka",
+		"19421223": "Samofalovka",
+		"19430120": "Buzinovka",
+		"19430301": "Starokorsunskaya",
+		"19430330": "Mingrelskaya",
+		"19430418": "Anastasievskaya",
+		"19430918": "Gladkovskaya",
+		"19430927": "Varenikovskaya",
+		"19431004": "Pilenkovo",
+		"19431008": "Bugaz",
+		"19431101": "Eltigen",
+		"19440101": "ef-Strel no-sirokoe",
+		"19450101": "ef-Rheine"
+	},
+	"skins": [],
+	"serviceId": 10112,
+	"companyRoles": {
+		"companyRolePeriods": [
+			{
+				"startDate": "19400101",
+				"weightedRoles": [
+					{
+						"role": "ROLE_MAIN_BATTLE_TANK",
+						"weight": 100
+					}
+				]
+			}
+		]
+	},
+	"nightMissionOdds": {
+		"nightMissionPeriods": [
+			{
+				"startDate": "19440901",
+				"nightMissionOdds": 3
+			}
+		]
+	},
+	"conversionPeriods": [],
+	"callsigns": {
+		
+	}
 }
