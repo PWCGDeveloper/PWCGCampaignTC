@@ -1,66 +1,69 @@
 {
-	"country": "RUSSIA",
-	"companyId": 101433002,
-	"name": "433rd SPG Regiment, 2nd Company",
-	"fileName": "433 SPG Regiment 2 Co.json",
-	"skill": 30,
-	"unitIdCode": "",
-	"subUnitIdCode": "",
-	"tankAssignments": [
-		{
-			"archType": "su122",
-			"introduction": "19420601",
-			"withdrawal": "19450601"
-		},
-		{
-			"archType": "su152",
-			"introduction": "19430601",
-			"withdrawal": "19450601"
-		}
-	],
-	"bases": {
-		"19420801": "Lebedev",
-		"19420906": "Dubovyj ovrag",
-		"19421011": "Malye Capurniki",
-		"19421123": "Samofalovka",
-		"19421223": "Zavarykin",
-		"19430120": "zirnokleevka",
-		"19430301": "Bjeduhovskaya",
-		"19430330": "Abinskaya",
-		"19430418": "Krasniy Oktyabr",
-		"19430918": "Hankov",
-		"19430927": "Natuchaevskaya",
-		"19431004": "Gostagaevskaya",
-		"19431008": "Fontalovskaya",
-		"19431101": "Baksy",
-		"19440101": "ef-Strel no-sirokoe",
-		"19450101": "ef-Rheine"
-	},
-	"skins": [],
-	"serviceId": 10112,
-	"companyRoles": {
-		"companyRolePeriods": [
-			{
-				"startDate": "19400101",
-				"weightedRoles": [
-					{
-						"role": "ROLE_SELF_PROPELLED_GUN",
-						"weight": 100
-					}
-				]
-			}
-		]
-	},
-	"nightMissionOdds": {
-		"nightMissionPeriods": [
-			{
-				"startDate": "19440901",
-				"nightMissionOdds": 3
-			}
-		]
-	},
-	"conversionPeriods": [],
-	"callsigns": {
-		
-	}
+  "country": "RUSSIA",
+  "companyId": 101433002,
+  "name": "433rd SPG Regiment, 2nd Company",
+  "fileName": "433 SPG Regiment 2 Co.json",
+  "skill": 30,
+  "unitIdCode": "",
+  "subUnitIdCode": "",
+  "tankAssignments": [
+    {
+      "archType": "su122",
+      "introduction": "19420601",
+      "withdrawal": "19450601"
+    },
+    {
+      "archType": "su152",
+      "introduction": "19430601",
+      "withdrawal": "19450601"
+    }
+  ],
+  "bases": {
+    "19420801": "Lebedev",
+    "19420906": "Dubovyj ovrag",
+    "19421011": "Malye Capurniki",
+    "19421123": "Samofalovka",
+    "19421223": "Zavarykin",
+    "19430120": "zirnokleevka",
+    "19430301": "Bjeduhovskaya",
+    "19430330": "Abinskaya",
+    "19430418": "Krasniy Oktyabr",
+    "19430918": "Hankov",
+    "19430927": "Natuchaevskaya",
+    "19431004": "Gostagaevskaya",
+    "19431008": "Fontalovskaya",
+    "19431101": "Baksy",
+    "19440101": "ef-Caca",
+    "19440301": "ef-Tinguta",
+    "19440401": "ef-Tridovoj poselok ?3",
+    "19440501": "ef-Buzinovka",
+    "19440801": "ef-Kumovka",
+    "19440901": "ef-Berezovskij",
+    "19450101": "ef-Rheine"
+  },
+  "skins": [],
+  "serviceId": 10112,
+  "companyRoles": {
+    "companyRolePeriods": [
+      {
+        "startDate": "19400101",
+        "weightedRoles": [
+          {
+            "role": "ROLE_SELF_PROPELLED_GUN",
+            "weight": 100
+          }
+        ]
+      }
+    ]
+  },
+  "nightMissionOdds": {
+    "nightMissionPeriods": [
+      {
+        "startDate": "19440901",
+        "nightMissionOdds": 3
+      }
+    ]
+  },
+  "conversionPeriods": [],
+  "callsigns": {}
 }
