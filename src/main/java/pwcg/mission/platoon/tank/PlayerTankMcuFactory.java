@@ -39,7 +39,7 @@ public class PlayerTankMcuFactory
         return tanksForPlatoon;
     }
     
-    public static TankMcu createTankMcuByTankType (EquippedTank equippedTank, ICountry country, CrewMember tankCommander) throws PWCGException
+    public static TankMcu createTankMcuByEquippedTank (EquippedTank equippedTank, ICountry country, CrewMember tankCommander) throws PWCGException
     {
         TankMcu tank = new TankMcu(equippedTank, country, tankCommander);
         return tank;
@@ -69,7 +69,7 @@ public class PlayerTankMcuFactory
             {
                 EquippedTank equippedTank = tanksTypesForPlatoon.get(index);
                 CrewMember tankCommander = crewsForPlatoon.get(index);            
-                TankMcu tank = createTankMcuByTankType(equippedTank, platoonInformation.getCompany().getCountry(), tankCommander);
+                TankMcu tank = createTankMcuByEquippedTank(equippedTank, platoonInformation.getCompany().getCountry(), tankCommander);
                 if (index > 0)
                 {
                     TankMcu leadTank = tanksForPlatoon.get(0);

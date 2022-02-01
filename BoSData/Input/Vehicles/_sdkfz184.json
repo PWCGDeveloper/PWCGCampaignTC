@@ -1,6 +1,6 @@
 {
   "scriptDir": "vehicles\\",
-  "modelDir": "vehicles\\_sdkfz184",
+  "modelDir": "vehicles\\_sdkfz184\\",
   "vehicleType": "_sdkfz184",
   "vehicleName": "Sd.Kfz.184",
   "displayName": "Sd.Kfz.184",

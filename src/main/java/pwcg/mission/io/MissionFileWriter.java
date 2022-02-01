@@ -39,7 +39,7 @@ public class MissionFileWriter implements IMissionFile
 
 		    writeMissionFileHeader(writer);            
             writeMissionOptions(writer);
-            writeUnits(writer);       
+            writePlatoons(writer);       
             writeFlights(writer);       
             writeVehiclesForTest(writer);
             
@@ -132,10 +132,10 @@ public class MissionFileWriter implements IMissionFile
         }
     }
 
-    private void writeUnits(BufferedWriter writer) throws PWCGException
+    private void writePlatoons(BufferedWriter writer) throws PWCGException
     {
-        MissionUnitWriter missionUnitWriter = new MissionUnitWriter(mission);
-        missionUnitWriter.writeUnits(writer);
+        MissionPlatoonWriter missionUnitWriter = new MissionPlatoonWriter(mission);
+        missionUnitWriter.writePlatoons(writer);
     }
 
     private void writeFlights(BufferedWriter writer) throws PWCGException

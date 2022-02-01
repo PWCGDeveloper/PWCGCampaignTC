@@ -52,31 +52,31 @@ abstract class TankTypeFactory implements ITankTypeFactory
     @Override
     public List<TankTypeInformation> getTanksForSide(Side side)
     {
-        List<TankTypeInformation> alliedPlanes = new ArrayList<TankTypeInformation>();
+        List<TankTypeInformation> alliedTanks = new ArrayList<TankTypeInformation>();
 
         for (TankTypeInformation tankType : tankTypes.values())
         {
             if (tankType.getSide() == side)
             {
-                alliedPlanes.add(tankType);
+                alliedTanks.add(tankType);
             }
         }
 
-        return alliedPlanes;
+        return alliedTanks;
     }
 
     @Override
     public List<TankTypeInformation> getAllTanks() throws PWCGException
     {
-        List<TankTypeInformation> allPlanes = new ArrayList<TankTypeInformation>();
-        Map<String, TankTypeInformation> allPlanesSet = new HashMap<String, TankTypeInformation>();
+        List<TankTypeInformation> allTanks = new ArrayList<TankTypeInformation>();
+        Map<String, TankTypeInformation> allTanksSet = new HashMap<String, TankTypeInformation>();
         for (TankTypeInformation tank : tankTypes.values())
         {
-            allPlanesSet.put(tank.getType(), tank);
+            allTanksSet.put(tank.getType(), tank);
         }
-        allPlanes.addAll(allPlanesSet.values());
+        allTanks.addAll(allTanksSet.values());
 
-        return allPlanes;
+        return allTanks;
     }
 
     @Override
@@ -100,11 +100,11 @@ abstract class TankTypeFactory implements ITankTypeFactory
     {
         TankTypeInformation tank = null;
 
-        for (TankTypeInformation thisPlane : tankTypes.values())
+        for (TankTypeInformation thisTank : tankTypes.values())
         {
-            if (thisPlane.getType().equalsIgnoreCase(tankTypeName))
+            if (thisTank.getType().equalsIgnoreCase(tankTypeName))
             {
-                tank = thisPlane;
+                tank = thisTank;
                 break;
             }
         }
@@ -163,11 +163,11 @@ abstract class TankTypeFactory implements ITankTypeFactory
     public List<TankTypeInformation> createTankTypesForArchType(String tankArchType) throws PWCGException
     {
         List<TankTypeInformation> tankTypesForArchType = new ArrayList<>();
-        for (TankTypeInformation thisPlane : tankTypes.values())
+        for (TankTypeInformation thisTank : tankTypes.values())
         {
-            if (thisPlane.getArchType().equals(tankArchType))
+            if (thisTank.getArchType().equals(tankArchType))
             {
-                tankTypesForArchType.add(thisPlane);
+                tankTypesForArchType.add(thisTank);
             }
         }
 
@@ -183,13 +183,13 @@ abstract class TankTypeFactory implements ITankTypeFactory
     public List<TankTypeInformation> createActiveTankTypesForArchType(String tankArchType, Date date) throws PWCGException
     {
         List<TankTypeInformation> tankTypesForArchType = new ArrayList<>();
-        for (TankTypeInformation thisPlane : tankTypes.values())
+        for (TankTypeInformation thisTank : tankTypes.values())
         {
-            if (thisPlane.getArchType().equals(tankArchType))
+            if (thisTank.getArchType().equals(tankArchType))
             {
-                if (DateUtils.isDateInRange(date, thisPlane.getIntroduction(), thisPlane.getWithdrawal()))
+                if (DateUtils.isDateInRange(date, thisTank.getIntroduction(), thisTank.getWithdrawal()))
                 {
-                    tankTypesForArchType.add(thisPlane);
+                    tankTypesForArchType.add(thisTank);
                 }
             }
         }
@@ -211,13 +211,13 @@ abstract class TankTypeFactory implements ITankTypeFactory
     public List<TankTypeInformation> createOlderTankTypesForArchType(String tankArchType, Date date) throws PWCGException
     {
         List<TankTypeInformation> tankTypesForArchType = new ArrayList<>();
-        for (TankTypeInformation thisPlane : tankTypes.values())
+        for (TankTypeInformation thisTank : tankTypes.values())
         {
-            if (thisPlane.getArchType().equals(tankArchType))
+            if (thisTank.getArchType().equals(tankArchType))
             {
-                if (thisPlane.getIntroduction().before(date))
+                if (thisTank.getIntroduction().before(date))
                 {
-                    tankTypesForArchType.add(thisPlane);
+                    tankTypesForArchType.add(thisTank);
                 }
             }
         }
@@ -234,11 +234,11 @@ abstract class TankTypeFactory implements ITankTypeFactory
     public List<TankTypeInformation> createTanksByIntroduction(String tankArchType) throws PWCGException
     {
         TreeMap<Date, TankTypeInformation> tankTypesTypeByIntroduction = new TreeMap<>();
-        for (TankTypeInformation thisPlane : tankTypes.values())
+        for (TankTypeInformation thisTank : tankTypes.values())
         {
-            if (thisPlane.getArchType().equals(tankArchType))
+            if (thisTank.getArchType().equals(tankArchType))
             {
-                tankTypesTypeByIntroduction.put(thisPlane.getIntroduction(), thisPlane);
+                tankTypesTypeByIntroduction.put(thisTank.getIntroduction(), thisTank);
             }
         }
 
@@ -250,13 +250,13 @@ abstract class TankTypeFactory implements ITankTypeFactory
     public List<TankTypeInformation> createActiveTankTypesForDateAndSide(Side side, Date date) throws PWCGException
     {
         List<TankTypeInformation> tankTypesForArchType = new ArrayList<>();
-        for (TankTypeInformation thisPlane : tankTypes.values())
+        for (TankTypeInformation thisTank : tankTypes.values())
         {
-            if (DateUtils.isDateInRange(date, thisPlane.getIntroduction(), thisPlane.getWithdrawal()))
+            if (DateUtils.isDateInRange(date, thisTank.getIntroduction(), thisTank.getWithdrawal()))
             {
-                if (thisPlane.getSide() == side)
+                if (thisTank.getSide() == side)
                 {
-                    tankTypesForArchType.add(thisPlane);
+                    tankTypesForArchType.add(thisTank);
                 }
             }
         }
@@ -272,7 +272,7 @@ abstract class TankTypeFactory implements ITankTypeFactory
     @Override
     public TankTypeInformation findActiveTankTypeByCountryDateAndRole(ICountry country, Date date, PwcgRoleCategory roleCategory) throws PWCGException
     {
-        List<TankTypeInformation> possiblePlanes = new ArrayList<>();
+        List<TankTypeInformation> possibleTanks = new ArrayList<>();
         for (TankTypeInformation tankType : tankTypes.values())
         {
             if (tankType.isUsedBy(country))
@@ -281,45 +281,45 @@ abstract class TankTypeFactory implements ITankTypeFactory
                 {
                     if (tankType.isRoleCategory(roleCategory))
                     {
-                        possiblePlanes.add(tankType);
+                        possibleTanks.add(tankType);
                     }
                 }
             }
         }
 
-        TankTypeInformation selectedPlane = null;
-        if (possiblePlanes.size() > 0)
+        TankTypeInformation selectedTank = null;
+        if (possibleTanks.size() > 0)
         {
-            int index = RandomNumberGenerator.getRandom(possiblePlanes.size());
-            selectedPlane = possiblePlanes.get(index);
+            int index = RandomNumberGenerator.getRandom(possibleTanks.size());
+            selectedTank = possibleTanks.get(index);
         }
 
-        return selectedPlane;
+        return selectedTank;
     }
 
     @Override
     public TankTypeInformation findAnyTankTypeForCountryAndDate(ICountry country, Date date) throws PWCGException
     {
-        List<TankTypeInformation> possiblePlanes = new ArrayList<>();
+        List<TankTypeInformation> possibleTanks = new ArrayList<>();
         for (TankTypeInformation tankType : tankTypes.values())
         {
             if (tankType.isUsedBy(country))
             {
                 if (!(tankType.getIntroduction().after(date)))
                 {
-                    possiblePlanes.add(tankType);
+                    possibleTanks.add(tankType);
                 }
             }
         }
 
-        TankTypeInformation selectedPlane = null;
-        if (possiblePlanes.size() > 0)
+        TankTypeInformation selectedTank = null;
+        if (possibleTanks.size() > 0)
         {
-            int index = RandomNumberGenerator.getRandom(possiblePlanes.size());
-            selectedPlane = possiblePlanes.get(index);
+            int index = RandomNumberGenerator.getRandom(possibleTanks.size());
+            selectedTank = possibleTanks.get(index);
         }
 
-        return selectedPlane;
+        return selectedTank;
     }
 
     @Override
@@ -343,11 +343,11 @@ abstract class TankTypeFactory implements ITankTypeFactory
     {
         TankTypeInformation tank = null;
 
-        for (TankTypeInformation thisPlane : tankTypes.values())
+        for (TankTypeInformation thisTank : tankTypes.values())
         {
-            if (abrevName.equalsIgnoreCase(thisPlane.getType()))
+            if (abrevName.equalsIgnoreCase(thisTank.getType()))
             {
-                tank = thisPlane;
+                tank = thisTank;
                 break;
             }
         }

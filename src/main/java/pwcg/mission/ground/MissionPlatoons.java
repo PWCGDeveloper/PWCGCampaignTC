@@ -62,6 +62,29 @@ public class MissionPlatoons
         return playerPlatoons;
     }
 
+    public List<ITankPlatoon> getAiPlatoonsForSide(Side side) throws PWCGException
+    {
+        List<ITankPlatoon> playerPlatoons = new ArrayList<>();
+        for (ITankPlatoon platoon : tankPlatoons.values())
+        {
+            boolean isPlayer = false;
+            for (TankMcu tank : platoon.getPlatoonTanks().getPlayerTanks())
+            {
+                if (tank.getTankCommander().isPlayer())
+                {
+                    isPlayer = true;
+                }
+            }
+            
+            if(!isPlayer && platoon.getCompany().determineSide() == side)
+            {
+                playerPlatoons.add(platoon);
+            }
+            
+        }
+        return playerPlatoons;
+    }
+
     public ITankPlatoon getReferencePlayerPlatoon() throws PWCGException
     {
         for (ITankPlatoon platoon : getPlayerPlatoons())

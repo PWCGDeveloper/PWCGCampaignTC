@@ -1,6 +1,6 @@
 {
   "scriptDir": "vehicles\\",
-  "modelDir": "vehicles\\_su122",
+  "modelDir": "vehicles\\_su122\\",
   "vehicleType": "_su122",
   "vehicleName": "SU-122 UZTM (1943)",
   "displayName": "SU-122 UZTM (1943)",

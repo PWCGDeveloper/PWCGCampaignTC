@@ -1,6 +1,6 @@
 {
   "scriptDir": "vehicles\\",
-  "modelDir": "vehicles\\_gaz-mm",
+  "modelDir": "vehicles\\_gaz-mm\\",
   "vehicleType": "_gaz-mm-72k",
   "vehicleName": "GAZ-MM 72-K",
   "displayName": "GAZ-MM 72-K",

@@ -120,20 +120,18 @@ public class Vehicle implements Cloneable, IVehicle
         }
     }
 
-    private void writeInternals(BufferedWriter writer) throws PWCGException
+    protected void writeInternals(BufferedWriter writer) throws PWCGException
     {
         try
         {
             writer.write("  Name = \"" + vehicleName + "\";");
             writer.newLine();
+            writer.write("  Desc = \"" + Desc + "\";");
+            writer.newLine();
             writer.write("  Index = " + index + ";");
             writer.newLine();
             writer.write("  LinkTrId = " + linkTrId + ";");
             writer.newLine();
-
-            position.write(writer);
-            orientation.write(writer);
-
             writer.write("  Script = \"" + script + "\";");
             writer.newLine();
             writer.write("  Model = \"" + model + "\";");
@@ -141,17 +139,19 @@ public class Vehicle implements Cloneable, IVehicle
 
             this.getCountry().writeAdjusted(writer);
 
-            writer.write("  Desc = \"" + Desc + "\";");
-            writer.newLine();
-            writer.write("  AILevel = " + aiLevel.getAiSkillLevel() + ";");
-            writer.newLine();
+            position.write(writer);
+            orientation.write(writer);
+
+
             writer.write("  NumberInFormation = " + numberInFormation + ";");
-            writer.newLine();
-            writer.write("  Vulnerable = " + vulnerable + ";");
             writer.newLine();
             writer.write("  Engageable = " + engageable + ";");
             writer.newLine();
             writer.write("  LimitAmmo = " + limitAmmo + ";");
+            writer.newLine();
+            writer.write("  AILevel = " + aiLevel.getAiSkillLevel() + ";");
+            writer.newLine();
+            writer.write("  Vulnerable = " + vulnerable + ";");
             writer.newLine();
             writer.write("  DamageReport = " + damageReport + ";");
             writer.newLine();

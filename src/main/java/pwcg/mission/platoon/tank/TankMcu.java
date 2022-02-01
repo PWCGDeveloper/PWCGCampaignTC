@@ -10,7 +10,6 @@ import pwcg.campaign.api.ICountry;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.CrewMembers;
-import pwcg.campaign.factory.CountryFactory;
 import pwcg.campaign.skin.Skin;
 import pwcg.campaign.tank.EquippedTank;
 import pwcg.campaign.tank.PwcgRoleCategory;
@@ -196,35 +195,8 @@ public class TankMcu extends EquippedTank implements Cloneable, IVehicle
             writer.write("{");
             writer.newLine();
 
-            writer.write("  Name = \"\u0001" + vehicleName + "\";");
-            writer.newLine();
-            writer.write("  Index = " + index + ";");
-            writer.newLine();
-            writer.write("  LinkTrId = " + linkTrId + ";");
-            writer.newLine();
+            super.writeInternals(writer);
 
-            super.write(writer);
-
-            position.write(writer);
-            orientation.write(writer);
-
-            CountryFactory.makeCountryByCountry(country).writeAdjusted(writer);
-
-            writer.write("  NumberInFormation = " + numberInFormation + ";");
-            writer.newLine();            writer.write("  Vulnerable = " + vulnerable + ";");
-            writer.newLine();
-            writer.write("  Engageable = " + engageable + ";");
-            writer.newLine();
-            writer.write("  LimitAmmo = " + limitAmmo + ";");
-            writer.newLine();
-            writer.write("  AILevel = " + aiLevel.getAiSkillLevel() + ";");
-            writer.newLine();
-            writer.write("  DamageReport = " + damageReport + ";");
-            writer.newLine();
-            writer.write("  DamageThreshold = " + damageThreshold + ";");
-            writer.newLine();
-            writer.write("  DeleteAfterDeath = " + deleteAfterDeath + ";");
-            writer.newLine();
             writer.write("  CoopStart = " + coopStart + ";");
             writer.newLine();
             writer.write("  PayloadId = " + payload.getSelectedPayloadId() + ";");
