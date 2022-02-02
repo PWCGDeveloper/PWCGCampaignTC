@@ -4,6 +4,8 @@ import pwcg.campaign.api.ICountry;
 import pwcg.campaign.group.Block;
 import pwcg.campaign.group.Bridge;
 import pwcg.campaign.group.airfield.Airfield;
+import pwcg.campaign.skirmish.Skirmish;
+import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.location.PWCGLocation;
 
@@ -41,6 +43,20 @@ public class MissionObjective
         type = MissionObjectiveType.BRIDGE;
         objectiveDescription = bridge.getName(); 
         objectiveLocation = bridge.getPosition().copy(); 
+    }
+
+    public MissionObjective(Skirmish skirmish)
+    {
+        type = MissionObjectiveType.SKIRMISH;
+        objectiveDescription = skirmish.getSkirmishName(); 
+        try
+        {
+            objectiveLocation = skirmish.getCenter();
+        }
+        catch (PWCGException e)
+        {
+            e.printStackTrace();
+        } 
     }
 
     public MissionObjectiveType getType()

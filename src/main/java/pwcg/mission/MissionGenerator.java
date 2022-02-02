@@ -4,11 +4,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import pwcg.campaign.Campaign;
+import pwcg.campaign.company.Company;
 import pwcg.campaign.skirmish.Skirmish;
 import pwcg.campaign.skirmish.SkirmishBuilder;
 import pwcg.campaign.tank.PwcgRole;
 import pwcg.core.config.ConfigItemKeys;
 import pwcg.core.exception.PWCGException;
+import pwcg.core.location.Coordinate;
 import pwcg.core.location.CoordinateBox;
 import pwcg.mission.options.MissionOptions;
 import pwcg.mission.options.MissionWeather;
@@ -78,12 +80,14 @@ public class MissionGenerator
             Skirmish skirmish,
             MissionOptions missionOptions) throws PWCGException
     {
-        MissionObjectiveBuilder objectiveLocator = new MissionObjectiveBuilder(campaign, skirmish);
+        Company playerCompany = participatingPlayers.getMissionPlayerCompanys().get(0);
+        
+        MissionObjectiveBuilder objectiveLocator = new MissionObjectiveBuilder(campaign, playerCompany, skirmish);
         MissionObjective objective = objectiveLocator.buildMissionObjective();
         
         campaign.setCurrentMission(null);
         
-        CoordinateBox missionBorders = buildMissionBorders(participatingPlayers, skirmish);
+        CoordinateBox missionBorders = buildMissionBorders(objective.getPosition());
         Mission mission = new Mission(campaign, objective, participatingPlayers, missionBorders, weather, skirmish, missionOptions);
         campaign.setCurrentMission(mission);
         mission.generate();
@@ -97,9 +101,9 @@ public class MissionGenerator
         return skirmishBuilder.chooseBestSkirmish();
     }
 
-    private CoordinateBox buildMissionBorders(MissionHumanParticipants participatingPlayers, Skirmish skirmish) throws PWCGException
+    private CoordinateBox buildMissionBorders(Coordinate missionObjectivePosition) throws PWCGException
     {
-        MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(campaign, participatingPlayers, skirmish);
+        MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(campaign, missionObjectivePosition);
         CoordinateBox missionBorders = missionBorderBuilder.buildCoordinateBox();
         return missionBorders;
     }

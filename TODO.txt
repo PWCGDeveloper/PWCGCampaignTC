@@ -7,8 +7,6 @@ Mission:
 Not defense only
 record AI tank types for AAR
 Current mission bugs
-- Player tanks malformed.  Mission does not work
-- Player unit has no coordinates
 - Looks like some units are located in enemy territory at mission start
 - Mission box and battle zone do not align
 - Waypoints not displayed in briefing

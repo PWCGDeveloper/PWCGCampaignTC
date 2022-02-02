@@ -55,11 +55,11 @@ public class VictoryEvaluationTest
     @Test
     public void testSingleVictoryClaimedAndAwarded() throws Exception
     {
-        MissionHumanParticipants participatingPlayers = TestMissionBuilderUtility.buildTestParticipatingHumans(campaign);
-        
-        MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(campaign, participatingPlayers, null);
+        Coordinate objective = TestMissionBuilderUtility.buildMissionCenter(campaign, CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
+        MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(campaign, objective);
         CoordinateBox missionBorders = missionBorderBuilder.buildCoordinateBox();
 
+        MissionHumanParticipants participatingPlayers = TestMissionBuilderUtility.buildTestParticipatingHumans(campaign);
         Mission mission = TestMissionBuilderUtility.createTestMission(campaign, participatingPlayers, missionBorders);
         mission.generate();
         mission.finalizeMission();
@@ -92,12 +92,12 @@ public class VictoryEvaluationTest
 
     @Test
     public void testTwoVictoriesClaimedAndAwardedWithOneFuzzyVictory() throws Exception
-    {
-        MissionHumanParticipants participatingPlayers = TestMissionBuilderUtility.buildTestParticipatingHumans(campaign);
-        
-        MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(campaign, participatingPlayers, null);
+    {        
+        Coordinate objective = TestMissionBuilderUtility.buildMissionCenter(campaign, CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
+        MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(campaign, objective);
         CoordinateBox missionBorders = missionBorderBuilder.buildCoordinateBox();
 
+        MissionHumanParticipants participatingPlayers = TestMissionBuilderUtility.buildTestParticipatingHumans(campaign);
         Mission mission = TestMissionBuilderUtility.createTestMission(campaign, participatingPlayers, missionBorders);
         mission.generate();
         mission.finalizeMission();
@@ -139,11 +139,11 @@ public class VictoryEvaluationTest
     @Test
     public void testTwoVictoriesClaimedOneAwardedBecauseNoDamage() throws Exception
     {
-        MissionHumanParticipants participatingPlayers = TestMissionBuilderUtility.buildTestParticipatingHumans(campaign);
-
-        MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(campaign, participatingPlayers, null);
+        Coordinate objective = TestMissionBuilderUtility.buildMissionCenter(campaign, CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
+        MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(campaign, objective);
         CoordinateBox missionBorders = missionBorderBuilder.buildCoordinateBox();
 
+        MissionHumanParticipants participatingPlayers = TestMissionBuilderUtility.buildTestParticipatingHumans(campaign);
         Mission mission = TestMissionBuilderUtility.createTestMission(campaign, participatingPlayers, missionBorders);
         mission.generate();
         mission.finalizeMission();
@@ -182,11 +182,11 @@ public class VictoryEvaluationTest
     @Test
     public void testNoVictoriesClaimedAndAwarded() throws Exception
     {
-        MissionHumanParticipants participatingPlayers = TestMissionBuilderUtility.buildTestParticipatingHumans(campaign);
-        
-        MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(campaign, participatingPlayers, null);
+        Coordinate objective = TestMissionBuilderUtility.buildMissionCenter(campaign, CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
+        MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(campaign, objective);
         CoordinateBox missionBorders = missionBorderBuilder.buildCoordinateBox();
 
+        MissionHumanParticipants participatingPlayers = TestMissionBuilderUtility.buildTestParticipatingHumans(campaign);
         Mission mission = TestMissionBuilderUtility.createTestMission(campaign, participatingPlayers, missionBorders);
         mission.generate();
         mission.finalizeMission();

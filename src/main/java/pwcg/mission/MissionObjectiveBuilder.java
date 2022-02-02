@@ -7,6 +7,9 @@ import java.util.List;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.api.ICountry;
 import pwcg.campaign.api.Side;
+import pwcg.campaign.company.Company;
+import pwcg.campaign.context.FrontLinePoint;
+import pwcg.campaign.context.FrontLinesForMap;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.group.AirfieldManager;
 import pwcg.campaign.group.Block;
@@ -23,6 +26,7 @@ import pwcg.core.location.PWCGLocation;
 public class MissionObjectiveBuilder
 {
     private Campaign campaign;
+    private Company company;
     private Skirmish skirmish;
     
     private MissionObjective objective = null;
@@ -32,9 +36,10 @@ public class MissionObjectiveBuilder
     private List<PWCGLocation> townObjectives = new ArrayList<>();
     private List<Bridge> bridgeObjectives = new ArrayList<>();
 
-    public MissionObjectiveBuilder(Campaign campaign, Skirmish skirmish)
+    public MissionObjectiveBuilder(Campaign campaign, Company company, Skirmish skirmish)
     {
         this.campaign = campaign;
+        this.company = company;
         this.skirmish = skirmish;
     }
     
@@ -51,14 +56,68 @@ public class MissionObjectiveBuilder
         return objective;
     }
     
-    
     private void findMissionObjective(Side defendingSide) throws PWCGException
     {
+        if (skirmish != null)
+        {
+            createObjectiveForSkirmish(defendingSide);
+        }
+        else
+        {
+            createObjectiveForBattle(defendingSide);
+        }
         
-        findRailroadObjectives(defendingSide);
-        findAirfieldObjectives(defendingSide);
-        findTownObjectives(defendingSide);
-        findBridgeObjectives(defendingSide);
+        if(objective == null)
+        {
+            throw new PWCGException("Failed to generate mission objective");
+        }
+    }
+
+    private void createObjectiveForSkirmish(Side defendingSide) throws PWCGException
+    {
+        int radius = 15000;
+        Coordinate referenceCoordinate = skirmish.getCenter();
+        while (objective == null && radius < 25000)
+        {
+            findMissionObjectiveForGenericBattle(defendingSide, referenceCoordinate, radius);
+            radius += 5000;
+        }
+        
+        if (objective == null)
+        {
+            objective = new MissionObjective(skirmish);
+        }
+    }
+
+    private void createObjectiveForBattle(Side defendingSide) throws PWCGException
+    {
+        Coordinate referenceCoordinate = findfrontPositionNearCompany();
+        int radius = 50000;
+        while (objective == null)
+        {
+            findMissionObjectiveForGenericBattle(defendingSide, referenceCoordinate, radius);
+            radius += 10000;
+        }
+    }
+
+    private Coordinate findfrontPositionNearCompany() throws PWCGException
+    {
+        FrontLinesForMap frontLinesForMap = PWCGContext.getInstance().getCurrentMap().getFrontLinesForMap(campaign.getDate());
+        Coordinate companyCoordinate = company.determineCurrentPosition(campaign.getDate());
+        Coordinate closestFront = frontLinesForMap.findClosestFrontCoordinateForSide(companyCoordinate, company.getCountry().getSide());
+        List<FrontLinePoint> nearbyFrontPositions = frontLinesForMap.findClosestFrontPositionsForSide(closestFront, 20000, company.getCountry().getSide());
+        Collections.shuffle(nearbyFrontPositions);
+        Coordinate referenceCoordinate = nearbyFrontPositions.get(0).getPosition();
+        return referenceCoordinate;
+    }
+    
+    private void findMissionObjectiveForGenericBattle(Side defendingSide, Coordinate referenceCoordinate, int radius) throws PWCGException
+    {
+        
+        findRailroadObjectives(defendingSide, referenceCoordinate, radius);
+        findAirfieldObjectives(defendingSide, referenceCoordinate, radius);
+        findTownObjectives(defendingSide, referenceCoordinate, radius);
+        findBridgeObjectives(defendingSide, referenceCoordinate, radius);
         
         List<MissionObjectiveType> objectiveTypes = getObjectiveTypes();
         for (MissionObjectiveType objectiveType : objectiveTypes)
@@ -95,11 +154,6 @@ public class MissionObjectiveBuilder
                     break;
                 }
             }
-        }
-        
-        if(objective == null)
-        {
-            throw new PWCGException("Failed to generate mission objective");
         }
     }
 
@@ -139,10 +193,10 @@ public class MissionObjectiveBuilder
         return null; 
     }
 
-    private void findRailroadObjectives(Side defendingSide) throws PWCGException
+    private void findRailroadObjectives(Side defendingSide, Coordinate referenceCoordinate, int radius) throws PWCGException
     {
         RailroadStationFinder railroadFinder = PWCGContext.getInstance().getCurrentMap().getGroupManager().getRailroadStationFinder();
-        for (Block trainStation : railroadFinder.getTrainPositionsBySide(defendingSide, campaign.getDate()))
+        for (Block trainStation : railroadFinder.getTrainPositionWithinRadiusBySide(defendingSide, campaign.getDate(), referenceCoordinate, radius))
         {
             if(isCloseToFront(trainStation.getPosition(), defendingSide))
             {
@@ -153,10 +207,10 @@ public class MissionObjectiveBuilder
         Collections.shuffle(trainStationObjectives);
     }
     
-    private void findAirfieldObjectives(Side defendingSide) throws PWCGException
+    private void findAirfieldObjectives(Side defendingSide, Coordinate referenceCoordinate, int radius) throws PWCGException
     {
         AirfieldManager airfieldManager = PWCGContext.getInstance().getCurrentMap().getAirfieldManager();
-        for (Airfield airfield : airfieldManager.getAirFieldsForSide(campaign.getDate(), defendingSide))
+        for (Airfield airfield : airfieldManager.getAirfieldsWithinRadiusBySide(defendingSide, campaign.getDate(), referenceCoordinate,radius))
         {
             if(isCloseToFront(airfield.getPosition(), defendingSide))
             {
@@ -167,10 +221,10 @@ public class MissionObjectiveBuilder
         Collections.shuffle(airfieldObjectives);
     }
     
-    private void findTownObjectives(Side defendingSide) throws PWCGException
+    private void findTownObjectives(Side defendingSide, Coordinate referenceCoordinate, int radius) throws PWCGException
     {
         TownFinder townFinder = PWCGContext.getInstance().getCurrentMap().getGroupManager().getTownFinder();
-        for (PWCGLocation town : townFinder.findAllTownsForSide(defendingSide, campaign.getDate()))
+        for (PWCGLocation town : townFinder.findTownsForSideWithinRadius(defendingSide, campaign.getDate(), referenceCoordinate, radius))
         {
             if(isCloseToFront(town.getPosition(), defendingSide))
             {
@@ -181,10 +235,10 @@ public class MissionObjectiveBuilder
         Collections.shuffle(townObjectives);
     }
     
-    private void findBridgeObjectives(Side defendingSide) throws PWCGException
+    private void findBridgeObjectives(Side defendingSide, Coordinate referenceCoordinate, int radius) throws PWCGException
     {
         BridgeFinder bridgeFinder = PWCGContext.getInstance().getCurrentMap().getGroupManager().getBridgeFinder();
-        for (Bridge bridge : bridgeFinder.findAllBridgesForSide(defendingSide, campaign.getDate()))
+        for (Bridge bridge : bridgeFinder.findBridgesForSideWithinRadius(defendingSide, campaign.getDate(), referenceCoordinate, radius))
         {
             if(isCloseToFront(bridge.getPosition(), defendingSide))
             {

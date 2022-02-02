@@ -18,6 +18,7 @@ import pwcg.core.utils.DateUtils;
 import pwcg.core.utils.MathUtils;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.CompanyTestProfile;
+import pwcg.testutils.TestMissionBuilderUtility;
 
 @ExtendWith(MockitoExtension.class)
 public class MissionBorderBuilderTest
@@ -41,9 +42,10 @@ public class MissionBorderBuilderTest
         for (int i = 0; i < 10; ++i)
         {
             Company playerCompany = participatingPlayers.getAllParticipatingPlayers().get(0).determineCompany();
-            MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(campaign, participatingPlayers, null);
-            
+            Coordinate objective = TestMissionBuilderUtility.buildMissionCenter(campaign, playerCompany.getCompanyId());
+            MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(campaign, objective);
             CoordinateBox missionBorders = missionBorderBuilder.buildCoordinateBox();
+            
             Coordinate missionBoxCenter = missionBorders.getCenter();
             
             Coordinate playerCompanyLocation = playerCompany.determineCurrentPosition(campaign.getDate());
@@ -67,7 +69,8 @@ public class MissionBorderBuilderTest
         
         for (int i = 0; i < 10; ++i)
         {
-            MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(coopCampaign, participatingPlayers, null);
+            Coordinate objective = TestMissionBuilderUtility.buildMissionCenter(coopCampaign, CompanyTestProfile.COOP_COMPETITIVE_PROFILE.getCompanyId());
+            MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(coopCampaign, objective);
 
             CoordinateBox missionBorders = missionBorderBuilder.buildCoordinateBox();
             Coordinate missionBoxCenter = missionBorders.getCenter();
@@ -92,8 +95,7 @@ public class MissionBorderBuilderTest
         SkirmishBuilder skirmishBuilder = new SkirmishBuilder(campaign, participatingPlayers);
         Skirmish skirmish = skirmishBuilder.chooseBestSkirmish();
 
-        MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(campaign, participatingPlayers, skirmish);
-
+        MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(campaign, skirmish.getCenter());
         CoordinateBox missionBorders = missionBorderBuilder.buildCoordinateBox();
 
         Coordinate missionBoxCenter = missionBorders.getCenter();

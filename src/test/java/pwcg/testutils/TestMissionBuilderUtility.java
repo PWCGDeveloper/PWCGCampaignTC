@@ -2,6 +2,7 @@ package pwcg.testutils;
 
 import pwcg.campaign.Campaign;
 import pwcg.campaign.api.Side;
+import pwcg.campaign.company.Company;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.group.Block;
@@ -9,6 +10,7 @@ import pwcg.campaign.group.Bridge;
 import pwcg.campaign.skirmish.Skirmish;
 import pwcg.core.config.ConfigItemKeys;
 import pwcg.core.exception.PWCGException;
+import pwcg.core.location.Coordinate;
 import pwcg.core.location.CoordinateBox;
 import pwcg.mission.Mission;
 import pwcg.mission.MissionHumanParticipants;
@@ -49,5 +51,13 @@ public class TestMissionBuilderUtility
             participatingPlayers.addCrewMember(player);
         }
         return participatingPlayers;
+    }
+
+    public static Coordinate buildMissionCenter(Campaign campaign, int companyId) throws PWCGException
+    {
+        Company company = PWCGContext.getInstance().getCompanyManager().getCompany(companyId);
+        Coordinate companyLocation = company.determineCurrentPosition(campaign.getDate());
+        Coordinate missionObjective = PWCGContext.getInstance().getCurrentMap().getFrontLinesForMap(campaign.getDate()).findClosestFrontCoordinateForSide(companyLocation, Side.ALLIED);
+        return missionObjective;
     }
 }

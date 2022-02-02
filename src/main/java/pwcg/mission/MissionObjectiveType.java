@@ -5,5 +5,6 @@ public enum MissionObjectiveType
     TOWN,
     RAILROAD_STATION,
     AIRFIELD,
-    BRIDGE
+    BRIDGE,
+    SKIRMISH
 }

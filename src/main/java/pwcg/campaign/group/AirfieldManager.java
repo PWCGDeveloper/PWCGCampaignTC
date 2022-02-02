@@ -128,7 +128,6 @@ public class AirfieldManager
     public List<Airfield> getAirFieldsForSide(Date date, Side side) throws PWCGException
     {
         ArrayList<Airfield> fieldsForSide = new ArrayList<Airfield>();
-
         for (Airfield airfield : airfields.values())
         {
             if (airfield.determineCountryOnDate(date).getSide() == side)
@@ -139,7 +138,14 @@ public class AirfieldManager
 
         return fieldsForSide;
     }
-    
+
+    public List<Airfield> getAirfieldsWithinRadiusBySide(Side side, Date date, Coordinate targetGeneralLocation, double radius) throws PWCGException
+    {
+        PositionFinder<Airfield> positionFinder = new PositionFinder<Airfield>();
+        List<Airfield> selectedAirfields = positionFinder.findWithinExpandingRadius(getAirFieldsForSide(date, side), targetGeneralLocation, radius, radius);
+        return selectedAirfields;
+    }
+
     public AirfieldFinder getAirfieldFinder()
     {
         AirfieldFinder airfieldFinder = new AirfieldFinder(new ArrayList<>(airfields.values()));

@@ -215,24 +215,6 @@ public class Skirmish
         return SkirmishProfileAirAssociation.DEFENDER;
     }
 
-    public boolean isCargoRouteBattle()
-    {
-        if (skirmishName.startsWith(CARGO_ROUTE_BATTLE))
-        {
-            return true;
-        }
-        return false;
-    }
-
-    public boolean isShipEncounterZoneBattle()
-    {
-        if (skirmishName.startsWith(SHIPPING_ENCOUNTER_BATTLE))
-        {
-            return true;
-        }
-        return false;
-    }
-
     public Side getAttackerAir()
     {
         return attackerAir;

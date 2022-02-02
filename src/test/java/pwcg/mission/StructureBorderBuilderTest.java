@@ -12,9 +12,11 @@ import pwcg.core.config.ConfigItemKeys;
 import pwcg.core.config.ConfigManager;
 import pwcg.core.config.ConfigSimple;
 import pwcg.core.exception.PWCGException;
+import pwcg.core.location.Coordinate;
 import pwcg.core.location.CoordinateBox;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.CompanyTestProfile;
+import pwcg.testutils.TestMissionBuilderUtility;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class StructureBorderBuilderTest
@@ -40,7 +42,8 @@ public class StructureBorderBuilderTest
         CrewMember player = campaign.findReferencePlayer();
         participatingPlayers.addCrewMember(player);
 
-        MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(campaign, participatingPlayers, null);
+        Coordinate objective = TestMissionBuilderUtility.buildMissionCenter(campaign, CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
+        MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(campaign, objective);
         CoordinateBox missionBorders = missionBorderBuilder.buildCoordinateBox();
 
         StructureBorderBuilder structureBorderBuilder = new StructureBorderBuilder(campaign, missionBorders);
@@ -64,7 +67,8 @@ public class StructureBorderBuilderTest
         CrewMember player = campaign.findReferencePlayer();
         participatingPlayers.addCrewMember(player);
 
-        MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(campaign, participatingPlayers, null);
+        Coordinate objective = TestMissionBuilderUtility.buildMissionCenter(campaign, CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
+        MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(campaign, objective);
         CoordinateBox missionBorders = missionBorderBuilder.buildCoordinateBox();
 
         StructureBorderBuilder structureBorderBuilder = new StructureBorderBuilder(campaign, missionBorders);
@@ -88,7 +92,8 @@ public class StructureBorderBuilderTest
         CrewMember player = campaign.findReferencePlayer();
         participatingPlayers.addCrewMember(player);
 
-        MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(campaign, participatingPlayers, null);
+        Coordinate objective = TestMissionBuilderUtility.buildMissionCenter(campaign, CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
+        MissionBorderBuilder missionBorderBuilder = new MissionBorderBuilder(campaign, objective);
         CoordinateBox missionBorders = missionBorderBuilder.buildCoordinateBox();
 
         StructureBorderBuilder structureBorderBuilder = new StructureBorderBuilder(campaign, missionBorders);
