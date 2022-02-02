@@ -50,32 +50,6 @@ public class Vehicle implements Cloneable, IVehicle
         this.vehicleDefinition = vehicleDefinition;
         this.makeVehicleFromDefinition(country);
     }
-    
-    public void copyFromTemplate(Vehicle vehicle)
-    {
-        this.vehicleDefinition = vehicle.vehicleDefinition;
-        this.vehicleName = vehicle.vehicleName;
-        this.vehicleType = vehicle.vehicleType;
-        this.position = vehicle.position.copy();
-        this.orientation = vehicle.orientation.copy();
-        this.script = vehicle.script;
-        this.model = vehicle.model;
-        this.Desc = vehicle.Desc;
-        this.numberInFormation = vehicle.numberInFormation;
-        this.vulnerable = vehicle.vulnerable;
-        this.engageable = vehicle.engageable;
-        this.limitAmmo = vehicle.limitAmmo;
-        this.aiLevel = vehicle.aiLevel;
-        this.damageReport = vehicle.damageReport;
-        this.damageThreshold = vehicle.damageThreshold;
-        this.deleteAfterDeath = vehicle.deleteAfterDeath;
-        this.beaconChannel = vehicle.beaconChannel;
-        this.country = vehicle.country;
-
-        this.index = IndexGenerator.getInstance().getNextIndex();
-        this.entity = vehicle.entity.copy(vehicle.index);
-        this.linkTrId = entity.getIndex();
-    }
 
     private void makeVehicleFromDefinition(Country country)
     {

@@ -45,31 +45,31 @@ public class TankMcu extends EquippedTank implements Cloneable, IVehicle
 
     public TankMcu(EquippedTank equippedTank, ICountry country, CrewMember crewMember) throws PWCGException
     {
-        super(equippedTank, country.getCountry());
+        super(equippedTank.getVehicleDefinition(), country.getCountry());
         this.tankCommander = crewMember;
-        
         buildPlayerTank(equippedTank, country);
     }
 
     public TankMcu(VehicleDefinition vehicleDefinition, TankTypeInformation tankType, ICountry country) throws PWCGException
     {
-        super(vehicleDefinition, tankType, country.getCountry());
+        super(vehicleDefinition, country.getCountry());
         this.tankCommander = null;
-        
         buildAiTank(tankType, country);
     }
     
     private void buildPlayerTank(EquippedTank equippedTank, ICountry country) throws PWCGException
     {
-        this.setVehicleName(tankCommander.getNameAndRank());
-        this.setDescription(tankCommander.getNameAndRank());
-        this.setCountry(country);
+        initializeEquippedTankForPlayerPlatoon(equippedTank);
+        setVehicleName(tankCommander.getNameAndRank());
+        setDescription(tankCommander.getNameAndRank());
+        setCountry(country);
         setDeleteAfterDeath();
     }
     
     private void buildAiTank(TankTypeInformation tankType, ICountry country) throws PWCGException
     {
-        this.setCountry(country);
+        initializeEquippedTankForAiPlatoon(tankType);
+        setCountry(country);
         setDeleteAfterDeath();
     }
 

@@ -39,17 +39,24 @@ public class EquippedTank extends Vehicle
         this.tankStatus = tankStatus;
     }
 
-    // Player Tank from TankMcu
-    public EquippedTank(EquippedTank equippedTank, Country country)
-    {
-        super(equippedTank.getVehicleDefinition(), country);
-        this.copyFromTemplate(equippedTank);
-    }
-
-    // AI Tank from TankMcu
-    public EquippedTank(VehicleDefinition vehicleDefinition, TankTypeInformation tankType, Country country)
+    // Player and AI Tank from TankMcu
+    public EquippedTank(VehicleDefinition vehicleDefinition, Country country)
     {
         super(vehicleDefinition, country);
+    }
+
+    protected void initializeEquippedTankForPlayerPlatoon(EquippedTank equippedTank)
+    {
+        this.serialNumber = equippedTank.serialNumber;
+        this.companyId = equippedTank.companyId;
+        this.dateRemovedFromService = equippedTank.dateRemovedFromService;
+        this.tankStatus = equippedTank.tankStatus;
+        this.tankIdCode = equippedTank.tankIdCode;
+        this.tankType = equippedTank.tankType;
+    }
+
+    protected void initializeEquippedTankForAiPlatoon(TankTypeInformation tankType)
+    {
         this.tankType = tankType;
         this.tankStatus = TankStatus.STATUS_DEPLOYED;
         this.serialNumber = SerialNumber.NO_SERIAL_NUMBER;
@@ -62,16 +69,6 @@ public class EquippedTank extends Vehicle
         {
             e.printStackTrace();
         }
-    }
-
-    private void copyFromTemplate(EquippedTank equippedTank)
-    {
-        this.serialNumber = equippedTank.serialNumber;
-        this.companyId = equippedTank.companyId;
-        this.dateRemovedFromService = equippedTank.dateRemovedFromService;
-        this.tankStatus = equippedTank.tankStatus;
-        this.tankIdCode = equippedTank.tankIdCode;
-        this.tankType = equippedTank.tankType;
     }
 
     public int getSerialNumber()
