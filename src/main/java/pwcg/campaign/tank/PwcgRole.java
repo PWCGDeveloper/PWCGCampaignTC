@@ -17,6 +17,7 @@ public enum PwcgRole
     ROLE_TANK_DESTROYER(PwcgRoleCategory.TANK_DESTROYER, "Tank Destroyer Unit"),
     ROLE_SELF_PROPELLED_GUN(PwcgRoleCategory.SELF_PROPELLED_GUN, "SPG Unit"),
     ROLE_SELF_PROPELLED_AAA(PwcgRoleCategory.SELF_PROPELLED_AAA, "AAA Unit"),
+    ROLE_ARMORED_CAR(PwcgRoleCategory.ARMORED_CAR, "Armored Car"),
     
     ROLE_NONE (PwcgRoleCategory.OTHER, "None");
 

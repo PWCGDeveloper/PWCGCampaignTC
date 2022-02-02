@@ -379,11 +379,14 @@ public class TankMcu extends EquippedTank implements Cloneable, IVehicle
         return tankType.getRoleCategories();
     }
 
-    public boolean isPlayer()
+    public boolean isPlayerTank()
     {
         if (tankCommander != null)
         {
-            return true;
+            if (tankCommander.isPlayer())
+            {
+                return true;
+            }
         }
         return false;
     }

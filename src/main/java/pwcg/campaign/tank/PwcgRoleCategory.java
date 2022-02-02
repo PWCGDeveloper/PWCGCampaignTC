@@ -12,7 +12,7 @@ public enum PwcgRoleCategory
     TANK_DESTROYER("Tank Destroyer Unit", PwcgRole.ROLE_TANK_DESTROYER),
     SELF_PROPELLED_GUN("Self Propelled Gun Unit", PwcgRole.ROLE_SELF_PROPELLED_GUN),
     SELF_PROPELLED_AAA("Self Propelled AAA Unit", PwcgRole.ROLE_SELF_PROPELLED_AAA),
-
+    ARMORED_CAR("Armored Car Unit", PwcgRole.ROLE_ARMORED_CAR),
     OTHER("other", PwcgRole.ROLE_NONE);
 
     private String roleCategoryDescription;

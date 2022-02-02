@@ -1,0 +1,17 @@
+{
+	"type": "ba10m",
+	"archType": "ArmoredCar",
+	"isPlayer": false,
+	"primaryUsedBy": [
+		"RUSSIA"
+	],
+	"stockModifications": [],
+	"cruisingSpeed": 16,
+	"goodness": 14,
+	"roleCategories": [
+		"ARMORED_CAR"
+	],
+	"introduction": "19390901",
+	"endProduction": "19420401",
+	"withdrawal": "19420501"
+}

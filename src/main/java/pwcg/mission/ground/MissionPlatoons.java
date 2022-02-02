@@ -51,12 +51,9 @@ public class MissionPlatoons
         List<ITankPlatoon> playerPlatoons = new ArrayList<>();
         for (ITankPlatoon platoon : tankPlatoons.values())
         {
-            for (TankMcu tank : platoon.getPlatoonTanks().getPlayerTanks())
+            if (platoon.isPlayerPlatoon())
             {
-                if (tank.getTankCommander().isPlayer())
-                {
-                    playerPlatoons.add(platoon);
-                }
+                playerPlatoons.add(platoon);
             }
         }
         return playerPlatoons;
@@ -64,25 +61,15 @@ public class MissionPlatoons
 
     public List<ITankPlatoon> getAiPlatoonsForSide(Side side) throws PWCGException
     {
-        List<ITankPlatoon> playerPlatoons = new ArrayList<>();
+        List<ITankPlatoon> aiPlatoons = new ArrayList<>();
         for (ITankPlatoon platoon : tankPlatoons.values())
         {
-            boolean isPlayer = false;
-            for (TankMcu tank : platoon.getPlatoonTanks().getPlayerTanks())
+            if (!platoon.isPlayerPlatoon())
             {
-                if (tank.getTankCommander().isPlayer())
-                {
-                    isPlayer = true;
-                }
+                aiPlatoons.add(platoon);
             }
-            
-            if(!isPlayer && platoon.getCompany().determineSide() == side)
-            {
-                playerPlatoons.add(platoon);
-            }
-            
         }
-        return playerPlatoons;
+        return aiPlatoons;
     }
 
     public ITankPlatoon getReferencePlayerPlatoon() throws PWCGException
