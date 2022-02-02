@@ -61,7 +61,6 @@ public class TankMcu extends EquippedTank implements Cloneable, IVehicle
     
     private void buildPlayerTank(EquippedTank equippedTank, ICountry country) throws PWCGException
     {
-        equippedTank.copyFromTemplate(this);
         this.setVehicleName(tankCommander.getNameAndRank());
         this.setDescription(tankCommander.getNameAndRank());
         this.setCountry(country);

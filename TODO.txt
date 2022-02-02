@@ -7,8 +7,12 @@ Mission:
 Not defense only
 record AI tank types for AAR
 Current mission bugs
-- Soviet and US units included in same battle
-- Not matching ground units - related to above?
+- Player tanks malformed.  Mission does not work
+- Player unit has no coordinates
+- Looks like some units are located in enemy territory at mission start
+- Mission box and battle zone do not align
+- Waypoints not displayed in briefing
+- Generic mission description is in use
 
 
 AAR:

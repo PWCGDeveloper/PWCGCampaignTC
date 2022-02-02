@@ -66,7 +66,6 @@ public class EquippedTank extends Vehicle
 
     private void copyFromTemplate(EquippedTank equippedTank)
     {
-        super.copyFromTemplate(equippedTank);
         this.serialNumber = equippedTank.serialNumber;
         this.companyId = equippedTank.companyId;
         this.dateRemovedFromService = equippedTank.dateRemovedFromService;
