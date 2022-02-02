@@ -15,7 +15,7 @@ import pwcg.testutils.CompanyTestProfile;
 import pwcg.testutils.TestMissionBuilderUtility;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class TankUnitBuildTest 
+public class TankMissionBuildTest 
 {    
     private Campaign campaign;    
 

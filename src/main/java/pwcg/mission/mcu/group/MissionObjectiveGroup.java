@@ -11,7 +11,6 @@ import pwcg.core.utils.PWCGLogger;
 import pwcg.mission.Mission;
 import pwcg.mission.MissionBeginUnit;
 import pwcg.mission.mcu.McuEvent;
-import pwcg.mission.mcu.McuMessage;
 import pwcg.mission.mcu.McuMissionObjective;
 import pwcg.mission.mcu.McuTimer;
 import pwcg.mission.platoon.ITankPlatoon;
@@ -56,15 +55,11 @@ public class MissionObjectiveGroup
         missionObjective.setSuccess(0);
 
         TankMcu referenceVehicle = mission.getPlatoons().getReferencePlayerPlatoon().getLeadVehicle();
-        referenceVehicle.setOnMessages(
-                        McuMessage.ONKILL,
-                        missionBeginUnit.getStartTimeindex(),
-                        missionObjectiveTimer.getIndex());
         
         missionObjectiveTimer.setTarget(missionObjective.getIndex());
         missionObjectiveTimer.setPosition(companyLocation);
 
-        McuEvent planeDamagedEvent = new McuEvent(McuEvent.ONPLANECRASHED, missionObjectiveTimer.getIndex());
+        McuEvent planeDamagedEvent = new McuEvent(McuEvent.ONKILLED, missionObjectiveTimer.getIndex());
         referenceVehicle.addEvent(planeDamagedEvent);
     }
 

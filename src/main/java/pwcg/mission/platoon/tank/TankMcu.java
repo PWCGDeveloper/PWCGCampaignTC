@@ -337,14 +337,6 @@ public class TankMcu extends EquippedTank implements Cloneable, IVehicle
         }
     }
 
-    public void setOnMessages(int message, int takeoffIndex, int waypointIndex)
-    {
-        entity.setOnMessages(
-                message,
-                takeoffIndex,
-                waypointIndex);
-    }
-
     public void addEvent(McuEvent event)
     {
         entity.addEvent(event);
