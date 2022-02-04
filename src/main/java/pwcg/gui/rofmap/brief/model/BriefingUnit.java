@@ -101,7 +101,7 @@ public class BriefingUnit
         this.mission = mission;
     }
 
-    public BriefingUnitParameters getBriefingUnitParameters()
+    public BriefingUnitParameters getBriefingPlatoonParameters()
     {
         return briefingUnitParameters;
     }

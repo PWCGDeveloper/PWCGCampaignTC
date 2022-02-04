@@ -8,9 +8,9 @@ import pwcg.core.utils.PWCGLogger;
 
 public class PWCGMouseWheelListener implements MouseWheelListener
 {
-	private MapPanelBase parent = null;
+	private IMouseCallback parent = null;
 	
-	PWCGMouseWheelListener(MapPanelBase parent)
+	PWCGMouseWheelListener(IMouseCallback parent)
 	{
 		this.parent = parent;
 	}

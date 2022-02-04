@@ -59,7 +59,7 @@ public class MissionPlatoons
         return playerPlatoons;
     }
 
-    public List<ITankPlatoon> getAiPlatoonsForSide(Side side) throws PWCGException
+    public List<ITankPlatoon> getAiPlatoons() throws PWCGException
     {
         List<ITankPlatoon> aiPlatoons = new ArrayList<>();
         for (ITankPlatoon platoon : tankPlatoons.values())
@@ -67,6 +67,22 @@ public class MissionPlatoons
             if (!platoon.isPlayerPlatoon())
             {
                 aiPlatoons.add(platoon);
+            }
+        }
+        return aiPlatoons;
+    }
+
+    public List<ITankPlatoon> getAiPlatoonsForSide(Side side) throws PWCGException
+    {
+        List<ITankPlatoon> aiPlatoons = new ArrayList<>();
+        for (ITankPlatoon platoon : tankPlatoons.values())
+        {
+            if (!platoon.isPlayerPlatoon())
+            {
+                if(platoon.getPlatoonInformation().getCountry().getSide() == side)
+                {
+                    aiPlatoons.add(platoon);
+                }
             }
         }
         return aiPlatoons;

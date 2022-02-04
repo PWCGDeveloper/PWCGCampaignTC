@@ -56,7 +56,7 @@ public class BriefingEditorPanel extends ImageResizingPanel implements ActionLis
 		editorPanel.setOpaque(false);
 		editorPanel.setBorder(BorderFactory.createEmptyBorder(50,50,50,100));
 
-        BriefingUnit activeBriefingFlight = briefingData.getActiveBriefingUnit();
+        BriefingUnit activeBriefingFlight = briefingData.getActiveBriefingPlatoon();
         waypointDetailsPanel = new BriefingEditorDetailsPanel(false);
         waypointDetailsPanel.buildWaypointPanel(activeBriefingFlight);
         
@@ -75,7 +75,7 @@ public class BriefingEditorPanel extends ImageResizingPanel implements ActionLis
 	{
 	    JComponent previousPanel = waypointDetailsPanel.getWaypointPanel();
 	    
-        BriefingUnit activeBriefingFlight = briefingData.getActiveBriefingUnit();
+        BriefingUnit activeBriefingFlight = briefingData.getActiveBriefingPlatoon();
         waypointDetailsPanel = new BriefingEditorDetailsPanel(true);
         waypointDetailsPanel.buildWaypointPanel(activeBriefingFlight);
         
@@ -188,7 +188,7 @@ public class BriefingEditorPanel extends ImageResizingPanel implements ActionLis
 	{
 	    int index = 0;
 	    
-        BriefingUnit activeBriefingFlight = briefingData.getActiveBriefingUnit();
+        BriefingUnit activeBriefingFlight = briefingData.getActiveBriefingPlatoon();
 	    double selectedFuel = activeBriefingFlight.getSelectedFuel();
 	    
         if (selectedFuel > .95)
@@ -287,7 +287,7 @@ public class BriefingEditorPanel extends ImageResizingPanel implements ActionLis
         int valueAsInt = Integer.valueOf (valueString);
         Double selectedFuel = Double.valueOf (valueAsInt).doubleValue() / 100.0;
         
-        BriefingUnit activeBriefingFlight = briefingData.getActiveBriefingUnit();
+        BriefingUnit activeBriefingFlight = briefingData.getActiveBriefingPlatoon();
         activeBriefingFlight.setSelectedFuel(selectedFuel);
     }
 

@@ -133,7 +133,7 @@ public class BriefingCrewMemberChalkboard extends ImageResizingPanel
     private void addDataForChalkboard(JPanel assignedCrewMemberPanel) throws PWCGException
     {
         activeCrewMemberRadioButtons.clear();
-        BriefingUnit briefingMissionHandler = briefingContext.getActiveBriefingUnit();
+        BriefingUnit briefingMissionHandler = briefingContext.getActiveBriefingPlatoon();
         int row = 2;
         for (CrewTankPayloadPairing crewTank : briefingMissionHandler.getCrews())
         {
@@ -156,7 +156,7 @@ public class BriefingCrewMemberChalkboard extends ImageResizingPanel
         }
         else
         {
-            BriefingUnit briefingMissionHandler = briefingContext.getActiveBriefingUnit();
+            BriefingUnit briefingMissionHandler = briefingContext.getActiveBriefingPlatoon();
             if (briefingMissionHandler.getBriefingAssignmentData().getCrews().size() > 0)
             {
                 CrewTankPayloadPairing crewTank = briefingMissionHandler.getBriefingAssignmentData().getCrews().get(0);
@@ -283,7 +283,7 @@ public class BriefingCrewMemberChalkboard extends ImageResizingPanel
         JLabel modificationsLabel = PWCGLabelFactory.makeBriefingChalkBoardLabel("   ");
         unassignedCrewMemberGrid.add(modificationsLabel);
 
-        BriefingUnit briefingMissionHandler = briefingContext.getActiveBriefingUnit();
+        BriefingUnit briefingMissionHandler = briefingContext.getActiveBriefingPlatoon();
         List<CrewMember> sortedUnassignedCrewMembers = briefingMissionHandler.getSortedUnassignedCrewMembers();
         List<EquippedTank> sortedUnassignedTanks = briefingMissionHandler.getSortedUnassignedTanks();
 

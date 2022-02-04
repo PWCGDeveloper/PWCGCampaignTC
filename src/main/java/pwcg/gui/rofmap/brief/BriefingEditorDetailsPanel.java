@@ -45,7 +45,7 @@ public class BriefingEditorDetailsPanel
 		createMissionParametersHeader(constraints, waypointDetailsPanel);
 	            
         BriefingMapPoint previousMapPoint = null;
-	    for (BriefingMapPoint briefingMapPoint : activeBriefingFlight.getBriefingUnitParameters().getBriefingMapMapPoints())
+	    for (BriefingMapPoint briefingMapPoint : activeBriefingFlight.getBriefingPlatoonParameters().getBriefingMapMapPoints())
 	    {
 	        IWaypointDetails waypointViewer = buildWaypointViewer(briefingMapPoint.getWaypointID());
 	        waypointViewer.initializeWPEdit(previousMapPoint, briefingMapPoint);

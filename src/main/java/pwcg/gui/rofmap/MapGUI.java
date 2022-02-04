@@ -13,13 +13,13 @@ import pwcg.gui.utils.ImageResizingPanel;
 
 public abstract class MapGUI extends ImageResizingPanel
 {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	protected MapScroll mapScroll = null;
-	protected Date mapDate = null;
+    protected MapScroll mapScroll = null;
+    protected Date mapDate = null;
 
-	public MapGUI(Date mapDate) throws PWCGException
-	{
+    public MapGUI(Date mapDate) throws PWCGException
+    {
         super("");
         String imagePath = UiImageResolver.getImage(ScreenIdentifier.MapScreens);
         this.setImageFromName(imagePath);
@@ -27,43 +27,45 @@ public abstract class MapGUI extends ImageResizingPanel
         this.setOpaque(false);
 
         setMapDate(mapDate);
-	}
-	
-	public MapScroll getMapScroll() {
-		return mapScroll;
-	}
+    }
 
-	public void setMapScroll(MapScroll mapScroll) {
-		this.mapScroll = mapScroll;
-	}
+    public MapScroll getMapScroll()
+    {
+        return mapScroll;
+    }
 
-	public void centerMapAt(Point initialPosition)
-	{
-		if (initialPosition == null)
-		{
+    public void setMapScroll(MapScroll mapScroll)
+    {
+        this.mapScroll = mapScroll;
+    }
+
+    public void centerMapAt(Point initialPosition)
+    {
+        if (initialPosition == null)
+        {
             Coordinate centerMapCoordinate = PWCGContext.getInstance().getCurrentMap().getMapCenter();
-		    initialPosition = mapScroll.getMapPanel().coordinateToPoint(centerMapCoordinate);
-		}
-		else
-		{
+            initialPosition = mapScroll.getMapPanel().coordinateToPoint(centerMapCoordinate);
+        }
+        else
+        {
             initialPosition.x -= 700;
             initialPosition.y -= 500;
-		}
-		
-		if (mapScroll != null)
-		{
-			mapScroll.setScrollRange();
-			mapScroll.setScrollBarPosition(initialPosition);
-		}
-	}
+        }
 
-	public Date getMapDate()
-	{
-		return mapDate;
-	}
+        if (mapScroll != null)
+        {
+            mapScroll.setScrollRange();
+            mapScroll.setScrollBarPosition(initialPosition);
+        }
+    }
 
-	public void setMapDate(Date mapDate) throws PWCGException
-	{
-		this.mapDate = mapDate;
-	}
+    public Date getMapDate()
+    {
+        return mapDate;
+    }
+
+    public void setMapDate(Date mapDate) throws PWCGException
+    {
+        this.mapDate = mapDate;
+    }
 }

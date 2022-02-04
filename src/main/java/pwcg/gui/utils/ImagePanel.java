@@ -42,7 +42,12 @@ public abstract class ImagePanel extends JPanel
 		super(layout);
 	}
 
-    public void setImage(String imagePath)
+    public void setImage(BufferedImage image)
+    {
+        this.image = image;
+    }
+
+    public void setImageFromFile(String imagePath)
     {
         try 
         {
@@ -70,7 +75,7 @@ public abstract class ImagePanel extends JPanel
 		g.drawImage(image, 0, 0, null); // see javadoc for more info on the parameters
 	}
 	
-	public Dimension getImageSize()
+	public static Dimension getImageSize(BufferedImage image)
 	{
 		Dimension dimensions = new Dimension();
 		if (image != null)

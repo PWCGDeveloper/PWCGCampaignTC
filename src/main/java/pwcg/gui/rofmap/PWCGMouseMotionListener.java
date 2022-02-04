@@ -6,9 +6,9 @@ import java.awt.event.MouseMotionAdapter;
 
 public class PWCGMouseMotionListener extends MouseMotionAdapter
 {
-	private MapPanelBase parent = null;
+	private IMouseCallback parent = null;
 	
-	PWCGMouseMotionListener(MapPanelBase parent)
+	PWCGMouseMotionListener(IMouseCallback parent)
 	{
 		this.parent = parent;
 	}

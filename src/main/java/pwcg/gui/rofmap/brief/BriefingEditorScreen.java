@@ -176,7 +176,7 @@ public class BriefingEditorScreen extends ImageResizingPanel implements ActionLi
 
     private void pushEditsToModel()
     {
-        for (BriefingMapPoint briefingMapPoint : briefingData.getActiveBriefingUnit().getBriefingUnitParameters().getBriefingMapMapPoints())
+        for (BriefingMapPoint briefingMapPoint : briefingData.getActiveBriefingPlatoon().getBriefingPlatoonParameters().getBriefingMapMapPoints())
         {
             IWaypointDetails editor = editorPanel.getWaypointEditors().getWaypointEditorByid(briefingMapPoint.getWaypointID());
             if (editor != null)

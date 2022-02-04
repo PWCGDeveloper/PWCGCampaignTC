@@ -114,7 +114,7 @@ public class BriefingDescriptionChalkboard extends ImageResizingPanel
 
     private String makeCrewMemberList() throws PWCGException 
     {
-        BriefingUnit activeMissionHandler = briefingContext.getActiveBriefingUnit();
+        BriefingUnit activeMissionHandler = briefingContext.getActiveBriefingPlatoon();
         StringBuffer assignedCrewMembersBuffer = new StringBuffer ("Assigned CrewMembers:\n");
         for (CrewTankPayloadPairing crewPlane : activeMissionHandler.getCrews())
         {

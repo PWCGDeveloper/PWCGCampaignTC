@@ -42,16 +42,16 @@ public class BriefingDataBuilderTest
         BriefingDataBuilder briefingDataBuilder = new BriefingDataBuilder(mission);
         BriefingData briefingData = briefingDataBuilder.buildBriefingData();
         assert(briefingData != null);
-        assert(briefingData.getActiveBriefingUnit() != null);
-        assert(briefingData.getActiveBriefingUnit().getBriefingAssignmentData().getCrews().size() > 0);
+        assert(briefingData.getActiveBriefingPlatoon() != null);
+        assert(briefingData.getActiveBriefingPlatoon().getBriefingAssignmentData().getCrews().size() > 0);
         
         ITankPlatoon unit = briefingData.getSelectedUnit();
         Assertions.assertTrue (unit.getCompany().getCompanyId() == CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
 
-        BriefingUnit briefingFlight = briefingData.getActiveBriefingUnit();
+        BriefingUnit briefingFlight = briefingData.getActiveBriefingPlatoon();
         Assertions.assertTrue (briefingFlight.getCompanyId() == CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
         
-        BriefingUnitParameters briefingFlightParameters = briefingFlight.getBriefingUnitParameters();
+        BriefingUnitParameters briefingFlightParameters = briefingFlight.getBriefingPlatoonParameters();
         List<BriefingMapPoint>  briefingMapMapPoints = briefingFlightParameters.getBriefingMapMapPoints();
         for (BriefingMapPoint briefingMapMapPoint : briefingMapMapPoints)
         {

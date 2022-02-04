@@ -23,7 +23,7 @@ public class BriefingData
         this.briefingMissionUnits = briefingMissionFlights;
     }
 
-    public BriefingUnit getActiveBriefingUnit()
+    public BriefingUnit getActiveBriefingPlatoon()
     {
         return briefingMissionUnits.get(selectedCompanyId);
     }
@@ -69,7 +69,7 @@ public class BriefingData
         aiUnitsToDisplay.clear();
     }
 
-    public Map<Integer, String> getAiFlightsToDisplay()
+    public Map<Integer, String> getAiPlatoonsToDisplay()
     {
         return aiUnitsToDisplay;
     }

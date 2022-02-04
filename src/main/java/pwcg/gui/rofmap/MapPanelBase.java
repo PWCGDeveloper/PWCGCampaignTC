@@ -27,7 +27,7 @@ import pwcg.gui.dialogs.ErrorDialog;
 import pwcg.gui.image.MapImageCache;
 import pwcg.gui.utils.ImagePanel;
 
-public abstract class MapPanelBase extends ImagePanel implements ActionListener
+public abstract class MapPanelBase extends ImagePanel implements ActionListener, IMouseCallback
 {
     protected static final long serialVersionUID = 1L;
 
@@ -80,7 +80,7 @@ public abstract class MapPanelBase extends ImagePanel implements ActionListener
         }
         else
         {
-            mapSize = getImageSize();
+            mapSize = ImagePanel.getImageSize(image);
             setPreferredSize(mapSize);
             setMinimumSize(mapSize);
             setMaximumSize(mapSize);
@@ -177,7 +177,7 @@ public abstract class MapPanelBase extends ImagePanel implements ActionListener
 
     public Dimension getMapSize()
     {
-        return getImageSize();
+        return ImagePanel.getImageSize(image);
     }
 
     protected void paintBaseMapWithMajorGroups(Graphics g) throws PWCGException

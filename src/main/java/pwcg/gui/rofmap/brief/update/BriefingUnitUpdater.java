@@ -52,7 +52,7 @@ public class BriefingUnitUpdater
         for (BriefingUnit briefingUnit : briefingData.getBriefingUnits())
         {
             ITankPlatoon playerPlatoon = mission.getPlatoons().getPlayerUnitForCompany(briefingUnit.getCompanyId());
-            List<McuWaypoint> waypoints = briefingPointToWaypoint(briefingUnit.getBriefingUnitParameters().getBriefingMapMapPoints());
+            List<McuWaypoint> waypoints = briefingPointToWaypoint(briefingUnit.getBriefingPlatoonParameters().getBriefingMapMapPoints());
             playerPlatoon.setWaypoints(waypoints);
         }
     }

@@ -3,7 +3,6 @@ package pwcg.gui.rofmap.brief;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Map;
@@ -13,14 +12,12 @@ import javax.swing.JPanel;
 
 import pwcg.campaign.Campaign;
 import pwcg.core.exception.PWCGException;
-import pwcg.core.location.Coordinate;
 import pwcg.core.utils.PWCGLogger;
 import pwcg.gui.CampaignGuiContextManager;
 import pwcg.gui.campaign.mission.MissionGeneratorHelper;
 import pwcg.gui.colors.ColorMap;
 import pwcg.gui.dialogs.ErrorDialog;
 import pwcg.gui.rofmap.MapGUI;
-import pwcg.gui.rofmap.MapScroll;
 import pwcg.gui.rofmap.brief.model.BriefingData;
 import pwcg.gui.rofmap.brief.model.BriefingUnit;
 import pwcg.gui.rofmap.brief.model.BriefingUnitParameters;
@@ -64,9 +61,6 @@ public class BriefingMapGUI extends MapGUI implements ActionListener, IUnitChang
 			
             this.add(BorderLayout.WEST, makeNavPanel());           
             this.add(BorderLayout.CENTER, createCenterPanel());
-            
-            Point initialPosition = findCenterPosition();
-            centerMapAt(initialPosition);
 		}
 		catch (Exception e)
 		{
@@ -79,14 +73,14 @@ public class BriefingMapGUI extends MapGUI implements ActionListener, IUnitChang
     {
         JPanel briefingMapCenterPanel = new JPanel(new BorderLayout());
         createMapPanel();
-        briefingMapCenterPanel.add(mapScroll.getMapScrollPane(), BorderLayout.CENTER);
-
+        briefingMapCenterPanel.add(mapPanel, BorderLayout.CENTER);
+        
         return briefingMapCenterPanel;
     }
 
     private void createMapPanel() throws PWCGException
     {
-        BriefingUnit activeMissionHandler = briefingData.getActiveBriefingUnit();
+        BriefingUnit activeMissionHandler = briefingData.getActiveBriefingPlatoon();
         
         if (mapPanel != null)
         {
@@ -94,18 +88,10 @@ public class BriefingMapGUI extends MapGUI implements ActionListener, IUnitChang
         }
         
         mapPanel = new BriefingMapPanel(this);
-        mapScroll = new MapScroll(mapPanel);  
-        mapPanel.setMapBackground(100);
+        mapPanel.setMapBackground();
 
-        BriefingMapFlightMapper flightMapper = new BriefingMapFlightMapper(activeMissionHandler, mapPanel);
+        BriefingMapPlatoonMapper flightMapper = new BriefingMapPlatoonMapper(activeMissionHandler, mapPanel);
         flightMapper.mapRequestedFlights();
-    }
-
-    private Point findCenterPosition()
-    {
-        Coordinate initialPosition = briefingData.getActiveBriefingUnit().getBriefingUnitParameters().getBriefingMapMapPoints().get(0).getPosition();
-        Point mapPoint = mapPanel.coordinateToPoint(initialPosition);
-        return mapPoint;
     }
 
     private JPanel makeNavPanel() throws PWCGException 
@@ -255,7 +241,7 @@ public class BriefingMapGUI extends MapGUI implements ActionListener, IUnitChang
     {
         if (waypointID != McuWaypoint.NO_WAYPOINT_ID)
         {
-            BriefingUnitParameters briefingFlightParameters = BriefingContext.getInstance().getBriefingData().getActiveBriefingUnit().getBriefingUnitParameters();
+            BriefingUnitParameters briefingFlightParameters = BriefingContext.getInstance().getBriefingData().getActiveBriefingPlatoon().getBriefingPlatoonParameters();
             briefingFlightParameters.removeBriefingMapMapPointsAtPosition();
             
             refreshMapScreen();
@@ -266,7 +252,7 @@ public class BriefingMapGUI extends MapGUI implements ActionListener, IUnitChang
     {
         if (waypointID != McuWaypoint.NO_WAYPOINT_ID)
         {
-            BriefingUnitParameters briefingFlightParameters = BriefingContext.getInstance().getBriefingData().getActiveBriefingUnit().getBriefingUnitParameters();
+            BriefingUnitParameters briefingFlightParameters = BriefingContext.getInstance().getBriefingData().getActiveBriefingPlatoon().getBriefingPlatoonParameters();
             briefingFlightParameters.addBriefingMapMapPointsAtPosition();
             
             refreshMapScreen();
