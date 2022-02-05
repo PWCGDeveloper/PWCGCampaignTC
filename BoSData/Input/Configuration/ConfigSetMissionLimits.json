@@ -7,59 +7,19 @@
 			"help": "0 \u003d Start on runway, 1 \u003d Start in air (gives shorter missions), 2 \u003d Start parked (gives longer missions)"
 		},
 		"AlliedPlatoonsInMission": {
-			"value": "4",
+			"value": "7",
 			"label": "Max Allied Flights",
 			"help": "Upper bound of Allied flights to keep"
 		},
 		"AxisPlatoonsInMission": {
-			"value": "3",
+			"value": "5",
 			"label": "Max Axis Flights",
 			"help": "Upper bound of Axis flights to keep"
-		},
-		"AiFighterFlightsForGroundCampaignMax": {
-			"value": "1",
-			"label": "Max Fighter Flights Per Side: Ground Campaigns",
-			"help": "Max number of fighter flights per side when the player is not in a fighter company"
-		},
-		"AiFighterFlightsForFighterCampaignMax": {
-			"value": "3",
-			"label": "Max Fighter Flights Per Side: Fighter Campaigns",
-			"help": "Max number of fighter flights per side when the player is in a fighter company"
-		},
-		"GenerateClimbWP": {
-			"value": "1",
-			"label": "Generate Climb WPs",
-			"help": "Generate WPs to gain altitude - set to 1 for more climb WPs"
 		},
 		"InitialCompanySearchRadius": {
 			"value": "150000",
 			"label": "Initial Company Search Radius",
 			"help": "Initial radius to search for companys to include in mission (in meters)"
-		},
-		"MaxVirtualEscortedFlight": {
-			"value": "2",
-			"label": "Max Virtual Escorts",
-			"help": "Maximum number of virtual escort flights"
-		},
-		"IsVirtualBombingEscortedOdds": {
-			"value": "40",
-			"label": "Odds bombing mission is escorted",
-			"help": "Odds of a virtual bombing mission being escorted"
-		},
-		"IsVirtualGroundAttackEscortedOdds": {
-			"value": "10",
-			"label": "Odds ground attack mission is escorted",
-			"help": "Odds of a virtual ground attack mission being escorted"
-		},
-		"IsVirtualDiveBombEscortedOdds": {
-			"value": "30",
-			"label": "Odds dive bombing mission is escorted",
-			"help": "Odds of a virtual dive bombing mission being escorted"
-		},
-		"IsVirtualTransportEscortedOdds": {
-			"value": "30",
-			"label": "Odds dive transport mission is escorted",
-			"help": "Odds of a virtual transport mission being escorted"
 		},
 		"MaxCompanySearchRadius": {
 			"value": "200000",
@@ -76,30 +36,15 @@
 			"label": "Maximum amount of smoke in an area",
 			"help": "Maximum number of smoke instances in a 3km radius"
 		},
-		"OddsOfAceFlying": {
-			"value": "40",
-			"label": "Odds Of Ace Flying",
-			"help": "Odds that a historical ace in a company will be in a flight"
-		},
 		"GroundUnitSpawnDistance": {
-			"value": "10000",
+			"value": "4000",
 			"label": "Ground Unit Spawn Distance",
 			"help": "Distance from player a ground unit will spawn"
-		},
-		"TimeOnArtillerySpot": {
-			"value": "5",
-			"label": "Artillery Spot Time",
-			"help": "Time in minutes to be on station for Artillery Spot"
 		},
 		"MissionBoxSize": {
 			"value": "20",
 			"label": "Size in km of mission box",
 			"help": "Size of the box that PWCG direct flights into.  Smaller means more flights in a tight area"
-		},
-		"MissionBoxMinDistanceFromBase": {
-			"value": "35",
-			"label": "Min dist in km mission center from base",
-			"help": "Minimum distance of mission center from base (Not used in competitive mode)"
 		},
 		"MissionBoxMaxDistanceFromBase": {
 			"value": "80",

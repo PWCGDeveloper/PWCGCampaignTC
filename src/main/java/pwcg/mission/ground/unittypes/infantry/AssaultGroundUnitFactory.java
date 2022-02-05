@@ -16,6 +16,7 @@ public class AssaultGroundUnitFactory
         return atDefenseUnit;
     }
 
+    // TODO TC Used by amphibious assault.  does not go well with platoon builder
     public IGroundUnit createAssaultTankUnit (GroundUnitInformation groundUnitInformation) throws PWCGException
     {
         IGroundUnit tankAssaultUnit = new GroundAssaultTankUnit(groundUnitInformation);

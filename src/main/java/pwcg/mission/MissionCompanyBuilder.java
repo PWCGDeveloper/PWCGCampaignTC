@@ -42,9 +42,12 @@ public class MissionCompanyBuilder
     {
         for (Company playerCompany : playerCompaniesInMission)
         {
-            if (playerCompany.getCountry().getCountry() == Country.BRITAIN)
+            if(side == Side.ALLIED)
             {
-                return CountryFactory.makeCountryByCountry(Country.BRITAIN);
+                if (playerCompany.getCountry().getCountry() == Country.BRITAIN)
+                {
+                    return CountryFactory.makeCountryByCountry(Country.BRITAIN);
+                }
             }
         }
         

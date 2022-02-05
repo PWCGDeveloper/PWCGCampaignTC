@@ -5,6 +5,7 @@ import pwcg.core.config.ConfigItemKeys;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.RandomNumberGenerator;
 import pwcg.mission.Mission;
+import pwcg.mission.ground.builder.BattleSize;
 
 public class MissionPlatoonSize
 {
@@ -24,17 +25,14 @@ public class MissionPlatoonSize
     private static int getNumAlliedAiPlatoons(Mission mission, int alliedPlayerCompanies) throws PWCGException
     {
         int maxAlliedPlatoons = mission.getCampaign().getCampaignConfigManager().getIntConfigParam(ConfigItemKeys.AlliedPlatoonsInMissionKey);
-        int minAlliedPlatoons = maxAlliedPlatoons / 2;
-        if(minAlliedPlatoons < 3)
-        {
-            minAlliedPlatoons = 3;
-        }
+        
+        int minAlliedPlatoons = getMinPlatoons(mission, 2);
         
         if (alliedPlayerCompanies > minAlliedPlatoons)
         {
             minAlliedPlatoons = alliedPlayerCompanies;
         }
-        
+
         int numPlatoons = minAlliedPlatoons;
         if (minAlliedPlatoons < maxAlliedPlatoons)
         {
@@ -47,7 +45,9 @@ public class MissionPlatoonSize
     private static int getNumAxisAiPlatoons(Mission mission, int axisPlayerCompanies) throws PWCGException
     {
         int maxAxisPlatoons = mission.getCampaign().getCampaignConfigManager().getIntConfigParam(ConfigItemKeys.AxisPlatoonsInMissionKey);
-        int minAxisPlatoons = maxAxisPlatoons / 2;
+        
+        int minAxisPlatoons = getMinPlatoons(mission, 0);
+
         if(minAxisPlatoons < 2)
         {
             minAxisPlatoons = 2;
@@ -65,5 +65,27 @@ public class MissionPlatoonSize
         }        
         
         return numPlatoons - axisPlayerCompanies;
+    }
+
+    private static int getMinPlatoons(Mission mission, int minPlatoonsTiny)
+    {
+        int minPlatoons = minPlatoonsTiny;
+        if (mission.getObjective().getBattleSize() == BattleSize.BATTLE_SIZE_SKIRMISH)
+        {
+            minPlatoons += 1;
+        }
+        else if (mission.getObjective().getBattleSize() == BattleSize.BATTLE_SIZE_SKIRMISH)
+        {
+            minPlatoons += 2;
+        }
+        else if (mission.getObjective().getBattleSize() == BattleSize.BATTLE_SIZE_ASSAULT)
+        {
+            minPlatoons += 3;
+        }
+        else if (mission.getObjective().getBattleSize() == BattleSize.BATTLE_SIZE_OFFENSIVE)
+        {
+            minPlatoons += 4;
+        }
+        return minPlatoons;
     }
 }
