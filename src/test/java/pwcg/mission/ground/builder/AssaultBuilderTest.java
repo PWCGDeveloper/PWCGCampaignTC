@@ -84,7 +84,7 @@ public class AssaultBuilderTest
     
     public GroundUnitCollection createLargeAssaultTest () throws PWCGException 
     {
-        GroundUnitCollection groundUnitGroup = AssaultFixedUnitSegmentBuilder.generateAssault(mission);
+        GroundUnitCollection groundUnitGroup = FrontFixedUnitSegmentsBuilder.generateAssault(mission);
         
         Assertions.assertTrue (groundUnitGroup.getGroundUnits().size() >= 10);
         groundUnitGroup.validate();

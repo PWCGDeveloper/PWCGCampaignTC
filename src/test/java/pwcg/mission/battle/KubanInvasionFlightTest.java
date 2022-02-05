@@ -14,7 +14,7 @@ import pwcg.core.utils.DateUtils;
 import pwcg.mission.Mission;
 import pwcg.mission.MissionGenerator;
 import pwcg.mission.flight.FlightTypes;
-import pwcg.mission.target.AssaultDefinition;
+import pwcg.mission.target.FrontSegmentDefinition;
 import pwcg.mission.utils.MissionInformationUtils;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.CompanyTestProfile;
@@ -34,7 +34,7 @@ public class KubanInvasionFlightTest
 
         Assertions.assertTrue (mission.getSkirmish() != null);
         Assertions.assertTrue (mission.getSkirmish().getSkirmishName().equals("Kerch Amphibious Assault"));
-        for (AssaultDefinition assaultDefinition : mission.getBattleManager().getMissionAssaultDefinitions())
+        for (FrontSegmentDefinition assaultDefinition : mission.getBattleManager().getMissionAssaultDefinitions())
         {
             Assertions.assertTrue (assaultDefinition.getAssaultingCountry().getCountry() == Country.RUSSIA);
 
@@ -56,7 +56,7 @@ public class KubanInvasionFlightTest
 
         Assertions.assertTrue (mission.getSkirmish() != null);
         Assertions.assertTrue (mission.getSkirmish().getSkirmishName().equals("Kerch Amphibious Assault"));
-        for (AssaultDefinition assaultDefinition : mission.getBattleManager().getMissionAssaultDefinitions())
+        for (FrontSegmentDefinition assaultDefinition : mission.getBattleManager().getMissionAssaultDefinitions())
         {
             Assertions.assertTrue (assaultDefinition.getAssaultingCountry().getCountry() == Country.RUSSIA);
         }
@@ -77,7 +77,7 @@ public class KubanInvasionFlightTest
 
         Assertions.assertTrue (mission.getSkirmish() != null);
         Assertions.assertTrue (mission.getSkirmish().getSkirmishName().equals("Eltigen Amphibious Assault"));
-        for (AssaultDefinition assaultDefinition : mission.getBattleManager().getMissionAssaultDefinitions())
+        for (FrontSegmentDefinition assaultDefinition : mission.getBattleManager().getMissionAssaultDefinitions())
         {
             Assertions.assertTrue (assaultDefinition.getAssaultingCountry().getCountry() == Country.RUSSIA);
 

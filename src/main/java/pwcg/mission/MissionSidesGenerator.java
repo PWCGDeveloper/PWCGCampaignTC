@@ -3,8 +3,8 @@ package pwcg.mission;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.api.ICountry;
 import pwcg.campaign.api.Side;
-import pwcg.campaign.battle.Battle;
-import pwcg.campaign.battle.BattleManager;
+import pwcg.campaign.battle.HistoricalBattle;
+import pwcg.campaign.battle.HistoricalBattleManager;
 import pwcg.campaign.context.Country;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.factory.CountryFactory;
@@ -60,8 +60,8 @@ public class MissionSidesGenerator
 
     private ICountry getDefendingCountryByMapCircumstances() throws PWCGException
     {
-        BattleManager battleManager = PWCGContext.getInstance().getCurrentMap().getBattleManager();
-        Battle battle = battleManager.getBattleForCampaign(PWCGContext.getInstance().getCurrentMap().getMapIdentifier(), campaign.getDate());
+        HistoricalBattleManager battleManager = PWCGContext.getInstance().getCurrentMap().getBattleManager();
+        HistoricalBattle battle = battleManager.getBattleForCampaign(PWCGContext.getInstance().getCurrentMap().getMapIdentifier(), campaign.getDate());
         if (battle != null)
         {
             int roll = RandomNumberGenerator.getRandom(100);

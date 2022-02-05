@@ -8,7 +8,7 @@ import pwcg.core.location.Coordinate;
 import pwcg.core.utils.PWCGLogger;
 import pwcg.core.utils.PWCGLogger.LogLevel;
 
-public class Battle
+public class HistoricalBattle
 {
     private String name;
 	private Coordinate neCorner;
@@ -19,7 +19,7 @@ public class Battle
     private Date stopDate;
     private FrontMapIdentifier map;
 
-	public Battle()
+	public HistoricalBattle()
 	{
 	}
 

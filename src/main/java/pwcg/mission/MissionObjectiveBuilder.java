@@ -22,6 +22,8 @@ import pwcg.campaign.skirmish.Skirmish;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.location.PWCGLocation;
+import pwcg.mission.ground.builder.BattleSize;
+import pwcg.mission.target.FrontBattleSizeGenerator;
 
 public class MissionObjectiveBuilder
 {
@@ -48,14 +50,26 @@ public class MissionObjectiveBuilder
         MissionSidesGenerator sidesGenerator = new MissionSidesGenerator(campaign, skirmish);
         ICountry defendingCountry = sidesGenerator.getDefendingCountry();
         ICountry assaultingCountry = sidesGenerator.getAssaultingCountry(defendingCountry);
-        
+
         findMissionObjective(defendingCountry.getSide());
+        setSidesForBattle(defendingCountry, assaultingCountry);
+        setBattleSize();
         
-        objective.setDefendingCountry(defendingCountry);
-        objective.setAssaultingCountry(assaultingCountry);
         return objective;
     }
-    
+
+    private void setSidesForBattle(ICountry defendingCountry, ICountry assaultingCountry) throws PWCGException
+    {
+        objective.setDefendingCountry(defendingCountry);
+        objective.setAssaultingCountry(assaultingCountry);
+    }
+
+    private void setBattleSize() throws PWCGException
+    {
+        BattleSize battleSize = FrontBattleSizeGenerator.createAssaultBattleSize(campaign);
+        objective.setBattleSize(battleSize);
+    }
+
     private void findMissionObjective(Side defendingSide) throws PWCGException
     {
         if (skirmish != null)
@@ -110,7 +124,7 @@ public class MissionObjectiveBuilder
         Coordinate referenceCoordinate = nearbyFrontPositions.get(0).getPosition();
         return referenceCoordinate;
     }
-    
+
     private void findMissionObjectiveForGenericBattle(Side defendingSide, Coordinate referenceCoordinate, int radius) throws PWCGException
     {
         

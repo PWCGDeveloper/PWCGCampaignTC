@@ -3,7 +3,6 @@ package pwcg.gui.rofmap.brief;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Cursor;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -24,18 +23,16 @@ import pwcg.core.location.CoordinateBox;
 import pwcg.core.utils.MathUtils;
 import pwcg.core.utils.PWCGLogger;
 import pwcg.gui.colors.ColorMap;
-import pwcg.gui.dialogs.PWCGMonitorFonts;
 import pwcg.gui.image.ImageCache;
 import pwcg.gui.rofmap.MapPanelZoomedBase;
 import pwcg.gui.rofmap.brief.builder.BriefingMapPointFactory;
-import pwcg.gui.rofmap.brief.model.BriefingData;
 import pwcg.gui.rofmap.brief.model.BriefingMapPoint;
 import pwcg.gui.rofmap.brief.model.BriefingUnitParameters;
 import pwcg.gui.utils.MapPointInfoPopup;
 import pwcg.mission.Mission;
 import pwcg.mission.mcu.McuWaypoint;
 import pwcg.mission.platoon.ITankPlatoon;
-import pwcg.mission.target.AssaultDefinition;
+import pwcg.mission.target.FrontSegmentDefinition;
 
 public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListener
 {
@@ -108,7 +105,7 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
 
     private void drawAssaults(Graphics g) throws PWCGException
     {                
-        for (AssaultDefinition assaultDefinition : mission.getBattleManager().getMissionAssaultDefinitions())
+        for (FrontSegmentDefinition assaultDefinition : mission.getBattleManager().getMissionAssaultDefinitions())
         {
             BufferedImage arrowImage = null;
             String imagePath = PWCGContext.getInstance().getDirectoryManager().getPwcgImagesDir() + "Overlay\\";

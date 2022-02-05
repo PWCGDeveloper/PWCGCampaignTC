@@ -8,6 +8,7 @@ import pwcg.campaign.skirmish.Skirmish;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.location.PWCGLocation;
+import pwcg.mission.ground.builder.BattleSize;
 
 public class MissionObjective
 {
@@ -16,6 +17,7 @@ public class MissionObjective
     private Coordinate objectiveLocation;
     private ICountry assaultingCountry = null;
     private ICountry defendingCountry = null;
+    private BattleSize battleSize = null;
 
     public MissionObjective(Block block)
     {
@@ -92,5 +94,15 @@ public class MissionObjective
     public void setDefendingCountry(ICountry defendingCountry)
     {
         this.defendingCountry = defendingCountry;
+    }
+
+    public BattleSize getBattleSize()
+    {
+        return battleSize;
+    }
+
+    public void setBattleSize(BattleSize battleSize)
+    {
+        this.battleSize = battleSize;
     }    
 }

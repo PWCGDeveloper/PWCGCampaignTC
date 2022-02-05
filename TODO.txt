@@ -12,6 +12,14 @@ Current mission bugs
 - Generic mission description is in use
 
 
+Defensive armor
+- react to penetration
+- react to threat to objective
+
+BattleSize
+- More front segments
+- more armor
+
 AAR:
 Add out of mission for tank units
 - no need for corresponding victim
@@ -19,4 +27,6 @@ In mission claims
 
 Campaign
 Rearrange chalk board
+
+Dead times to skip
 

@@ -6,16 +6,13 @@ import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.location.Orientation;
 import pwcg.core.utils.MathUtils;
-import pwcg.mission.ground.builder.BattleSize;
 
-public class AssaultDefinition
+public class FrontSegmentDefinition
 {
     private static final Integer CLOSE_TO_BATTLE = 10000;
 
-    private Coordinate objectivePosition = null;
     private Coordinate assaultPosition = null;
     private Coordinate defensePosition = null;
-    private BattleSize battleSize;
     private ICountry assaultingCountry = null;
     private ICountry defendingCountry = null;
 
@@ -31,16 +28,6 @@ public class AssaultDefinition
         return new Orientation(angleToAssaultPosition);
     }
 
-    public BattleSize getBattleSize()
-    {
-        return battleSize;
-    }
-
-    public void setBattleSize(BattleSize battleSize)
-    {
-        this.battleSize = battleSize;
-    }
-
     public boolean isNearBattle(Coordinate coordinate)
     {
         double distanceFromAssault = MathUtils.calcDist(coordinate, assaultPosition);
@@ -52,18 +39,6 @@ public class AssaultDefinition
         }
 
         return false;
-    }
-    
-    public boolean determineIsBattleForPlayer()
-    {
-        if (battleSize == BattleSize.BATTLE_SIZE_TINY)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
     }
 
     public Coordinate getPositionForSide(Side side)
@@ -94,11 +69,6 @@ public class AssaultDefinition
         double angleFromEnemy = MathUtils.adjustAngle(angleToEnemy, 180);
         return angleFromEnemy;
      }
-    
-    public static Integer getCloseToBattle()
-    {
-        return CLOSE_TO_BATTLE;
-    }
 
     public Coordinate getAssaultPosition()
     {
@@ -139,16 +109,4 @@ public class AssaultDefinition
     {
         this.defendingCountry = defendingCountry;
     }
-
-    public Coordinate getObjectivePosition()
-    {
-        return objectivePosition;
-    }
-
-    public void setObjectivePosition(Coordinate objectivePosition)
-    {
-        this.objectivePosition = objectivePosition;
-    }
-    
-    
 }

@@ -3,10 +3,6 @@ package pwcg.mission.ground.builder;
 import java.util.ArrayList;
 import java.util.List;
 
-import pwcg.campaign.Campaign;
-import pwcg.core.config.ConfigItemKeys;
-import pwcg.core.config.ConfigManagerCampaign;
-import pwcg.core.config.ConfigSimple;
 import pwcg.core.exception.PWCGException;
 import pwcg.mission.Mission;
 import pwcg.mission.ground.org.GroundUnitCollection;
@@ -14,24 +10,24 @@ import pwcg.mission.ground.org.GroundUnitCollectionData;
 import pwcg.mission.ground.org.GroundUnitCollectionType;
 import pwcg.mission.ground.org.IGroundUnit;
 import pwcg.mission.mcu.Coalition;
-import pwcg.mission.target.AssaultDefinition;
-import pwcg.mission.target.AssaultDefinitionGenerator;
+import pwcg.mission.target.FrontSegmentDefinition;
+import pwcg.mission.target.FrontSegmentDefinitionGenerator;
 import pwcg.mission.target.TargetType;
 
-public class AssaultFixedUnitSegmentBuilder
+public class FrontFixedUnitSegmentsBuilder
 {
     public static GroundUnitCollection generateAssault(Mission mission) throws PWCGException
     {
         GroundUnitCollectionData groundUnitCollectionData = new GroundUnitCollectionData(
                 GroundUnitCollectionType.INFANTRY_GROUND_UNIT_COLLECTION, "Battle", TargetType.TARGET_INFANTRY, Coalition.getCoalitions());
 
-        GroundUnitCollection battleUnitCollection = new GroundUnitCollection(mission.getCampaign(), "Assault", groundUnitCollectionData);
+        GroundUnitCollection battleUnitCollection = new GroundUnitCollection(mission.getCampaign(), "Assault Fixed Units", groundUnitCollectionData);
 
-        int numFixedSegments = calcNumFixedSegments(mission.getCampaign());
+        int numFixedSegments = calcNumFixedSegments(mission);
         for (int i = 0; i < numFixedSegments; ++i)
         {
-            AssaultDefinitionGenerator assaultDefinitionGenerator = new AssaultDefinitionGenerator(mission, i);
-            AssaultDefinition assaultDefinition = assaultDefinitionGenerator.generateAssaultDefinition();
+            FrontSegmentDefinitionGenerator assaultDefinitionGenerator = new FrontSegmentDefinitionGenerator(mission, i);
+            FrontSegmentDefinition assaultDefinition = assaultDefinitionGenerator.generateBattleDefinition();
 
             List<IGroundUnit> primaryAssaultSegmentGroundUnits = new ArrayList<>();
 
@@ -44,30 +40,34 @@ public class AssaultFixedUnitSegmentBuilder
         return battleUnitCollection;
     }
 
-    public static int calcNumFixedSegments(Campaign campaign) throws PWCGException
+    public static int calcNumFixedSegments(Mission mission) throws PWCGException
     {
-        ConfigManagerCampaign configManager = campaign.getCampaignConfigManager();
-        String currentGroundSetting = configManager.getStringConfigParam(ConfigItemKeys.SimpleConfigGroundKey);
-        if (currentGroundSetting.equals(ConfigSimple.CONFIG_LEVEL_HIGH))
+        if (mission.getObjective().getBattleSize() == BattleSize.BATTLE_SIZE_TINY)
         {
             return 2;
         }
-        else if (currentGroundSetting.equals(ConfigSimple.CONFIG_LEVEL_MED))
+        else if (mission.getObjective().getBattleSize() == BattleSize.BATTLE_SIZE_SKIRMISH)
         {
             return 4;
         }
-        else
+        else if (mission.getObjective().getBattleSize() == BattleSize.BATTLE_SIZE_ASSAULT)
         {
             return 6;
         }
+        else if (mission.getObjective().getBattleSize() == BattleSize.BATTLE_SIZE_OFFENSIVE)
+        {
+            return 8;
+        }
+        
+        return 4;
     }
 
     private static GroundUnitCollection buildFixedUnits(
             Mission mission, 
-            AssaultDefinition assaultDefinition,
+            FrontSegmentDefinition assaultDefinition,
             List<IGroundUnit> primaryAssaultSegmentGroundUnits) throws PWCGException
     {
-        AssaultFixedUnitBuilder assaultUnitBuilder = new AssaultFixedUnitBuilder(mission, assaultDefinition);
+        FrontFixedUnitBuilder assaultUnitBuilder = new FrontFixedUnitBuilder(mission, assaultDefinition);
         GroundUnitCollection assaultUnits = assaultUnitBuilder.generateAssaultUnits();
         primaryAssaultSegmentGroundUnits.add(assaultUnits.getPrimaryGroundUnit());
         mission.registerAssault(assaultDefinition);

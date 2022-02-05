@@ -8,12 +8,12 @@ import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.core.utils.PWCGLogger;
 
-public class BattleManager
+public class HistoricalBattleManager
 {
 	private Battles battles = new Battles();
     private FrontMapIdentifier map;
 
-	public BattleManager(FrontMapIdentifier map)
+	public HistoricalBattleManager(FrontMapIdentifier map)
 	{
 	    this.map = map;
 	}
@@ -30,11 +30,11 @@ public class BattleManager
         }
 	}
 
-    public Battle getBattleForCampaign(FrontMapIdentifier mapId, Date date) 
+    public HistoricalBattle getBattleForCampaign(FrontMapIdentifier mapId, Date date) 
     {     
         try
         {
-            for (Battle battle : battles.getBattles())
+            for (HistoricalBattle battle : battles.getBattles())
             {
                 if (isBattleAtRightTime(date, battle))
                 {
@@ -53,7 +53,24 @@ public class BattleManager
         return null;
     }
 
-    private boolean isBattleOnRightMap(Battle battle, FrontMapIdentifier mapId)
+    public boolean isHistoricalBattleActive(FrontMapIdentifier mapId, Date date) 
+    {     
+        try
+        {
+            if(getBattleForCampaign(mapId, date) != null)
+            {
+                return true;
+            }
+        }
+        catch (Throwable t)
+        {
+           PWCGLogger.logException(t);
+        }
+        
+        return false;
+    }
+
+    private boolean isBattleOnRightMap(HistoricalBattle battle, FrontMapIdentifier mapId)
 	{
     	if (mapId == null)
     	{
@@ -68,7 +85,7 @@ public class BattleManager
 		return false;
 	}
 
-	private boolean isBattleAtRightTime(Date date, Battle battle) throws PWCGException
+	private boolean isBattleAtRightTime(Date date, HistoricalBattle battle) throws PWCGException
     {
 	    if (DateUtils.isDateInRange(date, battle.getStartDate(), battle.getStopDate()))
         {

@@ -5,14 +5,14 @@ import java.util.List;
 
 public class Battles
 {
-	private List<Battle> battles = new ArrayList<>();
+	private List<HistoricalBattle> battles = new ArrayList<>();
 
-	public List<Battle> getBattles()
+	public List<HistoricalBattle> getBattles()
 	{
 		return battles;
 	}
 
-	public void addBattle(Battle battle)
+	public void addBattle(HistoricalBattle battle)
 	{
 		battles.add(battle);
 	}

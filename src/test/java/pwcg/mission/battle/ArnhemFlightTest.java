@@ -15,7 +15,7 @@ import pwcg.core.utils.DateUtils;
 import pwcg.mission.Mission;
 import pwcg.mission.MissionGenerator;
 import pwcg.mission.flight.FlightTypes;
-import pwcg.mission.target.AssaultDefinition;
+import pwcg.mission.target.FrontSegmentDefinition;
 import pwcg.mission.target.TargetType;
 import pwcg.mission.utils.MissionInformationUtils;
 import pwcg.testutils.CampaignCache;
@@ -53,7 +53,7 @@ public class ArnhemFlightTest
         Mission mission = missionGenerator.makeMission(TestMissionBuilderUtility.buildTestParticipatingHumans(campaign));
 
         Assertions.assertTrue (mission.getSkirmish() != null);
-        for (AssaultDefinition assaultDefinition : mission.getBattleManager().getMissionAssaultDefinitions())
+        for (FrontSegmentDefinition assaultDefinition : mission.getBattleManager().getMissionAssaultDefinitions())
         {
             Assertions.assertTrue (assaultDefinition.getAssaultingCountry().getCountry() == Country.GERMANY);
 
@@ -88,7 +88,7 @@ public class ArnhemFlightTest
         Mission mission = missionGenerator.makeMission(TestMissionBuilderUtility.buildTestParticipatingHumans(campaign));
 
         Assertions.assertTrue (mission.getSkirmish() != null);
-        for (AssaultDefinition assaultDefinition : mission.getBattleManager().getMissionAssaultDefinitions())
+        for (FrontSegmentDefinition assaultDefinition : mission.getBattleManager().getMissionAssaultDefinitions())
         {
             Assertions.assertTrue (assaultDefinition.getAssaultingCountry().getCountry() == Country.GERMANY);
 

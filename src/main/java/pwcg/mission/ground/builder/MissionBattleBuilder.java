@@ -16,7 +16,7 @@ public class MissionBattleBuilder implements IBattleBuilder
     @Override
     public GroundUnitCollection generateBattle() throws PWCGException
     {
-        GroundUnitCollection assaultFixedUnitCollection = AssaultFixedUnitSegmentBuilder.generateAssault(mission);
+        GroundUnitCollection assaultFixedUnitCollection = FrontFixedUnitSegmentsBuilder.generateAssault(mission);
         return assaultFixedUnitCollection;
     }
 }

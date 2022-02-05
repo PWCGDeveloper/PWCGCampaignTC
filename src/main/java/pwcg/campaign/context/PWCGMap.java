@@ -9,7 +9,7 @@ import java.util.TreeMap;
 import pwcg.campaign.api.ICountry;
 import pwcg.campaign.api.Side;
 import pwcg.campaign.battle.AmphibiousAssaultManager;
-import pwcg.campaign.battle.BattleManager;
+import pwcg.campaign.battle.HistoricalBattleManager;
 import pwcg.campaign.battle.NoBattlePeriod;
 import pwcg.campaign.group.AirfieldManager;
 import pwcg.campaign.group.GroupManager;
@@ -42,7 +42,7 @@ public abstract class PWCGMap
     protected MapArea mapArea = null;
     protected MapArea usableMapArea = null;
     protected List<Integer> armedServicesActiveForMap = new ArrayList<>();
-    protected BattleManager battleManager;
+    protected HistoricalBattleManager battleManager;
     protected AmphibiousAssaultManager amphibiousAssaultManager;
     protected SkirmishManager skirmishManager;
     protected List<NoBattlePeriod> noBattlePeriods = new ArrayList<>();
@@ -56,7 +56,7 @@ public abstract class PWCGMap
         String mapName = getMapName();
         mapIdentifier = FrontMapIdentifier.getFrontMapIdentifierForName(mapName);
         
-        battleManager = new BattleManager(mapIdentifier);
+        battleManager = new HistoricalBattleManager(mapIdentifier);
         battleManager.initialize();
         
         amphibiousAssaultManager = new AmphibiousAssaultManager(mapIdentifier);
@@ -221,7 +221,7 @@ public abstract class PWCGMap
         return targetPreferenceManager;
     }
 
-    public BattleManager getBattleManager()
+    public HistoricalBattleManager getBattleManager()
     {
         return battleManager;
     }

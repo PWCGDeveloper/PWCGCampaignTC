@@ -14,19 +14,19 @@ import pwcg.mission.ground.org.GroundUnitCollectionType;
 import pwcg.mission.ground.org.IGroundUnit;
 import pwcg.mission.ground.unittypes.infantry.AssaultGroundUnitFactory;
 import pwcg.mission.mcu.Coalition;
-import pwcg.mission.target.AssaultDefinition;
-import pwcg.mission.target.AssaultDefinitionGenerator;
+import pwcg.mission.target.FrontSegmentDefinition;
+import pwcg.mission.target.FrontSegmentDefinitionGenerator;
 import pwcg.mission.target.TargetType;
 
-public class AssaultFixedUnitBuilder
+public class FrontFixedUnitBuilder
 {
     private Mission mission;
-    private AssaultDefinition assaultDefinition;
+    private FrontSegmentDefinition assaultDefinition;
     private AssaultGroundUnitFactory assaultFactory =  new AssaultGroundUnitFactory();
 
     private GroundUnitCollection battleSegmentUnitCollection;
    
-    public AssaultFixedUnitBuilder(Mission mission, AssaultDefinition assaultDefinition)
+    public FrontFixedUnitBuilder(Mission mission, FrontSegmentDefinition assaultDefinition)
 	{
         this.mission = mission;
         this.assaultDefinition = assaultDefinition;
@@ -64,7 +64,7 @@ public class AssaultFixedUnitBuilder
         
         Coordinate machineGunStartPosition = MathUtils.calcNextCoord(
                 assaultDefinition.getDefensePosition(), 
-                assaultDefinition.getTowardsAttackerOrientation().getyOri(), AssaultDefinitionGenerator.DISTANCE_BETWEEN_COMBATANTS);  
+                assaultDefinition.getTowardsAttackerOrientation().getyOri(), FrontSegmentDefinitionGenerator.DISTANCE_BETWEEN_COMBATANTS);  
 
         GroundUnitInformation groundUnitInformation = buildAssaultGroundUnitInformation(machineGunStartPosition, "Machine Gun", TargetType.TARGET_INFANTRY);
         IGroundUnit assaultingMachineGunUnit = assaultFactory.createMachineGunUnit (groundUnitInformation);
@@ -75,7 +75,7 @@ public class AssaultFixedUnitBuilder
     { 
         Coordinate antiTankAssaultPosition = MathUtils.calcNextCoord(
                 assaultDefinition.getDefensePosition(), 
-                assaultDefinition.getTowardsAttackerOrientation().getyOri(), AssaultDefinitionGenerator.DISTANCE_BETWEEN_COMBATANTS + 200);  
+                assaultDefinition.getTowardsAttackerOrientation().getyOri(), FrontSegmentDefinitionGenerator.DISTANCE_BETWEEN_COMBATANTS + FrontSegmentDefinitionGenerator.DISTANCE_FOR_AT_GUNS);  
 
         GroundUnitInformation groundUnitInformation = buildAssaultGroundUnitInformation(antiTankAssaultPosition, "Anti Tank Gun", TargetType.TARGET_ANTI_TANK);
         IGroundUnit assaultAntiTankUnit = assaultFactory.createAntiTankGunUnit (groundUnitInformation);
@@ -86,7 +86,7 @@ public class AssaultFixedUnitBuilder
     { 
         Coordinate artilleryAssaultPosition = MathUtils.calcNextCoord(
                 assaultDefinition.getDefensePosition(), 
-                assaultDefinition.getTowardsAttackerOrientation().getyOri(), AssaultDefinitionGenerator.DISTANCE_BETWEEN_COMBATANTS + 3500.0);          
+                assaultDefinition.getTowardsAttackerOrientation().getyOri(), FrontSegmentDefinitionGenerator.DISTANCE_BETWEEN_COMBATANTS + FrontSegmentDefinitionGenerator.DISTANCE_FOR_ARTILLERY);          
 
         GroundUnitInformation groundUnitInformation = buildAssaultGroundUnitInformation(artilleryAssaultPosition, "Artillery", TargetType.TARGET_ARTILLERY);
         IGroundUnit assaultArtilleryUnit = assaultFactory.createAssaultArtilleryUnit (groundUnitInformation);
@@ -97,7 +97,7 @@ public class AssaultFixedUnitBuilder
     { 
         Coordinate aaaMgAssaultPosition = MathUtils.calcNextCoord(
                 assaultDefinition.getDefensePosition(), 
-                assaultDefinition.getTowardsAttackerOrientation().getyOri(), AssaultDefinitionGenerator.DISTANCE_BETWEEN_COMBATANTS + 300.0);     
+                assaultDefinition.getTowardsAttackerOrientation().getyOri(), FrontSegmentDefinitionGenerator.DISTANCE_BETWEEN_COMBATANTS + FrontSegmentDefinitionGenerator.DISTANCE_FOR_AT_GUNS);     
 
         GroundUnitInformation groundUnitInformation = buildAssaultGroundUnitInformation(aaaMgAssaultPosition, "AA Machine Gun", TargetType.TARGET_AAA);
         IGroundUnit assaultAAMachineGunUnit = assaultFactory.createAAMachineGunUnitUnit(groundUnitInformation);
@@ -108,7 +108,7 @@ public class AssaultFixedUnitBuilder
     { 
         Coordinate aaaArtyAssaultPosition = MathUtils.calcNextCoord(
                 assaultDefinition.getDefensePosition(), 
-                assaultDefinition.getTowardsAttackerOrientation().getyOri(), AssaultDefinitionGenerator.DISTANCE_BETWEEN_COMBATANTS + 1500.0);            
+                assaultDefinition.getTowardsAttackerOrientation().getyOri(), FrontSegmentDefinitionGenerator.DISTANCE_BETWEEN_COMBATANTS + FrontSegmentDefinitionGenerator.DISTANCE_FOR_AAA_ARTILLERY);            
 
         GroundUnitInformation groundUnitInformation = buildAssaultGroundUnitInformation(aaaArtyAssaultPosition, "AA Machine Gun", TargetType.TARGET_AAA);
         IGroundUnit assaultAAArtilleryUnit = assaultFactory.createAAArtilleryUnitUnit(groundUnitInformation);
@@ -154,7 +154,7 @@ public class AssaultFixedUnitBuilder
     { 
         Coordinate antiTankDefensePosition = MathUtils.calcNextCoord(
                 assaultDefinition.getDefensePosition(), 
-                assaultDefinition.getTowardsDefenderOrientation().getyOri(), AssaultDefinitionGenerator.DISTANCE_BETWEEN_COMBATANTS + 200);     
+                assaultDefinition.getTowardsDefenderOrientation().getyOri(), FrontSegmentDefinitionGenerator.DISTANCE_BETWEEN_COMBATANTS + 200);     
 
         GroundUnitInformation groundUnitInformation = buildDefenseGroundUnitInformation(antiTankDefensePosition, "Anti Tank Gun", TargetType.TARGET_ANTI_TANK);
         IGroundUnit defenseAntiTankUnit = assaultFactory.createAntiTankGunUnit (groundUnitInformation);
@@ -165,7 +165,7 @@ public class AssaultFixedUnitBuilder
     { 
         Coordinate artilleryDefensePosition = MathUtils.calcNextCoord(
                 assaultDefinition.getDefensePosition(), 
-                assaultDefinition.getTowardsDefenderOrientation().getyOri(), AssaultDefinitionGenerator.DISTANCE_BETWEEN_COMBATANTS + 3000.0);     
+                assaultDefinition.getTowardsDefenderOrientation().getyOri(), FrontSegmentDefinitionGenerator.DISTANCE_BETWEEN_COMBATANTS + 3000.0);     
 
         GroundUnitInformation groundUnitInformation = buildDefenseGroundUnitInformation(artilleryDefensePosition, "Artillery", TargetType.TARGET_ARTILLERY);
         IGroundUnit defenseArtilleryUnit = assaultFactory.createAssaultArtilleryUnit (groundUnitInformation);
@@ -176,7 +176,7 @@ public class AssaultFixedUnitBuilder
     {
         Coordinate aaaMgDefensePosition = MathUtils.calcNextCoord(
                 assaultDefinition.getDefensePosition(), 
-                assaultDefinition.getTowardsDefenderOrientation().getyOri(), AssaultDefinitionGenerator.DISTANCE_BETWEEN_COMBATANTS + 150.0);     
+                assaultDefinition.getTowardsDefenderOrientation().getyOri(), FrontSegmentDefinitionGenerator.DISTANCE_BETWEEN_COMBATANTS + 150.0);     
 
         GroundUnitInformation groundUnitInformation = buildDefenseGroundUnitInformation(aaaMgDefensePosition, "Machine Gun AA", TargetType.TARGET_AAA);
         IGroundUnit defenseAAMachineGunUnit = assaultFactory.createAAMachineGunUnitUnit(groundUnitInformation);
@@ -187,7 +187,7 @@ public class AssaultFixedUnitBuilder
     {
         Coordinate aaaArtilleryDefensePosition = MathUtils.calcNextCoord(
                 assaultDefinition.getDefensePosition(), 
-                assaultDefinition.getTowardsDefenderOrientation().getyOri(), AssaultDefinitionGenerator.DISTANCE_BETWEEN_COMBATANTS + 1000.0);     
+                assaultDefinition.getTowardsDefenderOrientation().getyOri(), FrontSegmentDefinitionGenerator.DISTANCE_BETWEEN_COMBATANTS + 1000.0);     
 
         GroundUnitInformation groundUnitInformation = buildDefenseGroundUnitInformation(aaaArtilleryDefensePosition, "AA Artillery", TargetType.TARGET_AAA);
         IGroundUnit assaultAAArtilleryUnit = assaultFactory.createAAArtilleryUnitUnit(groundUnitInformation);

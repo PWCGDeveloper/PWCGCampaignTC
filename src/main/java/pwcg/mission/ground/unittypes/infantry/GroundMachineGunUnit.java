@@ -9,7 +9,7 @@ import pwcg.mission.ground.org.GroundUnit;
 import pwcg.mission.ground.org.GroundUnitLineAbreastPosition;
 import pwcg.mission.ground.org.GroundUnitNumberCalculator;
 import pwcg.mission.ground.vehicle.VehicleClass;
-import pwcg.mission.target.AssaultDefinitionGenerator;
+import pwcg.mission.target.FrontSegmentDefinitionGenerator;
 
 public class GroundMachineGunUnit extends GroundUnit
 {
@@ -24,7 +24,7 @@ public class GroundMachineGunUnit extends GroundUnit
         super.createSpawnTimer();
         int numVehicles = calcNumUnits();
         List<Coordinate> vehicleStartPositions = GroundUnitLineAbreastPosition.createVehicleStartPositions(
-                groundUnitInformation, numVehicles, AssaultDefinitionGenerator.UNIT_FRONTAGE);
+                groundUnitInformation, numVehicles, FrontSegmentDefinitionGenerator.UNIT_FRONTAGE);
         super.createVehicles(vehicleStartPositions);
         addAspects();
         super.linkElements();

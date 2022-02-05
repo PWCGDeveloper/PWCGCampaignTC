@@ -27,7 +27,7 @@ import pwcg.mission.options.MissionOptions;
 import pwcg.mission.options.MissionType;
 import pwcg.mission.options.MissionWeather;
 import pwcg.mission.platoon.ITankPlatoon;
-import pwcg.mission.target.AssaultDefinition;
+import pwcg.mission.target.FrontSegmentDefinition;
 
 public class Mission
 {
@@ -248,7 +248,7 @@ public class Mission
         return false;
     }
 
-    public void registerAssault(AssaultDefinition missionBattle)
+    public void registerAssault(FrontSegmentDefinition missionBattle)
     {
         battleManager.addMissionBattle(missionBattle);
     }
