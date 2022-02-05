@@ -15,9 +15,9 @@ import pwcg.mission.ground.builder.BattleSize;
 
 public class AssaultDefinitionGenerator
 {
-    public static final int DISTANCE_FROM_OBJECTIVE = 1400;
-    public static final int DISTANCE_BETWEEN_COMBATANTS = 200;
-    public static final int UNIT_FRONTAGE = 1000;
+    public static final int DISTANCE_FROM_OBJECTIVE = 2500;
+    public static final int DISTANCE_BETWEEN_COMBATANTS = 600;
+    public static final int UNIT_FRONTAGE = 2500;
 
     private Campaign campaign;
     private int segmentNumber;

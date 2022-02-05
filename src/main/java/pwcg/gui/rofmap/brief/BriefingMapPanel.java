@@ -62,15 +62,15 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
 		try
 		{
 			super.paintBaseMapWithMajorGroups(g);
-            			                
-            g.setColor(Color.black);
-            drawPlatoonWaypoints(g);
             
             g.setColor(ColorMap.RUSSIAN_RED);
             drawAiPlatoonWaypoints(g, alliedAiWaypoints);            
             
             g.setColor(ColorMap.AXIS_BLACK);
             drawAiPlatoonWaypoints(g, axisAiWaypoints);            
+            
+            g.setColor(ColorMap.BELGIAN_GOLD);
+            drawPlatoonWaypoints(g);
             
             drawAssaults(g);            
 		}
@@ -84,14 +84,11 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
     {
         Graphics2D g2 = (Graphics2D) g;
         g2.setStroke(new BasicStroke(3));
-        Color requestedColor = g.getColor();
  
         BriefingMapPoint previousMapPoint = null;
         BriefingUnitParameters briefingPlatoonParameters = BriefingContext.getInstance().getBriefingData().getActiveBriefingPlatoon().getBriefingPlatoonParameters();
         for (BriefingMapPoint mapPoint : briefingPlatoonParameters.getBriefingMapMapPoints())
-        {            
-            g.setColor(requestedColor);
-            
+        {                        
             if (previousMapPoint != null)
             {
                 Point prevPoint = super.coordinateToSmallMapPoint(previousMapPoint.getPosition());
@@ -100,18 +97,12 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
                 g2.draw(new Line2D.Float(prevPoint.x, prevPoint.y, point.x, point.y));
             }
 
-            Font font = PWCGMonitorFonts.getPrimaryFont();
-            g.setFont(font);
             Point point = super.coordinateToSmallMapPoint(mapPoint.getPosition());
 
-            Ellipse2D.Double circle = new Ellipse2D.Double(point.x - 4, point.y - 4, 8, 8);
+            Ellipse2D.Double circle = new Ellipse2D.Double(point.x - 6, point.y - 6, 12, 12);
             g2.fill(circle);
 
-            g.drawString(mapPoint.getDesc(), point.x + 4, point.y);
-
             previousMapPoint = mapPoint;
-            
-            break;
         }
     }
 
@@ -148,7 +139,6 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
                 
         Color requestedColor = g.getColor();
  
-        BriefingData briefingData = BriefingContext.getInstance().getBriefingData();
         for (PlatoonMap platoonMap : platoonMaps)
         {
             paintWaypointLines(g, g2, requestedColor, platoonMap);
@@ -157,9 +147,7 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
         for (PlatoonMap platoonMap : platoonMaps)
         {
             paintWaypoints(g, g2, platoonMap);
-        }
-        
-        drawMissionBorders(g, g2);
+        }        
     }
 
     private void paintWaypoints(Graphics g, Graphics2D g2, PlatoonMap platoonMap) throws PWCGException
@@ -168,10 +156,8 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
         {
             BriefingMapPoint mapPoint = platoonMap.mapPoints.get(i);
             Point point = super.coordinateToSmallMapPoint(mapPoint.getPosition());
-            Ellipse2D.Double circle = new Ellipse2D.Double(point.x - 8, point.y - 8, 16, 16);
+            Ellipse2D.Double circle = new Ellipse2D.Double(point.x - 8, point.y - 8, 8, 8);
             g2.fill(circle);
-
-            break;
         }
     }
 
