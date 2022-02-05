@@ -24,14 +24,19 @@ public class FrontFixedUnitSegmentsBuilder
         GroundUnitCollection battleUnitCollection = new GroundUnitCollection(mission.getCampaign(), "Assault Fixed Units", groundUnitCollectionData);
 
         int numFixedSegments = calcNumFixedSegments(mission);
+        
+        List<FrontSegmentDefinition> segmentDefinitions = new ArrayList<>();
         for (int i = 0; i < numFixedSegments; ++i)
         {
             FrontSegmentDefinitionGenerator assaultDefinitionGenerator = new FrontSegmentDefinitionGenerator(mission, i);
-            FrontSegmentDefinition assaultDefinition = assaultDefinitionGenerator.generateBattleDefinition();
-
+            FrontSegmentDefinition frontSegmentDefinition = assaultDefinitionGenerator.generateBattleDefinition();
+            segmentDefinitions.add(frontSegmentDefinition);
+        }
+        
+        for (FrontSegmentDefinition segmentDefinition : segmentDefinitions)
+        {
             List<IGroundUnit> primaryAssaultSegmentGroundUnits = new ArrayList<>();
-
-            GroundUnitCollection fixedBattleSegmentUnits = buildFixedUnits(mission, assaultDefinition, primaryAssaultSegmentGroundUnits);
+            GroundUnitCollection fixedBattleSegmentUnits = buildFixedUnits(mission, segmentDefinition, primaryAssaultSegmentGroundUnits);
             battleUnitCollection.merge(fixedBattleSegmentUnits);
         }
         

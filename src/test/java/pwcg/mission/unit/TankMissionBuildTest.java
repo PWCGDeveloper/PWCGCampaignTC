@@ -10,6 +10,7 @@ import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.mission.Mission;
 import pwcg.mission.MissionGenerator;
+import pwcg.mission.ground.org.IGroundUnit;
 import pwcg.mission.platoon.ITankPlatoon;
 import pwcg.testutils.CampaignCache;
 import pwcg.testutils.CompanyTestProfile;
@@ -37,6 +38,12 @@ public class TankMissionBuildTest
         ITankPlatoon unit = mission.getPlatoons().getPlayerPlatoons().get(0);
         Assertions.assertNotNull(unit);
         
+        findTankBoundary(mission);
+        findInfantryBoundary(mission);
+ 	}
+
+    private void findTankBoundary(Mission mission)
+    {
         double westernBoundary = 1000000000.0;
         double easternBoundary = 0.0;
         double southernBoundary = 1000000000.0;
@@ -62,8 +69,40 @@ public class TankMissionBuildTest
             }
         }
         
-        double width = (easternBoundary - westernBoundary) / 1000;
-        double height = (northernBoundary - southernBoundary) / 1000;
-        double area = width* height;
- 	}
+        double tankWidth = (easternBoundary - westernBoundary) / 1000;
+        double tankHeight = (northernBoundary - southernBoundary) / 1000;
+        double tankArea = tankWidth* tankHeight;
+    }
+
+    private void findInfantryBoundary(Mission mission) throws PWCGException
+    {
+        double westernBoundary = 1000000000.0;
+        double easternBoundary = 0.0;
+        double southernBoundary = 1000000000.0;
+        double northernBoundary = 0.0;
+        for(IGroundUnit unit : mission.getGroundUnitBuilder().getAssault().getGroundUnits())
+        {
+            Coordinate unitPosition = unit.getPosition();
+            if (unitPosition.getZPos() < westernBoundary)
+            {
+                westernBoundary = unitPosition.getZPos();
+            }
+            if (unitPosition.getZPos() > easternBoundary)
+            {
+                easternBoundary = unitPosition.getZPos();
+            }
+            if (unitPosition.getXPos() < southernBoundary)
+            {
+                southernBoundary = unitPosition.getXPos();
+            }
+            if (unitPosition.getXPos() > northernBoundary)
+            {
+                northernBoundary = unitPosition.getXPos();
+            }
+        }
+        
+        double infantryWidth = (easternBoundary - westernBoundary) / 1000;
+        double infantryHeight = (northernBoundary - southernBoundary) / 1000;
+        double infantryArea = infantryWidth* infantryHeight;
+    }
 }

@@ -74,7 +74,8 @@ public class FrontSegmentDefinitionGenerator
         {
             angleForSegment = MathUtils.adjustAngle(angleTowardsFront, 270);
         }
-        Coordinate segmentDefensePosition = MathUtils.calcNextCoord(defensePosition, angleForSegment, FrontSegmentDefinitionGenerator.UNIT_FRONTAGE + 500);
+        int distanceToMove = ((FrontSegmentDefinitionGenerator.UNIT_FRONTAGE + 500) / 2) + (FrontSegmentDefinitionGenerator.UNIT_FRONTAGE + 500) * ((segmentNumber / 2));
+        Coordinate segmentDefensePosition = MathUtils.calcNextCoord(defensePosition, angleForSegment, distanceToMove);
         return segmentDefensePosition;
     }
 
@@ -84,7 +85,7 @@ public class FrontSegmentDefinitionGenerator
         Coordinate assaultStartPosition = MathUtils.calcNextCoord(defensePosition, angleTowardsFront, getDisdtanceBetweenCombatants());
         return assaultStartPosition;
     }
-    
+
     private int getDisdtanceBetweenCombatants()
     {
         return DISTANCE_BETWEEN_COMBATANTS + (RandomNumberGenerator.getRandom(DISTANCE_BETWEEN_COMBATANTS_RANDOM));
@@ -95,7 +96,7 @@ public class FrontSegmentDefinitionGenerator
         FrontLinesForMap frontLines = PWCGContext.getInstance().getCurrentMap().getFrontLinesForMap(campaign.getDate());
         int closestFrontLines = frontLines.findIndexForClosestPosition(objective.getPosition(), assaultingSide);
         Coordinate frontLinePosition = frontLines.getCoordinates(closestFrontLines, assaultingSide);
-        
+
         double angleTowardsFront = MathUtils.calcAngle(objective.getPosition(), frontLinePosition);
         return angleTowardsFront;
     }
