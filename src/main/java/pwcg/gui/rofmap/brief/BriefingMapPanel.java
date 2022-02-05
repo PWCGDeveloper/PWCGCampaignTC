@@ -163,11 +163,6 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
         {
             paintWaypointLines(g, g2, requestedColor, platoonMap);
         }
-
-        for (PlatoonMap platoonMap : platoonMaps)
-        {
-            paintWaypoints(g, g2, platoonMap);
-        }
     }
 
     private void paintWaypoints(Graphics g, Graphics2D g2, PlatoonMap platoonMap) throws PWCGException

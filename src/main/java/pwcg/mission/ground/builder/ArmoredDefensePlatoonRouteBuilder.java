@@ -40,15 +40,15 @@ public class ArmoredDefensePlatoonRouteBuilder
                 GroundUnitType.ANTI_TANK_UNIT);
 
         Coordinate positionNearEnemyMG = targetFinderInfantry.findTargetForTankPlatoon(startPosition, platoon.getPlatoonInformation().getCountry().getSide());
-        Coordinate targetPosition = moveABit(positionNearEnemyMG);
+        Coordinate targetPosition = moveTowardsAtGun(startPosition, positionNearEnemyMG);
         return targetPosition;
     }
 
-    private Coordinate moveABit(Coordinate positionNearEnemyATGuns) throws PWCGException
+    private Coordinate moveTowardsAtGun(Coordinate startPosition, Coordinate positionNearEnemyATGuns) throws PWCGException
     {
-        int angle = RandomNumberGenerator.getRandom(360);
-        int numMeters = RandomNumberGenerator.getRandom(100);
-        Coordinate targetPosition = MathUtils.calcNextCoord(positionNearEnemyATGuns, angle, numMeters);
+        double angle = MathUtils.calcAngle(startPosition, positionNearEnemyATGuns);
+        int numMeters = 300 + RandomNumberGenerator.getRandom(800);
+        Coordinate targetPosition = MathUtils.calcNextCoord(startPosition, angle, numMeters);
         return targetPosition;
     }
 }
