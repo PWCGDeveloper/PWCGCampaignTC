@@ -36,12 +36,6 @@ public class ArmoredDefenseRouteBuilder
             ArmoredDefensePlatoonRouteBuilder platoonRouteBuilder = new ArmoredDefensePlatoonRouteBuilder(mission);
             List<Coordinate> assaultRoute = platoonRouteBuilder.buildRoutesForArmor(platoon, startPosition);
             defenseRoutes.put(defendingPlatoons.get(i).getIndex(), assaultRoute);
-
-            ArmoredPlatoonDefensiveResponsiveRouteBuilder responsiveRouteBuilder = new ArmoredPlatoonDefensiveResponsiveRouteBuilder(mission);
-            responsiveRouteBuilder.buildResponsiveRoutesForPlatoon(platoon);
-
-            List<ITankPlatoon> assaultingPlatoons = getPlatoonsForSide(platoons, defendingSide);
-            responsiveRouteBuilder.triggerResponsiveRoutes(platoon, assaultingPlatoons);
         }
 
         return defenseRoutes;

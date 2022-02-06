@@ -60,4 +60,9 @@ public class ArmoredPlatoonResponsiveRoute
             missionBeginUnitCheckZone.setCheckZoneTriggerObject(triggerVehicle);
         }
     }
+
+    public Coordinate getTargetPosition()
+    {
+        return responseWaypoint.getPosition();
+    }
 }

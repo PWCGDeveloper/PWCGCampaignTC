@@ -29,6 +29,7 @@ import pwcg.gui.rofmap.brief.model.BriefingMapPoint;
 import pwcg.gui.rofmap.brief.model.BriefingUnitParameters;
 import pwcg.gui.utils.MapPointInfoPopup;
 import pwcg.mission.Mission;
+import pwcg.mission.ground.builder.ArmoredPlatoonResponsiveRoute;
 import pwcg.mission.ground.org.GroundUnitElement;
 import pwcg.mission.ground.org.IGroundUnit;
 import pwcg.mission.mcu.McuWaypoint;
@@ -67,6 +68,9 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
             g.setColor(ColorMap.GERMAN_NAVY_GRAY);
             drawGroundUnits(g, mission.getGroundUnitBuilder().getAssault().getGroundUnitsForSide(Side.AXIS));
 
+            g.setColor(Color.GREEN);
+            drawResponsiveRoutes(g, mission.getPlatoons().getPlatoons());
+
             g.setColor(ColorMap.RUSSIAN_RED);
             drawAiPlatoonWaypoints(g, alliedAiWaypoints);
 
@@ -81,6 +85,22 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
         catch (Exception e)
         {
             PWCGLogger.logException(e);
+        }
+    }
+
+    private void drawResponsiveRoutes(Graphics g, List<ITankPlatoon> platoons)
+    {
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setStroke(new BasicStroke(3));
+
+        for (ITankPlatoon platoon : platoons)
+        {
+            for (ArmoredPlatoonResponsiveRoute responsiveRoute : platoon.getResponsiveRoutes())
+            {
+                Point unitPoint = super.coordinateToSmallMapPoint(responsiveRoute.getTargetPosition());
+                Ellipse2D.Double circle = new Ellipse2D.Double(unitPoint.x - 6, unitPoint.y - 6, 12, 12);
+                g2.fill(circle);
+            }
         }
     }
 

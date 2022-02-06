@@ -27,7 +27,7 @@ public class MissionPlatoonBuilder implements IMissionPlatoonBuilder
 {
     private Mission mission;
     private MissionPlatoons missionPlatoons;
-    
+
     public MissionPlatoonBuilder(Mission mission)
     {
         this.mission = mission;
@@ -42,8 +42,23 @@ public class MissionPlatoonBuilder implements IMissionPlatoonBuilder
 
         createAssaultingWaypoints();
         createDefendingingWaypoints();
-                
+
+        buildResponsiveRoutes();
+
         return missionPlatoons;
+    }
+
+    private void buildResponsiveRoutes() throws PWCGException
+    {
+        List<ITankPlatoon> defendingPlatoons = missionPlatoons.getPlatoonsForSide(mission.getObjective().getDefendingCountry().getSide());
+        for (ITankPlatoon defendingPlatoon : defendingPlatoons)
+        {
+            ArmoredPlatoonDefensiveResponsiveRouteBuilder responsiveRouteBuilder = new ArmoredPlatoonDefensiveResponsiveRouteBuilder(mission);
+            responsiveRouteBuilder.buildResponsiveRoutesForPlatoon(defendingPlatoon);
+
+            List<ITankPlatoon> assaultingPlatoons = mission.getPlatoons().getPlatoonsForSide(mission.getObjective().getAssaultingCountry().getSide());
+            responsiveRouteBuilder.triggerResponsiveRoutes(defendingPlatoon, assaultingPlatoons);
+        }
     }
 
     private void createAssaultingWaypoints() throws PWCGException
@@ -54,9 +69,9 @@ public class MissionPlatoonBuilder implements IMissionPlatoonBuilder
         {
             List<Coordinate> waypointCoordinates = assaultRoutes.get(index);
             ITankPlatoon platoon = missionPlatoons.getPlatoon(index);
-            
+
             createStartPosition(waypointCoordinates, platoon);
-            
+
             List<McuWaypoint> assaultWaypoints = createWaypoints(waypointCoordinates, platoon.getLeadVehicle().getCruisingSpeed());
             platoon.setWaypoints(assaultWaypoints);
         }
@@ -70,9 +85,9 @@ public class MissionPlatoonBuilder implements IMissionPlatoonBuilder
         {
             List<Coordinate> waypointCoordinates = defenseRoutes.get(index);
             ITankPlatoon platoon = missionPlatoons.getPlatoon(index);
-            
+
             createStartPosition(waypointCoordinates, platoon);
-            
+
             List<McuWaypoint> defenseWaypoints = createWaypoints(waypointCoordinates, platoon.getLeadVehicle().getCruisingSpeed());
             platoon.setWaypoints(defenseWaypoints);
         }
@@ -98,10 +113,10 @@ public class MissionPlatoonBuilder implements IMissionPlatoonBuilder
             waypoint.setSpeed(platoonSpeed);
             waypoint.setPosition(assaultWaypointCoordinate.copy());
             waypoint.setTargetWaypoint(true);
-            
+
             double angle = MathUtils.calcAngle(assaultWaypointCoordinates.get(i-1), assaultWaypointCoordinate);
             waypoint.setOrientation(new Orientation(angle));
-            
+
             assaultWaypoints.add(waypoint);
         }
         return assaultWaypoints;
@@ -115,7 +130,7 @@ public class MissionPlatoonBuilder implements IMissionPlatoonBuilder
             buildPlatoon(company);
         }
     }
-    
+
     private void buildPlatoon(ICompanyMission company) throws PWCGException
     {
         List<CrewMember> playerCrews = mission.getParticipatingPlayers().getParticipatingPlayersForCompany(company.getCompanyId());
@@ -135,7 +150,7 @@ public class MissionPlatoonBuilder implements IMissionPlatoonBuilder
 
         PlatoonMissionType platoonMissionType = PlatoonMissionTypeFactory.getPlatoonMissionType(mission, company, tankPlatoon.getLeadVehicle());
         tankPlatoon.setPlatoonMissionType(platoonMissionType);
-        
+
         missionPlatoons.addPlatoon(tankPlatoon);
     }
 }

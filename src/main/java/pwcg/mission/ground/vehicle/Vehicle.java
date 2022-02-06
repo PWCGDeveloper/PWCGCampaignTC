@@ -63,12 +63,14 @@ public class Vehicle implements Cloneable, IVehicle
         populateEntity();
     }
 
+    @Override
     public void populateEntity()
     {
         entity.setPosition(position);
         entity.setOrientation(orientation);
     }
 
+    @Override
     public void write(BufferedWriter writer) throws PWCGException
     {
         try
@@ -162,33 +164,39 @@ public class Vehicle implements Cloneable, IVehicle
         return false;
     }
 
+    @Override
     public Coordinate getPosition()
     {
         return position;
     }
 
+    @Override
     public void setPosition(Coordinate position)
     {
-        this.position = position;
+        this.position = position.copy();
         entity.setPosition(position);
     }
 
+    @Override
     public Orientation getOrientation()
     {
         return orientation;
     }
 
+    @Override
     public void setOrientation(Orientation orientation)
     {
         this.orientation = orientation;
         entity.setOrientation(orientation);
     }
 
+    @Override
     public String getDescription()
     {
         return (vehicleType + " / " + script + " / " + model);
     }
 
+    @Override
     public McuTREntity getEntity()
     {
         return entity;
@@ -199,11 +207,12 @@ public class Vehicle implements Cloneable, IVehicle
         return engageable;
     }
 
+    @Override
     public void setEngageable(int engageable)
     {
         this.engageable = engageable;
     }
- 
+
     public int getNumberInFormation()
     {
         return numberInFormation;
@@ -214,26 +223,31 @@ public class Vehicle implements Cloneable, IVehicle
         this.numberInFormation = numberInFormation;
     }
 
+    @Override
     public void setAiLevel(AiSkillLevel aiLevel)
     {
         this.aiLevel = aiLevel;
     }
 
+    @Override
     public void setCountry(ICountry country)
     {
         this.country = country.getCountry();
     }
 
+    @Override
     public ICountry getCountry()
     {
         return CountryFactory.makeCountryByCountry(country);
     }
 
+    @Override
     public String getName()
     {
         return vehicleName;
     }
 
+    @Override
     public String getScript()
     {
         return script;
@@ -271,7 +285,7 @@ public class Vehicle implements Cloneable, IVehicle
     {
         return vehicleDefinition;
     }
-    
+
 
     public void setLinkTrId(int linkTrId)
     {

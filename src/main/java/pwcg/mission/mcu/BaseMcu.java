@@ -30,11 +30,11 @@ public class BaseMcu
         clone.orientation = this.orientation.copy();
 
         // Note: we DO NOT clone the index value
-        
+
         return clone;
     }
-    
-    public void write(BufferedWriter writer) throws PWCGException 
+
+    public void write(BufferedWriter writer) throws PWCGException
     {
         try
         {
@@ -55,6 +55,7 @@ public class BaseMcu
         }
     }
 
+    @Override
     public String toString()
     {
         StringBuffer output = new StringBuffer("");
@@ -100,7 +101,7 @@ public class BaseMcu
 
     public void setPosition(Coordinate position)
     {
-        this.position = position;
+        this.position = position.copy();
     }
 
     public Orientation getOrientation()
