@@ -1,29 +1,17 @@
 TC:
 Campaign creation:
 
-Base companies near towns
-
 Mission:
-Not defense only
 record AI tank types for AAR
 Current mission bugs
-- Looks like some units are located in enemy territory at mission start
-- Waypoints not displayed in briefing
 - Generic mission description is in use
 
-
-Defensive armor
-- react to penetration
-- react to threat to objective
-
-BattleSize
-- More front segments
-- more armor
+- Display only friendly waypoints in briefing
 
 AAR:
 Add out of mission for tank units
 - no need for corresponding victim
-In mission claims
+- In mission claims
 
 Campaign
 Rearrange chalk board

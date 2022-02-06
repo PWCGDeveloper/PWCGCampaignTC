@@ -18,4 +18,5 @@ public interface ICompanyMission
     CompanyRoleSet getCompanyRoles();
     boolean isPlayercompany();
     Side determineSide() throws PWCGException;
+    Coordinate determineCurrentPosition(Date campaignDate) throws PWCGException;
 }

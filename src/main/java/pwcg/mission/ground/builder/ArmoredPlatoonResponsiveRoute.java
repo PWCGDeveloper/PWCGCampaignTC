@@ -65,4 +65,9 @@ public class ArmoredPlatoonResponsiveRoute
     {
         return responseWaypoint.getPosition();
     }
+
+    public void setWaypointObject(int linkTrId)
+    {
+        responseWaypoint.setObject(linkTrId);
+    }
 }

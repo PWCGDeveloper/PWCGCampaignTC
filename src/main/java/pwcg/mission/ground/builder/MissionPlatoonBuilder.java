@@ -56,7 +56,7 @@ public class MissionPlatoonBuilder implements IMissionPlatoonBuilder
             ArmoredPlatoonDefensiveResponsiveRouteBuilder responsiveRouteBuilder = new ArmoredPlatoonDefensiveResponsiveRouteBuilder(mission);
             responsiveRouteBuilder.buildResponsiveRoutesForPlatoon(defendingPlatoon);
 
-            List<ITankPlatoon> assaultingPlatoons = mission.getPlatoons().getPlatoonsForSide(mission.getObjective().getAssaultingCountry().getSide());
+            List<ITankPlatoon> assaultingPlatoons = missionPlatoons.getPlatoonsForSide(mission.getObjective().getAssaultingCountry().getSide());
             responsiveRouteBuilder.triggerResponsiveRoutes(defendingPlatoon, assaultingPlatoons);
         }
     }
@@ -103,6 +103,7 @@ public class MissionPlatoonBuilder implements IMissionPlatoonBuilder
     private List<McuWaypoint> createWaypoints(List<Coordinate> assaultWaypointCoordinates, int platoonSpeed) throws PWCGException
     {
         List<McuWaypoint> assaultWaypoints = new ArrayList<>();
+        McuWaypoint previousWaypoint = null;
         for(int i = 1; i < assaultWaypointCoordinates.size(); ++i)
         {
             Coordinate assaultWaypointCoordinate = assaultWaypointCoordinates.get(i);
@@ -117,8 +118,16 @@ public class MissionPlatoonBuilder implements IMissionPlatoonBuilder
             double angle = MathUtils.calcAngle(assaultWaypointCoordinates.get(i-1), assaultWaypointCoordinate);
             waypoint.setOrientation(new Orientation(angle));
 
+            if (previousWaypoint != null)
+            {
+                previousWaypoint.setTarget(waypoint.getIndex());
+            }
+            previousWaypoint = waypoint;
+
             assaultWaypoints.add(waypoint);
         }
+
+
         return assaultWaypoints;
     }
 

@@ -29,7 +29,7 @@ public interface ITankPlatoon
 
     void write(BufferedWriter writer) throws PWCGException;
 
-    void setWaypoints(List<McuWaypoint> waypoints);
+    void setWaypoints(List<McuWaypoint> waypoints) throws PWCGException;
 
     int getIndex();
 

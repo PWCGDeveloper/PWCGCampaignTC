@@ -25,7 +25,7 @@ public class AiCompany implements ICompanyMission
         this.country = country;
         this.companyId = companyId;
     }
-    
+
     @Override
     public Coordinate determinePosition(Date date) throws PWCGException
     {
@@ -72,5 +72,11 @@ public class AiCompany implements ICompanyMission
     public Side determineSide() throws PWCGException
     {
         return country.getSide();
+    }
+
+    @Override
+    public Coordinate determineCurrentPosition(Date campaignDate) throws PWCGException
+    {
+        return position;
     }
 }

@@ -41,7 +41,8 @@ public class ArmoredPlatoonDefensiveResponsiveRouteBuilder
     {
         ArmoredAssaultTargetFinder targetFinderInfantry = new ArmoredAssaultTargetFinder(mission, fixedUnitCollection,
                 GroundUnitType.ANTI_TANK_UNIT);
-        List<Coordinate> responsiveTargetPositions = targetFinderInfantry.findUnitsCloseToPosition(platoon.getLeadVehicle().getPosition(), platoon.getPlatoonInformation().getCountry().getSide());
+        List<Coordinate> responsiveTargetPositions = targetFinderInfantry.findUnitsCloseToPosition(platoon.getLeadVehicle().getPosition(),
+                platoon.getPlatoonInformation().getCountry().getSide());
         return responsiveTargetPositions;
     }
 
@@ -49,7 +50,8 @@ public class ArmoredPlatoonDefensiveResponsiveRouteBuilder
     {
         ArmoredAssaultTargetFinder targetFinderInfantry = new ArmoredAssaultTargetFinder(mission, fixedUnitCollection,
                 GroundUnitType.ARTILLERY_UNIT);
-        List<Coordinate> responsiveTargetPositions = targetFinderInfantry.findUnitsCloseToPosition(platoon.getLeadVehicle().getPosition(), platoon.getPlatoonInformation().getCountry().getSide());
+        List<Coordinate> responsiveTargetPositions = targetFinderInfantry.findUnitsCloseToPosition(platoon.getLeadVehicle().getPosition(),
+                platoon.getPlatoonInformation().getCountry().getSide());
         return responsiveTargetPositions;
     }
 
