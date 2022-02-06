@@ -14,6 +14,7 @@ public class AiPlatoon extends TankPlatoon
         super(platoonInformation);
     }
 
+    @Override
     protected void buildTanks() throws PWCGException
     {
         int numTanks = 4;
@@ -22,8 +23,8 @@ public class AiPlatoon extends TankPlatoon
         {
             numTanks = 3;
         }
-                
-        AiTankMcuFactory tankMcuFactory = new AiTankMcuFactory(platoonInformation);        
+
+        AiTankMcuFactory tankMcuFactory = new AiTankMcuFactory(platoonInformation);
         List<TankMcu> tanks = tankMcuFactory.createTanksForUnit(numTanks);
         platoonVehicles.setTanks(tanks);
         platoonVehicles.setFuelForUnit(1.0);

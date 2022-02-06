@@ -8,12 +8,14 @@ import pwcg.campaign.utils.IndexGenerator;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.mission.ICompanyMission;
+import pwcg.mission.ground.builder.ArmoredPlatoonResponsiveRoute;
 import pwcg.mission.mcu.McuWaypoint;
 import pwcg.mission.platoon.tank.TankMcu;
 
 public abstract class TankPlatoon implements ITankPlatoon
 {
     protected abstract void buildTanks() throws PWCGException;
+    @Override
     public abstract boolean isPlayerPlatoon();
 
     protected PlatoonTanks platoonVehicles;
@@ -21,6 +23,7 @@ public abstract class TankPlatoon implements ITankPlatoon
     protected List<McuWaypoint> waypoints = new ArrayList<>();
     protected PlatoonMissionType platoonMissionType = PlatoonMissionType.ANY;
     protected int index;
+    protected List<ArmoredPlatoonResponsiveRoute> responsiveRoutes = new ArrayList<>();
 
     public TankPlatoon(PlatoonInformation platoonInformation)
     {
@@ -54,11 +57,12 @@ public abstract class TankPlatoon implements ITankPlatoon
         return waypoints;
     }
 
+    @Override
     public void setWaypoints(List<McuWaypoint> waypoints)
     {
         this.waypoints = waypoints;
     }
-    
+
     @Override
     public ICompanyMission getCompany()
     {
@@ -74,12 +78,12 @@ public abstract class TankPlatoon implements ITankPlatoon
     @Override
     public void preparePlaneForCoop() throws PWCGException
     {
-        platoonVehicles.prepareTankForCoop(platoonInformation.getCampaign());        
+        platoonVehicles.prepareTankForCoop(platoonInformation.getCampaign());
     }
 
     @Override
     public void write(BufferedWriter writer) throws PWCGException
-    {        
+    {
         for(TankMcu tank : platoonVehicles.getTanks())
         {
             tank.write(writer);
@@ -88,6 +92,11 @@ public abstract class TankPlatoon implements ITankPlatoon
         for(McuWaypoint waypoint : waypoints)
         {
             waypoint.write(writer);
+        }
+
+        for(ArmoredPlatoonResponsiveRoute responsiveRoutes : responsiveRoutes)
+        {
+            responsiveRoutes.write(writer);
         }
     }
 
@@ -123,4 +132,15 @@ public abstract class TankPlatoon implements ITankPlatoon
         return platoonMissionType;
     }
 
+    @Override
+    public void addResponsiveRoute(ArmoredPlatoonResponsiveRoute platoonResponsiveRoute)
+    {
+        responsiveRoutes.add(platoonResponsiveRoute);
+    }
+
+    @Override
+    public List<ArmoredPlatoonResponsiveRoute> getResponsiveRoutes()
+    {
+        return responsiveRoutes;
+    }
 }

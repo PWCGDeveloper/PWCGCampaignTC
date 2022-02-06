@@ -26,7 +26,7 @@ public class ArmoredDefenseRouteBuilder
 
     public Map<Integer, List<Coordinate>> buildAssaultRoutesForArmor(List<ITankPlatoon> platoons) throws PWCGException
     {
-        List<ITankPlatoon> defendingPlatoons = getDefendingPlatoons(platoons);
+        List<ITankPlatoon> defendingPlatoons = getPlatoonsForSide(platoons, defendingSide);
         List<Coordinate> startPositions = getStartPositions(defendingPlatoons);
 
         for(int i = 0; i < defendingPlatoons.size(); ++i)
@@ -36,6 +36,12 @@ public class ArmoredDefenseRouteBuilder
             ArmoredDefensePlatoonRouteBuilder platoonRouteBuilder = new ArmoredDefensePlatoonRouteBuilder(mission);
             List<Coordinate> assaultRoute = platoonRouteBuilder.buildRoutesForArmor(platoon, startPosition);
             defenseRoutes.put(defendingPlatoons.get(i).getIndex(), assaultRoute);
+
+            ArmoredPlatoonDefensiveResponsiveRouteBuilder responsiveRouteBuilder = new ArmoredPlatoonDefensiveResponsiveRouteBuilder(mission);
+            responsiveRouteBuilder.buildResponsiveRoutesForPlatoon(platoon);
+
+            List<ITankPlatoon> assaultingPlatoons = getPlatoonsForSide(platoons, defendingSide);
+            responsiveRouteBuilder.triggerResponsiveRoutes(platoon, assaultingPlatoons);
         }
 
         return defenseRoutes;
@@ -47,12 +53,12 @@ public class ArmoredDefenseRouteBuilder
         return startPositionBuilder.buildStartPositionsForArmor(defendingPlatoons, GroundUnitType.ARTILLERY_UNIT);
     }
 
-    private List<ITankPlatoon> getDefendingPlatoons(List<ITankPlatoon> platoons)
+    private List<ITankPlatoon> getPlatoonsForSide(List<ITankPlatoon> platoons, Side side)
     {
         List<ITankPlatoon> defendingPlatoons = new ArrayList<>();
         for(ITankPlatoon platoon : platoons)
         {
-            if(platoon.getPlatoonInformation().getCountry().getSide() == defendingSide)
+            if(platoon.getPlatoonInformation().getCountry().getSide() == side)
             {
                 defendingPlatoons.add(platoon);
             }

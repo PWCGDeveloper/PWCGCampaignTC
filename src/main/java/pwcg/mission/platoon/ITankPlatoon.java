@@ -6,6 +6,7 @@ import java.util.List;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.mission.ICompanyMission;
+import pwcg.mission.ground.builder.ArmoredPlatoonResponsiveRoute;
 import pwcg.mission.mcu.McuWaypoint;
 import pwcg.mission.platoon.tank.TankMcu;
 
@@ -39,4 +40,8 @@ public interface ITankPlatoon
     PlatoonMissionType getPlatoonMissionType();
 
     void setStartPosition(Coordinate startPosition, Coordinate towardsPosition) throws PWCGException;
+
+    void addResponsiveRoute(ArmoredPlatoonResponsiveRoute platoonResponsiveRoute);
+
+    List<ArmoredPlatoonResponsiveRoute> getResponsiveRoutes();
 }

@@ -10,6 +10,7 @@ import pwcg.core.location.Coordinate;
 import pwcg.core.utils.MathUtils;
 import pwcg.mission.Mission;
 import pwcg.mission.ground.org.GroundUnitCollection;
+import pwcg.mission.ground.org.GroundUnitElement;
 import pwcg.mission.ground.org.GroundUnitType;
 import pwcg.mission.ground.org.IGroundUnit;
 
@@ -31,6 +32,26 @@ public class ArmoredAssaultTargetFinder
         return targetUnit.getPosition().copy();
     }
 
+    public List<Coordinate> findUnitsCloseToPosition(Coordinate unitPosition, Side side) throws PWCGException
+    {
+        List<Coordinate> viableTargetUnits = new ArrayList<>();
+
+        List<IGroundUnit> targetUnitsForSide = assaultFixedUnitCollection.getGroundUnitsByTypeAndSide(groundUnitType, side);
+        for (IGroundUnit targetUnit : targetUnitsForSide)
+        {
+            for (GroundUnitElement targetUnitElement : targetUnit.getGroundElements())
+            {
+                double distanceToPlatoon = MathUtils.calcDist(targetUnitElement.getVehicleStartLocation(), unitPosition);
+                if (distanceToPlatoon < 8000)
+                {
+                    viableTargetUnits.add(targetUnitElement.getVehicleStartLocation());
+                }
+            }
+        }
+
+        return viableTargetUnits;
+    }
+
     private IGroundUnit findUnitCloseToPosition(List<IGroundUnit> targetUnitsForSide, Coordinate objectivePosition) throws PWCGException
     {
         List<IGroundUnit> viableTargetUnits = new ArrayList<>();
@@ -45,10 +66,10 @@ public class ArmoredAssaultTargetFinder
                     viableTargetUnits.add(targetUnit);
                 }
             }
-            
+
             closeUnitDistance += 1000;
         }
-        
+
         Collections.shuffle(viableTargetUnits);
         return viableTargetUnits.get(0);
     }

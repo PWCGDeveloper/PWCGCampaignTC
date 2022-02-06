@@ -165,17 +165,6 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
         }
     }
 
-    private void paintWaypoints(Graphics g, Graphics2D g2, PlatoonMap platoonMap) throws PWCGException
-    {
-        for (int i = 0; i < platoonMap.mapPoints.size(); ++i)
-        {
-            BriefingMapPoint mapPoint = platoonMap.mapPoints.get(i);
-            Point point = super.coordinateToSmallMapPoint(mapPoint.getPosition());
-            Ellipse2D.Double circle = new Ellipse2D.Double(point.x - 8, point.y - 8, 8, 8);
-            g2.fill(circle);
-        }
-    }
-
     private void paintWaypointLines(Graphics g, Graphics2D g2, Color requestedColor, PlatoonMap platoonMap)
     {
         BriefingMapPoint prevMapPoint = null;
