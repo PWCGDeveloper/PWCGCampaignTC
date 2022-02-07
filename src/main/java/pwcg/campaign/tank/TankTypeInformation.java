@@ -97,7 +97,7 @@ public class TankTypeInformation implements Cloneable
         {
             PWCGLogger.log(LogLevel.ERROR, "No roles for: " + getType());
         }
-        
+
         for (PwcgRoleCategory roleCategory : roleCategories)
         {
             if (roleCategory == roleCategoryToFind)
@@ -136,7 +136,7 @@ public class TankTypeInformation implements Cloneable
 
         return false;
     }
-    
+
     public boolean isStockModification(TankPayloadElement modification)
     {
         for (TankPayloadElement stockModification : getStockModifications())
@@ -207,7 +207,7 @@ public class TankTypeInformation implements Cloneable
 
     public boolean isUsedBy(ICountry country)
     {
-        for (Country countryEnum: primaryUsedBy) 
+        for (Country countryEnum: primaryUsedBy)
         {
             if (countryEnum == country.getCountry())
             {
@@ -237,6 +237,12 @@ public class TankTypeInformation implements Cloneable
     {
         VehicleDefinition vehicleDefinition = PWCGContext.getInstance().getVehicleDefinitionManager().getVehicleDefinition(type);
         return vehicleDefinition.getDisplayName();
+    }
+
+    public String getVehicleName() throws PWCGException
+    {
+        VehicleDefinition vehicleDefinition = PWCGContext.getInstance().getVehicleDefinitionManager().getVehicleDefinition(type);
+        return vehicleDefinition.getVehicleName();
     }
 
     public boolean isPlayer()

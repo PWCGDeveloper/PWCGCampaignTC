@@ -3,7 +3,7 @@
   "modelDir": "vehicles\\sdkfz251\\",
   "vehicleType": "sdkfz251-szf",
   "vehicleName": "Sd.Kfz 251-SZF",
-  "displayName": "half track",
+  "displayName": "halftrack",
   "countries": [
     "GERMANY",
     "ITALY"

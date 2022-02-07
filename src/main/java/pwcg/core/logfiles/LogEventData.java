@@ -178,7 +178,7 @@ public class LogEventData
         IAType12 botSpawn = bots.get(botId);
         if (botSpawn != null)
         {
-            IAType12 planeSpawn = vehicles.get(getPlaneIdByBot(botSpawn));
+            IAType12 planeSpawn = vehicles.get(getTankIdByBot(botSpawn));
             if (planeSpawn != null)
             {
                 return getDestroyedEvent(planeSpawn.getId());
@@ -188,7 +188,7 @@ public class LogEventData
         return null;
     }
 
-    public String getPlaneIdByBot(IAType12 atype12Bot)
+    public String getTankIdByBot(IAType12 atype12Bot)
     {
         String planeId = LogParser.UNKNOWN_MISSION_LOG_ENTITY;
         String ownerId = atype12Bot.getPid();

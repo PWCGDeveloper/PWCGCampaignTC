@@ -14,27 +14,27 @@ import pwcg.mission.ground.vehicle.VehicleDefinition;
 import pwcg.mission.ground.vehicle.VehicleDefinitionManager;
 
 public class VictoryDescriptionBuilderGround extends VictoryDescriptionBuilderBase
-{    
+{
     VictoryDescriptionBuilderGround (Campaign campaign, Victory victory)
     {
         super(campaign, victory);
-    }    
-    
+    }
+
     // On <victory victory.getDate()> near <location>.
-    // A <victory.getVictim() plane Name> of <victory.getVictim() company name> was destroyed by <victory.getVictor() name> of <victory.getVictor() company name> 
+    // A <victory.getVictim() plane Name> of <victory.getVictim() company name> was destroyed by <victory.getVictor() name> of <victory.getVictor() company name>
     // <victory.getVictim() crew 1> was <killed/captured>.  <victory.getVictim() crew 2> was <killed/captured>
     // <victory.getVictor() crew 1> and <victory.getVictor() crew 1> were using a <victory.getVictor() plane Name>.
     /**
      * @return
-     * @throws PWCGException 
+     * @throws PWCGException
      */
     public String getVictoryDescriptionGroundToGroundFull() throws PWCGException
     {
         // Create the victory description
         String victoryDesc = "";
-        
-        String victimTankType = getVehicleDescription(victory.getVictim().getType());
-        String victorTankType = getVehicleDescription(victory.getVictor().getType());
+
+        String victimTankType = getVehicleDescription(victory.getVictim().getType(), victory.getVictim().getName());
+        String victorTankType = getVehicleDescription(victory.getVictor().getType(), victory.getVictor().getName());
 
         // Line 1
         victoryDesc +=  "On " + DateUtils.getDateString(victory.getDate());
@@ -53,20 +53,20 @@ public class VictoryDescriptionBuilderGround extends VictoryDescriptionBuilderBa
         // Line 3
         victoryDesc +=  "\n";
         victoryDesc +=  victory.getVictor().getCrewMemberName();
-        victoryDesc +=  " was using a " + victorTankType + ".";          
-        
+        victoryDesc +=  " was using a " + victorTankType + ".";
+
         return victoryDesc;
     }
 
 
     // On <victory victory.getDate()> near <location>.
-    // A <victory.getVictim() ground unit> was destroyed by by <victory.getVictor() name> of <victory.getVictor() company name> 
+    // A <victory.getVictim() ground unit> was destroyed by by <victory.getVictor() name> of <victory.getVictor() company name>
     // <victory.getVictor() crew 1> and <victory.getVictor() crew 1> were using a <victory.getVictor() plane Name>.
     public String createVictoryDescriptionAirToGround() throws PWCGException
     {
         String victoryDesc = "";
-        
-        String victorTankType = getVehicleDescription(victory.getVictor().getType());
+
+        String victorTankType = getVehicleDescription(victory.getVictor().getType(), victory.getVictor().getName());
 
         // Line 1
         victoryDesc +=  "On " + DateUtils.getDateString(victory.getDate());
@@ -85,20 +85,20 @@ public class VictoryDescriptionBuilderGround extends VictoryDescriptionBuilderBa
         // Line 3
         victoryDesc +=  "\n";
         victoryDesc +=  victory.getVictor().getCrewMemberName();
-        victoryDesc +=  " was using a " + victorTankType + ".";        
-        
+        victoryDesc +=  " was using a " + victorTankType + ".";
+
         return victoryDesc;
     }
-    
+
 
     // On <victory victory.getDate()> near <location>.
-    // A <victory.getVictim() plane Name> of <victory.getVictim() company name> was destroyed by a <ground unit name> 
+    // A <victory.getVictim() plane Name> of <victory.getVictim() company name> was destroyed by a <ground unit name>
     // <victory.getVictim() crew 1> was <killed/captured>.  <victory.getVictim() crew 2> was <killed/captured>
     String createVictoryDescriptionGroundToAir() throws PWCGException
-    {        
+    {
         String victoryDesc = "";
-        
-        String victimPlaneType = getVehicleDescription(victory.getVictim().getType());
+
+        String victimPlaneType = getVehicleDescription(victory.getVictim().getType(), victory.getVictim().getName());
 
         if (!(victory.getVictim().getCrewMemberName().isEmpty()))
         {
@@ -119,16 +119,16 @@ public class VictoryDescriptionBuilderGround extends VictoryDescriptionBuilderBa
         {
             victoryDesc +=  victimPlaneType + " shot down by " + getGroundUnitName(victory.getVictor()) + "";
         }
-        
+
         return victoryDesc;
     }
 
     // On <victory victory.getDate()> near <location>.
-    // A <victory.getVictim() ground unit> was destroyed by a <ground unit name> 
+    // A <victory.getVictim() ground unit> was destroyed by a <ground unit name>
     public String createVictoryDescriptionGroundToGround() throws PWCGException
     {
         String victoryDesc = "";
-        
+
         // Line 1
         victoryDesc +=  "On " + DateUtils.getDateString(victory.getDate());
         if (!victory.getLocation().isEmpty())
@@ -139,16 +139,16 @@ public class VictoryDescriptionBuilderGround extends VictoryDescriptionBuilderBa
 
         // Line 2
         victoryDesc +=  "A " + getGroundUnitName(victory.getVictim()) + " was destroyed by a " + getGroundUnitName(victory.getVictor()) + ".";
-        
+
         return victoryDesc;
     }
 
     // On <victory victory.getDate()> near <location>.
-    // A <victory.getVictim() ground unit> was destroyed by a <ground unit name> 
+    // A <victory.getVictim() ground unit> was destroyed by a <ground unit name>
     public String createVictoryDescriptionUnknownToGround()
     {
         String victoryDesc = "";
-        
+
         // Line 1
         victoryDesc +=  "On " + DateUtils.getDateString(victory.getDate());
         if (!victory.getLocation().isEmpty())
@@ -159,10 +159,10 @@ public class VictoryDescriptionBuilderGround extends VictoryDescriptionBuilderBa
 
         // Line 2
         victoryDesc +=  "A " + victory.getVictim().getType() + " was destroyed.";
-        
+
         return victoryDesc;
     }
-    
+
 
     private String getGroundUnitName(VictoryEntity victoryEntity) throws PWCGException
     {
@@ -171,7 +171,7 @@ public class VictoryDescriptionBuilderGround extends VictoryDescriptionBuilderBa
         {
             return building.getDescription();
         }
-        
+
         String vehicleNameFromType = getVehicleName(victoryEntity.getType());
         if (vehicleNameFromType != null)
         {
@@ -194,7 +194,7 @@ public class VictoryDescriptionBuilderGround extends VictoryDescriptionBuilderBa
         {
             return "Locomotive";
         }
-        
+
         if (VehicleDefinitionManager.isTrainCar(victoryEntity.getName()) || VehicleDefinitionManager.isTrainCar(victoryEntity.getType()))
         {
             return "Train Car";
@@ -218,7 +218,7 @@ public class VictoryDescriptionBuilderGround extends VictoryDescriptionBuilderBa
         {
             return vehicleDefinitionByDisplayName.getDisplayName();
         }
-        
+
         return null;
     }
 }

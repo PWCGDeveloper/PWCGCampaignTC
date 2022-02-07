@@ -2,7 +2,7 @@
   "scriptDir": "vehicles\\",
   "modelDir": "artillery\\dshk\\",
   "vehicleType": "dshk",
-  "vehicleName": "DShK MG",
+  "vehicleName": "DShK",
   "displayName": "machine gun",
   "countries": [
     "RUSSIA"

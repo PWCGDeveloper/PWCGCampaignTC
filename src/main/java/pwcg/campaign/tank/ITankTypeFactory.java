@@ -18,12 +18,6 @@ public interface ITankTypeFactory
 
     List<TankTypeInformation> getAllTanks() throws PWCGException;
 
-    TankTypeInformation getTankById(String tankTypeName) throws PWCGException;
-
-    TankTypeInformation createTankTypeByType(String tankTypeName) throws PWCGException;
-
-    TankTypeInformation createTankTypeByAnyName(String name) throws PWCGException;
-
     List<TankTypeInformation> getAvailablePlayerTankTypes(ICountry country, PwcgRoleCategory roleCategory, Date date) throws PWCGException;
 
     List<TankTypeInformation> createTankTypesForArchType(String tankArchType) throws PWCGException;
@@ -36,11 +30,13 @@ public interface ITankTypeFactory
 
     List<TankTypeInformation> createActiveTankTypesForDateAndSide(Side side, Date date) throws PWCGException;
 
+    TankTypeInformation getTankById(String tankTypeName) throws PWCGException;
+
+    TankTypeInformation createTankTypeByAnyName(String name) throws PWCGException;
+
     TankTypeInformation findActiveTankTypeByCountryDateAndRole(ICountry country, Date date, PwcgRoleCategory roleCategory) throws PWCGException;
 
     TankTypeInformation findAnyTankTypeForCountryAndDate(ICountry country, Date date) throws PWCGException;
-
-    TankTypeInformation getTankByDisplayName(String pwcgDesc) throws PWCGException;
 
     Map<String, TankTypeInformation> getTankTypes();
 

@@ -2,8 +2,8 @@
   "scriptDir": "vehicles\\",
   "modelDir": "vehicles\\pziv-g\\",
   "vehicleType": "pziv-g",
-  "vehicleName": "PzKw Mk IV G",
-  "displayName": "PzKw Mk IV",
+  "vehicleName": "Pz.Kpfw.IV Ausf.G",
+  "displayName": "Pz.Kpfw.IV",
   "countries": [
     "GERMANY",
     "ITALY"

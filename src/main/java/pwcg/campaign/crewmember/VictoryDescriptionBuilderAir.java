@@ -9,32 +9,32 @@ public class VictoryDescriptionBuilderAir extends VictoryDescriptionBuilderBase
     public VictoryDescriptionBuilderAir (Campaign campaign, Victory victory)
     {
         super(campaign, victory);
-    }    
- 
+    }
+
     public String getVictoryDescriptionAirToAirSimple() throws PWCGException
     {
         String victimTankType = "Enemy Aircraft";
         if (victory.getVictim().getType() != null && !victory.getVictim().getType().isEmpty())
         {
-            victimTankType = getVehicleDescription(victory.getVictim().getType());
+            victimTankType = getVehicleDescription(victory.getVictim().getType(), victory.getVictim().getName());
         }
-     
+
         String victoryDesc = "";
         if (victory.getDate() != null)
         {
             victoryDesc +=  "On " + DateUtils.getDateString(victory.getDate()) + " a ";
         }
-        
+
         victoryDesc += victimTankType + " was shot down.";
-        
+
         return victoryDesc;
     }
 
     String createVictoryDescriptionUnknownToAir() throws PWCGException
     {
         String victoryDesc = "";
-        
-        String victimTankType = getVehicleDescription(victory.getVictim().getType());
+
+        String victimTankType = getVehicleDescription(victory.getVictim().getType(), victory.getVictim().getName());
 
         if (!(victory.getVictim().getCrewMemberName().isEmpty()))
         {
@@ -55,7 +55,7 @@ public class VictoryDescriptionBuilderAir extends VictoryDescriptionBuilderBase
         {
             victoryDesc +=  victimTankType + " crashed.";
         }
-        
+
         return victoryDesc;
     }
 }

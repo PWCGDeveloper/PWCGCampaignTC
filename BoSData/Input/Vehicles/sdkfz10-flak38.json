@@ -3,7 +3,7 @@
   "modelDir": "vehicles\\sdkfz10-flak38\\",
   "vehicleType": "sdkfz10-flak38",
   "vehicleName": "Sd.Kfz 10 Flak38",
-  "displayName": "half track",
+  "displayName": "AAA Halftrack",
   "countries": [
     "GERMANY",
     "ITALY"

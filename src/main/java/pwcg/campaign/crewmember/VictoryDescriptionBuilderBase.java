@@ -10,12 +10,12 @@ public abstract class VictoryDescriptionBuilderBase
 {
     protected Victory victory;
     protected Campaign campaign;
-    
+
     public VictoryDescriptionBuilderBase (Campaign campaign, Victory victory)
     {
         this.victory = victory;
         this.campaign = campaign;
-    }    
+    }
 
     protected String describeVictor() {
         String victorDesc;
@@ -34,13 +34,29 @@ public abstract class VictoryDescriptionBuilderBase
         return victorDesc;
     }
 
-    protected String getVehicleDescription(String vehicleType) throws PWCGException
+    protected String getVehicleDescription(String vehicleType, String vehicleName) throws PWCGException
     {
-        String planeName = "enemy vehicle";
-        TankTypeInformation plane = PWCGContext.getInstance().getFullTankTypeFactory().createTankTypeByAnyName(vehicleType);
-        if (plane != null)
+        String vehicleDisplayName = "";
+        vehicleDisplayName = getVehicleDisplayName(vehicleType);
+        if (vehicleDisplayName.isEmpty())
         {
-            return plane.getDisplayName();
+            vehicleDisplayName = getVehicleDisplayName(vehicleName);
+            if (vehicleDisplayName.isEmpty())
+            {
+                vehicleDisplayName = "enemy vehicle";
+            }
+        }
+
+
+        return vehicleDisplayName;
+    }
+
+    private String getVehicleDisplayName(String vehicleType) throws PWCGException
+    {
+        TankTypeInformation tank = PWCGContext.getInstance().getFullTankTypeFactory().createTankTypeByAnyName(vehicleType);
+        if (tank != null)
+        {
+            return tank.getDisplayName();
         }
 
         VehicleDefinition vehicleDefinition = PWCGContext.getInstance().getVehicleDefinitionManager().getVehicleDefinition(vehicleType);
@@ -48,8 +64,6 @@ public abstract class VictoryDescriptionBuilderBase
         {
             return vehicleDefinition.getDisplayName();
         }
-        
-
-        return planeName;
+        return "";
     }
 }

@@ -15,9 +15,9 @@ import pwcg.mission.ground.vehicle.VehicleRequestDefinition;
 import pwcg.mission.platoon.PlatoonInformation;
 
 public class AiTankMcuFactory
-{    
+{
     private PlatoonInformation platoonInformation;
-    
+
     public AiTankMcuFactory(PlatoonInformation platoonInformation)
     {
         this.platoonInformation = platoonInformation;
@@ -30,11 +30,11 @@ public class AiTankMcuFactory
         VehicleDefinitionManager vehicleDefinitionManager = PWCGContext.getInstance().getVehicleDefinitionManager();
         List<TankMcu> tanksForPlatoon = new ArrayList<>();
         for (int index = 0; index < numTanks; ++index)
-        {            
+        {
             TankTypeInformation tankTypeForPlatoon = getTankTypeForPlatoon(archTypeForPlatoon);
             VehicleDefinition vehicleDefinitionToBuildTankFrom = vehicleDefinitionManager.getVehicleDefinition(tankTypeForPlatoon.getType());
 
-            TankMcu tank = new TankMcu(vehicleDefinitionToBuildTankFrom, tankTypeForPlatoon, platoonInformation.getCountry());            
+            TankMcu tank = new TankMcu(vehicleDefinitionToBuildTankFrom, tankTypeForPlatoon, platoonInformation.getCountry());
             if (index > 0)
             {
                 TankMcu leadTank = tanksForPlatoon.get(0);
@@ -42,7 +42,7 @@ public class AiTankMcuFactory
             }
             tanksForPlatoon.add(tank);
         }
-        
+
         initializeTankParameters(tanksForPlatoon);
         return tanksForPlatoon;
     }
@@ -51,7 +51,7 @@ public class AiTankMcuFactory
     {
         VehicleRequestDefinition requestDefinition = new VehicleRequestDefinition(platoonInformation.getCountry().getCountry(), platoonInformation.getCampaign().getDate(), VehicleClass.Tank);
         VehicleDefinition vehicleDefinitionForArchType = PWCGContext.getInstance().getVehicleDefinitionManager().getVehicleDefinitionForRequest(requestDefinition);
-        TankTypeInformation tankTypeForArchType = PWCGContext.getInstance().getAiTankTypeFactory().createTankTypeByType(vehicleDefinitionForArchType.getVehicleType());
+        TankTypeInformation tankTypeForArchType = PWCGContext.getInstance().getAiTankTypeFactory().createTankTypeByAnyName(vehicleDefinitionForArchType.getVehicleType());
         String archTypeForPlatoon = tankTypeForArchType.getArchType();
         return archTypeForPlatoon;
     }
@@ -86,4 +86,4 @@ public class AiTankMcuFactory
         tank.setAiLevel(aiLevel);
 
     }
- }
+}

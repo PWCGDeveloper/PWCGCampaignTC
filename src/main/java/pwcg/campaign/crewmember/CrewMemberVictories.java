@@ -107,7 +107,7 @@ public class CrewMemberVictories
 
     private String getTankArchTypeForPlaneName(String tankTypeName) throws PWCGException
     {
-        TankTypeInformation tankType = PWCGContext.getInstance().getFullTankTypeFactory().getTankByDisplayName(tankTypeName);
+        TankTypeInformation tankType = PWCGContext.getInstance().getFullTankTypeFactory().createTankTypeByAnyName(tankTypeName);
         String archTypeName = VehicleDefinition.UNKNOWN_VEHICLE_NAME;
         if (tankType != null)
         {

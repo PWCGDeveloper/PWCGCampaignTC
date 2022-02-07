@@ -30,7 +30,7 @@ public class AARBotVehicleMapper
     {
         for (IAType12 atype12Bot : botList)
         {
-            String tankId = logEventData.getPlaneIdByBot(atype12Bot);
+            String tankId = logEventData.getTankIdByBot(atype12Bot);
 
             LogTank tankResult = getMissionResultTankById(tankId);
             if (tankResult != null)

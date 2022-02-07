@@ -139,7 +139,7 @@ public class AARVehicleBuilder
         LogTank logTank = makeTankFromMissionAndLog(atype12);
 
         logTanks.put(atype12.getId(), logTank);
-        PWCGLogger.log(LogLevel.INFO, "Add Plane: " + atype12.getName() + " ID:" + atype12.getId() + " Type:" + atype12.getType());
+        PWCGLogger.log(LogLevel.INFO, "Add Tank: " + atype12.getName() + " ID:" + atype12.getId() + " Type:" + atype12.getType());
     }
 
     private LogTank makeTankFromMissionAndLog(IAType12 atype12) throws PWCGException
@@ -170,10 +170,10 @@ public class AARVehicleBuilder
     {
         for (IAType12 atype12 : turretList)
         {
-            LogTank planeResult = logTanks.get(atype12.getPid());
-            if (planeResult != null)
+            LogTank tank = logTanks.get(atype12.getPid());
+            if (tank != null)
             {
-                logTurrets.put(atype12.getId(), planeResult.createTurret(atype12));
+                logTurrets.put(atype12.getId(), tank.createTurret(atype12));
             }
 
             LogGroundUnit groundUnitResult = logGroundUnits.get(atype12.getPid());

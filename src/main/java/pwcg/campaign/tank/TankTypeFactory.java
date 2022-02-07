@@ -96,31 +96,15 @@ abstract class TankTypeFactory implements ITankTypeFactory
     }
 
     @Override
-    public TankTypeInformation createTankTypeByType(String tankTypeName) throws PWCGException
-    {
-        TankTypeInformation tank = null;
-
-        for (TankTypeInformation thisTank : tankTypes.values())
-        {
-            if (thisTank.getType().equalsIgnoreCase(tankTypeName))
-            {
-                tank = thisTank;
-                break;
-            }
-        }
-
-        if (tank == null)
-        {
-            throw new PWCGException("Invalid tank name: " + tankTypeName);
-        }
-
-        return tank;
-    }
-
-    @Override
     public TankTypeInformation createTankTypeByAnyName(String name) throws PWCGException
     {
-        TankTypeInformation tank = getTankByTankType(name);
+        TankTypeInformation tank = this.getTankTypeByType(name);
+        if (tank != null)
+        {
+            return tank;
+        }
+
+        tank = getTankByVehicleName(name);
         if (tank != null)
         {
             return tank;
@@ -322,8 +306,7 @@ abstract class TankTypeFactory implements ITankTypeFactory
         return selectedTank;
     }
 
-    @Override
-    public TankTypeInformation getTankByDisplayName(String pwcgDesc) throws PWCGException
+    private TankTypeInformation getTankByDisplayName(String pwcgDesc) throws PWCGException
     {
         TankTypeInformation tank = null;
 
@@ -339,13 +322,29 @@ abstract class TankTypeFactory implements ITankTypeFactory
         return tank;
     }
 
-    private TankTypeInformation getTankByTankType(String abrevName)
+    private TankTypeInformation getTankByVehicleName(String pwcgDesc) throws PWCGException
     {
         TankTypeInformation tank = null;
 
         for (TankTypeInformation thisTank : tankTypes.values())
         {
-            if (abrevName.equalsIgnoreCase(thisTank.getType()))
+            if (thisTank.getVehicleName().equalsIgnoreCase(pwcgDesc))
+            {
+                tank = thisTank;
+                break;
+            }
+        }
+
+        return tank;
+    }
+
+    private TankTypeInformation getTankTypeByType(String tankTypeName) throws PWCGException
+    {
+        TankTypeInformation tank = null;
+
+        for (TankTypeInformation thisTank : tankTypes.values())
+        {
+            if (thisTank.getType().equalsIgnoreCase(tankTypeName))
             {
                 tank = thisTank;
                 break;

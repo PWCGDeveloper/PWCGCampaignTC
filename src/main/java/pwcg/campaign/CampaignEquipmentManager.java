@@ -34,7 +34,7 @@ public class CampaignEquipmentManager
     {
         return equipmentAllCompanies.get(companyId);
     }
-    
+
     public boolean hasEquipmentDepo (int serviceId)
     {
         return equipmentDepotsForServices.containsKey(serviceId);
@@ -64,12 +64,12 @@ public class CampaignEquipmentManager
     {
         return equipmentAllCompanies;
     }
-    
+
     public List<Integer> getServiceIdsForDepots()
     {
         return new ArrayList<Integer>(equipmentDepotsForServices.keySet());
     }
-    
+
     public EquippedTank getAnyTankWithPreference(Integer serialNumber) throws PWCGException
     {
         EquippedTank equippedTank = getTankFromAnyCompany(serialNumber);
@@ -77,7 +77,7 @@ public class CampaignEquipmentManager
         {
             equippedTank = getTankFromAnyDepo(serialNumber);
         }
-        
+
         return equippedTank;
     }
 
@@ -89,9 +89,9 @@ public class CampaignEquipmentManager
             if (equippedTank != null)
             {
                 return equippedTank;
-            }        
+            }
         }
-        
+
         return null;
     }
 
@@ -137,7 +137,7 @@ public class CampaignEquipmentManager
         }
         return equippedTank;
     }
-    
+
 
     public int getReplacementCount() throws PWCGException
     {
@@ -146,11 +146,11 @@ public class CampaignEquipmentManager
         {
             replacementCount += replacementService.getDepotSize();
         }
-        
+
         return replacementCount;
     }
-    
-    
+
+
     public void createEquipmentDepot(ArmedService armedService) throws PWCGException
     {
         EquipmentDepotInitializer depotInitializer = new EquipmentDepotInitializer(campaign, armedService);
@@ -169,12 +169,12 @@ public class CampaignEquipmentManager
         {
             this.destroyTank(serialNumber, campaign.getDate());
         }
-        
+
         Equipment companyEquipment = equipmentAllCompanies.get(company.getCompanyId());
         for (int i = 0; i < serialNumbersOfChangedPlanes.size(); ++i)
         {
             ITankTypeFactory tankTypeFactory = PWCGContext.getInstance().getPlayerTankTypeFactory();
-            TankTypeInformation tankType = tankTypeFactory.getTankByDisplayName(tankTypeToChangeTo);
+            TankTypeInformation tankType = tankTypeFactory.createTankTypeByAnyName(tankTypeToChangeTo);
             EquippedTank equippedTank = TankEquipmentFactory.makeTankForCompany(campaign, tankType.getType(), company);
             equippedTank.setEquipmentRequest(true);
             companyEquipment.addEquippedTankToCompany(campaign, company.getCompanyId(), equippedTank);

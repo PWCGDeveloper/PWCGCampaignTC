@@ -12,6 +12,8 @@ import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogVictory;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.logfiles.LogEventData;
 import pwcg.core.logfiles.event.IAType3;
+import pwcg.core.utils.PWCGLogger;
+import pwcg.core.utils.PWCGLogger.LogLevel;
 
 public class AARDestroyedStatusEvaluator
 {
@@ -32,15 +34,19 @@ public class AARDestroyedStatusEvaluator
     public void buildDeadLists() throws PWCGException
     {
         for (IAType3 atype3 : logEventData.getDestroyedEvents())
-        {                    
+        {
             LogAIEntity logVictor = vehicleBuilder.getVehicle(atype3.getVictor());
             LogAIEntity logVictim = vehicleBuilder.getVehicle(atype3.getVictim());
-            
+
             LogVictory logVictory = new LogVictory(atype3.getSequenceNum());
             logVictory.setLocation(atype3.getLocation());
 
             if (logVictim != null)
             {
+                PWCGLogger.log(LogLevel.INFO,
+                        "Actual from logs.  " +
+                                "Victim " + logVictim.getName() + " in " + logVictim.getVehicleType() +
+                                " destroyed by " + logVictor.getName() + " in " + logVictor.getVehicleType());
                 addDeadVehicle(logVictor, logVictim, logVictory);
             }
             else
