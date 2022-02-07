@@ -23,12 +23,12 @@ public class VehicleDefinitionManager
     public VehicleDefinitionManager()
     {
     }
-    
+
     public void initialize() throws PWCGException
     {
         readVehicles();
     }
-    
+
     private void readVehicles() throws PWCGException
     {
         allVehiclesDefinitions = VehicleDefinitionIOJson.readJson();
@@ -38,7 +38,7 @@ public class VehicleDefinitionManager
     {
         return allVehiclesDefinitions;
     }
-        
+
     public VehicleDefinition getVehicleDefinition(String identifier) throws PWCGException
     {
         VehicleDefinition definition = getVehicleDefinitionByVehicleType(identifier);
@@ -50,10 +50,10 @@ public class VehicleDefinitionManager
                 definition = getVehicleDefinitionByVehicleDisplayName(identifier);
             }
         }
-        
+
         return definition;
     }
-    
+
     private VehicleDefinition getVehicleDefinitionByVehicleType(String vehicleType) throws PWCGException
     {
         for (VehicleDefinition definition : allVehiclesDefinitions)
@@ -63,10 +63,10 @@ public class VehicleDefinitionManager
                 return definition;
             }
         }
-        
+
         return null;
     }
-    
+
     private VehicleDefinition getVehicleDefinitionByVehicleName(String vehicleName) throws PWCGException
     {
         for (VehicleDefinition definition : allVehiclesDefinitions)
@@ -76,10 +76,10 @@ public class VehicleDefinitionManager
                 return definition;
             }
         }
-        
+
         return getVehicleDefinitionByVehicleType(vehicleName);
     }
-    
+
     private VehicleDefinition getVehicleDefinitionByVehicleDisplayName(String vehicleName) throws PWCGException
     {
         for (VehicleDefinition definition : allVehiclesDefinitions)
@@ -89,10 +89,10 @@ public class VehicleDefinitionManager
                 return definition;
             }
         }
-        
+
         return getVehicleDefinitionByVehicleType(vehicleName);
     }
-    
+
     public static boolean isLocomotive(String vehicleIdentifier)
     {
         if (vehicleIdentifier.toLowerCase().equals("e") || vehicleIdentifier.toLowerCase().equals("g8"))
@@ -101,16 +101,16 @@ public class VehicleDefinitionManager
         }
         return false;
     }
-    
+
     public static boolean isTrainCar(String vehicleIdentifier)
     {
         if (vehicleIdentifier.toLowerCase().contentEquals("wagon"))
         {
             return true;
-        }        
+        }
         return false;
     }
-        
+
     public VehicleDefinition getVehicleDefinitionForRequest(VehicleRequestDefinition requestDefinition) throws PWCGException
     {
         List<VehicleDefinition> matchingDefinitions = new ArrayList<>();
@@ -121,12 +121,12 @@ public class VehicleDefinitionManager
                 matchingDefinitions.add(definition);
             }
         }
-        
+
         if (matchingDefinitions.size() == 0)
         {
             throw new PWCGException ("No definition found for request " + requestDefinition.toString());
         }
-        
+
         return chooseMatchingVehicle(matchingDefinitions);
     }
 
@@ -137,13 +137,13 @@ public class VehicleDefinitionManager
         {
             vehiclesByWeight.add(definition);
         }
-        
+
         WeightCalculator weightCalculator = new WeightCalculator(vehiclesByWeight);
         int index = weightCalculator.getItemFromWeight();
         return matchingDefinitions.get(index);
     }
-    
-    
+
+
     public List<VehicleDefinition> getPlayerVehicleDefinitionsOfTypeForCountries(VehicleClass vehicleClass, Set<Country> countries, Date battleDate) throws PWCGException
     {
         List<VehicleDefinition> playerVehiclesOfType = new ArrayList<>();
@@ -157,7 +157,7 @@ public class VehicleDefinitionManager
         }
         return playerVehiclesOfType;
     }
-    
+
     public List<VehicleDefinition> getNonPlayerVehicleDefinitionsOfTypeForCountries(VehicleClass vehicleClass, Set<Country> countries, Date battleDate) throws PWCGException
     {
         List<VehicleDefinition> nonPlayerVehiclesOfType = new ArrayList<>();
@@ -195,7 +195,7 @@ public class VehicleDefinitionManager
                 }
             }
         }
-        
+
         List<VehicleDefinition> matchingVehicles = new ArrayList<>();
         matchingVehicles.addAll(matchingVehiclesAllied.values());
         matchingVehicles.addAll(matchingVehiclesAxis.values());

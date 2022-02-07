@@ -4,11 +4,11 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 
 import pwcg.campaign.crewmember.CrewMemberStatus;
+import pwcg.campaign.crewmember.SerialNumber;
 
 public class LogCrewMember
 {
-    public static final int NOT_CREW_MEMBER = -1;
-    private int serialNumber = NOT_CREW_MEMBER;
+    private int serialNumber = SerialNumber.NO_SERIAL_NUMBER;
     private String botId = "";
     private double damageLevel = 0.0;
     private int status = CrewMemberStatus.STATUS_ACTIVE;

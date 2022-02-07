@@ -20,15 +20,15 @@ public class ClaimDenier
     {
         if (!declaration.isConfirmed())
         {
-            return createPlaneDenied(playerSerialNumber, declaration);
+            return createTankDenied(playerSerialNumber, declaration);
         }
 
         return null;
     }
 
-    private ClaimDeniedEvent createPlaneDenied(Integer playerSerialNumber, PlayerVictoryDeclaration declaration) throws PWCGException
+    private ClaimDeniedEvent createTankDenied(Integer playerSerialNumber, PlayerVictoryDeclaration declaration) throws PWCGException
     {
-        String tankDesc = getPlaneDescription(declaration);
+        String tankDesc = getTankDescription(declaration);
         CrewMember player = campaign.getPersonnelManager().getAnyCampaignMember(playerSerialNumber);
 
         boolean isNewsworthy = false;
@@ -38,9 +38,9 @@ public class ClaimDenier
         return claimDenied;
     }
 
-    private String getPlaneDescription(PlayerVictoryDeclaration playerDeclaration) throws PWCGException
+    private String getTankDescription(PlayerVictoryDeclaration playerDeclaration) throws PWCGException
     {
-        String tankDesc = "Unknown";
+        String tankDesc = VehicleDefinition.UNKNOWN_VEHICLE_NAME;
         VehicleDefinition vehicleDefinition = PWCGContext.getInstance().getVehicleDefinitionManager().getVehicleDefinition(playerDeclaration.getTankType());
         if (vehicleDefinition != null)
         {

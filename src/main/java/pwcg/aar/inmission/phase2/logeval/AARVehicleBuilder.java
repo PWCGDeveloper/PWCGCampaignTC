@@ -123,8 +123,14 @@ public class AARVehicleBuilder
             {
                 return true;
             }
+
+            vehicle = PWCGContext.getInstance().getVehicleDefinitionManager().getVehicleDefinition(atype12.getType());
+            if (vehicle != null && vehicle.getVehicleClass() == VehicleClass.Tank)
+            {
+                return true;
+            }
         }
-        
+
         return false;
     }
 
@@ -133,7 +139,7 @@ public class AARVehicleBuilder
         LogTank logTank = makeTankFromMissionAndLog(atype12);
 
         logTanks.put(atype12.getId(), logTank);
-        PWCGLogger.log(LogLevel.DEBUG, "Add Plane: " + atype12.getName() + " ID:" + atype12.getId() + " Type:" + atype12.getType());
+        PWCGLogger.log(LogLevel.INFO, "Add Plane: " + atype12.getName() + " ID:" + atype12.getId() + " Type:" + atype12.getType());
     }
 
     private LogTank makeTankFromMissionAndLog(IAType12 atype12) throws PWCGException
@@ -146,7 +152,7 @@ public class AARVehicleBuilder
         {
             logTank.mapToEquippedTankFromMissionTank(missionTank);
         }
-        
+
         return logTank;
     }
 

@@ -35,7 +35,9 @@ import pwcg.product.bos.country.TCServiceManager;
 
 public class CrewMember implements Cloneable
 {
-    protected String name = "";
+    public static final String UNKNOWN_CREW_NAME = "Unknown Crew Member";
+
+    protected String name = UNKNOWN_CREW_NAME;
     protected int serialNumber = SerialNumber.NO_SERIAL_NUMBER;
     protected String rank = "";
 
@@ -210,8 +212,8 @@ public class CrewMember implements Cloneable
 
     public boolean isCommander(Date date) throws PWCGException
     {
-    	int rankPos = determineRankPos(date);
-    	return (rankPos == 0);
+        int rankPos = determineRankPos(date);
+        return (rankPos == 0);
     }
 
     public boolean isCrewMemberName(String searchName)
@@ -220,21 +222,21 @@ public class CrewMember implements Cloneable
         {
             return false;
         }
-        
+
         String truncatedSearchName = truncateNameToGameMax(searchName);
         String truncatedName = truncateNameToGameMax(this.getName());
         String truncatedNameAndRank = truncateNameToGameMax(this.getNameAndRank());
-                
-        if (truncatedName.equalsIgnoreCase(truncatedSearchName)           || 
-            truncatedNameAndRank.equalsIgnoreCase(truncatedSearchName))
+
+        if (truncatedName.equalsIgnoreCase(truncatedSearchName)           ||
+                truncatedNameAndRank.equalsIgnoreCase(truncatedSearchName))
         {
             return true;
         }
 
         return false;
     }
-    
-    private String truncateNameToGameMax(String originalName) 
+
+    private String truncateNameToGameMax(String originalName)
     {
         if (originalName.length() > 22)
         {
@@ -278,7 +280,7 @@ public class CrewMember implements Cloneable
                 Country aceCountry = historicalAce.getCountry();
                 TCServiceManager armedServiceManager = ArmedServiceFactory.createServiceManager();
                 service = armedServiceManager.getPrimaryServiceForNation(aceCountry);
-            }            
+            }
         }
 
         if (service == null)
@@ -288,7 +290,7 @@ public class CrewMember implements Cloneable
 
         return service;
     }
-    
+
     public boolean isHistoricalAce()
     {
         HistoricalAce historicalAce = PWCGContext.getInstance().getAceManager().getHistoricalAceBySerialNumber(serialNumber);
@@ -396,29 +398,29 @@ public class CrewMember implements Cloneable
         this.activeStatus = crewMemberActiveStatus;
         if (crewMemberActiveStatus <= CrewMemberStatus.STATUS_CAPTURED)
         {
-            recoveryDate = null;            
+            recoveryDate = null;
             inactiveDate = new Date(statusDate.getTime());
         }
         else if (crewMemberActiveStatus <= CrewMemberStatus.STATUS_WOUNDED)
         {
-            recoveryDate = new Date(updatedRecoveryDate.getTime());            
-            inactiveDate = null;            
+            recoveryDate = new Date(updatedRecoveryDate.getTime());
+            inactiveDate = null;
         }
         else if (crewMemberActiveStatus <= CrewMemberStatus.STATUS_SERIOUSLY_WOUNDED)
         {
-            recoveryDate = new Date(recoveryDate.getTime());            
-            inactiveDate = null;            
+            recoveryDate = new Date(recoveryDate.getTime());
+            inactiveDate = null;
         }
         else if (crewMemberActiveStatus <= CrewMemberStatus.STATUS_TRANSFERRED)
         {
             crewMemberActiveStatus = CrewMemberStatus.STATUS_ACTIVE;
-            recoveryDate = null;            
-            inactiveDate = null;            
+            recoveryDate = null;
+            inactiveDate = null;
         }
         else if (crewMemberActiveStatus == CrewMemberStatus.STATUS_ACTIVE)
         {
-            inactiveDate = null;            
-            recoveryDate = null;            
+            inactiveDate = null;
+            recoveryDate = null;
         }
     }
 
@@ -427,23 +429,23 @@ public class CrewMember implements Cloneable
         this.activeStatus = crewMemberActiveStatus;
         if (crewMemberActiveStatus <= CrewMemberStatus.STATUS_SERIOUSLY_WOUNDED)
         {
-            recoveryDate = null;            
+            recoveryDate = null;
             inactiveDate = new Date(statusDate.getTime());
         }
         else if (crewMemberActiveStatus <= CrewMemberStatus.STATUS_WOUNDED)
         {
-            recoveryDate = new Date(updatedRecoveryDate.getTime());            
-            inactiveDate = null;            
+            recoveryDate = new Date(updatedRecoveryDate.getTime());
+            inactiveDate = null;
         }
         else if (crewMemberActiveStatus <= CrewMemberStatus.STATUS_TRANSFERRED)
         {
-            recoveryDate = null;            
+            recoveryDate = null;
             inactiveDate = new Date(statusDate.getTime());
         }
         else if (crewMemberActiveStatus == CrewMemberStatus.STATUS_ACTIVE)
         {
-            inactiveDate = null;            
-            recoveryDate = null;            
+            inactiveDate = null;
+            recoveryDate = null;
         }
     }
 
@@ -457,7 +459,7 @@ public class CrewMember implements Cloneable
                 isPlayer = true;
             }
         }
-        
+
         return isPlayer;
     }
 

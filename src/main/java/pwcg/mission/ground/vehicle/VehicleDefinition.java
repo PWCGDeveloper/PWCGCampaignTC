@@ -10,6 +10,8 @@ import pwcg.core.utils.IWeight;
 
 public class VehicleDefinition implements IWeight
 {
+    public final static String UNKNOWN_VEHICLE_NAME = "Unknown Vehicle";
+
     private String scriptDir;
     private String modelDir;
     private String vehicleName;
@@ -55,6 +57,7 @@ public class VehicleDefinition implements IWeight
         return rarityWeight;
     }
 
+    @Override
     public int getWeight()
     {
         return rarityWeight;
@@ -128,5 +131,5 @@ public class VehicleDefinition implements IWeight
     public boolean isPlayerDrivable()
     {
         return isPlayerDrivable;
-    }    
+    }
 }

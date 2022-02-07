@@ -9,37 +9,41 @@ import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogVictory;
 import pwcg.campaign.Campaign;
 import pwcg.campaign.crewmember.CrewMember;
+import pwcg.campaign.crewmember.SerialNumber;
 import pwcg.campaign.crewmember.Victory;
 import pwcg.campaign.crewmember.VictoryBuilder;
 import pwcg.core.exception.PWCGException;
 
-public class VictoryEventHandler 
+public class VictoryEventHandler
 {
     private Campaign campaign;
     private Map<Integer, List<Victory>> victories = new HashMap<>();
 
-	public VictoryEventHandler (Campaign campaign) 
-	{
-	    this.campaign = campaign;
-	}
+    public VictoryEventHandler (Campaign campaign)
+    {
+        this.campaign = campaign;
+    }
 
-	public Map<Integer, List<Victory>> recordVictories(ConfirmedVictories missionVictories) throws PWCGException 
-	{
-		for (LogVictory resultVictory : missionVictories.getConfirmedVictories())
-		{
+    public Map<Integer, List<Victory>> recordVictories(ConfirmedVictories missionVictories) throws PWCGException
+    {
+        for (LogVictory resultVictory : missionVictories.getConfirmedVictories())
+        {
             if (resultVictory.getVictor() instanceof LogTank)
             {
                 LogTank victorPlanePlane = (LogTank)resultVictory.getVictor();
-    			CrewMember crewMember = campaign.getPersonnelManager().getAnyCampaignMember(victorPlanePlane.getCrewMemberSerialNumber());
-    			if (crewMember != null)
-    			{			    
-                    addVictoryForCrewMember(resultVictory, crewMember);
-    			}
+                if(victorPlanePlane.getCrewMemberSerialNumber() != SerialNumber.NO_SERIAL_NUMBER)
+                {
+                    CrewMember crewMember = campaign.getPersonnelManager().getAnyCampaignMember(victorPlanePlane.getCrewMemberSerialNumber());
+                    if (crewMember != null)
+                    {
+                        addVictoryForCrewMember(resultVictory, crewMember);
+                    }
+                }
             }
-		}
-		
-		return victories;
-	}
+        }
+
+        return victories;
+    }
 
     private void addVictoryForCrewMember(LogVictory logVictory, CrewMember crewMember) throws PWCGException
     {
@@ -51,7 +55,7 @@ public class VictoryEventHandler
             List<Victory> victoriesForCrewMember = new ArrayList<Victory>();
             victories.put(crewMember.getSerialNumber(), victoriesForCrewMember);
         }
-        
+
         List<Victory> victoriesForCrewMember = victories.get(crewMember.getSerialNumber());
         victoriesForCrewMember.add(victory);
     }

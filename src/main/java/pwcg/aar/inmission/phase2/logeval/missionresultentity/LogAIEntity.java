@@ -2,6 +2,7 @@ package pwcg.aar.inmission.phase2.logeval.missionresultentity;
 
 import pwcg.campaign.api.ICountry;
 import pwcg.campaign.context.PWCGContext;
+import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.tank.PwcgRoleCategory;
 import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.core.exception.PWCGException;
@@ -9,10 +10,8 @@ import pwcg.core.logfiles.event.IAType12;
 
 public abstract class LogAIEntity extends LogBase
 {
-    public static final String UNKNOWN_CREW_NAME = "Unknown";
-    
     protected String id = "";
-    protected String name = UNKNOWN_CREW_NAME;
+    protected String name = CrewMember.UNKNOWN_CREW_NAME;
     protected String vehicleType = "";
     protected PwcgRoleCategory roleCategory = PwcgRoleCategory.OTHER;
     protected ICountry country;
@@ -28,7 +27,7 @@ public abstract class LogAIEntity extends LogBase
         setCountry(atype12.getCountry());
         setName(atype12.getName());
         setVehicleType(atype12.getType());
-        
+
         TankTypeInformation tank = PWCGContext.getInstance().getFullTankTypeFactory().createTankTypeByAnyName(atype12.getType());
         if (tank != null)
         {

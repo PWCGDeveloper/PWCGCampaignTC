@@ -18,12 +18,12 @@ public class CrewMemberVictories
     private List<Victory>  tankVictories = new ArrayList<>();
     private List<Victory>  trainVictories = new ArrayList<>();
     private List<Victory>  groundVictories = new ArrayList<>();
-    
+
     private Map<String, List<Victory>> airVictoriesdInType = new HashMap<>();
     private Map<String, List<Victory>> groundVictoriesdInType = new HashMap<>();
     private Map<String, List<Victory>> airVictoriesType = new HashMap<>();
     private Map<String, List<Victory>> tankVictoriesType = new HashMap<>();
-    
+
     public CrewMemberVictories (List<Victory> victories) throws PWCGException
     {
         for (Victory victory : victories)
@@ -34,7 +34,7 @@ public class CrewMemberVictories
                 addAirVictoryInType(victory);
                 addAirTypeVictory(victory);
             }
-            
+
             if (victory.getVictim().getAirOrGround() == Victory.VEHICLE)
             {
                 VehicleDefinition vehicleDefinitionByName = PWCGContext.getInstance().getVehicleDefinitionManager().getVehicleDefinition(victory.getVictim().getType());
@@ -51,7 +51,7 @@ public class CrewMemberVictories
                 {
                     groundVictories.add(victory);
                 }
-                
+
                 addGroundVictoryInType(victory);
             }
         }
@@ -104,11 +104,11 @@ public class CrewMemberVictories
         List<Victory> tankTypeList = tankVictoriesType.get(key);
         tankTypeList.add(victory);
     }
-    
+
     private String getTankArchTypeForPlaneName(String tankTypeName) throws PWCGException
     {
         TankTypeInformation tankType = PWCGContext.getInstance().getFullTankTypeFactory().getTankByDisplayName(tankTypeName);
-        String archTypeName = "Unknown";
+        String archTypeName = VehicleDefinition.UNKNOWN_VEHICLE_NAME;
         if (tankType != null)
         {
             TankArchType tankArchType = PWCGContext.getInstance().getFullTankTypeFactory().getTankArchType(tankType.getArchType());

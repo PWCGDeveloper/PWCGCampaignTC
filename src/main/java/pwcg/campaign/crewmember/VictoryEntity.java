@@ -19,7 +19,7 @@ public class VictoryEntity
     private String type = "";
     private String companyName = "";
     private Integer crewMemberSerialNumber = SerialNumber.NO_SERIAL_NUMBER;
-    private String crewMemberName = LogAIEntity.UNKNOWN_CREW_NAME;
+    private String crewMemberName = CrewMember.UNKNOWN_CREW_NAME;
     private int crewMemberStatus = CrewMemberStatus.STATUS_ACTIVE;
     private boolean isGunner = false;
 
@@ -58,20 +58,20 @@ public class VictoryEntity
         {
             return false;
         }
-        
+
         return true;
     }
 
     private void initializeForPlane(Date victoryDate, LogPlane logPlane, String crewMemberName) throws PWCGException
-    {                    
+    {
         airOrGround = Victory.AIRCRAFT;
         setType(logPlane.getVehicleType());
         name = logPlane.getName();
     }
 
     private void initializeForTank(Date victoryDate, LogTank logTank, String crewMemberName) throws PWCGException
-    {                    
-        if (!crewMemberName.equals(LogAIEntity.UNKNOWN_CREW_NAME))
+    {
+        if (!crewMemberName.equals(CrewMember.UNKNOWN_CREW_NAME))
         {
             LogCrewMember logCrewMember = logTank.getLogCrewMember();
             this.crewMemberName = crewMemberName;
@@ -83,7 +83,7 @@ public class VictoryEntity
                 this.companyName = company.determineDisplayName(victoryDate);
             }
         }
-        
+
         airOrGround = Victory.VEHICLE;
         setType(logTank.getVehicleType());
         name = logTank.getName();

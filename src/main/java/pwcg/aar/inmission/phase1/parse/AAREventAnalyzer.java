@@ -5,6 +5,7 @@ import pwcg.core.logfiles.event.IAType12;
 import pwcg.core.logfiles.event.IAType3;
 import pwcg.core.utils.PWCGLogger;
 import pwcg.core.utils.PWCGLogger.LogLevel;
+import pwcg.mission.ground.vehicle.VehicleDefinition;
 
 public class AAREventAnalyzer
 {
@@ -14,7 +15,7 @@ public class AAREventAnalyzer
     {
         this.logEventData = logEventData;
     }
-    
+
     public void analyze()
     {
         for (IAType3 destroyed : logEventData.getDestroyedEvents())
@@ -24,7 +25,7 @@ public class AAREventAnalyzer
             PWCGLogger.log(LogLevel.DEBUG, victim + " killed by " + victor);
         }
     }
-    
+
     private String getVehicleName(String id)
     {
         IAType12 vehicle = logEventData.getVehicle(id);
@@ -34,7 +35,7 @@ public class AAREventAnalyzer
         }
         else
         {
-            return "Unknown";
+            return VehicleDefinition.UNKNOWN_VEHICLE_NAME;
         }
     }
 }
