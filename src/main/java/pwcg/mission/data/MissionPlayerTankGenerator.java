@@ -9,12 +9,12 @@ import pwcg.mission.Mission;
 import pwcg.mission.platoon.ITankPlatoon;
 import pwcg.mission.platoon.tank.TankMcu;
 
-public class MissionTankGenerator
+public class MissionPlayerTankGenerator
 {
     private Mission mission;
     private List<PwcgGeneratedMissionVehicleData> missionTanks = new ArrayList<>();
     
-    public MissionTankGenerator(Mission mission)
+    public MissionPlayerTankGenerator(Mission mission)
     {
         this.mission = mission;
     }

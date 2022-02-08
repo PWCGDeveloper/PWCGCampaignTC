@@ -6,10 +6,13 @@ import java.util.List;
 import java.util.Set;
 
 import pwcg.campaign.Campaign;
+import pwcg.campaign.api.ICountry;
 import pwcg.campaign.api.Side;
-import pwcg.campaign.company.Company;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.crewmember.CrewMember;
+import pwcg.campaign.factory.CountryFactory;
+import pwcg.campaign.tank.ITankTypeFactory;
+import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.core.exception.PWCGException;
 import pwcg.mission.data.PwcgGeneratedMissionVehicleData;
 import pwcg.mission.ground.vehicle.VehicleDefinitionManager;
@@ -39,12 +42,17 @@ public class PwcgMissionDataEvaluator
     {
         Set<String> uniqueTanksForSide = new HashSet<>();
 
-        for (PwcgGeneratedMissionVehicleData missionTank : aarPreliminarytData.getPwcgMissionData().getMissionTanks().values())
+        for (String tankTypeInMission : aarPreliminarytData.getPwcgMissionData().getTankTypesInMission())
         {
-            Company company = PWCGContext.getInstance().getCompanyManager().getCompany(missionTank.getCompanyId());            
-            if (company.determineCompanyCountry(campaign.getDate()).getSide() == side)
+            ITankTypeFactory tankTypeFactory = PWCGContext.getInstance().getFullTankTypeFactory();
+            TankTypeInformation tankType = tankTypeFactory.createTankTypeByAnyName(tankTypeInMission);
+            if (tankType != null)
             {
-                uniqueTanksForSide.add(missionTank.getVehicleType());
+                ICountry tankCountry = CountryFactory.makeCountryByCountry(tankType.getPrimaryUsedBy().get(0));
+                if(tankCountry.getSide() == side)
+                {
+                    uniqueTanksForSide.add(tankTypeInMission);
+                }
             }
         }
 
@@ -55,10 +63,10 @@ public class PwcgMissionDataEvaluator
     {
         return aarPreliminarytData.getPwcgMissionData().getMissionTank(serialNumber);
     }
-    
+
     public PwcgGeneratedMissionVehicleData getTankForCrewMemberByName(String name) throws PWCGException
     {
-        List<PwcgGeneratedMissionVehicleData> missionTanks = new ArrayList<>(aarPreliminarytData.getPwcgMissionData().getMissionTanks().values());
+        List<PwcgGeneratedMissionVehicleData> missionTanks = new ArrayList<>(aarPreliminarytData.getPwcgMissionData().getMissionPlayerTanks().values());
         for (PwcgGeneratedMissionVehicleData missionTank : missionTanks)
         {
             CrewMember crewMember = campaign.getPersonnelManager().getAnyCampaignMember(missionTank.getCrewMemberSerialNumber());
@@ -97,12 +105,12 @@ public class PwcgMissionDataEvaluator
             {
                 return false;
             }
-            
+
             if (crewMemberInMission.getName() == null)
             {
                 return false;
             }
-            
+
             if (crewMemberInMission.isCrewMemberName(destroyedEntityName))
             {
                 return true;

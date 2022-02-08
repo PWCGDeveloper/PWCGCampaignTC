@@ -81,7 +81,7 @@ public class AARBotVehicleMapperTest
         List<PwcgGeneratedMissionVehicleData> missionTanks = new ArrayList<>(testMissionEntityGenerator.getMissionTanks().values());
         for (PwcgGeneratedMissionVehicleData missionTank : missionTanks)
         {
-            pwcgMissionData.addMissionTanks(missionTank);
+            pwcgMissionData.addMissionPlayerTanks(missionTank);
         }
         
         LogEventData logEventData = testMissionEntityGenerator.getAARLogEventData();

@@ -2,7 +2,6 @@ TC:
 Campaign creation:
 
 Mission:
-record AI tank types for AAR
 Current mission bugs
 - Generic mission description is in use
 

@@ -73,7 +73,7 @@ public class AARClaimPanelEventTabulatorTest
 
         missionTanks.put(axisTank.getCrewMemberSerialNumber(), axisTank);
 
-        Mockito.when(pwcgMissionData.getMissionTanks()).thenReturn(missionTanks);
+        Mockito.when(pwcgMissionData.getMissionPlayerTanks()).thenReturn(missionTanks);
     }
     
     @Test

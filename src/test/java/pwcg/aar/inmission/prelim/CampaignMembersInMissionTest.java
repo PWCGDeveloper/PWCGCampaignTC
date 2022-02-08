@@ -51,7 +51,7 @@ public class CampaignMembersInMissionTest
             missionTanks.put(planeData.getCrewMemberSerialNumber(), planeData);
         }
         
-        Mockito.when(pwcgMissionData.getMissionTanks()).thenReturn(missionTanks);
+        Mockito.when(pwcgMissionData.getMissionPlayerTanks()).thenReturn(missionTanks);
         
         CampaignMembersInMissionFinder campaignMembersInMissionHandler = new CampaignMembersInMissionFinder();
         CrewMembers crewMembersInMission = campaignMembersInMissionHandler.determineCampaignMembersInMission(campaign, pwcgMissionData);
