@@ -28,7 +28,7 @@ public class DrifterUnit extends GroundUnit
         super.createSpawnTimer();
         
         VehicleRequestDefinition requestDefinition = new VehicleRequestDefinition(groundUnitInformation.getCountry().getCountry(), groundUnitInformation.getDate(), vehicleClass);
-        VehicleDefinition vehicleDefinition = PWCGContext.getInstance().getVehicleDefinitionManager().getVehicleDefinitionForRequest(requestDefinition);
+        VehicleDefinition vehicleDefinition = PWCGContext.getInstance().getVehicleDefinitionManager().getAiVehicleDefinitionForRequest(requestDefinition);
 
         List<Coordinate> vehicleStartPositions = createVehicleStartPositions(vehicleDefinition);
         super.createVehiclesFromDefinition(vehicleStartPositions, vehicleDefinition);

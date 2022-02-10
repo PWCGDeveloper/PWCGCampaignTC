@@ -15,7 +15,7 @@ public class PlayerClaimResolverFirm
     
     public String getDestroyedTankDisplayNameAsFirm (CrewMember player, PlayerVictoryDeclaration playerDeclaration, LogVictory resultVictory) throws PWCGException
     {
-        String shotDownPlaneDisplayName = "";
+        String destroyedTankDisplayName = "";
         
         if (!resultVictory.isConfirmed())
         {
@@ -28,18 +28,18 @@ public class PlayerClaimResolverFirm
                         if (resultVictory.getVictim() instanceof LogTank)
                         {
                             LogTank victimPlane = (LogTank)resultVictory.getVictim();
-                            TankTypeInformation shotDownPlane = PWCGContext.getInstance().getFullTankTypeFactory().createTankTypeByAnyName(victimPlane.getVehicleType());
-                            TankTypeInformation claimedPlane = PWCGContext.getInstance().getFullTankTypeFactory().createTankTypeByAnyName(playerDeclaration.getTankType());
+                            TankTypeInformation destroyedTank = PWCGContext.getInstance().getFullTankTypeFactory().createTankTypeByAnyName(victimPlane.getVehicleType());
+                            TankTypeInformation claimedTank = PWCGContext.getInstance().getFullTankTypeFactory().createTankTypeByAnyName(playerDeclaration.getTankType());
             
-                            if (shotDownPlane == null || claimedPlane == null)
+                            if (destroyedTank == null || claimedTank == null)
                             {
                                 PWCGLogger.log(LogLevel.ERROR, 
                                                 "resolveAsFirmVictory: No tank found for claimed type " + playerDeclaration.getTankType() );
                                 
                             }
-                            else if (shotDownPlane.getType().equals(claimedPlane.getType()))
+                            else if (destroyedTank.getType().equals(claimedTank.getType()))
                             {
-                                shotDownPlaneDisplayName = claimPlaneNameFinder.getShotDownPlaneDisplayName(playerDeclaration, resultVictory);
+                                destroyedTankDisplayName = claimPlaneNameFinder.getShotDownPlaneDisplayName(playerDeclaration, resultVictory);
                             }
                         }
                     }
@@ -47,7 +47,7 @@ public class PlayerClaimResolverFirm
             }
         }
         
-        return shotDownPlaneDisplayName;
+        return destroyedTankDisplayName;
     }
         
 

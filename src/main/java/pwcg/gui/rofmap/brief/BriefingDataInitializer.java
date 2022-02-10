@@ -16,37 +16,37 @@ import pwcg.mission.platoon.tank.TankMcu;
 public class BriefingDataInitializer
 {
     private Mission mission;
-    
-	public BriefingDataInitializer(Mission mission)
-	{
+
+    public BriefingDataInitializer(Mission mission)
+    {
         this.mission = mission;
-	}
-	
-	public BriefingCrewMemberAssignmentData initializeFromMission(ICompanyMission company) throws PWCGException
-	{	    
-	    BriefingCrewMemberAssignmentData briefingAssignmentData = new BriefingCrewMemberAssignmentData();
-	    briefingAssignmentData.setCompany(company);
-        
-	    CompanyPersonnel playerPersonnel = mission.getCampaign().getPersonnelManager().getCompanyPersonnel(company.getCompanyId());
+    }
+
+    public BriefingCrewMemberAssignmentData initializeFromMission(ICompanyMission company) throws PWCGException
+    {
+        BriefingCrewMemberAssignmentData briefingAssignmentData = new BriefingCrewMemberAssignmentData();
+        briefingAssignmentData.setCompany(company);
+
+        CompanyPersonnel playerPersonnel = mission.getCampaign().getPersonnelManager().getCompanyPersonnel(company.getCompanyId());
         CrewMembers companyMembers = CrewMemberFilter.filterActiveAIAndPlayerAndAcesNoWounded(
-        		playerPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), (mission.getCampaign().getDate()));
+                playerPersonnel.getCrewMembersWithAces().getCrewMemberCollection(), (mission.getCampaign().getDate()));
         for (CrewMember crewMember : companyMembers.getCrewMemberCollection().values())
         {
             briefingAssignmentData.addCrewMember(crewMember);
         }
-        
+
         Equipment companyTanks = mission.getCampaign().getEquipmentManager().getEquipmentForCompany(company.getCompanyId());
         for (EquippedTank companyPlane : companyTanks.getActiveEquippedTanks().values())
         {
             briefingAssignmentData.addPlane(companyPlane);
         }
-	    
+
         ITankPlatoon playerPlatoon = mission.getPlatoons().getPlayerUnitForCompany(company.getCompanyId());
-	    for (TankMcu tank : playerPlatoon.getPlatoonTanks().getTanks())
-	    {
-	        briefingAssignmentData.assignCrewMember(tank.getTankCommander().getSerialNumber(), tank.getSerialNumber());
-	    }
-	    
-	    return briefingAssignmentData;
-	}
+        for (TankMcu tank : playerPlatoon.getPlatoonTanks().getTanks())
+        {
+            briefingAssignmentData.assignCrewMember(tank.getTankCommander().getSerialNumber(), tank.getSerialNumber());
+        }
+
+        return briefingAssignmentData;
+    }
 }

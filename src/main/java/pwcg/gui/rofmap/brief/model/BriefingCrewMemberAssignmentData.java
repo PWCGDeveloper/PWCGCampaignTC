@@ -12,7 +12,7 @@ import pwcg.mission.playerunit.crew.CrewTankPayloadPairing;
 
 public class BriefingCrewMemberAssignmentData
 {
-	private ICompanyMission company;
+    private ICompanyMission company;
     private List<CrewTankPayloadPairing> assignedCrewPlanes = new ArrayList<>();
     private Map<Integer, CrewMember> unAssignedCrewMembers = new HashMap<>();
     private Map<Integer, EquippedTank> unAssignedPlanes = new HashMap<>();
@@ -36,9 +36,9 @@ public class BriefingCrewMemberAssignmentData
 
     public void assignCrewMember(int crewMemberSerialNumber, int tankSerialNumber)
     {
-        CrewMember assignedCrewMember = unAssignedCrewMembers.remove(crewMemberSerialNumber);        
+        CrewMember assignedCrewMember = unAssignedCrewMembers.remove(crewMemberSerialNumber);
         EquippedTank equippedTank = unAssignedPlanes.remove(tankSerialNumber);
-        
+
         CrewTankPayloadPairing crewPlane = new CrewTankPayloadPairing(assignedCrewMember, equippedTank);
         crewPlane.setPayloadId(CrewTankPayloadPairing.NO_PAYLOAD_ASSIGNED);
         crewPlane.clearModification();
@@ -54,21 +54,21 @@ public class BriefingCrewMemberAssignmentData
         unAssignedCrewMembers.put(crewPlane.getCrewMember().getSerialNumber(), crewPlane.getCrewMember());
         unAssignedPlanes.put(crewPlane.getTank().getSerialNumber(), crewPlane.getTank());
     }
-    
+
     public void changeTank(int crewMemberSerialNumber, Integer tankSerialNumber)
     {
         CrewTankPayloadPairing crewPlane = this.findAssignedCrewPairingByCrewMember(crewMemberSerialNumber);
 
         unAssignedPlanes.put(crewPlane.getTank().getSerialNumber(), crewPlane.getTank());
-        
+
         EquippedTank equippedTank = unAssignedPlanes.remove(tankSerialNumber);
- 
-        crewPlane.setPlane(equippedTank);
+
+        crewPlane.setTank(equippedTank);
         crewPlane.setPayloadId(CrewTankPayloadPairing.NO_PAYLOAD_ASSIGNED);
         crewPlane.clearModification();
     }
 
-    public void modifyPayload(Integer crewMemberSerialNumber, int payloadId) 
+    public void modifyPayload(Integer crewMemberSerialNumber, int payloadId)
     {
         CrewTankPayloadPairing crewPlane = this.findAssignedCrewPairingByCrewMember(crewMemberSerialNumber);
         crewPlane.setPayloadId(payloadId);
@@ -84,15 +84,15 @@ public class BriefingCrewMemberAssignmentData
         return unAssignedPlanes;
     }
 
-	public ICompanyMission getCompany() 
-	{
-		return company;
-	}
+    public ICompanyMission getCompany()
+    {
+        return company;
+    }
 
-	public void setCompany(ICompanyMission company) 
-	{
-		this.company = company;
-	}
+    public void setCompany(ICompanyMission company)
+    {
+        this.company = company;
+    }
 
     public CrewTankPayloadPairing findAssignedCrewPairingByCrewMember(int crewMemberSerialNumber)
     {
@@ -138,7 +138,7 @@ public class BriefingCrewMemberAssignmentData
                     return;
                 }
             }
-        } 
+        }
     }
 
     private List<CrewTankPayloadPairing> moveCrewMemberUpByIndex(int playerToBeMovedIndex)
@@ -177,7 +177,7 @@ public class BriefingCrewMemberAssignmentData
                 }
             }
         }
- 
+
     }
 
     private List<CrewTankPayloadPairing> moveCrewMemberDownFromIndex(int playerToBeMovedIndex)
@@ -197,8 +197,8 @@ public class BriefingCrewMemberAssignmentData
             {
                 copyOfAssignedCrewPlanes.add(assignedCrewPlanes.get(movingIndex));
             }
-               
+
         }
         return copyOfAssignedCrewPlanes;
-    }    
+    }
 }

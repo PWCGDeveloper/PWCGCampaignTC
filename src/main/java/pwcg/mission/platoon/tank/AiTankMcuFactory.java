@@ -50,7 +50,7 @@ public class AiTankMcuFactory
     private String getTankArchTypeForPlatoon() throws PWCGException
     {
         VehicleRequestDefinition requestDefinition = new VehicleRequestDefinition(platoonInformation.getCountry().getCountry(), platoonInformation.getCampaign().getDate(), VehicleClass.Tank);
-        VehicleDefinition vehicleDefinitionForArchType = PWCGContext.getInstance().getVehicleDefinitionManager().getVehicleDefinitionForRequest(requestDefinition);
+        VehicleDefinition vehicleDefinitionForArchType = PWCGContext.getInstance().getVehicleDefinitionManager().getAiVehicleDefinitionForRequest(requestDefinition);
         TankTypeInformation tankTypeForArchType = PWCGContext.getInstance().getAiTankTypeFactory().createTankTypeByAnyName(vehicleDefinitionForArchType.getVehicleType());
         String archTypeForPlatoon = tankTypeForArchType.getArchType();
         return archTypeForPlatoon;

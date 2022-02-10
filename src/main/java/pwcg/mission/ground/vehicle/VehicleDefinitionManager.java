@@ -111,14 +111,17 @@ public class VehicleDefinitionManager
         return false;
     }
 
-    public VehicleDefinition getVehicleDefinitionForRequest(VehicleRequestDefinition requestDefinition) throws PWCGException
+    public VehicleDefinition getAiVehicleDefinitionForRequest(VehicleRequestDefinition requestDefinition) throws PWCGException
     {
         List<VehicleDefinition> matchingDefinitions = new ArrayList<>();
         for (VehicleDefinition definition : allVehiclesDefinitions)
         {
-            if (definition.shouldUse(requestDefinition))
+            if (!definition.isPlayerDrivable())
             {
-                matchingDefinitions.add(definition);
+                if (definition.shouldUse(requestDefinition))
+                {
+                    matchingDefinitions.add(definition);
+                }
             }
         }
 

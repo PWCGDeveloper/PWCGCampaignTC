@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 
 import pwcg.campaign.context.Country;
+import pwcg.campaign.context.PWCGContext;
+import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.DateUtils;
 import pwcg.core.utils.IWeight;
@@ -24,7 +26,6 @@ public class VehicleDefinition implements IWeight
     private VehicleClass vehicleClass;
     private String associatedBlock;
     private int vehicleLength;
-    private boolean isPlayerDrivable = false;
     private String archType = "";
 
     public String getScriptDir()
@@ -128,8 +129,13 @@ public class VehicleDefinition implements IWeight
         return false;
     }
 
-    public boolean isPlayerDrivable()
+    public boolean isPlayerDrivable() throws PWCGException
     {
-        return isPlayerDrivable;
+        TankTypeInformation tankDefinition = PWCGContext.getInstance().getFullTankTypeFactory().createTankTypeByAnyName(vehicleType);
+        if (tankDefinition != null)
+        {
+            return tankDefinition.isPlayer();
+        }
+        return false;
     }
 }
