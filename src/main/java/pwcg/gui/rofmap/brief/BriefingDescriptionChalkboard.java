@@ -16,7 +16,7 @@ import pwcg.gui.colors.ColorMap;
 import pwcg.gui.dialogs.PWCGMonitorBorders;
 import pwcg.gui.dialogs.PWCGMonitorFonts;
 import pwcg.gui.rofmap.brief.model.BriefingData;
-import pwcg.gui.rofmap.brief.model.BriefingUnit;
+import pwcg.gui.rofmap.brief.model.BriefingPlatoon;
 import pwcg.gui.utils.ContextSpecificImages;
 import pwcg.gui.utils.ImageResizingPanel;
 import pwcg.gui.utils.ScrollBarWrapper;
@@ -114,7 +114,7 @@ public class BriefingDescriptionChalkboard extends ImageResizingPanel
 
     private String makeCrewMemberList() throws PWCGException 
     {
-        BriefingUnit activeMissionHandler = briefingContext.getActiveBriefingPlatoon();
+        BriefingPlatoon activeMissionHandler = briefingContext.getActiveBriefingPlatoon();
         StringBuffer assignedCrewMembersBuffer = new StringBuffer ("Assigned CrewMembers:\n");
         for (CrewTankPayloadPairing crewPlane : activeMissionHandler.getCrews())
         {

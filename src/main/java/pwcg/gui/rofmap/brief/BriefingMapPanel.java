@@ -78,7 +78,7 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
             drawAiPlatoonWaypoints(g, axisAiWaypoints);
 
             g.setColor(ColorMap.BELGIAN_GOLD);
-            drawPlatoonWaypoints(g);
+            drawSelectedPlatoonWaypoints(g);
 
             drawAssaults(g);
         }
@@ -97,7 +97,7 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
         {
             for (ArmoredPlatoonResponsiveRoute responsiveRoute : platoon.getResponsiveRoutes())
             {
-                Point unitPoint = super.coordinateToSmallMapPoint(responsiveRoute.getTargetPosition());
+                Point unitPoint = super.coordinateToDisplayMapPoint(responsiveRoute.getTargetPosition());
                 Ellipse2D.Double circle = new Ellipse2D.Double(unitPoint.x - 6, unitPoint.y - 6, 12, 12);
                 g2.fill(circle);
             }
@@ -113,14 +113,14 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
         {
             for (GroundUnitElement groundUnitElement : groundUnit.getGroundElements())
             {
-                Point unitPoint = super.coordinateToSmallMapPoint(groundUnitElement.getVehicleStartLocation());
+                Point unitPoint = super.coordinateToDisplayMapPoint(groundUnitElement.getVehicleStartLocation());
                 Ellipse2D.Double circle = new Ellipse2D.Double(unitPoint.x - 6, unitPoint.y - 6, 12, 12);
                 g2.fill(circle);
             }
         }
     }
 
-    private void drawPlatoonWaypoints(Graphics g) throws PWCGException
+    private void drawSelectedPlatoonWaypoints(Graphics g) throws PWCGException
     {
         Graphics2D g2 = (Graphics2D) g;
         g2.setStroke(new BasicStroke(3));
@@ -131,13 +131,13 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
         {
             if (previousMapPoint != null)
             {
-                Point prevPoint = super.coordinateToSmallMapPoint(previousMapPoint.getPosition());
-                Point point = super.coordinateToSmallMapPoint(mapPoint.getPosition());
+                Point prevPoint = super.coordinateToDisplayMapPoint(previousMapPoint.getPosition());
+                Point point = super.coordinateToDisplayMapPoint(mapPoint.getPosition());
 
                 g2.draw(new Line2D.Float(prevPoint.x, prevPoint.y, point.x, point.y));
             }
 
-            Point point = super.coordinateToSmallMapPoint(mapPoint.getPosition());
+            Point point = super.coordinateToDisplayMapPoint(mapPoint.getPosition());
 
             Ellipse2D.Double circle = new Ellipse2D.Double(point.x - 6, point.y - 6, 12, 12);
             g2.fill(circle);
@@ -164,7 +164,7 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
             double assaultToDefenseDirection = MathUtils.calcAngle(assaultDefinition.getAssaultPosition(), assaultDefinition.getDefensePosition());
             arrowImage = ImageCache.getInstance().getRotatedImage(imagePath, Double.valueOf(assaultToDefenseDirection).intValue());
 
-            Point mapAssaultPointRectangleFrontPoint = coordinateToSmallMapPoint(assaultDefinition.getDefensePosition());
+            Point mapAssaultPointRectangleFrontPoint = coordinateToDisplayMapPoint(assaultDefinition.getDefensePosition());
             mapAssaultPointRectangleFrontPoint.x -= (arrowImage.getHeight() / 2);
             mapAssaultPointRectangleFrontPoint.y -= (arrowImage.getHeight() / 2);
 
@@ -194,7 +194,7 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
             BriefingMapPoint mapPoint = platoonMap.mapPoints.get(i);
             g.setColor(requestedColor);
 
-            Point point = super.coordinateToSmallMapPoint(mapPoint.getPosition());
+            Point point = super.coordinateToDisplayMapPoint(mapPoint.getPosition());
             Ellipse2D.Double circle = new Ellipse2D.Double(point.x - 4, point.y - 4, 8, 8);
             g2.fill(circle);
 
@@ -202,7 +202,7 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
 
             if (prevMapPoint != null)
             {
-                Point prevPoint = super.coordinateToSmallMapPoint(prevMapPoint.getPosition());
+                Point prevPoint = super.coordinateToDisplayMapPoint(prevMapPoint.getPosition());
 
                 g2.draw(new Line2D.Float(prevPoint.x, prevPoint.y, point.x, point.y));
             }
@@ -258,13 +258,13 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
         }
 
         int movedIndex = determineSelectedWaypointIndex(e.getX(), e.getY());
-        if (movedIndex == NO_MAP_POINT_SELECTED)
+        if (movedIndex != NO_MAP_POINT_SELECTED)
         {
-            setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
+            setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         }
         else
         {
-            setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
         }
 
         super.mouseDraggedCallback(e);
@@ -274,7 +274,29 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
     @Override
     public void mouseDraggedCallback(MouseEvent mouseEvent)
     {
-        super.mouseDraggedCallback(mouseEvent);
+        if (!mission.getFinalizer().isFinalized())
+        {
+            BriefingUnitParameters briefingPlatoonParameters =
+                    BriefingContext.getInstance().getBriefingData().getActiveBriefingPlatoon().getBriefingPlatoonParameters();
+            BriefingMapPoint selectedMapPoint = briefingPlatoonParameters.getSelectedMapPoint();
+            if (selectedMapPoint != null)
+            {
+                Point point = new Point();
+                point.x = mouseEvent.getX();
+                point.y = mouseEvent.getY();
+
+                try
+                {
+                    Coordinate updatedPosition = this.pointToCoordinate(point);
+                    briefingPlatoonParameters.updatePosition(updatedPosition);
+                }
+                catch (Exception e)
+                {
+                }
+
+                refresh();
+            }
+        }
     }
 
     @Override
@@ -392,7 +414,7 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
         {
             ++lastValidIndex;
 
-            Point point = super.coordinateToSmallMapPoint(mapPoint.getPosition());
+            Point point = super.coordinateToDisplayMapPoint(mapPoint.getPosition());
 
             if ((Math.abs(point.x - x) < 10) &&
                     (Math.abs(point.y - y) < 10))
@@ -419,7 +441,7 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
         BriefingUnitParameters briefingUnitParameters = BriefingContext.getInstance().getBriefingData().getActiveBriefingPlatoon().getBriefingPlatoonParameters();
         for (BriefingMapPoint mapPoint :  briefingUnitParameters.getBriefingMapMapPoints())
         {
-            Point point = super.coordinateToSmallMapPoint(mapPoint.getPosition());
+            Point point = super.coordinateToDisplayMapPoint(mapPoint.getPosition());
 
             if (point.x < upperLeft.x)
             {

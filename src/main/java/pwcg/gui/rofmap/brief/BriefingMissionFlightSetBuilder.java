@@ -5,22 +5,22 @@ import java.util.Map;
 
 import pwcg.core.exception.PWCGException;
 import pwcg.gui.rofmap.brief.builder.BriefingUnitParametersBuilder;
-import pwcg.gui.rofmap.brief.model.BriefingUnit;
+import pwcg.gui.rofmap.brief.model.BriefingPlatoon;
 import pwcg.gui.rofmap.brief.model.BriefingUnitParameters;
 import pwcg.mission.Mission;
 import pwcg.mission.platoon.ITankPlatoon;
 
 public class BriefingMissionFlightSetBuilder
 {
-    public static Map<Integer, BriefingUnit> buildBriefingMissions(Mission mission) throws PWCGException
+    public static Map<Integer, BriefingPlatoon> buildBriefingMissions(Mission mission) throws PWCGException
     {
-        Map<Integer, BriefingUnit> briefingMissionFlights = new HashMap<>();
+        Map<Integer, BriefingPlatoon> briefingMissionFlights = new HashMap<>();
         for (ITankPlatoon playerPlatoon : mission.getPlatoons().getPlayerPlatoons())
         {
             
             BriefingUnitParameters briefingFlightParameters = buildBriefingFlightParameters(playerPlatoon);
 
-            BriefingUnit briefingMissionFlight = new BriefingUnit(mission, briefingFlightParameters, playerPlatoon.getCompany().getCompanyId());
+            BriefingPlatoon briefingMissionFlight = new BriefingPlatoon(mission, briefingFlightParameters, playerPlatoon.getCompany().getCompanyId());
             briefingMissionFlight.initializeFromMission(playerPlatoon.getCompany());
 
             briefingMissionFlights.put(playerPlatoon.getCompany().getCompanyId(), briefingMissionFlight);

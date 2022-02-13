@@ -15,19 +15,19 @@ import pwcg.mission.Mission;
 import pwcg.mission.platoon.ITankPlatoon;
 import pwcg.mission.playerunit.crew.CrewTankPayloadPairing;
 
-public class BriefingUnit
+public class BriefingPlatoon
 {
     private int companyId;
-    private BriefingUnitParameters briefingUnitParameters;
+    private BriefingUnitParameters briefingPlatoonParameters;
     private BriefingCrewMemberAssignmentData briefingAssignmentData;
     private double selectedFuel = 1.0;
     private Mission mission;
 
-    public BriefingUnit(Mission mission, BriefingUnitParameters briefingUnitParameters, int companyId)
+    public BriefingPlatoon(Mission mission, BriefingUnitParameters briefingUnitParameters, int companyId)
     {
         this.mission = mission;
         this.companyId = companyId;
-        this.briefingUnitParameters = briefingUnitParameters;
+        this.briefingPlatoonParameters = briefingUnitParameters;
         briefingAssignmentData = new BriefingCrewMemberAssignmentData();
     }
     
@@ -103,7 +103,7 @@ public class BriefingUnit
 
     public BriefingUnitParameters getBriefingPlatoonParameters()
     {
-        return briefingUnitParameters;
+        return briefingPlatoonParameters;
     }
 
     public BriefingCrewMemberAssignmentData getBriefingAssignmentData()

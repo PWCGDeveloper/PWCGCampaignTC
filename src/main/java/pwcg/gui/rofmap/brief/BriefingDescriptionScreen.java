@@ -19,7 +19,7 @@ import pwcg.gui.UiImageResolver;
 import pwcg.gui.campaign.mission.MissionGeneratorHelper;
 import pwcg.gui.dialogs.ErrorDialog;
 import pwcg.gui.rofmap.brief.model.BriefingData;
-import pwcg.gui.rofmap.brief.update.BriefingUnitUpdater;
+import pwcg.gui.rofmap.brief.update.BriefingMissionUpdater;
 import pwcg.gui.sound.SoundManager;
 import pwcg.gui.utils.ImageResizingPanel;
 import pwcg.gui.utils.PWCGButtonFactory;
@@ -30,19 +30,19 @@ import pwcg.mission.Mission;
 
 public class BriefingDescriptionScreen extends ImageResizingPanel implements ActionListener, IUnitChanged
 {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private CampaignHomeGuiBriefingWrapper campaignHomeGuiBriefingWrapper;
+    private CampaignHomeGuiBriefingWrapper campaignHomeGuiBriefingWrapper;
     private Mission mission;
     private BriefingData briefingData;
     private BriefingCompanyChooser briefingFlightChooser;
     private BriefingDescriptionChalkboard briefingChalkboard;
-    
-	public BriefingDescriptionScreen(CampaignHomeGuiBriefingWrapper campaignHomeGuiBriefingWrapper, Mission mission) throws PWCGException 
-	{
+
+    public BriefingDescriptionScreen(CampaignHomeGuiBriefingWrapper campaignHomeGuiBriefingWrapper, Mission mission) throws PWCGException
+    {
         super("");
         this.setLayout(new BorderLayout());
-	    
+
         this.campaignHomeGuiBriefingWrapper =  campaignHomeGuiBriefingWrapper;
         this.mission =  mission;
 
@@ -50,31 +50,31 @@ public class BriefingDescriptionScreen extends ImageResizingPanel implements Act
         briefingContext.buildBriefingData(mission);
         this.briefingData = briefingContext.getBriefingData();
 
-		SoundManager.getInstance().playSound("BriefingStart.WAV");
-	}
+        SoundManager.getInstance().playSound("BriefingStart.WAV");
+    }
 
-	public void makePanels() 
-	{
-		try
-		{
-	        String imagePath = UiImageResolver.getImage(ScreenIdentifier.BriefingDescriptionScreen);
+    public void makePanels()
+    {
+        try
+        {
+            String imagePath = UiImageResolver.getImage(ScreenIdentifier.BriefingDescriptionScreen);
             this.setImageFromName(imagePath);
 
             briefingFlightChooser = new BriefingCompanyChooser(mission, this);
             briefingFlightChooser.createBriefingCompanySelectPanel();
 
-			this.removeAll();
-			this.add(BorderLayout.WEST, makeLeftPanel());
-			this.add(BorderLayout.CENTER, makeBriefingPanel());
-		}
-		catch (Exception e)
-		{
-			PWCGLogger.logException(e);
-			ErrorDialog.internalError(e.getMessage());
-		}
-	}
+            this.removeAll();
+            this.add(BorderLayout.WEST, makeLeftPanel());
+            this.add(BorderLayout.CENTER, makeBriefingPanel());
+        }
+        catch (Exception e)
+        {
+            PWCGLogger.logException(e);
+            ErrorDialog.internalError(e.getMessage());
+        }
+    }
 
-    private JPanel makeLeftPanel() throws PWCGException 
+    private JPanel makeLeftPanel() throws PWCGException
     {
         JPanel leftPanel = new JPanel(new BorderLayout());
         leftPanel.setOpaque(false);
@@ -84,8 +84,8 @@ public class BriefingDescriptionScreen extends ImageResizingPanel implements Act
         leftPanel.add(briefingFlightChooser.getFlightChooserPanel(), BorderLayout.CENTER);
         return leftPanel;
     }
-    
-    private JPanel makeButtonPanel() throws PWCGException 
+
+    private JPanel makeButtonPanel() throws PWCGException
     {
         JPanel buttonPanel = new JPanel(new BorderLayout());
         buttonPanel.setOpaque(false);
@@ -93,14 +93,14 @@ public class BriefingDescriptionScreen extends ImageResizingPanel implements Act
         JPanel buttonGrid = new JPanel();
         buttonGrid.setLayout(new GridLayout(0,1));
         buttonGrid.setOpaque(false);
-            
+
         if (mission.getFinalizer().isFinalized())
         {
             buttonGrid.add(PWCGLabelFactory.makeDummyLabel());
             JButton backToCampaignButton = makeButton("Back to Campaign", "Back to Campaign", "Return to campaign home screen");
             buttonGrid.add(backToCampaignButton);
         }
-        
+
         buttonGrid.add(PWCGLabelFactory.makeDummyLabel());
         JButton scrubMissionButton = makeButton("Scrub Mission", "Scrub Mission", "Scrub this mission and return to campaign home screen");
         buttonGrid.add(scrubMissionButton);
@@ -110,11 +110,11 @@ public class BriefingDescriptionScreen extends ImageResizingPanel implements Act
         buttonGrid.add(goToBriefingMapButton);
 
         buttonPanel.add(buttonGrid, BorderLayout.NORTH);
-        
+
         return buttonPanel;
     }
-    
-    public JPanel makeBriefingPanel() throws PWCGException  
+
+    public JPanel makeBriefingPanel() throws PWCGException
     {
         JPanel briefingPanel = new JPanel(new BorderLayout());
         briefingPanel.setOpaque(false);
@@ -134,12 +134,12 @@ public class BriefingDescriptionScreen extends ImageResizingPanel implements Act
     }
 
     @Override
-    public void actionPerformed(ActionEvent arg0) 
-    {       
+    public void actionPerformed(ActionEvent arg0)
+    {
         try
         {
             String action = arg0.getActionCommand();
-            
+
             if (action.equals("Back to Campaign"))
             {
                 backToCampaign();
@@ -167,7 +167,7 @@ public class BriefingDescriptionScreen extends ImageResizingPanel implements Act
         briefingChalkboard.setMissionText();
     }
 
-    private void forwardToBriefingMap() throws PWCGException 
+    private void forwardToBriefingMap() throws PWCGException
     {
         SoundManager.getInstance().playSound("Typewriter.WAV");
 
@@ -180,10 +180,10 @@ public class BriefingDescriptionScreen extends ImageResizingPanel implements Act
     {
         Campaign campaign  = PWCGContext.getInstance().getCampaign();
 
-        BriefingUnitUpdater.pushEditsToMission(briefingData);
-        
+        BriefingMissionUpdater.pushEditsToMission(briefingData);
+
         campaign.setCurrentMission(mission);
-        
+
         campaignHomeGuiBriefingWrapper.refreshCampaignPage();
         CampaignGuiContextManager.getInstance().popFromContextStack();
     }

@@ -2,16 +2,16 @@ package pwcg.gui.rofmap.brief;
 
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.CoordinateBox;
-import pwcg.gui.rofmap.brief.model.BriefingUnit;
+import pwcg.gui.rofmap.brief.model.BriefingPlatoon;
 import pwcg.mission.Mission;
 import pwcg.mission.platoon.ITankPlatoon;
 
 public class BriefingMapPlatoonMapper
 {
-    private BriefingUnit briefingMissionHandler;
+    private BriefingPlatoon briefingMissionHandler;
     private BriefingMapPanel mapPanel;
 
-    public BriefingMapPlatoonMapper(BriefingUnit briefingMissionHandler, BriefingMapPanel mapPanel) throws PWCGException
+    public BriefingMapPlatoonMapper(BriefingPlatoon briefingMissionHandler, BriefingMapPanel mapPanel) throws PWCGException
     {
         this.briefingMissionHandler = briefingMissionHandler;
         this.mapPanel = mapPanel;

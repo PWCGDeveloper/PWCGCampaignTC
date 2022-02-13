@@ -19,7 +19,7 @@ import pwcg.gui.colors.ColorMap;
 import pwcg.gui.dialogs.ErrorDialog;
 import pwcg.gui.rofmap.MapGUI;
 import pwcg.gui.rofmap.brief.model.BriefingData;
-import pwcg.gui.rofmap.brief.model.BriefingUnit;
+import pwcg.gui.rofmap.brief.model.BriefingPlatoon;
 import pwcg.gui.rofmap.brief.model.BriefingUnitParameters;
 import pwcg.gui.utils.PWCGButtonFactory;
 import pwcg.gui.utils.PWCGLabelFactory;
@@ -29,7 +29,7 @@ import pwcg.mission.mcu.McuWaypoint;
 
 public class BriefingMapGUI extends MapGUI implements ActionListener, IUnitChanged, IBriefingCompanySelectedCallback
 {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     private CampaignHomeGuiBriefingWrapper campaignHomeGuiBriefingWrapper;
     private Mission mission;
@@ -37,56 +37,56 @@ public class BriefingMapGUI extends MapGUI implements ActionListener, IUnitChang
     private BriefingCompanyChooser briefingFlightChooser;
     private BriefingMapPanel mapPanel;
 
-	public BriefingMapGUI(Campaign campaign, CampaignHomeGuiBriefingWrapper campaignHomeGuiBriefingWrapper) throws PWCGException  
-	{
-		super(campaign.getDate());
-		
+    public BriefingMapGUI(Campaign campaign, CampaignHomeGuiBriefingWrapper campaignHomeGuiBriefingWrapper) throws PWCGException
+    {
+        super(campaign.getDate());
+
         this.campaignHomeGuiBriefingWrapper =  campaignHomeGuiBriefingWrapper;
         this.briefingData =  BriefingContext.getInstance().getBriefingData();
         this.mission =  briefingData.getMission();
 
-		setLayout(new BorderLayout());		
-	}    
+        setLayout(new BorderLayout());
+    }
 
-	public void makePanels() 
-	{
-		try
-		{
+    public void makePanels()
+    {
+        try
+        {
             briefingFlightChooser = new BriefingCompanyChooser(mission, this);
             briefingFlightChooser.createBriefingCompanySelectPanel();
 
-			Color bg = ColorMap.MAP_BACKGROUND;
-			setOpaque(false);
-			setBackground(bg);
-			
-            this.add(BorderLayout.WEST, makeNavPanel());           
+            Color bg = ColorMap.MAP_BACKGROUND;
+            setOpaque(false);
+            setBackground(bg);
+
+            this.add(BorderLayout.WEST, makeNavPanel());
             this.add(BorderLayout.CENTER, createCenterPanel());
-		}
-		catch (Exception e)
-		{
-			PWCGLogger.logException(e);
-			ErrorDialog.internalError(e.getMessage());
-		}
-	}
+        }
+        catch (Exception e)
+        {
+            PWCGLogger.logException(e);
+            ErrorDialog.internalError(e.getMessage());
+        }
+    }
 
     private JPanel createCenterPanel() throws PWCGException
     {
         JPanel briefingMapCenterPanel = new JPanel(new BorderLayout());
         createMapPanel();
         briefingMapCenterPanel.add(mapPanel, BorderLayout.CENTER);
-        
+
         return briefingMapCenterPanel;
     }
 
     private void createMapPanel() throws PWCGException
     {
-        BriefingUnit activeMissionHandler = briefingData.getActiveBriefingPlatoon();
-        
+        BriefingPlatoon activeMissionHandler = briefingData.getActiveBriefingPlatoon();
+
         if (mapPanel != null)
         {
             this.remove(mapPanel);
         }
-        
+
         mapPanel = new BriefingMapPanel(this);
         mapPanel.setMapBackground();
 
@@ -94,7 +94,7 @@ public class BriefingMapGUI extends MapGUI implements ActionListener, IUnitChang
         flightMapper.mapRequestedFlights();
     }
 
-    private JPanel makeNavPanel() throws PWCGException 
+    private JPanel makeNavPanel() throws PWCGException
     {
         JPanel leftPanel = new JPanel(new BorderLayout());
         leftPanel.setOpaque(false);
@@ -104,16 +104,16 @@ public class BriefingMapGUI extends MapGUI implements ActionListener, IUnitChang
         leftPanel.add(briefingFlightChooser.getFlightChooserPanel(), BorderLayout.CENTER);
         return leftPanel;
     }
-    
-	private JPanel makeButtonPanel() throws PWCGException 
-	{
-		JPanel buttonPanel = new JPanel(new BorderLayout());
-		buttonPanel.setOpaque(false);
 
-		JPanel buttonGrid = new JPanel();
-		buttonGrid.setLayout(new GridLayout(0,1));
-		buttonGrid.setOpaque(false);
-	    
+    private JPanel makeButtonPanel() throws PWCGException
+    {
+        JPanel buttonPanel = new JPanel(new BorderLayout());
+        buttonPanel.setOpaque(false);
+
+        JPanel buttonGrid = new JPanel();
+        buttonGrid.setLayout(new GridLayout(0,1));
+        buttonGrid.setOpaque(false);
+
         if (mission.getFinalizer().isFinalized())
         {
             buttonGrid.add(PWCGLabelFactory.makeDummyLabel());
@@ -121,7 +121,7 @@ public class BriefingMapGUI extends MapGUI implements ActionListener, IUnitChang
             buttonGrid.add(backToCampaignButton);
         }
 
-		buttonGrid.add(PWCGLabelFactory.makeDummyLabel());
+        buttonGrid.add(PWCGLabelFactory.makeDummyLabel());
         JButton scrubMissionButton = makeButton("Scrub Mission", "Scrub Mission", "Scrub this mission and return to campaign home screen");
         buttonGrid.add(scrubMissionButton);
 
@@ -136,27 +136,27 @@ public class BriefingMapGUI extends MapGUI implements ActionListener, IUnitChang
         buttonGrid.add(PWCGLabelFactory.makeDummyLabel());
         buttonGrid.add(PWCGLabelFactory.makeDummyLabel());
 
-		buttonPanel.add(buttonGrid, BorderLayout.NORTH);
-		
+        buttonPanel.add(buttonGrid, BorderLayout.NORTH);
+
         BriefingMapCompanySelector companySelector = new BriefingMapCompanySelector(mission, this, briefingData);
         JPanel friendlyCompanySelectorPanel = companySelector.makeComboBox();
-		buttonPanel.add(friendlyCompanySelectorPanel, BorderLayout.CENTER);
-		
-		return buttonPanel;
-	}
+        buttonPanel.add(friendlyCompanySelectorPanel, BorderLayout.CENTER);
+
+        return buttonPanel;
+    }
 
     private JButton makeButton(String buttonText, String command, String toolTipText) throws PWCGException
     {
         return PWCGButtonFactory.makeTranslucentMenuButton(buttonText, command, toolTipText, this);
     }
 
-	@Override
-	public void actionPerformed(ActionEvent arg0) 
-	{		
-		try
-		{
-			String action = arg0.getActionCommand();
-			
+    @Override
+    public void actionPerformed(ActionEvent arg0)
+    {
+        try
+        {
+            String action = arg0.getActionCommand();
+
             if (action.equals("Back: Briefing"))
             {
                 backToBriefingDescription();
@@ -173,14 +173,14 @@ public class BriefingMapGUI extends MapGUI implements ActionListener, IUnitChang
             {
                 MissionGeneratorHelper.scrubMission(mission.getCampaign(), campaignHomeGuiBriefingWrapper);
             }
-		}
-		catch (Exception e)
-		{
-			PWCGLogger.logException(e);
-			ErrorDialog.internalError(e.getMessage());
-		}
-	}
-    
+        }
+        catch (Exception e)
+        {
+            PWCGLogger.logException(e);
+            ErrorDialog.internalError(e.getMessage());
+        }
+    }
+
     private void backToCampaign() throws PWCGException
     {
         campaignHomeGuiBriefingWrapper.refreshCampaignPage();
@@ -193,7 +193,7 @@ public class BriefingMapGUI extends MapGUI implements ActionListener, IUnitChang
         return;
     }
 
-    private void forwardToCrewSelection() throws PWCGException 
+    private void forwardToCrewSelection() throws PWCGException
     {
         BriefingCrewMemberSelectionScreen crewMemberSelection = new BriefingCrewMemberSelectionScreen(campaignHomeGuiBriefingWrapper);
         crewMemberSelection.makePanels();
@@ -207,9 +207,9 @@ public class BriefingMapGUI extends MapGUI implements ActionListener, IUnitChang
         {
             briefingData.clearAiFlightsToDisplay();
         }
-        
+
         briefingData.changeSelectedUnit(company.getCompanyId());
-        refreshAllPanels();           
+        refreshAllPanels();
 
     }
 
@@ -218,7 +218,7 @@ public class BriefingMapGUI extends MapGUI implements ActionListener, IUnitChang
         this.add(BorderLayout.CENTER, createCenterPanel());
         this.add(BorderLayout.WEST, makeNavPanel());
     }
-    
+
     private boolean isChangedCompanySameSide(ICompanyMission before, ICompanyMission after) throws PWCGException
     {
         if (before.determineSide() == after.determineSide())
@@ -233,7 +233,7 @@ public class BriefingMapGUI extends MapGUI implements ActionListener, IUnitChang
     {
         briefingData.setAiFlightsToDisplay(aiFlightsToDisplay);
         this.add(BorderLayout.CENTER, createCenterPanel());
-        
+
         refreshMapScreen();
     }
 
@@ -243,7 +243,7 @@ public class BriefingMapGUI extends MapGUI implements ActionListener, IUnitChang
         {
             BriefingUnitParameters briefingFlightParameters = BriefingContext.getInstance().getBriefingData().getActiveBriefingPlatoon().getBriefingPlatoonParameters();
             briefingFlightParameters.removeBriefingMapMapPointsAtPosition();
-            
+
             refreshMapScreen();
         }
     }
@@ -254,7 +254,7 @@ public class BriefingMapGUI extends MapGUI implements ActionListener, IUnitChang
         {
             BriefingUnitParameters briefingFlightParameters = BriefingContext.getInstance().getBriefingData().getActiveBriefingPlatoon().getBriefingPlatoonParameters();
             briefingFlightParameters.addBriefingMapMapPointsAtPosition();
-            
+
             refreshMapScreen();
         }
     }

@@ -15,7 +15,7 @@ import pwcg.core.exception.PWCGException;
 import pwcg.gui.colors.ColorMap;
 import pwcg.gui.dialogs.PWCGMonitorFonts;
 import pwcg.gui.rofmap.brief.model.BriefingMapPoint;
-import pwcg.gui.rofmap.brief.model.BriefingUnit;
+import pwcg.gui.rofmap.brief.model.BriefingPlatoon;
 import pwcg.gui.utils.PWCGLabelFactory;
 import pwcg.gui.utils.ScrollBarWrapper;
 
@@ -30,7 +30,7 @@ public class BriefingEditorDetailsPanel
         this.isEditable = isEditable;
     }
     
-    public void buildWaypointPanel(BriefingUnit activeBriefingFlight) throws PWCGException
+    public void buildWaypointPanel(BriefingPlatoon activeBriefingFlight) throws PWCGException
     {
         waypointPanel.setOpaque(false);
         

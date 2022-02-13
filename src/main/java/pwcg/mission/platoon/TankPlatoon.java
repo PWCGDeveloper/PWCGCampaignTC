@@ -1,15 +1,14 @@
 package pwcg.mission.platoon;
 
 import java.io.BufferedWriter;
-import java.util.ArrayList;
 import java.util.List;
 
 import pwcg.campaign.Campaign;
 import pwcg.campaign.utils.IndexGenerator;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
+import pwcg.gui.rofmap.brief.model.BriefingMapPoint;
 import pwcg.mission.ICompanyMission;
-import pwcg.mission.MissionBeginUnit;
 import pwcg.mission.ground.builder.ArmoredPlatoonResponsiveRoute;
 import pwcg.mission.mcu.McuWaypoint;
 import pwcg.mission.platoon.tank.TankMcu;
@@ -22,11 +21,9 @@ public abstract class TankPlatoon implements ITankPlatoon
 
     protected PlatoonTanks platoonVehicles;
     protected PlatoonInformation platoonInformation;
-    protected MissionBeginUnit missionBeginUnit;
-    protected List<McuWaypoint> waypoints = new ArrayList<>();
     protected PlatoonMissionType platoonMissionType = PlatoonMissionType.ANY;
+    private PlatoonWaypoints platoonWaypoints = new PlatoonWaypoints();
     protected int index;
-    protected List<ArmoredPlatoonResponsiveRoute> responsiveRoutes = new ArrayList<>();
 
     public TankPlatoon(PlatoonInformation platoonInformation)
     {
@@ -43,16 +40,7 @@ public abstract class TankPlatoon implements ITankPlatoon
             tank.write(writer);
         }
 
-        missionBeginUnit.write(writer);
-        for(McuWaypoint waypoint : waypoints)
-        {
-            waypoint.write(writer);
-        }
-
-        for(ArmoredPlatoonResponsiveRoute responsiveRoutes : responsiveRoutes)
-        {
-            responsiveRoutes.write(writer);
-        }
+        platoonWaypoints.write(writer);
     }
 
     protected void setUnitPayload() throws PWCGException
@@ -95,27 +83,6 @@ public abstract class TankPlatoon implements ITankPlatoon
     }
 
     @Override
-    public List<McuWaypoint> getWaypoints()
-    {
-        return waypoints;
-    }
-
-    @Override
-    public void setWaypoints(List<McuWaypoint> waypoints) throws PWCGException
-    {
-        Campaign campaign = platoonInformation.getCampaign();
-        Coordinate basePosition = platoonInformation.getCompany().determineCurrentPosition(campaign.getDate());
-        this.missionBeginUnit = new MissionBeginUnit(basePosition);
-        missionBeginUnit.linkToMissionBegin(waypoints.get(0).getIndex());
-
-        this.waypoints = waypoints;
-        for(McuWaypoint waypoint : waypoints)
-        {
-            waypoint.setObject(this.getLeadVehicle().getLinkTrId());
-        }
-    }
-
-    @Override
     public ICompanyMission getCompany()
     {
         return platoonInformation.getCompany();
@@ -146,15 +113,34 @@ public abstract class TankPlatoon implements ITankPlatoon
     }
 
     @Override
+    public List<McuWaypoint> getWaypoints()
+    {
+        return platoonWaypoints.getWaypoints();
+    }
+
+    @Override
+    public void setWaypoints(List<McuWaypoint> waypoints) throws PWCGException
+    {
+        Campaign campaign = platoonInformation.getCampaign();
+        Coordinate basePosition = platoonInformation.getCompany().determineCurrentPosition(campaign.getDate());
+        platoonWaypoints.setWaypoints(campaign, basePosition, this.getLeadVehicle().getLinkTrId(), waypoints);
+    }
+
+    @Override
     public void addResponsiveRoute(ArmoredPlatoonResponsiveRoute platoonResponsiveRoute)
     {
-        platoonResponsiveRoute.setWaypointObject(this.getLeadVehicle().getLinkTrId());
-        responsiveRoutes.add(platoonResponsiveRoute);
+        platoonWaypoints.addResponsiveRoute(this.getLeadVehicle().getLinkTrId(), platoonResponsiveRoute);
     }
 
     @Override
     public List<ArmoredPlatoonResponsiveRoute> getResponsiveRoutes()
     {
-        return responsiveRoutes;
+        return platoonWaypoints.getResponsiveRoutes();
+    }
+
+    @Override
+    public void updateWaypointsFromBriefing(List<BriefingMapPoint> briefingMapMapPoints) throws PWCGException
+    {
+        platoonWaypoints.updateWaypointsFromBriefing(briefingMapMapPoints);
     }
 }

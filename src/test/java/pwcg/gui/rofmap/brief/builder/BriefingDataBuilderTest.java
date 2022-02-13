@@ -11,7 +11,7 @@ import pwcg.campaign.Campaign;
 import pwcg.core.exception.PWCGException;
 import pwcg.gui.rofmap.brief.model.BriefingData;
 import pwcg.gui.rofmap.brief.model.BriefingMapPoint;
-import pwcg.gui.rofmap.brief.model.BriefingUnit;
+import pwcg.gui.rofmap.brief.model.BriefingPlatoon;
 import pwcg.gui.rofmap.brief.model.BriefingUnitParameters;
 import pwcg.mission.Mission;
 import pwcg.mission.MissionGenerator;
@@ -48,7 +48,7 @@ public class BriefingDataBuilderTest
         ITankPlatoon unit = briefingData.getSelectedUnit();
         Assertions.assertTrue (unit.getCompany().getCompanyId() == CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
 
-        BriefingUnit briefingFlight = briefingData.getActiveBriefingPlatoon();
+        BriefingPlatoon briefingFlight = briefingData.getActiveBriefingPlatoon();
         Assertions.assertTrue (briefingFlight.getCompanyId() == CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
         
         BriefingUnitParameters briefingFlightParameters = briefingFlight.getBriefingPlatoonParameters();

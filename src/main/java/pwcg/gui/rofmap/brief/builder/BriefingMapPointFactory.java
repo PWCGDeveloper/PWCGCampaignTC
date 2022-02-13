@@ -29,7 +29,7 @@ public class BriefingMapPointFactory
         briefingMapPoint.setPosition(waypoint.getPosition());
         briefingMapPoint.setCruisingSpeed(waypoint.getSpeed());
         briefingMapPoint.setDistanceToNextPoint(0);
-        briefingMapPoint.setIsEditable(waypoint.getWpAction().isEditable());
+        briefingMapPoint.setIsEditable(true);
         briefingMapPoint.setIsTarget(waypoint.isTargetWaypoint());
         briefingMapPoint.setIsWaypoint(true);
 

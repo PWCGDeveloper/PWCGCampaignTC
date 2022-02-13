@@ -12,18 +12,18 @@ import pwcg.mission.platoon.ITankPlatoon;
 public class BriefingData
 {
     private String missionTime = "08:30";
-    private Map<Integer, BriefingUnit> briefingMissionUnits = new HashMap<>();
+    private Map<Integer, BriefingPlatoon> briefingMissionUnits = new HashMap<>();
     private int selectedCompanyId = 0;
     private Mission mission;
     private Map<Integer, String> aiUnitsToDisplay = new HashMap<>();
 
-    public BriefingData(Mission mission, Map<Integer, BriefingUnit> briefingMissionFlights)
+    public BriefingData(Mission mission, Map<Integer, BriefingPlatoon> briefingMissionFlights)
     {
         this.mission = mission;
         this.briefingMissionUnits = briefingMissionFlights;
     }
 
-    public BriefingUnit getActiveBriefingPlatoon()
+    public BriefingPlatoon getActiveBriefingPlatoon()
     {
         return briefingMissionUnits.get(selectedCompanyId);
     }
@@ -34,7 +34,7 @@ public class BriefingData
         return playerFlight;
     }
 
-    public List<BriefingUnit> getBriefingUnits()
+    public List<BriefingPlatoon> getBriefingPlatoons()
     {
         return new ArrayList<>(briefingMissionUnits.values());
     }

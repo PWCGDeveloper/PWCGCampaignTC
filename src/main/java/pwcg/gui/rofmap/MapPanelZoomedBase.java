@@ -29,9 +29,7 @@ public abstract class MapPanelZoomedBase extends ImagePanel implements ActionLis
 
     private Mission mission;
     private MapImageCache mapImageCache;
-
-    private Point upperLeftOfSmallMap;
-    private double smallMapExpansionRatio = 0.0;
+    private ZoomedMapConversionInformation conversionInformation = new ZoomedMapConversionInformation();
 
     public MapPanelZoomedBase(Mission mission) throws PWCGException
     {
@@ -53,7 +51,7 @@ public abstract class MapPanelZoomedBase extends ImagePanel implements ActionLis
         String mapImageFileName = PWCGContext.getInstance().getCurrentMap().getMapName() + "Map150";
         BufferedImage largeMapImage = mapImageCache.getMapImage(mapImageFileName);
         largeMapSize = getImageSize(largeMapImage);
-        
+
         BufferedImage mapImage = setMapImageToMissionBox(largeMapImage);
         super.setImage(mapImage);
 
@@ -73,23 +71,25 @@ public abstract class MapPanelZoomedBase extends ImagePanel implements ActionLis
         double widthMeters = mission.getMissionBorders().getBoxWidth();
         double heightMeters = mission.getMissionBorders().getBoxHeight();
         Coordinate missionCenter = mission.getMissionBorders().getCenter();
-        
+
         Coordinate upperLeftPositionOfSmallMap = new Coordinate(missionCenter.getXPos() + (heightMeters/2), 0, missionCenter.getZPos() - (widthMeters/2));
         Point imagePointUpperLeft = coordinateToPointLargeMap(upperLeftPositionOfSmallMap);
 
         Coordinate lowerRightPositionOfSmallMap = new Coordinate(missionCenter.getXPos() - (heightMeters/2), 0, missionCenter.getZPos() + (widthMeters/2));
         Point imagePointLowerRight = coordinateToPointLargeMap(lowerRightPositionOfSmallMap);
-        
+
         int width = Double.valueOf(imagePointLowerRight.getX() - imagePointUpperLeft.getX()).intValue();
         int height = Double.valueOf(imagePointLowerRight.getY() - imagePointUpperLeft.getY()).intValue();
-                
+
         int upperLeftX = Double.valueOf(imagePointUpperLeft.getX()).intValue();
         int upperLeftY = Double.valueOf(imagePointUpperLeft.getY()).intValue();
-        
-        upperLeftOfSmallMap = new Point(upperLeftX, upperLeftY);
-        
+
+        Point upperLeftOfSmallMap = new Point(upperLeftX, upperLeftY);
+        conversionInformation.setSmallMapStartLocation(upperLeftOfSmallMap);
+        conversionInformation.setLargeMapSize(new Dimension(mapImage.getWidth(), mapImage.getHeight()));
+
         BufferedImage mapSegmentImage = mapImage.getSubimage(upperLeftX, upperLeftY, width, height);
-        
+
         return setMapImageToScreen(mapSegmentImage);
     }
 
@@ -97,30 +97,24 @@ public abstract class MapPanelZoomedBase extends ImagePanel implements ActionLis
     {
         Dimension smallMapSize = getImageSize(mapSegmentImage);
 
-        double mapHeight = PWCGMonitorSupport.getPWCGFrameSize().getHeight() - 200;
-        smallMapExpansionRatio = mapHeight / smallMapSize.getHeight();
-        int newHeight = Double.valueOf(smallMapSize.getHeight() * smallMapExpansionRatio).intValue();
-        int newWidth = Double.valueOf(smallMapSize.getWidth() * smallMapExpansionRatio).intValue();
-        
-        Image tmp = mapSegmentImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
-        BufferedImage mapImage = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_ARGB);
-        
+        double displayMapHeight = PWCGMonitorSupport.getPWCGFrameSize().getHeight() - 200;
+        double smallToDisplayRatio = displayMapHeight / smallMapSize.getHeight();
+        Double newHeight = Double.valueOf(smallMapSize.getHeight() * smallToDisplayRatio);
+        Double newWidth = Double.valueOf(smallMapSize.getWidth() * smallToDisplayRatio);
+
+        Image tmp = mapSegmentImage.getScaledInstance(newWidth.intValue(), newHeight.intValue(), Image.SCALE_SMOOTH);
+        BufferedImage mapImage = new BufferedImage(newWidth.intValue(), newHeight.intValue(),  BufferedImage.TYPE_INT_ARGB);
+
+        double displayToSmallRatio = Double.valueOf(smallMapSize.getHeight()) / newHeight;
+        conversionInformation.setSmallToDisplayMapRatio(smallToDisplayRatio);
+        conversionInformation.setDisplayToSmallMapRatio(displayToSmallRatio);
+        conversionInformation.setSmallMapSize(smallMapSize);
+
         Graphics2D g2d = mapImage.createGraphics();
         g2d.drawImage(tmp, 0, 0, null);
         g2d.dispose();
 
-        return mapImage;        
-    }
-
-    protected Point coordinateToSmallMapPoint(Coordinate position)
-    {
-        Point largeMapPoint = coordinateToPointLargeMap(position);
-        
-        int scaledX = Double.valueOf((largeMapPoint.x - upperLeftOfSmallMap.x) * smallMapExpansionRatio).intValue();
-        int scaledY = Double.valueOf((largeMapPoint.y - upperLeftOfSmallMap.y) * smallMapExpansionRatio).intValue();
-
-        Point smallMapPoint = new Point(scaledX, scaledY);
-        return smallMapPoint;
+        return mapImage;
     }
 
     private Point coordinateToPointLargeMap(Coordinate position)
@@ -135,35 +129,20 @@ public abstract class MapPanelZoomedBase extends ImagePanel implements ActionLis
 
         return point;
     }
-    
+
+    @Override
     public void increaseZoom()
     {
     }
 
+    @Override
     public void decreaseZoom()
     {
     }
 
     public Coordinate pointToCoordinate(Point point) throws PWCGException
     {
-        Dimension mapSize = ImagePanel.getImageSize(image);
-        MapArea mapArea = PWCGContext.getInstance().getCurrentMap().getMapArea();
-        double ratioWidth = mapSize.width / mapArea.getzMax();
-        double ratioHeight = mapSize.height / mapArea.getxMax();
-
-        Coordinate coord = new Coordinate();
-
-        double x = Double.valueOf(point.x) / ratioWidth;
-        int invertedY = largeMapSize.height - point.y;
-        double y = Double.valueOf(invertedY) / ratioHeight;
-
-        Point coordAsInt = new Point();
-        coordAsInt.x = Double.valueOf(x).intValue();
-        coordAsInt.y = Double.valueOf(y).intValue();
-
-        coord.setZPos(coordAsInt.x);
-        coord.setXPos(coordAsInt.y);
-
+        Coordinate coord = displayMapPointToCoordinate(point);
         return coord;
     }
 
@@ -229,18 +208,23 @@ public abstract class MapPanelZoomedBase extends ImagePanel implements ActionLis
         this.setVisible(isVisible);
     }
 
+    @Override
     public abstract void paintComponent(Graphics g);
 
+    @Override
     public abstract void mouseMovedCallback(MouseEvent e);
 
+    @Override
     public void mouseDraggedCallback(MouseEvent mouseEvent)
     {
     }
 
+    @Override
     public void leftClickCallback(MouseEvent mouseEvent)
     {
     }
 
+    @Override
     public void leftClickReleasedCallback(MouseEvent mouseEvent) throws PWCGException
     {
     }
@@ -261,16 +245,29 @@ public abstract class MapPanelZoomedBase extends ImagePanel implements ActionLis
         // Draw horizontal arrow starting in (0, 0)
         g2d.drawLine(0, 0, len, 0);
         g2d.fillPolygon(new int[]
-        { len, len - ARR_SIZE, len - ARR_SIZE, len }, new int[]
-        { 0, -ARR_SIZE, ARR_SIZE, 0 }, 4);
+                { len, len - ARR_SIZE, len - ARR_SIZE, len }, new int[]
+                        { 0, -ARR_SIZE, ARR_SIZE, 0 }, 4);
     }
 
+    public Point coordinateToDisplayMapPoint(Coordinate position)
+    {
+        ZoomedMapConverter converter = new ZoomedMapConverter(PWCGContext.getInstance().getCurrentMap(), conversionInformation);
+        return converter.coordinateToSmallMapPoint(position);
+    }
+
+    public Coordinate displayMapPointToCoordinate(Point displayMapPoint) throws PWCGException
+    {
+        ZoomedMapConverter converter = new ZoomedMapConverter(PWCGContext.getInstance().getCurrentMap(), conversionInformation);
+        return converter.smallMapPointToCoordinate(displayMapPoint);
+    }
+
+    @Override
     public abstract void rightClickCallback(MouseEvent e);
 
     public abstract void rightClickReleasedCallback(MouseEvent e);
 
+    @Override
     public abstract void centerClickCallback(MouseEvent e);
 
     public abstract Point upperLeft();
-
 }

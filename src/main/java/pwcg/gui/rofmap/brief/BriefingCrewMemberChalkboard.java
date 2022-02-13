@@ -27,7 +27,7 @@ import pwcg.core.exception.PWCGException;
 import pwcg.gui.colors.ColorMap;
 import pwcg.gui.dialogs.PWCGMonitorFonts;
 import pwcg.gui.rofmap.brief.model.BriefingData;
-import pwcg.gui.rofmap.brief.model.BriefingUnit;
+import pwcg.gui.rofmap.brief.model.BriefingPlatoon;
 import pwcg.gui.utils.ContextSpecificImages;
 import pwcg.gui.utils.ImageResizingPanel;
 import pwcg.gui.utils.PWCGButtonFactory;
@@ -133,7 +133,7 @@ public class BriefingCrewMemberChalkboard extends ImageResizingPanel
     private void addDataForChalkboard(JPanel assignedCrewMemberPanel) throws PWCGException
     {
         activeCrewMemberRadioButtons.clear();
-        BriefingUnit briefingMissionHandler = briefingContext.getActiveBriefingPlatoon();
+        BriefingPlatoon briefingMissionHandler = briefingContext.getActiveBriefingPlatoon();
         int row = 2;
         for (CrewTankPayloadPairing crewTank : briefingMissionHandler.getCrews())
         {
@@ -156,7 +156,7 @@ public class BriefingCrewMemberChalkboard extends ImageResizingPanel
         }
         else
         {
-            BriefingUnit briefingMissionHandler = briefingContext.getActiveBriefingPlatoon();
+            BriefingPlatoon briefingMissionHandler = briefingContext.getActiveBriefingPlatoon();
             if (briefingMissionHandler.getBriefingAssignmentData().getCrews().size() > 0)
             {
                 CrewTankPayloadPairing crewTank = briefingMissionHandler.getBriefingAssignmentData().getCrews().get(0);
@@ -283,7 +283,7 @@ public class BriefingCrewMemberChalkboard extends ImageResizingPanel
         JLabel modificationsLabel = PWCGLabelFactory.makeBriefingChalkBoardLabel("   ");
         unassignedCrewMemberGrid.add(modificationsLabel);
 
-        BriefingUnit briefingMissionHandler = briefingContext.getActiveBriefingPlatoon();
+        BriefingPlatoon briefingMissionHandler = briefingContext.getActiveBriefingPlatoon();
         List<CrewMember> sortedUnassignedCrewMembers = briefingMissionHandler.getSortedUnassignedCrewMembers();
         List<EquippedTank> sortedUnassignedTanks = briefingMissionHandler.getSortedUnassignedTanks();
 

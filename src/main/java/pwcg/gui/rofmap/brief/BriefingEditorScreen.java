@@ -25,41 +25,41 @@ import pwcg.mission.Mission;
 
 public class BriefingEditorScreen extends ImageResizingPanel implements ActionListener
 {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     private CampaignHomeGuiBriefingWrapper campaignHomeGuiBriefingWrapper;
     private Mission mission;
     private BriefingData briefingData;
     private BriefingEditorPanel editorPanel;
 
-	public BriefingEditorScreen(CampaignHomeGuiBriefingWrapper campaignHomeGuiBriefingWrapper) throws PWCGException  
-	{
-		super("");
-		this.setLayout(new BorderLayout());
-		this.setOpaque(false);
-		
-		this.campaignHomeGuiBriefingWrapper = campaignHomeGuiBriefingWrapper;
+    public BriefingEditorScreen(CampaignHomeGuiBriefingWrapper campaignHomeGuiBriefingWrapper) throws PWCGException
+    {
+        super("");
+        this.setLayout(new BorderLayout());
+        this.setOpaque(false);
+
+        this.campaignHomeGuiBriefingWrapper = campaignHomeGuiBriefingWrapper;
         this.briefingData =  BriefingContext.getInstance().getBriefingData();
         this.mission =  briefingData.getMission();
 
-		setLayout(new BorderLayout());		
-	}    
+        setLayout(new BorderLayout());
+    }
 
-	public void makePanels() throws PWCGException 
-	{
+    public void makePanels() throws PWCGException
+    {
         String imagePath = UiImageResolver.getImage(ScreenIdentifier.BriefingEditorEditorScreen);
         this.setImageFromName(imagePath);
 
-		editorPanel = new BriefingEditorPanel();
-		editorPanel.makePanels();
-		
+        editorPanel = new BriefingEditorPanel();
+        editorPanel.makePanels();
+
         this.add(BorderLayout.WEST, makeNavPanel());
         this.add(BorderLayout.CENTER, editorPanel);
         this.add(BorderLayout.EAST, SpacerPanelFactory.makeDocumentSpacerPanel(1400));
-	}
-	
+    }
 
-    private JPanel makeNavPanel() throws PWCGException 
+
+    private JPanel makeNavPanel() throws PWCGException
     {
         JPanel leftPanel = new JPanel(new BorderLayout());
         leftPanel.setOpaque(false);
@@ -68,8 +68,8 @@ public class BriefingEditorScreen extends ImageResizingPanel implements ActionLi
         leftPanel.add(buttonPanel, BorderLayout.NORTH);
         return leftPanel;
     }
-    
-    private JPanel makeButtonPanel() throws PWCGException 
+
+    private JPanel makeButtonPanel() throws PWCGException
     {
         JPanel buttonPanel = new JPanel(new BorderLayout());
         buttonPanel.setOpaque(false);
@@ -77,7 +77,7 @@ public class BriefingEditorScreen extends ImageResizingPanel implements ActionLi
         JPanel buttonGrid = new JPanel();
         buttonGrid.setLayout(new GridLayout(0,1));
         buttonGrid.setOpaque(false);
-        
+
         if (mission.getFinalizer().isFinalized())
         {
             buttonGrid.add(PWCGLabelFactory.makeDummyLabel());
@@ -105,7 +105,7 @@ public class BriefingEditorScreen extends ImageResizingPanel implements ActionLi
         buttonGrid.add(PWCGLabelFactory.makeDummyLabel());
 
         buttonPanel.add(buttonGrid, BorderLayout.NORTH);
-        
+
         return buttonPanel;
     }
 
@@ -115,8 +115,8 @@ public class BriefingEditorScreen extends ImageResizingPanel implements ActionLi
     }
 
     @Override
-    public void actionPerformed(ActionEvent arg0) 
-    {       
+    public void actionPerformed(ActionEvent arg0)
+    {
         try
         {
             String action = arg0.getActionCommand();
@@ -140,7 +140,7 @@ public class BriefingEditorScreen extends ImageResizingPanel implements ActionLi
             {
                 makeWaypointsEditable();
             }
-            
+
         }
         catch (Exception e)
         {
@@ -165,7 +165,7 @@ public class BriefingEditorScreen extends ImageResizingPanel implements ActionLi
 
     private void makeWaypointsEditable() throws PWCGException
     {
-        editorPanel.makeEditable();        
+        editorPanel.makeEditable();
     }
 
     private void backToCampaign() throws PWCGException

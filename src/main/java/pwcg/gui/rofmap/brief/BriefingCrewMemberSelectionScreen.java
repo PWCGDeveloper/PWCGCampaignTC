@@ -29,8 +29,8 @@ import pwcg.gui.UiImageResolver;
 import pwcg.gui.campaign.mission.MissionGeneratorHelper;
 import pwcg.gui.dialogs.ErrorDialog;
 import pwcg.gui.rofmap.brief.model.BriefingData;
-import pwcg.gui.rofmap.brief.model.BriefingUnit;
-import pwcg.gui.rofmap.brief.update.BriefingUnitUpdater;
+import pwcg.gui.rofmap.brief.model.BriefingPlatoon;
+import pwcg.gui.rofmap.brief.update.BriefingMissionUpdater;
 import pwcg.gui.sound.SoundManager;
 import pwcg.gui.utils.ImageResizingPanel;
 import pwcg.gui.utils.PWCGButtonFactory;
@@ -236,7 +236,7 @@ public class BriefingCrewMemberSelectionScreen extends ImageResizingPanel implem
     {
         if (!mission.getFinalizer().isFinalized())
         {
-            BriefingUnit briefingMissionHandler = briefingData.getActiveBriefingPlatoon();
+            BriefingPlatoon briefingMissionHandler = briefingData.getActiveBriefingPlatoon();
             Integer crewMemberSerialNumber = getCrewMemberSerialNumberFromAction(action);
 
             BriefingTankPicker briefingPlanePicker = new BriefingTankPicker(briefingMissionHandler, this);
@@ -254,7 +254,7 @@ public class BriefingCrewMemberSelectionScreen extends ImageResizingPanel implem
     {
         if (!mission.getFinalizer().isFinalized())
         {
-            BriefingUnit briefingMissionHandler = briefingData.getActiveBriefingPlatoon();
+            BriefingPlatoon briefingMissionHandler = briefingData.getActiveBriefingPlatoon();
             if (briefingMissionHandler.getBriefingAssignmentData().getUnassignedPlanes().size() > 0)
             {
                 Integer crewMemberSerialNumber = getCrewMemberSerialNumberFromAction(action);
@@ -269,7 +269,7 @@ public class BriefingCrewMemberSelectionScreen extends ImageResizingPanel implem
     {
         if (!mission.getFinalizer().isFinalized())
         {
-            BriefingUnit briefingMissionHandler = briefingData.getActiveBriefingPlatoon();
+            BriefingPlatoon briefingMissionHandler = briefingData.getActiveBriefingPlatoon();
             Integer crewMemberSerialNumber = getCrewMemberSerialNumberFromAction(action);
             CrewTankPayloadPairing planeCrew = briefingMissionHandler.getPairingByCrewMember(crewMemberSerialNumber);
             CrewMember crewMember = planeCrew.getCrewMember();
@@ -282,7 +282,7 @@ public class BriefingCrewMemberSelectionScreen extends ImageResizingPanel implem
     {
         if (!mission.getFinalizer().isFinalized())
         {
-            BriefingUnit briefingMissionHandler = briefingData.getActiveBriefingPlatoon();
+            BriefingPlatoon briefingMissionHandler = briefingData.getActiveBriefingPlatoon();
             CrewTankPayloadPairing planeCrew = briefingMissionHandler.getPairingByCrewMember(selectedCrewMemberSerialNumber);
             CrewMember crewMember = planeCrew.getCrewMember();
             briefingMissionHandler.moveCrewMemberUp(crewMember.getSerialNumber());
@@ -294,7 +294,7 @@ public class BriefingCrewMemberSelectionScreen extends ImageResizingPanel implem
     {
         if (!mission.getFinalizer().isFinalized())
         {
-            BriefingUnit briefingMissionHandler = briefingData.getActiveBriefingPlatoon();
+            BriefingPlatoon briefingMissionHandler = briefingData.getActiveBriefingPlatoon();
             CrewTankPayloadPairing planeCrew = briefingMissionHandler.getPairingByCrewMember(selectedCrewMemberSerialNumber);
             CrewMember crewMember = planeCrew.getCrewMember();
             briefingMissionHandler.moveCrewMemberDown(crewMember.getSerialNumber());
@@ -306,7 +306,7 @@ public class BriefingCrewMemberSelectionScreen extends ImageResizingPanel implem
     {
         if (!mission.getFinalizer().isFinalized())
         {
-            BriefingUnit briefingMissionHandler = briefingData.getActiveBriefingPlatoon();
+            BriefingPlatoon briefingMissionHandler = briefingData.getActiveBriefingPlatoon();
             Integer crewMemberSerialNumber = getCrewMemberSerialNumberFromAction(action);
             CrewTankPayloadPairing crewPlane = briefingMissionHandler.getPairingByCrewMember(crewMemberSerialNumber);
 
@@ -339,7 +339,7 @@ public class BriefingCrewMemberSelectionScreen extends ImageResizingPanel implem
 
     private void setModificationInCrewPlane(Integer crewMemberSerialNumber) throws PWCGException
     {
-        BriefingUnit briefingMissionHandler = briefingData.getActiveBriefingPlatoon();
+        BriefingPlatoon briefingMissionHandler = briefingData.getActiveBriefingPlatoon();
         CrewTankPayloadPairing crewPlane = briefingMissionHandler.getPairingByCrewMember(crewMemberSerialNumber);
         crewPlane.clearModification();
         BriefingTankModificationsPicker modificationPicker = planeModifications.get(crewMemberSerialNumber);
@@ -368,7 +368,7 @@ public class BriefingCrewMemberSelectionScreen extends ImageResizingPanel implem
 
     private void synchronizePayload() throws PWCGException
     {
-        BriefingUnit briefingMissionHandler = briefingData.getActiveBriefingPlatoon();
+        BriefingPlatoon briefingMissionHandler = briefingData.getActiveBriefingPlatoon();
         List<CrewTankPayloadPairing> assignedPairings = briefingMissionHandler.getCrews();
         CrewTankPayloadPairing leadPlane = assignedPairings.get(0);
         for (int i = 1; i < assignedPairings.size(); ++i)
@@ -384,7 +384,7 @@ public class BriefingCrewMemberSelectionScreen extends ImageResizingPanel implem
 
     private void synchronizeModifications() throws PWCGException
     {
-        BriefingUnit briefingMissionHandler = briefingData.getActiveBriefingPlatoon();
+        BriefingPlatoon briefingMissionHandler = briefingData.getActiveBriefingPlatoon();
         List<CrewTankPayloadPairing> assignedPairings = briefingMissionHandler.getCrews();
         CrewTankPayloadPairing leadPlane = assignedPairings.get(0);
         for (int i = 1; i < assignedPairings.size(); ++i)
@@ -426,7 +426,7 @@ public class BriefingCrewMemberSelectionScreen extends ImageResizingPanel implem
 
         SoundManager.getInstance().playSound("BriefingEnd.WAV");
 
-        BriefingUnitUpdater.finalizeMission(briefingData);
+        BriefingMissionUpdater.finalizeMission(briefingData);
 
         campaign.setCurrentMission(mission);
         this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -466,8 +466,8 @@ public class BriefingCrewMemberSelectionScreen extends ImageResizingPanel implem
     {
         if (campaign.getCampaignData().getCampaignMode() == CampaignMode.CAMPAIGN_MODE_SINGLE)
         {
-            List<BriefingUnit> briefingFlights = briefingData.getBriefingUnits();
-            for (BriefingUnit briefingFlight : briefingFlights)
+            List<BriefingPlatoon> briefingFlights = briefingData.getBriefingPlatoons();
+            for (BriefingPlatoon briefingFlight : briefingFlights)
             {
                 for (CrewTankPayloadPairing crewPlanePair : briefingFlight.getCrews())
                 {
@@ -478,7 +478,7 @@ public class BriefingCrewMemberSelectionScreen extends ImageResizingPanel implem
                         if (!TanksOwnedManager.getInstance().isTankOwned(playerPlane.getType()))
                         {
                             ErrorDialog
-                                    .userError("Player does not own his assigned plane: " + playerPlane.getDisplayName() + ".  Mission will not be written.");
+                            .userError("Player does not own his assigned plane: " + playerPlane.getDisplayName() + ".  Mission will not be written.");
                             return false;
                         }
                     }

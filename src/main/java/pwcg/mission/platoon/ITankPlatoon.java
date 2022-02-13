@@ -5,6 +5,7 @@ import java.util.List;
 
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
+import pwcg.gui.rofmap.brief.model.BriefingMapPoint;
 import pwcg.mission.ICompanyMission;
 import pwcg.mission.ground.builder.ArmoredPlatoonResponsiveRoute;
 import pwcg.mission.mcu.McuWaypoint;
@@ -44,4 +45,6 @@ public interface ITankPlatoon
     void addResponsiveRoute(ArmoredPlatoonResponsiveRoute platoonResponsiveRoute);
 
     List<ArmoredPlatoonResponsiveRoute> getResponsiveRoutes();
+
+    void updateWaypointsFromBriefing(List<BriefingMapPoint> briefingMapMapPoints) throws PWCGException;
 }

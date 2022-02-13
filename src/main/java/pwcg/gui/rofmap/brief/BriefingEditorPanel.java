@@ -15,7 +15,7 @@ import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.PWCGLogger;
 import pwcg.gui.dialogs.ErrorDialog;
 import pwcg.gui.rofmap.brief.model.BriefingData;
-import pwcg.gui.rofmap.brief.model.BriefingUnit;
+import pwcg.gui.rofmap.brief.model.BriefingPlatoon;
 import pwcg.gui.utils.ContextSpecificImages;
 import pwcg.gui.utils.ImageResizingPanel;
 import pwcg.gui.utils.PWCGLabelFactory;
@@ -24,7 +24,7 @@ import pwcg.mission.utils.MissionTime;
 
 public class BriefingEditorPanel extends ImageResizingPanel implements ActionListener
 {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     private JComboBox<String> cbFuel;
     private JComboBox<String> cbMissionTime;
@@ -34,32 +34,32 @@ public class BriefingEditorPanel extends ImageResizingPanel implements ActionLis
     private Mission mission;
     private BriefingData briefingData;
 
-	public BriefingEditorPanel() throws PWCGException  
-	{
-		super("");
-		this.setLayout(new BorderLayout());
-		this.setOpaque(false);
-		
+    public BriefingEditorPanel() throws PWCGException
+    {
+        super("");
+        this.setLayout(new BorderLayout());
+        this.setOpaque(false);
+
         this.briefingData =  BriefingContext.getInstance().getBriefingData();
         this.mission =  briefingData.getMission();
 
-		setLayout(new BorderLayout());		
-	}    
+        setLayout(new BorderLayout());
+    }
 
-	public void makePanels() throws PWCGException 
-	{
+    public void makePanels() throws PWCGException
+    {
         String imagePath = ContextSpecificImages.imagesMisc() + "Document.png";
         this.setImageFromName(imagePath);
 
-		editorPanel = new JPanel();
-		editorPanel.setLayout(new BorderLayout());
-		editorPanel.setOpaque(false);
-		editorPanel.setBorder(BorderFactory.createEmptyBorder(50,50,50,100));
+        editorPanel = new JPanel();
+        editorPanel.setLayout(new BorderLayout());
+        editorPanel.setOpaque(false);
+        editorPanel.setBorder(BorderFactory.createEmptyBorder(50,50,50,100));
 
-        BriefingUnit activeBriefingFlight = briefingData.getActiveBriefingPlatoon();
+        BriefingPlatoon activeBriefingFlight = briefingData.getActiveBriefingPlatoon();
         waypointDetailsPanel = new BriefingEditorDetailsPanel(false);
         waypointDetailsPanel.buildWaypointPanel(activeBriefingFlight);
-        
+
         JPanel editableLabelPanel = createEditableLabelPanel();
         editorPanel.add(editableLabelPanel, BorderLayout.NORTH);
 
@@ -69,29 +69,29 @@ public class BriefingEditorPanel extends ImageResizingPanel implements ActionLis
 
         editorPanel.add(editDetailsPanel, BorderLayout.CENTER);
         this.add(editorPanel, BorderLayout.CENTER);
-	}
-	
-	public void makeEditable() throws PWCGException
-	{
-	    JComponent previousPanel = waypointDetailsPanel.getWaypointPanel();
-	    
-        BriefingUnit activeBriefingFlight = briefingData.getActiveBriefingPlatoon();
+    }
+
+    public void makeEditable() throws PWCGException
+    {
+        JComponent previousPanel = waypointDetailsPanel.getWaypointPanel();
+
+        BriefingPlatoon activeBriefingFlight = briefingData.getActiveBriefingPlatoon();
         waypointDetailsPanel = new BriefingEditorDetailsPanel(true);
         waypointDetailsPanel.buildWaypointPanel(activeBriefingFlight);
-        
-        setWaypointViewPanel(previousPanel);        
-	}
+
+        setWaypointViewPanel(previousPanel);
+    }
 
     private JPanel createEditableLabelPanel() throws PWCGException
     {
         JPanel editableLabelPanel = new JPanel(new GridLayout(0,1));
         editableLabelPanel.setOpaque(false);
-        
+
         JLabel summaryLabel = PWCGLabelFactory.makePaperLabelLarge("Mission Summary");
         editableLabelPanel.add(summaryLabel);
-        
+
         editableLabelPanel.add(PWCGLabelFactory.makeDummyLabel());
-        
+
         return editableLabelPanel;
     }
 
@@ -103,16 +103,16 @@ public class BriefingEditorPanel extends ImageResizingPanel implements ActionLis
         JPanel dropDownPanel = createDropDownPanel();
         editDetailsPanel.add(dropDownPanel, BorderLayout.NORTH);
 
-        setWaypointViewPanel(null);        
+        setWaypointViewPanel(null);
     }
-    
+
     private void setWaypointViewPanel(JComponent previousPanel)
     {
         if (previousPanel != null)
         {
             editDetailsPanel.remove(previousPanel);
         }
-        
+
         editDetailsPanel.add(waypointDetailsPanel.getWaypointPanel(), BorderLayout.CENTER);
         editDetailsPanel.setVisible(false);
         editDetailsPanel.setVisible(true);
@@ -122,20 +122,20 @@ public class BriefingEditorPanel extends ImageResizingPanel implements ActionLis
     {
         JPanel dropDownPanel = new JPanel(new GridLayout(0,1));
         dropDownPanel.setOpaque(false);
-        
+
         createFuelDisplay();
         dropDownPanel.add(cbFuel);
 
         createTimeDisplay();
         dropDownPanel.add(cbMissionTime);
-        
+
         return dropDownPanel;
     }
 
     private void createTimeDisplay()
     {
         MissionTime missionTime = mission.getMissionOptions().getMissionTime();
-		
+
         cbMissionTime = new JComboBox<String>();
         cbMissionTime.setActionCommand("ChangeTime");
         cbMissionTime.setOpaque(false);
@@ -146,9 +146,9 @@ public class BriefingEditorPanel extends ImageResizingPanel implements ActionLis
         }
         cbMissionTime.setOpaque(false);
         cbMissionTime.setSelectedIndex(missionTime.getIndexForTime());
-       
+
         cbMissionTime.setSelectedItem(briefingData.getMissionTime());
-        
+
         cbMissionTime.addActionListener(this);
         if (mission.getFinalizer().isFinalized())
         {
@@ -158,15 +158,15 @@ public class BriefingEditorPanel extends ImageResizingPanel implements ActionLis
 
     private void createFuelDisplay()
     {
-		cbFuel = new JComboBox<String>();
-		cbFuel.addItem("Fuel 100%");
-		cbFuel.addItem("Fuel 95%");
-		cbFuel.addItem("Fuel 90%");
-		cbFuel.addItem("Fuel 85%");
-		cbFuel.addItem("Fuel 80%");
-		cbFuel.addItem("Fuel 75%");
-		cbFuel.addItem("Fuel 70%");
-		cbFuel.addItem("Fuel 65%");
+        cbFuel = new JComboBox<String>();
+        cbFuel.addItem("Fuel 100%");
+        cbFuel.addItem("Fuel 95%");
+        cbFuel.addItem("Fuel 90%");
+        cbFuel.addItem("Fuel 85%");
+        cbFuel.addItem("Fuel 80%");
+        cbFuel.addItem("Fuel 75%");
+        cbFuel.addItem("Fuel 70%");
+        cbFuel.addItem("Fuel 65%");
         cbFuel.addItem("Fuel 60%");
         cbFuel.addItem("Fuel 55%");
         cbFuel.addItem("Fuel 50%");
@@ -174,23 +174,23 @@ public class BriefingEditorPanel extends ImageResizingPanel implements ActionLis
         cbFuel.addItem("Fuel 40%");
         cbFuel.addItem("Fuel 35%");
         cbFuel.addItem("Fuel 30%");
-		cbFuel.setOpaque(false);
-		cbFuel.setSelectedIndex(getIndexForFuel());
-		cbFuel.setActionCommand("ChangeFuel");
-		cbFuel.addActionListener(this);
-		if (mission.getFinalizer().isFinalized())
-		{
-			cbFuel.setEnabled(false);
-		}
+        cbFuel.setOpaque(false);
+        cbFuel.setSelectedIndex(getIndexForFuel());
+        cbFuel.setActionCommand("ChangeFuel");
+        cbFuel.addActionListener(this);
+        if (mission.getFinalizer().isFinalized())
+        {
+            cbFuel.setEnabled(false);
+        }
     }
 
-	private int getIndexForFuel()
-	{
-	    int index = 0;
-	    
-        BriefingUnit activeBriefingFlight = briefingData.getActiveBriefingPlatoon();
-	    double selectedFuel = activeBriefingFlight.getSelectedFuel();
-	    
+    private int getIndexForFuel()
+    {
+        int index = 0;
+
+        BriefingPlatoon activeBriefingFlight = briefingData.getActiveBriefingPlatoon();
+        double selectedFuel = activeBriefingFlight.getSelectedFuel();
+
         if (selectedFuel > .95)
         {
             index = 0;
@@ -251,16 +251,16 @@ public class BriefingEditorPanel extends ImageResizingPanel implements ActionLis
         {
             index = 14;
         }
-		
-		return index;
-	}
 
-	@Override
-	public void actionPerformed(ActionEvent arg0) 
-	{		
-		try
-		{
-			String action = arg0.getActionCommand();
+        return index;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent arg0)
+    {
+        try
+        {
+            String action = arg0.getActionCommand();
             if (action.equalsIgnoreCase("ChangeFuel"))
             {
                 changeFuel();
@@ -270,13 +270,13 @@ public class BriefingEditorPanel extends ImageResizingPanel implements ActionLis
                 String selectedTime = (String)cbMissionTime.getSelectedItem();
                 briefingData.setMissionTime(selectedTime);
             }
-		}
-		catch (Exception e)
-		{
-			PWCGLogger.logException(e);
-			ErrorDialog.internalError(e.getMessage());
-		}
-	}
+        }
+        catch (Exception e)
+        {
+            PWCGLogger.logException(e);
+            ErrorDialog.internalError(e.getMessage());
+        }
+    }
 
     private void changeFuel()
     {
@@ -286,8 +286,8 @@ public class BriefingEditorPanel extends ImageResizingPanel implements ActionLis
         String valueString = fuelString.substring(beginIndex+1, endIndex);
         int valueAsInt = Integer.valueOf (valueString);
         Double selectedFuel = Double.valueOf (valueAsInt).doubleValue() / 100.0;
-        
-        BriefingUnit activeBriefingFlight = briefingData.getActiveBriefingPlatoon();
+
+        BriefingPlatoon activeBriefingFlight = briefingData.getActiveBriefingPlatoon();
         activeBriefingFlight.setSelectedFuel(selectedFuel);
     }
 

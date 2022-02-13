@@ -1,21 +1,14 @@
 package pwcg.gui.rofmap.brief.update;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import pwcg.campaign.Campaign;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.core.exception.PWCGException;
-import pwcg.core.location.Coordinate;
 import pwcg.gui.rofmap.brief.model.BriefingData;
-import pwcg.gui.rofmap.brief.model.BriefingMapPoint;
-import pwcg.gui.rofmap.brief.model.BriefingUnit;
+import pwcg.gui.rofmap.brief.model.BriefingPlatoon;
 import pwcg.mission.Mission;
-import pwcg.mission.flight.waypoint.WaypointType;
-import pwcg.mission.mcu.McuWaypoint;
 import pwcg.mission.platoon.ITankPlatoon;
 
-public class BriefingUnitUpdater
+public class BriefingMissionUpdater
 {
 
     public static void finalizeMission(BriefingData briefingContext) throws PWCGException
@@ -32,7 +25,7 @@ public class BriefingUnitUpdater
         }
     }
 
-    public static void pushEditsToMission(BriefingData briefingData) throws PWCGException 
+    public static void pushEditsToMission(BriefingData briefingData) throws PWCGException
     {
         Mission mission = briefingData.getMission();
         if (!mission.getFinalizer().isFinalized())
@@ -40,7 +33,7 @@ public class BriefingUnitUpdater
             pushUnitParametersToMission(briefingData);
             pushCrewAndPayloadToMission(briefingData);
             pushFuelToMission(briefingData);
-            
+
         }
     }
 
@@ -49,56 +42,31 @@ public class BriefingUnitUpdater
         Mission mission = briefingData.getMission();
         mission.getMissionOptions().getMissionTime().setMissionTime(briefingData.getMissionTime());
 
-        for (BriefingUnit briefingUnit : briefingData.getBriefingUnits())
+        for (BriefingPlatoon briefingUnit : briefingData.getBriefingPlatoons())
         {
             ITankPlatoon playerPlatoon = mission.getPlatoons().getPlayerUnitForCompany(briefingUnit.getCompanyId());
-            List<McuWaypoint> waypoints = briefingPointToWaypoint(briefingUnit.getBriefingPlatoonParameters().getBriefingMapMapPoints());
-            playerPlatoon.setWaypoints(waypoints);
+            playerPlatoon.updateWaypointsFromBriefing(briefingUnit.getBriefingPlatoonParameters().getBriefingMapMapPoints());
         }
-    }
-
-
-    private static List<McuWaypoint> briefingPointToWaypoint(List<BriefingMapPoint> briefingMapPoints) throws PWCGException
-    {
-        List<McuWaypoint> waypoints = new ArrayList<>();
-        
-        for (BriefingMapPoint briefingMapPoint : briefingMapPoints)
-        {
-            McuWaypoint newWaypoint = makeWaypointFromBriefing(briefingMapPoint);
-            waypoints.add(newWaypoint);
-        }
-        
-        return waypoints;
-    }
-
-    private static McuWaypoint makeWaypointFromBriefing(BriefingMapPoint waypointFromBriefing) throws PWCGException
-    {
-        McuWaypoint newWaypoint = new McuWaypoint(WaypointType.OBJECTIVE_WAYPOINT);
-        
-        Coordinate newPosition = waypointFromBriefing.getPosition();
-        newWaypoint.setSpeed(waypointFromBriefing.getCruisingSpeed());
-        newWaypoint.setPosition(newPosition);
-        return newWaypoint;
     }
 
     private static void pushCrewAndPayloadToMission(BriefingData briefingData) throws PWCGException
     {
         Mission mission = briefingData.getMission();
-        for (BriefingUnit briefingUnit : briefingData.getBriefingUnits())
+        for (BriefingPlatoon briefingUnit : briefingData.getBriefingPlatoons())
         {
             ITankPlatoon playerPlatoon = mission.getPlatoons().getPlayerUnitForCompany(briefingUnit.getCompanyId());
             BriefingCrewTankUpdater crewePlaneUpdater = new BriefingCrewTankUpdater(mission.getCampaign(), playerPlatoon);
             crewePlaneUpdater.updatePlayerTanks(briefingUnit.getBriefingAssignmentData().getCrews());
         }
     }
-    
+
 
     private static void pushFuelToMission(BriefingData briefingData) throws PWCGException
     {
         Mission mission = briefingData.getMission();
         mission.getMissionOptions().getMissionTime().setMissionTime(briefingData.getMissionTime());
 
-        for (BriefingUnit briefingUnit : briefingData.getBriefingUnits())
+        for (BriefingPlatoon briefingUnit : briefingData.getBriefingPlatoons())
         {
             ITankPlatoon playerPlatoon = mission.getPlatoons().getPlayerUnitForCompany(briefingUnit.getCompanyId());
             playerPlatoon.getPlatoonTanks().setFuelForUnit(briefingUnit.getSelectedFuel());
