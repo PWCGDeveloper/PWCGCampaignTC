@@ -29,50 +29,50 @@ public class BriefingEditorDetailsPanel
     {
         this.isEditable = isEditable;
     }
-    
-    public void buildWaypointPanel(BriefingPlatoon activeBriefingFlight) throws PWCGException
+
+    public void buildWaypointPanel(BriefingPlatoon activeBriefingPlatoon) throws PWCGException
     {
         waypointPanel.setOpaque(false);
-        
+
         GridBagConstraints constraints = new GridBagConstraints();
-		constraints.fill = GridBagConstraints.HORIZONTAL;
-		constraints.ipadx = 3;
-		constraints.ipady = 3;
-		GridBagLayout gridBagLayout = new GridBagLayout();
-		JPanel waypointDetailsPanel = new JPanel(gridBagLayout);
-		waypointDetailsPanel.setOpaque(false);
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.ipadx = 3;
+        constraints.ipady = 3;
+        GridBagLayout gridBagLayout = new GridBagLayout();
+        JPanel waypointDetailsPanel = new JPanel(gridBagLayout);
+        waypointDetailsPanel.setOpaque(false);
 
-		createMissionParametersHeader(constraints, waypointDetailsPanel);
-	            
+        createMissionParametersHeader(constraints, waypointDetailsPanel);
+
         BriefingMapPoint previousMapPoint = null;
-	    for (BriefingMapPoint briefingMapPoint : activeBriefingFlight.getBriefingPlatoonParameters().getBriefingMapMapPoints())
-	    {
-	        IWaypointDetails waypointViewer = buildWaypointViewer(briefingMapPoint.getWaypointID());
-	        waypointViewer.initializeWPEdit(previousMapPoint, briefingMapPoint);
-	    	
-	        constraints.gridy = constraints.gridy + 1;
+        for (BriefingMapPoint briefingMapPoint : activeBriefingPlatoon.getBriefingPlatoonParameters().getBriefingMapMapPoints())
+        {
+            IWaypointDetails waypointViewer = buildWaypointViewer(briefingMapPoint.getWaypointID());
+            waypointViewer.initializeWPEdit(previousMapPoint, briefingMapPoint);
 
-			constraints.gridx = 0;
-			waypointDetailsPanel.add(waypointViewer.getDescriptionField(), constraints);
-            
+            constraints.gridy = constraints.gridy + 1;
+
+            constraints.gridx = 0;
+            waypointDetailsPanel.add(waypointViewer.getDescriptionField(), constraints);
+
             constraints.gridx = 1;
             waypointDetailsPanel.add(waypointViewer.getCruisingSpeedField(), constraints);
-            
+
             constraints.gridx = 2;
             waypointDetailsPanel.add(waypointViewer.getDistanceField(), constraints);
-        
+
             constraints.gridx = 3;
             waypointDetailsPanel.add(waypointViewer.getHeadingField(), constraints);
-            
+
             waypointEditors.addWaypointEditor(waypointViewer);
-            
+
             previousMapPoint = briefingMapPoint;
-	    }	    
-	    
+        }
+
         JScrollPane waypointScrollPane = ScrollBarWrapper.makeScrollPane(waypointDetailsPanel);
         waypointPanel.add(waypointScrollPane, BorderLayout.NORTH);
     }
-    
+
     private IWaypointDetails buildWaypointViewer(long waypointID)
     {
         if (isEditable)
@@ -95,7 +95,7 @@ public class BriefingEditorDetailsPanel
         constraints.gridx = 0;
         constraints.gridy = 0;
         panel.add(wpName, constraints);
-        
+
         String cruiseSpeedLabelText = InternationalizationManager.getTranslation("Cruise Speed");
         JLabel cruiseSpeedLabel = PWCGLabelFactory.makeTransparentLabel(cruiseSpeedLabelText, ColorMap.PAPER_FOREGROUND, font, SwingConstants.CENTER);
         constraints.weightx = 0.2;
@@ -109,7 +109,7 @@ public class BriefingEditorDetailsPanel
         constraints.gridx = 2;
         constraints.gridy = 0;
         panel.add(distLabel, constraints);
-        
+
         String headingLabelText = InternationalizationManager.getTranslation("Heading");
         JLabel headingLabel = PWCGLabelFactory.makeTransparentLabel(headingLabelText, ColorMap.PAPER_FOREGROUND, font, SwingConstants.CENTER);
         constraints.weightx = 0.2;
@@ -127,6 +127,6 @@ public class BriefingEditorDetailsPanel
     {
         return waypointEditors;
     }
-    
-    
+
+
 }

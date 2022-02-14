@@ -12,7 +12,7 @@ import pwcg.core.exception.PWCGException;
 import pwcg.gui.rofmap.brief.model.BriefingData;
 import pwcg.gui.rofmap.brief.model.BriefingMapPoint;
 import pwcg.gui.rofmap.brief.model.BriefingPlatoon;
-import pwcg.gui.rofmap.brief.model.BriefingUnitParameters;
+import pwcg.gui.rofmap.brief.model.BriefingPlatoonParameters;
 import pwcg.mission.Mission;
 import pwcg.mission.MissionGenerator;
 import pwcg.mission.platoon.ITankPlatoon;
@@ -48,11 +48,11 @@ public class BriefingDataBuilderTest
         ITankPlatoon unit = briefingData.getSelectedUnit();
         Assertions.assertTrue (unit.getCompany().getCompanyId() == CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
 
-        BriefingPlatoon briefingFlight = briefingData.getActiveBriefingPlatoon();
-        Assertions.assertTrue (briefingFlight.getCompanyId() == CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
+        BriefingPlatoon briefingPlatoon = briefingData.getActiveBriefingPlatoon();
+        Assertions.assertTrue (briefingPlatoon.getCompanyId() == CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
         
-        BriefingUnitParameters briefingFlightParameters = briefingFlight.getBriefingPlatoonParameters();
-        List<BriefingMapPoint>  briefingMapMapPoints = briefingFlightParameters.getBriefingMapMapPoints();
+        BriefingPlatoonParameters briefingPlatoonParameters = briefingPlatoon.getBriefingPlatoonParameters();
+        List<BriefingMapPoint>  briefingMapMapPoints = briefingPlatoonParameters.getBriefingMapMapPoints();
         for (BriefingMapPoint briefingMapMapPoint : briefingMapMapPoints)
         {
             assert(briefingMapMapPoint.getDesc() != null);

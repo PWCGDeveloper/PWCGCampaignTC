@@ -52,7 +52,7 @@ public class BriefingCrewMemberSelectionScreen extends ImageResizingPanel implem
     private BriefingCrewMemberChalkboard crewMemberPanel;
     private BriefingData briefingData;
     private Map<Integer, BriefingTankModificationsPicker> planeModifications = new HashMap<>();
-    private BriefingCompanyChooser briefingFlightChooser;
+    private BriefingCompanyChooser briefingPlatoonChooser;
     private int selectedCrewMemberSerialNumber = -1;
 
     public BriefingCrewMemberSelectionScreen(CampaignHomeGuiBriefingWrapper campaignHomeGuiBriefingWrapper)
@@ -74,8 +74,8 @@ public class BriefingCrewMemberSelectionScreen extends ImageResizingPanel implem
             String imagePath = UiImageResolver.getImage(ScreenIdentifier.BriefingCrewMemberSelectionScreen);
             this.setImageFromName(imagePath);
 
-            briefingFlightChooser = new BriefingCompanyChooser(mission, this);
-            briefingFlightChooser.createBriefingCompanySelectPanel();
+            briefingPlatoonChooser = new BriefingCompanyChooser(mission, this);
+            briefingPlatoonChooser.createBriefingCompanySelectPanel();
 
             this.add(BorderLayout.WEST, makeLeftPanel());
             this.add(BorderLayout.CENTER, createCenterPanel());
@@ -97,7 +97,7 @@ public class BriefingCrewMemberSelectionScreen extends ImageResizingPanel implem
 
         JPanel buttonPanel = makeButtonPanel();
         leftPanel.add(buttonPanel, BorderLayout.NORTH);
-        leftPanel.add(briefingFlightChooser.getFlightChooserPanel(), BorderLayout.CENTER);
+        leftPanel.add(briefingPlatoonChooser.getFlightChooserPanel(), BorderLayout.CENTER);
         return leftPanel;
     }
 
@@ -466,10 +466,10 @@ public class BriefingCrewMemberSelectionScreen extends ImageResizingPanel implem
     {
         if (campaign.getCampaignData().getCampaignMode() == CampaignMode.CAMPAIGN_MODE_SINGLE)
         {
-            List<BriefingPlatoon> briefingFlights = briefingData.getBriefingPlatoons();
-            for (BriefingPlatoon briefingFlight : briefingFlights)
+            List<BriefingPlatoon> briefingPlatoons = briefingData.getBriefingPlatoons();
+            for (BriefingPlatoon briefingPlatoon : briefingPlatoons)
             {
-                for (CrewTankPayloadPairing crewPlanePair : briefingFlight.getCrews())
+                for (CrewTankPayloadPairing crewPlanePair : briefingPlatoon.getCrews())
                 {
                     CrewMember crewMember = crewPlanePair.getCrewMember();
                     if (crewMember.isPlayer())

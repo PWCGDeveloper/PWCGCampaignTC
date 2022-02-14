@@ -39,12 +39,12 @@ public class BriefingDescriptionChalkboard extends ImageResizingPanel
         super("");
         this.setLayout(new BorderLayout());
         this.setOpaque(false);
-        
+
         this.mission = mission;
         this.briefingContext = briefingContext;
     }
-    
-    public void makePanel() throws PWCGException 
+
+    public void makePanel() throws PWCGException
     {
         String imagePath = ContextSpecificImages.imagesMisc() + "Chalkboard.png";
         JPanel briefingPanel = new ImageResizingPanel(imagePath);
@@ -53,21 +53,21 @@ public class BriefingDescriptionChalkboard extends ImageResizingPanel
         briefingPanel.setBorder(BorderFactory.createEmptyBorder(75,100,50,50));
 
         JPanel missionTextPanel = makeMissionText();
-        
+
         JScrollPane missionScrollPane = ScrollBarWrapper.makeScrollPane(missionTextPanel);
 
         briefingPanel.add(missionScrollPane, BorderLayout.CENTER);
-        
+
         this.add(briefingPanel, BorderLayout.CENTER);
 
         setMissionText();
     }
 
-    private JPanel makeMissionText() throws PWCGException 
+    private JPanel makeMissionText() throws PWCGException
     {
         JPanel missionTextPanel = new JPanel(new BorderLayout());
         missionTextPanel.setOpaque(false);
-        
+
         Font font = PWCGMonitorFonts.getBriefingChalkboardFont();
 
         missionTextArea.setFont(font);
@@ -75,34 +75,33 @@ public class BriefingDescriptionChalkboard extends ImageResizingPanel
         missionTextArea.setLineWrap(true);
         missionTextArea.setWrapStyleWord(true);
         missionTextArea.setForeground(ColorMap.CHALK_FOREGROUND);
-        
+
         // Calculate the writable area of the text and generate margins scaled to screen size
         Insets margins = PWCGMonitorBorders.calculateBorderMargins(50, 35, 65, 35);
         missionTextArea.setMargin(margins);
-        
+
         missionTextPanel.add(missionTextArea, BorderLayout.CENTER);
 
         return missionTextPanel;
     }
 
-    public void setMissionText() throws PWCGException 
+    public void setMissionText() throws PWCGException
     {
         Campaign campaign = PWCGContext.getInstance().getCampaign();
 
         String missionPrefix = getMissionPrefix();
-        
-        
 
-        IMissionDescription missionDescription = MissionDescriptionFactory.buildMissionDescription(campaign, mission, briefingContext.getSelectedUnit());
+        IMissionDescription missionDescription =
+                MissionDescriptionFactory.buildMissionDescription(campaign, mission, briefingContext.getSelectedUnit());
         String missionDescriptionText = missionDescription.createDescription();
-        
+
         StringBuffer missionDescriptionBuffer = new StringBuffer("");
         missionDescriptionBuffer.append(missionPrefix);
         missionDescriptionBuffer.append(missionDescriptionText);
 
         String crewMemberList = makeCrewMemberList();
         missionDescriptionBuffer.append(crewMemberList.toString());
-        
+
         missionTextArea.setText(missionDescriptionBuffer.toString());
     }
 
@@ -112,7 +111,7 @@ public class BriefingDescriptionChalkboard extends ImageResizingPanel
         return missionPrefix;
     }
 
-    private String makeCrewMemberList() throws PWCGException 
+    private String makeCrewMemberList() throws PWCGException
     {
         BriefingPlatoon activeMissionHandler = briefingContext.getActiveBriefingPlatoon();
         StringBuffer assignedCrewMembersBuffer = new StringBuffer ("Assigned CrewMembers:\n");
@@ -120,7 +119,7 @@ public class BriefingDescriptionChalkboard extends ImageResizingPanel
         {
             assignedCrewMembersBuffer.append("    " + crewPlane.getCrewMember().getNameAndRank() + "\n");
         }
-        
+
         return assignedCrewMembersBuffer.toString();
     }
 

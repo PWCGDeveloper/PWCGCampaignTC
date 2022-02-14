@@ -4,7 +4,7 @@ import java.util.Map;
 
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.core.exception.PWCGException;
-import pwcg.gui.rofmap.brief.BriefingMissionFlightSetBuilder;
+import pwcg.gui.rofmap.brief.BriefingMissionPlatoonSetBuilder;
 import pwcg.gui.rofmap.brief.model.BriefingData;
 import pwcg.gui.rofmap.brief.model.BriefingPlatoon;
 import pwcg.mission.Mission;
@@ -40,7 +40,7 @@ public class BriefingDataBuilder
 
     private Map<Integer, BriefingPlatoon> buildBriefingMissions() throws PWCGException
     {
-        Map<Integer, BriefingPlatoon> briefingMissionFlights = BriefingMissionFlightSetBuilder.buildBriefingMissions(mission);
+        Map<Integer, BriefingPlatoon> briefingMissionFlights = BriefingMissionPlatoonSetBuilder.buildBriefingMissions(mission);
         return briefingMissionFlights;
     }
 

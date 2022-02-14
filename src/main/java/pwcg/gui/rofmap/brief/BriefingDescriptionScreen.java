@@ -35,7 +35,7 @@ public class BriefingDescriptionScreen extends ImageResizingPanel implements Act
     private CampaignHomeGuiBriefingWrapper campaignHomeGuiBriefingWrapper;
     private Mission mission;
     private BriefingData briefingData;
-    private BriefingCompanyChooser briefingFlightChooser;
+    private BriefingCompanyChooser briefingPlatoonChooser;
     private BriefingDescriptionChalkboard briefingChalkboard;
 
     public BriefingDescriptionScreen(CampaignHomeGuiBriefingWrapper campaignHomeGuiBriefingWrapper, Mission mission) throws PWCGException
@@ -60,8 +60,8 @@ public class BriefingDescriptionScreen extends ImageResizingPanel implements Act
             String imagePath = UiImageResolver.getImage(ScreenIdentifier.BriefingDescriptionScreen);
             this.setImageFromName(imagePath);
 
-            briefingFlightChooser = new BriefingCompanyChooser(mission, this);
-            briefingFlightChooser.createBriefingCompanySelectPanel();
+            briefingPlatoonChooser = new BriefingCompanyChooser(mission, this);
+            briefingPlatoonChooser.createBriefingCompanySelectPanel();
 
             this.removeAll();
             this.add(BorderLayout.WEST, makeLeftPanel());
@@ -81,7 +81,7 @@ public class BriefingDescriptionScreen extends ImageResizingPanel implements Act
 
         JPanel buttonPanel = makeButtonPanel();
         leftPanel.add(buttonPanel, BorderLayout.NORTH);
-        leftPanel.add(briefingFlightChooser.getFlightChooserPanel(), BorderLayout.CENTER);
+        leftPanel.add(briefingPlatoonChooser.getFlightChooserPanel(), BorderLayout.CENTER);
         return leftPanel;
     }
 
@@ -191,6 +191,6 @@ public class BriefingDescriptionScreen extends ImageResizingPanel implements Act
     public void refreshScreen() throws PWCGException
     {
         briefingChalkboard.setMissionText();
-        briefingFlightChooser.setSelectedButton(briefingData.getSelectedUnit().getCompany().getCompanyId());
+        briefingPlatoonChooser.setSelectedButton(briefingData.getSelectedUnit().getCompany().getCompanyId());
     }
 }

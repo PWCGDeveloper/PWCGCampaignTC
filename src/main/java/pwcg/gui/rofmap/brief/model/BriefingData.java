@@ -15,7 +15,6 @@ public class BriefingData
     private Map<Integer, BriefingPlatoon> briefingMissionUnits = new HashMap<>();
     private int selectedCompanyId = 0;
     private Mission mission;
-    private Map<Integer, String> aiUnitsToDisplay = new HashMap<>();
 
     public BriefingData(Mission mission, Map<Integer, BriefingPlatoon> briefingMissionFlights)
     {
@@ -27,7 +26,7 @@ public class BriefingData
     {
         return briefingMissionUnits.get(selectedCompanyId);
     }
-    
+
     public ITankPlatoon getSelectedUnit() throws PWCGException
     {
         ITankPlatoon playerFlight = mission.getPlatoons().getPlayerUnitForCompany(selectedCompanyId);
@@ -38,7 +37,7 @@ public class BriefingData
     {
         return new ArrayList<>(briefingMissionUnits.values());
     }
-    
+
     public void changeSelectedUnit(int companyId)
     {
         selectedCompanyId = companyId;
@@ -48,7 +47,7 @@ public class BriefingData
     {
         return mission;
     }
-    
+
     public String getMissionTime()
     {
         return missionTime;
@@ -57,20 +56,5 @@ public class BriefingData
     public void setMissionTime(String selectedTime)
     {
         this.missionTime = selectedTime;
-    }
-    
-    public void setAiFlightsToDisplay(Map<Integer, String> aiFlightsToDisplay)
-    {
-        this.aiUnitsToDisplay = aiFlightsToDisplay;
-    }
-
-    public void clearAiFlightsToDisplay()
-    {
-        aiUnitsToDisplay.clear();
-    }
-
-    public Map<Integer, String> getAiPlatoonsToDisplay()
-    {
-        return aiUnitsToDisplay;
     }
 }
