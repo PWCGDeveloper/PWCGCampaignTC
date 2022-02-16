@@ -3,6 +3,7 @@ package pwcg.gui.rofmap.brief.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import pwcg.campaign.api.Side;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.CrewMemberSorter;
 import pwcg.campaign.tank.EquippedTank;
@@ -15,22 +16,24 @@ import pwcg.mission.Mission;
 import pwcg.mission.platoon.ITankPlatoon;
 import pwcg.mission.playerunit.crew.CrewTankPayloadPairing;
 
-public class BriefingPlatoon
+public class BriefingPlayerPlatoon implements IBriefingPlatoon
 {
+    private Side side;
     private int companyId;
     private BriefingPlatoonParameters briefingPlatoonParameters;
     private BriefingCrewMemberAssignmentData briefingAssignmentData;
     private double selectedFuel = 1.0;
     private Mission mission;
 
-    public BriefingPlatoon(Mission mission, BriefingPlatoonParameters briefingPlatoonParameters, int companyId)
+    public BriefingPlayerPlatoon(Mission mission, BriefingPlatoonParameters briefingPlatoonParameters, int companyId, Side side)
     {
         this.mission = mission;
         this.companyId = companyId;
+        this.side = side;
         this.briefingPlatoonParameters = briefingPlatoonParameters;
         briefingAssignmentData = new BriefingCrewMemberAssignmentData();
     }
-    
+
     public void initializeFromMission(ICompanyMission company) throws PWCGException
     {
         BriefingDataInitializer crewMemberHelper = new BriefingDataInitializer(mission);
@@ -38,7 +41,7 @@ public class BriefingPlatoon
 
         BriefingPayloadHelper payloadHelper = new BriefingPayloadHelper(mission, briefingAssignmentData);
         payloadHelper.initializePayloadsFromMission();
-        
+
         initializeFuel();
     }
 
@@ -60,10 +63,10 @@ public class BriefingPlatoon
     public void assignCrewMemberAndTankFromBriefing(Integer crewMemberSerialNumber, Integer tankSerialNumber) throws PWCGException
     {
         briefingAssignmentData.assignCrewMember(crewMemberSerialNumber, tankSerialNumber);
-        
+
         BriefingPayloadHelper payloadHelper = new BriefingPayloadHelper(mission, briefingAssignmentData);
         payloadHelper.setPayloadForAddedPlane(crewMemberSerialNumber);
-    }    
+    }
 
     public void unassignCrewMemberFromBriefing(int crewMemberSerialNumber) throws PWCGException
     {
@@ -76,18 +79,18 @@ public class BriefingPlatoon
         payloadHelper.modifyPayload(crewMemberSerialNumber, newPayload);
     }
 
-    public List<CrewMember> getSortedUnassignedCrewMembers() throws PWCGException 
-    {       
+    public List<CrewMember> getSortedUnassignedCrewMembers() throws PWCGException
+    {
         return CrewMemberSorter.sortCrewMembers(mission.getCampaign(), briefingAssignmentData.getUnassignedCrewMembers());
     }
 
-    public List<EquippedTank> getSortedUnassignedTanks() throws PWCGException 
-    {       
+    public List<EquippedTank> getSortedUnassignedTanks() throws PWCGException
+    {
         return TankSorter.sortEquippedTanksByGoodness(new ArrayList<EquippedTank>(briefingAssignmentData.getUnassignedPlanes().values()));
     }
 
-    public CrewTankPayloadPairing getPairingByCrewMember(Integer crewMemberSerialNumber) throws PWCGException 
-    {       
+    public CrewTankPayloadPairing getPairingByCrewMember(Integer crewMemberSerialNumber) throws PWCGException
+    {
         return briefingAssignmentData.findAssignedCrewPairingByCrewMember(crewMemberSerialNumber);
     }
 
@@ -101,6 +104,7 @@ public class BriefingPlatoon
         this.mission = mission;
     }
 
+    @Override
     public BriefingPlatoonParameters getBriefingPlatoonParameters()
     {
         return briefingPlatoonParameters;
@@ -118,12 +122,12 @@ public class BriefingPlatoon
 
     public void moveCrewMemberUp(int crewMemberSerialNumber)
     {
-        briefingAssignmentData.moveCrewMemberUp(crewMemberSerialNumber);        
+        briefingAssignmentData.moveCrewMemberUp(crewMemberSerialNumber);
     }
 
     public void moveCrewMemberDown(int crewMemberSerialNumber)
     {
-        briefingAssignmentData.moveCrewMemberDown(crewMemberSerialNumber);        
+        briefingAssignmentData.moveCrewMemberDown(crewMemberSerialNumber);
     }
 
     public double getSelectedFuel()
@@ -136,11 +140,18 @@ public class BriefingPlatoon
         this.selectedFuel = selectedFuel;
     }
 
+    @Override
     public int getCompanyId()
     {
         return companyId;
     }
-    
+
+    @Override
+    public Side getSide()
+    {
+        return side;
+    }
+
     private void initializeFuel() throws PWCGException
     {
         ITankPlatoon unit = mission.getPlatoons().getPlayerUnitForCompany(companyId);

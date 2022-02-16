@@ -12,7 +12,12 @@ public class BriefingPlatoonParameters
     private List<BriefingMapPoint> briefingMapPoints = new ArrayList<>();
     private int selectedMapPointIndex = -1;
     private int actionMapPointIndex = -1;
-    
+
+    public BriefingPlatoonParameters()
+    {
+
+    }
+
     public List<BriefingMapPoint> getBriefingMapMapPoints()
     {
         return briefingMapPoints;
@@ -43,11 +48,11 @@ public class BriefingPlatoonParameters
                 if (previousBriefingMapPoint.isEditable())
                 {
                     BriefingMapPoint nextBriefingMapPoint = briefingMapPoints.get(actionMapPointIndex+1);
-                
+
                     BriefingMapPoint briefingMapPointToAdd = previousBriefingMapPoint.copy();
                     double distance = MathUtils.calcDist(previousBriefingMapPoint.getPosition(), nextBriefingMapPoint.getPosition());
                     double heading = MathUtils.calcAngle(previousBriefingMapPoint.getPosition(), nextBriefingMapPoint.getPosition());
-                    
+
                     Coordinate newMapPointPosition = MathUtils.calcNextCoord(previousBriefingMapPoint.getPosition(), heading, (distance / 2));
                     briefingMapPointToAdd.setPosition(newMapPointPosition);
                     this.briefingMapPoints.add(actionMapPointIndex+1, briefingMapPointToAdd);

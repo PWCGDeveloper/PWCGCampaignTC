@@ -27,6 +27,7 @@ import pwcg.gui.rofmap.MapPanelZoomedBase;
 import pwcg.gui.rofmap.brief.builder.BriefingMapPointFactory;
 import pwcg.gui.rofmap.brief.model.BriefingMapPoint;
 import pwcg.gui.rofmap.brief.model.BriefingPlatoonParameters;
+import pwcg.gui.rofmap.brief.model.IBriefingPlatoon;
 import pwcg.gui.utils.MapPointInfoPopup;
 import pwcg.mission.Mission;
 import pwcg.mission.ground.builder.ArmoredPlatoonResponsiveRoute;
@@ -71,11 +72,17 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
             g.setColor(Color.GREEN);
             drawResponsiveRoutes(g, mission.getPlatoons().getPlatoons());
 
-            g.setColor(ColorMap.RUSSIAN_RED);
-            drawAiPlatoonWaypoints(g, alliedAiWaypoints);
-
-            g.setColor(ColorMap.AXIS_BLACK);
-            drawAiPlatoonWaypoints(g, axisAiWaypoints);
+            IBriefingPlatoon playerBriefingPlatoon = BriefingContext.getInstance().getBriefingData().getActiveBriefingPlayerPlatoon();
+            if(playerBriefingPlatoon.getSide() == Side.ALLIED)
+            {
+                g.setColor(ColorMap.RUSSIAN_RED);
+                drawPlatoonWaypoints(g, alliedAiWaypoints);
+            }
+            else
+            {
+                g.setColor(ColorMap.AXIS_BLACK);
+                drawPlatoonWaypoints(g, axisAiWaypoints);
+            }
 
             g.setColor(ColorMap.BELGIAN_GOLD);
             drawSelectedPlatoonWaypoints(g);
@@ -126,7 +133,7 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
         g2.setStroke(new BasicStroke(3));
 
         BriefingMapPoint previousMapPoint = null;
-        BriefingPlatoonParameters briefingPlatoonParameters = BriefingContext.getInstance().getBriefingData().getActiveBriefingPlatoon().getBriefingPlatoonParameters();
+        BriefingPlatoonParameters briefingPlatoonParameters = BriefingContext.getInstance().getBriefingData().getActiveBriefingMapPlatoon().getBriefingPlatoonParameters();
         for (BriefingMapPoint mapPoint : briefingPlatoonParameters.getBriefingMapMapPoints())
         {
             if (previousMapPoint != null)
@@ -172,16 +179,20 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
         }
     }
 
-    private void drawAiPlatoonWaypoints(Graphics g, List<PlatoonMap> platoonMaps) throws PWCGException
+    private void drawPlatoonWaypoints(Graphics g, List<PlatoonMap> platoonMaps) throws PWCGException
     {
         Graphics2D g2 = (Graphics2D) g;
         g2.setStroke(new BasicStroke(3));
 
         Color requestedColor = g.getColor();
 
+        IBriefingPlatoon selectedriefingPlatoonParameters = BriefingContext.getInstance().getBriefingData().getActiveBriefingMapPlatoon();
         for (PlatoonMap platoonMap : platoonMaps)
         {
-            paintWaypointLines(g, g2, requestedColor, platoonMap);
+            if (selectedriefingPlatoonParameters.getCompanyId() != platoonMap.companyId)
+            {
+                paintWaypointLines(g, g2, requestedColor, platoonMap);
+            }
         }
     }
 
@@ -277,7 +288,7 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
         if (!mission.getFinalizer().isFinalized())
         {
             BriefingPlatoonParameters briefingPlatoonParameters =
-                    BriefingContext.getInstance().getBriefingData().getActiveBriefingPlatoon().getBriefingPlatoonParameters();
+                    BriefingContext.getInstance().getBriefingData().getActiveBriefingMapPlatoon().getBriefingPlatoonParameters();
             BriefingMapPoint selectedMapPoint = briefingPlatoonParameters.getSelectedMapPoint();
             if (selectedMapPoint != null)
             {
@@ -309,7 +320,7 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
         else
         {
             int selectedMapPointIndex = determineSelectedWaypointIndex(mouseEvent.getX(), mouseEvent.getY());
-            BriefingPlatoonParameters briefingPlatoonParameters = BriefingContext.getInstance().getBriefingData().getActiveBriefingPlatoon().getBriefingPlatoonParameters();
+            BriefingPlatoonParameters briefingPlatoonParameters = BriefingContext.getInstance().getBriefingData().getActiveBriefingMapPlatoon().getBriefingPlatoonParameters();
             briefingPlatoonParameters.setSelectedMapPointIndex(selectedMapPointIndex);
             if (selectedMapPointIndex == NO_MAP_POINT_SELECTED)
             {
@@ -342,7 +353,7 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
         if (!mission.getFinalizer().isFinalized())
         {
             int selectedMapPointIndex = determineSelectedWaypointIndex(e.getX(), e.getY());
-            BriefingPlatoonParameters briefingPlatoonParameters = BriefingContext.getInstance().getBriefingData().getActiveBriefingPlatoon().getBriefingPlatoonParameters();
+            BriefingPlatoonParameters briefingPlatoonParameters = BriefingContext.getInstance().getBriefingData().getActiveBriefingMapPlatoon().getBriefingPlatoonParameters();
             briefingPlatoonParameters.setActionMapPointIndex(selectedMapPointIndex);
             if (selectedMapPointIndex >= 0)
             {
@@ -379,7 +390,7 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
             return;
         }
 
-        BriefingPlatoonParameters briefingPlatoonParameters = BriefingContext.getInstance().getBriefingData().getActiveBriefingPlatoon().getBriefingPlatoonParameters();
+        BriefingPlatoonParameters briefingPlatoonParameters = BriefingContext.getInstance().getBriefingData().getActiveBriefingMapPlatoon().getBriefingPlatoonParameters();
         if (briefingPlatoonParameters.getSelectedMapPointIndex() != NO_MAP_POINT_SELECTED)
         {
             Point point = new Point();
@@ -409,7 +420,7 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
     {
         int selectedMapPointIndex = NO_MAP_POINT_SELECTED;
         int lastValidIndex = NO_MAP_POINT_SELECTED;
-        BriefingPlatoonParameters briefingPlatoonParameters = BriefingContext.getInstance().getBriefingData().getActiveBriefingPlatoon().getBriefingPlatoonParameters();
+        BriefingPlatoonParameters briefingPlatoonParameters = BriefingContext.getInstance().getBriefingData().getActiveBriefingMapPlatoon().getBriefingPlatoonParameters();
         for (BriefingMapPoint mapPoint :  briefingPlatoonParameters.getBriefingMapMapPoints())
         {
             ++lastValidIndex;
@@ -438,7 +449,7 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
         upperLeft.x = 10000000;
         upperLeft.y = 10000000;
 
-        BriefingPlatoonParameters briefingPlatoonParameters = BriefingContext.getInstance().getBriefingData().getActiveBriefingPlatoon().getBriefingPlatoonParameters();
+        BriefingPlatoonParameters briefingPlatoonParameters = BriefingContext.getInstance().getBriefingData().getActiveBriefingMapPlatoon().getBriefingPlatoonParameters();
         for (BriefingMapPoint mapPoint :  briefingPlatoonParameters.getBriefingMapMapPoints())
         {
             Point point = super.coordinateToDisplayMapPoint(mapPoint.getPosition());
@@ -462,7 +473,7 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
         try
         {
             String action = arg0.getActionCommand();
-            BriefingPlatoonParameters briefingPlatoonParameters = BriefingContext.getInstance().getBriefingData().getActiveBriefingPlatoon().getBriefingPlatoonParameters();
+            BriefingPlatoonParameters briefingPlatoonParameters = BriefingContext.getInstance().getBriefingData().getActiveBriefingMapPlatoon().getBriefingPlatoonParameters();
             if (action.contains("Add"))
             {
                 if (briefingPlatoonParameters.getActionMapPointIndex() >= 0)

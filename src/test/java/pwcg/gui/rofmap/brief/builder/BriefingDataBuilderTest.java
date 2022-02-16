@@ -11,8 +11,8 @@ import pwcg.campaign.Campaign;
 import pwcg.core.exception.PWCGException;
 import pwcg.gui.rofmap.brief.model.BriefingData;
 import pwcg.gui.rofmap.brief.model.BriefingMapPoint;
-import pwcg.gui.rofmap.brief.model.BriefingPlatoon;
 import pwcg.gui.rofmap.brief.model.BriefingPlatoonParameters;
+import pwcg.gui.rofmap.brief.model.IBriefingPlatoon;
 import pwcg.mission.Mission;
 import pwcg.mission.MissionGenerator;
 import pwcg.mission.platoon.ITankPlatoon;
@@ -29,7 +29,7 @@ public class BriefingDataBuilderTest
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        
+
         campaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
 
         MissionGenerator missionGenerator = new MissionGenerator(campaign);
@@ -42,15 +42,15 @@ public class BriefingDataBuilderTest
         BriefingDataBuilder briefingDataBuilder = new BriefingDataBuilder(mission);
         BriefingData briefingData = briefingDataBuilder.buildBriefingData();
         assert(briefingData != null);
-        assert(briefingData.getActiveBriefingPlatoon() != null);
-        assert(briefingData.getActiveBriefingPlatoon().getBriefingAssignmentData().getCrews().size() > 0);
-        
-        ITankPlatoon unit = briefingData.getSelectedUnit();
+        assert(briefingData.getActiveBriefingMapPlatoon() != null);
+        assert(briefingData.getActivePlayerBriefingPlatoon().getBriefingAssignmentData().getCrews().size() > 0);
+
+        ITankPlatoon unit = briefingData.getSelectedPlayerPlatoon();
         Assertions.assertTrue (unit.getCompany().getCompanyId() == CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
 
-        BriefingPlatoon briefingPlatoon = briefingData.getActiveBriefingPlatoon();
+        IBriefingPlatoon briefingPlatoon = briefingData.getActiveBriefingMapPlatoon();
         Assertions.assertTrue (briefingPlatoon.getCompanyId() == CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE.getCompanyId());
-        
+
         BriefingPlatoonParameters briefingPlatoonParameters = briefingPlatoon.getBriefingPlatoonParameters();
         List<BriefingMapPoint>  briefingMapMapPoints = briefingPlatoonParameters.getBriefingMapMapPoints();
         for (BriefingMapPoint briefingMapMapPoint : briefingMapMapPoints)

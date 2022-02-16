@@ -18,6 +18,8 @@ import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.gui.dialogs.PWCGMonitorSupport;
 import pwcg.gui.image.MapImageCache;
+import pwcg.gui.rofmap.brief.BriefingContext;
+import pwcg.gui.rofmap.brief.model.BriefingData;
 import pwcg.gui.utils.ImagePanel;
 import pwcg.mission.Mission;
 
@@ -46,14 +48,23 @@ public abstract class MapPanelZoomedBase extends ImagePanel implements ActionLis
         this.addMouseWheelListener(mouseWheelListener);
     }
 
-    public void setMapBackground() throws PWCGException
-    {
-        String mapImageFileName = PWCGContext.getInstance().getCurrentMap().getMapName() + "Map150";
-        BufferedImage largeMapImage = mapImageCache.getMapImage(mapImageFileName);
-        largeMapSize = getImageSize(largeMapImage);
 
-        BufferedImage mapImage = setMapImageToMissionBox(largeMapImage);
-        super.setImage(mapImage);
+    public void drawDisplayMap() throws PWCGException
+    {
+        BriefingData briefingData = BriefingContext.getInstance().getBriefingData();
+        if (briefingData.getDisplayBufferedMapImage() == null)
+        {
+            buildMapBackground();
+        }
+
+        BufferedImage displayBufferedMapImage = briefingData.getDisplayBufferedMapImage();
+        Image displayMapImage = briefingData.getDisplayMapImage();
+
+        Graphics2D g2d = displayBufferedMapImage.createGraphics();
+        g2d.drawImage(displayMapImage, 0, 0, null);
+        g2d.dispose();
+
+        super.setImage(displayBufferedMapImage);
 
         Dimension smallMapSize = getImageSize(image);
 
@@ -66,7 +77,16 @@ public abstract class MapPanelZoomedBase extends ImagePanel implements ActionLis
         refresh();
     }
 
-    private BufferedImage setMapImageToMissionBox(BufferedImage mapImage) throws PWCGException
+    private void buildMapBackground() throws PWCGException
+    {
+        String mapImageFileName = PWCGContext.getInstance().getCurrentMap().getMapName() + "Map150";
+        BufferedImage largeMapImage = mapImageCache.getMapImage(mapImageFileName);
+        largeMapSize = getImageSize(largeMapImage);
+
+        setMapImageToMissionBox(largeMapImage);
+    }
+
+    private void setMapImageToMissionBox(BufferedImage mapImage) throws PWCGException
     {
         double widthMeters = mission.getMissionBorders().getBoxWidth();
         double heightMeters = mission.getMissionBorders().getBoxHeight();
@@ -90,10 +110,10 @@ public abstract class MapPanelZoomedBase extends ImagePanel implements ActionLis
 
         BufferedImage mapSegmentImage = mapImage.getSubimage(upperLeftX, upperLeftY, width, height);
 
-        return setMapImageToScreen(mapSegmentImage);
+        setMapImageToScreen(mapSegmentImage);
     }
 
-    private BufferedImage setMapImageToScreen(BufferedImage mapSegmentImage)
+    private void setMapImageToScreen(BufferedImage mapSegmentImage)
     {
         Dimension smallMapSize = getImageSize(mapSegmentImage);
 
@@ -102,19 +122,17 @@ public abstract class MapPanelZoomedBase extends ImagePanel implements ActionLis
         Double newHeight = Double.valueOf(smallMapSize.getHeight() * smallToDisplayRatio);
         Double newWidth = Double.valueOf(smallMapSize.getWidth() * smallToDisplayRatio);
 
-        Image tmp = mapSegmentImage.getScaledInstance(newWidth.intValue(), newHeight.intValue(), Image.SCALE_SMOOTH);
-        BufferedImage mapImage = new BufferedImage(newWidth.intValue(), newHeight.intValue(),  BufferedImage.TYPE_INT_ARGB);
+        Image displayMapImage = mapSegmentImage.getScaledInstance(newWidth.intValue(), newHeight.intValue(), Image.SCALE_SMOOTH);
+        BufferedImage displayBufferedMapImage = new BufferedImage(newWidth.intValue(), newHeight.intValue(),  BufferedImage.TYPE_INT_ARGB);
 
         double displayToSmallRatio = Double.valueOf(smallMapSize.getHeight()) / newHeight;
         conversionInformation.setSmallToDisplayMapRatio(smallToDisplayRatio);
         conversionInformation.setDisplayToSmallMapRatio(displayToSmallRatio);
         conversionInformation.setSmallMapSize(smallMapSize);
 
-        Graphics2D g2d = mapImage.createGraphics();
-        g2d.drawImage(tmp, 0, 0, null);
-        g2d.dispose();
-
-        return mapImage;
+        BriefingData briefingData = BriefingContext.getInstance().getBriefingData();
+        briefingData.setDisplayBufferedMapImage(displayBufferedMapImage);
+        briefingData.setDisplayMapImage(displayMapImage);
     }
 
     private Point coordinateToPointLargeMap(Coordinate position)

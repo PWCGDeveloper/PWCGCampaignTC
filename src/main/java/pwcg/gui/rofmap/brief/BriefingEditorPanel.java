@@ -15,7 +15,7 @@ import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.PWCGLogger;
 import pwcg.gui.dialogs.ErrorDialog;
 import pwcg.gui.rofmap.brief.model.BriefingData;
-import pwcg.gui.rofmap.brief.model.BriefingPlatoon;
+import pwcg.gui.rofmap.brief.model.BriefingPlayerPlatoon;
 import pwcg.gui.utils.ContextSpecificImages;
 import pwcg.gui.utils.ImageResizingPanel;
 import pwcg.gui.utils.PWCGLabelFactory;
@@ -56,7 +56,7 @@ public class BriefingEditorPanel extends ImageResizingPanel implements ActionLis
         editorPanel.setOpaque(false);
         editorPanel.setBorder(BorderFactory.createEmptyBorder(50,50,50,100));
 
-        BriefingPlatoon activeBriefingPlatoon = briefingData.getActiveBriefingPlatoon();
+        BriefingPlayerPlatoon activeBriefingPlatoon = briefingData.getActivePlayerBriefingPlatoon();
         waypointDetailsPanel = new BriefingEditorDetailsPanel(false);
         waypointDetailsPanel.buildWaypointPanel(activeBriefingPlatoon);
 
@@ -75,7 +75,7 @@ public class BriefingEditorPanel extends ImageResizingPanel implements ActionLis
     {
         JComponent previousPanel = waypointDetailsPanel.getWaypointPanel();
 
-        BriefingPlatoon activeBriefingPlatoon = briefingData.getActiveBriefingPlatoon();
+        BriefingPlayerPlatoon activeBriefingPlatoon = briefingData.getActivePlayerBriefingPlatoon();
         waypointDetailsPanel = new BriefingEditorDetailsPanel(true);
         waypointDetailsPanel.buildWaypointPanel(activeBriefingPlatoon);
 
@@ -156,7 +156,7 @@ public class BriefingEditorPanel extends ImageResizingPanel implements ActionLis
         }
     }
 
-    private void createFuelDisplay()
+    private void createFuelDisplay() throws PWCGException
     {
         cbFuel = new JComboBox<String>();
         cbFuel.addItem("Fuel 100%");
@@ -184,11 +184,11 @@ public class BriefingEditorPanel extends ImageResizingPanel implements ActionLis
         }
     }
 
-    private int getIndexForFuel()
+    private int getIndexForFuel() throws PWCGException
     {
         int index = 0;
 
-        BriefingPlatoon activeBriefingPlatoon = briefingData.getActiveBriefingPlatoon();
+        BriefingPlayerPlatoon activeBriefingPlatoon = briefingData.getActivePlayerBriefingPlatoon();
         double selectedFuel = activeBriefingPlatoon.getSelectedFuel();
 
         if (selectedFuel > .95)
@@ -278,7 +278,7 @@ public class BriefingEditorPanel extends ImageResizingPanel implements ActionLis
         }
     }
 
-    private void changeFuel()
+    private void changeFuel() throws PWCGException
     {
         String fuelString = (String)cbFuel.getSelectedItem();
         int beginIndex = fuelString.indexOf(' ');
@@ -287,7 +287,7 @@ public class BriefingEditorPanel extends ImageResizingPanel implements ActionLis
         int valueAsInt = Integer.valueOf (valueString);
         Double selectedFuel = Double.valueOf (valueAsInt).doubleValue() / 100.0;
 
-        BriefingPlatoon activeBriefingPlatoon = briefingData.getActiveBriefingPlatoon();
+        BriefingPlayerPlatoon activeBriefingPlatoon = briefingData.getActivePlayerBriefingPlatoon();
         activeBriefingPlatoon.setSelectedFuel(selectedFuel);
     }
 

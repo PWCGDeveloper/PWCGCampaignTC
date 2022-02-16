@@ -29,19 +29,18 @@ import pwcg.gui.UiImageResolver;
 import pwcg.gui.campaign.mission.MissionGeneratorHelper;
 import pwcg.gui.dialogs.ErrorDialog;
 import pwcg.gui.rofmap.brief.model.BriefingData;
-import pwcg.gui.rofmap.brief.model.BriefingPlatoon;
+import pwcg.gui.rofmap.brief.model.BriefingPlayerPlatoon;
 import pwcg.gui.rofmap.brief.update.BriefingMissionUpdater;
 import pwcg.gui.sound.SoundManager;
 import pwcg.gui.utils.ImageResizingPanel;
 import pwcg.gui.utils.PWCGButtonFactory;
 import pwcg.gui.utils.PWCGLabelFactory;
-import pwcg.mission.ICompanyMission;
 import pwcg.mission.Mission;
 import pwcg.mission.platoon.ITankPlatoon;
 import pwcg.mission.platoon.tank.TankMcu;
 import pwcg.mission.playerunit.crew.CrewTankPayloadPairing;
 
-public class BriefingCrewMemberSelectionScreen extends ImageResizingPanel implements ActionListener, MouseWheelListener, IUnitChanged
+public class BriefingCrewMemberSelectionScreen extends ImageResizingPanel implements ActionListener, MouseWheelListener, IPlatoonChanged
 {
     private static final long serialVersionUID = 1L;
 
@@ -52,7 +51,7 @@ public class BriefingCrewMemberSelectionScreen extends ImageResizingPanel implem
     private BriefingCrewMemberChalkboard crewMemberPanel;
     private BriefingData briefingData;
     private Map<Integer, BriefingTankModificationsPicker> planeModifications = new HashMap<>();
-    private BriefingCompanyChooser briefingPlatoonChooser;
+    private BriefingPlayerCompanyChooser briefingPlatoonChooser;
     private int selectedCrewMemberSerialNumber = -1;
 
     public BriefingCrewMemberSelectionScreen(CampaignHomeGuiBriefingWrapper campaignHomeGuiBriefingWrapper)
@@ -74,7 +73,7 @@ public class BriefingCrewMemberSelectionScreen extends ImageResizingPanel implem
             String imagePath = UiImageResolver.getImage(ScreenIdentifier.BriefingCrewMemberSelectionScreen);
             this.setImageFromName(imagePath);
 
-            briefingPlatoonChooser = new BriefingCompanyChooser(mission, this);
+            briefingPlatoonChooser = new BriefingPlayerCompanyChooser(mission, this);
             briefingPlatoonChooser.createBriefingCompanySelectPanel();
 
             this.add(BorderLayout.WEST, makeLeftPanel());
@@ -156,7 +155,7 @@ public class BriefingCrewMemberSelectionScreen extends ImageResizingPanel implem
         briefingMapCenterPanel = new JPanel(new BorderLayout());
         briefingMapCenterPanel.setOpaque(false);
 
-        crewMemberPanel = new BriefingCrewMemberChalkboard(briefingData, this);
+        crewMemberPanel = new BriefingCrewMemberChalkboard(this);
         crewMemberPanel.makePanel();
         briefingMapCenterPanel.add(crewMemberPanel, BorderLayout.CENTER);
 
@@ -236,7 +235,7 @@ public class BriefingCrewMemberSelectionScreen extends ImageResizingPanel implem
     {
         if (!mission.getFinalizer().isFinalized())
         {
-            BriefingPlatoon briefingMissionHandler = briefingData.getActiveBriefingPlatoon();
+            BriefingPlayerPlatoon briefingMissionHandler = briefingData.getActivePlayerBriefingPlatoon();
             Integer crewMemberSerialNumber = getCrewMemberSerialNumberFromAction(action);
 
             BriefingTankPicker briefingPlanePicker = new BriefingTankPicker(briefingMissionHandler, this);
@@ -254,7 +253,7 @@ public class BriefingCrewMemberSelectionScreen extends ImageResizingPanel implem
     {
         if (!mission.getFinalizer().isFinalized())
         {
-            BriefingPlatoon briefingMissionHandler = briefingData.getActiveBriefingPlatoon();
+            BriefingPlayerPlatoon briefingMissionHandler = briefingData.getActivePlayerBriefingPlatoon();
             if (briefingMissionHandler.getBriefingAssignmentData().getUnassignedPlanes().size() > 0)
             {
                 Integer crewMemberSerialNumber = getCrewMemberSerialNumberFromAction(action);
@@ -269,7 +268,7 @@ public class BriefingCrewMemberSelectionScreen extends ImageResizingPanel implem
     {
         if (!mission.getFinalizer().isFinalized())
         {
-            BriefingPlatoon briefingMissionHandler = briefingData.getActiveBriefingPlatoon();
+            BriefingPlayerPlatoon briefingMissionHandler = briefingData.getActivePlayerBriefingPlatoon();
             Integer crewMemberSerialNumber = getCrewMemberSerialNumberFromAction(action);
             CrewTankPayloadPairing planeCrew = briefingMissionHandler.getPairingByCrewMember(crewMemberSerialNumber);
             CrewMember crewMember = planeCrew.getCrewMember();
@@ -282,7 +281,7 @@ public class BriefingCrewMemberSelectionScreen extends ImageResizingPanel implem
     {
         if (!mission.getFinalizer().isFinalized())
         {
-            BriefingPlatoon briefingMissionHandler = briefingData.getActiveBriefingPlatoon();
+            BriefingPlayerPlatoon briefingMissionHandler = briefingData.getActivePlayerBriefingPlatoon();
             CrewTankPayloadPairing planeCrew = briefingMissionHandler.getPairingByCrewMember(selectedCrewMemberSerialNumber);
             CrewMember crewMember = planeCrew.getCrewMember();
             briefingMissionHandler.moveCrewMemberUp(crewMember.getSerialNumber());
@@ -294,7 +293,7 @@ public class BriefingCrewMemberSelectionScreen extends ImageResizingPanel implem
     {
         if (!mission.getFinalizer().isFinalized())
         {
-            BriefingPlatoon briefingMissionHandler = briefingData.getActiveBriefingPlatoon();
+            BriefingPlayerPlatoon briefingMissionHandler = briefingData.getActivePlayerBriefingPlatoon();
             CrewTankPayloadPairing planeCrew = briefingMissionHandler.getPairingByCrewMember(selectedCrewMemberSerialNumber);
             CrewMember crewMember = planeCrew.getCrewMember();
             briefingMissionHandler.moveCrewMemberDown(crewMember.getSerialNumber());
@@ -306,7 +305,7 @@ public class BriefingCrewMemberSelectionScreen extends ImageResizingPanel implem
     {
         if (!mission.getFinalizer().isFinalized())
         {
-            BriefingPlatoon briefingMissionHandler = briefingData.getActiveBriefingPlatoon();
+            BriefingPlayerPlatoon briefingMissionHandler = briefingData.getActivePlayerBriefingPlatoon();
             Integer crewMemberSerialNumber = getCrewMemberSerialNumberFromAction(action);
             CrewTankPayloadPairing crewPlane = briefingMissionHandler.getPairingByCrewMember(crewMemberSerialNumber);
 
@@ -339,7 +338,7 @@ public class BriefingCrewMemberSelectionScreen extends ImageResizingPanel implem
 
     private void setModificationInCrewPlane(Integer crewMemberSerialNumber) throws PWCGException
     {
-        BriefingPlatoon briefingMissionHandler = briefingData.getActiveBriefingPlatoon();
+        BriefingPlayerPlatoon briefingMissionHandler = briefingData.getActivePlayerBriefingPlatoon();
         CrewTankPayloadPairing crewPlane = briefingMissionHandler.getPairingByCrewMember(crewMemberSerialNumber);
         crewPlane.clearModification();
         BriefingTankModificationsPicker modificationPicker = planeModifications.get(crewMemberSerialNumber);
@@ -368,7 +367,7 @@ public class BriefingCrewMemberSelectionScreen extends ImageResizingPanel implem
 
     private void synchronizePayload() throws PWCGException
     {
-        BriefingPlatoon briefingMissionHandler = briefingData.getActiveBriefingPlatoon();
+        BriefingPlayerPlatoon briefingMissionHandler = briefingData.getActivePlayerBriefingPlatoon();
         List<CrewTankPayloadPairing> assignedPairings = briefingMissionHandler.getCrews();
         CrewTankPayloadPairing leadPlane = assignedPairings.get(0);
         for (int i = 1; i < assignedPairings.size(); ++i)
@@ -384,7 +383,7 @@ public class BriefingCrewMemberSelectionScreen extends ImageResizingPanel implem
 
     private void synchronizeModifications() throws PWCGException
     {
-        BriefingPlatoon briefingMissionHandler = briefingData.getActiveBriefingPlatoon();
+        BriefingPlayerPlatoon briefingMissionHandler = briefingData.getActivePlayerBriefingPlatoon();
         List<CrewTankPayloadPairing> assignedPairings = briefingMissionHandler.getCrews();
         CrewTankPayloadPairing leadPlane = assignedPairings.get(0);
         for (int i = 1; i < assignedPairings.size(); ++i)
@@ -448,7 +447,7 @@ public class BriefingCrewMemberSelectionScreen extends ImageResizingPanel implem
             return true;
         }
 
-        ITankPlatoon playerPlatoon = briefingData.getSelectedUnit();
+        ITankPlatoon playerPlatoon = briefingData.getSelectedPlayerPlatoon();
         List<TankMcu> playerTanks = playerPlatoon.getPlatoonTanks().getPlayerTanks();
         for (TankMcu playerTank : playerTanks)
         {
@@ -466,8 +465,8 @@ public class BriefingCrewMemberSelectionScreen extends ImageResizingPanel implem
     {
         if (campaign.getCampaignData().getCampaignMode() == CampaignMode.CAMPAIGN_MODE_SINGLE)
         {
-            List<BriefingPlatoon> briefingPlatoons = briefingData.getBriefingPlatoons();
-            for (BriefingPlatoon briefingPlatoon : briefingPlatoons)
+            List<BriefingPlayerPlatoon> briefingPlatoons = briefingData.getBriefingPlatoons();
+            for (BriefingPlayerPlatoon briefingPlatoon : briefingPlatoons)
             {
                 for (CrewTankPayloadPairing crewPlanePair : briefingPlatoon.getCrews())
                 {
@@ -490,9 +489,9 @@ public class BriefingCrewMemberSelectionScreen extends ImageResizingPanel implem
     }
 
     @Override
-    public void unitChanged(ICompanyMission company) throws PWCGException
+    public void platoonChanged(int companyId) throws PWCGException
     {
-        briefingData.changeSelectedUnit(company.getCompanyId());
+        briefingData.changeSelectedPlayerPlatoon(companyId);
         this.add(BorderLayout.CENTER, createCenterPanel());
     }
 

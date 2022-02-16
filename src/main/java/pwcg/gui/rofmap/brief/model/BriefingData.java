@@ -1,5 +1,7 @@
 package pwcg.gui.rofmap.brief.model;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,35 +14,75 @@ import pwcg.mission.platoon.ITankPlatoon;
 public class BriefingData
 {
     private String missionTime = "08:30";
-    private Map<Integer, BriefingPlatoon> briefingMissionUnits = new HashMap<>();
-    private int selectedCompanyId = 0;
+    private Map<Integer, IBriefingPlatoon> briefingPlatoons = new HashMap<>();
+    private int selectedPlayerCompanyId = 0;
+    private int selectedMapEditCompanyId = 0;
     private Mission mission;
+    private Image displayMapImage= null;
+    private BufferedImage displayBufferedMapImage = null;
 
-    public BriefingData(Mission mission, Map<Integer, BriefingPlatoon> briefingMissionFlights)
+    public BriefingData(Mission mission, Map<Integer, IBriefingPlatoon> briefingPlatoons)
     {
         this.mission = mission;
-        this.briefingMissionUnits = briefingMissionFlights;
+        this.briefingPlatoons = briefingPlatoons;
+
     }
 
-    public BriefingPlatoon getActiveBriefingPlatoon()
+    public IBriefingPlatoon getActiveBriefingMapPlatoon()
     {
-        return briefingMissionUnits.get(selectedCompanyId);
+        return briefingPlatoons.get(selectedMapEditCompanyId);
     }
 
-    public ITankPlatoon getSelectedUnit() throws PWCGException
+    public IBriefingPlatoon getActiveBriefingPlayerPlatoon()
     {
-        ITankPlatoon playerFlight = mission.getPlatoons().getPlayerUnitForCompany(selectedCompanyId);
-        return playerFlight;
+        return briefingPlatoons.get(selectedPlayerCompanyId);
     }
 
-    public List<BriefingPlatoon> getBriefingPlatoons()
+    public ITankPlatoon getSelectedPlayerPlatoon() throws PWCGException
     {
-        return new ArrayList<>(briefingMissionUnits.values());
+        ITankPlatoon platoon = mission.getPlatoons().getPlayerUnitForCompany(selectedPlayerCompanyId);
+        return platoon;
     }
 
-    public void changeSelectedUnit(int companyId)
+    public BriefingPlayerPlatoon getActivePlayerBriefingPlatoon() throws PWCGException
     {
-        selectedCompanyId = companyId;
+        for(BriefingPlayerPlatoon briefingPlayerPlatoon : getBriefingPlatoons())
+        {
+            if (briefingPlayerPlatoon.getCompanyId() == selectedPlayerCompanyId)
+            {
+                return briefingPlayerPlatoon;
+            }
+        }
+
+        throw new PWCGException("No player platoon for id " + selectedPlayerCompanyId);
+    }
+
+    public List<BriefingPlayerPlatoon> getBriefingPlatoons()
+    {
+        List<BriefingPlayerPlatoon> playerPlatoons = new ArrayList<>();
+        for(IBriefingPlatoon briefingPlatoon : briefingPlatoons.values())
+        {
+            if (briefingPlatoon instanceof BriefingPlayerPlatoon)
+            {
+                playerPlatoons.add((BriefingPlayerPlatoon)briefingPlatoon);
+            }
+        }
+        return playerPlatoons;
+    }
+
+    public int getSelectedMapEditPlatoon()
+    {
+        return selectedMapEditCompanyId;
+    }
+
+    public void setSelectedMapEditPlatoon(int selectedMapEditCompanyId)
+    {
+        this.selectedMapEditCompanyId = selectedMapEditCompanyId;
+    }
+
+    public void changeSelectedPlayerPlatoon(int selectedPlayerCompanyId)
+    {
+        this.selectedPlayerCompanyId = selectedPlayerCompanyId;
     }
 
     public Mission getMission()
@@ -56,5 +98,25 @@ public class BriefingData
     public void setMissionTime(String selectedTime)
     {
         this.missionTime = selectedTime;
+    }
+
+    public Image getDisplayMapImage()
+    {
+        return displayMapImage;
+    }
+
+    public void setDisplayMapImage(Image displayMapImage)
+    {
+        this.displayMapImage = displayMapImage;
+    }
+
+    public BufferedImage getDisplayBufferedMapImage()
+    {
+        return displayBufferedMapImage;
+    }
+
+    public void setDisplayBufferedMapImage(BufferedImage displayBufferedMapImage)
+    {
+        this.displayBufferedMapImage = displayBufferedMapImage;
     }
 }

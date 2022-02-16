@@ -25,17 +25,16 @@ import pwcg.gui.utils.ImageResizingPanel;
 import pwcg.gui.utils.PWCGButtonFactory;
 import pwcg.gui.utils.PWCGLabelFactory;
 import pwcg.gui.utils.ScrollBarWrapper;
-import pwcg.mission.ICompanyMission;
 import pwcg.mission.Mission;
 
-public class BriefingDescriptionScreen extends ImageResizingPanel implements ActionListener, IUnitChanged
+public class BriefingDescriptionScreen extends ImageResizingPanel implements ActionListener, IPlatoonChanged
 {
     private static final long serialVersionUID = 1L;
 
     private CampaignHomeGuiBriefingWrapper campaignHomeGuiBriefingWrapper;
     private Mission mission;
     private BriefingData briefingData;
-    private BriefingCompanyChooser briefingPlatoonChooser;
+    private BriefingPlayerCompanyChooser briefingPlatoonChooser;
     private BriefingDescriptionChalkboard briefingChalkboard;
 
     public BriefingDescriptionScreen(CampaignHomeGuiBriefingWrapper campaignHomeGuiBriefingWrapper, Mission mission) throws PWCGException
@@ -60,7 +59,7 @@ public class BriefingDescriptionScreen extends ImageResizingPanel implements Act
             String imagePath = UiImageResolver.getImage(ScreenIdentifier.BriefingDescriptionScreen);
             this.setImageFromName(imagePath);
 
-            briefingPlatoonChooser = new BriefingCompanyChooser(mission, this);
+            briefingPlatoonChooser = new BriefingPlayerCompanyChooser(mission, this);
             briefingPlatoonChooser.createBriefingCompanySelectPanel();
 
             this.removeAll();
@@ -161,9 +160,9 @@ public class BriefingDescriptionScreen extends ImageResizingPanel implements Act
     }
 
     @Override
-    public void unitChanged(ICompanyMission company) throws PWCGException
+    public void platoonChanged(int companyId) throws PWCGException
     {
-        briefingData.changeSelectedUnit(company.getCompanyId());
+        briefingData.changeSelectedPlayerPlatoon(companyId);
         briefingChalkboard.setMissionText();
     }
 
@@ -191,6 +190,6 @@ public class BriefingDescriptionScreen extends ImageResizingPanel implements Act
     public void refreshScreen() throws PWCGException
     {
         briefingChalkboard.setMissionText();
-        briefingPlatoonChooser.setSelectedButton(briefingData.getSelectedUnit().getCompany().getCompanyId());
+        briefingPlatoonChooser.setSelectedButton(briefingData.getSelectedPlayerPlatoon().getCompany().getCompanyId());
     }
 }

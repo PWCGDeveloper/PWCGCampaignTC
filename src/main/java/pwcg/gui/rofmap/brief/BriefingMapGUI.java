@@ -18,22 +18,20 @@ import pwcg.gui.colors.ColorMap;
 import pwcg.gui.dialogs.ErrorDialog;
 import pwcg.gui.rofmap.MapGUI;
 import pwcg.gui.rofmap.brief.model.BriefingData;
-import pwcg.gui.rofmap.brief.model.BriefingPlatoon;
 import pwcg.gui.rofmap.brief.model.BriefingPlatoonParameters;
 import pwcg.gui.utils.PWCGButtonFactory;
 import pwcg.gui.utils.PWCGLabelFactory;
-import pwcg.mission.ICompanyMission;
 import pwcg.mission.Mission;
 import pwcg.mission.mcu.McuWaypoint;
 
-public class BriefingMapGUI extends MapGUI implements ActionListener, IUnitChanged
+public class BriefingMapGUI extends MapGUI implements ActionListener, IPlatoonChanged
 {
     private static final long serialVersionUID = 1L;
 
     private CampaignHomeGuiBriefingWrapper campaignHomeGuiBriefingWrapper;
     private Mission mission;
     private BriefingData briefingData;
-    private BriefingCompanyChooser briefingPlatoonChooser;
+    private BriefingMapCompanyChooser briefingMapPlatoonChooser;
     private BriefingMapPanel mapPanel;
 
     public BriefingMapGUI(Campaign campaign, CampaignHomeGuiBriefingWrapper campaignHomeGuiBriefingWrapper) throws PWCGException
@@ -51,8 +49,8 @@ public class BriefingMapGUI extends MapGUI implements ActionListener, IUnitChang
     {
         try
         {
-            briefingPlatoonChooser = new BriefingCompanyChooser(mission, this);
-            briefingPlatoonChooser.createBriefingCompanySelectPanel();
+            briefingMapPlatoonChooser = new BriefingMapCompanyChooser(mission, this);
+            briefingMapPlatoonChooser.createBriefingCompanySelectPanel();
 
             Color bg = ColorMap.MAP_BACKGROUND;
             setOpaque(false);
@@ -79,18 +77,16 @@ public class BriefingMapGUI extends MapGUI implements ActionListener, IUnitChang
 
     private void createMapPanel() throws PWCGException
     {
-        BriefingPlatoon activeMissionHandler = briefingData.getActiveBriefingPlatoon();
-
         if (mapPanel != null)
         {
             this.remove(mapPanel);
         }
 
         mapPanel = new BriefingMapPanel(this);
-        mapPanel.setMapBackground();
+        mapPanel.drawDisplayMap();
 
-        BriefingMapPlatoonMapper flightMapper = new BriefingMapPlatoonMapper(activeMissionHandler, mapPanel);
-        flightMapper.mapRequestedFlights();
+        BriefingMapPlatoonMapper platoonMapper = new BriefingMapPlatoonMapper(mapPanel);
+        platoonMapper.mapRequestedFlights(briefingData.getMission());
     }
 
     private JPanel makeNavPanel() throws PWCGException
@@ -100,7 +96,7 @@ public class BriefingMapGUI extends MapGUI implements ActionListener, IUnitChang
 
         JPanel buttonPanel = makeButtonPanel();
         leftPanel.add(buttonPanel, BorderLayout.NORTH);
-        leftPanel.add(briefingPlatoonChooser.getFlightChooserPanel(), BorderLayout.CENTER);
+        leftPanel.add(briefingMapPlatoonChooser.getFlightChooserPanel(), BorderLayout.CENTER);
         return leftPanel;
     }
 
@@ -196,10 +192,10 @@ public class BriefingMapGUI extends MapGUI implements ActionListener, IUnitChang
     }
 
     @Override
-    public void unitChanged(ICompanyMission company) throws PWCGException
+    public void platoonChanged(int companyId) throws PWCGException
     {
-        briefingData.changeSelectedUnit(company.getCompanyId());
-        refreshAllPanels();
+        briefingData.setSelectedMapEditPlatoon(companyId);
+        refreshMapScreen();
 
     }
 
@@ -209,20 +205,11 @@ public class BriefingMapGUI extends MapGUI implements ActionListener, IUnitChang
         this.add(BorderLayout.WEST, makeNavPanel());
     }
 
-    private boolean isChangedCompanySameSide(ICompanyMission before, ICompanyMission after) throws PWCGException
-    {
-        if (before.determineSide() == after.determineSide())
-        {
-            return true;
-        }
-        return false;
-    }
-
     public void waypointRemovedNotification(long waypointID) throws PWCGException
     {
         if (waypointID != McuWaypoint.NO_WAYPOINT_ID)
         {
-            BriefingPlatoonParameters briefingPlatoonParameters = BriefingContext.getInstance().getBriefingData().getActiveBriefingPlatoon().getBriefingPlatoonParameters();
+            BriefingPlatoonParameters briefingPlatoonParameters = BriefingContext.getInstance().getBriefingData().getActiveBriefingMapPlatoon().getBriefingPlatoonParameters();
             briefingPlatoonParameters.removeBriefingMapMapPointsAtPosition();
 
             refreshMapScreen();
@@ -233,15 +220,16 @@ public class BriefingMapGUI extends MapGUI implements ActionListener, IUnitChang
     {
         if (waypointID != McuWaypoint.NO_WAYPOINT_ID)
         {
-            BriefingPlatoonParameters briefingPlatoonParameters = BriefingContext.getInstance().getBriefingData().getActiveBriefingPlatoon().getBriefingPlatoonParameters();
+            BriefingPlatoonParameters briefingPlatoonParameters = BriefingContext.getInstance().getBriefingData().getActiveBriefingMapPlatoon().getBriefingPlatoonParameters();
             briefingPlatoonParameters.addBriefingMapMapPointsAtPosition();
 
             refreshMapScreen();
         }
     }
 
-    private void refreshMapScreen()
+    private void refreshMapScreen() throws PWCGException
     {
+        this.mapPanel.drawDisplayMap();
         this.revalidate();
         this.repaint();
     }

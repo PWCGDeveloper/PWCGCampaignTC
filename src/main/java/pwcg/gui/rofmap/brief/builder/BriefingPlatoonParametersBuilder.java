@@ -27,21 +27,21 @@ public class BriefingPlatoonParametersBuilder
 	private void setWaypoints() throws PWCGException
 	{
 		McuWaypoint prevWaypoint = null;
-		addPlayerMapStart(playerPlatoon.getLeadVehicle().getPosition().copy());
+		addPlatoonMapStart(playerPlatoon.getLeadVehicle().getPosition().copy());
 		for (McuWaypoint waypoint :  playerPlatoon.getWaypoints())
 		{				
-		     addPlayerMapWaypoint(prevWaypoint, waypoint);
+		     addPlatoonMapWaypoint(prevWaypoint, waypoint);
 		     prevWaypoint = waypoint;
 		}
 	}
 
-    private void addPlayerMapStart(Coordinate start) throws PWCGException
+    private void addPlatoonMapStart(Coordinate start) throws PWCGException
     {
         BriefingMapPoint briefingMapPoint = BriefingMapPointFactory.startToMapPoint(start);
         briefingPlatoonParameters.addBriefingMapMapPoints(briefingMapPoint);
     }
 
-    private void addPlayerMapWaypoint(McuWaypoint prevWaypoint, McuWaypoint waypoint) throws PWCGException
+    private void addPlatoonMapWaypoint(McuWaypoint prevWaypoint, McuWaypoint waypoint) throws PWCGException
     {
         BriefingMapPoint briefingMapPoint = BriefingMapPointFactory.waypointToMapPoint(waypoint);
         briefingPlatoonParameters.addBriefingMapMapPoints(briefingMapPoint);

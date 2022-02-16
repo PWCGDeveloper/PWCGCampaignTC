@@ -49,7 +49,7 @@ public class BriefingPayloadPicker
         ITankPayload payload = payloadfactory.createPayload(tankTypeName, date);
         
         List<String> payloadDescriptions = new ArrayList<>();
-        for (TankPayloadDesignation payloadDesignation : payload.getAvailablePayloadDesignations(briefingData.getSelectedUnit()))
+        for (TankPayloadDesignation payloadDesignation : payload.getAvailablePayloadDesignations(briefingData.getSelectedPlayerPlatoon()))
         {
             payloadDescriptions.add(payloadDesignation.getPayloadDescription());
         }

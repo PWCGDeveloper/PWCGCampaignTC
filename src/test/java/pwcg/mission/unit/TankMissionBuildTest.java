@@ -17,30 +17,30 @@ import pwcg.testutils.CompanyTestProfile;
 import pwcg.testutils.TestMissionBuilderUtility;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class TankMissionBuildTest 
-{    
-    private Campaign campaign;    
+public class TankMissionBuildTest
+{
+    private Campaign campaign;
 
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        
+
         campaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
     }
 
-	@Test
-	public void tankPlatoonMissionCreateAndWriteTest() throws PWCGException
-	{
+    @Test
+    public void tankPlatoonMissionCreateAndWriteTest() throws PWCGException
+    {
         MissionGenerator missionGenerator = new MissionGenerator(campaign);
         Mission mission = missionGenerator.makeMission(TestMissionBuilderUtility.buildTestParticipatingHumans(campaign));
         mission.finalizeMission();
         mission.write();
         ITankPlatoon unit = mission.getPlatoons().getPlayerPlatoons().get(0);
         Assertions.assertNotNull(unit);
-        
+
         findTankBoundary(mission);
         findInfantryBoundary(mission);
- 	}
+    }
 
     private void findTankBoundary(Mission mission)
     {
@@ -68,10 +68,12 @@ public class TankMissionBuildTest
                 northernBoundary = vehilePosition.getXPos();
             }
         }
-        
+
         double tankWidth = (easternBoundary - westernBoundary) / 1000;
         double tankHeight = (northernBoundary - southernBoundary) / 1000;
         double tankArea = tankWidth* tankHeight;
+        Assertions.assertTrue(tankArea > 10);
+        Assertions.assertTrue(tankArea < 100);
     }
 
     private void findInfantryBoundary(Mission mission) throws PWCGException
@@ -100,9 +102,11 @@ public class TankMissionBuildTest
                 northernBoundary = unitPosition.getXPos();
             }
         }
-        
+
         double infantryWidth = (easternBoundary - westernBoundary) / 1000;
         double infantryHeight = (northernBoundary - southernBoundary) / 1000;
         double infantryArea = infantryWidth* infantryHeight;
+        Assertions.assertTrue(infantryArea > 20);
+        Assertions.assertTrue(infantryArea < 200);
     }
 }

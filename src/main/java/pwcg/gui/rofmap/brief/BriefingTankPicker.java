@@ -7,14 +7,14 @@ import javax.swing.JOptionPane;
 
 import pwcg.campaign.tank.EquippedTank;
 import pwcg.core.exception.PWCGException;
-import pwcg.gui.rofmap.brief.model.BriefingPlatoon;
+import pwcg.gui.rofmap.brief.model.BriefingPlayerPlatoon;
 
 public class BriefingTankPicker
 {
-    private BriefingPlatoon missionEditHandler;
+    private BriefingPlayerPlatoon missionEditHandler;
     private JComponent parent;
     
-    public BriefingTankPicker(BriefingPlatoon missionEditHandler, JComponent parent)
+    public BriefingTankPicker(BriefingPlayerPlatoon missionEditHandler, JComponent parent)
     {
         this.missionEditHandler = missionEditHandler;
         this.parent = parent;
