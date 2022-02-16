@@ -42,7 +42,7 @@ public class BriefingMissionUpdater
         Mission mission = briefingData.getMission();
         mission.getMissionOptions().getMissionTime().setMissionTime(briefingData.getMissionTime());
 
-        for (BriefingPlayerPlatoon briefingPlatoon : briefingData.getBriefingPlatoons())
+        for (BriefingPlayerPlatoon briefingPlatoon : briefingData.getPlayerBriefingPlatoons())
         {
             ITankPlatoon playerPlatoon = mission.getPlatoons().getPlayerUnitForCompany(briefingPlatoon.getCompanyId());
             playerPlatoon.updateWaypointsFromBriefing(briefingPlatoon.getBriefingPlatoonParameters().getBriefingMapMapPoints());
@@ -52,7 +52,7 @@ public class BriefingMissionUpdater
     private static void pushCrewAndPayloadToMission(BriefingData briefingData) throws PWCGException
     {
         Mission mission = briefingData.getMission();
-        for (BriefingPlayerPlatoon briefingPlatoon : briefingData.getBriefingPlatoons())
+        for (BriefingPlayerPlatoon briefingPlatoon : briefingData.getPlayerBriefingPlatoons())
         {
             ITankPlatoon playerPlatoon = mission.getPlatoons().getPlayerUnitForCompany(briefingPlatoon.getCompanyId());
             BriefingCrewTankUpdater crewePlaneUpdater = new BriefingCrewTankUpdater(mission.getCampaign(), playerPlatoon);
@@ -66,7 +66,7 @@ public class BriefingMissionUpdater
         Mission mission = briefingData.getMission();
         mission.getMissionOptions().getMissionTime().setMissionTime(briefingData.getMissionTime());
 
-        for (BriefingPlayerPlatoon briefingPlatoon : briefingData.getBriefingPlatoons())
+        for (BriefingPlayerPlatoon briefingPlatoon : briefingData.getPlayerBriefingPlatoons())
         {
             ITankPlatoon playerPlatoon = mission.getPlatoons().getPlayerUnitForCompany(briefingPlatoon.getCompanyId());
             playerPlatoon.getPlatoonTanks().setFuelForUnit(briefingPlatoon.getSelectedFuel());

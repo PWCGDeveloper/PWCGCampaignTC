@@ -465,7 +465,7 @@ public class BriefingCrewMemberSelectionScreen extends ImageResizingPanel implem
     {
         if (campaign.getCampaignData().getCampaignMode() == CampaignMode.CAMPAIGN_MODE_SINGLE)
         {
-            List<BriefingPlayerPlatoon> briefingPlatoons = briefingData.getBriefingPlatoons();
+            List<BriefingPlayerPlatoon> briefingPlatoons = briefingData.getPlayerBriefingPlatoons();
             for (BriefingPlayerPlatoon briefingPlatoon : briefingPlatoons)
             {
                 for (CrewTankPayloadPairing crewPlanePair : briefingPlatoon.getCrews())

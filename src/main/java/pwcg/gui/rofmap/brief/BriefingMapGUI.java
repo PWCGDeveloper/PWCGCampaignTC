@@ -84,9 +84,6 @@ public class BriefingMapGUI extends MapGUI implements ActionListener, IPlatoonCh
 
         mapPanel = new BriefingMapPanel(this);
         mapPanel.drawDisplayMap();
-
-        BriefingMapPlatoonMapper platoonMapper = new BriefingMapPlatoonMapper(mapPanel);
-        platoonMapper.mapRequestedFlights(briefingData.getMission());
     }
 
     private JPanel makeNavPanel() throws PWCGException
@@ -197,12 +194,6 @@ public class BriefingMapGUI extends MapGUI implements ActionListener, IPlatoonCh
         briefingData.setSelectedMapEditPlatoon(companyId);
         refreshMapScreen();
 
-    }
-
-    private void refreshAllPanels() throws PWCGException
-    {
-        this.add(BorderLayout.CENTER, createCenterPanel());
-        this.add(BorderLayout.WEST, makeNavPanel());
     }
 
     public void waypointRemovedNotification(long waypointID) throws PWCGException

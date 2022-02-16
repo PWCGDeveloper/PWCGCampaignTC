@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import pwcg.campaign.api.Side;
 import pwcg.core.exception.PWCGException;
 import pwcg.mission.Mission;
 import pwcg.mission.platoon.ITankPlatoon;
@@ -46,7 +47,7 @@ public class BriefingData
 
     public BriefingPlayerPlatoon getActivePlayerBriefingPlatoon() throws PWCGException
     {
-        for(BriefingPlayerPlatoon briefingPlayerPlatoon : getBriefingPlatoons())
+        for(BriefingPlayerPlatoon briefingPlayerPlatoon : getPlayerBriefingPlatoons())
         {
             if (briefingPlayerPlatoon.getCompanyId() == selectedPlayerCompanyId)
             {
@@ -57,7 +58,7 @@ public class BriefingData
         throw new PWCGException("No player platoon for id " + selectedPlayerCompanyId);
     }
 
-    public List<BriefingPlayerPlatoon> getBriefingPlatoons()
+    public List<BriefingPlayerPlatoon> getPlayerBriefingPlatoons()
     {
         List<BriefingPlayerPlatoon> playerPlatoons = new ArrayList<>();
         for(IBriefingPlatoon briefingPlatoon : briefingPlatoons.values())
@@ -68,6 +69,19 @@ public class BriefingData
             }
         }
         return playerPlatoons;
+    }
+
+    public List<IBriefingPlatoon> getBriefingPlatoonsForSide(Side side)
+    {
+        List<IBriefingPlatoon> platoonsForSide = new ArrayList<>();
+        for(IBriefingPlatoon briefingPlatoon : briefingPlatoons.values())
+        {
+            if (briefingPlatoon.getSide() == side)
+            {
+                platoonsForSide.add(briefingPlatoon);
+            }
+        }
+        return platoonsForSide;
     }
 
     public IBriefingPlatoon getBriefingPlatoon(int companyId)

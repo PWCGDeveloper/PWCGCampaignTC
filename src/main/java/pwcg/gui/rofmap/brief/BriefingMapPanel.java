@@ -12,7 +12,6 @@ import java.awt.event.MouseEvent;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 import java.util.List;
 
 import pwcg.campaign.api.Side;
@@ -24,7 +23,6 @@ import pwcg.core.utils.PWCGLogger;
 import pwcg.gui.colors.ColorMap;
 import pwcg.gui.image.ImageCache;
 import pwcg.gui.rofmap.MapPanelZoomedBase;
-import pwcg.gui.rofmap.brief.builder.BriefingMapPointFactory;
 import pwcg.gui.rofmap.brief.model.BriefingMapPoint;
 import pwcg.gui.rofmap.brief.model.BriefingPlatoonParameters;
 import pwcg.gui.rofmap.brief.model.IBriefingPlatoon;
@@ -33,7 +31,6 @@ import pwcg.mission.Mission;
 import pwcg.mission.ground.builder.ArmoredPlatoonResponsiveRoute;
 import pwcg.mission.ground.org.GroundUnitElement;
 import pwcg.mission.ground.org.IGroundUnit;
-import pwcg.mission.mcu.McuWaypoint;
 import pwcg.mission.platoon.ITankPlatoon;
 import pwcg.mission.target.FrontSegmentDefinition;
 
@@ -44,9 +41,6 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
 
     private Mission mission;
     private BriefingMapGUI parent;
-
-    private List <PlatoonMap> alliedAiWaypoints = new ArrayList<PlatoonMap>();
-    private List <PlatoonMap> axisAiWaypoints = new ArrayList<PlatoonMap>();
 
     public BriefingMapPanel(BriefingMapGUI parent) throws PWCGException
     {
@@ -75,11 +69,13 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
             IBriefingPlatoon playerBriefingPlatoon = BriefingContext.getInstance().getBriefingData().getActiveBriefingPlayerPlatoon();
             if(playerBriefingPlatoon.getSide() == Side.ALLIED)
             {
-                drawMultiplePlatoonWaypoints(g, ColorMap.RUSSIAN_RED, alliedAiWaypoints);
+                drawMultiplePlatoonWaypoints(g, ColorMap.RUSSIAN_RED,
+                        BriefingContext.getInstance().getBriefingData().getBriefingPlatoonsForSide(Side.ALLIED));
             }
             else
             {
-                drawMultiplePlatoonWaypoints(g, ColorMap.AXIS_BLACK, axisAiWaypoints);
+                drawMultiplePlatoonWaypoints(g, ColorMap.AXIS_BLACK,
+                        BriefingContext.getInstance().getBriefingData().getBriefingPlatoonsForSide(Side.AXIS));
             }
 
             drawSelectedPlatoonWaypoints(g, ColorMap.BELGIAN_GOLD);
@@ -100,16 +96,15 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
         drawPlatoonWaypoints(g, briefingPlatoonParameters);
     }
 
-    private void drawMultiplePlatoonWaypoints(Graphics g, Color color, List<PlatoonMap> platoonMaps) throws PWCGException
+    private void drawMultiplePlatoonWaypoints(Graphics g, Color color, List<IBriefingPlatoon> briefingPlatoons) throws PWCGException
     {
         g.setColor(color);
 
         IBriefingPlatoon selectedBriefingPlatoon = BriefingContext.getInstance().getBriefingData().getActiveBriefingMapPlatoon();
-        for (PlatoonMap platoonMap : platoonMaps)
+        for (IBriefingPlatoon briefingPlatoon : briefingPlatoons)
         {
-            if (selectedBriefingPlatoon.getCompanyId() != platoonMap.companyId)
+            if (selectedBriefingPlatoon.getCompanyId() != briefingPlatoon.getCompanyId())
             {
-                IBriefingPlatoon briefingPlatoon = BriefingContext.getInstance().getBriefingData().getBriefingPlatoon(platoonMap.companyId);
                 drawPlatoonWaypoints(g, briefingPlatoon.getBriefingPlatoonParameters());
             }
         }
@@ -196,44 +191,6 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
 
             g.drawImage(arrowImage, mapAssaultPointRectangleFrontPoint.x, mapAssaultPointRectangleFrontPoint.y, null);
         }
-    }
-
-    public void  clearVirtualPoints()
-    {
-        alliedAiWaypoints.clear();
-        axisAiWaypoints.clear();
-    }
-
-    public void makeMapPanelAiPoints(ITankPlatoon platoon) throws PWCGException
-    {
-        PlatoonMap platoonMap = buildPlatoonMap(platoon);
-        if (platoon.getPlatoonInformation().getCountry().getSideNoNeutral() == Side.ALLIED)
-        {
-            alliedAiWaypoints.add(platoonMap);
-        }
-        else
-        {
-            axisAiWaypoints.add(platoonMap);
-        }
-    }
-
-    private PlatoonMap buildPlatoonMap(ITankPlatoon platoon) throws PWCGException
-    {
-        PlatoonMap platoonMap = new PlatoonMap();
-        platoonMap.platoonType = platoon.getPlatoonMissionType().name();
-        platoonMap.tankType = platoon.getPlatoonTanks().getUnitLeader().getDisplayName();
-        platoonMap.companyId = platoon.getCompany().getCompanyId();
-
-        BriefingMapPoint startMapPoint = BriefingMapPointFactory.startToMapPoint(platoon.getLeadVehicle().getPosition().copy());
-        platoonMap.mapPoints.add(startMapPoint);
-
-        for (McuWaypoint waypoint : platoon.getWaypoints())
-        {
-            BriefingMapPoint mapPoint = BriefingMapPointFactory.waypointToMapPoint(waypoint);
-            platoonMap.mapPoints.add(mapPoint);
-        }
-
-        return platoonMap;
     }
 
     @Override
@@ -476,13 +433,4 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
         }
 
     }
-
-    private class PlatoonMap
-    {
-        String platoonType;
-        String tankType;
-        int companyId;
-        List<BriefingMapPoint> mapPoints = new ArrayList<BriefingMapPoint>();
-    }
-
 }
