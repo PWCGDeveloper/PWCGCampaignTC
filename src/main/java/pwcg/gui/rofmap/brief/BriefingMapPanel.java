@@ -75,23 +75,68 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
             IBriefingPlatoon playerBriefingPlatoon = BriefingContext.getInstance().getBriefingData().getActiveBriefingPlayerPlatoon();
             if(playerBriefingPlatoon.getSide() == Side.ALLIED)
             {
-                g.setColor(ColorMap.RUSSIAN_RED);
-                drawPlatoonWaypoints(g, alliedAiWaypoints);
+                drawMultiplePlatoonWaypoints(g, ColorMap.RUSSIAN_RED, alliedAiWaypoints);
             }
             else
             {
-                g.setColor(ColorMap.AXIS_BLACK);
-                drawPlatoonWaypoints(g, axisAiWaypoints);
+                drawMultiplePlatoonWaypoints(g, ColorMap.AXIS_BLACK, axisAiWaypoints);
             }
 
-            g.setColor(ColorMap.BELGIAN_GOLD);
-            drawSelectedPlatoonWaypoints(g);
+            drawSelectedPlatoonWaypoints(g, ColorMap.BELGIAN_GOLD);
 
             drawAssaults(g);
         }
         catch (Exception e)
         {
             PWCGLogger.logException(e);
+        }
+    }
+
+    private void drawSelectedPlatoonWaypoints(Graphics g, Color color) throws PWCGException
+    {
+        g.setColor(color);
+
+        BriefingPlatoonParameters briefingPlatoonParameters = BriefingContext.getInstance().getBriefingData().getActiveBriefingMapPlatoon().getBriefingPlatoonParameters();
+        drawPlatoonWaypoints(g, briefingPlatoonParameters);
+    }
+
+    private void drawMultiplePlatoonWaypoints(Graphics g, Color color, List<PlatoonMap> platoonMaps) throws PWCGException
+    {
+        g.setColor(color);
+
+        IBriefingPlatoon selectedBriefingPlatoon = BriefingContext.getInstance().getBriefingData().getActiveBriefingMapPlatoon();
+        for (PlatoonMap platoonMap : platoonMaps)
+        {
+            if (selectedBriefingPlatoon.getCompanyId() != platoonMap.companyId)
+            {
+                IBriefingPlatoon briefingPlatoon = BriefingContext.getInstance().getBriefingData().getBriefingPlatoon(platoonMap.companyId);
+                drawPlatoonWaypoints(g, briefingPlatoon.getBriefingPlatoonParameters());
+            }
+        }
+    }
+
+    private void drawPlatoonWaypoints(Graphics g, BriefingPlatoonParameters briefingPlatoonParameters)
+    {
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setStroke(new BasicStroke(3));
+
+        BriefingMapPoint previousMapPoint = null;
+        for (BriefingMapPoint mapPoint : briefingPlatoonParameters.getBriefingMapMapPoints())
+        {
+            if (previousMapPoint != null)
+            {
+                Point prevPoint = super.coordinateToDisplayMapPoint(previousMapPoint.getPosition());
+                Point point = super.coordinateToDisplayMapPoint(mapPoint.getPosition());
+
+                g2.draw(new Line2D.Float(prevPoint.x, prevPoint.y, point.x, point.y));
+            }
+
+            Point point = super.coordinateToDisplayMapPoint(mapPoint.getPosition());
+
+            Ellipse2D.Double circle = new Ellipse2D.Double(point.x - 6, point.y - 6, 12, 12);
+            g2.fill(circle);
+
+            previousMapPoint = mapPoint;
         }
     }
 
@@ -127,32 +172,6 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
         }
     }
 
-    private void drawSelectedPlatoonWaypoints(Graphics g) throws PWCGException
-    {
-        Graphics2D g2 = (Graphics2D) g;
-        g2.setStroke(new BasicStroke(3));
-
-        BriefingMapPoint previousMapPoint = null;
-        BriefingPlatoonParameters briefingPlatoonParameters = BriefingContext.getInstance().getBriefingData().getActiveBriefingMapPlatoon().getBriefingPlatoonParameters();
-        for (BriefingMapPoint mapPoint : briefingPlatoonParameters.getBriefingMapMapPoints())
-        {
-            if (previousMapPoint != null)
-            {
-                Point prevPoint = super.coordinateToDisplayMapPoint(previousMapPoint.getPosition());
-                Point point = super.coordinateToDisplayMapPoint(mapPoint.getPosition());
-
-                g2.draw(new Line2D.Float(prevPoint.x, prevPoint.y, point.x, point.y));
-            }
-
-            Point point = super.coordinateToDisplayMapPoint(mapPoint.getPosition());
-
-            Ellipse2D.Double circle = new Ellipse2D.Double(point.x - 6, point.y - 6, 12, 12);
-            g2.fill(circle);
-
-            previousMapPoint = mapPoint;
-        }
-    }
-
     private void drawAssaults(Graphics g) throws PWCGException
     {
         for (FrontSegmentDefinition assaultDefinition : mission.getBattleManager().getMissionAssaultDefinitions())
@@ -176,49 +195,6 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
             mapAssaultPointRectangleFrontPoint.y -= (arrowImage.getHeight() / 2);
 
             g.drawImage(arrowImage, mapAssaultPointRectangleFrontPoint.x, mapAssaultPointRectangleFrontPoint.y, null);
-        }
-    }
-
-    private void drawPlatoonWaypoints(Graphics g, List<PlatoonMap> platoonMaps) throws PWCGException
-    {
-        Graphics2D g2 = (Graphics2D) g;
-        g2.setStroke(new BasicStroke(3));
-
-        Color requestedColor = g.getColor();
-
-        IBriefingPlatoon selectedriefingPlatoonParameters = BriefingContext.getInstance().getBriefingData().getActiveBriefingMapPlatoon();
-        for (PlatoonMap platoonMap : platoonMaps)
-        {
-            if (selectedriefingPlatoonParameters.getCompanyId() != platoonMap.companyId)
-            {
-                paintWaypointLines(g, g2, requestedColor, platoonMap);
-            }
-        }
-    }
-
-    private void paintWaypointLines(Graphics g, Graphics2D g2, Color requestedColor, PlatoonMap platoonMap)
-    {
-        BriefingMapPoint prevMapPoint = null;
-
-        for (int i = 0; i < platoonMap.mapPoints.size(); ++i)
-        {
-            BriefingMapPoint mapPoint = platoonMap.mapPoints.get(i);
-            g.setColor(requestedColor);
-
-            Point point = super.coordinateToDisplayMapPoint(mapPoint.getPosition());
-            Ellipse2D.Double circle = new Ellipse2D.Double(point.x - 4, point.y - 4, 8, 8);
-            g2.fill(circle);
-
-            g2.drawString(mapPoint.getDesc(), point.x + 4, point.y);
-
-            if (prevMapPoint != null)
-            {
-                Point prevPoint = super.coordinateToDisplayMapPoint(prevMapPoint.getPosition());
-
-                g2.draw(new Line2D.Float(prevPoint.x, prevPoint.y, point.x, point.y));
-            }
-
-            prevMapPoint = mapPoint;
         }
     }
 

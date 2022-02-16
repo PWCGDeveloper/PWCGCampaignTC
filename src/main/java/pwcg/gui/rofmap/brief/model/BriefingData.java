@@ -70,6 +70,11 @@ public class BriefingData
         return playerPlatoons;
     }
 
+    public IBriefingPlatoon getBriefingPlatoon(int companyId)
+    {
+        return briefingPlatoons.get(companyId);
+    }
+
     public int getSelectedMapEditPlatoon()
     {
         return selectedMapEditCompanyId;
