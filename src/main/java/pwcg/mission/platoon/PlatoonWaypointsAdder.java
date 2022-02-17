@@ -23,16 +23,20 @@ public class PlatoonWaypointsAdder
         BriefingMapPoint previousMapPointFromBriefing = null;
         for (BriefingMapPoint briefingMapPoint : briefingMapPoints)
         {
-            if (briefingMapPoint.isWaypoint() && previousMapPointFromBriefing != null)
+            if (briefingMapPoint.isWaypoint())
             {
-                McuWaypoint waypoint = PlatoonWaypointsUtils.findWaypoint(waypoints, previousMapPointFromBriefing.getWaypointID());
-                if (waypoint == null)
+
+                if (previousMapPointFromBriefing != null)
                 {
-                    long waypointIdForAddedWP = addWaypoint(briefingMapPoint, previousMapPointFromBriefing.getWaypointID());
-                    briefingMapPoint.setWaypointID(waypointIdForAddedWP);
+                    McuWaypoint waypoint = PlatoonWaypointsUtils.findWaypoint(waypoints, previousMapPointFromBriefing.getWaypointID());
+                    if (waypoint == null)
+                    {
+                        long waypointIdForAddedWP = addWaypoint(briefingMapPoint, previousMapPointFromBriefing.getWaypointID());
+                        briefingMapPoint.setWaypointID(waypointIdForAddedWP);
+                    }
                 }
+                previousMapPointFromBriefing = briefingMapPoint;
             }
-            previousMapPointFromBriefing = briefingMapPoint;
         }
         return waypoints;
     }

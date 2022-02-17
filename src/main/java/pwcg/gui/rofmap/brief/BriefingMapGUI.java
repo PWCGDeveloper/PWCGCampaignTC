@@ -40,7 +40,7 @@ public class BriefingMapGUI extends MapGUI implements ActionListener, IPlatoonCh
 
         this.campaignHomeGuiBriefingWrapper =  campaignHomeGuiBriefingWrapper;
         this.briefingData =  BriefingContext.getInstance().getBriefingData();
-        this.mission =  briefingData.getMission();
+        this.mission = briefingData.getMission();
 
         setLayout(new BorderLayout());
     }
