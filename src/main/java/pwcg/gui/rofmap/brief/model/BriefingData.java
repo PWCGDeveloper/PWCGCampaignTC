@@ -9,11 +9,18 @@ import java.util.Map;
 
 import pwcg.campaign.api.Side;
 import pwcg.core.exception.PWCGException;
+import pwcg.gui.rofmap.brief.BriefingCrewMemberSelectionScreen;
+import pwcg.gui.rofmap.brief.BriefingDescriptionScreen;
+import pwcg.gui.rofmap.brief.BriefingMapGUI;
 import pwcg.mission.Mission;
 import pwcg.mission.platoon.ITankPlatoon;
 
 public class BriefingData
 {
+    private BriefingDescriptionScreen descriptionScreen = null;
+    private BriefingMapGUI mapScreen = null;
+    private BriefingCrewMemberSelectionScreen crewMemberSelectionScreen = null;
+
     private String missionTime = "08:30";
     private Map<Integer, IBriefingPlatoon> briefingPlatoons = new HashMap<>();
     private int selectedPlayerCompanyId = 0;
@@ -143,4 +150,35 @@ public class BriefingData
     {
         this.displayBufferedMapImage = displayBufferedMapImage;
     }
+
+    public BriefingDescriptionScreen getDescriptionScreen()
+    {
+        return descriptionScreen;
+    }
+
+    public void setDescriptionScreen(BriefingDescriptionScreen descriptionScreen)
+    {
+        this.descriptionScreen = descriptionScreen;
+    }
+
+    public BriefingMapGUI getMapScreen()
+    {
+        return mapScreen;
+    }
+
+    public void setMapScreen(BriefingMapGUI mapScreen)
+    {
+        this.mapScreen = mapScreen;
+    }
+
+    public BriefingCrewMemberSelectionScreen getCrewMemberSelectionScreen()
+    {
+        return crewMemberSelectionScreen;
+    }
+
+    public void setCrewMemberSelectionScreen(BriefingCrewMemberSelectionScreen crewMemberSelectionScreen)
+    {
+        this.crewMemberSelectionScreen = crewMemberSelectionScreen;
+    }
+
 }

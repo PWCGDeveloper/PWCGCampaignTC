@@ -170,8 +170,14 @@ public class BriefingDescriptionScreen extends ImageResizingPanel implements Act
     {
         SoundManager.getInstance().playSound("Typewriter.WAV");
 
-        BriefingMapGUI briefingMap = new BriefingMapGUI(mission.getCampaign(), campaignHomeGuiBriefingWrapper);
-        briefingMap.makePanels();
+        BriefingMapGUI briefingMap = BriefingContext.getInstance().getBriefingData().getMapScreen();
+        if (briefingMap == null)
+        {
+            briefingMap = new BriefingMapGUI(mission.getCampaign(), campaignHomeGuiBriefingWrapper);
+            briefingMap.makePanels();
+            BriefingContext.getInstance().getBriefingData().setMapScreen(briefingMap);
+        }
+
         CampaignGuiContextManager.getInstance().pushToContextStack(briefingMap);
     }
 

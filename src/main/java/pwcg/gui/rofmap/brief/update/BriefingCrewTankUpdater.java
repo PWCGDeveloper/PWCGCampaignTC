@@ -49,6 +49,10 @@ public class BriefingCrewTankUpdater
 
     private void replaceTanksInPlayerUnit() throws PWCGException
     {
+        // In this order:
+        // Capture the position of the lead tank
+        // Set the tanks in the platoon with changes made during briefing
+        // reset the start position of the tanks in the platoon.
         Coordinate playerStartPosition = playerPlatoon.getLeadVehicle().getPosition().copy();
         Coordinate firstWaypoint = playerPlatoon.getWaypoints().get(0).getPosition();
 

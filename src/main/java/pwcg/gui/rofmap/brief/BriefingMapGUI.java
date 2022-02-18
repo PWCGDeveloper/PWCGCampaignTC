@@ -183,8 +183,14 @@ public class BriefingMapGUI extends MapGUI implements ActionListener, IPlatoonCh
 
     private void forwardToCrewSelection() throws PWCGException
     {
-        BriefingCrewMemberSelectionScreen crewMemberSelection = new BriefingCrewMemberSelectionScreen(campaignHomeGuiBriefingWrapper);
-        crewMemberSelection.makePanels();
+        BriefingCrewMemberSelectionScreen crewMemberSelection = BriefingContext.getInstance().getBriefingData().getCrewMemberSelectionScreen();
+        if (crewMemberSelection == null)
+        {
+            crewMemberSelection = new BriefingCrewMemberSelectionScreen(campaignHomeGuiBriefingWrapper);
+            crewMemberSelection.makePanels();
+            BriefingContext.getInstance().getBriefingData().setCrewMemberSelectionScreen(crewMemberSelection);
+        }
+
         CampaignGuiContextManager.getInstance().pushToContextStack(crewMemberSelection);
     }
 
@@ -218,7 +224,7 @@ public class BriefingMapGUI extends MapGUI implements ActionListener, IPlatoonCh
         }
     }
 
-    private void refreshMapScreen() throws PWCGException
+    public void refreshMapScreen() throws PWCGException
     {
         this.mapPanel.drawDisplayMap();
         this.revalidate();

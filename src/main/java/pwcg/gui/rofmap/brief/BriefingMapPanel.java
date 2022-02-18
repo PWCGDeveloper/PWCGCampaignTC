@@ -81,6 +81,8 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
             drawSelectedPlatoonWaypoints(g, ColorMap.BELGIAN_GOLD);
 
             drawAssaults(g);
+
+            parent.refreshMapScreen();
         }
         catch (Exception e)
         {
@@ -335,8 +337,8 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
             refresh();
         }
 
-
         briefingPlatoonParameters.setSelectedMapPointIndex(NO_MAP_POINT_SELECTED);
+        parent.refreshMapScreen();
     }
 
     @Override

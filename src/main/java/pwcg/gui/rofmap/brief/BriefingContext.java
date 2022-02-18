@@ -9,12 +9,12 @@ public class BriefingContext
 {
     private static BriefingContext instance = new BriefingContext();
     private BriefingData briefingData;
-    
+
     public static BriefingContext getInstance()
     {
         return instance;
     }
-    
+
     public void buildBriefingData(Mission mission) throws PWCGException
     {
         BriefingDataBuilder briefingDataBuilder = new BriefingDataBuilder(mission);
