@@ -290,7 +290,7 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
             int selectedMapPointIndex = determineSelectedWaypointIndex(e.getX(), e.getY());
             BriefingPlatoonParameters briefingPlatoonParameters = BriefingContext.getInstance().getBriefingData().getActiveBriefingMapPlatoon().getBriefingPlatoonParameters();
             briefingPlatoonParameters.setActionMapPointIndex(selectedMapPointIndex);
-            if (selectedMapPointIndex >= 0)
+            if (selectedMapPointIndex > 0)
             {
                 WaypointActionPopup menu = new WaypointActionPopup(this);
                 menu.show(e.getComponent(), e.getX(), e.getY());

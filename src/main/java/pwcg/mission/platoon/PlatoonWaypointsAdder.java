@@ -28,7 +28,7 @@ public class PlatoonWaypointsAdder
 
                 if (previousMapPointFromBriefing != null)
                 {
-                    McuWaypoint waypoint = PlatoonWaypointsUtils.findWaypoint(waypoints, previousMapPointFromBriefing.getWaypointID());
+                    McuWaypoint waypoint = PlatoonWaypointsUtils.findWaypoint(waypoints, briefingMapPoint.getWaypointID());
                     if (waypoint == null)
                     {
                         long waypointIdForAddedWP = addWaypoint(briefingMapPoint, previousMapPointFromBriefing.getWaypointID());
