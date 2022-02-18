@@ -40,7 +40,7 @@ public class MissionFinalizer
 
             setMissionScript(mission.getMissionOptions());
 
-            mission.getPlatoons().finalizeMissionUnits();
+            mission.getPlatoons().finalizeMissionPlatoons();
             mission.getGroundUnitBuilder().finalizeGroundUnits();
             
             frontLineIconBuilder.buildFrontLineIcons();

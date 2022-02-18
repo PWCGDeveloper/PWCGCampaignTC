@@ -41,7 +41,7 @@ public class BriefingDataInitializer
             briefingAssignmentData.addPlane(companyPlane);
         }
 
-        ITankPlatoon playerPlatoon = mission.getPlatoons().getPlayerUnitForCompany(company.getCompanyId());
+        ITankPlatoon playerPlatoon = mission.getPlatoons().getPlayerPlatoonForCompany(company.getCompanyId());
         for (TankMcu tank : playerPlatoon.getPlatoonTanks().getTanks())
         {
             briefingAssignmentData.assignCrewMember(tank.getTankCommander().getSerialNumber(), tank.getSerialNumber());

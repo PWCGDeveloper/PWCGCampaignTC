@@ -24,7 +24,7 @@ public class MissionPlatoons
         this.mission = mission;
         this.campaign = mission.getCampaign();
     }
-    
+
     public void addPlatoon(ITankPlatoon platoon)
     {
         tankPlatoons.put(platoon.getIndex(), platoon);
@@ -97,17 +97,17 @@ public class MissionPlatoons
                 return platoon;
             }
         }
-        
+
         throw new PWCGException("No player platoon found in mission");
     }
-    
-    public void finalizeMissionUnits() throws PWCGException
+
+    public void finalizeMissionPlatoons() throws PWCGException
     {
         MissionUnitFinalizer platoonFinalizer = new MissionUnitFinalizer(campaign, mission);
         platoonFinalizer.finalizeMissionUnits();
     }
 
-    public ITankPlatoon getPlayerUnitForCompany(int companyId) throws PWCGException
+    public ITankPlatoon getPlayerPlatoonForCompany(int companyId) throws PWCGException
     {
         for (ITankPlatoon platoon : getPlayerPlatoons())
         {
@@ -116,7 +116,21 @@ public class MissionPlatoons
                 return platoon;
             }
         }
-        return null;
+
+        throw new PWCGException("No player platoon found for company id " + companyId);
+    }
+
+    public ITankPlatoon getPlatoonForCompany(int companyId) throws PWCGException
+    {
+        for (ITankPlatoon platoon : tankPlatoons.values())
+        {
+            if (platoon.getCompany().getCompanyId() == companyId)
+            {
+                return platoon;
+            }
+        }
+
+        throw new PWCGException("No player platoon found for company id " + companyId);
     }
 
     public List<ITankPlatoon> getPlatoonsForSide(Side side) throws PWCGException
@@ -136,7 +150,7 @@ public class MissionPlatoons
     {
         return tankPlatoons.get(index);
     }
-    
+
     public List<ITankPlatoon> getPlatoons()
     {
         return new ArrayList<>(tankPlatoons.values());

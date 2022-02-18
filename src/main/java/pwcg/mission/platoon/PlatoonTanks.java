@@ -19,7 +19,7 @@ public class PlatoonTanks
     {
     }
 
-    public List<TankMcu> getAiTanks() throws PWCGException 
+    public List<TankMcu> getAiTanks() throws PWCGException
     {
         List<TankMcu> aiVehicles = new ArrayList<>();
         for (TankMcu tank : tanks)
@@ -33,7 +33,7 @@ public class PlatoonTanks
         return aiVehicles;
     }
 
-    public List<TankMcu> getPlayerTanks() throws PWCGException 
+    public List<TankMcu> getPlayerTanks() throws PWCGException
     {
         List<TankMcu> playerVehicles = new ArrayList<>();
         for (TankMcu tank : tanks)
@@ -87,7 +87,7 @@ public class PlatoonTanks
         return tanks;
     }
 
-    public void setFuelForUnit(double myFuel) 
+    public void setFuelForUnit(double myFuel)
     {
         for (TankMcu tank : getTanks())
         {
@@ -105,15 +105,15 @@ public class PlatoonTanks
                 cruisingSpeed = tank.getCruisingSpeed();
             }
         }
-        
+
         return cruisingSpeed;
     }
 
     public void setTanks(List<TankMcu> tanks) throws PWCGException
     {
-        this.tanks = tanks;        
+        this.tanks = tanks;
     }
-    
+
     public List<Integer> getTankLinkTrIds()
     {
         List<Integer> tankLinkIds = new ArrayList<>();
@@ -121,9 +121,9 @@ public class PlatoonTanks
         {
             tankLinkIds.add(tank.getLinkTrId());
         }
-        return tankLinkIds;        
+        return tankLinkIds;
     }
-    
+
     public void setTankPosition(Integer tankLinkTrId, Coordinate tankCoords, Orientation tankOrientation)
     {
         TankMcu tank = this.getTankByLinkTrId(tankLinkTrId);
@@ -148,9 +148,9 @@ public class PlatoonTanks
             }
         }
     }
-    
 
-    public void write(BufferedWriter writer) throws PWCGException 
+
+    public void write(BufferedWriter writer) throws PWCGException
     {
         for (int i = 0; i < tanks.size(); ++i)
         {
@@ -158,16 +158,17 @@ public class PlatoonTanks
             tank.write(writer);
         }
     }
-    
+
 
     public int getUnitSize()
     {
         return tanks.size();
     }
-  
+
+    @Override
     public void finalize() throws PWCGException
     {
-        
+
     }
 
     public void clear()

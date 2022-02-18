@@ -70,7 +70,7 @@ public class BriefingPayloadHelper
 
     private void assignPayloadsToCrewPlanes() throws PWCGException
     {
-        ITankPlatoon playerPlatoon = mission.getPlatoons().getPlayerUnitForCompany(briefingAssignmentData.getCompany().getCompanyId());
+        ITankPlatoon playerPlatoon = mission.getPlatoons().getPlayerPlatoonForCompany(briefingAssignmentData.getCompany().getCompanyId());
         for (TankMcu tank : playerPlatoon.getPlatoonTanks().getTanks())
         {
             CrewTankPayloadPairing crewTank = briefingAssignmentData.findAssignedCrewPairingByPlane(tank.getSerialNumber());
@@ -83,7 +83,7 @@ public class BriefingPayloadHelper
 
     private void assignModificationsToCrewPlanes() throws PWCGException
     {
-        ITankPlatoon playerPlatoon = mission.getPlatoons().getPlayerUnitForCompany(briefingAssignmentData.getCompany().getCompanyId());
+        ITankPlatoon playerPlatoon = mission.getPlatoons().getPlayerPlatoonForCompany(briefingAssignmentData.getCompany().getCompanyId());
         for (TankMcu tank : playerPlatoon.getPlatoonTanks().getTanks())
         {
             CrewTankPayloadPairing crewPlane = briefingAssignmentData.findAssignedCrewPairingByPlane(tank.getSerialNumber());
@@ -126,7 +126,7 @@ public class BriefingPayloadHelper
     
     private void setPayloadFromPayloadFactory(CrewTankPayloadPairing crewPlane) throws PWCGException
     {
-        ITankPlatoon playerPlatoon = mission.getPlatoons().getPlayerUnitForCompany(briefingAssignmentData.getCompany().getCompanyId());
+        ITankPlatoon playerPlatoon = mission.getPlatoons().getPlayerPlatoonForCompany(briefingAssignmentData.getCompany().getCompanyId());
         TankPayloadFactory payloadFactory = new TankPayloadFactory();
         ITankPayload payload = payloadFactory.createPayload(crewPlane.getTank().getType(), mission.getCampaign().getDate());
         payload.createWeaponsPayload(playerPlatoon);

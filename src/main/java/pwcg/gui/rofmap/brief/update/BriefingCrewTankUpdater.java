@@ -12,7 +12,9 @@ import pwcg.campaign.tank.payload.TankPayloadElementManager;
 import pwcg.campaign.tank.payload.TankPayloadFactory;
 import pwcg.core.constants.AiSkillLevel;
 import pwcg.core.exception.PWCGException;
+import pwcg.core.location.Coordinate;
 import pwcg.mission.platoon.ITankPlatoon;
+import pwcg.mission.platoon.PlatoonPositionSetter;
 import pwcg.mission.platoon.tank.PlayerTankMcuFactory;
 import pwcg.mission.platoon.tank.TankMcu;
 import pwcg.mission.playerunit.crew.CrewTankPayloadPairing;
@@ -22,7 +24,7 @@ public class BriefingCrewTankUpdater
     private Campaign campaign;
     private ITankPlatoon playerPlatoon;
     private List<TankMcu> updatedTankSet = new ArrayList<>();
-    
+
     public BriefingCrewTankUpdater(Campaign campaign, ITankPlatoon playerFlight)
     {
         this.campaign = campaign;
@@ -47,7 +49,12 @@ public class BriefingCrewTankUpdater
 
     private void replaceTanksInPlayerUnit() throws PWCGException
     {
+        Coordinate playerStartPosition = playerPlatoon.getLeadVehicle().getPosition().copy();
+        Coordinate firstWaypoint = playerPlatoon.getWaypoints().get(0).getPosition();
+
         playerPlatoon.getPlatoonTanks().setTanks(updatedTankSet);
+        PlatoonPositionSetter.setPlatoonPositions(playerPlatoon, playerStartPosition, firstWaypoint);
+
     }
 
     private void createTankBasedOnBriefingSelections(int numInFormation, CrewTankPayloadPairing crewTank) throws PWCGException
@@ -87,9 +94,9 @@ public class BriefingCrewTankUpdater
         TankPayloadElementManager payloadElementManager = new TankPayloadElementManager();
         for (String modificationDescription : crewTank.getModifications())
         {
-        	TankPayloadElement modification = payloadElementManager.getPayloadElementByDescription(modificationDescription);
-        	payload.selectModification(modification);
-        }        
+            TankPayloadElement modification = payloadElementManager.getPayloadElementByDescription(modificationDescription);
+            payload.selectModification(modification);
+        }
         tank.setTankPayload(payload);
     }
 
@@ -102,7 +109,7 @@ public class BriefingCrewTankUpdater
         {
             crewMember = campaign.getPersonnelManager().getCampaignAce(crewTank.getCrewMember().getSerialNumber());
         }
-        
+
         if (crewMember.isPlayer())
         {
             aiLevel = AiSkillLevel.PLAYER;
@@ -124,9 +131,9 @@ public class BriefingCrewTankUpdater
     }
 
     private TankMcu updateLeader(CrewTankPayloadPairing crewTank) throws PWCGException
-    {        
+    {
         TankMcu updatedPlatoonLeader = PlayerTankMcuFactory.createTankMcuByEquippedTank(crewTank.getTank(), playerPlatoon.getPlatoonInformation().getCountry(), crewTank.getCrewMember());
-        TankMcu flightLeaderTankMcu = playerPlatoon.getPlatoonTanks().getUnitLeader();        
+        TankMcu flightLeaderTankMcu = playerPlatoon.getPlatoonTanks().getUnitLeader();
         updatedPlatoonLeader.copyEntityIndexFromTank(flightLeaderTankMcu);
         updatedPlatoonLeader.setLinkTrId(flightLeaderTankMcu.getLinkTrId());
         updatedPlatoonLeader.copyEntityIndexFromTank(flightLeaderTankMcu);

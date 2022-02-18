@@ -141,6 +141,14 @@ public abstract class TankPlatoon implements ITankPlatoon
     @Override
     public void updateWaypointsFromBriefing(List<BriefingMapPoint> briefingMapMapPoints) throws PWCGException
     {
+        updateStartPositionFromBriefing(briefingMapMapPoints);
         platoonWaypoints.updateWaypointsFromBriefing(briefingMapMapPoints);
+    }
+
+    private void updateStartPositionFromBriefing(List<BriefingMapPoint> briefingMapPoints) throws PWCGException
+    {
+        Coordinate startPosition = briefingMapPoints.get(0).getPosition();
+        Coordinate towardsPosition = briefingMapPoints.get(1).getPosition();
+        this.setStartPosition(startPosition, towardsPosition);
     }
 }

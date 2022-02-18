@@ -154,7 +154,7 @@ public class BriefingPlayerPlatoon implements IBriefingPlatoon
 
     private void initializeFuel() throws PWCGException
     {
-        ITankPlatoon unit = mission.getPlatoons().getPlayerUnitForCompany(companyId);
+        ITankPlatoon unit = mission.getPlatoons().getPlayerPlatoonForCompany(companyId);
         this.selectedFuel = unit.getLeadVehicle().getFuel();
     }
 }

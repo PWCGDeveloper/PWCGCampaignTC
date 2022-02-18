@@ -41,7 +41,7 @@ public class BriefingData
 
     public ITankPlatoon getSelectedPlayerPlatoon() throws PWCGException
     {
-        ITankPlatoon platoon = mission.getPlatoons().getPlayerUnitForCompany(selectedPlayerCompanyId);
+        ITankPlatoon platoon = mission.getPlatoons().getPlayerPlatoonForCompany(selectedPlayerCompanyId);
         return platoon;
     }
 
@@ -82,6 +82,11 @@ public class BriefingData
             }
         }
         return platoonsForSide;
+    }
+
+    public List<IBriefingPlatoon> getBriefingPlatoons()
+    {
+        return new ArrayList<>(briefingPlatoons.values());
     }
 
     public IBriefingPlatoon getBriefingPlatoon(int companyId)

@@ -77,7 +77,7 @@ public class BriefingDataInitializerTest
         Mockito.when(mission.getCampaign()).thenReturn(campaign);
         Mockito.when(mission.getPlatoons()).thenReturn(platoons);
 
-        Mockito.when(platoons.getPlayerUnitForCompany(Mockito.anyInt())).thenReturn(platoon);
+        Mockito.when(platoons.getPlayerPlatoonForCompany(Mockito.anyInt())).thenReturn(platoon);
 
         Mockito.when(platoon.getPlatoonTanks()).thenReturn(platoonTanks);
         Mockito.when(platoonTanks.getTanks()).thenReturn(tanksInPlatoon);
