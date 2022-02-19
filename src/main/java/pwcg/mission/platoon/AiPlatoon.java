@@ -25,7 +25,7 @@ public class AiPlatoon extends TankPlatoon
         }
 
         AiTankMcuFactory tankMcuFactory = new AiTankMcuFactory(platoonInformation);
-        List<TankMcu> tanks = tankMcuFactory.createTanksForUnit(numTanks);
+        List<TankMcu> tanks = tankMcuFactory.createTanksForPlatoon(numTanks);
         platoonVehicles.setTanks(tanks);
         platoonVehicles.setFuelForUnit(1.0);
     }

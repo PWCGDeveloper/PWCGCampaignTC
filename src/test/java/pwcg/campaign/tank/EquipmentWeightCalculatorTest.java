@@ -37,7 +37,7 @@ public class EquipmentWeightCalculatorTest
         
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19420801"));
         EquipmentWeightCalculator equipmentWeightCalculator = new EquipmentWeightCalculator(campaign.getDate());
-        equipmentWeightCalculator.determineTankWeightsForTanks(planeTypes);
+        equipmentWeightCalculator.determineTankWeightsForPlayerTanks(planeTypes);
         
         Map<String, Integer> weightedPlaneOdds = equipmentWeightCalculator.getWeightedPlaneOdds();
         assert(weightedPlaneOdds.get(TankAttributeMapping.TIGER_I.getTankType()) == 31);

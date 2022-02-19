@@ -1,7 +1,8 @@
 {
   "country": "GERMANY",
   "companyId": 201910001,
-  "name": "10 Flak Regiment, 1st Company",
+  "divisionName": "10th Flak Regiment",
+  "companyName": "1st Company",
   "fileName": "10 Flak Regiment Co 1.json",
   "skill": 60,
   "unitIdCode": "",

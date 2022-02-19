@@ -213,15 +213,12 @@ public class BriefingMapGUI extends MapGUI implements ActionListener, IPlatoonCh
         }
     }
 
-    public void waypointAddedNotification(long waypointID) throws PWCGException
+    public void waypointAddedNotification() throws PWCGException
     {
-        if (waypointID != McuWaypoint.NO_WAYPOINT_ID)
-        {
-            BriefingPlatoonParameters briefingPlatoonParameters = BriefingContext.getInstance().getBriefingData().getActiveBriefingMapPlatoon().getBriefingPlatoonParameters();
-            briefingPlatoonParameters.addBriefingMapMapPointsAtPosition();
+        BriefingPlatoonParameters briefingPlatoonParameters = BriefingContext.getInstance().getBriefingData().getActiveBriefingMapPlatoon().getBriefingPlatoonParameters();
+        briefingPlatoonParameters.addBriefingMapMapPointsAtPosition();
 
-            refreshMapScreen();
-        }
+        refreshMapScreen();
     }
 
     public void refreshMapScreen() throws PWCGException

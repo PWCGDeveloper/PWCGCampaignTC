@@ -1,7 +1,8 @@
 {
   "country": "GERMANY",
   "companyId": 201011002,
-  "name": "11th Panzer Division, 2nd Company",
+  "divisionName": "11th Panzer",
+  "companyName": "2nd Company",  
   "fileName": "11th Panzer Division 2 Co.json",
   "skill": 70,
   "unitIdCode": "",

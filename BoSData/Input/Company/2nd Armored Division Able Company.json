@@ -1,7 +1,8 @@
 {
   "country": "USA",
   "companyId": 102002001,
-  "name": "2nd Armored Division Able Company",
+  "divisionName": "2nd Armored",
+  "companyName": "Able Company",  
   "fileName": "2nd Armored Division Able Company.json",
   "skill": 60,
   "unitIdCode": "",

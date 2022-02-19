@@ -39,7 +39,7 @@ public class EquipmentDepotInitializer
     {
         List<TankTypeInformation> tankTypesForCompany = company.determineCurrentTankList(campaign.getDate());
         EquipmentWeightCalculator equipmentWeightCalculator = new EquipmentWeightCalculator(campaign.getDate());
-        equipmentWeightCalculator.determineTankWeightsForTanks(tankTypesForCompany);
+        equipmentWeightCalculator.determineTankWeightsForPlayerTanks(tankTypesForCompany);
         return equipmentWeightCalculator;
     }
 

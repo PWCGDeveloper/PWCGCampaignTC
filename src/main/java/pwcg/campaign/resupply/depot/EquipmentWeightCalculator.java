@@ -13,43 +13,52 @@ import pwcg.core.utils.RandomNumberGenerator;
 public class EquipmentWeightCalculator
 {
     private Date campaignDate;
-    private Map<String, Integer> weightedPlaneOdds = new HashMap<>();
+    private Map<String, Integer> weightedTankOdds = new HashMap<>();
 
     public EquipmentWeightCalculator (Date campaignDate)
     {
         this.campaignDate = campaignDate;
     }
-    
-    public void determineTankWeightsForTanks(List<TankTypeInformation> tankTypes) throws PWCGException
+
+    public void determineTankWeightsForPlayerTanks(List<TankTypeInformation> tankTypes) throws PWCGException
     {
         for (TankTypeInformation tankType : tankTypes)
         {
             if(tankType.isPlayer())
             {
-                Integer tankWeight = determinePlaneWeight(tankType);
-                weightedPlaneOdds.put(tankType.getType(), tankWeight);
+                Integer tankWeight = determineTankWeight(tankType);
+                weightedTankOdds.put(tankType.getType(), tankWeight);
             }
+        }
+    }
+
+    public void determineTankWeightsForAiTanks(List<TankTypeInformation> tankTypes) throws PWCGException
+    {
+        for (TankTypeInformation tankType : tankTypes)
+        {
+            Integer tankWeight = determineTankWeight(tankType);
+            weightedTankOdds.put(tankType.getType(), tankWeight);
         }
     }
 
     public String getTankTypeFromWeight()
     {
-        int totalWeight = determineTotalWeight(weightedPlaneOdds);
+        int totalWeight = determineTotalWeight(weightedTankOdds);
         int accumulatedWeight = 0;
         int roll = RandomNumberGenerator.getRandom(totalWeight);
         String tankTypeDefault = "";
-        for (String tankTypeName : weightedPlaneOdds.keySet())
+        for (String tankTypeName : weightedTankOdds.keySet())
         {
             tankTypeDefault = tankTypeName;
-            
-            Integer weightForThisTankType = weightedPlaneOdds.get(tankTypeName);
+
+            Integer weightForThisTankType = weightedTankOdds.get(tankTypeName);
             accumulatedWeight += weightForThisTankType;
             if (roll < accumulatedWeight)
             {
                 return tankTypeName;
             }
         }
-        
+
         return tankTypeDefault;
     }
 
@@ -63,7 +72,7 @@ public class EquipmentWeightCalculator
         return totalWeight;
     }
 
-    private Integer determinePlaneWeight(TankTypeInformation tankType) throws PWCGException
+    private Integer determineTankWeight(TankTypeInformation tankType) throws PWCGException
     {
         Integer daysSinceIntroduction = DateUtils.daysDifference(tankType.getIntroduction(), campaignDate);
         Integer weight = daysSinceIntroduction;
@@ -71,12 +80,12 @@ public class EquipmentWeightCalculator
         {
             weight = 100;
         }
-        
+
         return weight;
     }
 
     public Map<String, Integer> getWeightedPlaneOdds()
     {
-        return weightedPlaneOdds;
+        return weightedTankOdds;
     }
 }

@@ -5,6 +5,7 @@ import java.util.Date;
 import pwcg.campaign.api.ICountry;
 import pwcg.campaign.api.Side;
 import pwcg.campaign.company.CompanyRoleSet;
+import pwcg.campaign.tank.PwcgRoleCategory;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 
@@ -19,4 +20,7 @@ public interface ICompanyMission
     boolean isPlayercompany();
     Side determineSide() throws PWCGException;
     Coordinate determineCurrentPosition(Date campaignDate) throws PWCGException;
+    String getDivisionName();
+    PwcgRoleCategory getCompanyPrimaryRoleForMission(Date date) throws PWCGException;
+    void setCompanyPrimaryRoleForMission(PwcgRoleCategory role) throws PWCGException;
 }

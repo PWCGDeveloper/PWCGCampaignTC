@@ -1,7 +1,8 @@
 {
   "country": "RUSSIA",
   "companyId": 101010002,
-  "name": "10th Tank Division, 2nd Company",
+  "divisionName": "10th Tank Division",
+  "companyName": "2nd Company",
   "fileName": "10th Tank Division 2 Co.json",
   "skill": 30,
   "unitIdCode": "",

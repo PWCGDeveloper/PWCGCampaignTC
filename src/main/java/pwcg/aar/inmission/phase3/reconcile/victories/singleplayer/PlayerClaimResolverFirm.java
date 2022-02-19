@@ -27,8 +27,8 @@ public class PlayerClaimResolverFirm
                     {
                         if (resultVictory.getVictim() instanceof LogTank)
                         {
-                            LogTank victimPlane = (LogTank)resultVictory.getVictim();
-                            TankTypeInformation destroyedTank = PWCGContext.getInstance().getFullTankTypeFactory().createTankTypeByAnyName(victimPlane.getVehicleType());
+                            LogTank victim = (LogTank)resultVictory.getVictim();
+                            TankTypeInformation destroyedTank = PWCGContext.getInstance().getFullTankTypeFactory().createTankTypeByAnyName(victim.getVehicleType());
                             TankTypeInformation claimedTank = PWCGContext.getInstance().getFullTankTypeFactory().createTankTypeByAnyName(playerDeclaration.getTankType());
             
                             if (destroyedTank == null || claimedTank == null)

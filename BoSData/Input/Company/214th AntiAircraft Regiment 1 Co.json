@@ -1,7 +1,8 @@
 {
   "country": "RUSSIA",
   "companyId": 101214001,
-  "name": "214th AntiAircraft Regiment, 1st Company",
+  "divisionName": "214th AntiAircraft",
+  "companyName": "1st Company",
   "fileName": "214th AntiAircraft Regiment 1 Co.json",
   "skill": 30,
   "unitIdCode": "",

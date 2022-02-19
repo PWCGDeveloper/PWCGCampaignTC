@@ -43,10 +43,20 @@ public class AARDestroyedStatusEvaluator
 
             if (logVictim != null)
             {
-                PWCGLogger.log(LogLevel.INFO,
-                        "Actual from logs.  " +
-                                "Victim " + logVictim.getName() + " in " + logVictim.getVehicleType() +
-                                " destroyed by " + logVictor.getName() + " in " + logVictor.getVehicleType());
+                if (logVictor != null)
+                {
+                    PWCGLogger.log(LogLevel.INFO,
+                            "Actual from logs.  " +
+                                    "Victim " + logVictim.getName() + " in " + logVictim.getVehicleType() +
+                                    " destroyed by " + logVictor.getName() + " in " + logVictor.getVehicleType());
+                }
+                else
+                {
+                    PWCGLogger.log(LogLevel.INFO,
+                            "Actual from logs.  " +
+                                    "Victim " + logVictim.getName() + " in " + logVictim.getVehicleType() +
+                            " destroyed by unknown");
+                }
                 addDeadVehicle(logVictor, logVictim, logVictory);
             }
             else

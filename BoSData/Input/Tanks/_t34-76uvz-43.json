@@ -9,7 +9,9 @@
 	"cruisingSpeed": 18,
 	"goodness": 55,
 	"roleCategories": [
-		"MAIN_BATTLE_TANK"
+        "MAIN_BATTLE_TANK",
+        "SELF_PROPELLED_GUN",
+        "TANK_DESTROYER"
 	],
 	"introduction": "19430201",
 	"endProduction": "19450601",

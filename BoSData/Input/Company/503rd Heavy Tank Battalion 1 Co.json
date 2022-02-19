@@ -1,7 +1,8 @@
 {
   "country": "GERMANY",
   "companyId": 201011001,
-  "name": "503rd Heavy Panzer Battalion, 1st Company",
+  "divisionName": "503rd Heavy Panzer",
+  "companyName": "1st Company",    
   "fileName": "503rd Heavy Tank Battalion 1 Co.json",
   "skill": 80,
   "unitIdCode": "",

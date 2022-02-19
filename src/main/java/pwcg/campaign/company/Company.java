@@ -57,7 +57,8 @@ public class Company implements ICompanyMission
     public static final int AI = 0;
     private Country country = Country.NEUTRAL;
     private int companyId = 0;
-    private String name = "";
+    private String divisionName = "";
+    private String companyName = "";
     private String fileName = "";
     private int skill = 50;
     private String unitIdCode;
@@ -260,7 +261,7 @@ public class Company implements ICompanyMission
     @Override
     public String determineDisplayName (Date date) throws PWCGException
     {
-        String displayName = name;
+        String displayName = divisionName + ", " + companyName;
         CompanyHistoryEntry companyHistoryEntry = getCompanyHistoryEntryForDate(date);
         if (companyHistoryEntry != null)
         {
@@ -743,6 +744,18 @@ public class Company implements ICompanyMission
         return companyRoles.isCompanyThisRole(date, requestedRole);
     }
 
+
+    @Override
+    public PwcgRoleCategory getCompanyPrimaryRoleForMission(Date date) throws PWCGException
+    {
+        return companyRoles.selectCompanyPrimaryRoleCategory(date);
+    }
+
+    @Override
+    public void setCompanyPrimaryRoleForMission(PwcgRoleCategory role) throws PWCGException
+    {
+    }
+
     public PwcgRoleCategory determineCompanyPrimaryRoleCategory(Date date) throws PWCGException
     {
         return companyRoles.selectCompanyPrimaryRoleCategory(date);
@@ -752,6 +765,17 @@ public class Company implements ICompanyMission
     public Coordinate determinePosition(Date campaignDate) throws PWCGException
     {
         return this.determineCurrentPosition(campaignDate);
+    }
+
+    @Override
+    public String getDivisionName()
+    {
+        return divisionName;
+    }
+
+    public void setDivisionName(String divisionName)
+    {
+        this.divisionName = divisionName;
     }
 
     @Override

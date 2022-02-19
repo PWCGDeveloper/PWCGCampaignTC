@@ -1,7 +1,8 @@
 {
   "country": "RUSSIA",
   "companyId": 101433001,
-  "name": "433rd SPG Regiment, 1st Company",
+  "divisionName": "433rd SPG",
+  "companyName": "1st Company",
   "fileName": "433 SPG Regiment 1 Co.json",
   "skill": 30,
   "unitIdCode": "",

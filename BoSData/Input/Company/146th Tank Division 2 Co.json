@@ -1,7 +1,8 @@
 {
   "country": "RUSSIA",
   "companyId": 101146002,
-  "name": "146th Tank Division, 2nd Company",
+  "divisionName": "146th Tank",
+  "companyName": "2nd Company",
   "fileName": "146th Tank Division 2 Co.json",
   "skill": 30,
   "unitIdCode": "",

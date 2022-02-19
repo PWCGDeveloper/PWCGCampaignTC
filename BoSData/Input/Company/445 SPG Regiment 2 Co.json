@@ -1,8 +1,9 @@
 {
   "country": "RUSSIA",
-  "companyId": 101433002,
-  "name": "433rd SPG Regiment, 2nd Company",
-  "fileName": "433 SPG Regiment 2 Co.json",
+  "companyId": 101445002,
+  "divisionName": "445th SPG",
+  "companyName": "2nd Company",
+  "fileName": "445th SPG Regiment 2 Co.json",
   "skill": 30,
   "unitIdCode": "",
   "subUnitIdCode": "",

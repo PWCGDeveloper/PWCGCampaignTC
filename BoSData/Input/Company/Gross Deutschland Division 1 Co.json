@@ -1,7 +1,8 @@
 {
   "country": "GERMANY",
   "companyId": 201001001,
-  "name": "Gross Deutschland Division, 1st Company",
+  "divisionName": "Gross Deutschland",
+  "companyName": "1st Company",
   "fileName": "Gross Deutschland Division 1 Co.json",
   "skill": 90,
   "unitIdCode": "",

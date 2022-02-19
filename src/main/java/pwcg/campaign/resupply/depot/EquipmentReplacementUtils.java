@@ -11,7 +11,7 @@ public class EquipmentReplacementUtils
     public static String getTypeForReplacement(Date campaignDate, TankArchType planeArchType) throws PWCGException
     {
         EquipmentWeightCalculator equipmentWeightCalculator = new EquipmentWeightCalculator(campaignDate);
-        equipmentWeightCalculator.determineTankWeightsForTanks(planeArchType.getInProductionMemberTankTypes(campaignDate));
+        equipmentWeightCalculator.determineTankWeightsForPlayerTanks(planeArchType.getInProductionMemberTankTypes(campaignDate));
         String planeTypeName = equipmentWeightCalculator.getTankTypeFromWeight();
         return planeTypeName;
     }

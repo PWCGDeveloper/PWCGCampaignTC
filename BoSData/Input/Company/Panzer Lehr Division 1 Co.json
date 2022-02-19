@@ -1,7 +1,8 @@
 {
   "country": "GERMANY",
   "companyId": 201011003,
-  "name": "Panzer Lehr Division 1 Co.json",
+  "divisionName": "Panzer Lehr",
+  "companyName": "1st Company",    
   "fileName": "Panzer Lehr Division 1 Co.json",
   "skill": 80,
   "unitIdCode": "",

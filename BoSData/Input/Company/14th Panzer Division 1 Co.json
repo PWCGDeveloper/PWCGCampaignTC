@@ -1,7 +1,8 @@
 {
   "country": "GERMANY",
   "companyId": 201014001,
-  "name": "14th Panzer Division, 1st Company",
+  "divisionName": "14th Panzer",
+  "companyName": "1st Company",  
   "fileName": "14th Panzer Division 1 Co.json",
   "skill": 70,
   "unitIdCode": "",

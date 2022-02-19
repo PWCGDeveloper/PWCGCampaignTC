@@ -1,8 +1,9 @@
 {
   "country": "GERMANY",
-  "companyId": 201911003,
-  "name": "11 Flak Regiment, 3rd Company",
-  "fileName": "11 Flak Regiment Co 3.json",
+  "companyId": 201911002,
+  "divisionName": "11th Flak Regiment",
+  "companyName": "2nd Company",
+  "fileName": "11 Flak Regiment Co 2.json",
   "skill": 60,
   "unitIdCode": "",
   "subUnitIdCode": "",

@@ -40,4 +40,8 @@ public interface ITankTypeFactory
 
     Map<String, TankTypeInformation> getTankTypes();
 
+    List<TankTypeInformation> getTanksForDate(Side side, Date date) throws PWCGException;
+
+    List<TankTypeInformation> getTanksForRoleCategory(Date date, Side side, PwcgRoleCategory rolecategory) throws PWCGException;
+
 }

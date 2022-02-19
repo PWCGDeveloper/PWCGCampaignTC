@@ -1,9 +1,10 @@
 {
   "country": "USA",
-  "companyId": 102003005,
-  "name": "3rd Armored Division Easy Company",
-  "fileName": "3rd Armored Division Easy Company.json",
-  "skill": 60,
+  "companyId": 102004003,
+  "divisionName": "4th Armored",
+  "companyName": "Able Company",  
+  "fileName": "4th Armored Division Able Company.json",
+  "skill": 70,
   "unitIdCode": "",
   "subUnitIdCode": "",
   "tankAssignments": [
@@ -14,15 +15,14 @@
     }
   ],
   "bases": {
-    "19440901": "Tongeren",
-    "19440928": "Eindhoven",
-    "19441101": "Venray",
-    "19441220": "Monschau",
-    "19441225": "Bastogne",
-    "19441229": "Houffalize",
-    "19450207": "Snow-Eifel",
-    "19450310": "Gelsdorf",
-    "19450404": "Meschede"
+    "19440901": "Diest",
+    "19440925": "Lommel",
+    "19440928": "Deurne",
+    "19441101": "Venlo",
+    "19441220": "Spa",
+    "19450207": "Wassenberg",
+    "19450310": "Krefeld",
+    "19450404": "Werl"
   },
   "skins": [],
   "serviceId": 10113,

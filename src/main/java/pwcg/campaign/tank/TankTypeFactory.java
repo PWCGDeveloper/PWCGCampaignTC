@@ -52,17 +52,49 @@ abstract class TankTypeFactory implements ITankTypeFactory
     @Override
     public List<TankTypeInformation> getTanksForSide(Side side)
     {
-        List<TankTypeInformation> alliedTanks = new ArrayList<TankTypeInformation>();
+        List<TankTypeInformation> tanksForSide = new ArrayList<TankTypeInformation>();
 
         for (TankTypeInformation tankType : tankTypes.values())
         {
             if (tankType.getSide() == side)
             {
-                alliedTanks.add(tankType);
+                tanksForSide.add(tankType);
             }
         }
 
-        return alliedTanks;
+        return tanksForSide;
+    }
+
+    @Override
+    public List<TankTypeInformation> getTanksForDate(Side side, Date date) throws PWCGException
+    {
+        List<TankTypeInformation> tanksForDate = new ArrayList<TankTypeInformation>();
+
+        for (TankTypeInformation tankType : getTanksForSide(side))
+        {
+            if (DateUtils.isDateInRange(date, tankType.getIntroduction(), tankType.getWithdrawal()))
+            {
+                tanksForDate.add(tankType);
+            }
+        }
+
+        return tanksForDate;
+    }
+
+    @Override
+    public List<TankTypeInformation> getTanksForRoleCategory(Date date, Side side, PwcgRoleCategory rolecategory) throws PWCGException
+    {
+        List<TankTypeInformation> tanksForRole = new ArrayList<TankTypeInformation>();
+
+        for (TankTypeInformation tankType : getTanksForDate(side, date))
+        {
+            if (tankType.isRoleCategory(rolecategory))
+            {
+                tanksForRole.add(tankType);
+            }
+        }
+
+        return tanksForRole;
     }
 
     @Override

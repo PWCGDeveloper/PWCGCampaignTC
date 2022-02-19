@@ -5,8 +5,6 @@ Mission:
 Current mission bugs
 - Generic mission description is in use
 
-- Display only friendly waypoints in briefing
-
 AAR:
 Add out of mission for tank units
 - no need for corresponding victim

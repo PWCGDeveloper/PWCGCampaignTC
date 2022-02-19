@@ -1,8 +1,9 @@
 {
   "country": "RUSSIA",
-  "companyId": 101139003,
-  "name": "139th Tank Division, 3rd Company",
-  "fileName": "139th Tank Division 3 Co.json",
+  "companyId": 101139002,
+  "divisionName": "139th Tank",
+  "companyName": "2nd Company",
+  "fileName": "139th Tank Division 2 Co.json",
   "skill": 30,
   "unitIdCode": "",
   "subUnitIdCode": "",

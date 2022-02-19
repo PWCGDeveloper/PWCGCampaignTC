@@ -1,7 +1,8 @@
 {
   "country": "BRITAIN",
   "companyId": 103007001,
-  "name": "7th Armoured Division 1st Company.json",
+  "divisionName": "7th Armoured",
+  "companyName": "1st Company",
   "fileName": "7th Armoured Division 1st Company.json",
   "skill": 60,
   "unitIdCode": "",

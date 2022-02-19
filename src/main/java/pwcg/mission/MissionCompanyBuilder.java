@@ -10,6 +10,7 @@ import pwcg.campaign.context.Country;
 import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.factory.CountryFactory;
 import pwcg.core.exception.PWCGException;
+import pwcg.mission.company.MissionAiCompanyBuilder;
 import pwcg.mission.ground.MissionPlatoonSize;
 
 public class MissionCompanyBuilder
@@ -27,6 +28,7 @@ public class MissionCompanyBuilder
 
         MissionAiCompanyBuilder aiCompanyBuilder = new MissionAiCompanyBuilder(mission.getCampaign());
         ICountry country = determineCountry(playerCompaniesInMission, side);
+
         List <ICompanyMission> aiCompaniesForMission = aiCompanyBuilder.buildAiCompanies(country);
         if (numAiPlatoons > 0)
         {
@@ -37,7 +39,7 @@ public class MissionCompanyBuilder
         }
         return companiesInMission;
     }
-    
+
     private static ICountry determineCountry(List<Company> playerCompaniesInMission, Side side)
     {
         for (Company playerCompany : playerCompaniesInMission)
@@ -50,7 +52,7 @@ public class MissionCompanyBuilder
                 }
             }
         }
-        
+
         return PWCGContext.getInstance().getCurrentMap().getGroundCountryForMapBySide(side);
     }
 }
