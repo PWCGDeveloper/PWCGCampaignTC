@@ -45,8 +45,8 @@ public class BriefingMissionUpdater
 
         for (IBriefingPlatoon briefingPlatoon : briefingData.getBriefingPlatoons())
         {
-            ITankPlatoon playerPlatoon = mission.getPlatoons().getPlatoonForCompany(briefingPlatoon.getCompanyId());
-            playerPlatoon.updateWaypointsFromBriefing(briefingPlatoon.getBriefingPlatoonParameters().getBriefingMapMapPoints());
+            ITankPlatoon platoon = mission.getPlatoons().getPlatoonForCompany(briefingPlatoon.getCompanyId());
+            platoon.updateWaypointsFromBriefing(briefingPlatoon.getBriefingPlatoonParameters().getBriefingMapMapPoints());
         }
     }
 

@@ -51,10 +51,12 @@ public class VictoryDescriptionBuilderGround extends VictoryDescriptionBuilderBa
         victoryDesc +=  ".";
 
         // Line 3
-        victoryDesc +=  "\n";
-        victoryDesc +=  victory.getVictor().getCrewMemberName();
-        victoryDesc +=  " was using a " + victorTankType + ".";
-
+        if (!victory.getVictor().getCrewMemberName().equals(CrewMember.UNKNOWN_CREW_NAME))
+        {
+            victoryDesc +=  "\n";
+            victoryDesc +=  victory.getVictor().getCrewMemberName();
+            victoryDesc +=  " was using a " + victorTankType + ".";
+        }
         return victoryDesc;
     }
 
@@ -66,8 +68,6 @@ public class VictoryDescriptionBuilderGround extends VictoryDescriptionBuilderBa
     {
         String victoryDesc = "";
 
-        String victorTankType = getVehicleDescription(victory.getVictor().getType(), victory.getVictor().getName());
-
         // Line 1
         victoryDesc +=  "On " + DateUtils.getDateString(victory.getDate());
         if (!victory.getLocation().isEmpty())
@@ -78,14 +78,9 @@ public class VictoryDescriptionBuilderGround extends VictoryDescriptionBuilderBa
 
         // Line 2
         victoryDesc +=  "\n";
-        victoryDesc +=  "A " + getGroundUnitName(victory.getVictim()) + " was destroyed by ";
+        victoryDesc +=  "A " + getGroundUnitName(victory.getVictim()) + " was destroyed";
         victoryDesc += describeVictor();
         victoryDesc += ".";
-
-        // Line 3
-        victoryDesc +=  "\n";
-        victoryDesc +=  victory.getVictor().getCrewMemberName();
-        victoryDesc +=  " was using a " + victorTankType + ".";
 
         return victoryDesc;
     }

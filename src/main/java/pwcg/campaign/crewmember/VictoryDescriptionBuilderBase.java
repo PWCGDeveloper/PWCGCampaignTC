@@ -18,19 +18,27 @@ public abstract class VictoryDescriptionBuilderBase
     }
 
     protected String describeVictor() {
-        String victorDesc;
-        if (victory.getVictor().isGunner())
+        String victorDesc = "";
+        if (! victory.getVictor().getCrewMemberName().contains(CrewMember.UNKNOWN_CREW_NAME))
         {
-            victorDesc = "a gunner using with " + victory.getVictor().getCrewMemberName();
+            if (victory.getVictor().isGunner())
+            {
+                victorDesc = "a gunner using with " + victory.getVictor().getCrewMemberName();
+            }
+            else
+            {
+                victorDesc = victory.getVictor().getCrewMemberName();
+            }
+            if (victory.getVictor().getCompanyName() != null && !(victory.getVictor().getCompanyName().isEmpty()))
+            {
+                victorDesc += " of " + victory.getVictor().getCompanyName();
+            }
         }
         else
         {
-            victorDesc = victory.getVictor().getCrewMemberName();
+            victorDesc = "a " + victory.getVictor().getType();
         }
-        if (victory.getVictor().getCompanyName() != null && !(victory.getVictor().getCompanyName().isEmpty()))
-        {
-            victorDesc += " of " + victory.getVictor().getCompanyName();
-        }
+
         return victorDesc;
     }
 

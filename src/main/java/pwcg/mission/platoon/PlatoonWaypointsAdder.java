@@ -23,30 +23,27 @@ public class PlatoonWaypointsAdder
         BriefingMapPoint previousMapPointFromBriefing = null;
         for (BriefingMapPoint briefingMapPoint : briefingMapPoints)
         {
-            if (briefingMapPoint.isWaypoint())
+            if (previousMapPointFromBriefing != null)
             {
-
-                if (previousMapPointFromBriefing != null)
+                McuWaypoint waypoint = PlatoonWaypointsUtils.findWaypoint(waypoints, briefingMapPoint.getWaypointID());
+                if (waypoint == null)
                 {
-                    McuWaypoint waypoint = PlatoonWaypointsUtils.findWaypoint(waypoints, briefingMapPoint.getWaypointID());
-                    if (waypoint == null)
-                    {
-                        long waypointIdForAddedWP = addWaypoint(briefingMapPoint, previousMapPointFromBriefing.getWaypointID());
-                        briefingMapPoint.setWaypointID(waypointIdForAddedWP);
-                    }
+                    long waypointIdForAddedWP = addWaypoint(briefingMapPoint, previousMapPointFromBriefing.getWaypointID());
+                    briefingMapPoint.setWaypointID(waypointIdForAddedWP);
                 }
-                previousMapPointFromBriefing = briefingMapPoint;
             }
+            previousMapPointFromBriefing = briefingMapPoint;
         }
         return waypoints;
     }
 
     private long addWaypoint(BriefingMapPoint waypointFromBriefing, long waypointIdBefore) throws PWCGException
     {
-        McuWaypoint waypoint = PlatoonWaypointsUtils.findWaypoint(waypoints, waypointIdBefore);
-        if(waypoint != null)
+        McuWaypoint newWaypoint = null;
+        McuWaypoint waypointBefore = PlatoonWaypointsUtils.findWaypoint(waypoints, waypointIdBefore);
+        if(waypointBefore != null)
         {
-            McuWaypoint newWaypoint = waypoint.copy();
+            newWaypoint = waypointBefore.copy();
 
             Coordinate newPosition = waypointFromBriefing.getPosition();
             newPosition.setYPos(0.0);
@@ -55,10 +52,18 @@ public class PlatoonWaypointsAdder
             int indexToInsertAfter = PlatoonWaypointsUtils.getWaypointIndex(waypoints, waypointIdBefore);
             waypoints.add(indexToInsertAfter+1, newWaypoint);
 
-            return waypoint.getWaypointID();
 
         }
+        else
+        {
+            newWaypoint = waypoints.get(0).copy();
+            Coordinate newPosition = waypointFromBriefing.getPosition();
+            newPosition.setYPos(0.0);
+            newWaypoint.setSpeed(waypointFromBriefing.getCruisingSpeed());
+            newWaypoint.setPosition(newPosition);
+            waypoints.add(0, newWaypoint);
+        }
 
-        throw new PWCGException("No waypoint in briefing for id " + waypointIdBefore);
+        return newWaypoint.getWaypointID();
     }
 }

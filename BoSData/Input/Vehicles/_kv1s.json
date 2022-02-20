@@ -2,8 +2,8 @@
   "scriptDir": "vehicles\\",
   "modelDir": "vehicles\\_kv1s\\",
   "vehicleType": "_kv1s",
-  "vehicleName": "KV-1s",
-  "displayName": "KV-1",
+  "vehicleName": "KV-1s ChTZ(1943)",
+  "displayName": "KV-1s",
   "countries": [
     "RUSSIA"
   ],
