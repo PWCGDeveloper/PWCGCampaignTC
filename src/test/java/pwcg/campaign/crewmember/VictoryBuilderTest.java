@@ -28,38 +28,38 @@ public class VictoryBuilderTest
 {
     @Mock
     private Campaign campaign;
-    
+
     @Mock
     private ConfigManagerCampaign configManager;
-    
+
     @Mock
     private CampaignPersonnelManager personnelManager;
-    
+
     @Mock
     private CrewMember victor;
-    
+
     @Mock
     private CrewMember victim;
 
     @BeforeEach
     public void setupTest() throws PWCGException
     {
-        
+
         Mockito.when(campaign.getPersonnelManager()).thenReturn(personnelManager);
         Mockito.when(campaign.getCampaignConfigManager()).thenReturn(configManager);
 
         Mockito.when(configManager.getIntConfigParam(ConfigItemKeys.DetailedVictoryDescriptionKey)).thenReturn(1);
-        
+
         Mockito.when(personnelManager.getAnyCampaignMember(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1)).thenReturn(victor);
         Mockito.when(personnelManager.getAnyCampaignMember(SerialNumber.AI_STARTING_SERIAL_NUMBER + 2)).thenReturn(victim);
-        
+
         Mockito.when(victor.getSerialNumber()).thenReturn(SerialNumber.AI_STARTING_SERIAL_NUMBER + 1);
         Mockito.when(victim.getSerialNumber()).thenReturn(SerialNumber.AI_STARTING_SERIAL_NUMBER + 2);
-        
+
         Mockito.when(victor.getNameAndRank()).thenReturn("Ofw Hans Schmidt");
         Mockito.when(victim.getNameAndRank()).thenReturn("Szt Ivan Ivanov");
     }
-    
+
     @Test
     public void buildVictoryTankTank () throws PWCGException
     {
@@ -88,14 +88,14 @@ public class VictoryBuilderTest
 
         VictoryBuilder victoryBuilder = new VictoryBuilder(campaign);
         Victory victory = victoryBuilder.buildVictory(DateUtils.getDateYYYYMMDD("19421103"), logVictory);
-        
+
         Assertions.assertTrue (victory.getVictor().getCrewMemberName().equals(victor.getNameAndRank()));
         Assertions.assertTrue (victory.getVictim().getCrewMemberName().equals(victim.getNameAndRank()));
-        
+
         VictoryDescription victoryDescription = new VictoryDescription(campaign, victory);
         String victoryDescriptionText = victoryDescription.createVictoryDescription();
-        
-        String verificationSegment =  "A KV1 was destroyed by Ofw Hans Schmidt";
+
+        String verificationSegment =  "A KV-1 was destroyed by Ofw Hans Schmidt";
 
         assert(victoryDescriptionText.contains(verificationSegment));
     }
@@ -122,13 +122,13 @@ public class VictoryBuilderTest
 
         VictoryBuilder victoryBuilder = new VictoryBuilder(campaign);
         Victory victory = victoryBuilder.buildVictory(DateUtils.getDateYYYYMMDD("19421103"), logVictory);
-        
+
         Assertions.assertTrue (victory.getVictor().getCrewMemberName().equals(victor.getNameAndRank()));
         Assertions.assertTrue (victory.getVictim().getType().equals("gaz-aa"));
-        
+
         VictoryDescription victoryDescription = new VictoryDescription(campaign, victory);
         String victoryDescriptionText = victoryDescription.createVictoryDescription();
-        
+
         String verificationSegment=  "A truck was destroyed by Ofw Hans Schmidt";
 
         assert(victoryDescriptionText.contains(verificationSegment));

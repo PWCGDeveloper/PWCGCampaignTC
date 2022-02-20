@@ -36,14 +36,14 @@ public class ClaimDenierTest
     @Mock private CrewMember crewMember;
     @Mock private Company company;
     @Mock private TankTypeInformation tankType;
-   
+
     private List<CrewMember> players = new ArrayList<>();
 
     @BeforeEach
     public void setupTest() throws PWCGException
     {
-        
-        
+
+
         players = new ArrayList<>();
         players.add(player);
 
@@ -60,17 +60,17 @@ public class ClaimDenierTest
         ClaimDeniedEvent claimDeniedEvent = claimDenier.determineClaimDenied(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER, declaration);
         Assertions.assertTrue (claimDeniedEvent == null);
     }
-    
-    @Test 
+
+    @Test
     public void testClaimDenied() throws PWCGException
     {
 
         Mockito.when(declaration.isConfirmed()).thenReturn(false);
         Mockito.when(declaration.getTankType()).thenReturn("pziv-g");
         Mockito.when(tankType.getDisplayName()).thenReturn("PzKw Mk IV G");
-        
+
         ClaimDenier claimDenier = new ClaimDenier(campaign);
         ClaimDeniedEvent claimDeniedEvent = claimDenier.determineClaimDenied(SerialNumber.PLAYER_STARTING_SERIAL_NUMBER, declaration);
-        Assertions.assertTrue (claimDeniedEvent.getType().equals("PzKw Mk IV"));
+        Assertions.assertTrue (claimDeniedEvent.getType().equals("Pz.Kpfw.IV"));
     }
 }
