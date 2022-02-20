@@ -2,13 +2,17 @@ package pwcg.aar.inmission.phase2.logeval.missionresultentity;
 
 import pwcg.campaign.Campaign;
 import pwcg.campaign.company.Company;
+import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.crewmember.CrewMember;
 import pwcg.campaign.crewmember.SerialNumber;
 import pwcg.campaign.tank.EquippedTank;
 import pwcg.campaign.tank.TankStatus;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.logfiles.event.IAType12;
+import pwcg.core.utils.PWCGLogger;
+import pwcg.core.utils.PWCGLogger.LogLevel;
 import pwcg.mission.data.PwcgGeneratedMissionVehicleData;
+import pwcg.mission.ground.vehicle.VehicleDefinition;
 
 public class LogTank extends LogAIEntity
 {
@@ -24,7 +28,7 @@ public class LogTank extends LogAIEntity
     }
 
     public void mapToEquippedTankFromMissionTank(PwcgGeneratedMissionVehicleData missionTank)
-    {        
+    {
         this.logCrewMember.setSerialNumber(missionTank.getCrewMemberSerialNumber());
         this.tankSerialNumber = missionTank.getVehicleSerialNumber();
         this.logCrewMember.setSerialNumber(missionTank.getCrewMemberSerialNumber());
@@ -37,13 +41,26 @@ public class LogTank extends LogAIEntity
         this.tankSerialNumber = tank.getSerialNumber();
         this.companyId = crewMember.getCompanyId();
 
-        super.setId(""+super.getSequenceNum());
-        super.setCountry(crewMember.determineCountry(campaign.getDate()));
-        super.setName(crewMember.getNameAndRank());
-        super.setVehicleType(tank.getDisplayName());
-        super.setRoleCategory(tank.determinePrimaryRoleCategory());
+        id = ""+super.getSequenceNum();
+        country = crewMember.determineCountry(campaign.getDate());
+        name = crewMember.getNameAndRank();
+
+        VehicleDefinition vehicle = PWCGContext.getInstance().getVehicleDefinitionManager().getVehicleDefinition(tank.getDisplayName());
+        if (vehicle != null)
+        {
+            vehicleType = vehicle.getVehicleType();
+        }
+        else
+        {
+            PWCGLogger.log(LogLevel.ERROR, "Unknown vehicle type in test: " + tank.getDisplayName());
+        }
+
+        if (tank != null)
+        {
+            roleCategory = tank.determinePrimaryRoleCategory();
+        }
     }
-    
+
     public void mapBotToCrew(String botId) throws PWCGException
     {
         logCrewMember.setBotId(botId);
@@ -69,18 +86,18 @@ public class LogTank extends LogAIEntity
         {
             return true;
         }
- 
+
         return false;
     }
 
     public boolean isBot(String botId)
     {
-        
+
         if (logCrewMember.getBotId().equals(botId))
         {
             return true;
         }
-        
+
         return false;
     }
 
@@ -90,10 +107,10 @@ public class LogTank extends LogAIEntity
         {
             return true;
         }
-        
+
         return false;
     }
-    
+
     public CrewMember getCrewMemberForLogEvent(Campaign campaign) throws PWCGException
     {
         CrewMember crewMember = null;

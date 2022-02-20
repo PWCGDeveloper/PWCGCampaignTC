@@ -413,7 +413,6 @@ public class BriefingMapPanel extends MapPanelZoomedBase implements ActionListen
             {
                 if (briefingPlatoonParameters.getActionMapPointIndex() >= 0)
                 {
-                    BriefingMapPoint selectedActionPoint = briefingPlatoonParameters.getSelectedActionMapPoint();
                     parent.waypointAddedNotification();
                 }
             }

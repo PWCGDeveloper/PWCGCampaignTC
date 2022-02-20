@@ -4,14 +4,14 @@ import pwcg.campaign.tank.PwcgRoleCategory;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.logfiles.event.IAType12;
 
-public class LogGroundUnit extends LogAIEntity
+public class LogNonPlayerVehicle extends LogAIEntity
 {
     private LogTurrets turrets = new LogTurrets();
 
-    public LogGroundUnit(int sequenceNumber)
+    public LogNonPlayerVehicle(int sequenceNumber)
     {
         super(sequenceNumber);
-        this.setRoleCategory(PwcgRoleCategory.GROUND_UNIT);
+        this.roleCategory = PwcgRoleCategory.GROUND_UNIT;
     }
 
     public LogTurret createTurret(IAType12 atype12) throws PWCGException

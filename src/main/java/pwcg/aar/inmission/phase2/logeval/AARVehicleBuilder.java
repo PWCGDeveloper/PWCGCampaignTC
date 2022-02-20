@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogAIEntity;
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogGroundUnit;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogNonPlayerVehicle;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTurret;
 import pwcg.aar.prelim.PwcgMissionDataEvaluator;
@@ -28,7 +28,7 @@ public class AARVehicleBuilder
     private PwcgMissionDataEvaluator pwcgMissionDataEvaluator;
 
     private Map<String, LogTank> logTanks = new HashMap<>();
-    private Map<String, LogGroundUnit> logGroundUnits = new HashMap<>();
+    private Map<String, LogNonPlayerVehicle> logGroundUnits = new HashMap<>();
     private Map<String, LogTurret> logTurrets = new HashMap<>();
 
     public AARVehicleBuilder(AARBotVehicleMapper botPlaneMapper, PwcgMissionDataEvaluator pwcgMissionDataEvaluator)
@@ -94,20 +94,10 @@ public class AARVehicleBuilder
         {
             createLogTank(atype12);
         }
-        else if (isPlane(atype12))
-        {
-            createLogTank(atype12);
-        }
         else
         {
-            createLogGroundUnit(atype12);
+            createLogAiUnit(atype12);
         }
-    }
-
-    private boolean isPlane(IAType12 atype12)
-    {
-        // TODO Auto-generated method stub
-        return false;
     }
 
     private boolean isTank(IAType12 atype12) throws PWCGException
@@ -156,13 +146,13 @@ public class AARVehicleBuilder
         return logTank;
     }
 
-    private void createLogGroundUnit(IAType12 atype12) throws PWCGException
+    private void createLogAiUnit(IAType12 atype12) throws PWCGException
     {
         LogAIEntity logEntity;
-        logEntity = new LogGroundUnit(atype12.getSequenceNum());
+        logEntity = new LogNonPlayerVehicle(atype12.getSequenceNum());
         logEntity.initializeEntityFromEvent(atype12);
 
-        logGroundUnits.put(atype12.getId(), (LogGroundUnit) logEntity);
+        logGroundUnits.put(atype12.getId(), (LogNonPlayerVehicle) logEntity);
         PWCGLogger.log(LogLevel.DEBUG, "Add Entity: " + atype12.getName() + " ID:" + atype12.getId() + " Type:" + atype12.getType());
     }
 
@@ -176,7 +166,7 @@ public class AARVehicleBuilder
                 logTurrets.put(atype12.getId(), tank.createTurret(atype12));
             }
 
-            LogGroundUnit groundUnitResult = logGroundUnits.get(atype12.getPid());
+            LogNonPlayerVehicle groundUnitResult = logGroundUnits.get(atype12.getPid());
             if (groundUnitResult != null)
             {
                 logTurrets.put(atype12.getId(), groundUnitResult.createTurret(atype12));
@@ -194,7 +184,7 @@ public class AARVehicleBuilder
             }
         }
 
-        for (LogGroundUnit logGroundUnit : logGroundUnits.values())
+        for (LogNonPlayerVehicle logGroundUnit : logGroundUnits.values())
         {
             if (logGroundUnit.ownsTurret(turretId))
             {
@@ -210,7 +200,7 @@ public class AARVehicleBuilder
         return logTanks;
     }
 
-    public Map<String, LogGroundUnit> getLogGroundUNits()
+    public Map<String, LogNonPlayerVehicle> getLogGroundUNits()
     {
         return logGroundUnits;
     }

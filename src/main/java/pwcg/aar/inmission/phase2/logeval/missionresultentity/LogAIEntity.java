@@ -7,6 +7,9 @@ import pwcg.campaign.tank.PwcgRoleCategory;
 import pwcg.campaign.tank.TankTypeInformation;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.logfiles.event.IAType12;
+import pwcg.core.utils.PWCGLogger;
+import pwcg.core.utils.PWCGLogger.LogLevel;
+import pwcg.mission.ground.vehicle.VehicleDefinition;
 
 public abstract class LogAIEntity extends LogBase
 {
@@ -23,16 +26,26 @@ public abstract class LogAIEntity extends LogBase
 
     public void initializeEntityFromEvent(IAType12 atype12) throws PWCGException
     {
-        setId(atype12.getId());
-        setCountry(atype12.getCountry());
-        setName(atype12.getName());
-        setVehicleType(atype12.getType());
+        id = atype12.getId();
+        country = atype12.getCountry();
+        name = atype12.getName();
+
+        VehicleDefinition vehicle = PWCGContext.getInstance().getVehicleDefinitionManager().getVehicleDefinition(atype12.getType());
+        if (vehicle != null)
+        {
+            vehicleType = vehicle.getVehicleType();
+        }
+        else
+        {
+            PWCGLogger.log(LogLevel.ERROR, "Unknown vehicle type in logs: " + atype12.getType());
+        }
 
         TankTypeInformation tank = PWCGContext.getInstance().getFullTankTypeFactory().createTankTypeByAnyName(atype12.getType());
         if (tank != null)
         {
-            setRoleCategory(tank.determinePrimaryRoleCategory());
+            roleCategory = tank.determinePrimaryRoleCategory();
         }
+
     }
 
     public String getId()
@@ -40,19 +53,9 @@ public abstract class LogAIEntity extends LogBase
         return id;
     }
 
-    public void setId(String id)
-    {
-        this.id = id;
-    }
-
     public String getVehicleType()
     {
         return vehicleType;
-    }
-
-    public void setVehicleType(String vehicleType)
-    {
-        this.vehicleType = vehicleType;
     }
 
     public ICountry getCountry()
@@ -60,19 +63,9 @@ public abstract class LogAIEntity extends LogBase
         return country;
     }
 
-    public void setCountry(ICountry country)
-    {
-        this.country = country;
-    }
-
     public PwcgRoleCategory getRoleCategory()
     {
         return roleCategory;
-    }
-
-    public void setRoleCategory(PwcgRoleCategory roleCategory)
-    {
-        this.roleCategory = roleCategory;
     }
 
     public String getName()
@@ -80,10 +73,28 @@ public abstract class LogAIEntity extends LogBase
         return name;
     }
 
+    public void setId(String id)
+    {
+        this.id = id;
+    }
+
+    public void setRoleCategory(PwcgRoleCategory roleCategory)
+    {
+        this.roleCategory = roleCategory;
+    }
+
+    public void setVehicleType(String vehicleType)
+    {
+        this.vehicleType = vehicleType;
+    }
+
+    public void setCountry(ICountry country)
+    {
+        this.country = country;
+    }
+
     public void setName(String name)
     {
         this.name = name;
     }
-
-
 }

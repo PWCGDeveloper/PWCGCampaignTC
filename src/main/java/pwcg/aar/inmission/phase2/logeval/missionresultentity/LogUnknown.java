@@ -7,11 +7,11 @@ public class LogUnknown extends LogAIEntity
 {
     private UnknownVictoryAssignments unknownVictoryAssignment = UnknownVictoryAssignments.UNKNOWN_ASSIGNMENT;
     private static final int unknownSequenceNumber = -1;
-    
+
     public LogUnknown()
     {
         super(unknownSequenceNumber);
-        this.setId(LogParser.UNKNOWN_MISSION_LOG_ENTITY);
+        id = LogParser.UNKNOWN_MISSION_LOG_ENTITY;
     }
 
     public UnknownVictoryAssignments getUnknownVictoryAssignment()

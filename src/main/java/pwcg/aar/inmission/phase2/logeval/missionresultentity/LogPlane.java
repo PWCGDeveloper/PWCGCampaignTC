@@ -11,7 +11,7 @@ public class LogPlane extends LogAIEntity
     public LogPlane(int sequenceNumber)
     {
         super(sequenceNumber);
-        this.setRoleCategory(PwcgRoleCategory.ATTACK);
+        this.roleCategory = PwcgRoleCategory.ATTACK;
     }
 
     public LogTurret createTurret(IAType12 atype12) throws PWCGException

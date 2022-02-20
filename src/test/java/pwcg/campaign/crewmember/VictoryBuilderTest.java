@@ -10,7 +10,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogGroundUnit;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogNonPlayerVehicle;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogVictory;
 import pwcg.campaign.Campaign;
@@ -111,7 +111,7 @@ public class VictoryBuilderTest
         logVictor.setCrewMemberSerialNumber(victor.getSerialNumber());
         logVictor.getLogCrewMember().setStatus(CrewMemberStatus.STATUS_ACTIVE);
 
-        LogGroundUnit logVictim = new LogGroundUnit(1000);
+        LogNonPlayerVehicle logVictim = new LogNonPlayerVehicle(1000);
         logVictim.setName(victim.getNameAndRank());
         logVictim.setVehicleType("gaz-aa");
 

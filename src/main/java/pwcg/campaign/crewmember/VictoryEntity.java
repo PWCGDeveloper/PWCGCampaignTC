@@ -4,7 +4,7 @@ import java.util.Date;
 
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogAIEntity;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogCrewMember;
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogGroundUnit;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogNonPlayerVehicle;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTurret;
@@ -40,9 +40,9 @@ public class VictoryEntity
             LogPlane logPlane = (LogPlane)logEntity;
             initializeForPlane(victoryDate, logPlane, crewMemberName);
         }
-        else if (logEntity instanceof LogGroundUnit)
+        else if (logEntity instanceof LogNonPlayerVehicle)
         {
-            LogGroundUnit logGroundUnit = (LogGroundUnit)logEntity;
+            LogNonPlayerVehicle logGroundUnit = (LogNonPlayerVehicle)logEntity;
             initializeForGround(logGroundUnit);
         }
         else if (logEntity instanceof LogTurret)
@@ -89,7 +89,7 @@ public class VictoryEntity
         name = logTank.getName();
     }
 
-    private void initializeForGround(LogGroundUnit logGrountUnit) throws PWCGException
+    private void initializeForGround(LogNonPlayerVehicle logGrountUnit) throws PWCGException
     {
         airOrGround = Victory.VEHICLE;
         setType(logGrountUnit.getVehicleType());

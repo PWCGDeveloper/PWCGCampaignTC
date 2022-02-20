@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogAIEntity;
-import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogGroundUnit;
+import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogNonPlayerVehicle;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogPlane;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogTank;
 import pwcg.aar.inmission.phase2.logeval.missionresultentity.LogUnknown;
@@ -71,7 +71,7 @@ public class LogVictoryHelper
     {
         LogTank victor = makeVictor();
         
-        LogGroundUnit victim = new LogGroundUnit(1000);
+        LogNonPlayerVehicle victim = new LogNonPlayerVehicle(1000);
         victim.setVehicleType("tank");
         victim.setCountry(new BoSCountry(Country.GERMANY));
 
