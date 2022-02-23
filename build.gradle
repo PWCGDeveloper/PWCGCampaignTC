@@ -59,7 +59,7 @@ test {
 }
 
 
-task deploy(type:JavaExec) {
+task deployTC(type:JavaExec) {
 	main = "pwcg.dev.deploy.DeployPwcgTC"
 	classpath = sourceSets.main.runtimeClasspath
 }
@@ -75,7 +75,7 @@ task zipTC(type: Exec) {
 }
 
 tasks.named("build") { finalizedBy("copyJar") }
-tasks.named("copyJar") { finalizedBy("deploy") }
-tasks.named("deploy") { finalizedBy("buildTC") }
+tasks.named("copyJar") { finalizedBy("deployTC") }
+tasks.named("deployTC") { finalizedBy("buildTC") }
 tasks.named("buildTC") { finalizedBy("zipTC") }
 

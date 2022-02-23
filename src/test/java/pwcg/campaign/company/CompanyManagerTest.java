@@ -24,11 +24,11 @@ import pwcg.testutils.TestIdentifiers;
 public class CompanyManagerTest
 {
     Campaign campaign;
-    
+
     @BeforeAll
     public void setupSuite() throws PWCGException
     {
-        
+
         campaign = CampaignCache.makeCampaign(CompanyTestProfile.GROSS_DEUTSCHLAND_PROFILE);
     }
 
@@ -37,7 +37,7 @@ public class CompanyManagerTest
     {
         CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
         Company company = companyManager.getCompany(TestIdentifiers.TEST_GERMAN_COMPANY_ID);
-        assert(company.determineDisplayName(campaign.getDate()).equals("Gross Deutschland Division, 1st Company"));
+        assert(company.determineDisplayName(campaign.getDate()).equals("Gross Deutschland, 1st Company"));
     }
 
     @Test
@@ -45,22 +45,22 @@ public class CompanyManagerTest
     {
         CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
         List<Company> companys = companyManager.getActiveCompanies(campaign.getDate());
-        
+
         boolean foundGD = false;
         boolean found16th = false;
         boolean found146th = false;
         for (Company company : companys)
         {
             String companyName = company.determineDisplayName(campaign.getDate());
-            if (companyName.equals("Gross Deutschland Division, 1st Company"))
+            if (companyName.equals("Gross Deutschland, 1st Company"))
             {
                 foundGD = true;
             }
-            else if (companyName.equals("16th Panzer Division, 3rd Company"))
+            else if (companyName.equals("16th Panzer, 1st Company"))
             {
                 found16th = true;
             }
-            else if (companyName.equals("146th Tank Division, 2nd Company"))
+            else if (companyName.equals("146th Tank, 2nd Company"))
             {
                 found146th = true;
             }
@@ -75,22 +75,22 @@ public class CompanyManagerTest
     {
         CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
         List<Company> companys = companyManager.getActiveCompaniesForSide(campaign.getDate(), Side.AXIS);
-        
+
         boolean foundGD = false;
         boolean found16th = false;
         boolean found146th = false;
         for (Company company : companys)
         {
             String companyName = company.determineDisplayName(campaign.getDate());
-            if (companyName.equals("Gross Deutschland Division, 1st Company"))
+            if (companyName.equals("Gross Deutschland, 1st Company"))
             {
                 foundGD = true;
             }
-            else if (companyName.equals("16th Panzer Division, 3rd Company"))
+            else if (companyName.equals("16th Panzer, 1st Company"))
             {
                 found16th = true;
             }
-            else if (companyName.equals("146th Tank Division, 2nd Company"))
+            else if (companyName.equals("146th Tank, 2nd Company"))
             {
                 found146th = true;
             }
@@ -114,25 +114,25 @@ public class CompanyManagerTest
             }
             ++numSaved;
         }
-        
+
         CompanyManager companyManager = PWCGContext.getInstance().getCompanyManager();
         List<Company> companys = companyManager.getViableCompanies(campaign);
-        
+
         boolean foundGD = false;
         boolean found16th = false;
         boolean found146th = false;
         for (Company company : companys)
         {
             String companyName = company.determineDisplayName(campaign.getDate());
-            if (companyName.equals("Gross Deutschland Division, 1st Company"))
+            if (companyName.equals("Gross Deutschland, 1st Company"))
             {
                 foundGD = true;
             }
-            else if (companyName.equals("16th Panzer Division, 3rd Company"))
+            else if (companyName.equals("16th Panzer, 1st Company"))
             {
                 found16th = true;
             }
-            else if (companyName.equals("146th Tank Division, 2nd Company"))
+            else if (companyName.equals("146th Tank, 2nd Company"))
             {
                 found146th = true;
             }

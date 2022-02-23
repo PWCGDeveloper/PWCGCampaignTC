@@ -21,7 +21,7 @@ import pwcg.testutils.CompanyTestProfile;
 import pwcg.testutils.TestMissionBuilderUtility;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class KubanInvasionFlightTest
+public class KubanInvasionTest
 {
     @Test
     public void germanKerchInvasionTest() throws PWCGException

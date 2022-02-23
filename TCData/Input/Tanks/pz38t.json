@@ -10,7 +10,6 @@
 	"goodness": 26,
 	"roleCategories": [
         "MAIN_BATTLE_TANK",
-        "SELF_PROPELLED_GUN",
         "TANK_DESTROYER"
 	],
 	"introduction": "19390901",

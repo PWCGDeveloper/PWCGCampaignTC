@@ -14,7 +14,7 @@ public class PWCGDirectoryProductManager
     {
         String userDir = System.getProperty("user.dir");
         pwcgRootDir = userDir + "\\";
-        pwcgDataDir = pwcgRootDir + "BoSData\\";
+        pwcgDataDir = pwcgRootDir + "TCData\\";
     }
 
     public String getPwcgRootDir()

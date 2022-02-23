@@ -15,9 +15,9 @@ public abstract class DeployBase
     protected HashMap<String, Object> directoriesToCopy = new HashMap<String, Object>();
     protected HashMap<String, Object> unwantedFiles = new HashMap<String, Object>();
 
-    protected String sourceRootDir = "D:\\PWCG\\workspacePwcg\\PWCGCampaign";
+    protected String sourceRootDir = "D:\\PWCG\\workspacePwcgTC\\PWCGCampaignTC";
     protected String deployDir = "D:\\PWCG\\Deploy";
-    protected String targetDir = "D:\\PWCG\\Deploy\\PWCGCampaign";
+    protected String targetDir = "D:\\PWCG\\Deploy\\PWCGCampaignTC";
     protected String targetFinalDir = "";
 
     public void doDeploy()
@@ -150,7 +150,7 @@ public abstract class DeployBase
 
     protected HashMap<String, Object> loadDirectoriesToCopyPWCG()
     {
-        directoriesToCopy.put("PWCGCampaign", null);
+        directoriesToCopy.put("PWCGCampaignTC", null);
 
         // From Data
         directoriesToCopy.put("Images", null);
@@ -170,7 +170,7 @@ public abstract class DeployBase
         directoriesToCopy.put("Profiles", null);
         directoriesToCopy.put("themes", null);
         directoriesToCopy.put("Overlay", null);
-        
+
 
         // From Images - subdirectories
         directoriesToCopy.put("German", null);
@@ -197,9 +197,10 @@ public abstract class DeployBase
         directoriesToCopy.put("IconicBattles", null);
         directoriesToCopy.put("Ranks", null);
         directoriesToCopy.put("Skins", null);
-        directoriesToCopy.put("SkirmishProfiles", null);        
+        directoriesToCopy.put("SkirmishProfiles", null);
         directoriesToCopy.put("Company", null);
         directoriesToCopy.put("StaticObjects", null);
+        directoriesToCopy.put("Tanks", null);
         directoriesToCopy.put("Vehicles", null);
 
         // From Input/Aces
@@ -209,8 +210,8 @@ public abstract class DeployBase
         directoriesToCopy.put("Configured", null);
 
         // From Skirmishes
-        directoriesToCopy.put("Amphibious", null);        
-        directoriesToCopy.put("Skirmishes", null);        
+        directoriesToCopy.put("Amphibious", null);
+        directoriesToCopy.put("Skirmishes", null);
 
         return directoriesToCopy;
     }

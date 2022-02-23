@@ -7,6 +7,7 @@ import pwcg.core.exception.PWCGException;
 
 public class PlayerTankTypeFactory extends TankTypeFactory
 {
+    @Override
     public void initialize() throws PWCGException
     {
         Map<String, TankTypeInformation> allTankTypes = TankIOJson.readJson();

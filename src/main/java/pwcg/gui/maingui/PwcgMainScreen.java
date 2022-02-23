@@ -57,23 +57,23 @@ import pwcg.gui.utils.ToolTipManager;
 
 public class PwcgMainScreen extends ImageResizingPanel implements ActionListener
 {
-	private static final long serialVersionUID = 1L;
-    private static final String VERSION = "1.0.0 Alpha";
+    private static final long serialVersionUID = 1L;
+    private static final String VERSION = "Alpha 1";
 
     private PwcgThreePanelUI pwcgThreePanel;
-	private List<JButton> campaignButtonList = new ArrayList<JButton>();
+    private List<JButton> campaignButtonList = new ArrayList<JButton>();
 
-	public PwcgMainScreen() 
-	{
-	    super("");
-		setLayout(new BorderLayout());
-		this.setBackground(Color.DARK_GRAY);
-		
-		this.pwcgThreePanel = new PwcgThreePanelUI(this);
-	}
+    public PwcgMainScreen()
+    {
+        super("");
+        setLayout(new BorderLayout());
+        this.setBackground(Color.DARK_GRAY);
 
-	public void makePanels()
-	{
+        this.pwcgThreePanel = new PwcgThreePanelUI(this);
+    }
+
+    public void makePanels()
+    {
         try
         {
             startMusic();
@@ -90,7 +90,7 @@ public class PwcgMainScreen extends ImageResizingPanel implements ActionListener
         {
             PWCGLogger.logException(e);
         }
-	}
+    }
 
 
     private void startMusic()
@@ -107,149 +107,149 @@ public class PwcgMainScreen extends ImageResizingPanel implements ActionListener
     private void makeFrame() throws PWCGException
     {
         PWCGFrame.getInstance();
-        PWCGContext.getInstance().initializeMap();               
+        PWCGContext.getInstance().initializeMap();
     }
 
-	public void refresh() 
-	{
-		try
-		{
-		    PWCGContext.getInstance().setCampaign(null);
-            PWCGContext.getInstance().initializeMap();    
+    public void refresh()
+    {
+        try
+        {
+            PWCGContext.getInstance().setCampaign(null);
+            PWCGContext.getInstance().initializeMap();
 
-			setButtonsEnabled();
+            setButtonsEnabled();
 
-			PWCGContext.getInstance().setCampaign(null);
-			pwcgThreePanel.setRightPanel(makeCampaignPanel());
-            
+            PWCGContext.getInstance().setCampaign(null);
+            pwcgThreePanel.setRightPanel(makeCampaignPanel());
+
             CampaignGuiContextManager.getInstance().clearContextStack();
             CampaignGuiContextManager.getInstance().pushToContextStack(this);
-		}
-		catch (Exception e)
-		{
-			PWCGLogger.logException(e);
-		}		
-	}
+        }
+        catch (Exception e)
+        {
+            PWCGLogger.logException(e);
+        }
+    }
 
-	public void makeGUI()
-	{
-		try
-		{
+    public void makeGUI()
+    {
+        try
+        {
             String imagePath = UiImageResolver.getImage(ScreenIdentifier.PwcgMainScreen);
-	        this.setImageFromName(imagePath);
-			
+            this.setImageFromName(imagePath);
+
             pwcgThreePanel.setLeftPanel(makeLeftPanel());
             pwcgThreePanel.setCenterPanel(makeCenterPanel());
-			pwcgThreePanel.setRightPanel(makeCampaignPanel());
+            pwcgThreePanel.setRightPanel(makeCampaignPanel());
             CampaignGuiContextManager.getInstance().pushToContextStack(this);
 
-			setButtonsEnabled();
-		}
-		catch (Exception e)
-		{
-			PWCGLogger.logException(e);
-		}		
-	}
+            setButtonsEnabled();
+        }
+        catch (Exception e)
+        {
+            PWCGLogger.logException(e);
+        }
+    }
 
-	private void setButtonsEnabled()
-	{
-		if (TanksOwnedManager.getInstance().hasTanksOwned())
-		{
-			for (JButton campaignButton : campaignButtonList)
-			{
-				campaignButton.setEnabled(true);
-			}
-		}
-		else
-		{
-			for (JButton campaignButton : campaignButtonList)
-			{
-				if (campaignButton.getActionCommand().equals("Tanks Owned") || 
-			        campaignButton.getActionCommand().equals("Exit"))
-				{
-					campaignButton.setEnabled(true);
-				}
-				else
-				{
-					campaignButton.setEnabled(false);
-				}
-			}
-		}
-	}
+    private void setButtonsEnabled()
+    {
+        if (TanksOwnedManager.getInstance().hasTanksOwned())
+        {
+            for (JButton campaignButton : campaignButtonList)
+            {
+                campaignButton.setEnabled(true);
+            }
+        }
+        else
+        {
+            for (JButton campaignButton : campaignButtonList)
+            {
+                if (campaignButton.getActionCommand().equals("Tanks Owned") ||
+                        campaignButton.getActionCommand().equals("Exit"))
+                {
+                    campaignButton.setEnabled(true);
+                }
+                else
+                {
+                    campaignButton.setEnabled(false);
+                }
+            }
+        }
+    }
 
-	private void validateInstallDirectory()
-	{
-		String missionFilepath = PWCGDirectorySimulatorManager.getInstance().getSimulatorRootDir() + "Data\\Missions";
-		try
-		{
-			File file = new File(missionFilepath);
-			if (!file.exists())
-			{
+    private void validateInstallDirectory()
+    {
+        String missionFilepath = PWCGDirectorySimulatorManager.getInstance().getSimulatorRootDir() + "Data\\Missions";
+        try
+        {
+            File file = new File(missionFilepath);
+            if (!file.exists())
+            {
                 ErrorDialog.userError("PWCGCampaign is installed to the wrong directory.  It should be installed to the game root directory");
-			}
-		}
-		catch (Exception e)
-		{
+            }
+        }
+        catch (Exception e)
+        {
             PWCGLogger.logException(e);
             ErrorDialog.userError("Error during install validation");
-		}
-	}
+        }
+    }
 
-	public JPanel makeCenterPanel()  
-	{
-		JPanel mainCenterPanel = new JPanel();
-		mainCenterPanel.setLayout(new BorderLayout());
-		mainCenterPanel.setOpaque(false);
-		return mainCenterPanel;
-	}
+    public JPanel makeCenterPanel()
+    {
+        JPanel mainCenterPanel = new JPanel();
+        mainCenterPanel.setLayout(new BorderLayout());
+        mainCenterPanel.setOpaque(false);
+        return mainCenterPanel;
+    }
 
-	public JPanel makeLeftPanel() throws PWCGException  
-	{
-	    JPanel mainLeftPanel = new JPanel();
-	    mainLeftPanel.setLayout(new BorderLayout());
-	    mainLeftPanel.setOpaque(false);
+    public JPanel makeLeftPanel() throws PWCGException
+    {
+        JPanel mainLeftPanel = new JPanel();
+        mainLeftPanel.setLayout(new BorderLayout());
+        mainLeftPanel.setOpaque(false);
 
-		JPanel versionPanel = makeVersionPanel();
-		mainLeftPanel.add(versionPanel, BorderLayout.NORTH);
+        JPanel versionPanel = makeVersionPanel();
+        mainLeftPanel.add(versionPanel, BorderLayout.NORTH);
 
-		JPanel buttonPanel = new JPanel(new BorderLayout());
-		buttonPanel.setOpaque(false);
-		
-		JPanel buttonPanelGrid = new JPanel(new GridLayout(0,1));
-		buttonPanelGrid.setOpaque(false);
-		
-		makeMenuButtons(buttonPanelGrid) ;
-		
-		buttonPanel.add(buttonPanelGrid, BorderLayout.NORTH);
-		
-		mainLeftPanel.add(buttonPanel, BorderLayout.CENTER);
+        JPanel buttonPanel = new JPanel(new BorderLayout());
+        buttonPanel.setOpaque(false);
 
-		return mainLeftPanel;
-	}
- 
-	private void makeMenuButtons(JPanel buttonPanel) throws PWCGException 
-	{
-		buttonPanel.add(PWCGLabelFactory.makeDummyLabel());
-				
- 		makeMenuButton (InternationalizationManager.getTranslation("Tanks Owned"), "Tanks Owned", buttonPanel);
+        JPanel buttonPanelGrid = new JPanel(new GridLayout(0,1));
+        buttonPanelGrid.setOpaque(false);
+
+        makeMenuButtons(buttonPanelGrid) ;
+
+        buttonPanel.add(buttonPanelGrid, BorderLayout.NORTH);
+
+        mainLeftPanel.add(buttonPanel, BorderLayout.CENTER);
+
+        return mainLeftPanel;
+    }
+
+    private void makeMenuButtons(JPanel buttonPanel) throws PWCGException
+    {
+        buttonPanel.add(PWCGLabelFactory.makeDummyLabel());
+
+        makeMenuButton (InternationalizationManager.getTranslation("Tanks Owned"), "Tanks Owned", buttonPanel);
         makeMenuButton (InternationalizationManager.getTranslation("Configuration"), "Configuration",buttonPanel);
         makeMenuButton (InternationalizationManager.getTranslation("Music"), "Music", buttonPanel);
         makeMenuButton (InternationalizationManager.getTranslation("Skin Analysis"), "Skin Analysis", buttonPanel);
         makeMenuButton (InternationalizationManager.getTranslation("PWCG Information"), "PWCG Information", buttonPanel);
         makeMenuButton (InternationalizationManager.getTranslation("Administer Coop"), "Administer Coop", buttonPanel);
-        
+
         int showFrontLineEditor = ConfigManagerGlobal.getInstance().getIntConfigParam(ConfigItemKeys.ShowFrontLineEditorKey);
         if (showFrontLineEditor == 1)
         {
             makeMenuButton (InternationalizationManager.getTranslation("PWCG Edit Front"), "PWCG Edit Front", buttonPanel);
         }
-        
+
         buttonPanel.add(PWCGLabelFactory.makeDummyLabel());
         buttonPanel.add(PWCGLabelFactory.makeDummyLabel());
         makeMenuButton (InternationalizationManager.getTranslation("Exit"), "Exit", buttonPanel);
-	}
+    }
 
-    private JButton makeMenuButton(String buttonText, String commandText, JPanel buttonPanel) throws PWCGException 
+    private JButton makeMenuButton(String buttonText, String commandText, JPanel buttonPanel) throws PWCGException
     {
         JButton button = PWCGButtonFactory.makeTranslucentMenuButtonGrayMenu(buttonText, commandText, "", this);
 
@@ -258,10 +258,10 @@ public class PwcgMainScreen extends ImageResizingPanel implements ActionListener
 
         return button;
     }
-    
-	public JPanel makeVersionPanel() throws PWCGException  
-	{
-		Font font = PWCGMonitorFonts.getPrimaryFontLarge();
+
+    public JPanel makeVersionPanel() throws PWCGException
+    {
+        Font font = PWCGMonitorFonts.getPrimaryFontLarge();
 
         String versionText = InternationalizationManager.getTranslation("PWCG Version") + ": " + VERSION;
         JLabel lversion = PWCGLabelFactory.makeTransparentLabel(versionText, ColorMap.WOOD_FOREGROUND, font, SwingConstants.RIGHT);
@@ -271,65 +271,65 @@ public class PwcgMainScreen extends ImageResizingPanel implements ActionListener
         versionPanel.setOpaque(false);
         versionPanel.add(PWCGLabelFactory.makeDummyLabel());
         versionPanel.add(lversion);
-		versionPanel.add(PWCGLabelFactory.makeDummyLabel());
-				
-		return versionPanel;
-	}
+        versionPanel.add(PWCGLabelFactory.makeDummyLabel());
 
-	public JPanel makeCampaignPanel() throws PWCGException 
-	{
-		MusicManager.playTitleTheme();
+        return versionPanel;
+    }
+
+    public JPanel makeCampaignPanel() throws PWCGException
+    {
+        MusicManager.playTitleTheme();
 
         JPanel campaignPanel = new JPanel();
         campaignPanel.setLayout(new BorderLayout());
         campaignPanel.setOpaque(false);
-		
-		JPanel campaignListPanel = new JPanel (new GridLayout(0,1));
-		campaignListPanel.setOpaque(false);
-		
-        JLabel assignedLabel = PWCGLabelFactory.makeMenuLabelLarge(InternationalizationManager.getTranslation("Available Campaigns")); 
-		campaignListPanel.add(assignedLabel);
-		
-		List<String> campaigns = Campaign.getCampaignNames();
-		for (String campaignName : campaigns)
-		{
-			String icon = "";
-			try
-			{
-				Campaign campaign = new Campaign();
-                if (campaign.open(campaignName))              
-				{
-    				if (!campaign.isCampaignActive())
-    				{
-    					icon = "RIP.jpg";
-    				}
+
+        JPanel campaignListPanel = new JPanel (new GridLayout(0,1));
+        campaignListPanel.setOpaque(false);
+
+        JLabel assignedLabel = PWCGLabelFactory.makeMenuLabelLarge(InternationalizationManager.getTranslation("Available Campaigns"));
+        campaignListPanel.add(assignedLabel);
+
+        List<String> campaigns = Campaign.getCampaignNames();
+        for (String campaignName : campaigns)
+        {
+            String icon = "";
+            try
+            {
+                Campaign campaign = new Campaign();
+                if (campaign.open(campaignName))
+                {
+                    if (!campaign.isCampaignActive())
+                    {
+                        icon = "RIP.jpg";
+                    }
                     else if (campaign.getCampaignData().getCampaignMode() == CampaignMode.CAMPAIGN_MODE_COOP)
                     {
                         icon = "CoopIcon.jpg";
                     }
-    				else
-    				{
-    				    String nation = determineCampaignCountryForIcon(campaign).getNationality();
-    					icon = nation + "Commander.jpg";
-    				}
-    
-    				PWCGJButton button = ImageButton.makeCampaignFlagButton(campaignName, icon);
-    				button.setActionCommand("Load Campaign:" + campaignName);
-    				button.addActionListener(this);
-    				campaignListPanel.add(button);
-    				
-    				ToolTipManager.setToolTip(button, campaign.getCampaignDescription());
-    				
-    				campaignButtonList.add(button);
-				}
-			}
-			catch (Exception e)
-			{
-				PWCGLogger.logException(e);
-			}
-			
-		}
-		
+                    else
+                    {
+                        String nation = determineCampaignCountryForIcon(campaign).getNationality();
+                        icon = nation + "Commander.jpg";
+                    }
+
+                    PWCGJButton button = ImageButton.makeCampaignFlagButton(campaignName, icon);
+                    button.setActionCommand("Load Campaign:" + campaignName);
+                    button.addActionListener(this);
+                    campaignListPanel.add(button);
+
+                    ToolTipManager.setToolTip(button, campaign.getCampaignDescription());
+
+                    campaignButtonList.add(button);
+                }
+            }
+            catch (Exception e)
+            {
+                PWCGLogger.logException(e);
+            }
+
+        }
+
         PWCGJButton newButton = ImageButton.makeCampaignFlagButton(InternationalizationManager.getTranslation("New"), "NewCrewMember.jpg");
         newButton.setActionCommand("New Campaign");
         newButton.addActionListener(this );
@@ -344,12 +344,12 @@ public class PwcgMainScreen extends ImageResizingPanel implements ActionListener
         campaignListPanel.add(deleteCampaignButton);
         campaignButtonList.add(deleteCampaignButton);
 
-		campaignPanel.add(BorderLayout.NORTH, campaignListPanel);
+        campaignPanel.add(BorderLayout.NORTH, campaignListPanel);
 
-		return campaignPanel;
-	}
-	
-    
+        return campaignPanel;
+    }
+
+
     private ICountry determineCampaignCountryForIcon(Campaign campaign) throws PWCGException
     {
         if (campaign.isCoop())
@@ -361,31 +361,32 @@ public class PwcgMainScreen extends ImageResizingPanel implements ActionListener
             CrewMember referencePlayer = campaign.findReferencePlayer();
             return CountryFactory.makeCountryByCountry(referencePlayer.getCountry());
         }
-     }
+    }
 
-	private void loadCampaign(String campaignName) throws PWCGException 
-	{
-		Campaign campaign = new Campaign();
-		campaign.open(campaignName);	
-		PWCGContext.getInstance().setCampaign(campaign);
+    private void loadCampaign(String campaignName) throws PWCGException
+    {
+        Campaign campaign = new Campaign();
+        campaign.open(campaignName);
+        PWCGContext.getInstance().setCampaign(campaign);
 
-		CampaignHomeScreen campaignGUI = new CampaignHomeScreen (this, campaign);
+        CampaignHomeScreen campaignGUI = new CampaignHomeScreen (this, campaign);
         CampaignGuiContextManager.getInstance().pushToContextStack(campaignGUI);
 
-		return;
-	}
+        return;
+    }
 
-	public void actionPerformed(ActionEvent ae)
-	{
-		try
-		{
-			String action = ae.getActionCommand();
+    @Override
+    public void actionPerformed(ActionEvent ae)
+    {
+        try
+        {
+            String action = ae.getActionCommand();
 
-			if (action.equals("Exit"))
-			{
-				System.exit(0);
-			}
-			else if (action.equals("Skin Analysis"))
+            if (action.equals("Exit"))
+            {
+                System.exit(0);
+            }
+            else if (action.equals("Skin Analysis"))
             {
                 showSkinAnalysis();
             }
@@ -409,8 +410,8 @@ public class PwcgMainScreen extends ImageResizingPanel implements ActionListener
             }
             else if (action.equals("Music"))
             {
-            	PwcgMusicConfigScreen campaignMusicPanelSet = new PwcgMusicConfigScreen(this);
-            	campaignMusicPanelSet.makePanels();
+                PwcgMusicConfigScreen campaignMusicPanelSet = new PwcgMusicConfigScreen(this);
+                campaignMusicPanelSet.makePanels();
                 CampaignGuiContextManager.getInstance().pushToContextStack(campaignMusicPanelSet);
             }
             else if (action.equals("Delete Campaign"))
@@ -419,13 +420,13 @@ public class PwcgMainScreen extends ImageResizingPanel implements ActionListener
                 campaignDeleteGUI.makePanels();
                 CampaignGuiContextManager.getInstance().pushToContextStack(campaignDeleteGUI);
             }
-			else if (action.contains("Load Campaign:"))
-			{
-				int index = action.indexOf(":");
-				String campaignName = action.substring(index+1);
-				loadCampaign(campaignName);
-				return;
-			}
+            else if (action.contains("Load Campaign:"))
+            {
+                int index = action.indexOf(":");
+                String campaignName = action.substring(index+1);
+                loadCampaign(campaignName);
+                return;
+            }
             else if (action.contains("PWCG Information"))
             {
                 showPWCGInfoMap();
@@ -437,15 +438,15 @@ public class PwcgMainScreen extends ImageResizingPanel implements ActionListener
                 return;
             }
 
-		}
-		catch (Exception e)
-		{
-			PWCGLogger.logException(e);
-			ErrorDialog.internalError(e.getMessage());
-		}
-	}
+        }
+        catch (Exception e)
+        {
+            PWCGLogger.logException(e);
+            ErrorDialog.internalError(e.getMessage());
+        }
+    }
 
-    private void showTanksOwned() throws PWCGException 
+    private void showTanksOwned() throws PWCGException
     {
         SoundManager.getInstance().playSound("BookOpen.WAV");
 
@@ -455,7 +456,7 @@ public class PwcgMainScreen extends ImageResizingPanel implements ActionListener
         CampaignGuiContextManager.getInstance().pushToContextStack(tanksOwned);
     }
 
-    private void showCoopAdmin() throws PWCGException 
+    private void showCoopAdmin() throws PWCGException
     {
         SoundManager.getInstance().playSound("BookOpen.WAV");
 
@@ -465,7 +466,7 @@ public class PwcgMainScreen extends ImageResizingPanel implements ActionListener
         CampaignGuiContextManager.getInstance().pushToContextStack(coopAdmin);
     }
 
-    private void showSkinAnalysis() throws PWCGException 
+    private void showSkinAnalysis() throws PWCGException
     {
         SoundManager.getInstance().playSound("BookOpen.WAV");
 
@@ -475,7 +476,7 @@ public class PwcgMainScreen extends ImageResizingPanel implements ActionListener
         CampaignGuiContextManager.getInstance().pushToContextStack(skinAnalysis);
     }
 
-    private void showGlobalConfig() throws PWCGException 
+    private void showGlobalConfig() throws PWCGException
     {
         SoundManager.getInstance().playSound("BookOpen.WAV");
 
@@ -485,10 +486,10 @@ public class PwcgMainScreen extends ImageResizingPanel implements ActionListener
         CampaignGuiContextManager.getInstance().pushToContextStack(globalConfig);
     }
 
-    private void showPWCGInfoMap() throws PWCGException 
+    private void showPWCGInfoMap() throws PWCGException
     {
         SoundManager.getInstance().playSound("BookOpen.WAV");
-        
+
         Date mapDate = PWCGContext.getInstance().getCurrentMap().getFrontDatesForMap().getEarliestMapDate();
         InfoMapGUI infoMapGUI = new InfoMapGUI(mapDate);
         infoMapGUI.makeGUI();
@@ -496,7 +497,7 @@ public class PwcgMainScreen extends ImageResizingPanel implements ActionListener
         CampaignGuiContextManager.getInstance().pushToContextStack(infoMapGUI);
     }
 
-    private void showPWCGEditMap() throws PWCGException 
+    private void showPWCGEditMap() throws PWCGException
     {
         Date mapDate = PWCGContext.getInstance().getCurrentMap().getFrontDatesForMap().getEarliestMapDate();
         EditorMapGUI editMapGUI = new EditorMapGUI(mapDate);
@@ -504,19 +505,19 @@ public class PwcgMainScreen extends ImageResizingPanel implements ActionListener
 
         CampaignGuiContextManager.getInstance().pushToContextStack(editMapGUI);
     }
-    
+
 
     private void verifyLoggingEnabled()
     {
         ProductSetupFileReader missionLogFileValidator = new ProductSetupFileReader();
         missionLogFileValidator.analyzeStartupCfg();
-        
+
         if (!missionLogFileValidator.isMissionLoggingEnabled())
         {
             ErrorDialog.userError(
                     "Mission logging is not enabled.  Before using the mission open <game install dir>\\Data\\Startup.cfg and set mission_text_log = 1");
         }
-        
+
         if (!missionLogFileValidator.getMissionLogPath().isEmpty())
         {
             PWCGContext.getInstance().setMissionLogDirectory(missionLogFileValidator.getMissionLogPath());

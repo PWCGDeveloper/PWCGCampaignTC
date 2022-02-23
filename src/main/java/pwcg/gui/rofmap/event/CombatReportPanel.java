@@ -9,21 +9,21 @@ import pwcg.core.exception.PWCGException;
 
 public class CombatReportPanel extends AARDocumentIconPanel
 {
-	private static final long serialVersionUID = 1L;
-	private CombatReport combatReport;
+    private static final long serialVersionUID = 1L;
+    private CombatReport combatReport;
 
-	public CombatReportPanel(CombatReport combatReport)
-	{
-		super();
-		this.setLayout(new BorderLayout());
-		this.setOpaque(false);
-		this.combatReport = combatReport;
-	}
+    public CombatReportPanel(CombatReport combatReport)
+    {
+        super();
+        this.setLayout(new BorderLayout());
+        this.setOpaque(false);
+        this.combatReport = combatReport;
+    }
 
     @Override
     protected String getHeaderText() throws PWCGException
     {
-        return "Combats in the Air";
+        return "Combats";
     }
 
     @Override
@@ -40,31 +40,31 @@ public class CombatReportPanel extends AARDocumentIconPanel
         return combatReportText;
     }
 
-	private String makeMissionResults() throws PWCGException 
-	{
-		return "Remarks on flight and hostile aircraft\n" + combatReport.getHaReport();
-	}
+    private String makeMissionResults() throws PWCGException
+    {
+        return "Remarks on flight and hostile aircraft\n" + combatReport.getHaReport();
+    }
 
-	private String makeNarrative() throws PWCGException 
-	{
-		return "\nNarrative\n" + combatReport.getNarrative();
-	}
+    private String makeNarrative() throws PWCGException
+    {
+        return "\nNarrative\n" + combatReport.getNarrative();
+    }
 
-	public void setCombatReport(CombatReport combatReport) 
-	{
-		this.combatReport = combatReport;
-	}
+    public void setCombatReport(CombatReport combatReport)
+    {
+        this.combatReport = combatReport;
+    }
 
-	public void writeCombatReport(Campaign campaign) throws PWCGException 
-	{
-		if (combatReport != null)
-		{
-			CombatReportIOJson.writeJson(campaign, combatReport);
-		}
-	}
+    public void writeCombatReport(Campaign campaign) throws PWCGException
+    {
+        if (combatReport != null)
+        {
+            CombatReportIOJson.writeJson(campaign, combatReport);
+        }
+    }
 
     @Override
     public void finished()
-    {        
+    {
     }
 }

@@ -33,13 +33,13 @@ public class ArmoredStartPositionBuilder
 
     private void buildStartPositions(List<ITankPlatoon> platoons, GroundUnitType groundUnitType) throws PWCGException
     {
-        List<IGroundUnit> positionsFriendlyAT = assaultFixedUnitCollection.getGroundUnitsByTypeAndSide(groundUnitType, platoons.get(0).getPlatoonInformation().getCountry().getSide());
-        Collections.shuffle(positionsFriendlyAT);
+        List<IGroundUnit> positionsFriendly = assaultFixedUnitCollection.getGroundUnitsByTypeAndSide(groundUnitType, platoons.get(0).getPlatoonInformation().getCountry().getSide());
+        Collections.shuffle(positionsFriendly);
         for (int i = 0; i < platoons.size(); ++i)
         {
-            int iterationThroughPositions = i / positionsFriendlyAT.size() + 1;
-            Coordinate startPositionAtFriendlyAT = positionsFriendlyAT.get(i % positionsFriendlyAT.size()).getPosition();
-            Coordinate startPosition = moveStartPositionForwardFromAT(startPositionAtFriendlyAT, iterationThroughPositions);
+            int iterationThroughPositions = i / positionsFriendly.size() + 1;
+            Coordinate startPositionAtFriendly = positionsFriendly.get(i % positionsFriendly.size()).getPosition();
+            Coordinate startPosition = moveStartPositionForwardFromAT(startPositionAtFriendly, iterationThroughPositions);
             assaultStartPositions.add(startPosition);
         }
     }

@@ -18,7 +18,7 @@ import pwcg.core.utils.PWCGLogger;
 import pwcg.mission.data.PwcgGeneratedMission;
 import pwcg.mission.ground.MissionGroundUnitBuilder;
 import pwcg.mission.ground.MissionPlatoons;
-import pwcg.mission.ground.builder.IMissionPlatoonBuilder;
+import pwcg.mission.ground.builder.IPlatoonBuilder;
 import pwcg.mission.ground.builder.MissionBattleBuilderFactory;
 import pwcg.mission.ground.vehicle.VehicleSetBuilderComprehensive;
 import pwcg.mission.io.MissionDescriptionFile;
@@ -102,7 +102,7 @@ public class Mission
 
     private void createTankUnits() throws PWCGException
     {
-        IMissionPlatoonBuilder platoonBuilder = MissionBattleBuilderFactory.getPlatoonBuilder(this);
+        IPlatoonBuilder platoonBuilder = MissionBattleBuilderFactory.getPlatoonBuilder(this);
         missionPlatoons = platoonBuilder.createPlatoons();
     }
 

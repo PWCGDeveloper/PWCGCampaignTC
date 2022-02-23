@@ -45,7 +45,7 @@ public class TankTypeFactoryTest
     }
 
     @Test
-    public void getAvailableTankTypesTest() throws PWCGException
+    public void getAvailablePlayerTankTypesTest() throws PWCGException
     {
         ITankTypeFactory tankTypeFactory = PWCGContext.getInstance().getPlayerTankTypeFactory();
 
@@ -61,8 +61,11 @@ public class TankTypeFactoryTest
         List<TankTypeInformation> availableRussianTankTypes = tankTypeFactory.getAvailablePlayerTankTypes(CountryFactory.makeCountryByCountry(Country.RUSSIA), PwcgRoleCategory.MAIN_BATTLE_TANK, DateUtils.getDateYYYYMMDD("19431001"));
         assert(availableRussianTankTypes.size() == 3);
 
-        List<TankTypeInformation> availableGermanAttackTankTypes = tankTypeFactory.getAvailablePlayerTankTypes(CountryFactory.makeCountryByCountry(Country.RUSSIA), PwcgRoleCategory.SELF_PROPELLED_GUN, DateUtils.getDateYYYYMMDD("19431001"));
-        assert(availableGermanAttackTankTypes.size() == 2);
+        List<TankTypeInformation> availableGermanSPGTypes = tankTypeFactory.getAvailablePlayerTankTypes(CountryFactory.makeCountryByCountry(Country.GERMANY), PwcgRoleCategory.SELF_PROPELLED_GUN, DateUtils.getDateYYYYMMDD("19431001"));
+        assert(availableGermanSPGTypes.size() == 0);
+
+        List<TankTypeInformation> availableRussianSPGTypes = tankTypeFactory.getAvailablePlayerTankTypes(CountryFactory.makeCountryByCountry(Country.RUSSIA), PwcgRoleCategory.SELF_PROPELLED_GUN, DateUtils.getDateYYYYMMDD("19431001"));
+        assert(availableRussianSPGTypes.size() == 4);
     }
 
     @Test

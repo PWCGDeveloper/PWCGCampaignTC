@@ -17,7 +17,7 @@ public class ConfigurationIOJsonTest
     @Test
     public void readJsonBoSTest() throws PWCGException
     {
-        String path = System.getProperty("user.dir") + "\\BoSData\\input\\Configuration\\";
+        String path = System.getProperty("user.dir") + "\\TCData\\input\\Configuration\\";
         Map<String, ConfigSet> configSet = ConfigurationIOJson.readJson(path);
         Assertions.assertTrue (configSet.size() > 0);
     }

@@ -1,36 +1,28 @@
-package pwcg.mission.ground.builder;
+package pwcg.mission.ground.builder.amphibious;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import pwcg.campaign.api.Side;
-import pwcg.campaign.company.Company;
-import pwcg.campaign.crewmember.CrewMember;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.location.Orientation;
 import pwcg.core.utils.MathUtils;
-import pwcg.mission.ICompanyMission;
 import pwcg.mission.Mission;
 import pwcg.mission.flight.waypoint.WaypointFactory;
 import pwcg.mission.ground.MissionPlatoons;
+import pwcg.mission.ground.builder.ArmoredDefenseRouteBuilder;
+import pwcg.mission.ground.builder.IPlatoonBuilder;
+import pwcg.mission.ground.builder.PlatoonBuilderBase;
 import pwcg.mission.mcu.McuWaypoint;
-import pwcg.mission.platoon.AiPlatoon;
 import pwcg.mission.platoon.ITankPlatoon;
-import pwcg.mission.platoon.PlatoonInformation;
-import pwcg.mission.platoon.PlatoonMissionType;
-import pwcg.mission.platoon.PlatoonMissionTypeFactory;
-import pwcg.mission.platoon.PlayerPlatoon;
 
-public class AmphibiousPlatoonBuilder implements IMissionPlatoonBuilder
+public class AmphibiousPlatoonBuilder extends PlatoonBuilderBase implements IPlatoonBuilder
 {
-    private Mission mission;
-    private MissionPlatoons missionPlatoons;
-
     public AmphibiousPlatoonBuilder(Mission mission)
     {
-        this.mission = mission;
+        super(mission);
     }
 
     @Override
@@ -42,21 +34,21 @@ public class AmphibiousPlatoonBuilder implements IMissionPlatoonBuilder
 
         createAssaultingWaypoints();
         createDefendingingWaypoints();
-                
+
         return missionPlatoons;
     }
 
     private void createAssaultingWaypoints() throws PWCGException
     {
-        ArmoredAssaultRouteBuilder assaultRouteBuilder = new ArmoredAssaultRouteBuilder(mission);
+        AmphibiousArmoredAssaultRouteBuilder assaultRouteBuilder = new AmphibiousArmoredAssaultRouteBuilder(mission);
         Map<Integer, List<Coordinate>> assaultRoutes = assaultRouteBuilder.buildAssaultRoutesForArmor(missionPlatoons.getPlatoons());
         for (int index : assaultRoutes.keySet())
         {
             List<Coordinate> waypointCoordinates = assaultRoutes.get(index);
             ITankPlatoon platoon = missionPlatoons.getPlatoon(index);
-            
+
             createStartPosition(waypointCoordinates, platoon);
-            
+
             List<McuWaypoint> assaultWaypoints = createWaypoints(waypointCoordinates, platoon.getLeadVehicle().getCruisingSpeed());
             platoon.setWaypoints(assaultWaypoints);
         }
@@ -70,9 +62,9 @@ public class AmphibiousPlatoonBuilder implements IMissionPlatoonBuilder
         {
             List<Coordinate> waypointCoordinates = defenseRoutes.get(index);
             ITankPlatoon platoon = missionPlatoons.getPlatoon(index);
-            
+
             createStartPosition(waypointCoordinates, platoon);
-            
+
             List<McuWaypoint> defenseWaypoints = createWaypoints(waypointCoordinates, platoon.getLeadVehicle().getCruisingSpeed());
             platoon.setWaypoints(defenseWaypoints);
         }
@@ -91,10 +83,10 @@ public class AmphibiousPlatoonBuilder implements IMissionPlatoonBuilder
             waypoint.setSpeed(platoonSpeed);
             waypoint.setPosition(assaultWaypointCoordinate.copy());
             waypoint.setTargetWaypoint(true);
-            
+
             double angle = MathUtils.calcAngle(assaultWaypointCoordinates.get(i-1), assaultWaypointCoordinate);
             waypoint.setOrientation(new Orientation(angle));
-            
+
             assaultWaypoints.add(waypoint);
         }
         return assaultWaypoints;
@@ -105,37 +97,5 @@ public class AmphibiousPlatoonBuilder implements IMissionPlatoonBuilder
         Coordinate startPosition = waypointCoordinates.get(0);
         Coordinate towardsPosition = waypointCoordinates.get(1);
         platoon.setStartPosition(startPosition, towardsPosition);
-    }
-
-    private void buildPlatoonsForSide(Side side) throws PWCGException
-    {
-        List<Company> playerCompaniesInMission = mission.getParticipatingPlayers().getParticipatingCompanyIdsForSide(side);
-        for (Company company : playerCompaniesInMission)
-        {
-            buildPlatoon(company);
-        }
-    }
-    
-    private void buildPlatoon(ICompanyMission company) throws PWCGException
-    {
-        List<CrewMember> playerCrews = mission.getParticipatingPlayers().getParticipatingPlayersForCompany(company.getCompanyId());
-        PlatoonInformation platoonInformation = new PlatoonInformation(mission, company, playerCrews);
-
-        ITankPlatoon tankPlatoon = null;
-        if (company.isPlayercompany())
-        {
-            tankPlatoon = new PlayerPlatoon(platoonInformation);
-            tankPlatoon.createUnit();
-        }
-        else
-        {
-            tankPlatoon = new AiPlatoon(platoonInformation);
-            tankPlatoon.createUnit();
-        }
-
-        PlatoonMissionType platoonMissionType = PlatoonMissionTypeFactory.getPlatoonMissionType(mission, company, tankPlatoon.getLeadVehicle());
-        tankPlatoon.setPlatoonMissionType(platoonMissionType);
-        
-        missionPlatoons.addPlatoon(tankPlatoon);
     }
 }

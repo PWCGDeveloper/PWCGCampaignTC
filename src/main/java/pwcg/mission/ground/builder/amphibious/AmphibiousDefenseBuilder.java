@@ -1,4 +1,4 @@
-package pwcg.mission.ground.builder;
+package pwcg.mission.ground.builder.amphibious;
 
 import java.util.ArrayList;
 import java.util.Arrays;

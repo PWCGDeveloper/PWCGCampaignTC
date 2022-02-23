@@ -1,4 +1,4 @@
-package pwcg.mission.ground.builder;
+package pwcg.mission.ground.builder.amphibious;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,16 +30,16 @@ public class AmphibiousAssaultAttackBuilder
     private AssaultGroundUnitFactory assaultFactory =  new AssaultGroundUnitFactory();
     private GroundUnitCollection amphibiousAssaultAttack;
     private AmphibiousPositionBuilder amphibiousPositionBuilder;
-    
+
     public AmphibiousAssaultAttackBuilder(Mission mission, AmphibiousAssault amphibiousAssault, AmphibiousAssaultShipDefinition landingCraftDefinition)
     {
         this.mission = mission;
         this.amphibiousAssault = amphibiousAssault;
         this.landingCraftDefinition = landingCraftDefinition;
-        
+
         GroundUnitCollectionData groundUnitCollectionData = new GroundUnitCollectionData(
-                GroundUnitCollectionType.INFANTRY_GROUND_UNIT_COLLECTION, 
-                "Amphibious Assault", 
+                GroundUnitCollectionType.INFANTRY_GROUND_UNIT_COLLECTION,
+                "Amphibious Assault",
                 TargetType.TARGET_INFANTRY,
                 Coalition.getCoalitions());
 
@@ -51,10 +51,11 @@ public class AmphibiousAssaultAttackBuilder
         buildPositionAndOrientation();
 
         assaultingTanks();
+        assaultingMachineGun();
         assaultingAAAMachineGun();
         finishGroundUnitCollection();
-                
-        return amphibiousAssaultAttack;        
+
+        return amphibiousAssaultAttack;
     }
 
     private void finishGroundUnitCollection() throws PWCGException
@@ -63,9 +64,10 @@ public class AmphibiousAssaultAttackBuilder
         primaryAssaultSegmentGroundUnits.add(amphibiousAssaultAttack.getPrimaryGroundUnit());
         amphibiousAssaultAttack.setPrimaryGroundUnit(primaryAssaultSegmentGroundUnits.get(0));
         amphibiousAssaultAttack.finishGroundUnitCollection();
-        
+
         amphibiousAssaultAttack.setCheckZoneTriggerDistance(250);
-        amphibiousAssaultAttack.setCheckZoneTriggerUnit(landingCraftDefinition.getLandingCraftGroundUnit().getGroundUnits().get(0).getVehicles().get(0).getEntity().getIndex());
+        amphibiousAssaultAttack.setCheckZoneTriggerUnit(
+                landingCraftDefinition.getLandingCraftGroundUnit().getGroundUnits().get(0).getVehicles().get(0).getEntity().getIndex());
     }
 
     private void buildPositionAndOrientation() throws PWCGException
@@ -75,8 +77,9 @@ public class AmphibiousAssaultAttackBuilder
     }
 
     private void assaultingTanks() throws PWCGException
-    {         
-        Coordinate tankAssaultStartPosition = MathUtils.calcNextCoord(amphibiousPositionBuilder.getAssaultPosition(), amphibiousPositionBuilder.getAssaultOrientation().getyOri(), 100);  
+    {
+        Coordinate tankAssaultStartPosition = MathUtils.calcNextCoord(
+                amphibiousPositionBuilder.getAssaultPosition(), amphibiousPositionBuilder.getAssaultOrientation().getyOri(), 100);
 
         GroundUnitInformation groundUnitInformation = buildAssaultGroundUnitInformation(tankAssaultStartPosition, "Tank", TargetType.TARGET_ARMOR);
         if (amphibiousAssault.getAggressorCountry() == Country.RUSSIA)
@@ -87,14 +90,25 @@ public class AmphibiousAssaultAttackBuilder
         {
             groundUnitInformation.setRequestedUnitType("m4a3");
         }
-        
+
         IGroundUnit assaultTankUnit = assaultFactory.createAssaultTankUnit (groundUnitInformation);
         amphibiousAssaultAttack.addGroundUnit(assaultTankUnit);
     }
 
+    private void assaultingMachineGun() throws PWCGException
+    {
+        Coordinate mgAssaultPosition = MathUtils.calcNextCoord(
+                amphibiousPositionBuilder.getAssaultPosition(), amphibiousPositionBuilder.getAssaultOrientation().getyOri(), 80);
+
+        GroundUnitInformation groundUnitInformation = buildAssaultGroundUnitInformation(mgAssaultPosition, "Machine Gun", TargetType.TARGET_INFANTRY);
+        IGroundUnit assaultMachineGunUnit = assaultFactory.createMachineGunUnit(groundUnitInformation);
+        amphibiousAssaultAttack.addGroundUnit(assaultMachineGunUnit);
+    }
+
     private void assaultingAAAMachineGun() throws PWCGException
-    { 
-        Coordinate aaaMgAssaultPosition = MathUtils.calcNextCoord(amphibiousPositionBuilder.getAssaultPosition(), amphibiousPositionBuilder.getAssaultOrientation().getyOri(), 50);  
+    {
+        Coordinate aaaMgAssaultPosition = MathUtils.calcNextCoord(
+                amphibiousPositionBuilder.getAssaultPosition(), amphibiousPositionBuilder.getAssaultOrientation().getyOri(), 50);
 
         GroundUnitInformation groundUnitInformation = buildAssaultGroundUnitInformation(aaaMgAssaultPosition, "AA Machine Gun", TargetType.TARGET_INFANTRY);
         IGroundUnit assaultAAMachineGunUnit = assaultFactory.createAAMachineGunUnitUnit(groundUnitInformation);
@@ -104,13 +118,13 @@ public class AmphibiousAssaultAttackBuilder
     private GroundUnitInformation buildAssaultGroundUnitInformation(Coordinate unitPosition, String unitName, TargetType targetType) throws PWCGException
     {
         GroundUnitInformation groundUnitInformation = GroundUnitInformationFactory.buildGroundUnitInformation(
-                mission.getCampaign(), 
+                mission.getCampaign(),
                 CountryFactory.makeCountryByCountry(amphibiousAssault.getAggressorCountry()),
-                targetType, 
-                unitPosition, 
-                Arrays.asList(amphibiousPositionBuilder.getDefensePosition()), 
+                targetType,
+                unitPosition,
+                Arrays.asList(amphibiousPositionBuilder.getDefensePosition()),
                 amphibiousPositionBuilder.getAssaultOrientation());
-        
+
         return groundUnitInformation;
     }
 

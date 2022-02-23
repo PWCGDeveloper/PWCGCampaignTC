@@ -2,19 +2,19 @@ package pwcg.dev.deploy;
 
 import java.util.HashMap;
 
-public class BoSDeploy extends DeployBase
+public class TCDeploy extends DeployBase
 {
-	public BoSDeploy()
-	{
-        targetFinalDir = "D:\\PWCG\\Deploy\\PWCGBoS";
-	}
+    public TCDeploy()
+    {
+        targetFinalDir = "D:\\PWCG\\Deploy\\PWCGTC";
+    }
 
     @Override
-	protected HashMap<String, Object> loadDirectoriesToCopyPWCG() 
-	{		
-		super.loadDirectoriesToCopyPWCG();
+    protected HashMap<String, Object> loadDirectoriesToCopyPWCG()
+    {
+        super.loadDirectoriesToCopyPWCG();
 
-        directoriesToCopy.put("BoSData", null);
+        directoriesToCopy.put("TCData", null);
         directoriesToCopy.put("Coop", null);
 
         // Maps
@@ -23,7 +23,7 @@ public class BoSDeploy extends DeployBase
         directoriesToCopy.put("Kuban", null);
         directoriesToCopy.put("East1944", null);
         directoriesToCopy.put("East1945", null);
-        directoriesToCopy.put("Bodenplatte", null);        
+        directoriesToCopy.put("Bodenplatte", null);
 
         // Bodenplatte dates
         directoriesToCopy.put("19440901", null);
@@ -41,7 +41,7 @@ public class BoSDeploy extends DeployBase
         directoriesToCopy.put("19450324", null);
         directoriesToCopy.put("19450404", null);
 
-		// Moscow dates
+        // Moscow dates
         directoriesToCopy.put("19411001", null);
         directoriesToCopy.put("19411005", null);
         directoriesToCopy.put("19411011", null);
@@ -51,8 +51,8 @@ public class BoSDeploy extends DeployBase
         directoriesToCopy.put("19411120", null);
         directoriesToCopy.put("19411215", null);
         directoriesToCopy.put("19420110", null);
-        
-		// Stalingrad dates
+
+        // Stalingrad dates
         directoriesToCopy.put("19420301", null);
         directoriesToCopy.put("19420801", null);
         directoriesToCopy.put("19420906", null);
@@ -60,8 +60,8 @@ public class BoSDeploy extends DeployBase
         directoriesToCopy.put("19421123", null);
         directoriesToCopy.put("19421223", null);
         directoriesToCopy.put("19430120", null);
-        
-		// Kuban dates
+
+        // Kuban dates
         directoriesToCopy.put("19420601", null);
         directoriesToCopy.put("19420624", null);
         directoriesToCopy.put("19420709", null);
@@ -75,7 +75,7 @@ public class BoSDeploy extends DeployBase
         directoriesToCopy.put("19431008", null);
         directoriesToCopy.put("19431101", null);
         directoriesToCopy.put("19431111", null);
-        
+
         // East Front 1944 dates
         directoriesToCopy.put("19440101", null);
         directoriesToCopy.put("19440201", null);
@@ -89,14 +89,14 @@ public class BoSDeploy extends DeployBase
         directoriesToCopy.put("19441001", null);
         directoriesToCopy.put("19441101", null);
         directoriesToCopy.put("19441201", null);
-        
+
         // East Front 1945 dates
         directoriesToCopy.put("19450101", null);
         directoriesToCopy.put("19450201", null);
         directoriesToCopy.put("19450301", null);
         directoriesToCopy.put("19450401", null);
         directoriesToCopy.put("19450501", null);
-        
+
         // Service Themes
         directoriesToCopy.put("Luftwaffe", null);
         directoriesToCopy.put("Royal Air Force", null);
@@ -109,12 +109,12 @@ public class BoSDeploy extends DeployBase
         directoriesToCopy.put("Russia", null);
         directoriesToCopy.put("USA", null);
 
-		return directoriesToCopy;
-	}
-	
-	   
+        return directoriesToCopy;
+    }
+
+
     @Override
-    protected HashMap<String, Object> loadUnwantedFiles() 
+    protected HashMap<String, Object> loadUnwantedFiles()
     {
         super.loadUnwantedFiles();
         unwantedFiles.put("PWCGFC.ico", null);

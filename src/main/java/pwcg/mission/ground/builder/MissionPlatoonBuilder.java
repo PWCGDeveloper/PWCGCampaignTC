@@ -5,32 +5,21 @@ import java.util.List;
 import java.util.Map;
 
 import pwcg.campaign.api.Side;
-import pwcg.campaign.crewmember.CrewMember;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.location.Orientation;
 import pwcg.core.utils.MathUtils;
-import pwcg.mission.ICompanyMission;
 import pwcg.mission.Mission;
-import pwcg.mission.MissionCompanyBuilder;
 import pwcg.mission.flight.waypoint.WaypointFactory;
 import pwcg.mission.ground.MissionPlatoons;
 import pwcg.mission.mcu.McuWaypoint;
-import pwcg.mission.platoon.AiPlatoon;
 import pwcg.mission.platoon.ITankPlatoon;
-import pwcg.mission.platoon.PlatoonInformation;
-import pwcg.mission.platoon.PlatoonMissionType;
-import pwcg.mission.platoon.PlatoonMissionTypeFactory;
-import pwcg.mission.platoon.PlayerPlatoon;
 
-public class MissionPlatoonBuilder implements IMissionPlatoonBuilder
+public class MissionPlatoonBuilder extends PlatoonBuilderBase implements IPlatoonBuilder
 {
-    private Mission mission;
-    private MissionPlatoons missionPlatoons;
-
     public MissionPlatoonBuilder(Mission mission)
     {
-        this.mission = mission;
+        super(mission);
     }
 
     @Override
@@ -46,19 +35,6 @@ public class MissionPlatoonBuilder implements IMissionPlatoonBuilder
         buildResponsiveRoutes();
 
         return missionPlatoons;
-    }
-
-    private void buildResponsiveRoutes() throws PWCGException
-    {
-        List<ITankPlatoon> defendingPlatoons = missionPlatoons.getPlatoonsForSide(mission.getObjective().getDefendingCountry().getSide());
-        for (ITankPlatoon defendingPlatoon : defendingPlatoons)
-        {
-            ArmoredPlatoonDefensiveResponsiveRouteBuilder responsiveRouteBuilder = new ArmoredPlatoonDefensiveResponsiveRouteBuilder(mission);
-            responsiveRouteBuilder.buildResponsiveRoutesForPlatoon(defendingPlatoon);
-
-            List<ITankPlatoon> assaultingPlatoons = missionPlatoons.getPlatoonsForSide(mission.getObjective().getAssaultingCountry().getSide());
-            responsiveRouteBuilder.triggerResponsiveRoutes(defendingPlatoon, assaultingPlatoons);
-        }
     }
 
     private void createAssaultingWaypoints() throws PWCGException
@@ -90,6 +66,19 @@ public class MissionPlatoonBuilder implements IMissionPlatoonBuilder
 
             List<McuWaypoint> defenseWaypoints = createWaypoints(waypointCoordinates, platoon.getLeadVehicle().getCruisingSpeed());
             platoon.setWaypoints(defenseWaypoints);
+        }
+    }
+
+    private void buildResponsiveRoutes() throws PWCGException
+    {
+        List<ITankPlatoon> defendingPlatoons = missionPlatoons.getPlatoonsForSide(mission.getObjective().getDefendingCountry().getSide());
+        for (ITankPlatoon defendingPlatoon : defendingPlatoons)
+        {
+            ArmoredPlatoonDefensiveResponsiveRouteBuilder responsiveRouteBuilder = new ArmoredPlatoonDefensiveResponsiveRouteBuilder(mission);
+            responsiveRouteBuilder.buildResponsiveRoutesForPlatoon(defendingPlatoon);
+
+            List<ITankPlatoon> assaultingPlatoons = missionPlatoons.getPlatoonsForSide(mission.getObjective().getAssaultingCountry().getSide());
+            responsiveRouteBuilder.triggerResponsiveRoutes(defendingPlatoon, assaultingPlatoons);
         }
     }
 
@@ -129,37 +118,5 @@ public class MissionPlatoonBuilder implements IMissionPlatoonBuilder
 
 
         return assaultWaypoints;
-    }
-
-    private void buildPlatoonsForSide(Side side) throws PWCGException
-    {
-        List<ICompanyMission> companiesForSide = MissionCompanyBuilder.getCompaniesInMissionForSide(mission, side);
-        for (ICompanyMission company : companiesForSide)
-        {
-            buildPlatoon(company);
-        }
-    }
-
-    private void buildPlatoon(ICompanyMission company) throws PWCGException
-    {
-        List<CrewMember> playerCrews = mission.getParticipatingPlayers().getParticipatingPlayersForCompany(company.getCompanyId());
-        PlatoonInformation platoonInformation = new PlatoonInformation(mission, company, playerCrews);
-
-        ITankPlatoon tankPlatoon = null;
-        if (company.isPlayercompany())
-        {
-            tankPlatoon = new PlayerPlatoon(platoonInformation);
-            tankPlatoon.createUnit();
-        }
-        else
-        {
-            tankPlatoon = new AiPlatoon(platoonInformation);
-            tankPlatoon.createUnit();
-        }
-
-        PlatoonMissionType platoonMissionType = PlatoonMissionTypeFactory.getPlatoonMissionType(mission, company, tankPlatoon.getLeadVehicle());
-        tankPlatoon.setPlatoonMissionType(platoonMissionType);
-
-        missionPlatoons.addPlatoon(tankPlatoon);
     }
 }

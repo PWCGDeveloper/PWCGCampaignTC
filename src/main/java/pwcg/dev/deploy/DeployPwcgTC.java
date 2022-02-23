@@ -17,13 +17,10 @@ public class DeployPwcgTC extends DeployBase
                 PWCGLogger.log(LogLevel.ERROR, "************  NO DEPLOY - TEST DRIVER ENABLED  **********");
                 return;
             }
-    
-            BoSDeploy bosDeploy = new BoSDeploy();
-            bosDeploy.doDeploy();
-            
-            FCDeploy fcDeploy = new FCDeploy();
-            fcDeploy.doDeploy();
-            
+
+            TCDeploy tcDeploy = new TCDeploy();
+            tcDeploy.doDeploy();
+
             PWCGJarCopy.copyJar();
 
             PWCGLogger.log(LogLevel.INFO, "************  DONE  **********");

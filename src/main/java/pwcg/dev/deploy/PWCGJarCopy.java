@@ -9,11 +9,11 @@ public class PWCGJarCopy extends DeployBase
 {
     static public void copyJar () throws IOException
     {
-        File jarFile = new File("build\\libs\\PWCG.jar");
-        File targetJarFile = new File("\\PWCG\\Deploy\\PWCG.jar");
+        File jarFile = new File("build\\libs\\PWCGTC.jar");
+        File targetJarFile = new File("\\PWCG\\Deploy\\PWCGTC.jar");
         if (jarFile.exists())
         {
-            
+
             Files.copy(jarFile, targetJarFile);
         }
     }

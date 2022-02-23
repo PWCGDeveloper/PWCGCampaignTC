@@ -1,4 +1,4 @@
-package pwcg.mission.ground.builder;
+package pwcg.mission.ground.builder.amphibious;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,7 @@ import pwcg.campaign.battle.AmphibiousAssaultShipDefinition;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.utils.RandomNumberGenerator;
 import pwcg.mission.Mission;
+import pwcg.mission.ground.builder.IBattleBuilder;
 import pwcg.mission.ground.org.GroundUnitCollection;
 
 public class AmphibiousAssaultBuilder implements IBattleBuilder

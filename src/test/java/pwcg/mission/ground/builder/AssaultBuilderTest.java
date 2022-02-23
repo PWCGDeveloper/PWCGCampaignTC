@@ -18,7 +18,6 @@ import pwcg.campaign.context.PWCGContext;
 import pwcg.campaign.factory.CountryFactory;
 import pwcg.core.config.ConfigItemKeys;
 import pwcg.core.config.ConfigManagerCampaign;
-import pwcg.core.config.ConfigSimple;
 import pwcg.core.exception.PWCGException;
 import pwcg.core.location.Coordinate;
 import pwcg.core.location.PWCGLocation;
@@ -46,15 +45,15 @@ public class AssaultBuilderTest
     @BeforeEach
     public void setupTest() throws PWCGException
     {
-        
+
         PWCGContext.getInstance().setCurrentMap(FrontMapIdentifier.STALINGRAD_MAP);
 
         Mockito.when(mission.getCampaign()).thenReturn(campaign);
 
         Mockito.when(campaign.getCampaignConfigManager()).thenReturn(configManager);
         Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19430401"));
-        Mockito.when(configManager.getStringConfigParam(ConfigItemKeys.SimpleConfigGroundKey)).thenReturn(ConfigSimple.CONFIG_LEVEL_MED);
-        
+        Mockito.when(configManager.getIntConfigParam(ConfigItemKeys.GroundUnitSpawnDistanceKey)).thenReturn(10000);
+
         PWCGLocation town = new PWCGLocation();
         town.setName("Targetville");
         town.setPosition(new Coordinate(60000, 0, 60000));
@@ -67,12 +66,12 @@ public class AssaultBuilderTest
     }
 
     @Test
-    public void createLargeAssaultWithoutBattleTest () throws PWCGException 
+    public void createLargeAssaultWithoutBattleTest () throws PWCGException
     {
-        try (MockedStatic<RandomNumberGenerator> mocked = Mockito.mockStatic(RandomNumberGenerator.class)) 
+        try (MockedStatic<RandomNumberGenerator> mocked = Mockito.mockStatic(RandomNumberGenerator.class))
         {
             mocked.when(() -> RandomNumberGenerator.getRandom(100)).thenReturn(49);
-    
+
             Mockito.when(campaign.getDate()).thenReturn(DateUtils.getDateYYYYMMDD("19430401"));
             createLargeAssaultTest ();
             GroundUnitCollection groundUnitGroup = createLargeAssaultTest ();
@@ -81,11 +80,11 @@ public class AssaultBuilderTest
             validateUntHasEquipment(groundUnitGroup);
         }
     }
-    
-    public GroundUnitCollection createLargeAssaultTest () throws PWCGException 
+
+    public GroundUnitCollection createLargeAssaultTest () throws PWCGException
     {
         GroundUnitCollection groundUnitGroup = FrontFixedUnitSegmentsBuilder.generateAssault(mission);
-        
+
         Assertions.assertTrue (groundUnitGroup.getGroundUnits().size() >= 10);
         groundUnitGroup.validate();
         return groundUnitGroup;
@@ -96,7 +95,7 @@ public class AssaultBuilderTest
         int artilleryFound = 0;
         int antiTankFound = 0;
         int machineGunFound = 0;
-        
+
         for (IGroundUnit groundUnit : groundUnitGroup.getGroundUnits())
         {
             if (groundUnit.getCountry().getCountry() == country)

@@ -1,4 +1,4 @@
-package pwcg.mission.ground.builder;
+package pwcg.mission.ground.builder.amphibious;
 
 import pwcg.campaign.battle.AmphibiousAssaultShipDefinition;
 import pwcg.core.exception.PWCGException;
